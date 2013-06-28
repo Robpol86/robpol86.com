@@ -2,3 +2,61 @@ safe:       true
 lsi:        false
 pygments:   true
 timezone:   America/Chicago
+
+title:            Robpol86.com
+description:      Honestly, the tissues really are for my nose!
+logo:             site-logo.png
+#disqus_shortname: sosimpletheme
+url:              "http://robpol86.github.io"
+
+# Owner/author information
+owner:
+  name:           Robpol86
+  avatar:         me.png
+  email:          robpol86@gmail.com
+  # Social networking links used in footer. Update and remove as you like.
+  #twitter:        "mmistakes"
+  #facebook:       "michaelrose"
+  github:         "robpol86"
+  linkedin:       "robpooley"
+  #instagram:      "mmistakes"
+  #tumblr:         "mademistakes"
+  # For Google Authorship https://plus.google.com/authorship
+  google_plus:    "http://plus.google.com/113974017077390889299"
+
+# Analytics and webmaster tools stuff goes here
+#google_analytics:   UA-2011187-2
+#google_verify:      UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+#bing_verify:        D81F4C18A6CB3018F64D7C827D953DFD   
+
+# Internal pages/posts to include in top navigation
+links:
+  - title: Home
+    url: /
+  - title: About
+    url: /about
+
+# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+future:      true
+markdown:    kramdown
+
+# https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink:   /:categories/:title
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
+
+  coderay:
+    coderay_line_numbers: 
+    coderay_line_numbers_start: 1
+    coderay_tab_width: 4
+    coderay_bold_every: 10
+    coderay_css: class
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less"]
