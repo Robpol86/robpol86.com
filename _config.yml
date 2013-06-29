@@ -7,7 +7,8 @@ title:            Robpol86.com
 description:      A place where I post my projects and guides.
 logo:             site-logo.png
 #disqus_shortname: sosimpletheme
-url:              ""
+#url:              "http://centos64x64-vm:4000"
+url:              "http://robpol86.github.io"
 
 # Owner/author information
 owner:
