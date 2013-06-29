@@ -4,10 +4,10 @@ pygments:   true
 timezone:   America/Chicago
 
 title:            Robpol86.com
-description:      Honestly, the tissues really are for my nose!
+description:      A place where I post my projects and guides.
 logo:             site-logo.png
 #disqus_shortname: sosimpletheme
-url:              "http://robpol86.github.io"
+url:              ""
 
 # Owner/author information
 owner:
@@ -36,6 +36,8 @@ links:
     url: /
   - title: About
     url: /about
+  - title: UnofficialDDNS
+    url: http://robpol86.github.io/UnofficialDDNS/
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 future:      true
