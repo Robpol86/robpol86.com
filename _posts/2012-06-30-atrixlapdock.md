@@ -27,7 +27,8 @@ the old unified article.
     it should easily come off. More room for HDMI/USB adapters.</figcaption>
 </figure>
 
-All high-res images used on this page are available [here](http://imgur.com/a/zEkwz). Below are a few YouTube videos I posted about the Lapdock (the second shows that the Lapdock 500 isn't "hacker-friendly").
+All high-res images used on this page are available [here](http://imgur.com/a/zEkwz). Below are a few YouTube videos I
+posted about the Lapdock (the second shows that the Lapdock 500 isn't "hacker-friendly").
 
 <iframe width="560" height="315" src="http://www.youtube.com/embed/VfdKq33WgHw" frameborder="0"> </iframe><br />
 
