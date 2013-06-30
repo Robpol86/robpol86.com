@@ -2,7 +2,6 @@
 layout: post
 title: Atrix Lapdock with a Galaxy Nexus
 description: "If only the keyboard worked simultaneously with the display on these MHL phones."
-modified: 2012-06-30
 category: lapdock
 tags: [atrix, lapdock, microhdmi, android, galaxy nexus, samsung, mhl]
 comments: true

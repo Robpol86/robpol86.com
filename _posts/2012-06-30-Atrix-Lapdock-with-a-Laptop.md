@@ -2,7 +2,6 @@
 layout: post
 title: Atrix Lapdock with a Laptop
 description: "Using the Atrix Lapdock as a secondary display for your laptop."
-modified: 2012-06-30
 category: lapdock
 tags: [atrix, lapdock, microhdmi, laptop, external monitor]
 comments: true
