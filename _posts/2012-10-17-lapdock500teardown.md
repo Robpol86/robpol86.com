@@ -3,9 +3,10 @@ layout: post
 title: Lapdock 500 Teardown
 description: "Pictures of the Motorola Lapdock 500's insides."
 modified: 2012-10-17
-category: guides
+category: lapdock
 tags: [lapdock 500]
 comments: true
+showseries: true
 ---
 
 After searching around for a few months and not finding a teardown, I've decided to take apart my Lapdock 500. Since I
