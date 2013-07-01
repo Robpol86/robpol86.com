@@ -38,7 +38,7 @@ links:
   - title: About
     url: /about
   - title: UnofficialDDNS
-    url: http://robpol86.github.io/UnofficialDDNS/
+    url: /UnofficialDDNS
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 future:      true
