@@ -6,7 +6,7 @@ timezone:   America/Chicago
 title:            Robpol86.com
 description:      A place where I post my projects and guides.
 logo:             site-logo.png
-#disqus_shortname: sosimpletheme
+disqus_shortname: rob86wiki
 #url:              "http://centos64x64-vm:4000"
 url:              "http://robpol86.github.io"
 
@@ -17,7 +17,7 @@ owner:
   email:          robpol86@gmail.com
   # Social networking links used in footer. Update and remove as you like.
   #twitter:        "mmistakes"
-  #facebook:       "michaelrose"
+  facebook:       "robpol86"
   github:         "robpol86"
   linkedin:       "robpooley"
   #instagram:      "mmistakes"
@@ -26,10 +26,11 @@ owner:
   google_plus:    "http://plus.google.com/113974017077390889299"
 
 # Analytics and webmaster tools stuff goes here
-#google_analytics:   UA-2011187-2
+google_analytics:   UA-30840244-1
 #google_verify:      UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-#bing_verify:        D81F4C18A6CB3018F64D7C827D953DFD   
+#bing_verify:        D81F4C18A6CB3018F64D7C827D953DFD
+gauges_tracking:    "510780af613f5d5c05000015"
 
 # Internal pages/posts to include in top navigation
 links:
