@@ -48,7 +48,7 @@ During my free time I work on one of my little projects, usually
 </td></tr></tbody></table>
 
 If you'd like to get in touch with me, you can either use the **Contact Me** form below, or leave me a voicemail using
-the **widget** above.
+the **widget** above if you are on a PC or Mac (widget is flash-based and doesn't work on mobile devices).
 
 <iframe src="https://docs.google.com/forms/d/16wVAULQYNbxZKctrVGAmbp8Zx4er_FnP-OQAe5olfVo/viewform?embedded=true" width="640" height="610" frameborder="0" marginheight="0" marginwidth="0">
     Loading...
