@@ -11,7 +11,6 @@ body {
 
 // Top Navigation
 // --------------------------------------------------
-
 .navigation-wrapper {
 	text-align: center;
 	.clearfix();
@@ -48,6 +47,7 @@ body {
 // Responsive nav toggle stuff
 #site-nav {
 	z-index: 9999;
+	display: none;
 	@media @medium {
 		-webkit-animation-duration: 1s;
 		-moz-animation-duration: 1s;
@@ -59,17 +59,21 @@ body {
 	    animation-delay: .05s;
 	}
 	&.closed {
-		display: none;
+		
 		@media @medium {
 			display: block;
 		}
 	}
 	&.opened {
+		display: block;
 		max-height: 100%;
 		li {
 			float: none;
 		}
 	}
+}
+.no-js #site-nav {
+	display: block;
 }	
 #nav-toggle { 
 	display: block;
@@ -84,7 +88,6 @@ body {
 
 // Masthead
 // --------------------------------------------------
-
 .masthead {
 	margin-top: 40px;
 	.clearfix();
@@ -164,7 +167,6 @@ body {
 
 // Main
 // --------------------------------------------------
-
 #main {
 	.clearfix();
 }
@@ -235,6 +237,7 @@ span + .entry-title {
 	max-width: 640px;
 	width: 100%;
 	margin-right: auto;
+	margin-bottom: 30px;
 	margin-left: auto;
 	display: block;
 	text-transform: uppercase;
@@ -247,7 +250,7 @@ span + .entry-title {
 		padding: 0;
 	}
 	& > span {
-		padding: 0 20px 30px 0;
+		padding: 0 20px 10px 0;
 		display: inline-block;
 		@media @large {
 			display: block;
@@ -292,13 +295,13 @@ span + .entry-title {
 		border-bottom-width: 0;
 	}
 }
-// Pagination
-.pagination {
-	text-align: center;
-}
 // Disqus Comments
 #disqus_thread {
 	margin-top: 2em;
+}
+// Pagination
+.pagination {
+	text-align: center;
 }
 // Page layout
 #home,
@@ -330,6 +333,10 @@ span + .entry-title {
 	.entry-date {
 		.font-rem(14);
 		text-transform: uppercase;
+		display: none;
+		@media @medium {
+			display: inline;
+		}
 	}
 }
 // Tag index
@@ -388,4 +395,37 @@ span + .entry-title {
 .upgrade {
 	padding: 10px;
 	text-align: center;
+}
+
+// Google Search
+// --------------------------------------------------
+
+#goog-fixurl {
+	ul {
+		list-style: none;
+		margin-left: 0;
+		padding-left: 0;
+		li {
+			list-style-type: none;
+		}
+	}
+}
+#goog-wm-qt {
+	width: auto;
+	margin-right: 10px;
+}
+#goog-wm-sb {
+	display: inline-block;
+	padding: 8px 20px;
+	background-color: @black;
+	color: @white;
+	border: 2px solid @black !important;
+	.rounded(20px);
+	&:visited {
+		color: @white;
+	}
+	&:hover {
+		background-color: @white;
+		color: @black;
+	}
 }

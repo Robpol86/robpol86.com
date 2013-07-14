@@ -32,7 +32,8 @@ google_analytics:   UA-30840244-1
 #bing_verify:        D81F4C18A6CB3018F64D7C827D953DFD
 gauges_tracking:    "510780af613f5d5c05000015"
 
-# Internal pages/posts to include in top navigation
+# Links to include in top navigation
+# For external links add external: true
 links:
   - title: Home
     url: /
@@ -40,6 +41,9 @@ links:
     url: /about
   - title: UnofficialDDNS
     url: /UnofficialDDNS
+  - title: Source Code
+    url: https://github.com/Robpol86/robpol86.github.io
+    external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 future:      true
