@@ -5,8 +5,25 @@ description: "You are violating code 431.322.12 of the Internet Privacy Act sign
 tags: [ImageCFG, Lapdock, Atrix Lapdock, Lapdock 500, RNS-510, Video In Motion, UnofficialDDNS]
 ---
 
+{% assign posts = '' %}
 {% for post in site.posts %} 
+    {% if post.modified %}{% assign date = post.modified %}{% else %}{% assign date = post.date|date:"%Y-%m-%d" %}{% endif %}
+    {% if post.tags contains 'top-content' %}{% capture title %}<strong>{{ post.title }}</strong>{% endcapture %}{% else %}{% assign title = post.title %}{% endif %}
+    {% capture posts %}{{ posts }}~~~~~~{{ date }}~~~~{{ title }}~~~~{{ post.url }}~~~~{{ post.date|date_to_xmlschema }}{% endcapture %}
+{% endfor %}
+{% assign sorted_posts = posts|split:'~~~~~~'|sort %}
+
+{% for post in sorted_posts reversed offset:1 %}
+    {% assign post_split = post|split:'~~~~' %}
+    {% assign post_date = post_split[0] %}
+    {% assign post_title = post_split[1] %}
+    {% assign post_url = post_split[2] %}
+    {% assign post_date_xml = post_split[3] %}
 <ul class="post-list">
-  <li><article itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%B %d, %Y" }}</time></span></a></article></li>
+  <li>
+    <article itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+      <a href="{{ site.url }}{{ post_url }}">{{ post_title }}<span class="entry-date"><time datetime="{{ post_date_xml }}" itemprop="datePublished">{{ post_date|date:'%B %d, %Y' }}</time></span></a>
+    </article>
+  </li>
 </ul>
 {% endfor %}
