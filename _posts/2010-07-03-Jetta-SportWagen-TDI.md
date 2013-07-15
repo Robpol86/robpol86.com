@@ -13,81 +13,81 @@ special ordered the way I wanted it.
 
 [![Fuelly](http://mefi.us/images/fuelly/sig-us/46669.png)](http://www.fuelly.com/driver/Robpol86/jetta)
 
-<figure><a href="http://imgur.com/T640Q"><img src="http://i.imgur.com/T640Ql.jpg"></a></figure>
+<figure><a href="http://imgur.com/T640Q"><div class="annotparent"><img src="http://i.imgur.com/T640Ql.jpg"></div></a></figure>
 
-<figure><a href="http://imgur.com/vT2SN"><img src="http://i.imgur.com/vT2SNl.jpg"></a></figure>
+<figure><a href="http://imgur.com/vT2SN"><div class="annotparent"><img src="http://i.imgur.com/vT2SNl.jpg"></div></a></figure>
 
 <figure class="third">
-    <a href="http://imgur.com/TQ3BH"><img src="http://i.imgur.com/TQ3BHm.jpg"></a>
-    <a href="http://imgur.com/g3vnR"><img src="http://i.imgur.com/g3vnRm.jpg"></a>
-    <a href="http://imgur.com/Y2ziD"><img src="http://i.imgur.com/Y2ziDm.jpg"></a>
+    <a href="http://imgur.com/TQ3BH"><div class="annotparent"><img src="http://i.imgur.com/TQ3BHm.jpg"></div></a>
+    <a href="http://imgur.com/g3vnR"><div class="annotparent"><img src="http://i.imgur.com/g3vnRm.jpg"></div></a>
+    <a href="http://imgur.com/Y2ziD"><div class="annotparent"><img src="http://i.imgur.com/Y2ziDm.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
 <figure class="half">
-    <a href="http://imgur.com/eLut3"><img src="http://i.imgur.com/eLut3m.jpg"></a>
-    <a href="http://imgur.com/PEDQH"><img src="http://i.imgur.com/PEDQHm.jpg"></a>
+    <a href="http://imgur.com/eLut3"><div class="annotparent"><img src="http://i.imgur.com/eLut3m.jpg"></div></a>
+    <a href="http://imgur.com/PEDQH"><div class="annotparent"><img src="http://i.imgur.com/PEDQHm.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
 <figure class="third">
-    <a href="http://imgur.com/wtvxY"><img src="http://i.imgur.com/wtvxYm.jpg"></a>
-    <a href="http://imgur.com/UFZST"><img src="http://i.imgur.com/UFZSTm.jpg"></a>
-    <a href="http://imgur.com/PVixc"><img src="http://i.imgur.com/PVixcm.jpg"></a>
+    <a href="http://imgur.com/wtvxY"><div class="annotparent"><img src="http://i.imgur.com/wtvxYm.jpg"></div></a>
+    <a href="http://imgur.com/UFZST"><div class="annotparent"><img src="http://i.imgur.com/UFZSTm.jpg"></div></a>
+    <a href="http://imgur.com/PVixc"><div class="annotparent"><img src="http://i.imgur.com/PVixcm.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
 <figure class="half">
-    <a href="http://imgur.com/WJqLK"><img src="http://i.imgur.com/WJqLKm.jpg"></a>
-    <a href="http://imgur.com/7v2Xf"><img src="http://i.imgur.com/7v2Xfm.jpg"></a>
+    <a href="http://imgur.com/WJqLK"><div class="annotparent"><img src="http://i.imgur.com/WJqLKm.jpg"></div></a>
+    <a href="http://imgur.com/7v2Xf"><div class="annotparent"><img src="http://i.imgur.com/7v2Xfm.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
 <figure class="third">
-    <a href="http://imgur.com/ziSTv"><img src="http://i.imgur.com/ziSTvm.jpg"></a>
-    <a href="http://imgur.com/KZo5j"><img src="http://i.imgur.com/KZo5jm.jpg"></a>
-    <a href="http://imgur.com/DbXvX"><img src="http://i.imgur.com/DbXvXm.jpg"></a>
+    <a href="http://imgur.com/ziSTv"><div class="annotparent"><img src="http://i.imgur.com/ziSTvm.jpg"></div></a>
+    <a href="http://imgur.com/KZo5j"><div class="annotparent"><img src="http://i.imgur.com/KZo5jm.jpg"></div></a>
+    <a href="http://imgur.com/DbXvX"><div class="annotparent"><img src="http://i.imgur.com/DbXvXm.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
-<figure><a href="http://imgur.com/kVbMX"><img src="http://i.imgur.com/kVbMXh.jpg"></a></figure>
+<figure><a href="http://imgur.com/kVbMX"><div class="annotparent"><img src="http://i.imgur.com/kVbMXh.jpg"></div></a></figure>
 
 <figure class="half">
-    <a href="http://imgur.com/CaUOW"><img src="http://i.imgur.com/CaUOWm.jpg"></a>
-    <a href="http://imgur.com/VzRGA"><img src="http://i.imgur.com/VzRGAm.jpg"></a>
+    <a href="http://imgur.com/CaUOW"><div class="annotparent"><img src="http://i.imgur.com/CaUOWm.jpg"></div></a>
+    <a href="http://imgur.com/VzRGA"><div class="annotparent"><img src="http://i.imgur.com/VzRGAm.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
 <figure class="third">
-    <a href="http://imgur.com/DHcik"><img src="http://i.imgur.com/DHcikm.jpg"></a>
-    <a href="http://imgur.com/11Gq8"><img src="http://i.imgur.com/11Gq8m.jpg"></a>
-    <a href="http://imgur.com/DBQVK"><img src="http://i.imgur.com/DBQVKm.jpg"></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="half">
-    <a href="http://imgur.com/5Ui7D"><img src="http://i.imgur.com/5Ui7Dm.jpg"></a>
-    <a href="http://imgur.com/sjLJ2"><img src="http://i.imgur.com/sjLJ2m.jpg"></a>
+    <a href="http://imgur.com/DHcik"><div class="annotparent"><img src="http://i.imgur.com/DHcikm.jpg"></div></a>
+    <a href="http://imgur.com/11Gq8"><div class="annotparent"><img src="http://i.imgur.com/11Gq8m.jpg"></div></a>
+    <a href="http://imgur.com/DBQVK"><div class="annotparent"><img src="http://i.imgur.com/DBQVKm.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
 <figure class="half">
-    <a href="http://imgur.com/o6xgw"><img src="http://i.imgur.com/o6xgwm.jpg"></a>
-    <a href="http://imgur.com/jJ994"><img src="http://i.imgur.com/jJ994m.jpg"></a>
+    <a href="http://imgur.com/5Ui7D"><div class="annotparent"><img src="http://i.imgur.com/5Ui7Dm.jpg"></div></a>
+    <a href="http://imgur.com/sjLJ2"><div class="annotparent"><img src="http://i.imgur.com/sjLJ2m.jpg"></div></a>
+    <figcaption></figcaption>
+</figure>
+
+<figure class="half">
+    <a href="http://imgur.com/o6xgw"><div class="annotparent"><img src="http://i.imgur.com/o6xgwm.jpg"></div></a>
+    <a href="http://imgur.com/jJ994"><div class="annotparent"><img src="http://i.imgur.com/jJ994m.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
 <figure class="third">
-    <a href="http://imgur.com/fXw0P"><img src="http://i.imgur.com/fXw0Pm.jpg"></a>
-    <a href="http://imgur.com/NbFfu"><img src="http://i.imgur.com/NbFfum.jpg"></a>
-    <a href="http://imgur.com/49dr4"><img src="http://i.imgur.com/49dr4m.jpg"></a>
+    <a href="http://imgur.com/fXw0P"><div class="annotparent"><img src="http://i.imgur.com/fXw0Pm.jpg"></div></a>
+    <a href="http://imgur.com/NbFfu"><div class="annotparent"><img src="http://i.imgur.com/NbFfum.jpg"></div></a>
+    <a href="http://imgur.com/49dr4"><div class="annotparent"><img src="http://i.imgur.com/49dr4m.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 
 <figure class="third">
-    <a href="http://imgur.com/tOmfy"><img src="http://i.imgur.com/tOmfym.jpg"></a>
-    <a href="http://imgur.com/9wLnO"><img src="http://i.imgur.com/9wLnOm.jpg"></a>
-    <a href="http://imgur.com/YQhWF"><img src="http://i.imgur.com/YQhWFm.jpg"></a>
+    <a href="http://imgur.com/tOmfy"><div class="annotparent"><img src="http://i.imgur.com/tOmfym.jpg"></div></a>
+    <a href="http://imgur.com/9wLnO"><div class="annotparent"><img src="http://i.imgur.com/9wLnOm.jpg"></div></a>
+    <a href="http://imgur.com/YQhWF"><div class="annotparent"><img src="http://i.imgur.com/YQhWFm.jpg"></div></a>
     <figcaption></figcaption>
 </figure>
 

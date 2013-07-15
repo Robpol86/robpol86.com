@@ -18,8 +18,8 @@ Full set of high-resolution pictures for all workspaces are available at
 
 <figure>
     <!-- workspaces_2013-07-05_desk-work.jpg -->
-    <a href="http://imgur.com/fL6ZQ9G"><div class="annotparent"><img src="http://i.imgur.com/fL6ZQ9Gl.jpg">
-        <div class="annotation2" style="left:2%;top:2%">2013 July 5</div>
+    <a href="http://imgur.com/fL6ZQ9G"><div class="annotparent shadow" style="color:#000"><img src="http://i.imgur.com/fL6ZQ9Gl.jpg">
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 July 5</div>
         <div class="annotation" style="left:40%;top:42%">Thinkpad W510</div>
         <div class="annotation" style="left:67%;top:44%">Chromebook<br />Pixel</div>
         <div class="annotation" style="left:32%;top:50%">Logitech G700</div>
@@ -32,7 +32,7 @@ Full set of high-resolution pictures for all workspaces are available at
 <figure>
     <!-- workspaces_2011-06-24_desk-work.jpg -->
     <a href="http://imgur.com/krGiG"><div class="annotparent"><img src="http://i.imgur.com/krGiGl.jpg">
-        <div class="annotation2" style="left:2%;top:2%">2011 June 24</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2011 June 24</div>
     </div></a>
     <figcaption>After the office downsizing. It's a little bit smaller than my previous cube, but I like it. A benefit
     of having a standing desk means I can put more stuff underneath it.</figcaption>
@@ -41,7 +41,7 @@ Full set of high-resolution pictures for all workspaces are available at
 <figure>
     <!-- workspaces_2011-06-04_desk-work.jpg -->
     <a href="http://imgur.com/lzVz2"><div class="annotparent"><img src="http://i.imgur.com/lzVz2l.jpg">
-        <div class="annotation2" style="left:2%;top:2%">2011 June 4</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2011 June 4</div>
     </div></a>
     <figcaption>My temporary cubicle during the office downsizing.  Unfortunatley where my previous cubicle was, they
     were building a wall right down the middle, so I had to move TWICE during the downsizing.</figcaption>
@@ -50,11 +50,11 @@ Full set of high-resolution pictures for all workspaces are available at
 <figure class="half">
     <!-- workspaces_2010-08-05_desk-work.jpg -->
     <a href="http://imgur.com/Sb8AG"><div class="annotparent"><img src="http://i.imgur.com/Sb8AGm.jpg">
-        <div class="annotation2" style="left:2%;top:2%">2010 August 5</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2010 August 5</div>
     </div></a>
     <!-- workspaces_2011-05-13_desk-work.jpg -->
     <a href="http://imgur.com/3PK0f"><div class="annotparent"><img src="http://i.imgur.com/3PK0fm.jpg">
-        <div class="annotation2" style="left:2%;top:2%">2011 May 13</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2011 May 13</div>
     </div></a>
     <figcaption>After the office consolidated into one floor (instead of two), this was my new cubicle.</figcaption>
 </figure>
@@ -62,11 +62,11 @@ Full set of high-resolution pictures for all workspaces are available at
 <figure class="half">
     <!-- workspaces_2007-02-21_desk-work.jpg -->
     <a href="http://imgur.com/rtiSO"><div class="annotparent"><img src="http://i.imgur.com/rtiSOm.jpg">
-        <div class="annotation2" style="left:2%;top:2%">2007 February 21</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2007 February 21</div>
     </div></a>
     <!-- workspaces_2009-03-05-desk-work.jpg -->
     <a href="http://imgur.com/xCDHe"><div class="annotparent"><img src="http://i.imgur.com/xCDHem.jpg">
-        <div class="annotation2" style="left:2%;top:2%">2009 March 5</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2009 March 5</div>
     </div></a>
     <figcaption>Early pictures of my office and then cubicle at Symantec.</figcaption>
 </figure>
