@@ -6,6 +6,7 @@ category: workspaces
 tags: [workspaces, symantec, work desk, desk pictures]
 comments: true
 showseries: true
+modified: 2013-07-15
 ---
 
 After taking pictures of my desk at home I thought to myself "Why don't I do this for my desk at work as well?" So here
@@ -18,7 +19,7 @@ Full set of high-resolution pictures for all workspaces are available at
 
 <figure>
     <!-- workspaces_2013-07-05_desk-work.jpg -->
-    <a href="http://imgur.com/fL6ZQ9G"><div class="annotparent shadow" style="color:#000"><img src="http://i.imgur.com/fL6ZQ9Gl.jpg">
+    <a href="http://imgur.com/fL6ZQ9G"><div class="annotparent shadow"><img src="http://i.imgur.com/fL6ZQ9Gl.jpg">
         <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 July 5</div>
         <div class="annotation" style="left:40%;top:42%">Thinkpad W510</div>
         <div class="annotation" style="left:67%;top:44%">Chromebook<br />Pixel</div>
@@ -63,6 +64,9 @@ Full set of high-resolution pictures for all workspaces are available at
     <!-- workspaces_2007-02-21_desk-work.jpg -->
     <a href="http://imgur.com/rtiSO"><div class="annotparent"><img src="http://i.imgur.com/rtiSOm.jpg">
         <div class="annotation shadow-inverted" style="left:2%;top:2%">2007 February 21</div>
+        <div class="annotation shadow-inverted" style="left:30%;top:40%">Dell OptiPlex</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:50%">Dell Latitude C400<br />(personal)</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:90%">Mini Filing Cabinet</div>
     </div></a>
     <!-- workspaces_2009-03-05-desk-work.jpg -->
     <a href="http://imgur.com/xCDHe"><div class="annotparent"><img src="http://i.imgur.com/xCDHem.jpg">
