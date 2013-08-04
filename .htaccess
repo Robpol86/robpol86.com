@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteRule imagecfg http://www2.robpol86.com/guides/ImageCFG/ [R=301,L,NC]
+RewriteRule ^index\.php/Flashing_Motorola_Droid_to_Cricket http://www2.robpol86.com/guides/Flashing-Motorola-Droid-to-Cricket/ [R=301,L]
+RewriteRule ^index\.php/US_RNS-510_Video_In_Motion http://www2.robpol86.com/guides/US-RNS-510-Video-In-Motion/ [R=301,L]
+RewriteRule Berto89 http://www2.robpol86.com/guides/US-RNS-510-Video-In-Motion/ [R=301,L,NC]
+RewriteRule ^index\.php/Atrix_Lapdock_Other_Uses http://www2.robpol86.com/lapdock/Atrix-Lapdock-Other-Uses/ [R=301,L]
+RewriteRule ^index\.php/Lapdock_500_Teardown http://www2.robpol86.com/lapdock/Atrix-Lapdock-Other-Uses/ [R=301,L]
+RewriteRule ^menu\.php http://www2.robpol86.com/ [R=301,L]
+RewriteRule Jetta http://www2.robpol86.com/vehicles/Jetta-SportWagen-TDI/ [R=301,L,NC]
+RewriteRule ^(.*)$ http://www2.robpol86.com/$1 [R=301,L]
