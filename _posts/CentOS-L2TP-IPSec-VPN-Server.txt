@@ -1,0 +1,323 @@
+---
+layout: post
+title: CentOS IPSec VPN Server
+description: "Home VPN server for Android/Windows/Mac clients."
+category: guides
+tags: [android, ipsec, vpn, linux, libreswan, openswan]
+comments: true
+---
+
+This guide will walk you through setting up an L2TP/IPSec VPN server on a CentOS 6.4 x86_64 server. This is aimed at
+small networks like those in small offices or at home. The server we will be working on will have only one network
+adapter (eth0) without any third party packages, so this guide should work on a basic CentOS server.
+
+As of this writing, EPEL apparently updated their unbound-libs RPM which has a 
+[bug](https://bugzilla.redhat.com/show_bug.cgi?id=953337) that spits out an error when the RPM is installing. So far
+this doesn't seem to break anything so I would just ignore it. Maybe by the time you read this it will be fixed.
+
+I mainly worked on this because Android 4.2 and up has a feature called "Always-On VPN", which blocks data on the phone
+if you lose connection to the VPN server. As of this writing that feature only works on IPSec connections and not PPTP,
+which is easier to setup, and probably not as secure as L2TP/IPSec.
+
+One note about the way PPP works. VPN clients will be handed IP addresses by the PPP daemon (xl2tpd), NOT by your
+network's DHCP server. So make sure you configure your DHCP server to not hand out IPs in the range you are assigning
+PPP/xl2tpd. Also make sure none of the IPs in the PPP range are being used or else you'll run into IP address
+conflicts.
+
+I have tested this with the following clients:
+
+* Android 4.2.2 ([Always-On VPN broken](https://code.google.com/p/android/issues/detail?id=53451))
+* Android 4.3
+* Windows 8
+* Mac OS X 10.8.5
+
+And these links helped me out:
+
+* [Setting an Intranet VPN with Windows Seven](http://vouters.dyndns.org/tima/Linux-Libreswan-Setting_up_an_Intranet_VPN_with_Windows_7.html)
+* [Getting Libreswan connect to Cisco ASA 5500](http://sgros.blogspot.com/2013/08/getting-libreswan-connect-to-cisco-asa.html)
+* [Troubleshooting IPCOP IPSEC VPN Connections](http://freespace.virgin.net/christiaan.theron1/Revised%20draft%20VPN%20update%20of%20IPCop%20admin%20manual/Draft%20VPN%20Troubleshooting%20guide%20v1.02.html)
+* [Setting Up an IPSec L2TP VPN server on Debian for Windows clients](http://rootmanager.com/ubuntu-ipsec-l2tp-windows-domain-auth/setting-up-openswan-xl2tpd-with-native-windows-clients-wheezy.html)
+
+Lastly, this guide will use some placeholder values defined below, replace them with your own:
+
+* DNS Server: **192.168.0.254**
+* Server IP (eth0): **192.168.0.10**
+* Local Network: **192.168.0.0/24**
+* PPP Range: **192.168.0.80-99**
+* VPN Username: **john_doe**
+* VPN Password: **sparkles987**
+* IPSec Pre-Shared Key: **secretsecret123**
+
+# Installing Packages and Setup Networking
+
+You should have the [EPEL repository](http://fedoraproject.org/wiki/EPEL) installed on your system. And if you are
+using any third party repositories, you'll definitely want the
+[yum-plugins RPM](http://wiki.centos.org/PackageManagement/Yum/Priorities) installed and configured. If not don't
+worry, I've got instructions for both scenarios below.
+
+### With the EPEL Repo
+
+Just run the following command:
+
+{% highlight bash %}
+sudo yum install libreswan xl2tpd
+{% endhighlight %}
+
+### Without EPEL
+
+If you don't have EPEL setup, run these commands instead:
+
+{% highlight bash %}
+wget http://dl.fedoraproject.org/pub/epel/6/x86_64/libreswan-3.5-2.el6.x86_64.rpm
+wget http://dl.fedoraproject.org/pub/epel/6/x86_64/xl2tpd-1.3.1-7.el6.x86_64.rpm
+wget http://dl.fedoraproject.org/pub/epel/6/x86_64/ldns-1.6.16-2.el6.x86_64.rpm
+wget http://dl.fedoraproject.org/pub/epel/6/x86_64/unbound-libs-1.4.21-1.el6.x86_64.rpm
+sudo yum install libreswan*.rpm xl2tpd*.rpm ldns*.rpm unbound-libs*.rpm
+{% endhighlight %}
+
+### Setup Networking
+
+Next we will open ports and enable forwarding.
+
+Append these lines to `/etc/sysctl.conf`:
+
+{% highlight ini %}
+net.ipv4.ip_forward = 1
+net.ipv4.conf.default.rp_filter = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.conf.default.log_martians = 0
+{% endhighlight %}
+
+Then run these commands:
+
+{% highlight bash %}
+sudo sysctl -p
+sudo sh -c "echo 0 > /proc/sys/net/ipv4/conf/eth0/rp_filter"
+sudo service iptables restart
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -t mangle --flush
+sudo iptables -P INPUT DROP
+sudo iptables -P FORWARD DROP
+sudo iptables -I INPUT -m state --state NEW -m udp -p udp --dport 500 -j ACCEPT
+sudo iptables -I INPUT -p esp -j ACCEPT
+sudo iptables -I INPUT -m state --state NEW -m udp -p udp --dport 4500 -j ACCEPT
+sudo iptables -I INPUT -p udp --dport 1701 -m policy --dir in --pol ipsec -j ACCEPT
+sudo iptables -I INPUT -i ppp+ -p all -j ACCEPT
+sudo iptables -I FORWARD -p esp -j ACCEPT
+sudo iptables -I FORWARD -i eth0 -o ppp+ -j ACCEPT
+sudo iptables -I FORWARD -o eth0 -i ppp+ -j ACCEPT
+sudo service iptables save
+{% endhighlight %}
+
+# Main Configuration
+
+Overwrite the following files with the settings specified. If you aren't familiar with this software, just overwrite the
+entire file with what I have here. Remember to change the IPs and other settings to match your network.
+
+###/etc/ipsec.conf
+
+On the `virtual_private` line, replace the last subnet with your home network subnet. It needs to be excluded from the
+IPSec tunnel so make sure you leave the exclamation mark. With IPSec/L2TP you have two tunnels, one for IPSec which
+shouldn't use IPs in your network, and another for L2TP which will be in your network.
+
+Also update the `left` setting with your eth0 IP.
+
+{% highlight bash %}
+config setup
+    protostack=netkey
+    dumpdir=/var/run/pluto/
+    nat_traversal=yes
+    virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v6:fd00::/8,%v6:fe80::/10,%v4:!192.168.0.0/24  # UPDATE THIS
+conn %default
+    authby=secret
+    pfs=no
+    auto=add
+    keyingtries=3
+    rekey=no
+    dpddelay=10
+    dpdtimeout=90
+    dpdaction=clear
+    ikelifetime=8h
+    keylife=1h
+    type=transport
+conn L2TP-PSK-MAIN
+    left=192.168.0.10  # REPLACE THIS
+    leftprotoport=17/1701
+    right=%any
+    rightprotoport=17/%any
+{% endhighlight %}
+
+###/etc/xl2tpd/xl2tpd.conf
+
+Here you need to do three things. One is to replace `listen-addr` with your eth0 IP. With your PPP range in mind, we
+will use the first IP in the range for the `local ip` setting, which is the IP xl2tpd gives itself for VPN clients. The
+`ip range` setting will use the remainder of your PPP range.
+
+{% highlight ini %}
+[global]
+listen-addr = 192.168.0.10  # REPLACE THIS
+[lns default]
+ip range = 192.168.0.81-192.168.0.99  # REPLACE THIS
+local ip = 192.168.0.80  # REPLACE THIS
+refuse pap = yes
+refuse chap = yes
+require authentication = yes
+name = LinuxVPNserver
+ppp debug = yes
+pppoptfile = /etc/ppp/options.xl2tpd
+length bit = yes
+{% endhighlight %}
+
+###/etc/ppp/options.xl2tpd
+
+The only setting that needs to be changed is `ms-dns` which is naturally your network's DNS server.
+
+{% highlight bash %}
+ipcp-accept-local
+ipcp-accept-remote
+ms-dns 192.168.0.254  # REPLACE THIS
+refuse-chap
+refuse-eap
+refuse-pap
+refuse-mschap
+require-mschap-v2
+noccp
+auth
+crtscts
+idle 1800
+mtu 1410
+mru 1410
+nodefaultroute
+debug
+lock
+proxyarp
+connect-delay 5000
+{% endhighlight %}
+
+###/etc/ppp/chap-secrets
+
+This file is where you set the user name and password clients will use to authenticate. You can add multiple user/pass
+lines.
+
+{% highlight kconfig %}
+# Secrets for authentication using CHAP
+# client    server  secret          IP addresses
+john_doe    *       sparkles987     *
+{% endhighlight %}
+
+###/etc/ipsec.secrets
+
+And this file is where you set the Pre-Shared Key. Surround the key with quotes in this file.
+
+{% highlight kconfig %}
+%any %any: "secretsecret123"
+{% endhighlight %}
+
+# Start the Server
+
+Now that everything is setup, it's time to start the server. Run the following commands to start and verify the VPN
+server:
+
+{% highlight bash %}
+sudo service ipsec start
+sudo service xl2tpd start
+sudo chkconfig ipsec on
+sudo chkconfig xl2tpd on
+sudo ipsec verify
+{% endhighlight %}
+
+That last command should output something like the following:
+<pre><code><p style="font-size:50%;background-color:black;color:white;padding:5px;">
+Verifying installed system and configuration files
+
+Version check and ipsec on-path                         [<span style="color:lightgreen">OK</span>]
+Libreswan 3.5 (netkey) on 2.6.32-358.18.1.el6.x86_64
+Checking for IPsec support in kernel                    [<span style="color:lightgreen">OK</span>]
+ NETKEY: Testing XFRM related proc values
+         ICMP default/send_redirects                    [<span style="color:lightgreen">OK</span>]
+         ICMP default/accept_redirects                  [<span style="color:lightgreen">OK</span>]
+         XFRM larval drop                               [<span style="color:lightgreen">OK</span>]
+Pluto ipsec.conf syntax                                 [<span style="color:lightgreen">OK</span>]
+Hardware random device                                  [<span style="color:lightgreen">N/A</span>]
+Two or more interfaces found, checking IP forwarding    [<span style="color:lightgreen">OK</span>]
+Checking rp_filter                                      [<span style="color:lightgreen">OK</span>]
+Checking that pluto is running                          [<span style="color:lightgreen">OK</span>]
+ Pluto listening for IKE on udp 500                     [<span style="color:lightgreen">OK</span>]
+ Pluto listening for IKE on tcp 500                     [<span style="color:yellow">NOT IMPLEMENTED</span>]
+ Pluto listening for IKE/NAT-T on udp 4500              [<span style="color:lightgreen">OK</span>]
+ Pluto listening for IKE/NAT-T on tcp 4500              [<span style="color:yellow">NOT IMPLEMENTED</span>]
+ Pluto listening for IKE on tcp 10000 (cisco)           [<span style="color:yellow">NOT IMPLEMENTED</span>]
+ Pluto ipsec.secret syntax                              [<span style="color:lightgreen">OK</span>]
+Checking NAT and MASQUERADEing                          [<span style="color:yellow">TEST INCOMPLETE</span>]
+Checking 'ip' command                                   [<span style="color:lightgreen">OK</span>]
+Checking 'iptables' command                             [<span style="color:lightgreen">OK</span>]
+Checking 'prelink' command[...] options                 [<span style="color:lightgreen">OK</span>]
+Opportunistic Encryption                                [<span style="color:lightgreen">DISABLED</span>]
+</p></code></pre>
+
+And that's it for the server. **Remember** to forward ports in your router. Forward these ports:
+
+* 500 (UDP)
+* 4500 (UDP)
+* Enable IPSec passthrough but **disable** L2TP passthrough!
+
+# Troubleshooting
+
+### INVALID_MAJOR_VERSION
+
+If you see these lines while connecting behind the same router:
+<pre><code><p style="font-size:50%;background-color:black;color:white;padding:5px;">
+packet from 192.168.0.176:500: next payload type of ISAKMP Message has an unknown value: 160
+packet from 192.168.0.176:500: sending notification INVALID_MAJOR_VERSION to 192.168.0.176:500
+</p></code></pre>
+
+Try rebooting your router.
+
+# Configure Android Clients
+
+Replace 70.114.209.186 with your [external IP address](http://www.name.com/ip).
+
+<figure class="third">
+    <a href="http://imgur.com/C6mJMNJ"><div class="annotparent"><img src="http://i.imgur.com/C6mJMNJm.jpg"></div></a>
+    <a href="http://imgur.com/0HhsfnG"><div class="annotparent"><img src="http://i.imgur.com/0HhsfnGm.jpg"></div></a>
+    <a href="http://imgur.com/Yzy1pqj"><div class="annotparent"><img src="http://i.imgur.com/Yzy1pqjm.jpg"></div></a>
+    <figcaption></figcaption>
+</figure>
+
+For Always-On VPN, connect once manually to save your PPP username and password on the device, and then disconnect.
+Remember this is [broken on Android 4.2.2](https://code.google.com/p/android/issues/detail?id=53451). I got it working
+on my 4.3 tablet.
+
+# Configure Windows Clients
+
+You need to set [AssumeUDPEncapsulationContextOnSendRule](http://support.microsoft.com/kb/926179) to **2**. Then
+**reboot**! This is required even on Windows 8.
+
+<figure class="third">
+    <a href="http://imgur.com/KCFz1WC"><div class="annotparent"><img src="http://i.imgur.com/KCFz1WCm.jpg">
+    </div></a>
+    <a href="http://imgur.com/FFuieRg"><div class="annotparent"><img src="http://i.imgur.com/FFuieRgm.jpg">
+    </div></a>
+    <a href="http://imgur.com/YKsZwTW"><div class="annotparent"><img src="http://i.imgur.com/YKsZwTWm.jpg">
+    </div></a>
+    <figcaption></figcaption>
+</figure>
+
+# Configure Mac Clients
+
+<figure class="half">
+    <a href="http://imgur.com/Bmvwjkz"><div class="annotparent"><img src="http://i.imgur.com/Bmvwjkzm.jpg">
+    </div></a>
+    <a href="http://imgur.com/CpBmA0f"><div class="annotparent"><img src="http://i.imgur.com/CpBmA0fm.jpg">
+    </div></a>
+    <figcaption></figcaption>
+</figure>
+<figure class="half">
+    <a href="http://imgur.com/4OkY2tX"><div class="annotparent"><img src="http://i.imgur.com/4OkY2tXm.jpg">
+    </div></a>
+    <a href="http://imgur.com/7Ijku9U"><div class="annotparent"><img src="http://i.imgur.com/7Ijku9Um.jpg">
+    </div></a>
+    <figcaption></figcaption>
+</figure>
+
