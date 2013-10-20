@@ -6,7 +6,6 @@ timezone:   America/Los_Angeles
 title:              Robpol86.com
 description:        A place where I post my projects and guides.
 disqus_shortname:   rob86wiki
-#url:                "http://centos64-vm:4000"
 url:                "http://www2.robpol86.com"
 
 # Owner/author information
