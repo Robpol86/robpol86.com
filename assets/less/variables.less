@@ -1,14 +1,14 @@
 // Typography
 // --------------------------------------------------
 
-@base-font: 'source-sans-pro', sans-serif;
+@base-font: 'Lato', Calibri, Arial, sans-serif;
 @heading-font: @base-font;
 @caption-font: @base-font;
-@code-font: 'source-code-pro', monospace;
-@alt-font: 'volkorn', serif;
+@code-font: monospace;
+@alt-font: serif;
 
 @doc-font-size: 16;
-@doc-line-height: 24;
+@doc-line-height: 26;
 
 
 // set-up the body font-size / line-height
@@ -19,13 +19,17 @@ body {
 
 // Colors
 // --------------------------------------------------
-
-@body-color      		: #ebebeb;
-@text-color      		: #333;
-@base-color 	 		: #343434;	  
+@base-color				: #222;
+@body-color      		: #e8e8e8;
+@text-color      		: #222;
 @comp-color 	 		: spin(@base-color, 180); 
-@border-color    		: @base-color;
+@border-color    		: lighten(@base-color,60);
 @white           		: #fff;
 @black           		: #000;
-@accent-color    		: @black;
-@link-color 		    : #343434;
+@link-color 		    : #222;
+
+@primary			: @base-color;
+@success			: #5cb85c;
+@warning			: #dd8338;
+@danger				: #C64537;
+@info				: #308cbc;

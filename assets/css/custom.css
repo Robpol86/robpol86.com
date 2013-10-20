@@ -1,0 +1,5 @@
+.annotparent{position:relative;display:inline-block;background:#F9F9F9;border:1px solid #CCC;padding:3px;color:#000}
+.annotparent img {margin-right:0px!important;margin-bottom:0px!important}
+.annotation{position:absolute;text-indent:0;font-size:65%;background-color:transparent;line-height:110%;font-family:'source-code-pro',monospace;}
+.shadow{text-shadow:-1px -1px 0 #FFF,1px -1px 0 #FFF,-1px 1px 0 #FFF,1px 1px 0 #FFF;color:#000!important;}
+.shadow-inverted{text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;color:#FFF!important;}

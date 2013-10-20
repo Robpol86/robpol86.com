@@ -1,29 +1,62 @@
 ---
-layout: page
-title: Articles
-description: "You are violating code 431.322.12 of the Internet Privacy Act signed by Bill Clinton in 1995 and that means that you can NOT threaten me."
+layout: post-index
+title: All Posts
+description: "My personal website."
 tags: [ImageCFG, Lapdock, Atrix Lapdock, Lapdock 500, RNS-510, Video In Motion, UnofficialDDNS]
+image:
+    feature: site-logo.png
 ---
 
+{% assign popposts = '' %}
 {% assign posts = '' %}
-{% for post in site.posts %} 
+{% for post in site.posts %}
     {% if post.modified %}{% assign date = post.modified %}{% else %}{% assign date = post.date|date:"%Y-%m-%d" %}{% endif %}
-    {% if post.tags contains 'top-content' %}{% capture title %}<strong>{{ post.title }}</strong>{% endcapture %}{% else %}{% assign title = post.title %}{% endif %}
-    {% capture posts %}{{ posts }}~~~~~~{{ date }}~~~~{{ title }}~~~~{{ post.url }}~~~~{{ post.date|date_to_xmlschema }}{% endcapture %}
+    {% assign title = post.title %}
+    {% if post.tags contains 'top-content' %}
+        {% capture popposts %}{{ popposts }}~~~~~~{{ date }}~~~~{{ title }}~~~~{{ post.url }}~~~~{{ post.date|date_to_xmlschema }}{% endcapture %}
+    {% else %}
+        {% capture posts %}{{ posts }}~~~~~~{{ date }}~~~~{{ title }}~~~~{{ post.url }}~~~~{{ post.date|date_to_xmlschema }}{% endcapture %}
+    {% endif %}
 {% endfor %}
+{% assign sorted_popposts = popposts|split:'~~~~~~'|sort %}
 {% assign sorted_posts = posts|split:'~~~~~~'|sort %}
 
-{% for post in sorted_posts reversed offset:1 %}
-    {% assign post_split = post|split:'~~~~' %}
-    {% assign post_date = post_split[0] %}
-    {% assign post_title = post_split[1] %}
-    {% assign post_url = post_split[2] %}
-    {% assign post_date_xml = post_split[3] %}
-<ul class="post-list">
-  <li>
-    <article itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
-      <a href="{{ site.url }}{{ post_url }}">{{ post_title }}<span class="entry-date"><time datetime="{{ post_date_xml }}" itemprop="datePublished">{{ post_date|date:'%B %d, %Y' }}</time></span></a>
-    </article>
-  </li>
-</ul>
-{% endfor %}
+<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 class="entry-title" itemprop="name">Popular Posts</a></h1>
+    </header>
+    <div class="entry-content" itemprop="description">
+        <ul>
+            {% for post in sorted_popposts reversed offset:1 %}
+                {% assign post_split = post|split:'~~~~' %}
+                {% assign post_date = post_split[0] %}
+                {% assign post_title = post_split[1] %}
+                {% assign post_url = post_split[2] %}
+                {% assign post_date_xml = post_split[3] %}
+                <li><a href="{{ site.url }}{{ post_url }}">{{ post_title }}<span style="float:right">
+                    <time datetime="{{ post_date_xml }}" itemprop="datePublished">{{ post_date|date:'%B %d, %Y' }}</time>
+                </span></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</article>
+
+<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 class="entry-title" itemprop="name">All Other Posts</a></h1>
+    </header>
+    <div class="entry-content" itemprop="description">
+        <ul>
+            {% for post in sorted_posts reversed offset:1 %}
+                {% assign post_split = post|split:'~~~~' %}
+                {% assign post_date = post_split[0] %}
+                {% assign post_title = post_split[1] %}
+                {% assign post_url = post_split[2] %}
+                {% assign post_date_xml = post_split[3] %}
+                <li><a href="{{ site.url }}{{ post_url }}">{{ post_title }}<span style="float:right">
+                    <time datetime="{{ post_date_xml }}" itemprop="datePublished">{{ post_date|date:'%B %d, %Y' }}</time>
+                </span></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</article>

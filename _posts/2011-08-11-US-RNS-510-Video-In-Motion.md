@@ -25,7 +25,7 @@ The original thread on vwnavi.com was deleted so I will be mirroring my steps an
 files were created by Berto89 from VWItalia.it[^1], thanks to him I was able to get VIM working on my US unit. In the
 download link below you will find a zip file containing two files:
 
-##### VIM_Berto89.iso
+### VIM_Berto89.iso
 
 This file contains a script that changes the DVD playback speed limit from 10 km/h to 300 km/h. This means that the
 screen won't be blanked until you are doing 300 km/h. The script also enables Test Mode (or the "Secret Menu"), which
@@ -37,7 +37,7 @@ If you want to get technical, the magic happens in the file \WA\VIM.WSH
 * MD5 checksum: 5eca311f5de010132bbb47d29f2a0ad7
 * Size: 156 KB
 
-##### RECODE_Berto89.iso
+### RECODE_Berto89.iso
 
 This optional file reverts the changes from VIM_Berto89.iso back to the default factory settings (10 km/h and disables
 Test Mode). Use this if you want to undo changes.

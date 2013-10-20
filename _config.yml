@@ -1,70 +1,78 @@
 safe:       true
 lsi:        false
 pygments:   true
-timezone:   America/Chicago
+timezone:   America/Los_Angeles
 
-title:            Robpol86.com
-description:      A place where I post my projects and guides.
-logo:             site-logo.png
-disqus_shortname: rob86wiki
-#url:              "http://centos64x64-vm:4000"
-url:              "http://www2.robpol86.com"
+title:              Robpol86.com
+description:        A place where I post my projects and guides.
+disqus_shortname:   rob86wiki
+url:                "http://authsrv.rob86.net:4000"
+#url:                "http://www2.robpol86.com"
 
 # Owner/author information
 owner:
-  name:           Robpol86
-  avatar:         me.png
-  email:          robpol86@gmail.com
+  name:             Robpol86
+  avatar:           me.png
+  bio:              "Webmaster of my own domain."
   # Social networking links used in footer. Update and remove as you like.
-  #twitter:        "mmistakes"
-  facebook:       "robpol86"
-  github:         "robpol86"
-  linkedin:       "robpooley"
-  #instagram:      "mmistakes"
-  #tumblr:         "mademistakes"
+  twitter:          robpol86
+  github:           robpol86
+  stackexchange:    "http://stackoverflow.com/users/1198943/robpol86"
+  linkedin:         robpooley
   # For Google Authorship https://plus.google.com/authorship
-  google_plus:    "http://plus.google.com/113974017077390889299"
+  google_plus:      "http://plus.google.com/113974017077390889299"
 
 # Analytics and webmaster tools stuff goes here
 google_analytics:   UA-30840244-1
 #google_verify:      UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 #bing_verify:        D81F4C18A6CB3018F64D7C827D953DFD
-gauges_tracking:    "510780af613f5d5c05000015"
+gauges_tracking:    510780af613f5d5c05000015
 
 # Links to include in top navigation
 # For external links add external: true
 links:
-  - title: Home
-    url: /
-  - title: About
-    url: /about
-  - title: UnofficialDDNS
-    url: /UnofficialDDNS
-  - title: Source Code
-    url: https://github.com/Robpol86/robpol86.github.io
-    external: true
+  - title:      Source Code
+    url:        "https://github.com/Robpol86/robpol86.github.io"
+    external:   true
+
+software:
+  - title:      UnofficialDDNS
+    url:        "http://www2.robpol86.com/UnofficialDDNS/"
+    external:   true
+  - title:      EImage
+    url:        "http://www.mediawiki.org/wiki/Extension:EImage"
+    external:   true
+  - title:      robutils
+    url:        "https://github.com/Robpol86/robutils"
+    external:   true
+  - title:      tape_bulk_eject.py
+    url:        "https://gist.github.com/Robpol86/4671251"
+    external:   true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-future:      true
-markdown:    kramdown
+future:     true
+markdown:   kramdown
 
 # https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink:   /:categories/:title
+
+# Amount of post to show on home page
+paginate: 5
 
 kramdown:
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: false
+  use_coderay: true
 
   coderay:
-    coderay_line_numbers: 
+    coderay_line_numbers: nil
     coderay_line_numbers_start: 1
     coderay_tab_width: 4
     coderay_bold_every: 10
     coderay_css: class
 
 include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]

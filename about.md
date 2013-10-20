@@ -1,17 +1,16 @@
 ---
 layout: page
-permalink: /about/index.html
-title: About me
-description: "Master of my own domain (name)."
+permalink: /about/
+title: About Me
 ---
 
-<div class="notice">
+<div class="notice" style="margin:10px">
     <img src="http://www.gravatar.com/avatar/2c8ea59a9c707734a836571e6b343184?s=220" />
     <div style="width:220px; font-size:87%">
         <table width="100%">
             <tbody>
                 <tr><td width="45%"><strong>Name</strong></td><td>Robert Pooley</td></tr>
-                <tr><td><strong>Location</strong></td><td>Austin, TX</td></tr>
+                <tr><td><strong>Location</strong></td><td>San Francisco, CA</td></tr>
                 <tr><td><strong>Certifications</strong></td><td>
                     <a rel="nofollow" target="_blank" href="https://www.redhat.com/wapps/training/certification/verify.html?certNumber=805009913541236&verify=Verify">RHCE</a>, A+
                 </td></tr>
@@ -31,9 +30,8 @@ description: "Master of my own domain (name)."
 </div>
 {: .pull-right}
 
-I've been interested in computers since the 8th grade and I've been writing code (or script, whichever word you prefer
-for PHP) since my junior year of high school. At work I mainly work on maintaining production servers and the remainder
-of the time I work on automating deployments and writing scripts for monitoring servers.
+I’ve been interested in computers since the 8th grade and I’ve been writing code (or script, whichever word you prefer
+for PHP) since my junior year of high school.
 
 During my free time I work on one of my little projects, usually 
 [writing code](https://github.com/Robpol86?tab=repositories) or 
