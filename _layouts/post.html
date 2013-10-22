@@ -11,11 +11,17 @@
 
 {% include browser-upgrade.html %}
 {% include navigation.html %}
-{% for post in site.posts %}{% if post.categories contains page.category %}
-{% capture others_in_category %}{{ others_in_category }}|{% if post.title != page.title %}<a href="{{ post.url }}">{{ post.title }}</a>{% else %}<strong>{{ post.title }}</strong>{% endif %}{% endcapture %}
-{% endif %}{% endfor %}
-{% assign others_in_category = others_in_category|remove_first:'|'|split:'|' %}
-{% assign others_in_category_size = others_in_category|size %}
+
+{% for post in site.posts %}
+    {% if post.categories contains page.category and post.title != page.title %}
+        {% capture post_html %}{% if post.modified %}Updated on {{ post.modified|date:'%B %d, %Y' }}{% else %}Published on {{ post.date|date:'%B %d, %Y' }}{% endif %}{% endcapture %}
+        {% capture post_html %}<time datetime="{{ post.date|date_to_xmlschema }}" itemprop="datePublished" class="entry-meta">{{ post_html }}</time>{% endcapture %}
+        {% capture post_html %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span style="float:right">{{ post_html }}</span></a>{% endcapture %}
+        {% capture post_html %}<!-- {% if post.modified %}{{ post.modified }}{% else %}{{ post.date|date:"%Y-%m-%d" }}{% endif %} -->{{ post_html }}{% endcapture %}
+        {% capture related %}{{ related }}|{{ post_html }}{% endcapture %}
+    {% endif %}
+{% endfor %}
+{% assign related = related|remove_first:'|'|split:'|'|sort %}
 
 {% if page.image.feature %}
 <div class="entry-header">
@@ -37,7 +43,6 @@
         <h2>{% if page.modified %}<del>{{ page.date | date: "%B %d, %Y" }}</del> {{ page.modified | date: "%B %d, %Y" }}{% else %}{{ page.date | date: "%B %d, %Y" }}{% endif %}</h2>
       </div><!-- /.header-title-wrap -->
     </header>
-    {% if page.showseries and others_in_category_size > 1 %}<div class="read-more" style="align:left"><h1>Other Posts in the Series</h1>{% for other_html in others_in_category %}{{ other_html }}<br />{% endfor %}</div>{% endif %}
     <div class="entry-content" itemprop="description">
       {{ content }}
       <footer class="entry-meta">
@@ -54,6 +59,7 @@
         </div><!-- /.social-share -->{% endif %}
       </footer>
     </div><!-- /.entry-content -->
+    {% if page.showseries and related %}<section id="show_series"><h1>Other Posts in the Series</h1><ul>{% for related_html in related reversed %}<li>{{ related_html }}</li>{% endfor %}</ul></section>{% endif %}
     {% if site.disqus_shortname and page.comments %}<section id="disqus_thread"></section><!-- /#disqus_thread -->{% endif %}
     {% if site.related_posts.size %}
     <div class="read-more">
@@ -70,7 +76,7 @@
         {% for post in site.related_posts limit:2 offset:1 %}
           <div class="list-item">
             <h4><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h4>
-            <span>Published on {{ post.date | date: "%B %d, %Y" }}</span>
+            <span>{% if post.modified %}Updated on {{ post.modified | date: "%B %d, %Y" }}{% else %}Published on {{ post.date | date: "%B %d, %Y" }}{% endif %}</span>
           </div><!-- /.list-item -->
         {% endfor %}
       </div><!-- /.read-more-list -->

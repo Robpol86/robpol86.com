@@ -7,37 +7,26 @@ image:
     feature: site-logo.png
 ---
 
-{% assign popposts = '' %}
-{% assign posts = '' %}
 {% for post in site.posts %}
-    {% if post.modified %}{% assign date = post.modified %}{% else %}{% assign date = post.date|date:"%Y-%m-%d" %}{% endif %}
-    {% assign title = post.title %}
+    {% capture post_html %}{% if post.modified %}Updated on {{ post.modified|date:'%B %d, %Y' }}{% else %}Published on {{ post.date|date:'%B %d, %Y' }}{% endif %}{% endcapture %}
+    {% capture post_html %}<time datetime="{{ post.date|date_to_xmlschema }}" itemprop="datePublished" class="entry-meta">{{ post_html }}</time>{% endcapture %}
+    {% capture post_html %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span style="float:right">{{ post_html }}</span></a>{% endcapture %}
+    {% capture post_html %}<!-- {% if post.modified %}{{ post.modified }}{% else %}{{ post.date|date:"%Y-%m-%d" }}{% endif %} -->{{ post_html }}{% endcapture %}
     {% if post.tags contains 'top-content' %}
-        {% capture popposts %}{{ popposts }}~~~~~~{{ date }}~~~~{{ title }}~~~~{{ post.url }}~~~~{{ post.date|date_to_xmlschema }}{% endcapture %}
+        {% capture top_related %}{{ top_related }}|{{ post_html }}{% endcapture %}
     {% else %}
-        {% capture posts %}{{ posts }}~~~~~~{{ date }}~~~~{{ title }}~~~~{{ post.url }}~~~~{{ post.date|date_to_xmlschema }}{% endcapture %}
+        {% capture related %}{{ related }}|{{ post_html }}{% endcapture %}
     {% endif %}
 {% endfor %}
-{% assign sorted_popposts = popposts|split:'~~~~~~'|sort %}
-{% assign sorted_posts = posts|split:'~~~~~~'|sort %}
+{% assign top_related = top_related|remove_first:'|'|split:'|'|sort %}
+{% assign related = related|remove_first:'|'|split:'|'|sort %}
 
 <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
     <header>
         <h1 class="entry-title" itemprop="name">Popular Posts</a></h1>
     </header>
     <div class="entry-content" itemprop="description">
-        <ul>
-            {% for post in sorted_popposts reversed offset:1 %}
-                {% assign post_split = post|split:'~~~~' %}
-                {% assign post_date = post_split[0] %}
-                {% assign post_title = post_split[1] %}
-                {% assign post_url = post_split[2] %}
-                {% assign post_date_xml = post_split[3] %}
-                <li><a href="{{ site.url }}{{ post_url }}">{{ post_title }}<span style="float:right">
-                    <time datetime="{{ post_date_xml }}" itemprop="datePublished">{{ post_date|date:'%B %d, %Y' }}</time>
-                </span></a></li>
-            {% endfor %}
-        </ul>
+        <ul>{% for related_html in top_related reversed %}<li>{{ related_html }}</li>{% endfor %}</ul>
     </div>
 </article>
 
@@ -46,17 +35,6 @@ image:
         <h1 class="entry-title" itemprop="name">All Other Posts</a></h1>
     </header>
     <div class="entry-content" itemprop="description">
-        <ul>
-            {% for post in sorted_posts reversed offset:1 %}
-                {% assign post_split = post|split:'~~~~' %}
-                {% assign post_date = post_split[0] %}
-                {% assign post_title = post_split[1] %}
-                {% assign post_url = post_split[2] %}
-                {% assign post_date_xml = post_split[3] %}
-                <li><a href="{{ site.url }}{{ post_url }}">{{ post_title }}<span style="float:right">
-                    <time datetime="{{ post_date_xml }}" itemprop="datePublished">{{ post_date|date:'%B %d, %Y' }}</time>
-                </span></a></li>
-            {% endfor %}
-        </ul>
+        <ul>{% for related_html in related reversed %}<li>{{ related_html }}</li>{% endfor %}</ul>
     </div>
 </article>
