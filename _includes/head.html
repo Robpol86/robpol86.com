@@ -54,4 +54,4 @@
 {% elsif site.background %}
     {% capture page_bgimg %}{% if site.background contains 'http' %}{{ site.background }}{% else %}{{ site.url }}{{ site.background }}{% endif %}{% endcapture %}
 {% endif %}
-<style type="text/css">body {background-image:url({{ page_bgimg }});}</style>
+{% if page_bgimg %}<style type="text/css">body {background-image:url({{ page_bgimg }});}</style>{% endif %}
