@@ -47,3 +47,11 @@
 <!-- Icons -->
 <!-- 16x16 -->
 <link rel="shortcut icon" href="{{ site.url }}/favicon.ico">
+
+<!-- Background -->
+{% if page.background %}
+    {% capture page_bgimg %}{% if page.background contains 'http' %}{{ page.background }}{% else %}{{ site.url }}{{ page.background }}{% endif %}{% endcapture %}
+{% elsif site.background %}
+    {% capture page_bgimg %}{% if site.background contains 'http' %}{{ site.background }}{% else %}{{ site.url }}{{ site.background }}{% endif %}{% endcapture %}
+{% endif %}
+<style type="text/css">body {background-image:url({{ page_bgimg }});}</style>

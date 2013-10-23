@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Desk Pictures at Home
+title: Desk Pictures at Home (Texas)
 description: "Pictures of my desk and computer stuff at home."
 category: workspaces
 tags: [workspaces, desk, desk pictures, rack, server rack]

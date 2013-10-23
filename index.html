@@ -9,8 +9,8 @@ image:
 
 {% for post in site.posts %}
     {% capture post_html %}{% if post.modified %}Updated on {{ post.modified|date:'%B %d, %Y' }}{% else %}Published on {{ post.date|date:'%B %d, %Y' }}{% endif %}{% endcapture %}
-    {% capture post_html %}<time datetime="{{ post.date|date_to_xmlschema }}" itemprop="datePublished" class="entry-meta">{{ post_html }}</time>{% endcapture %}
-    {% capture post_html %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span style="float:right">{{ post_html }}</span></a>{% endcapture %}
+    {% capture post_html %}<time datetime="{{ post.date|date_to_xmlschema }}" itemprop="datePublished">{{ post_html }}</time>{% endcapture %}
+    {% capture post_html %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="post-meta">{{ post_html }}</span></a>{% endcapture %}
     {% capture post_html %}<!-- {% if post.modified %}{{ post.modified }}{% else %}{{ post.date|date:"%Y-%m-%d" }}{% endif %} -->{{ post_html }}{% endcapture %}
     {% if post.tags contains 'top-content' %}
         {% capture top_related %}{{ top_related }}|{{ post_html }}{% endcapture %}
