@@ -7,6 +7,7 @@ tags: [workspaces, symantec, work desk, desk pictures]
 comments: true
 showseries: true
 modified: 2013-07-15
+share: true
 ---
 
 After taking pictures of my desk at home I thought to myself "Why don't I do this for my desk at work as well?" So here

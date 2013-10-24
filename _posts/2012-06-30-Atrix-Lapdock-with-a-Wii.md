@@ -6,6 +6,7 @@ category: lapdock
 tags: [atrix, lapdock, microhdmi, wii, external monitor]
 comments: true
 showseries: true
+share: true
 ---
 
 I don't have a 360 or PS3, but I have a Wii and after I found an HDMI adapter I tried it with the Lapdock. Turns out it

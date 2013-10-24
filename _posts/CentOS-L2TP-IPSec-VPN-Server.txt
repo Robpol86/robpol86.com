@@ -5,6 +5,7 @@ description: "Home VPN server for Android/Windows/Mac clients."
 category: guides
 tags: [android, ipsec, vpn, linux, libreswan, openswan]
 comments: true
+share: true
 ---
 
 This guide will walk you through setting up an L2TP/IPSec VPN server on a CentOS 6.4 x86_64 server. This is aimed at

@@ -6,6 +6,7 @@ category: lapdock
 tags: [atrix, lapdock, microhdmi, laptop, external monitor]
 comments: true
 showseries: true
+share: true
 ---
 
 I can use the Atrix Lapdock as a secondary display for my laptop. At home my laptop is docked to two monitors, so every

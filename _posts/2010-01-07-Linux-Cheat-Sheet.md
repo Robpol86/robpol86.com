@@ -7,6 +7,7 @@ category: cheatsheet
 tags: [cheat sheet, linux, unix, sunos, vmware, esx]
 comments: true
 showseries: true
+share: true
 ---
 
 # Command Line

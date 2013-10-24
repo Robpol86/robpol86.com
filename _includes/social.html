@@ -1,0 +1,30 @@
+<div class="social-share">
+    <!-- FB Header -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- LinkedIn Header -->
+    <script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+    <!-- Visible Items -->
+    <ul class="socialcount socialcount-small inline-list" data-url="{{ site.url }}{{ page.url }}" data-share-text="{{ page.title }}">
+        <li><div class="g-plusone" data-size="medium" data-href="{{ site.url }}{{ page.url }}"></div></li>
+        <li class="linkedin"><script type="IN/Share" data-url="{{ site.url }}{{ page.url }}" data-counter="right"></script></li>
+        <li class="facebook"><div class="fb-like" data-href="{{ site.url }}{{ page.url }}" data-width="120" data-height="50" data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="false" data-send="false"></div></li>
+        <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ site.url }}{{ page.url }}">Tweet</a></li>
+    </ul>
+    <!-- Twitter Footer -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- G+ Footer -->
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+</div>

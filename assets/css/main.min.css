@@ -322,6 +322,16 @@ figcaption {
     color: #6f6f6f;
 }
 
+@media only screen and (min-width:48em) {
+    li.facebook {
+        margin-right: 35px;
+    }
+
+    li.linkedin {
+        margin-right: 35px;
+    }
+}
+
 .notice {
     padding: .5em 1em;
     margin-top: 1.5em;

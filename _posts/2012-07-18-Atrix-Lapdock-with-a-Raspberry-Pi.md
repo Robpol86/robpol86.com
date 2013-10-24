@@ -7,6 +7,7 @@ category: lapdock
 tags: [atrix, lapdock, microhdmi, raspberry pi]
 comments: true
 showseries: true
+share: true
 ---
 
 The Lapdock works great with the Raspberry Pi, but with a few caveats:

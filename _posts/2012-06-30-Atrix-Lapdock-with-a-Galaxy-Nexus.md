@@ -6,6 +6,7 @@ category: lapdock
 tags: [atrix, lapdock, microhdmi, android, galaxy nexus, samsung, mhl]
 comments: true
 showseries: true
+share: true
 ---
 
 The Galaxy Nexus works fine with the Lapdock, however only HDMI (video) works. The MHL standard disables USB when using

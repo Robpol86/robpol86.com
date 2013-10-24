@@ -7,6 +7,7 @@ category: lapdock
 tags: [atrix, lapdock, microhdmi, nexus 4, miracast, slimport]
 comments: true
 showseries: true
+share: true
 ---
 
 Works with the Nexus 4 just fine, appears to maintain aspect ratio. <del>As with the Galaxy Nexus, no

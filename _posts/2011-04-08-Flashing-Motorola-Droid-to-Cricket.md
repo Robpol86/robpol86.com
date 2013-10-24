@@ -6,6 +6,7 @@ modified: 2012-06-12
 category: guides
 tags: [droid, cricket, android, motorola droid, motorola, top-content]
 comments: true
+share: true
 ---
 
 This guide will explain how to flash a Motorola Droid from Verizon to Cricket based on my experiences. The two

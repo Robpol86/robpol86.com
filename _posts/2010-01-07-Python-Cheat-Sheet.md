@@ -7,6 +7,7 @@ category: cheatsheet
 tags: [cheat sheet, python]
 comments: true
 showseries: true
+share: true
 ---
 
 # Sorting a list by string length

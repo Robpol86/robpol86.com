@@ -7,6 +7,7 @@ category: cheatsheet
 tags: [cheat sheet, windows, putty]
 comments: true
 showseries: true
+share: true
 ---
 
 # Command Line/Cygwin

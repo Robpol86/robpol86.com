@@ -7,6 +7,7 @@ tags: [workspaces, desk, desk pictures, rack, server rack]
 comments: true
 showseries: true
 modified: 2013-07-16
+share: true
 ---
 
 Started by a thread called "Where You Rock" on Big-O-Software Forums in early 2003, I began to take pictures of my desk

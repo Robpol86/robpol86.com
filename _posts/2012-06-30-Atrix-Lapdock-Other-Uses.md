@@ -7,6 +7,7 @@ category: lapdock
 tags: [atrix, lapdock, android, microhdmi, top-content]
 comments: true
 showseries: true
+share: true
 ---
 
 I bought the Atrix Lapdock since I couldn't find any sub $100 portable HDMI displays. The only affordable displays I

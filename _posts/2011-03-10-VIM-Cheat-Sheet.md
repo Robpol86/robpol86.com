@@ -7,6 +7,7 @@ category: cheatsheet
 tags: [cheat sheet, vim, gvim]
 comments: true
 showseries: true
+share: true
 ---
 
 # Pretty XML
