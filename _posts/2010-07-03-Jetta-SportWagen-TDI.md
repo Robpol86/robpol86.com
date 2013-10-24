@@ -6,6 +6,7 @@ category: vehicles
 tags: [cars, jetta, jsw, sportwagen, tdi, diesel, manual, wagon]
 comments: true
 share: true
+background: /images/jettas.png
 ---
 
 Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next car (I was then driving a 2000 F-150).
