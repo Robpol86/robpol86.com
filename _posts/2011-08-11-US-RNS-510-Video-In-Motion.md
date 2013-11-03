@@ -6,7 +6,8 @@ modified: 2013-02-25
 category: guides
 tags: [rns-510, VIM, video in motion, vim_berto89, top-content]
 comments: true
-background: /images/jettas.png
+image:
+    background: jettas.png
 share: true
 ---
 
