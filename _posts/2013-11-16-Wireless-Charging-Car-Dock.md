@@ -1,0 +1,71 @@
+---
+layout: post
+title: Wireless Charging Car Dock
+description: "Custom made car dock with wireless charging."
+category: guides
+tags: [nexus 5, car dock, qi, wireless charging]
+comments: true
+share: true
+image:
+    background: jettas.png
+---
+
+So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
+find very many car docks out there with wireless charging, and I read that Nokia's wireless charging car dock didn't
+work very well on the Nexus 5.
+
+So I built my own. I originally posted everything 
+[on the XDA forums](http://forum.xda-developers.com/showthread.php?p=47509705#post47509705).
+
+I used the following items:
+
+* [30 Neodymium Magnets 5/16 x 1/8 inch Disc N48](http://www.amazon.com/gp/product/B008PT6P1Q/)
+* [LG Electronics WCP-300 Wireless Charging Pad](http://www.amazon.com/gp/product/B00C6VP03I/)
+* [Mountek nGroove Snap Magnetic Vehicle Mount](http://www.amazon.com/gp/product/B00E9L0HGI/)
+
+[![](http://i.imgur.com/X8fbOGl.gif)](http://imgur.com/X8fbOGl){: .pull-right .annotparent}
+For the final iteration, I reassembled the charging pad and everything holds together with just the magnetic force.
+This is what I did:
+
+1. Remove the feet of the charging pad and remove the four screws underneath. The charging pad's top should easily come
+off.
+2. Set aside the coil/ferrite plate/circuit board assembly for now.
+3. The top half of the casing, with the LG logo, can disassemble further. The soft material (which you place your phone
+on) should effortlessly pop off. Dispose of the remaining plastic ring.
+4. The nGroove mount comes with two metal plates with adhesive. Apply one of the plates onto the soft material top,
+covering up the LG logo.
+5. Now place the soft material top onto the nGroove mount. It should magnetically stick together.
+6. Get three magnets and place them on top of the underside of the soft material top. Make sure the polarity of the
+magnets all face the same direction (the magnets will repeal one another when placed next to each other). Place them in
+the correct orientation as to get the most magnetic force between them and the nGroove magnet. This will hold the soft
+material top firmly against the nGroove mount.
+7. Now place the coil/plate/board on top, having the coil face you. The magnets will pull it so make sure you grab on
+to it well while you try to align the screw holes. You'll probably want to get some rubber washers between the plastic
+and the circuit board.
+8. Screw everything together.
+9. Place four additional magnets on top of the ferrite plate, next to each screw. Again make sure the polarity is the
+same on all four, so they all repel each other.
+
+Ok and that's it. The part about the three magnets and the plastic washers was done after I took these pictures. I
+initially didn't do that and found after a few hours that the nGroove metal plate's adhesive has come off the soft
+material top and the coil/ferrite/board fell off.
+
+Here are some pictures of the third and final version, sans washers.
+
+<figure class="third">
+    <a href="http://imgur.com/COavxfY"><div class="annotparent"><img src="http://i.imgur.com/COavxfYm.jpg">
+    </div></a>
+    <a href="http://imgur.com/qJONaXG"><div class="annotparent"><img src="http://i.imgur.com/qJONaXGm.jpg">
+    </div></a>
+    <a href="http://imgur.com/GhOvZg9"><div class="annotparent"><img src="http://i.imgur.com/GhOvZg9m.jpg">
+    </div></a>
+</figure>
+
+<figure class="half">
+    <a href="http://imgur.com/OvXMV5w"><div class="annotparent"><img src="http://i.imgur.com/OvXMV5wm.jpg">
+    </div></a>
+    <a href="http://imgur.com/dRQ4q77"><div class="annotparent"><img src="http://i.imgur.com/dRQ4q77m.jpg">
+    </div></a>
+    <figcaption></figcaption>
+</figure>
+
