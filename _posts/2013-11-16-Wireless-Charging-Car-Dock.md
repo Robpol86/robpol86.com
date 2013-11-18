@@ -15,7 +15,9 @@ find very many car docks out there with wireless charging, and I read that Nokia
 work very well on the Nexus 5.
 
 So I built my own. I originally posted everything 
-[on the XDA forums](http://forum.xda-developers.com/showthread.php?p=47509705#post47509705).
+[on the XDA forums](http://forum.xda-developers.com/showthread.php?p=47509705#post47509705). Since the Nexus 5 has 
+[four metal discs](http://www.ifixit.com/Teardown/Nexus+5+Teardown/19016#s53717) inside it, it self-aligns when placed
+on the dock and stays put in that position. You can see it self-align in the gif below.
 
 I used the following items:
 
@@ -50,7 +52,13 @@ Ok and that's it. The part about the three magnets and the plastic washers was d
 initially didn't do that and found after a few hours that the nGroove metal plate's adhesive has come off the soft
 material top and the coil/ferrite/board fell off.
 
-Here are some pictures of the third and final version, sans washers.
+While this works great with my black Nexus 5, the white Nexus 5's back is less grippy, so you might have to plastidip
+the magnets or add some kind of grippy material between them and the phone. I also tried this on the 2013 Nexus 7 but
+that requires more magnets since it is heavier. Also on my Nexus 4, since it has less metal inside, has a smooth glass
+back, and is heavier than the Nexus 5, it doesn't work very well on this dock. You'll probably need to get a grippy
+case for it and add more magnets.
+
+Here are some pictures of the final version, sans washers.
 
 <figure class="third">
     <a href="http://imgur.com/COavxfY"><div class="annotparent"><img src="http://i.imgur.com/COavxfYm.jpg">
