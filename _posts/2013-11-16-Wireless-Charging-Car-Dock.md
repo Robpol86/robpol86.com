@@ -8,6 +8,7 @@ comments: true
 share: true
 image:
     background: jettas.png
+modified: 2013-11-17
 ---
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
@@ -38,12 +39,13 @@ on) should effortlessly pop off. Dispose of the remaining plastic ring.
 covering up the LG logo.
 5. Now place the soft material top onto the nGroove mount. It should magnetically stick together.
 6. Get three magnets and place them on top of the underside of the soft material top. Make sure the polarity of the
-magnets all face the same direction (the magnets will repeal one another when placed next to each other). Place them in
+magnets all face the same direction (the magnets will repel one another when placed next to each other). Place them in
 the correct orientation as to get the most magnetic force between them and the nGroove magnet. This will hold the soft
 material top firmly against the nGroove mount.
-7. Now place the coil/plate/board on top, having the coil face you. The magnets will pull it so make sure you grab on
-to it well while you try to align the screw holes. You'll probably want to get some rubber washers between the plastic
-and the circuit board.
+7. Now place the coil/plate/board with the four screws already inserted on top, having the coil face you. The magnets
+will pull it so make sure you grab on to everything well while you try to align the screws with the holes. You'll
+probably want to get some rubber washers between the plastic holes and the circuit board to give the three magnets some
+room. I had a large piece of ~2mm thick rubber I cut up and pierced.
 8. Screw everything together.
 9. Place four additional magnets on top of the ferrite plate, next to each screw. Again make sure the polarity is the
 same on all four, so they all repel each other.
