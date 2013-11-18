@@ -18,7 +18,9 @@ work very well on the Nexus 5.
 So I built my own. I originally posted everything 
 [on the XDA forums](http://forum.xda-developers.com/showthread.php?p=47509705#post47509705). Since the Nexus 5 has 
 [four metal discs](http://www.ifixit.com/Teardown/Nexus+5+Teardown/19016#s53717) inside it, it self-aligns when placed
-on the dock and stays put in that position. You can see it self-align in the gif below.
+on the dock and stays put in that position. You can see it self-align in the gif below. I drove 45mins from San
+Francisco to San Jose and it never fell off. I was using GPS (Google Maps) and it looks like the magnets don't add too
+much distance between the phone and the transmitting coil, my battery meter went up a little bit.
 
 I used the following items:
 
