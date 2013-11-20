@@ -21,7 +21,7 @@ Full set of high-resolution pictures for all workspaces are available at
 <figure>
     <!-- workspaces_2013-11-13_desk-work.jpg -->
     <a href="http://imgur.com/Srt4owo"><div class="annotparent"><img src="http://i.imgur.com/Srt4owol.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 Nov 13</div>
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 November 13</div>
     </div></a>
     <figcaption>Who knew having three displays was so awesome?</figcaption>
 </figure>
