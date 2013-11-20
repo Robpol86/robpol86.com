@@ -6,7 +6,7 @@ category: workspaces
 tags: [workspaces, symantec, work desk, desk pictures]
 comments: true
 showseries: true
-modified: 2013-07-15
+modified: 2013-11-19
 share: true
 ---
 
@@ -15,6 +15,16 @@ I show off how my desk is setup at my various places of employment.
 
 Full set of high-resolution pictures for all workspaces are available at
 [http://imgur.com/a/SThXb](http://imgur.com/a/SThXb).
+
+# Twitter; San Francisco, CA
+
+<figure>
+    <!-- workspaces_2013-11-13_desk-work.jpg -->
+    <a href="http://imgur.com/Srt4owo"><div class="annotparent"><img src="http://i.imgur.com/Srt4owol.jpg">
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 Nov 13</div>
+    </div></a>
+    <figcaption>Who knew having three displays was so awesome?</figcaption>
+</figure>
 
 # Symantec; Austin, TX
 
