@@ -8,7 +8,7 @@ comments: true
 share: true
 image:
     background: jettas.png
-modified: 2013-11-17
+modified: 2013-11-22
 ---
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
@@ -20,7 +20,8 @@ So I built my own. I originally posted everything
 [four metal discs](http://www.ifixit.com/Teardown/Nexus+5+Teardown/19016#s53717) inside it, it self-aligns when placed
 on the dock and stays put in that position. You can see it self-align in the gif below. I drove 45mins from San
 Francisco to San Jose and it never fell off. I was using GPS (Google Maps) and it looks like the magnets don't add too
-much distance between the phone and the transmitting coil, my battery meter went up a little bit.
+much distance between the phone and the transmitting coil, my battery meter went up a little bit. More pictures
+[here](http://imgur.com/a/dhFnO).
 
 I used the following items:
 
@@ -81,3 +82,20 @@ Here are some pictures of the final version, sans washers.
     <figcaption></figcaption>
 </figure>
 
+And here are some pictures after I routed the [wire inside the](http://www.amazon.com/gp/product/B003YKX6WW/) center
+console. After you take out the shifter boot, little cubby, head unit, and air vents there is a ton of room inside to
+route the wire. The front plate of the AC vents snaps on so I was able to pry it open just enough to squeeze the thin
+wire in. I cut out a small notch of plastic to give the wire some room without blocking any of the vents' moving parts.
+The only downside is I can't close the little cubby anymore. Oh well.
+
+<figure class="third">
+    <a href="http://imgur.com/sRKNN6F"><div class="annotparent"><img src="http://i.imgur.com/sRKNN6Fm.jpg">
+    </div></a>
+    <a href="http://imgur.com/8R5ROC4"><div class="annotparent"><img src="http://i.imgur.com/8R5ROC4m.jpg">
+    </div></a>
+    <a href="http://imgur.com/7jA3c1J"><div class="annotparent"><img src="http://i.imgur.com/7jA3c1Jm.jpg">
+    </div></a>
+    <figcaption>I didn't take a picture with the head unit and air vents removed, and damned if I take them out now. The
+    clips around the head unit are fragile (I was lucky I didn't break any) and the air vent assembly is a total pain to
+    put back in. Same goes for the shifter boot.</figcaption>
+</figure>
