@@ -8,12 +8,43 @@ comments: true
 share: true
 image:
     background: jettas.png
-modified: 2013-11-22
+modified: 2013-12-08
 ---
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
 find very many car docks out there with wireless charging, and I read that Nokia's wireless charging car dock didn't
 work very well on the Nexus 5.
+
+[![](http://i.imgur.com/7WTPx0v.gif)](http://imgur.com/7WTPx0v){: .pull-right .annotparent}
+Previously I made my own Qi car dock by taking apart an LG Qi charger. But now that I have Google's new charger I made
+a new one that's much better. The magnets in Google's charger are stronger and it looks a lot cleaner. I didn't need
+any glue, tape, or additional magnets either. To make your own all you need is:
+
+1. [Nexus Wireless Charger (Model A010)](https://play.google.com/store/devices/details?id=nexus_wireless_charger)
+2. [Mountek nGroove Snap Magnetic Vehicle Mount](http://www.amazon.com/dp/B00E9L0HGI) (or a magnetic flat surface)
+3. A 2 amp USB car adapter (I used [PowerGen 2.4Amps / 12W Dual USB](http://www.amazon.com/gp/product/B006SU0SX0))
+
+The magnets in the nGroove Snap are just strong enough to attract the magnets in the wireless charger. The silicon
+material on the foot of the charger is also very good at sticking to certain surfaces like the nGroove Snap. Because of
+that I was able to drive around for three hours with my phone on the charger without any problems.
+
+All you need to do is mount the nGroove Snap and then place the charger on it, and that's it! I routed the cable behind
+my dash to make it look a bit cleaner ([instructions here]({% post_url 2010-07-03-Jetta-SportWagen-TDI %})).
+
+<figure class="third">
+    <!-- qi_attempt4_2.jpg -->
+    <a href="http://imgur.com/GJE9zkv"><div class="annotparent"><img src="http://i.imgur.com/GJE9zkvm.jpg">
+    </div></a>
+    <!-- qi_attempt4_17.jpg -->
+    <a href="http://imgur.com/55krwnA"><div class="annotparent"><img src="http://i.imgur.com/55krwnAm.jpg">
+    </div></a>
+    <!-- qi_attempt4_18.jpg -->
+    <a href="http://imgur.com/7lHFKUv"><div class="annotparent"><img src="http://i.imgur.com/7lHFKUvm.jpg">
+    </div></a>
+    <figcaption></figcaption>
+</figure>
+
+# Previous Implementation
 
 So I built my own. I originally posted everything 
 [on the XDA forums](http://forum.xda-developers.com/showthread.php?p=47509705#post47509705). Since the Nexus 5 has 
