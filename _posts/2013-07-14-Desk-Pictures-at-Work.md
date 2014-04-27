@@ -94,3 +94,15 @@ Full set of high-resolution pictures for all workspaces are available at
     <figcaption>Early pictures of my office and then cubicle at Symantec.</figcaption>
 </figure>
 
+# TISD; Victoria, TX
+
+<figure>
+    <!-- workspaces_2005-08-19_desk-work.jpg -->
+    <a href="http://imgur.com/pSoGfFu"><div class="annotparent"><img src="http://i.imgur.com/pSoGfFul.jpg">
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2005 August 19</div>
+    </div></a>
+    <figcaption>My temporary desk on my last day at this job. The desk to the left of it was my desk since my first day
+    until my replacement took it over. Soon after this was taken I moved to Austin. This is also my very first laptop
+    that I bought on eBay.</figcaption>
+</figure>
+
