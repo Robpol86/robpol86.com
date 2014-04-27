@@ -6,7 +6,7 @@ category: workspaces
 tags: [workspaces, symantec, work desk, desk pictures]
 comments: true
 showseries: true
-modified: 2013-11-19
+modified: 2014-04-26
 share: true
 ---
 
@@ -17,6 +17,14 @@ Full set of high-resolution pictures for all workspaces are available at
 [http://imgur.com/a/SThXb](http://imgur.com/a/SThXb).
 
 # Twitter; San Francisco, CA
+
+<figure>
+    <!-- workspaces_2014-04-25_desk-work.jpg -->
+    <a href="http://imgur.com/hSiJL9W"><div class="annotparent"><img src="http://i.imgur.com/hSiJL9Wl.jpg">
+        <div class="annotation shadow-inverted" style="left:2%;top:2%">2014 April 25</div>
+    </div></a>
+    <figcaption>Finally I get to "sit" at a standing desk again.</figcaption>
+</figure>
 
 <figure>
     <!-- workspaces_2013-11-13_desk-work.jpg -->
