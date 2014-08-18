@@ -25,12 +25,12 @@
             {% include sidebar.html %}
         </div>
 
-        <div class="col-sm-5 col-sm-offset-4 col-md-7 col-md-offset-3 main">
+        <div class="col-sm-8 col-sm-offset-4 col-md-7 col-md-offset-3 main">
             {{ content }}
         </div>
 
-        <div class="col-sm-3 col-md-2">
-            Other Sidebar
+        <div class="col-md-2 hidden-xs hidden-sm">
+            {{ page.url }}
         </div>
     </div>
 </div>
