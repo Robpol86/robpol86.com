@@ -1,91 +1,37 @@
-<!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-{% include head.html %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="@Robpol86">
+    <link rel="icon" href="/favicon.ico?">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/sidebar/css/sidebar.css">
+
 </head>
 
-<body id="post" {% if page.image.feature %}class="feature"{% endif %} itemscope itemtype="http://schema.org/WebPage">
+<body>
 
-{% include browser-upgrade.html %}
-{% include navigation.html %}
+{% include navbar.html %}
 
-{% for post in site.posts %}
-    {% if post.categories contains page.category and post.title != page.title %}
-        {% capture post_html %}{% if post.modified %}Updated on {{ post.modified|date:'%B %d, %Y' }}{% else %}Published on {{ post.date|date:'%B %d, %Y' }}{% endif %}{% endcapture %}
-        {% capture post_html %}<time datetime="{{ post.date|date_to_xmlschema }}" itemprop="datePublished">{{ post_html }}</time>{% endcapture %}
-        {% capture post_html %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="post-meta">{{ post_html }}</span></a>{% endcapture %}
-        {% capture post_html %}<!-- {% if post.modified %}{{ post.modified }}{% else %}{{ post.date|date:"%Y-%m-%d" }}{% endif %} -->{{ post_html }}{% endcapture %}
-        {% capture related %}{{ related }}|{{ post_html }}{% endcapture %}
-    {% endif %}
-{% endfor %}
-{% assign related = related|remove_first:'|'|split:'|'|sort %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            {% include sidebar.html %}
+        </div>
 
-{% if page.image.feature %}
-<div class="entry-header">
-  <div class="entry-image"><img src="{{ site.url }}/images/{{ page.image.feature }}" alt="{{ page.title }}" itemprop="image">
-    {% if page.image.credit %}<div class="image-credit">Image source: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></div><!-- /.image-credit -->{% endif %}
-  </div><!-- /.entry-image -->
-</div><!-- /.entry-header -->
-{% endif %}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {{ content }}
+        </div>
+    </div>
+</div>
 
-<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
-  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <header class="header-title">
-      <div class="header-title-wrap">
-        {% if page.link %}
-          <h1 class="entry-title" itemprop="name"><a href="{{ page.link }}">{{ page.title }}</a></h1>
-        {% else %}
-          <h1 class="entry-title" itemprop="name"><a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}" itemprop="url">{{ page.title }}</a></h1>
-        {% endif %}
-        <h2>{% if page.modified %}<del>{{ page.date | date: "%B %d, %Y" }}</del> {{ page.modified | date: "%B %d, %Y" }}{% else %}{{ page.date | date: "%B %d, %Y" }}{% endif %}</h2>
-      </div><!-- /.header-title-wrap -->
-    </header>
-    <div class="entry-content" itemprop="description">
-      {{ content }}
-      <footer class="entry-meta">
-        <span class="entry-tags">{% for tag in page.tags %}<a href="{{ site.url }}/tags/index.html#{{ tag | cgi_encode }}" title="Pages tagged {{ tag }}" rel="tag" class="tag">{{ tag }}</a>{% unless forloop.last %}{% endunless %}{% endfor %}</span>
-        <span><a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}" itemprop="url">{{ page.title }}</a> was published on <span class="entry-date date published updated"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %d, %Y" }}</time></span></span>
-        {% if page.modified %}(revised: <span class="entry-date date modified"><time datetime="{{ page.modified }}" itemprop="dateModified">{{ page.modified | date: "%m/%d/%Y" }}</time></span>){% endif %}
-        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="{{ site.url }}/about" title="About {{ site.owner.name }}" itemprop="url">{{ site.owner.name }}</a></span></span>
-        {% if page.share %}{% include social.html %}<!-- /.social-share -->{% endif %}
-      </footer>
-    </div><!-- /.entry-content -->
-    {% if page.showseries and related %}<section id="show_series"><h1>Other Posts in the Series</h1><ul>{% for related_html in related reversed %}<li>{{ related_html }}</li>{% endfor %}</ul></section>{% endif %}
-    {% if site.disqus_shortname and page.comments %}<section id="disqus_thread"></section><!-- /#disqus_thread -->{% endif %}
-    {% if site.related_posts.size %}
-    <div class="read-more">
-      {% for post in site.related_posts limit:1 %}
-        <div class="read-more-header">
-          <a href="{{ site.url }}{{ page.previous.url }}" class="read-more-btn">Read More</a>
-        </div><!-- /.read-more-header -->
-        <div class="read-more-content">
-          <h3><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
-          <p>{% if post.description %}{{ post.description }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 140 }}&hellip;{% endif %} <a href="{{ site.url }}{{ post.url }}">Continue reading</a></p>
-        </div><!-- /.read-more-content -->
-      {% endfor %}
-      <div class="read-more-list">
-        {% for post in site.related_posts limit:2 offset:1 %}
-          <div class="list-item">
-            <h4><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h4>
-            <span>{% if post.modified %}Updated on {{ post.modified | date: "%B %d, %Y" }}{% else %}Published on {{ post.date | date: "%B %d, %Y" }}{% endif %}</span>
-          </div><!-- /.list-item -->
-        {% endfor %}
-      </div><!-- /.read-more-list -->
-      {% endif %}
-    </div><!-- /.read-more -->
-  </article>
-</div><!-- /#main -->
-
-<div class="footer-wrapper">
-  <footer role="contentinfo">
-    {% include footer.html %}
-  </footer>
-</div><!-- /.footer-wrapper -->
-
-{% include scripts.html %}	        
-
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
