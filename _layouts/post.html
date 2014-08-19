@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-md-2 hidden-xs hidden-sm">
-            {{ page.url }}
+            {% if page.url == '/index.html'}{% include aboutbar.html %}{% endif %}
         </div>
     </div>
 </div>
