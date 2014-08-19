@@ -8,11 +8,18 @@
     <meta name="author" content="@Robpol86">
     <link rel="icon" href="/favicon.ico?">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>
+        {% if page.url == '/index.html' %}
+            {{ site.posts.first.title }}
+        {% else %}
+            {{ page.title }}
+        {% endif %}
+        - Robpol86.com
+    </title>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/sidebar/css/sidebar.css">
+    <link rel="stylesheet" href="/static/misc/css/sidebar.css">
 
 </head>
 

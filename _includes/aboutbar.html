@@ -1,1 +1,17 @@
-Placeholder.
+<div class="panel panel-primary">
+  <div class="panel-heading">GitHub Repos</div>
+  <div class="panel-body">
+      {% for repo in site.data.repos %}
+        <a href="https://github.com/Robpol86/{{ repo.name }}" target="_blank">{{ repo.name }}</a><br>
+      {% endfor %}
+  </div>
+</div>
+
+<div class="panel panel-danger">
+  <div class="panel-heading">GitHub Gists</div>
+  <div class="panel-body">
+      {% for gist in site.data.gists %}
+        <a href="https://gist.github.com/Robpol86/{{ gist.id }}" target="_blank">{{ gist.name }}</a><br>
+      {% endfor %}
+  </div>
+</div>

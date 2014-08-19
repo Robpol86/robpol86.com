@@ -1,2 +1,4 @@
-timezone:   America/Los_Angeles
+gems:
+    - jekyll-sitemap
 permalink:  /:categories/:title
+timezone:   America/Los_Angeles

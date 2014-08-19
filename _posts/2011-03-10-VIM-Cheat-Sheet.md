@@ -1,13 +1,29 @@
 ---
 layout: post
 title: VIM Cheat Sheet
-description: "Computer Notes/One Liners for VIM/gVim"
-modified: 2012-05-04
 category: cheatsheet
-tags: [cheat sheet, vim, gvim]
+modified: 2012-05-04
 comments: true
-showseries: true
 share: true
 ---
 
-Test5
+# Pretty XML
+
+{% highlight vim %}
+%!xmllint --format -
+{% endhighlight %}
+
+# Revert to last save
+
+{% highlight vim %}
+e!
+{% endhighlight %}
+
+# Tabs to spaces
+
+{% highlight vim %}
+retab
+{% endhighlight %}
+
+# vimrc
+{% gist 5897695 %}
