@@ -9,10 +9,19 @@
 {% endfor %}
 
 
+{% comment %}Set page_title to latest post if index.html, else current page.{% endcomment %}
+
+{% if page.url == '/index.html' %}
+    {% assign page_title = site.posts.first.title %}
+{% else %}
+    {% assign page_title = page.title %}
+{% endif %}
+
+
 {% for category in categories %}
     <ul class="nav nav-sidebar">
         {% for post in site.posts %}{% if post.category == category %}
-            {% if page.title == post.title %}
+            {% if page_title == post.title %}
                 <li class="active"><a href="#">{{ post.title }}</a></li>
             {% else %}
                 <li><a href="{{ post.url }}">{{ post.title }}</a></li>
