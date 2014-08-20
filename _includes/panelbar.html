@@ -1,3 +1,21 @@
+{% if page.url == '/index.html' %}
+    {% assign page_date = site.posts.first.date %}
+    {% assign page_modified = site.posts.first.modified %}
+{% else %}
+    {% assign page_date = page.date %}
+    {% assign page_modified = page.modified %}
+{% endif %}
+
+<div class="panel panel-success">
+  <div class="panel-heading">Metadata</div>
+  <div class="panel-body">
+      Originally posted: <span class="label label-success">{{ page_date | date:'%A, %B %d, %Y' }}</span><br>
+      {% if page_modified %}
+        Modified on: <span class="label label-success">{{ page_modified | date:'%A, %B %d, %Y' }}</span>
+      {% endif %}
+  </div>
+</div>
+
 <div class="panel panel-info">
   <div class="panel-heading">Share Links</div>
   <div class="panel-body">
@@ -5,20 +23,22 @@
   </div>
 </div>
 
-<div class="panel panel-warning">
-  <div class="panel-heading">GitHub Repos</div>
-  <div class="panel-body">
-      {% for repo in site.data.repos %}
-        <a href="https://github.com/Robpol86/{{ repo.name }}" target="_blank">{{ repo.name }}</a><br>
-      {% endfor %}
-  </div>
-</div>
+{% if page.url == '/index.html' %}
+    <div class="panel panel-warning">
+      <div class="panel-heading">GitHub Repos</div>
+      <div class="panel-body">
+          {% for repo in site.data.repos %}
+            <a href="https://github.com/Robpol86/{{ repo.name }}" target="_blank">{{ repo.name }}</a><br>
+          {% endfor %}
+      </div>
+    </div>
 
-<div class="panel panel-danger">
-  <div class="panel-heading">GitHub Gists</div>
-  <div class="panel-body">
-      {% for gist in site.data.gists %}
-        <a href="https://gist.github.com/Robpol86/{{ gist.id }}" target="_blank">{{ gist.name }}</a><br>
-      {% endfor %}
-  </div>
-</div>
+    <div class="panel panel-danger">
+      <div class="panel-heading">GitHub Gists</div>
+      <div class="panel-body">
+          {% for gist in site.data.gists %}
+            <a href="https://gist.github.com/Robpol86/{{ gist.id }}" target="_blank">{{ gist.name }}</a><br>
+          {% endfor %}
+      </div>
+    </div>
+{% endif %}
