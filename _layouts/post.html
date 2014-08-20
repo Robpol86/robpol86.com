@@ -29,16 +29,25 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4 col-md-3 sidebar">
+        <div class="col-sm-3 col-md-3 col-lg-2 sidebar">
             {% include sidebar.html %}
         </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
 
-        <div class="col-sm-8 col-sm-offset-4 col-md-7 col-md-offset-3 main">
-            {% if page.url == '/index.html' %}{{ site.posts.first.content }}{% else %}{{ content }}{% endif %}
-        </div>
+                <div class="col-sm-12 col-md-8 col-lg-9" style="margin-bottom: 21px;">
+                    {% if page.url == '/index.html' %}{{ site.posts.first.content }}{% else %}{{ content }}{% endif %}
+                </div>
 
-        <div class="col-md-2 hidden-xs hidden-sm">
-            {% if page.url == '/index.html' %}{% include aboutbar.html %}{% endif %}
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    {% if page.url == '/index.html' %}{% include panelbar.html %}{% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    {% include comments.html %}
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

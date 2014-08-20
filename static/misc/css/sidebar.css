@@ -16,7 +16,6 @@
         overflow-x: hidden;
         overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         background-color: #4e5d6c;
-        max-width: 300px;
     }
 }
 
@@ -35,4 +34,18 @@
 .nav-sidebar > .active > a:focus {
     color: #fff;
     background-color: #df691a;
+}
+
+/* Main content */
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
 }
