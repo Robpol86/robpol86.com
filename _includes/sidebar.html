@@ -18,7 +18,7 @@
 {% endif %}
 
 
-{% for category in categories %}
+{% for category in categories offset:1 %}
     <ul class="nav nav-sidebar">
         {% for post in site.posts %}{% if post.category == category %}
             {% if page_title == post.title %}
