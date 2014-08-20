@@ -16,6 +16,7 @@
         overflow-x: hidden;
         overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         background-color: #4e5d6c;
+        border-right: 1px solid #485563;
     }
 }
 
