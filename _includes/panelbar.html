@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="panel panel-warning">
+    <div class="panel panel-danger">
         <div class="panel-heading">GitHub Repos</div>
         <div class="panel-body">
             {% for repo in site.data.repos %}
@@ -55,6 +55,15 @@
         <div class="panel-body">
             {% for gist in site.data.gists %}
                 <a href="https://gist.github.com/Robpol86/{{ gist.id }}" target="_blank">{{ gist.name }}</a><br>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="panel panel-warning">
+        <div class="panel-heading">Misc Links</div>
+        <div class="panel-body">
+            {% for misc in site.data.misc %}
+                <a href="{{ misc.url }}" target="_blank">{{ misc.name }}</a><br>
             {% endfor %}
         </div>
     </div>
