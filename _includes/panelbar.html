@@ -15,7 +15,7 @@
         {% if page_modified %}
             Modified on: <span class="label label-success">{{ page_modified | date:'%A, %B %d, %Y' }}</span><br>
         {% endif %}
-        Comments: <a href="#disqus_thread" data-disqus-identifier="{{ page_title }}">Count</a>
+        Comments: <a id="comment_count" href="#disqus_thread" data-disqus-identifier="{{ page_title }}">Count</a>
   </div>
 </div>
 
