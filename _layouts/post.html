@@ -40,11 +40,11 @@
                 </div>
 
                 <div class="col-sm-12 col-md-4 col-lg-3">
-                    {% include panelbar.html %}
+                    {% if page.url != '/404.html' %}{% include panelbar.html %}{% endif %}
                 </div>
 
                 <div class="col-sm-12 col-md-12 col-lg-12">
-                    {% include comments.html %}
+                    {% if page.url != '/404.html' %}{% include comments.html %}{% endif %}
                 </div>
 
             </div>

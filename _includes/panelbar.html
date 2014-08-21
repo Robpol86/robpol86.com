@@ -1,8 +1,10 @@
 {% if page.url == '/index.html' %}
     {% assign page_date = site.posts.first.date %}
+    {% assign page_title = site.posts.first.title %}
     {% assign page_modified = site.posts.first.modified %}
 {% else %}
     {% assign page_date = page.date %}
+    {% assign page_title = page.title %}
     {% assign page_modified = page.modified %}
 {% endif %}
 
@@ -11,8 +13,9 @@
   <div class="panel-body">
         Originally posted: <span class="label label-success">{{ page_date | date:'%A, %B %d, %Y' }}</span><br>
         {% if page_modified %}
-            Modified on: <span class="label label-success">{{ page_modified | date:'%A, %B %d, %Y' }}</span>
+            Modified on: <span class="label label-success">{{ page_modified | date:'%A, %B %d, %Y' }}</span><br>
         {% endif %}
+        Comments: <a href="#disqus_thread" data-disqus-identifier="{{ page_title }}">Count</a>
   </div>
 </div>
 
