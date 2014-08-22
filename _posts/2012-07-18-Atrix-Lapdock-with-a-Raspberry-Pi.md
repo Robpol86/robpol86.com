@@ -1,10 +1,8 @@
 ---
-layout: post
-title: Atrix Lapdock with a Raspberry Pi
 category: lapdock
+layout: post
 modified: 2012-07-19
-comments: true
-share: true
+title: Atrix Lapdock with a Raspberry Pi
 ---
 
 The Lapdock works great with the Raspberry Pi, but with a few caveats:
@@ -40,11 +38,27 @@ Here is the script. Save it in **/etc/init.d/disable-ethernet** and then run **s
     * [Micro USB B Male to Female](http://www.ebay.com/itm/ws/eBayISAPI.dll?ViewItem&item=270928425953)
       (delivery took one month)
 
-<figure class="third">
-    <a href="http://imgur.com/cZR03"><img src="http://i.imgur.com/cZR03m.jpg"></a>
-    <a href="http://imgur.com/MrTBN"><img src="http://i.imgur.com/MrTBNm.jpg"></a>
-    <a href="http://imgur.com/vCYfG"><img src="http://i.imgur.com/vCYfGm.jpg"></a>
-    <figcaption>The Raspberry Pi only supports power from its micro USB port, and the regular USB ports on the RPI
-    won't allow enough power through. So I had to splice another USB cable into the micro USB extension and route the
-    USB data cables (green and white) to the spliced cable.</figcaption>
-</figure>
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/cZR03" target="_blank">
+                <img src="http://i.imgur.com/cZR03l.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/MrTBN" target="_blank">
+                <img src="http://i.imgur.com/MrTBNl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/vCYfG" target="_blank">
+                <img src="http://i.imgur.com/vCYfGl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+    </div>
+    <div class="caption">
+        The Raspberry Pi only supports power from its micro USB port, and the regular USB ports on the RPI won't allow
+        enough power through. So I had to splice another USB cable into the micro USB extension and route the USB data
+        cables (green and white) to the spliced cable.
+    </div>
+</div>
