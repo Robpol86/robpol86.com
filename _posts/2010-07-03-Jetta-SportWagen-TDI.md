@@ -45,7 +45,7 @@ there is a lot of room down there.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/NWCmESI">
-                <img src="http://i.imgur.com/NWCmESIm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/NWCmESIl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 1</div>
         </div>
@@ -54,7 +54,7 @@ there is a lot of room down there.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/nbwMYCw">
-                <img src="http://i.imgur.com/nbwMYCwm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/nbwMYCwl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 2</div>
         </div>
@@ -63,7 +63,7 @@ there is a lot of room down there.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/k41ZdxS">
-                <img src="http://i.imgur.com/k41ZdxSm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/k41ZdxSl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 3</div>
         </div>
@@ -84,7 +84,7 @@ just left my shifter in 4th gear and rested the head unit on it.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/RjFyVQp">
-                <img src="http://i.imgur.com/RjFyVQpm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/RjFyVQpl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 4</div>
         </div>
@@ -93,7 +93,7 @@ just left my shifter in 4th gear and rested the head unit on it.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/PJJv47m">
-                <img src="http://i.imgur.com/PJJv47mm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/PJJv47ml.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 5</div>
         </div>
@@ -102,7 +102,7 @@ just left my shifter in 4th gear and rested the head unit on it.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/ZxgLd1i">
-                <img src="http://i.imgur.com/ZxgLd1im.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/ZxgLd1il.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 6</div>
         </div>
@@ -158,7 +158,7 @@ In the end, the USB cable runs down the right side of the air vents. It's a tigh
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/oEIw1kS">
-                <img src="http://i.imgur.com/oEIw1kSm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/oEIw1kSl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 9</div>
         </div>
@@ -167,7 +167,7 @@ In the end, the USB cable runs down the right side of the air vents. It's a tigh
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/lwmxAvc">
-                <img src="http://i.imgur.com/lwmxAvcm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/lwmxAvcl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 10</div>
         </div>
@@ -176,7 +176,7 @@ In the end, the USB cable runs down the right side of the air vents. It's a tigh
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/7O0EUpU">
-                <img src="http://i.imgur.com/7O0EUpUm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/7O0EUpUl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 11</div>
         </div>
@@ -202,7 +202,7 @@ minimal slack.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/wzcOYuQ">
-                <img src="http://i.imgur.com/wzcOYuQm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/wzcOYuQl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 12</div>
         </div>
@@ -211,7 +211,7 @@ minimal slack.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/2CMNydn">
-                <img src="http://i.imgur.com/2CMNydnm.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/2CMNydnl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 13</div>
         </div>
@@ -220,7 +220,7 @@ minimal slack.
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
             <a href="http://imgur.com/nd3whf1">
-                <img src="http://i.imgur.com/nd3whf1m.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/nd3whf1l.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 14</div>
         </div>
@@ -268,80 +268,170 @@ fine).
 
 Images I took shortly after receiving my brand new car.
 
-<figure><a href="http://imgur.com/T640Q"><div class="annotparent"><img src="http://i.imgur.com/T640Ql.jpg"></div></a></figure>
-
-<figure><a href="http://imgur.com/vT2SN"><div class="annotparent"><img src="http://i.imgur.com/vT2SNl.jpg"></div></a></figure>
-
-<figure class="third">
-    <a href="http://imgur.com/TQ3BH"><div class="annotparent"><img src="http://i.imgur.com/TQ3BHm.jpg"></div></a>
-    <a href="http://imgur.com/g3vnR"><div class="annotparent"><img src="http://i.imgur.com/g3vnRm.jpg"></div></a>
-    <a href="http://imgur.com/Y2ziD"><div class="annotparent"><img src="http://i.imgur.com/Y2ziDm.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="half">
-    <a href="http://imgur.com/eLut3"><div class="annotparent"><img src="http://i.imgur.com/eLut3m.jpg"></div></a>
-    <a href="http://imgur.com/PEDQH"><div class="annotparent"><img src="http://i.imgur.com/PEDQHm.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="third">
-    <a href="http://imgur.com/wtvxY"><div class="annotparent"><img src="http://i.imgur.com/wtvxYm.jpg"></div></a>
-    <a href="http://imgur.com/UFZST"><div class="annotparent"><img src="http://i.imgur.com/UFZSTm.jpg"></div></a>
-    <a href="http://imgur.com/PVixc"><div class="annotparent"><img src="http://i.imgur.com/PVixcm.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="half">
-    <a href="http://imgur.com/WJqLK"><div class="annotparent"><img src="http://i.imgur.com/WJqLKm.jpg"></div></a>
-    <a href="http://imgur.com/7v2Xf"><div class="annotparent"><img src="http://i.imgur.com/7v2Xfm.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="third">
-    <a href="http://imgur.com/ziSTv"><div class="annotparent"><img src="http://i.imgur.com/ziSTvm.jpg"></div></a>
-    <a href="http://imgur.com/KZo5j"><div class="annotparent"><img src="http://i.imgur.com/KZo5jm.jpg"></div></a>
-    <a href="http://imgur.com/DbXvX"><div class="annotparent"><img src="http://i.imgur.com/DbXvXm.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure><a href="http://imgur.com/kVbMX"><div class="annotparent"><img src="http://i.imgur.com/kVbMXh.jpg"></div></a></figure>
-
-<figure class="half">
-    <a href="http://imgur.com/CaUOW"><div class="annotparent"><img src="http://i.imgur.com/CaUOWm.jpg"></div></a>
-    <a href="http://imgur.com/VzRGA"><div class="annotparent"><img src="http://i.imgur.com/VzRGAm.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="third">
-    <a href="http://imgur.com/DHcik"><div class="annotparent"><img src="http://i.imgur.com/DHcikm.jpg"></div></a>
-    <a href="http://imgur.com/11Gq8"><div class="annotparent"><img src="http://i.imgur.com/11Gq8m.jpg"></div></a>
-    <a href="http://imgur.com/DBQVK"><div class="annotparent"><img src="http://i.imgur.com/DBQVKm.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="half">
-    <a href="http://imgur.com/5Ui7D"><div class="annotparent"><img src="http://i.imgur.com/5Ui7Dm.jpg"></div></a>
-    <a href="http://imgur.com/sjLJ2"><div class="annotparent"><img src="http://i.imgur.com/sjLJ2m.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="half">
-    <a href="http://imgur.com/o6xgw"><div class="annotparent"><img src="http://i.imgur.com/o6xgwm.jpg"></div></a>
-    <a href="http://imgur.com/jJ994"><div class="annotparent"><img src="http://i.imgur.com/jJ994m.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="third">
-    <a href="http://imgur.com/fXw0P"><div class="annotparent"><img src="http://i.imgur.com/fXw0Pm.jpg"></div></a>
-    <a href="http://imgur.com/NbFfu"><div class="annotparent"><img src="http://i.imgur.com/NbFfum.jpg"></div></a>
-    <a href="http://imgur.com/49dr4"><div class="annotparent"><img src="http://i.imgur.com/49dr4m.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
-
-<figure class="third">
-    <a href="http://imgur.com/tOmfy"><div class="annotparent"><img src="http://i.imgur.com/tOmfym.jpg"></div></a>
-    <a href="http://imgur.com/9wLnO"><div class="annotparent"><img src="http://i.imgur.com/9wLnOm.jpg"></div></a>
-    <a href="http://imgur.com/YQhWF"><div class="annotparent"><img src="http://i.imgur.com/YQhWFm.jpg"></div></a>
-    <figcaption></figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/T640Q" target="_blank">
+            <img src="http://i.imgur.com/T640Qm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/vT2SN" target="_blank">
+            <img src="http://i.imgur.com/vT2SNm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/TQ3BH" target="_blank">
+            <img src="http://i.imgur.com/TQ3BHm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/g3vnR" target="_blank">
+            <img src="http://i.imgur.com/g3vnRm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/Y2ziD" target="_blank">
+            <img src="http://i.imgur.com/Y2ziDm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/eLut3" target="_blank">
+            <img src="http://i.imgur.com/eLut3m.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/PEDQH" target="_blank">
+            <img src="http://i.imgur.com/PEDQHm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/wtvxY" target="_blank">
+            <img src="http://i.imgur.com/wtvxYm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/UFZST" target="_blank">
+            <img src="http://i.imgur.com/UFZSTm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/PVixc" target="_blank">
+            <img src="http://i.imgur.com/PVixcm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/WJqLK" target="_blank">
+            <img src="http://i.imgur.com/WJqLKm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/7v2Xf" target="_blank">
+            <img src="http://i.imgur.com/7v2Xfm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/ziSTv" target="_blank">
+            <img src="http://i.imgur.com/ziSTvm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/KZo5j" target="_blank">
+            <img src="http://i.imgur.com/KZo5jm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/DbXvX" target="_blank">
+            <img src="http://i.imgur.com/DbXvXm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/kVbMX" target="_blank">
+            <img src="http://i.imgur.com/kVbMXm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/CaUOW" target="_blank">
+            <img src="http://i.imgur.com/CaUOWm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/VzRGA" target="_blank">
+            <img src="http://i.imgur.com/VzRGAm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/DHcik" target="_blank">
+            <img src="http://i.imgur.com/DHcikm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/11Gq8" target="_blank">
+            <img src="http://i.imgur.com/11Gq8m.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/DBQVK" target="_blank">
+            <img src="http://i.imgur.com/DBQVKm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/5Ui7D" target="_blank">
+            <img src="http://i.imgur.com/5Ui7Dm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/sjLJ2" target="_blank">
+            <img src="http://i.imgur.com/sjLJ2m.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/o6xgw" target="_blank">
+            <img src="http://i.imgur.com/o6xgwm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a href="http://imgur.com/jJ994" target="_blank">
+            <img src="http://i.imgur.com/jJ994m.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a href="http://imgur.com/fXw0P" target="_blank">
+            <img src="http://i.imgur.com/fXw0Pm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a href="http://imgur.com/NbFfu" target="_blank">
+            <img src="http://i.imgur.com/NbFfum.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a href="http://imgur.com/49dr4" target="_blank">
+            <img src="http://i.imgur.com/49dr4m.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <a href="http://imgur.com/tOmfy" target="_blank">
+            <img src="http://i.imgur.com/tOmfyl.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <a href="http://imgur.com/9wLnO" target="_blank">
+            <img src="http://i.imgur.com/9wLnOl.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <a href="http://imgur.com/YQhWF" target="_blank">
+            <img src="http://i.imgur.com/YQhWFl.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
