@@ -1,23 +1,22 @@
 ---
-layout: post
-title: Windows Cheat Sheet
 category: cheatsheet
+layout: post
 modified: 2012-12-07
-comments: true
-share: true
+title: Windows Cheat Sheet
 ---
 
 # Command Line/Cygwin
 
-#### Convert *.mkv files in folder B:\Videos to *.mp4 files in current folder:
+## Convert *.mkv files in folder B:\Videos to *.mp4 files in current folder:
 
-[http://stackoverflow.com/.../how-to-get-folder-path-from-file-path-...](http://stackoverflow.com/questions/659647/how-to-get-folder-path-from-file-path-with-cmd)
+[http://stackoverflow.com/.../how-to-get-folder-path-from-file-path-...]
+(http://stackoverflow.com/questions/659647/how-to-get-folder-path-from-file-path-with-cmd)
 
 {% highlight bat %}
 for /r "B:\Videos" %i in (*.mkv) do ffmpeg -i "%i" "%~ni.mp4"
 {% endhighlight %}
 
-#### Commands for ripping Dragon Ball DVDs:
+## Commands for ripping Dragon Ball DVDs:
 
 {% highlight bat %}
 for %i in (t*.mkv) do mkvmerge.exe -o _%i --default-track 2:no --default-track 3:yes --default-track 5:yes -a 2,3 -d 1 -s 5 %i --track-order 0:1,0:3,0:2,0:5
@@ -33,7 +32,8 @@ grep TimeStart source.txt |sed -ne "1~5p" |sed -e "1d" |cut -d" " -f7 |tr "\n" "
 
 # PuTTY
 
-[http://dag.wieers.com/blog/content/improving-putty-settings-on-windows](http://dag.wieers.com/blog/content/improving-putty-settings-on-windows)
+[http://dag.wieers.com/blog/content/improving-putty-settings-on-windows]
+(http://dag.wieers.com/blog/content/improving-putty-settings-on-windows)
 
 * Window
     * Lines of scrollback: **2000000**

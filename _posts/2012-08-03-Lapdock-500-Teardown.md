@@ -1,10 +1,9 @@
 ---
-layout: post
-title: Lapdock 500 Teardown
 category: lapdock
+layout: post
 modified: 2012-08-04
-comments: true
-share: true
+redirect_from: /index.php/Lapdock_500_Teardown
+title: Lapdock 500 Teardown
 ---
 
 After searching around for a few months and not finding a teardown, I've decided to take apart my Lapdock 500. Since I

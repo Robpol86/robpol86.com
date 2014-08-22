@@ -1,10 +1,9 @@
 ---
-layout: post
-title: Atrix Lapdock Other Uses
 category: lapdock
+layout: post
 modified: 2012-07-28
-comments: true
-share: true
+redirect_from: /index.php/Atrix_Lapdock_Other_Uses
+title: Atrix Lapdock Other Uses
 ---
 
 I bought the Atrix Lapdock since I couldn't find any sub $100 portable HDMI displays. The only affordable displays I
