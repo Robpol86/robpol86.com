@@ -1,10 +1,8 @@
 ---
-layout: post
-title: Jetta SportWagen TDI
 category: vehicles
+layout: post
 modified: 2013-12-08
-comments: true
-share: true
+title: Jetta SportWagen TDI
 ---
 
 Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next car (I was then driving a 2000 F-150).
@@ -38,67 +36,104 @@ is where you insert the tool and lift up. It should pop right out.
 
 Once that's out, just pull up (but don't remove it) and leave it hanging on the shifter.
 
-Next remove the two screws holding in the little cubby and 12v outlet pictured in Figure 2. It should lift up giving you
-access to the two cables. Press the clips and remove the cables, then pull out the cubby. Figure 3 you can see that
+Next remove the two screws holding in the little cubby and 12v outlet pictured in Figure 2. It should lift up giving
+you access to the two cables. Press the clips and remove the cables, then pull out the cubby. Figure 3 you can see that
 there is a lot of room down there.
 
-<figure class="third">
+<div class="row">
     <!-- qi_attempt4_3.jpg -->
-    <a href="http://imgur.com/NWCmESI"><div class="annotparent"><img src="http://i.imgur.com/NWCmESIm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 1</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/NWCmESI">
+                <img src="http://i.imgur.com/NWCmESIm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 1</div>
+        </div>
+    </div>
     <!-- qi_attempt4_4.jpg -->
-    <a href="http://imgur.com/nbwMYCw"><div class="annotparent"><img src="http://i.imgur.com/nbwMYCwm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 2</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/nbwMYCw">
+                <img src="http://i.imgur.com/nbwMYCwm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 2</div>
+        </div>
+    </div>
     <!-- qi_attempt4_5.jpg -->
-    <a href="http://imgur.com/k41ZdxS"><div class="annotparent"><img src="http://i.imgur.com/k41ZdxSm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 3</div>
-    </div></a>
-    <figcaption></figcaption>
-</figure>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/k41ZdxS">
+                <img src="http://i.imgur.com/k41ZdxSm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 3</div>
+        </div>
+    </div>
+</div>
 
 ### Step 2: Remove Head Unit
 
-This was the most nerve wracking part for me. The clips on the trim surrounding the head unit/radio seem to be held on by
-melted plastic. I feel like they are probably very fragile. This step I did very slowly.
+This was the most nerve wracking part for me. The clips on the trim surrounding the head unit/radio seem to be held on
+by melted plastic. I feel like they are probably very fragile. This step I did very slowly.
 
 Use your trim removal tool to gentry pop out the trim around the head unit. There are 7 clips circled in Figure 5. Then
 just remove the four screws holding in the head unit and side it out. I didn't bother unplugging any of the cables, I
 just left my shifter in 4th gear and rested the head unit on it.
 
-<figure class="third">
+<div class="row">
     <!-- qi_attempt4_6.jpg -->
-    <a href="http://imgur.com/RjFyVQp"><div class="annotparent"><img src="http://i.imgur.com/RjFyVQpm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 4</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/RjFyVQp">
+                <img src="http://i.imgur.com/RjFyVQpm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 4</div>
+        </div>
+    </div>
     <!-- qi_attempt4_7.jpg -->
-    <a href="http://imgur.com/PJJv47m"><div class="annotparent"><img src="http://i.imgur.com/PJJv47mm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 5</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/PJJv47m">
+                <img src="http://i.imgur.com/PJJv47mm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 5</div>
+        </div>
+    </div>
     <!-- qi_attempt4_8.jpg -->
-    <a href="http://imgur.com/ZxgLd1i"><div class="annotparent"><img src="http://i.imgur.com/ZxgLd1im.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 6</div>
-    </div></a>
-    <figcaption></figcaption>
-</figure>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/ZxgLd1i">
+                <img src="http://i.imgur.com/ZxgLd1im.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 6</div>
+        </div>
+    </div>
+</div>
 
 ### Step 3: Remove Air Vents
 
 This one is easy. Just remove the two screws circled in Figure 7 and pull it out. You'll have to remove the cable for
 the hazard lights button. It's clipped on and also held in place with some plastic thing. Just pull that up.
 
-<figure class="half">
+<div class="row">
     <!-- qi_attempt4_9.jpg -->
-    <a href="http://imgur.com/Ww02qMK"><div class="annotparent"><img src="http://i.imgur.com/Ww02qMKm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 7</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/Ww02qMK">
+                <img src="http://i.imgur.com/Ww02qMKl.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 7</div>
+        </div>
+    </div>
     <!-- qi_attempt4_10.jpg -->
-    <a href="http://imgur.com/jX1kQG4"><div class="annotparent"><img src="http://i.imgur.com/jX1kQG4m.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 8</div>
-    </div></a>
-    <figcaption></figcaption>
-</figure>
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/jX1kQG4">
+                <img src="http://i.imgur.com/jX1kQG4l.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 8</div>
+        </div>
+    </div>
+</div>
 
 ### Step 4: Run Cable through Vents
 
@@ -118,21 +153,35 @@ the USB cable through. Then I just slid the cable down towards the hole.
 
 In the end, the USB cable runs down the right side of the air vents. It's a tight fit.
 
-<figure class="third">
+<div class="row">
     <!-- qi_attempt4_11.jpg -->
-    <a href="http://imgur.com/oEIw1kS"><div class="annotparent"><img src="http://i.imgur.com/oEIw1kSm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 9</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/oEIw1kS">
+                <img src="http://i.imgur.com/oEIw1kSm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 9</div>
+        </div>
+    </div>
     <!-- qi_attempt4_12.jpg -->
-    <a href="http://imgur.com/lwmxAvc"><div class="annotparent"><img src="http://i.imgur.com/lwmxAvcm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 10</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/lwmxAvc">
+                <img src="http://i.imgur.com/lwmxAvcm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 10</div>
+        </div>
+    </div>
     <!-- qi_attempt4_13.jpg -->
-    <a href="http://imgur.com/7O0EUpU"><div class="annotparent"><img src="http://i.imgur.com/7O0EUpUm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 11</div>
-    </div></a>
-    <figcaption></figcaption>
-</figure>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/7O0EUpU">
+                <img src="http://i.imgur.com/7O0EUpUm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 11</div>
+        </div>
+    </div>
+</div>
 
 ### Step 5: Reassembling Everything
 
@@ -148,21 +197,35 @@ and the two screws on the air vents. I waited until the last minute to put back 
 I installed the car mount and charger, and then pulled on the USB cable just enough to have it reach the charger with
 minimal slack.
 
-<figure class="third">
+<div class="row">
     <!-- qi_attempt4_14.jpg -->
-    <a href="http://imgur.com/wzcOYuQ"><div class="annotparent"><img src="http://i.imgur.com/wzcOYuQm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 12</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/wzcOYuQ">
+                <img src="http://i.imgur.com/wzcOYuQm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 12</div>
+        </div>
+    </div>
     <!-- qi_attempt4_15.jpg -->
-    <a href="http://imgur.com/2CMNydn"><div class="annotparent"><img src="http://i.imgur.com/2CMNydnm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 13</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/2CMNydn">
+                <img src="http://i.imgur.com/2CMNydnm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 13</div>
+        </div>
+    </div>
     <!-- qi_attempt4_16.jpg -->
-    <a href="http://imgur.com/nd3whf1"><div class="annotparent"><img src="http://i.imgur.com/nd3whf1m.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 14</div>
-    </div></a>
-    <figcaption></figcaption>
-</figure>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/nd3whf1">
+                <img src="http://i.imgur.com/nd3whf1m.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 14</div>
+        </div>
+    </div>
+</div>
 
 ### Step 6: Run Cable through Cubby
 
@@ -171,20 +234,35 @@ has a bulky USB connector. I didn't take any pictures but the cubby has a couple
 to give me trouble. I had to use a lot of force getting the cable through, almost breaking it (but luckily it was
 fine).
 
-<figure class="third">
+<div class="row">
     <!-- qi_attempt4_17.jpg -->
-    <a href="http://imgur.com/55krwnA"><div class="annotparent"><img src="http://i.imgur.com/55krwnAm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 15</div>
-    </div></a>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/55krwnA">
+                <img src="http://i.imgur.com/55krwnAm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 15</div>
+        </div>
+    </div>
     <!-- qi_attempt4_18.jpg -->
-    <a href="http://imgur.com/7lHFKUv"><div class="annotparent"><img src="http://i.imgur.com/7lHFKUvm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">Figure 16</div>
-    </div></a>
-    <!-- execution4.gif -->
-    <a href="http://imgur.com/7WTPx0v"><div class="annotparent"><img src="http://i.imgur.com/7WTPx0v.gif">
-    </div></a>
-    <figcaption></figcaption>
-</figure>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/7lHFKUv">
+                <img src="http://i.imgur.com/7lHFKUvm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 16</div>
+        </div>
+    </div>
+    <!-- execution4.jpg -->
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
+            <a href="http://imgur.com/7WTPx0v">
+                <img src="http://i.imgur.com/7WTPx0v.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 17</div>
+        </div>
+    </div>
+</div>
 
 # Delivery
 
