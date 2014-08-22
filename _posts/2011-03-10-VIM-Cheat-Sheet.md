@@ -1,10 +1,8 @@
 ---
-layout: post
-title: VIM Cheat Sheet
 category: cheatsheet
+layout: post
 modified: 2012-05-04
-comments: true
-share: true
+title: VIM Cheat Sheet
 ---
 
 # Pretty XML

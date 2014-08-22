@@ -1,10 +1,8 @@
 ---
-layout: post
-title: Flashing Motorola Droid to Cricket
 category: guides
+layout: post
 modified: 2012-06-12
-comments: true
-share: true
+title: Flashing Motorola Droid to Cricket
 ---
 
 This guide will explain how to flash a Motorola Droid from Verizon to Cricket based on my experiences. The two
@@ -46,17 +44,17 @@ my mind up to move to Cricket while I waited for a phone I liked to come out.
 
 # Prerequisites
 
-#### Software
+## Software
 
 1. Motorola Droid (US version, not the Milestone), rooted (probably) with SPRecovery (probably).
 2. [Drivers for your phone](http://www.motorola.com/consumers/v/index.jsp?vgnextoid=bda09ec8009a0210VgnVCM1000008806b00aRCRD).
 3. (probably?) [Android SDK](http://developer.android.com/sdk/index.html).
-4. [42900.zip]({{ site.url }}/binaries/42900.zip) (unzip this to get 42900.prl).
+4. [42900.zip]({{ site.url }}{{ site.baseurl }}/static/binaries/42900.zip) (unzip this to get 42900.prl).
 5. [HW VSP Singleport 3.1.2](http://www.hw-group.com/products/hw_vsp/index_en.html#DOWNLOAD)
 6. CDMA Workshop 2.7 (google it).
 7. QPST 2.7.355 (google it).
 
-#### Service
+## Service
 
 You will need an `MIN` (Mobile Identification Number) and an `MDN` (Mobile Device Number). Your `MDN` is your phone
 number, from this point on I will refer to it as your **phone number**. In order to obtain these two values, you will
@@ -77,7 +75,7 @@ a paper with both of these values. Make sure your `MIN` and phone number are on 
 
 When you have your phone number and `MIN`, continue on to the next section.
 
-#### NVRAM Items
+## NVRAM Items
 
 Once you have your `MIN` and phone number:
 
@@ -89,13 +87,50 @@ Once you have your `MIN` and phone number:
 
 # Installing Service
 
-#### Flashing the Phone
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
+            <a href="http://imgur.com/SndBdi5" target="_blank">
+                <img src="http://i.imgur.com/SndBdi5m.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 1</div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
+            <a href="http://imgur.com/2s0oJBW" target="_blank">
+                <img src="http://i.imgur.com/2s0oJBWm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 2</div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
+            <a href="http://imgur.com/sWaejkq" target="_blank">
+                <img src="http://i.imgur.com/sWaejkqm.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 3</div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
+            <a href="http://imgur.com/IJgDFM4" target="_blank">
+                <img src="http://i.imgur.com/IJgDFM4m.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 4</div>
+        </div>
+    </div>
+</div>
+
+
+
+## Flashing the Phone
 
 1. Plug your phone into your computer and turn off the phone.
 2. Slide out the keyboard and hold the `T` key while you press the power button for five seconds (probably unnecessary
 but that's what I did).
 3. Keep holding `T` until Android boots up as normal.
-4. Open HW Virtual Serial Port. [![](http://i.imgur.com/SndBdi5m.jpg)](http://imgur.com/SndBdi5){: .pull-right}
+4. Open HW Virtual Serial Port.
     1. Click on the Settings tab.
     2. Uncheck **NVT Enabled**.
     3. Click on the Virtual Serial Port tab.
@@ -103,8 +138,8 @@ but that's what I did).
     5. Set IP Address to **192.168.16.2**.
     6. Set Port to **11008**.
     7. Click on **Create COM** at the bottom and wait about 10 seconds.
-    8. Make sure VSP Status is **Created** and LAN Status is **Connected** <cite>(first image)</cite>.
-5. Open CDMA Workshop v2.7.0 [![](http://i.imgur.com/2s0oJBWm.jpg)](http://imgur.com/2s0oJBW){: .pull-right}
+    8. Make sure VSP Status is **Created** and LAN Status is **Connected** <cite>(Figure 1)</cite>.
+5. Open CDMA Workshop v2.7.0
     1. Under "COM Settings (AT mode)" set Port to **COM10** and click **Connect**.
         1. The status bar at the bottom should read "Connected to COM10 port successfully".
     2. Click on the Security tab, and in the small text field under "SPC" type **000000** and click on SPC, then Send.
@@ -112,7 +147,7 @@ but that's what I did).
     3. Click on the Other tab, and under "PRL" click on Write and browse to **42900.prl**.
     4. Click on the Nam tab.
         1. Type your ten-digit `MIN` where it says MIN.
-        2. Type your ten-digit phone number where it says **Dir_Number** <cite>(second image)</cite>.
+        2. Type your ten-digit phone number where it says **Dir_Number** <cite>(Figure 2)</cite>.
         3. Click on Write.
     5. Click on the Memory tab, and under "NV Items" click Write.
         1. It will say "You must send current SPC..." click OK.
@@ -124,7 +159,7 @@ but that's what I did).
 6. Go back to HW Virtual Serial Port and click **Delete COM**. Then do Create COM like you did before.
     1. If both statuses aren't Created and Connected, power off your phone and hold `T` while powering it on like
        before.
-7. Open QPST Configuration from the Start Menu. [![](http://i.imgur.com/sWaejkqm.jpg)](http://imgur.com/sWaejkq){: .pull-right} [![](http://i.imgur.com/IJgDFM4m.jpg)](http://imgur.com/IJgDFM4){: .pull-right}
+7. Open QPST Configuration from the Start Menu.
     1. Click on the Ports tab and click on the **Add New Port...** button.
         1. Select **COM10 - Serial** and click OK.
     2. After a few seconds the Phone column should have **SURFQSC6055 (NAND)...** underneath it.
@@ -135,19 +170,39 @@ but that's what I did).
     6. Click on the M.IP tab, and set "Mobile IP Behavior" to **Mob + Simp f/back**.
     7. Double click on the first row in User Profile.
         1. Set NAI and Tethered NAI to **0000000000@mycricket.com** (replace zeros with your phone number) and click OK
-           <cite>(third image)</cite>.
+           <cite>(Figure 3)</cite>.
     8. Click on the PPP Config tab and click on the **Um** button.
         1. Set Tethered NAI and User ID to the same thing (phonenumber@mycricket.com) and Password to **cricket**
-           <cite>(fourth image)</cite>.
+           <cite>(Figure 4)</cite>.
         2. Click on the **AN** button at the top and do the same.
     9. Click on **Write to Phone** on the bottom. If your phone does not reboot, reboot it.
 8. Close all QPST windows as well as the HW Virtual Serial Port (Delete COM first).
 
-#### Configuring APNs
+## Configuring APNs
 
-1. Once Android boots back up, open the app **Voice Dialer**. [![](http://i.imgur.com/NqeznNPm.jpg)](http://imgur.com/NqeznNP){: .pull-right}
-    1. Say aloud "Open APNs" and tap OK <cite>(fifth image)</cite>.
-2. Tap on the text **verizon** and set the following settings <cite>(sixth image)</cite>:
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/NqeznNP" target="_blank">
+                <img src="http://i.imgur.com/NqeznNPl.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 5</div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/aHlRCy6" target="_blank">
+                <img src="http://i.imgur.com/aHlRCy6l.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">Figure 6</div>
+        </div>
+    </div>
+</div>
+
+
+1. Once Android boots back up, open the app **Voice Dialer**.
+    1. Say aloud "Open APNs" and tap OK <cite>(Figure 5)</cite>.
+2. Tap on the text **verizon** and set the following settings <cite>(Figure 6)</cite>:
     1. Name: Cricket
     2. APN: internet
     3. Proxy: (blank the field)
@@ -155,7 +210,7 @@ but that's what I did).
     5. Username: phonenumber@mycricket.com
     6. Password: cricket
     7. Server: wap.mycricket.com
-    8. MMSC: http://mms.mycricket.com/servlets/mms [![](http://i.imgur.com/aHlRCy6m.jpg)](http://imgur.com/aHlRCy6){: .pull-right}
+    8. MMSC: http://mms.mycricket.com/servlets/mms
     9. MMS proxy: wap.mycricket.com
     10. MMS port: 8080
     11. MCC: 310
