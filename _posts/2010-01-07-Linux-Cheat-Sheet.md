@@ -1,10 +1,8 @@
 ---
-layout: post
-title: Linux Cheat Sheet
 category: cheatsheet
+layout: post
 modified: 2013-04-30
-comments: true
-share: true
+title: Linux Cheat Sheet
 ---
 
 # Command Line
@@ -81,14 +79,21 @@ tcpdump -i eth0 -s 0 -A 'tcp dst port 80 and (tcp[((tcp[12:1] & 0xf0) >> 2):4] =
 
 # Convert TIFs to JPGs
 
-{% highlight bash %}
-mkdir convert &>/dev/null; for file in $(ls *.tif); do file_new="./convert/$(echo $file |sed "s/tif$/jpg/g")"; convert $file $file_new; exiftool -tagsFromFile $file $file_new; done
+{% highlight bash linenos=table %}
+mkdir convert &>/dev/null
+for file in $(ls *.tif); do
+    file_new="./convert/$(echo $file |sed "s/tif$/jpg/g")"
+    convert $file $file_new
+    exiftool -tagsFromFile $file $file_new
+done
 {% endhighlight %}
 
 # Find Duplicate Files
 
-{% highlight bash %}
-data=$(find . -type f -exec cksum {} \; |sort); data_uniq=$(echo -e "$data" |cut -d" " -f1 |uniq -d); for line in $(echo -e "$data_uniq"); do echo; echo -e "$data" |grep $line; done
+{% highlight bash linenos=table %}
+data=$(find . -type f -exec cksum {} \; |sort)
+data_uniq=$(echo -e "$data" |cut -d" " -f1 |uniq -d)
+for line in $(echo -e "$data_uniq"); do echo; echo -e "$data" |grep $line; done
 {% endhighlight %}
 
 # Fattest Directories
@@ -101,7 +106,7 @@ sudo du -s /home /tmp /root |sort -nr |awk '{print $2}' |xargs sudo du -hs
 
 [https://wiki.archlinux.org/index.php/Color_Bash_Prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)
 
-{% highlight bash %}
+{% highlight bash linenos=table %}
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -141,7 +146,8 @@ txtrst='\e[0m'    # Text Reset
 
 #### Replace RAID Disk
 
-In this example, the scenario is /dev/sdd will be replaced with a larger capacity drive. NOTE: To see drive sizes: **cat /proc/partitions \|grep sd.1$**
+In this example, the scenario is /dev/sdd will be replaced with a larger capacity drive. NOTE: To see drive sizes:
+**cat /proc/partitions \|grep sd.1$**
 
 * fdisk drive and partition as **fd** (Linux raid auto)
 * To get current state: **mdadm --detail /dev/md0**
@@ -155,28 +161,34 @@ The scenario is that a new disk (5) will be added to the array, the device is /d
 * fdisk drive and partition as **fd** (make sure all devices are the same type with **fdisk -l**)
 * Add the newly formatted partition to the array: **mdadm /dev/md0 -a /dev/sdd1** (this will add it as a hot spare)
 * Find out the current number of active disks: **mdadm --detail /dev/md0** (Active Devices)
-* Increment the number of active devices by one: **mdadm --grow -n5 /dev/md0** (was 4, now 5) (with 5x1TB drives, this took 24 hours)
+* Increment the number of active devices by one: **mdadm --grow -n5 /dev/md0** (was 4, now 5) (with 5x1TB drives, this
+  took 24 hours)
 * Update **/etc/mdadm.conf** by replacing the ARRAY line with the output of **mdadm -Es**
 
 #### Grow RAID Device
 
-NOTE: This section assumes you have the following drive layout: MD (linux software raid) -> LUKS (linux software full disk encryption encompassing the entire MD device) -> LVM (sitting directly on top of LUKS/dm-crypt).
+NOTE: This section assumes you have the following drive layout: MD (linux software raid) -> LUKS (linux software full
+disk encryption encompassing the entire MD device) -> LVM (sitting directly on top of LUKS/dm-crypt).
 
-After increasing the size of all hard disks, or adding another hard disk, do the following. The encrypted file system name was obtained from PV Name (/dev/mapper/luks-[...]) in **/usr/sbin/pvdisplay**
+After increasing the size of all hard disks, or adding another hard disk, do the following. The encrypted file system
+name was obtained from PV Name (/dev/mapper/luks-[...]) in **/usr/sbin/pvdisplay**
 
-* Grow the multi-disk device: **mdadm --grow --size=max /dev/md0** (not necessary but doesn't hurt if md0 is already max)
+* Grow the multi-disk device: **mdadm --grow --size=max /dev/md0** (not necessary but doesn't hurt if md0 is already
+  max)
 * Grow the encrypted file system: **cryptsetup resize luks-5c9f9294-5a3c-4e5a-8180-f00821fecc46**
 * Resize the LVM PV: **pvresize /dev/mapper/luks-5c9f9294-5a3c-4e5a-8180-f00821fecc46**
-* Run **vgdisplay** to verify the new VG Size, and get the current Free PE. In this example you see: Free PE / Size **95** / 2.97 GB
+* Run **vgdisplay** to verify the new VG Size, and get the current Free PE. In this example you see: Free PE / Size
+  **95** / 2.97 GB
 * Expand the home logical volume: **lvresize -l +95 /dev/vg0/home**
 * Verify vgdisplay has 0 free PE, and lvdisplay shows /dev/vg0/home with the new size
-* Finally, expand the /home file system: **resize2fs /dev/mapper/vg0-home** (resizing from 3 TB to 4 TB took about an hour)
+* Finally, expand the /home file system: **resize2fs /dev/mapper/vg0-home** (resizing from 3 TB to 4 TB took about an
+  hour)
 
 # NagiosGraph
 
 This is how I got nagiosgraph 1.4.4-1.el6 working on SELinux (CentOS 6.2).
 
-{% highlight bash %}
+{% highlight bash linenos=table %}
 cat > nagiosgraph.te << EOF
 module nagiosgraph 1.0;
 
@@ -202,9 +214,12 @@ sudo chcon -R -t nagios_log_t /var/spool/nagiosgraph
 
 I used these commands to help troubleshoot:
 
-{% highlight bash %}
-(IFS=$'\n'; for line in $(sudo grep denied /var/log/audit/audit.log |sort |uniq); do echo; echo $line; echo; done) #show all SELinux denied
-sudo kill -s SIGUSR1 auditd #force a rotate of the audit log
+{% highlight bash linenos=table %}
+#show all SELinux denied
+(IFS=$'\n'; for line in $(sudo grep denied /var/log/audit/audit.log |sort |uniq); do echo; echo $line; echo; done)
+
+#force a rotate of the audit log
+sudo kill -s SIGUSR1 auditd
 {% endhighlight %}
 
 # SunOS
@@ -219,8 +234,12 @@ sudo kill -s SIGUSR1 auditd #force a rotate of the audit log
 
 #### Kill VM with vmid
 
-{% highlight bash %}
-killvm() { for a in "$@"; do /usr/lib/vmware/bin/vmkload_app -k 9 $(perl -ne 'print if s/.*vm\.(\d*).*/\1/' /proc/vmware/vm/$a/cpu/status); done; }
+{% highlight bash linenos=table %}
+killvm() {
+    for a in "$@"; do
+        /usr/lib/vmware/bin/vmkload_app -k 9 $(perl -ne 'print if s/.*vm\.(\d*).*/\1/' /proc/vmware/vm/$a/cpu/status)
+    done
+}
 {% endhighlight %}
 
 #### Get VMX path from vmid

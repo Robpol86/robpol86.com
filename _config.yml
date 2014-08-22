@@ -1,5 +1,8 @@
 gems:
     - jekyll-sitemap
-permalink:  /:categories/:title
-timezone:   America/Los_Angeles
-url:        http://robpol86.com
+highlighter:    pygments
+lsi:            false
+permalink:      /:categories/:title
+safe:           true
+timezone:       America/Los_Angeles
+url:            http://robpol86.com

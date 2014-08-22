@@ -1,10 +1,8 @@
 ---
-layout: post
-title: Python Cheat Sheet
 category: cheatsheet
+layout: post
 modified: 2012-11-27
-comments: true
-share: true
+title: Python Cheat Sheet
 ---
 
 # Sorting a list by string length
@@ -21,9 +19,9 @@ os.sysconf('SC_NPROCESSORS_ONLN')
 
 # Dict string substitution
 
-[http://stackoverflow.com/.../single-quotes-vs-double-quotes-in-python](http://stackoverflow.com/questions/56011/single-quotes-vs-double-quotes-in-python)
+[http://stackoverflow.com/q/56011/1198943](http://stackoverflow.com/q/56011/1198943)
 
-{% highlight python %}
+{% highlight python linenos=table %}
 LIGHT_MESSAGES = {
     'English': "There are %(number_of_lights)s lights.",
     'Pirate':  "Arr! There be %(number_of_lights)s lights."
