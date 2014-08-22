@@ -14,21 +14,44 @@ It's a good idea to remove the plate on the docking area (underneath where the p
 plug in the adapters or have to sand/shave them less. You can easily pull it off with your finger nails (the plate
 actually has a couple of magnets to keep it in place, and two small plastic clips).
 
-> I recently migrated from MediaWiki and split up this article into several posts. The comments at the bottom are from
-the old unified article.
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/WpsmI" target="_blank">
+                <img src="http://i.imgur.com/WpsmIl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/5HAGw" target="_blank">
+                <img src="http://i.imgur.com/5HAGwl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+    </div>
+    <div class="caption">
+        This plate is removable. Use the notches (one on each side) to remove the plate with your fingernails, it
+        should easily come off. More room for HDMI/USB adapters.
+    </div>
+</div>
 
-<figure class="half">
-    <a href="http://imgur.com/WpsmI"><img src="http://i.imgur.com/WpsmIm.jpg"></a>
-    <a href="http://imgur.com/5HAGw"><img src="http://i.imgur.com/5HAGwm.jpg"></a>
-    <figcaption>This plate is removable. Use the notches (one on each side) to remove the plate with your fingernails,
-    it should easily come off. More room for HDMI/USB adapters.</figcaption>
-</figure>
+
 
 All high-res images used on this page are available [here](http://imgur.com/a/zEkwz). Below are a few YouTube videos I
 posted about the Lapdock (the second shows that the Lapdock 500 isn't "hacker-friendly").
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/VfdKq33WgHw" frameborder="0"> </iframe><br />
+<div class="well well-sm">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/VfdKq33WgHw"></iframe>
+    </div>
+</div>
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/zCxTTrTZSSM" frameborder="0"> </iframe><br />
+<div class="well well-sm">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/zCxTTrTZSSM"></iframe>
+    </div>
+</div>
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/x_yhJ_QBfaU" frameborder="0"> </iframe>
+<div class="well well-sm">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/x_yhJ_QBfaU"></iframe>
+    </div>
+</div>

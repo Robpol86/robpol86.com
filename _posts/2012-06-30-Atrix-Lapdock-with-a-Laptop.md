@@ -1,9 +1,7 @@
 ---
+category: lapdock
 layout: post
 title: Atrix Lapdock with a Laptop
-category: lapdock
-comments: true
-share: true
 ---
 
 I can use the Atrix Lapdock as a secondary display for my laptop. At home my laptop is docked to two monitors, so every
@@ -15,8 +13,18 @@ I travel.
       (delivery took one month)
     * HDMI Female/Female Coupler
 
-<figure class="half">
-    <a href="http://imgur.com/ldQ0c"><img src="http://i.imgur.com/ldQ0cm.jpg"></a>
-    <a href="http://imgur.com/KONZZ"><img src="http://i.imgur.com/KONZZm.jpg"></a>
-    <figcaption>Using the Lapdock as a second monitor for my ThinkPad W510 is great when I travel.</figcaption>
-</figure>
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/ldQ0c" target="_blank">
+                <img src="http://i.imgur.com/ldQ0cl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/KONZZ" target="_blank">
+                <img src="http://i.imgur.com/KONZZl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+    </div>
+    <div class="caption">Using the Lapdock as a second monitor for my ThinkPad W510 is great when I travel.</div>
+</div>

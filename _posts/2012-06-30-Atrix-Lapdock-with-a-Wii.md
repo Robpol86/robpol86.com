@@ -1,9 +1,7 @@
 ---
+category: lapdock
 layout: post
 title: Atrix Lapdock with a Wii
-category: lapdock
-comments: true
-share: true
 ---
 
 I don't have a 360 or PS3, but I have a Wii and after I found an HDMI adapter I tried it with the Lapdock. Turns out it
@@ -16,10 +14,25 @@ the way. This should work just fine with the Xbox 360, PS3, or any other HDMI de
     * HDMI Female/Female Coupler
     * [Wii HDMI Adapter](http://www.amazon.com/gp/product/B0057UNPQO/)
 
-<figure class="third">
-    <a href="http://imgur.com/TXiVx"><img src="http://i.imgur.com/TXiVxm.jpg"></a>
-    <a href="http://imgur.com/UkdYJ"><img src="http://i.imgur.com/UkdYJm.jpg"></a>
-    <a href="http://imgur.com/cc5TK"><img src="http://i.imgur.com/cc5TKm.jpg"></a>
-    <figcaption>The Wii looks pretty good on the Lapdock, very usable while traveling. I didn't notice any ghosting
-    either.</figcaption>
-</figure>
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/TXiVx" target="_blank">
+                <img src="http://i.imgur.com/TXiVxl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/UkdYJ" target="_blank">
+                <img src="http://i.imgur.com/UkdYJl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/cc5TK" target="_blank">
+                <img src="http://i.imgur.com/cc5TKl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+    </div>
+    <div class="caption">
+        The Wii looks pretty good on the Lapdock, very usable while traveling. I didn't notice any ghosting either.
+    </div>
+</div>

@@ -1,9 +1,7 @@
 ---
+category: lapdock
 layout: post
 title: Atrix Lapdock with a Galaxy Nexus
-category: lapdock
-comments: true
-share: true
 ---
 
 The Galaxy Nexus works fine with the Lapdock, however only HDMI (video) works. The MHL standard disables USB when using
@@ -22,15 +20,36 @@ plastic around the connector with a Dremel grinding bit.
     * [Micro USB B Male to Female](http://www.ebay.com/itm/ws/eBayISAPI.dll?ViewItem&item=270928425953)
       (delivery took one month)
 
-<figure class="third">
-    <a href="http://imgur.com/qs9ph"><img src="http://i.imgur.com/qs9phm.jpg"></a>
-    <a href="http://imgur.com/VpSTT"><img src="http://i.imgur.com/VpSTTm.jpg"></a>
-    <a href="http://imgur.com/Ct9Ii"><img src="http://i.imgur.com/Ct9Iim.jpg"></a>
-    <figcaption>If the keyboard worked this would be GREAT on the plane.</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <a href="http://imgur.com/qs9ph" target="_blank">
+            <img src="http://i.imgur.com/qs9phl.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <a href="http://imgur.com/VpSTT" target="_blank">
+            <img src="http://i.imgur.com/VpSTTl.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <a href="http://imgur.com/Ct9Ii" target="_blank">
+            <img src="http://i.imgur.com/Ct9Iil.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
 
-<figure class="half">
-    <a href="http://imgur.com/vCYfG"><img src="http://i.imgur.com/vCYfGm.jpg"></a>
-    <a href="http://imgur.com/2SA93"><img src="http://i.imgur.com/2SA93m.jpg"></a>
-    <figcaption>Close-ups of the adapter I had to shave down with a Dremel tool.</figcaption>
-</figure>
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/vCYfG" target="_blank">
+                <img src="http://i.imgur.com/vCYfGl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/2SA93" target="_blank">
+                <img src="http://i.imgur.com/2SA93l.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+    </div>
+    <div class="caption">Close-ups of the adapter I had to shave down with a Dremel tool.</div>
+</div>
