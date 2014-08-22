@@ -1,3 +1,9 @@
+{% if page.url == '/index.html' %}
+    {% assign page_title = site.posts.first.title %}
+{% else %}
+    {% assign page_title = page.title %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +14,7 @@
     <meta name="author" content="@Robpol86">
     <link rel="icon" href="{{ site.baseurl }}/favicon.ico?">
 
-    <title>
-        {% if page.url == '/index.html' %}
-            {{ site.posts.first.title }}
-        {% else %}
-            {{ page.title }}
-        {% endif %}
-        - Robpol86.com
-    </title>
+    <title>{{ page_title }} - Robpol86.com</title>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
@@ -24,7 +23,7 @@
 
 </head>
 
-<body style="padding-top: 80px;">
+<body style="padding-top: 40px;">
 
 {% include navbar.html %}
 
@@ -34,6 +33,14 @@
             {% include sidebar.html %}
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 main">
+
+            <div class="page-header">
+                <h1>
+                    {{ page_title }}
+                    {% if site.posts.first.title == page_title %}<small>(Latest&nbsp;Post)</small>{% endif %}
+                </h1>
+            </div>
+
             <div class="row">
 
                 <div class="col-sm-12 col-md-8 col-lg-9" style="margin-bottom: 21px;">
