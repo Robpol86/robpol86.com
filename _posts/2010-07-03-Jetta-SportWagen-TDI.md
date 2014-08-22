@@ -9,7 +9,9 @@ Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next c
 On April 30th 2010 I finally committed to the vehicle and put down a deposit. On June 30th, I received my new car,
 special ordered the way I wanted it.
 
-[![Fuelly](http://mefi.us/images/fuelly/sig-us/46669.png)](http://www.fuelly.com/driver/Robpol86/jetta)
+<a href="http://www.fuelly.com/driver/Robpol86/jetta">
+    <img alt="Fuelly" src="http://mefi.us/images/fuelly/sig-us/46669.png" class="img-responsive img-thumbnail">
+</a>
 
 # Routing USB Cable
 

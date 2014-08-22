@@ -44,7 +44,7 @@ class Image(object):
     <div class="{css_class}">
         <div class="thumbnail">
             <a href="http://imgur.com/{full}" target="_blank">
-                <img src="http://i.imgur.com/{full}{size}.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/{full}{size}.{ext}" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">{caption}</div>
         </div>
@@ -52,13 +52,13 @@ class Image(object):
     IMAGE_TEMPLATE_THUMB = """
     <div class="{css_class}">
         <a href="http://imgur.com/{full}" target="_blank">
-            <img src="http://i.imgur.com/{full}{size}.jpg" class="img-responsive thumbnail">
+            <img src="http://i.imgur.com/{full}{size}.{ext}" class="img-responsive thumbnail">
         </a>
     </div>"""
     IMAGE_TEMPLATE_BIG_THUMB = """
         <div class="{css_class}">
             <a href="http://imgur.com/{full}" target="_blank">
-                <img src="http://i.imgur.com/{full}{size}.jpg" class="img-responsive img-thumbnail">
+                <img src="http://i.imgur.com/{full}{size}.{ext}" class="img-responsive img-thumbnail">
             </a>
         </div>"""
     SIZES = {6: 'm', 5: 'm', 4: 'm', 3: 'l', 2: 'l', 1: 'h'}
@@ -66,6 +66,7 @@ class Image(object):
     def __init__(self, imgur_id, count):
         self.caption = ''
         self.css_class = self.CLASSES[count]
+        self.extension = 'jpg'
         self.imgur_id = imgur_id
         self.size = self.SIZES[count]
 
@@ -80,7 +81,8 @@ class Image(object):
 
     @property
     def html(self):
-        value = self.template.format(css_class=self.css_class, full=self.imgur_id, size=self.size, caption=self.caption)
+        value = self.template.format(css_class=self.css_class, full=self.imgur_id, size=self.size, caption=self.caption,
+                                     ext=self.extension)
         return value
 
     def query(self):
@@ -88,9 +90,10 @@ class Image(object):
         url = 'https://api.imgur.com/3/image/{}'.format(self.imgur_id)
         headers = dict(Authorization='Client-ID {}'.format(IMGUR_CLIENT_ID))
         response = requests.get(url, headers=headers)
-        data = json.loads(response.text)
+        data = json.loads(response.text).get('data')
         self.caption = data.get('description') or data.get('title')
         if data.get('type') == 'image/gif':
+            self.extension = 'gif'
             self.size = ''
 
 
