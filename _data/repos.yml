@@ -1,14 +1,13 @@
-- name: Flask-Large-Application-Example
-
 - name: Flask-Celery-Helper
-
-- name: Flask-Statics-Helper
 
 - name: Flask-JIRA-Helper
 
+- name: Flask-Large-Application-Example
+
 - name: Flask-Redis-Helper
 
-- name: robpol86.github.io
+- name: Flask-Statics-Helper
 
 - name: UnofficialDDNSnix
 
+- name: robpol86.github.io
