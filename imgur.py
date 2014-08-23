@@ -40,7 +40,7 @@ class Image(object):
         2: 'col-xs-12 col-sm-6',
         1: 'col-xs-12',
     }
-    IMAGE_TEMPLATE_CAPTION = """
+    IMAGE_TEMPLATE_CAPTION = u"""
     <div class="{css_class}">
         <div class="thumbnail">
             <a href="http://imgur.com/{full}" target="_blank">
@@ -49,13 +49,13 @@ class Image(object):
             <div class="caption">{caption}</div>
         </div>
     </div>"""
-    IMAGE_TEMPLATE_THUMB = """
+    IMAGE_TEMPLATE_THUMB = u"""
     <div class="{css_class}">
         <a href="http://imgur.com/{full}" target="_blank">
             <img src="http://i.imgur.com/{full}{size}.{ext}" class="img-responsive thumbnail">
         </a>
     </div>"""
-    IMAGE_TEMPLATE_BIG_THUMB = """
+    IMAGE_TEMPLATE_BIG_THUMB = u"""
         <div class="{css_class}">
             <a href="http://imgur.com/{full}" target="_blank">
                 <img src="http://i.imgur.com/{full}{size}.{ext}" class="img-responsive img-thumbnail">
@@ -110,7 +110,7 @@ def print_row(imgur_ids):
     if count == 5:
         images[0].css_class += ' col-lg-offset-1'
 
-    template = '<div class="row">{}\n</div>' if not OPTIONS.get('--big_thumb') else """<div class="thumbnail">
+    template = u'<div class="row">{}\n</div>' if not OPTIONS.get('--big_thumb') else u"""<div class="thumbnail">
     <div class="row">{}
     </div>
     <div class="caption"></div>\n</div>"""
