@@ -28,11 +28,11 @@ Full set of high-resolution pictures for all workspaces are available at
                     <samp class="label label-default annotation" style="left:32%; top:39%">Thinkpad W510</samp>
                     <samp class="label label-default annotation" style="left:42%; top:46%">Shelf</samp>
                     <samp class="label label-default annotation" style="left:36%; top:55%">
-                        "Desktop"<br />Computer
+                        "Desktop"<br>Computer
                     </samp>
                     <samp class="label label-default annotation" style="left:29%; top:67%">Tape Autoloader</samp>
                     <samp class="label label-default annotation" style="left:35%; top:74%">
-                        Linux File<br />Server
+                        Linux File<br>Server
                     </samp>
                     <samp class="label label-default annotation" style="left:34%; top:84%">UPS</samp>
                 </div>
@@ -329,7 +329,10 @@ Full set of high-resolution pictures for all workspaces are available at
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
             <a href="http://imgur.com/kAbGJ" target="_blank">
-                <img src="http://i.imgur.com/kAbGJm.jpg" class="img-responsive img-thumbnail">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/kAbGJm.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2012 May 5</samp>
+                </div>
             </a>
             <div class="caption">
                 I finally moved all of my equipment into my 24u rack. I have my desktop computer sitting on a shelf
@@ -339,8 +342,22 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
+            <a href="http://imgur.com/zo0d6" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/zo0d6m.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2012 January 3</samp>
+                </div>
+            </a>
+            <div class="caption">Workspaces 2012 January 3: Home Desk</div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
             <a href="http://imgur.com/C357N" target="_blank">
-                <img src="http://i.imgur.com/C357Nm.jpg" class="img-responsive img-thumbnail">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/C357Nm.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 20</samp>
+                </div>
             </a>
             <div class="caption">
                 My new GeekDesk Max desk!  I finally got rid of that pos corner desk I've had for so long.
@@ -349,20 +366,15 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/zo0d6" target="_blank">
-                <img src="http://i.imgur.com/zo0d6m.jpg" class="img-responsive img-thumbnail">
-            </a>
-            <div class="caption">Workspaces 2012 January 3: Home Desk</div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-lg-3">
-        <div class="thumbnail">
-            <a href="http://imgur.com/fue1X" target="_blank">
-                <img src="http://i.imgur.com/fue1Xm.jpg" class="img-responsive img-thumbnail">
+            <a href="http://imgur.com/2eR2L" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/2eR2Lm.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 10</samp>
+                </div>
             </a>
             <div class="caption">
-                My rack after cleaning up the rack (it was used in our lab for several years) and racking up the tape
-                autoloader and UPS.
+                My home network setup. Includes my linux server, tape autoloader (for backing up the server), 2200VA
+                UPS, modem/router, and my Obi110 (free land-line VoIP with GoogleVoice).
             </div>
         </div>
     </div>
@@ -370,8 +382,25 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
+            <a href="http://imgur.com/fue1X" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/fue1Xl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 7</samp>
+                </div>
+            </a>
+            <div class="caption">
+                My rack after cleaning up the rack (it was used in our lab for several years) and racking up the tape
+                autoloader and UPS.
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+        <div class="thumbnail">
             <a href="http://imgur.com/ivaZt" target="_blank">
-                <img src="http://i.imgur.com/ivaZtl.jpg" class="img-responsive img-thumbnail">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/ivaZtl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 7</samp>
+                </div>
             </a>
             <div class="caption">
                 Everything in this picture I got for free (I was super lucky to score that 2200VA UPS AND the LTO3
@@ -381,19 +410,11 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/2eR2L" target="_blank">
-                <img src="http://i.imgur.com/2eR2Ll.jpg" class="img-responsive img-thumbnail">
-            </a>
-            <div class="caption">
-                My home network setup. Includes my linux server, tape autoloader (for backing up the server), 2200VA
-                UPS, modem/router, and my Obi110 (free land-line VoIP with GoogleVoice).
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-lg-4">
-        <div class="thumbnail">
             <a href="http://imgur.com/7DZQt" target="_blank">
-                <img src="http://i.imgur.com/7DZQtl.jpg" class="img-responsive img-thumbnail">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/7DZQtl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 3</samp>
+                </div>
             </a>
             <div class="caption">New Dell 24u server rack I got from work for free during the downsizing.</div>
         </div>
@@ -402,100 +423,190 @@ Full set of high-resolution pictures for all workspaces are available at
 
 # Austin, TX - Pre-rack
 
-<figure class="half">
-    <!-- workspaces_2009-04-18_desk-home.jpg -->
-    <a href="http://imgur.com/nadAX"><div class="annotparent"><img src="http://i.imgur.com/nadAXm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2009 April 18</div>
-    </div></a>
-    <!-- workspaces_2009-11-08_desk-home.jpg -->
-    <a href="http://imgur.com/YUV8x"><div class="annotparent"><img src="http://i.imgur.com/YUV8xm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2009 November 8</div>
-    </div></a>
-    <figcaption>My desk at my 4th apartment and then at my condo.</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/YUV8x" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/YUV8xl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2009 November 8</samp>
+                </div>
+            </a>
+            <div class="caption">
+                The same crappy desk after I've moved into my condo. Yes the room is a mess I know.
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/nadAX" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/nadAXl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2009 April 18</samp>
+                </div>
+            </a>
+            <div class="caption">My desk at Post Park Mesa, my 4th apartment and 4th year.</div>
+        </div>
+    </div>
+</div>
 
-<figure>
-    <!-- workspaces_2007-08-14_desk-home.jpg -->
-    <a href="http://imgur.com/nNBFF"><div class="annotparent" style="color:#FFF"><img src="http://i.imgur.com/nNBFFl.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2007 August 14</div>
-        <div class="annotation shadow" style="left:2%;top:9%">Failed attempt to have server rack in my room. It had
-        <br />round holes and was for<br />music equipment :(<br />&lt;----</div>
-        <div class="annotation shadow" style="left:38%;top:18%">Dell 2407WFP-HC</div>
-        <div class="annotation" style="left:24%;top:24%">2007FP</div>
-        <div class="annotation shadow" style="left:5%;top:28%">External HDD</div>
-        <div class="annotation" style="left:62%;top:28%">Remote</div>
-        <div class="annotation" style="left:53%;top:33%">G7</div>
-        <div class="annotation" style="left:74%;top:33%">Cable box (no DVR)<br />HDMI to 2407WFP-HC</div>
-        <div class="annotation" style="left:60%;top:34%">Volume</div>
-        <div class="annotation" style="left:40%;top:45%">Logitech G15</div>
-        <div class="annotation" style="left:86%;top:48%">Spare<br />screws</div>
-        <div class="annotation" style="left:43%;top:60%">APC SUA1500</div>
-        <div class="annotation" style="left:17%;top:68%">FX-60</div>
-        <div class="annotation" style="left:2%;top:86%">Linksys WRT54G router w/ DD-WRT</div>
-        <div class="annotation" style="left:2%;top:94%">D-Link Switch</div>
-    </div></a>
-    <figcaption>My desk right after moving into my third apartment</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="thumbnail">
+            <a href="http://imgur.com/nNBFF" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/nNBFFh.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2007 August 14</samp>
+                    <samp class="label label-default annotation" style="left:2%; top:9%; text-align: left">
+                        Failed attempt to have server rack in my room. It had<br>round holes and was for<br>music
+                        equipment :(<br>&lt;----
+                    </samp>
+                    <samp class="label label-default annotation" style="left:38%; top:18%">Dell 2407WFP-HC</samp>
+                    <samp class="label label-default annotation" style="left:24%; top:24%">2007FP</samp>
+                    <samp class="label label-default annotation" style="left:5%; top:28%">External HDD</samp>
+                    <samp class="label label-default annotation" style="left:62%; top:28%">Remote</samp>
+                    <samp class="label label-default annotation" style="left:53%; top:33%">G7</samp>
+                    <samp class="label label-default annotation" style="left:74%; top:33%">
+                        Cable box (no DVR)<br>HDMI to 2407WFP-HC
+                    </samp>
+                    <samp class="label label-default annotation" style="left:60%; top:34%">Volume</samp>
+                    <samp class="label label-default annotation" style="left:40%; top:45%">Logitech G15</samp>
+                    <samp class="label label-default annotation" style="left:86%; top:48%">Spare<br>screws</samp>
+                    <samp class="label label-default annotation" style="left:43%; top:60%">APC SUA1500</samp>
+                    <samp class="label label-default annotation" style="left:17%; top:68%">FX-60</samp>
+                    <samp class="label label-default annotation" style="left:2%; top:86%">
+                        Linksys WRT54G router w/ DD-WRT
+                    </samp>
+                    <samp class="label label-default annotation" style="left:2%; top:94%">D-Link Switch</samp>
+                </div>
+            </a>
+            <div class="caption">My desk right after moving into my third apartment.</div>
+        </div>
+    </div>
+</div>
 
-<figure class="half">
-    <!-- workspaces_2007-07-29_desk-home.jpg -->
-    <a href="http://imgur.com/pM49e"><div class="annotparent"><img src="http://i.imgur.com/pM49em.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2007 July 29</div>
-        <div class="annotation shadow-inverted" style="left:45%;top:25%">Dell UltraSharp<br />2007FP</div>
-        <div class="annotation shadow-inverted" style="left:3%;top:40%">ViewSonic A75f</div>
-        <div class="annotation shadow-inverted" style="left:60%;top:40%">G7 reciever, Volume knob</div>
-        <div class="annotation shadow-inverted" style="left:70%;top:67%">AMD FX-60</div>
-        <div class="annotation shadow-inverted" style="left:50%;top:72%">UPS</div>
-    </div></a>
-    <!-- workspaces_2007-08-05_desk-home.jpg -->
-    <a href="http://imgur.com/ZFAgg"><div class="annotparent"><img src="http://i.imgur.com/ZFAggm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2007 August 5</div>
-        <div class="annotation shadow-inverted" style="left:15%;top:15%">2007FP</div>
-        <div class="annotation shadow" style="left:50%;top:15%;">Dell 2407WFP-HC</div>
-        <div class="annotation shadow-inverted" style="left:15%;top:40%">NETGEAR Router (FVS318)</div>
-        <div class="annotation shadow-inverted" style="right:13%;top:50%">Oregon Scientific BAR388HGA</div>
-        <div class="annotation shadow-inverted" style="left:38%;top:72%">Logitech G15</div>
-        <div class="annotation shadow-inverted" style="left:84%;top:80%">G7</div>
-        <div class="annotation shadow-inverted" style="left:10%;top:85%">Creative<br />Inspire T3000</div>
-    </div></a>
-    <figcaption>Right before moving to my third apartment, these were the first new monitors I bought since 2001. When I
-    saw them at work I knew I had to have them, so I bought them brand new on Craigslist for like half the price.
-    </figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/ZFAgg" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/ZFAggl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2007 August 5</samp>
+                    <samp class="label label-default annotation" style="left:15%; top:15%">2007FP</samp>
+                    <samp class="label label-default annotation" style="left:50%; top:15%;">Dell 2407WFP-HC</samp>
+                    <samp class="label label-default annotation" style="left:15%; top:40%">
+                        NETGEAR Router (FVS318)
+                    </samp>
+                    <samp class="label label-default annotation" style="right:13%; top:50%">
+                        Oregon Scientific BAR388HGA
+                    </samp>
+                    <samp class="label label-default annotation" style="left:38%; top:72%">Logitech G15</samp>
+                    <samp class="label label-default annotation" style="left:84%; top:80%">G7</samp>
+                    <samp class="label label-default annotation" style="left:10%; top:85%">
+                        Creative<br>Inspire T3000
+                    </samp>
+                </div>
+            </a>
+            <div class="caption">
+                Right before moving to my third apartment, right after buying my second monitor. When I saw these two
+                monitors at work I knew I had to have them, so I bought them brand new on Craigslist for like half the
+                price.
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/pM49e" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/pM49el.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2007 July 29</samp>
+                    <samp class="label label-default annotation" style="left:45%; top:25%">
+                        Dell UltraSharp<br>2007FP
+                    </samp>
+                    <samp class="label label-default annotation" style="left:3%; top:40%">ViewSonic A75f</samp>
+                    <samp class="label label-default annotation" style="left:60%; top:40%">
+                        G7 reciever, Volume knob
+                    </samp>
+                    <samp class="label label-default annotation" style="left:70%; top:67%">AMD FX-60</samp>
+                    <samp class="label label-default annotation" style="left:50%; top:72%">UPS</samp>
+                </div>
+            </a>
+            <div class="caption">
+                Living in my second apartment (second year) in Austin, before moving into my third apartment. This was
+                the first new monitor I bought since 2001.
+            </div>
+        </div>
+    </div>
+</div>
 
-<figure class="half">
-    <!-- workspaces_2006-12-02_corner-server.jpg -->
-    <a href="http://imgur.com/0kKzZ"><div class="annotparent" style="color:#FFF"><img src="http://i.imgur.com/0kKzZm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2006 December 2</div>
-        <div class="annotation" style="left:50%;top:10%">HP LaserJet<br />2100tn</div>
-        <div class="annotation" style="right:46%;top:48%">SUA1500 UPS</div>
-        <div class="annotation shadow-inverted" style="left:63%;top:53%">Custom Linux<br />File Server<br />(Slackware)</div>
-    </div></a>
-    <!-- workspaces_2006-12-02_corner-wifi.jpg -->
-    <a href="http://imgur.com/Tgb0n"><div class="annotparent" style="color:#FFF"><img src="http://i.imgur.com/Tgb0nm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2006 December 2</div>
-        <div class="annotation" style="left:10%;top:20%">Cisco Aironet 1100</div>
-    </div></a>
-    <figcaption>In my second apartment I had my first file server in the living room along with the router, printer,
-    and WiFi AP near the ceiling.</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/0kKzZ" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/0kKzZl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2006 December 2</samp>
+                    <samp class="label label-default annotation" style="left:50%; top:10%">HP LaserJet<br>2100tn</samp>
+                    <samp class="label label-default annotation" style="right:46%; top:48%">SUA1500 UPS</samp>
+                    <samp class="label label-default annotation" style="left:63%; top:53%">
+                        Custom Linux<br>File Server<br>(Slackware)
+                    </samp>
+                </div>
+            </a>
+            <div class="caption">
+                In my second apartment I had my first file server in the living room along with the router, printer,
+                and WiFi AP near the ceiling.
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/Tgb0n" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/Tgb0nl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2006 December 2</samp>
+                    <samp class="label label-default annotation" style="left:10%; top:20%">Cisco Aironet 1100</samp>
+                </div>
+            </a>
+            <div class="caption">My Cisco Aironet 1100 access point in the living room, above my server.</div>
+        </div>
+    </div>
+</div>
 
-<figure>
-    <!-- workspaces_2006-01-26_desk-home.jpg -->
-    <a href="http://imgur.com/1gx0i"><div class="annotparent" style="color:#FFF;text-align:center"><img src="http://i.imgur.com/1gx0il.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2006 January 26</div>
-        <div class="annotation" style="left:55%;top:13%">TV</div>
-        <div class="annotation" style="left:83%;top:15%">College<br />apartment</div>
-        <div class="annotation" style="left:82%;top:40%">Taken by<br />friend's<br />flip phone</div>
-        <div class="annotation" style="left:33%;top:45%">Some used<br />Dell 17inch</div>
-        <div class="annotation" style="left:53%;top:48%">ViewSonic<br />A75f CRT</div>
-        <div class="annotation" style="left:50%;top:65%">&lt;-- Dell Latitude C400</div>
-        <div class="annotation" style="left:68%;top:85%">&lt;-- UPS (SUA1500)</div>
-        <div class="annotation" style="left:30%;top:87%">Dead computer<br />(motherboard) behind chair</div>
-        <div class="annotation" style="left:2%;top:95%">Linux file server under bed</div>
-    </div></a>
-    <figcaption>First year in Austin after my computer died. I was stuck using that laptop for months.</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="thumbnail">
+            <a href="http://imgur.com/1gx0i" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/1gx0ih.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2006 January 26</samp>
+                    <samp class="label label-default annotation" style="left:55%; top:13%">TV</samp>
+                    <samp class="label label-default annotation" style="left:83%; top:15%">College<br>apartment</samp>
+                    <samp class="label label-default annotation" style="left:82%; top:40%">
+                        Taken by<br>friend's<br>flip phone
+                    </samp>
+                    <samp class="label label-default annotation" style="left:33%; top:45%">
+                        Some used<br>Dell 17inch
+                    </samp>
+                    <samp class="label label-default annotation" style="left:53%; top:48%">ViewSonic<br>A75f CRT</samp>
+                    <samp class="label label-default annotation" style="left:50%; top:65%">
+                        &lt;-- Dell Latitude C400
+                    </samp>
+                    <samp class="label label-default annotation" style="left:68%; top:85%">&lt;-- UPS (SUA1500)</samp>
+                    <samp class="label label-default annotation" style="left:30%; top:87%">
+                        Dead computer<br>(motherboard) behind chair
+                    </samp>
+                    <samp class="label label-default annotation" style="left:2%; top:95%">
+                        Linux file server under bed
+                    </samp>
+                </div>
+            </a>
+            <div class="caption">
+                First year in Austin after my computer died. I was stuck using that laptop for months.
+            </div>
+        </div>
+    </div>
+</div>
 
 # Victoria, TX
 
