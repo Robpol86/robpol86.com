@@ -4,7 +4,7 @@
 
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-            var disqus_shortname = 'rob86wiki'; // required: replace example with your forum shortname
+            var disqus_shortname = 'rob86wiki';
             {% if page.url == '/index.html' %}
                 var disqus_identifier = '{{ site.posts.first.title }}';
                 var disqus_url = '{{ site.url }}{{ site.baseurl }}{{ site.posts.first.url }}';
@@ -15,8 +15,9 @@
 
             function disqus_config() {
                 this.callbacks.onReady.push(function() {
-                    var count = $('#comment_count').text();
-                    $('#comment_count').html('<span class="label label-success">' + count + '</span>')
+                    var selector = $('#comment_count');
+                    var count = selector.text();
+                    selector.html('<span class="label label-success">' + count + '</span>');
                 });
             }
             (function() {
