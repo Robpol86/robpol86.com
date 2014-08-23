@@ -1,8 +1,10 @@
 {% if page.url == '/index.html' %}
+    {% assign page_url = site.posts.first.url %}
     {% assign page_date = site.posts.first.date %}
     {% assign page_title = site.posts.first.title %}
     {% assign page_modified = site.posts.first.modified %}
 {% else %}
+    {% assign page_url = page.url %}
     {% assign page_date = page.date %}
     {% assign page_title = page.title %}
     {% assign page_modified = page.modified %}
@@ -26,7 +28,7 @@
             <!-- Twitter -->
             <div class="col-xs-4 text-center">
                 <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="vertical"
-                        data-url="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+                        data-url="{{ site.url }}{{ site.baseurl }}{{ page_url }}">
                     Tweet
                 </a>
                 <script>
@@ -52,14 +54,14 @@
                         fjs.parentNode.insertBefore(js, fjs);
                     } (document, 'script', 'facebook-jssdk'));
                 </script>
-                <div class="fb-like" data-href="{{ site.url }}{{ site.baseurl }}{{ page.url }}" data-layout="box_count"
+                <div class="fb-like" data-href="{{ site.url }}{{ site.baseurl }}{{ page_url }}" data-layout="box_count"
                         data-action="like" data-show-faces="false" data-share="false">
                 </div>
             </div>
 
             <!-- Google+ -->
             <div class="col-xs-4 text-center">
-                <div class="g-plusone" data-size="tall" data-href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+                <div class="g-plusone" data-size="tall" data-href="{{ site.url }}{{ site.baseurl }}{{ page_url }}">
                 </div>
                 <script src="https://apis.google.com/js/platform.js" async defer></script>
             </div>

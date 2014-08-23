@@ -76,7 +76,7 @@ At this point you should be able to insert a DVD while driving and the screen wi
 # Download
 
 <a class="btn btn-success shake shake-constant hover-stop"
-        href="{{ site.url }}{{ site.baseurl }}/static/binaries/RECODE_VIM_Berto89.zip" role="button">
+        href="{{ site.baseurl }}/static/binaries/RECODE_VIM_Berto89.zip" role="button">
     Here is the zip file with both ISOs.
 </a>
 

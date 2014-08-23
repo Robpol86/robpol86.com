@@ -4,7 +4,7 @@ layout: post
 title: Desk Pictures at Home (California)
 ---
 
-The [other page]({{ site.url }}/{{ page.category }}/Desk-Pictures-at-Home) was getting too big, so now that I've moved
+The [other page]({% post_url 2013-07-15-Desk-Pictures-at-Home %}) was getting too big, so now that I've moved
 to California I'll start with a fresh one.
 
 Full set of high-resolution pictures for all workspaces are available at
