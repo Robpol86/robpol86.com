@@ -1,13 +1,8 @@
 ---
-layout: post
-title: Atrix Lapdock with a Nexus 4
-description: "Nexus 4 on a Lapdock isn't very useful in my opinion."
-modified: 2013-03-02
 category: lapdock
-tags: [atrix, lapdock, microhdmi, nexus 4, miracast, slimport]
-comments: true
-showseries: true
-share: true
+layout: post
+modified: 2013-03-02
+title: Atrix Lapdock with a Nexus 4
 ---
 
 Works with the Nexus 4 just fine, appears to maintain aspect ratio. <del>As with the Galaxy Nexus, no
@@ -21,11 +16,18 @@ keyboard/mouse/USB. Just power to charge the phone and HDMI from the phone.</del
     * [SlimPort SP1002 (HDMI)](http://www.amazon.com/dp/B009UZBLSG/)
     * [HDMI Port Saver (Male to Female) 90 Degree](http://www.monoprice.com/products/product.asp?p_id=3733)
 
-<figure class="half">
-    <a href="http://imgur.com/MJs3n49"><img src="http://i.imgur.com/MJs3n49m.jpg"></a>
-    <a href="http://imgur.com/MUViVQI"><img src="http://i.imgur.com/MUViVQIm.jpg"></a>
-    <figcaption></figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <a href="http://imgur.com/MJs3n49" target="_blank">
+            <img src="http://i.imgur.com/MJs3n49l.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <a href="http://imgur.com/MUViVQI" target="_blank">
+            <img src="http://i.imgur.com/MUViVQIl.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
 
 # Using USB OTG
 
@@ -50,23 +52,47 @@ Steps taken to accomplish:
    original post.
 3. Plug and play!
 
-<figure class="half">
-    <a href="http://imgur.com/qbs7sWg"><img src="http://i.imgur.com/qbs7sWgm.jpg"></a>
-    <a href="http://imgur.com/yNgacIC"><img src="http://i.imgur.com/yNgacICm.jpg"></a>
-    <figcaption>Ignore the Raspberry Pi, I'm just using it to trick the Lapdock into powering on. Notice the mouse
-    cursor on my phone!<br/>If you can see, I ran lsusb on the phone, removed the USB WiFi adapter, and ran lsusb
-    again. Notice the shorter "paragraph" on my phone. Definitely working.</figcaption>
-</figure>
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/qbs7sWg" target="_blank">
+                <img src="http://i.imgur.com/qbs7sWgl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/yNgacIC" target="_blank">
+                <img src="http://i.imgur.com/yNgacICl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+    </div>
+    <div class="caption">
+        Ignore the Raspberry Pi, I'm just using it to trick the Lapdock into powering on. Notice the mouse cursor on my
+        phone!<br/>
+        If you can see, I ran lsusb on the phone, removed the USB WiFi adapter, and ran lsusb again. Notice the shorter
+        "paragraph" on my phone. Definitely working.
+    </div>
+</div>
 
-<figure>
-    <a href="http://imgur.com/K7glCXN"><img src="http://i.imgur.com/K7glCXNl.jpg"></a>
-    <figcaption>First group is with the USB WiFi adapter, second group is after I removed it. The phone can detect
-    things on the USB hub.</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="thumbnail">
+            <a href="http://imgur.com/K7glCXN" target="_blank">
+                <img src="http://i.imgur.com/K7glCXNh.jpg" class="img-responsive img-thumbnail">
+            </a>
+            <div class="caption">
+                First group is with the USB WiFi adapter, second group is after I removed it. The phone can detect
+                things on the USB hub.
+            </div>
+        </div>
+    </div>
+</div>
 
 # Using USB OTG and Miracast
 
 It works, but it's not really pleasant. If we can get Keyboard/Mouse to Bluetooth working that would be much better.
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/P1zKD66GSYo" frameborder="0"> </iframe>
-
+<div class="well well-sm">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/P1zKD66GSYo"></iframe>
+    </div>
+</div>

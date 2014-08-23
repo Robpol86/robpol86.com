@@ -1,13 +1,8 @@
 ---
-layout: post
-title: Desk Pictures at Work
-description: "Pictures of my office/cubicle desk at work."
 category: workspaces
-tags: [workspaces, symantec, work desk, desk pictures]
-comments: true
-showseries: true
+layout: post
 modified: 2014-04-26
-share: true
+title: Desk Pictures at Work
 ---
 
 After taking pictures of my desk at home I thought to myself "Why don't I do this for my desk at work as well?" So here
@@ -18,91 +13,158 @@ Full set of high-resolution pictures for all workspaces are available at
 
 # Twitter; San Francisco, CA
 
-<figure>
-    <!-- workspaces_2014-04-25_desk-work.jpg -->
-    <a href="http://imgur.com/hSiJL9W"><div class="annotparent"><img src="http://i.imgur.com/hSiJL9Wl.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2014 April 25</div>
-    </div></a>
-    <figcaption>Finally I get to "sit" at a standing desk again.</figcaption>
-</figure>
-
-<figure>
-    <!-- workspaces_2013-11-13_desk-work.jpg -->
-    <a href="http://imgur.com/Srt4owo"><div class="annotparent"><img src="http://i.imgur.com/Srt4owol.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 November 13</div>
-    </div></a>
-    <figcaption>Who knew having three displays was so awesome?</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/hSiJL9W" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/hSiJL9Wl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2014 April 25</samp>
+                </div>
+            </a>
+            <div class="caption">Finally I get to "sit" at a standing desk again.</div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/Srt4owo" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/Srt4owol.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2013 November 13</samp>
+                </div>
+            </a>
+            <div class="caption">Who knew having three displays was so awesome?</div>
+        </div>
+    </div>
+</div>
 
 # Symantec; Austin, TX
 
-<figure>
-    <!-- workspaces_2013-07-05_desk-work.jpg -->
-    <a href="http://imgur.com/fL6ZQ9G"><div class="annotparent shadow"><img src="http://i.imgur.com/fL6ZQ9Gl.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 July 5</div>
-        <div class="annotation" style="left:40%;top:42%">Thinkpad W510</div>
-        <div class="annotation" style="left:67%;top:44%">Chromebook<br />Pixel</div>
-        <div class="annotation" style="left:32%;top:50%">Logitech G700</div>
-        <div class="annotation" style="left:30%;top:60%">Logitech G710+</div>
-    </div></a>
-    <figcaption>My "new" cubicle at the Symantec office in Austin, TX. Nobody was sitting in this window cube so I
-    moved in. This was taken a couple weeks before my last day with the company.</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="thumbnail">
+            <a href="http://imgur.com/fL6ZQ9G" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/fL6ZQ9Gh.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2013 July 5</samp>
+                    <samp class="label label-default annotation" style="left:40%; top:42%">Thinkpad W510</samp>
+                    <samp class="label label-default annotation" style="left:67%; top:44%">Chromebook<br>Pixel</samp>
+                    <samp class="label label-default annotation" style="left:32%; top:50%">Logitech G700s</samp>
+                    <samp class="label label-default annotation" style="left:30%; top:60%">Logitech G710+</samp>
+                </div>
+            </a>
+            <div class="caption">
+                My "new" cubicle at the Symantec office in Austin, TX. Nobody was sitting in this window cube so I
+                moved in. This was taken a couple weeks before my last day with the company.
+            </div>
+        </div>
+    </div>
+</div>
 
-<figure>
-    <!-- workspaces_2011-06-24_desk-work.jpg -->
-    <a href="http://imgur.com/krGiG"><div class="annotparent"><img src="http://i.imgur.com/krGiGl.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2011 June 24</div>
-    </div></a>
-    <figcaption>After the office downsizing. It's a little bit smaller than my previous cube, but I like it. A benefit
-    of having a standing desk means I can put more stuff underneath it.</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
+            <a href="http://imgur.com/krGiG" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/krGiGm.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 24</samp>
+                </div>
+            </a>
+            <div class="caption">
+                After the office downsizing. It's a little bit smaller than my previous cube, but I like it. A benefit
+                of having a standing desk means I can put more stuff underneath it.
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
+            <a href="http://imgur.com/lzVz2" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/lzVz2m.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 4</samp>
+                </div>
+            </a>
+            <div class="caption">
+                My temporary cubicle during the office downsizing. Unfortunately where my previous cubicle was, they
+                were building a wall right down the middle, so I had to move TWICE during the downsizing.
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
+            <a href="http://imgur.com/3PK0f" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/3PK0fm.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2011 May 13</samp>
+                </div>
+            </a>
+            <div class="caption">The same cubicle shortly before another office downsize.</div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="thumbnail">
+            <a href="http://imgur.com/Sb8AG" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/Sb8AGm.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2010 August 5</samp>
+                </div>
+            </a>
+            <div class="caption">
+                After the office consolidated into one floor (instead of two), this was my new cubicle.
+            </div>
+        </div>
+    </div>
+</div>
 
-<figure>
-    <!-- workspaces_2011-06-04_desk-work.jpg -->
-    <a href="http://imgur.com/lzVz2"><div class="annotparent"><img src="http://i.imgur.com/lzVz2l.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2011 June 4</div>
-    </div></a>
-    <figcaption>My temporary cubicle during the office downsizing.  Unfortunatley where my previous cubicle was, they
-    were building a wall right down the middle, so I had to move TWICE during the downsizing.</figcaption>
-</figure>
-
-<figure class="half">
-    <!-- workspaces_2010-08-05_desk-work.jpg -->
-    <a href="http://imgur.com/Sb8AG"><div class="annotparent"><img src="http://i.imgur.com/Sb8AGm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2010 August 5</div>
-    </div></a>
-    <!-- workspaces_2011-05-13_desk-work.jpg -->
-    <a href="http://imgur.com/3PK0f"><div class="annotparent"><img src="http://i.imgur.com/3PK0fm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2011 May 13</div>
-    </div></a>
-    <figcaption>After the office consolidated into one floor (instead of two), this was my new cubicle.</figcaption>
-</figure>
-
-<figure class="half">
-    <!-- workspaces_2007-02-21_desk-work.jpg -->
-    <a href="http://imgur.com/rtiSO"><div class="annotparent"><img src="http://i.imgur.com/rtiSOm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2007 February 21</div>
-        <div class="annotation shadow-inverted" style="left:30%;top:40%">Dell OptiPlex</div>
-        <div class="annotation shadow-inverted" style="left:2%;top:50%">Dell Latitude C400<br />(personal)</div>
-        <div class="annotation shadow-inverted" style="left:2%;top:90%">Mini Filing Cabinet</div>
-    </div></a>
-    <!-- workspaces_2009-03-05-desk-work.jpg -->
-    <a href="http://imgur.com/xCDHe"><div class="annotparent"><img src="http://i.imgur.com/xCDHem.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2009 March 5</div>
-    </div></a>
-    <figcaption>Early pictures of my office and then cubicle at Symantec.</figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/xCDHe" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/xCDHel.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2009 March 5</samp>
+                </div>
+            </a>
+            <div class="caption">
+                After moving buildings we didn't have offices anymore, we had cubicles. These are actually really nice
+                cubes!
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="thumbnail">
+            <a href="http://imgur.com/rtiSO" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/rtiSOl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2007 February 21</samp>
+                    <samp class="label label-default annotation" style="left:30%; top:40%">Dell OptiPlex</samp>
+                    <samp class="label label-default annotation" style="left:2%; top:50%">
+                        Dell Latitude C400<br />(personal)
+                    </samp>
+                    <samp class="label label-default annotation" style="left:2%; top:90%">Mini Filing Cabinet</samp>
+                </div>
+            </a>
+            <div class="caption">Early pictures of my office and then cubicle at Symantec.</div>
+        </div>
+    </div>
+</div>
 
 # TISD; Victoria, TX
 
-<figure>
-    <!-- workspaces_2005-08-19_desk-work.jpg -->
-    <a href="http://imgur.com/pSoGfFu"><div class="annotparent"><img src="http://i.imgur.com/pSoGfFul.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2005 August 19</div>
-    </div></a>
-    <figcaption>My temporary desk on my last day at this job. The desk to the left of it was my desk since my first day
-    until my replacement took it over. Soon after this was taken I moved to Austin. This is also my very first laptop
-    that I bought on eBay.</figcaption>
-</figure>
-
+<div class="row">
+    <div class="col-xs-12">
+        <div class="thumbnail">
+            <a href="http://imgur.com/pSoGfFu" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/pSoGfFuh.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2005 August 19</samp>
+                </div>
+            </a>
+            <div class="caption">
+                My temporary desk on my last day at this job. The desk to the left of it was my desk since my first day
+                until my replacement took it over. Soon after this was taken I moved to Austin. This is also my very
+                first laptop that I bought on eBay.
+            </div>
+        </div>
+    </div>
+</div>

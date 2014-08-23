@@ -1,13 +1,8 @@
 ---
-layout: post
-title: VIM Cheat Sheet
-description: "Computer Notes/One Liners for VIM/gVim"
-modified: 2012-05-04
 category: cheatsheet
-tags: [cheat sheet, vim, gvim]
-comments: true
-showseries: true
-share: true
+layout: post
+modified: 2012-05-04
+title: VIM Cheat Sheet
 ---
 
 # Pretty XML
@@ -30,4 +25,3 @@ retab
 
 # vimrc
 {% gist 5897695 %}
-

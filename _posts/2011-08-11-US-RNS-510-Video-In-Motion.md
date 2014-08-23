@@ -1,14 +1,9 @@
 ---
-layout: post
-title: US RNS-510 Video In Motion
-description: "Permanently enable Video In Motion on RNS-510 vehicle dvd/navigation units."
-modified: 2013-02-25
 category: guides
-tags: [rns-510, VIM, video in motion, vim_berto89, top-content]
-comments: true
-image:
-    background: jettas.png
-share: true
+layout: post
+modified: 2013-02-25
+redirect_from: /index.php/US_RNS-510_Video_In_Motion
+title: US RNS-510 Video In Motion
 ---
 
 # Disclaimer
@@ -28,7 +23,7 @@ The original thread on vwnavi.com was deleted so I will be mirroring my steps an
 files were created by Berto89 from VWItalia.it[^1], thanks to him I was able to get VIM working on my US unit. In the
 download link below you will find a zip file containing two files:
 
-### VIM_Berto89.iso
+## VIM_Berto89.iso
 
 This file contains a script that changes the DVD playback speed limit from 10 km/h to 300 km/h. This means that the
 screen won't be blanked until you are doing 300 km/h. The script also enables Test Mode (or the "Secret Menu"), which
@@ -40,7 +35,7 @@ If you want to get technical, the magic happens in the file \WA\VIM.WSH
 * MD5 checksum: 5eca311f5de010132bbb47d29f2a0ad7
 * Size: 156 KB
 
-### RECODE_Berto89.iso
+## RECODE_Berto89.iso
 
 This optional file reverts the changes from VIM_Berto89.iso back to the default factory settings (10 km/h and disables
 Test Mode). Use this if you want to undo changes.
@@ -80,8 +75,10 @@ At this point you should be able to insert a DVD while driving and the screen wi
 
 # Download
 
-<div markdown="0"><a href="{{ site.url }}/binaries/RECODE_VIM_Berto89.zip" class="btn">Here is the zip file with both
-ISOs.</a></div>
+<a class="btn btn-success shake shake-constant hover-stop"
+        href="{{ site.url }}{{ site.baseurl }}/static/binaries/RECODE_VIM_Berto89.zip" role="button">
+    Here is the zip file with both ISOs.
+</a>
 
 # References
 
@@ -90,4 +87,3 @@ ISOs.</a></div>
 [^3]: [http://www.golfmk6.com/forums/showthread....](http://www.golfmk6.com/forums/showthread.php?t=22712)
 [^4]: [http://forums.vwvortex.com/showthread.php...](http://forums.vwvortex.com/showthread.php?5395639-RNS-510-Video-In-Motion-via-firmware-change-5-min-job-and-free)
 [^5]: [http://www.myturbodiesel.com/forum/f9/how...](http://www.myturbodiesel.com/forum/f9/how-unlock-rns510-vim-tv-free-free-video-motion-play-dvd-while-driving-9150/)
-

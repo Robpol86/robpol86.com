@@ -1,21 +1,14 @@
 ---
-layout: post
-title: Wireless Charging Car Dock
-description: "Custom made car dock with wireless charging."
 category: guides
-tags: [nexus 5, car dock, qi, wireless charging, qi car dock, diy, top-content]
-comments: true
-share: true
-image:
-    background: jettas.png
+layout: post
 modified: 2013-12-08
+title: Wireless Charging Car Dock
 ---
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
 find very many car docks out there with wireless charging, and I read that Nokia's wireless charging car dock didn't
 work very well on the Nexus 5.
 
-[![](http://i.imgur.com/7WTPx0v.gif)](http://imgur.com/7WTPx0v){: .pull-right .annotparent}
 Previously I made my own Qi car dock by taking apart an LG Qi charger. But now that I have Google's new charger I made
 a new one that's much better. The magnets in Google's charger are stronger and it looks a lot cleaner. I didn't need
 any glue, tape, or additional magnets either. To make your own all you need is:
@@ -31,23 +24,33 @@ that I was able to drive around for three hours with my phone on the charger wit
 All you need to do is mount the nGroove Snap and then place the charger on it, and that's it! I routed the cable behind
 my dash to make it look a bit cleaner ([instructions here]({% post_url 2010-07-03-Jetta-SportWagen-TDI %})).
 
-<figure class="third">
-    <!-- qi_attempt4_2.jpg -->
-    <a href="http://imgur.com/GJE9zkv"><div class="annotparent"><img src="http://i.imgur.com/GJE9zkvm.jpg">
-    </div></a>
-    <!-- qi_attempt4_17.jpg -->
-    <a href="http://imgur.com/55krwnA"><div class="annotparent"><img src="http://i.imgur.com/55krwnAm.jpg">
-    </div></a>
-    <!-- qi_attempt4_18.jpg -->
-    <a href="http://imgur.com/7lHFKUv"><div class="annotparent"><img src="http://i.imgur.com/7lHFKUvm.jpg">
-    </div></a>
-    <figcaption></figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a href="http://imgur.com/GJE9zkv" target="_blank">
+            <img src="http://i.imgur.com/GJE9zkvm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a href="http://imgur.com/55krwnA" target="_blank">
+            <img src="http://i.imgur.com/55krwnAm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a href="http://imgur.com/7lHFKUv" target="_blank">
+            <img src="http://i.imgur.com/7lHFKUvm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a href="http://imgur.com/7WTPx0v" target="_blank">
+            <img src="http://i.imgur.com/7WTPx0v.gif" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
 
 # Previous Implementation
 
-So I built my own. I originally posted everything 
-[on the XDA forums](http://forum.xda-developers.com/showthread.php?p=47509705#post47509705). Since the Nexus 5 has 
+So I built my own. I originally posted everything
+[on the XDA forums](http://forum.xda-developers.com/showthread.php?p=47509705#post47509705). Since the Nexus 5 has
 [four metal discs](http://www.ifixit.com/Teardown/Nexus+5+Teardown/19016#s53717) inside it, it self-aligns when placed
 on the dock and stays put in that position. You can see it self-align in the gif below. I drove 45mins from San
 Francisco to San Jose and it never fell off. I was using GPS (Google Maps) and it looks like the magnets don't add too
@@ -60,7 +63,10 @@ I used the following items:
 * [LG Electronics WCP-300 Wireless Charging Pad](http://www.amazon.com/gp/product/B00C6VP03I/)
 * [Mountek nGroove Snap Magnetic Vehicle Mount](http://www.amazon.com/gp/product/B00E9L0HGI/)
 
-[![](http://i.imgur.com/X8fbOGl.gif)](http://imgur.com/X8fbOGl){: .pull-right .annotparent}
+<a href="http://imgur.com/X8fbOGl">
+    <img src="http://i.imgur.com/X8fbOGl.gif" class="img-responsive img-thumbnail pull-right">
+</a>
+
 For the final iteration, I reassembled the charging pad and everything holds together with just the magnetic force.
 This is what I did:
 
@@ -96,22 +102,33 @@ case for it and add more magnets.
 
 Here are some pictures of the final version, sans washers.
 
-<figure class="third">
-    <a href="http://imgur.com/COavxfY"><div class="annotparent"><img src="http://i.imgur.com/COavxfYm.jpg">
-    </div></a>
-    <a href="http://imgur.com/qJONaXG"><div class="annotparent"><img src="http://i.imgur.com/qJONaXGm.jpg">
-    </div></a>
-    <a href="http://imgur.com/GhOvZg9"><div class="annotparent"><img src="http://i.imgur.com/GhOvZg9m.jpg">
-    </div></a>
-</figure>
-
-<figure class="half">
-    <a href="http://imgur.com/OvXMV5w"><div class="annotparent"><img src="http://i.imgur.com/OvXMV5wm.jpg">
-    </div></a>
-    <a href="http://imgur.com/dRQ4q77"><div class="annotparent"><img src="http://i.imgur.com/dRQ4q77m.jpg">
-    </div></a>
-    <figcaption></figcaption>
-</figure>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-2 col-lg-offset-1">
+        <a href="http://imgur.com/COavxfY" target="_blank">
+            <img src="http://i.imgur.com/COavxfYm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/qJONaXG" target="_blank">
+            <img src="http://i.imgur.com/qJONaXGm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/GhOvZg9" target="_blank">
+            <img src="http://i.imgur.com/GhOvZg9m.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/OvXMV5w" target="_blank">
+            <img src="http://i.imgur.com/OvXMV5wm.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-2">
+        <a href="http://imgur.com/dRQ4q77" target="_blank">
+            <img src="http://i.imgur.com/dRQ4q77m.jpg" class="img-responsive thumbnail">
+        </a>
+    </div>
+</div>
 
 And here are some pictures after I routed the [wire inside the](http://www.amazon.com/gp/product/B003YKX6WW/) center
 console. After you take out the shifter boot, little cubby, head unit, and air vents there is a ton of room inside to
@@ -119,14 +136,27 @@ route the wire. The front plate of the AC vents snaps on so I was able to pry it
 wire in. I cut out a small notch of plastic to give the wire some room without blocking any of the vents' moving parts.
 The only downside is I can't close the little cubby anymore. Oh well.
 
-<figure class="third">
-    <a href="http://imgur.com/sRKNN6F"><div class="annotparent"><img src="http://i.imgur.com/sRKNN6Fm.jpg">
-    </div></a>
-    <a href="http://imgur.com/8R5ROC4"><div class="annotparent"><img src="http://i.imgur.com/8R5ROC4m.jpg">
-    </div></a>
-    <a href="http://imgur.com/7jA3c1J"><div class="annotparent"><img src="http://i.imgur.com/7jA3c1Jm.jpg">
-    </div></a>
-    <figcaption>I didn't take a picture with the head unit and air vents removed, and damned if I take them out now. The
-    clips around the head unit are fragile (I was lucky I didn't break any) and the air vent assembly is a total pain to
-    put back in. Same goes for the shifter boot.</figcaption>
-</figure>
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/sRKNN6F" target="_blank">
+                <img src="http://i.imgur.com/sRKNN6Fl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/8R5ROC4" target="_blank">
+                <img src="http://i.imgur.com/8R5ROC4l.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <a href="http://imgur.com/7jA3c1J" target="_blank">
+                <img src="http://i.imgur.com/7jA3c1Jl.jpg" class="img-responsive img-thumbnail">
+            </a>
+        </div>
+    </div>
+    <div class="caption">
+        I didn't take a picture with the head unit and air vents removed, and damned if I take them out now. The clips
+        around the head unit are fragile (I was lucky I didn't break any) and the air vent assembly is a total pain to
+        put back in. Same goes for the shifter boot.
+    </div>
+</div>

@@ -1,38 +1,8 @@
 ---
-layout: post-index
-title: All Posts
-description: "My personal website."
-tags: [ImageCFG, Lapdock, Atrix Lapdock, Lapdock 500, RNS-510, Video In Motion, UnofficialDDNS]
+layout: post
 ---
 
-{% for post in site.posts %}
-    {% capture post_html %}{% if post.modified %}Updated on {{ post.modified|date:'%B %d, %Y' }}{% else %}Published on {{ post.date|date:'%B %d, %Y' }}{% endif %}{% endcapture %}
-    {% capture post_html %}<time datetime="{{ post.date|date_to_xmlschema }}" itemprop="datePublished">{{ post_html }}</time>{% endcapture %}
-    {% capture post_html %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="post-meta">{{ post_html }}</span></a>{% endcapture %}
-    {% capture post_html %}<!-- {% if post.modified %}{{ post.modified }}{% else %}{{ post.date|date:"%Y-%m-%d" }}{% endif %} -->{{ post_html }}{% endcapture %}
-    {% if post.tags contains 'top-content' %}
-        {% capture top_related %}{{ top_related }}|{{ post_html }}{% endcapture %}
-    {% else %}
-        {% capture related %}{{ related }}|{{ post_html }}{% endcapture %}
-    {% endif %}
-{% endfor %}
-{% assign top_related = top_related|remove_first:'|'|split:'|'|sort %}
-{% assign related = related|remove_first:'|'|split:'|'|sort %}
-
-<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-        <h1 class="entry-title" itemprop="name">Popular Posts</a></h1>
-    </header>
-    <div class="entry-content" itemprop="description">
-        <ul>{% for related_html in top_related reversed %}<li>{{ related_html }}</li>{% endfor %}</ul>
-    </div>
-</article>
-
-<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-        <h1 class="entry-title" itemprop="name">All Other Posts</a></h1>
-    </header>
-    <div class="entry-content" itemprop="description">
-        <ul>{% for related_html in related reversed %}<li>{{ related_html }}</li>{% endfor %}</ul>
-    </div>
-</article>
+{% comment %}
+The contents of this file are completely ignored.
+Logic is in _layouts/post.html.
+{% endcomment %}

@@ -1,0 +1,29 @@
+.annotparent {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+}
+.annotation {
+    position: absolute;
+    font-size: 2vw;
+    background-color: rgba(78, 93, 108, 0.5);
+}
+
+@media (min-width: 768px) {
+    .annotation {
+        font-size: .5em;
+    }
+}
+
+@media (min-width: 992px) {
+    .annotation {
+        font-size: .5em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .annotation {
+        font-size: .7em;
+    }
+}

@@ -1,13 +1,8 @@
 ---
-layout: post
-title: Python Cheat Sheet
-description: "Computer Notes/One Liners for Python"
-modified: 2012-11-27
 category: cheatsheet
-tags: [cheat sheet, python]
-comments: true
-showseries: true
-share: true
+layout: post
+modified: 2012-11-27
+title: Python Cheat Sheet
 ---
 
 # Sorting a list by string length
@@ -24,9 +19,9 @@ os.sysconf('SC_NPROCESSORS_ONLN')
 
 # Dict string substitution
 
-[http://stackoverflow.com/.../single-quotes-vs-double-quotes-in-python](http://stackoverflow.com/questions/56011/single-quotes-vs-double-quotes-in-python)
+[http://stackoverflow.com/q/56011/1198943](http://stackoverflow.com/q/56011/1198943)
 
-{% highlight python %}
+{% highlight python linenos=table %}
 LIGHT_MESSAGES = {
     'English': "There are %(number_of_lights)s lights.",
     'Pirate':  "Arr! There be %(number_of_lights)s lights."
@@ -69,4 +64,3 @@ return (self.result[0] == 0 and [True] or [False])[0] #python < 2.5
 {% highlight python %}
 signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0)) # Properly handle Control+C
 {% endhighlight %}
-
