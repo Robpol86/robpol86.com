@@ -1,9 +1,7 @@
 ---
+category: workspaces
 layout: post
 title: Desk Pictures at Home (California)
-category: workspaces
-comments: true
-share: true
 ---
 
 The [other page]({{ site.url }}/{{ page.category }}/Desk-Pictures-at-Home) was getting too big, so now that I've moved
@@ -14,17 +12,27 @@ Full set of high-resolution pictures for all workspaces are available at
 
 # San Francisco, CA
 
-<figure class="half">
-    <!--  -->
-    <a href="http://imgur.com/chiN9PZ"><div class="annotparent"><img src="http://i.imgur.com/chiN9PZm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 October 25</div>
-    </div></a>
-    <!--  -->
-    <a href="http://imgur.com/5okVHKn"><div class="annotparent"><img src="http://i.imgur.com/5okVHKnm.jpg">
-        <div class="annotation shadow-inverted" style="left:2%;top:2%">2013 October 25</div>
-    </div></a>
-    <figcaption>
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/chiN9PZ" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/chiN9PZl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2013 October 25</samp>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <a href="http://imgur.com/5okVHKn" target="_blank">
+                <div class="annotparent">
+                    <img src="http://i.imgur.com/5okVHKnl.jpg" class="img-responsive img-thumbnail">
+                    <samp class="label label-default annotation" style="left:4%; top:4%">2013 October 25</samp>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="caption">
         My desk and rack share a wall, which I run cables through. I've removed the rack's side panel to show where I
         put my cable modem. Also, my home theater amp powers my TV and Computer's audio using dual-zone.
-    </figcaption>
-</figure>
+    </div>
+</div>
