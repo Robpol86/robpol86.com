@@ -2,7 +2,6 @@
 category: guides
 layout: post
 modified: 2013-02-25
-redirect_from: /index.php/US_RNS-510_Video_In_Motion
 title: US RNS-510 Video In Motion
 ---
 

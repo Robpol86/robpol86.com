@@ -2,6 +2,7 @@
 category: workspaces
 layout: post
 modified: 2013-07-16
+redirect_from: /image.php
 title: Desk Pictures at Home (Texas)
 ---
 

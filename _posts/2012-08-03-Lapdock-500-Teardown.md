@@ -2,7 +2,6 @@
 category: lapdock
 layout: post
 modified: 2012-08-04
-redirect_from: /index.php/Lapdock_500_Teardown
 title: Lapdock 500 Teardown
 ---
 

@@ -2,7 +2,6 @@
 category: lapdock
 layout: post
 modified: 2012-07-28
-redirect_from: /index.php/Atrix_Lapdock_Other_Uses
 title: Atrix Lapdock Other Uses
 ---
 

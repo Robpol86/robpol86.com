@@ -2,7 +2,6 @@
 category: guides
 layout: post
 modified: 2012-06-12
-redirect_from: /index.php/Flashing_Motorola_Droid_to_Cricket
 title: Flashing Motorola Droid to Cricket
 ---
 
