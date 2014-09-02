@@ -1,3 +1,5 @@
+- name: colorclass
+
 - name: Flask-Celery-Helper
 
 - name: Flask-JIRA-Helper
