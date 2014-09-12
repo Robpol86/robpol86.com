@@ -1,5 +1,7 @@
 - name: colorclass
 
+- name: terminaltables
+
 - name: Flask-Celery-Helper
 
 - name: Flask-JIRA-Helper
