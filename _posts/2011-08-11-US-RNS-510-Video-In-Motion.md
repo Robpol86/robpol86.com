@@ -52,7 +52,7 @@ program and try another brand of CD-R. That seems to fix the problem for most pe
 For some people, simply turning on the RNS-510 unit (no need to start the ignition) and inserting the CD will start the
 update process. Be sure to press OK on the white screen when it appears. Other than that, everything should be hands
 off, it will even automatically eject the CD when it's done.
-[Someone made a video using this procedure](http://www.youtube.com/watch?v=ed-sDo7k5Sg).
+[Someone made a video using this procedure](https://www.youtube.com/watch?v=ed-sDo7k5Sg).
 
 That didn't work for me, so I went the long way. These are the steps I took to enable VIM on my factory RNS-510 unit
 that came with my VW I bought in Texas. Again, proceed at your own risk:
@@ -81,8 +81,8 @@ At this point you should be able to insert a DVD while driving and the screen wi
 
 # References
 
-[^1]: [http://www.vwitalia.it/forum/members/bert...](http://www.vwitalia.it/forum/members/berto89/)
-[^2]: [http://forums.tdiclub.com/showthread.php?...](http://forums.tdiclub.com/showthread.php?t=326199)
-[^3]: [http://www.golfmk6.com/forums/showthread....](http://www.golfmk6.com/forums/showthread.php?t=22712)
-[^4]: [http://forums.vwvortex.com/showthread.php...](http://forums.vwvortex.com/showthread.php?5395639-RNS-510-Video-In-Motion-via-firmware-change-5-min-job-and-free)
-[^5]: [http://www.myturbodiesel.com/forum/f9/how...](http://www.myturbodiesel.com/forum/f9/how-unlock-rns510-vim-tv-free-free-video-motion-play-dvd-while-driving-9150/)
+[^1]: [https://www.vwitalia.it/forum/members/bert...](https://www.vwitalia.it/forum/members/berto89/)
+[^2]: [https://forums.tdiclub.com/showthread.php?...](https://forums.tdiclub.com/showthread.php?t=326199)
+[^3]: [https://www.golfmk6.com/forums/showthread....](https://www.golfmk6.com/forums/showthread.php?t=22712)
+[^4]: [https://forums.vwvortex.com/showthread.php...](https://forums.vwvortex.com/showthread.php?5395639-RNS-510-Video-In-Motion-via-firmware-change-5-min-job-and-free)
+[^5]: [https://www.myturbodiesel.com/forum/f9/how...](https://www.myturbodiesel.com/forum/f9/how-unlock-rns510-vim-tv-free-free-video-motion-play-dvd-while-driving-9150/)

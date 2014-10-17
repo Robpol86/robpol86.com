@@ -19,7 +19,7 @@ os.sysconf('SC_NPROCESSORS_ONLN')
 
 # Dict string substitution
 
-[http://stackoverflow.com/q/56011/1198943](http://stackoverflow.com/q/56011/1198943)
+[https://stackoverflow.com/q/56011/1198943](https://stackoverflow.com/q/56011/1198943)
 
 {% highlight python linenos=table %}
 LIGHT_MESSAGES = {

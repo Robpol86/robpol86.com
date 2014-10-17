@@ -10,16 +10,16 @@ Started by a thread called "Where You Rock" on Big-O-Software Forums in early 20
 to show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.
 
 Full set of high-resolution pictures for all workspaces are available at
-[http://imgur.com/a/SThXb](http://imgur.com/a/SThXb).
+[https://imgur.com/a/SThXb](https://imgur.com/a/SThXb).
 
 # Austin, TX - Server Rack
 
 <div class="thumbnail">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <a href="http://imgur.com/FL8ZH" target="_blank">
+            <a href="https://imgur.com/FL8ZH" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/FL8ZHl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/FL8ZHl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:2%">2012 August 21</samp>
                     <samp class="label label-default annotation" style="left:31%; top:9%">Patch Panel</samp>
                     <samp class="label label-default annotation" style="left:29%; top:14%">Gigabit Switch</samp>
@@ -40,9 +40,9 @@ Full set of high-resolution pictures for all workspaces are available at
             </a>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <a href="http://imgur.com/oJX2k" target="_blank">
+            <a href="https://imgur.com/oJX2k" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/oJX2kl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/oJX2kl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:2%">2012 August 21</samp>
                 </div>
             </a>
@@ -57,8 +57,8 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/uN4XP" target="_blank">
-                <img src="http://i.imgur.com/uN4XPm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/uN4XP" target="_blank">
+                <img src="//i.imgur.com/uN4XPm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 From bottom to top: SUA2200RM2U (UPS); File Server; PowerVault 124T (LTO3 autoloader);
@@ -68,40 +68,40 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/EWuvw" target="_blank">
-                <img src="http://i.imgur.com/EWuvwm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/EWuvw" target="_blank">
+                <img src="//i.imgur.com/EWuvwm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (rear bottom)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/pVUO3" target="_blank">
-                <img src="http://i.imgur.com/pVUO3m.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/pVUO3" target="_blank">
+                <img src="//i.imgur.com/pVUO3m.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (rear middle)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/8GtrM" target="_blank">
-                <img src="http://i.imgur.com/8GtrMm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/8GtrM" target="_blank">
+                <img src="//i.imgur.com/8GtrMm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (rear top)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/5ANKZ" target="_blank">
-                <img src="http://i.imgur.com/5ANKZm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/5ANKZ" target="_blank">
+                <img src="//i.imgur.com/5ANKZm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (rear top 2)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/peAqf" target="_blank">
-                <img src="http://i.imgur.com/peAqfm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/peAqf" target="_blank">
+                <img src="//i.imgur.com/peAqfm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">On this side I only wired audio from the KVM and CATV.</div>
         </div>
@@ -111,8 +111,8 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/yLfSk" target="_blank">
-                <img src="http://i.imgur.com/yLfSkm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/yLfSk" target="_blank">
+                <img src="//i.imgur.com/yLfSkm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 I routed almost all cables on this side. Ethernet, power to the rear power strip, USB, video, etc.
@@ -121,16 +121,16 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/NiVKS" target="_blank">
-                <img src="http://i.imgur.com/NiVKSm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/NiVKS" target="_blank">
+                <img src="//i.imgur.com/NiVKSm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (pdu)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/4QytG" target="_blank">
-                <img src="http://i.imgur.com/4QytGm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/4QytG" target="_blank">
+                <img src="//i.imgur.com/4QytGm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 I tried to make it as easy as possible to connect the rack to my desk without having to undo a lot of
@@ -141,16 +141,16 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/3Kfib" target="_blank">
-                <img src="http://i.imgur.com/3Kfibm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/3Kfib" target="_blank">
+                <img src="//i.imgur.com/3Kfibm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack Ports (console, connected to desk)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/Sows1" target="_blank">
-                <img src="http://i.imgur.com/Sows1m.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/Sows1" target="_blank">
+                <img src="//i.imgur.com/Sows1m.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 Here I also tried to make it easy to disconnect my rack and move it out of its corner without having to
@@ -161,8 +161,8 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/vZNoL" target="_blank">
-                <img src="http://i.imgur.com/vZNoLm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/vZNoL" target="_blank">
+                <img src="//i.imgur.com/vZNoLm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack Ports (external, connected to utilities)</div>
         </div>
@@ -171,24 +171,24 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/DruBI" target="_blank">
-                <img src="http://i.imgur.com/DruBIl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/DruBI" target="_blank">
+                <img src="//i.imgur.com/DruBIl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (router)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/1720r" target="_blank">
-                <img src="http://i.imgur.com/1720rl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/1720r" target="_blank">
+                <img src="//i.imgur.com/1720rl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (desk raised)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/zBfRD" target="_blank">
-                <img src="http://i.imgur.com/zBfRDl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/zBfRD" target="_blank">
+                <img src="//i.imgur.com/zBfRDl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 The white things are the antennas for my desktop's WiFi/bluetooth adapter built into my motherboard.
@@ -200,16 +200,16 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/jdXg4" target="_blank">
-                <img src="http://i.imgur.com/jdXg4l.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/jdXg4" target="_blank">
+                <img src="//i.imgur.com/jdXg4l.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (desk raised 3)</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/ZxDAf" target="_blank">
-                <img src="http://i.imgur.com/ZxDAfl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/ZxDAf" target="_blank">
+                <img src="//i.imgur.com/ZxDAfl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 I made sure there was enough slack in the "umbilical cord" to allow my desk to go all the way down, to
@@ -219,8 +219,8 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/8JgAl" target="_blank">
-                <img src="http://i.imgur.com/8JgAll.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/8JgAl" target="_blank">
+                <img src="//i.imgur.com/8JgAll.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Rack (desk lowered 2)</div>
         </div>
@@ -232,8 +232,8 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/53MZL" target="_blank">
-                <img src="http://i.imgur.com/53MZLm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/53MZL" target="_blank">
+                <img src="//i.imgur.com/53MZLm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 I finally built a new non-server computer in over 6 years! Blu-ray burner and USB 3.0 card reader in
@@ -243,8 +243,8 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/UErPY" target="_blank">
-                <img src="http://i.imgur.com/UErPYm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/UErPY" target="_blank">
+                <img src="//i.imgur.com/UErPYm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 ARK 4U-500-CA; i7-3770K Ivy Bridge; 32 GB DDR3 RAM (F3-1600C9Q-32GXM); ASUS Maximus V EXTREME; EVGA GTX
@@ -254,32 +254,32 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/BOvx7" target="_blank">
-                <img src="http://i.imgur.com/BOvx7m.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/BOvx7" target="_blank">
+                <img src="//i.imgur.com/BOvx7m.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Desktop Computer 3</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/OIlBm" target="_blank">
-                <img src="http://i.imgur.com/OIlBmm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/OIlBm" target="_blank">
+                <img src="//i.imgur.com/OIlBmm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Desktop Computer 6</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/ooUAv" target="_blank">
-                <img src="http://i.imgur.com/ooUAvm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/ooUAv" target="_blank">
+                <img src="//i.imgur.com/ooUAvm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Desktop Computer 5</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
         <div class="thumbnail">
-            <a href="http://imgur.com/vMlFw" target="_blank">
-                <img src="http://i.imgur.com/vMlFwm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/vMlFw" target="_blank">
+                <img src="//i.imgur.com/vMlFwm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 Here I have 5x 1 TB hard drives in RAID5. Sadly my current motherboard only has six SATA ports.
@@ -290,8 +290,8 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/KgazZ" target="_blank">
-                <img src="http://i.imgur.com/KgazZm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/KgazZ" target="_blank">
+                <img src="//i.imgur.com/KgazZm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">
                 iStarUSA D-400-6; AMD Athlon X2 BE-2400; 1 GB RAM; Gigabyte GA-MA74GM-S2; CentOS 5.7
@@ -300,24 +300,24 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/ROA0T" target="_blank">
-                <img src="http://i.imgur.com/ROA0Tm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/ROA0T" target="_blank">
+                <img src="//i.imgur.com/ROA0Tm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Home Server 3</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/P9ErG" target="_blank">
-                <img src="http://i.imgur.com/P9ErGm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/P9ErG" target="_blank">
+                <img src="//i.imgur.com/P9ErGm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Home Server 4</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/99UDx" target="_blank">
-                <img src="http://i.imgur.com/99UDxm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/99UDx" target="_blank">
+                <img src="//i.imgur.com/99UDxm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Workspaces 2012 August 21: Home Server 5</div>
         </div>
@@ -329,9 +329,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/kAbGJ" target="_blank">
+            <a href="https://imgur.com/kAbGJ" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/kAbGJm.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/kAbGJm.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2012 May 5</samp>
                 </div>
             </a>
@@ -343,9 +343,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/zo0d6" target="_blank">
+            <a href="https://imgur.com/zo0d6" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/zo0d6m.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/zo0d6m.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2012 January 3</samp>
                 </div>
             </a>
@@ -354,9 +354,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/C357N" target="_blank">
+            <a href="https://imgur.com/C357N" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/C357Nm.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/C357Nm.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 20</samp>
                 </div>
             </a>
@@ -367,9 +367,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/2eR2L" target="_blank">
+            <a href="https://imgur.com/2eR2L" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/2eR2Lm.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/2eR2Lm.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 10</samp>
                 </div>
             </a>
@@ -383,9 +383,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/fue1X" target="_blank">
+            <a href="https://imgur.com/fue1X" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/fue1Xl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/fue1Xl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 7</samp>
                 </div>
             </a>
@@ -397,9 +397,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/ivaZt" target="_blank">
+            <a href="https://imgur.com/ivaZt" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/ivaZtl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/ivaZtl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 7</samp>
                 </div>
             </a>
@@ -411,9 +411,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
         <div class="thumbnail">
-            <a href="http://imgur.com/7DZQt" target="_blank">
+            <a href="https://imgur.com/7DZQt" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/7DZQtl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/7DZQtl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 3</samp>
                 </div>
             </a>
@@ -427,9 +427,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/YUV8x" target="_blank">
+            <a href="https://imgur.com/YUV8x" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/YUV8xl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/YUV8xl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2009 November 8</samp>
                 </div>
             </a>
@@ -440,9 +440,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/nadAX" target="_blank">
+            <a href="https://imgur.com/nadAX" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/nadAXl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/nadAXl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2009 April 18</samp>
                 </div>
             </a>
@@ -454,9 +454,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12">
         <div class="thumbnail">
-            <a href="http://imgur.com/nNBFF" target="_blank">
+            <a href="https://imgur.com/nNBFF" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/nNBFFh.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/nNBFFh.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2007 August 14</samp>
                     <samp class="label label-default annotation" style="left:2%; top:9%; text-align: left">
                         Failed attempt to have server rack in my room. It had<br>round holes and was for<br>music
@@ -489,9 +489,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/ZFAgg" target="_blank">
+            <a href="https://imgur.com/ZFAgg" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/ZFAggl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/ZFAggl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2007 August 5</samp>
                     <samp class="label label-default annotation" style="left:15%; top:15%">2007FP</samp>
                     <samp class="label label-default annotation" style="left:50%; top:15%;">Dell 2407WFP-HC</samp>
@@ -517,9 +517,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/pM49e" target="_blank">
+            <a href="https://imgur.com/pM49e" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/pM49el.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/pM49el.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2007 July 29</samp>
                     <samp class="label label-default annotation" style="left:45%; top:25%">
                         Dell UltraSharp<br>2007FP
@@ -543,9 +543,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/0kKzZ" target="_blank">
+            <a href="https://imgur.com/0kKzZ" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/0kKzZl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/0kKzZl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2006 December 2</samp>
                     <samp class="label label-default annotation" style="left:50%; top:10%">HP LaserJet<br>2100tn</samp>
                     <samp class="label label-default annotation" style="right:46%; top:48%">SUA1500 UPS</samp>
@@ -562,9 +562,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/Tgb0n" target="_blank">
+            <a href="https://imgur.com/Tgb0n" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/Tgb0nl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/Tgb0nl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2006 December 2</samp>
                     <samp class="label label-default annotation" style="left:10%; top:20%">Cisco Aironet 1100</samp>
                 </div>
@@ -577,9 +577,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12">
         <div class="thumbnail">
-            <a href="http://imgur.com/1gx0i" target="_blank">
+            <a href="https://imgur.com/1gx0i" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/1gx0ih.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/1gx0ih.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2006 January 26</samp>
                     <samp class="label label-default annotation" style="left:55%; top:13%">TV</samp>
                     <samp class="label label-default annotation" style="left:83%; top:15%">College<br>apartment</samp>
@@ -614,25 +614,25 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="thumbnail">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <a href="http://imgur.com/WeVzG" target="_blank">
+            <a href="https://imgur.com/WeVzG" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/WeVzGl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/WeVzGl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2004 January 16</samp>
                 </div>
             </a>
         </div>
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <a href="http://imgur.com/1MVIa" target="_blank">
+            <a href="https://imgur.com/1MVIa" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/1MVIal.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/1MVIal.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2003 May 19</samp>
                 </div>
             </a>
         </div>
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <a href="http://imgur.com/yG3Le" target="_blank">
+            <a href="https://imgur.com/yG3Le" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/yG3Lel.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/yG3Lel.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2003 March 15</samp>
                 </div>
             </a>

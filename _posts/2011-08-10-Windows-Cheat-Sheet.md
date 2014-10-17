@@ -9,8 +9,8 @@ title: Windows Cheat Sheet
 
 ## Convert *.mkv files in folder B:\Videos to *.mp4 files in current folder:
 
-[http://stackoverflow.com/.../how-to-get-folder-path-from-file-path-...]
-(http://stackoverflow.com/questions/659647/how-to-get-folder-path-from-file-path-with-cmd)
+[https://stackoverflow.com/.../how-to-get-folder-path-from-file-path-...]
+(https://stackoverflow.com/questions/659647/how-to-get-folder-path-from-file-path-with-cmd)
 
 {% highlight bat %}
 for /r "B:\Videos" %i in (*.mkv) do ffmpeg -i "%i" "%~ni.mp4"
@@ -32,8 +32,8 @@ grep TimeStart source.txt |sed -ne "1~5p" |sed -e "1d" |cut -d" " -f7 |tr "\n" "
 
 # PuTTY
 
-[http://dag.wieers.com/blog/content/improving-putty-settings-on-windows]
-(http://dag.wieers.com/blog/content/improving-putty-settings-on-windows)
+[https://dag.wieers.com/blog/content/improving-putty-settings-on-windows]
+(https://dag.wieers.com/blog/content/improving-putty-settings-on-windows)
 
 * Window
     * Lines of scrollback: **2000000**

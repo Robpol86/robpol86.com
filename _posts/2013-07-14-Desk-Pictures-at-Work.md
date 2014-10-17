@@ -9,16 +9,16 @@ After taking pictures of my desk at home I thought to myself "Why don't I do thi
 I show off how my desk is setup at my various places of employment.
 
 Full set of high-resolution pictures for all workspaces are available at
-[http://imgur.com/a/SThXb](http://imgur.com/a/SThXb).
+[https://imgur.com/a/SThXb](https://imgur.com/a/SThXb).
 
 # Twitter; San Francisco, CA
 
 <div class="row">
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/hSiJL9W" target="_blank">
+            <a href="https://imgur.com/hSiJL9W" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/hSiJL9Wl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/hSiJL9Wl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2014 April 25</samp>
                 </div>
             </a>
@@ -27,9 +27,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/Srt4owo" target="_blank">
+            <a href="https://imgur.com/Srt4owo" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/Srt4owol.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/Srt4owol.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2013 November 13</samp>
                 </div>
             </a>
@@ -43,9 +43,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12">
         <div class="thumbnail">
-            <a href="http://imgur.com/fL6ZQ9G" target="_blank">
+            <a href="https://imgur.com/fL6ZQ9G" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/fL6ZQ9Gh.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/fL6ZQ9Gh.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2013 July 5</samp>
                     <samp class="label label-default annotation" style="left:40%; top:42%">Thinkpad W510</samp>
                     <samp class="label label-default annotation" style="left:67%; top:44%">Chromebook<br>Pixel</samp>
@@ -64,9 +64,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/krGiG" target="_blank">
+            <a href="https://imgur.com/krGiG" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/krGiGm.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/krGiGm.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 24</samp>
                 </div>
             </a>
@@ -78,9 +78,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/lzVz2" target="_blank">
+            <a href="https://imgur.com/lzVz2" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/lzVz2m.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/lzVz2m.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2011 June 4</samp>
                 </div>
             </a>
@@ -92,9 +92,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/3PK0f" target="_blank">
+            <a href="https://imgur.com/3PK0f" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/3PK0fm.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/3PK0fm.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2011 May 13</samp>
                 </div>
             </a>
@@ -103,9 +103,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/Sb8AG" target="_blank">
+            <a href="https://imgur.com/Sb8AG" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/Sb8AGm.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/Sb8AGm.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2010 August 5</samp>
                 </div>
             </a>
@@ -119,9 +119,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/xCDHe" target="_blank">
+            <a href="https://imgur.com/xCDHe" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/xCDHel.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/xCDHel.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2009 March 5</samp>
                 </div>
             </a>
@@ -133,9 +133,9 @@ Full set of high-resolution pictures for all workspaces are available at
     </div>
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/rtiSO" target="_blank">
+            <a href="https://imgur.com/rtiSO" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/rtiSOl.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/rtiSOl.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2007 February 21</samp>
                     <samp class="label label-default annotation" style="left:30%; top:40%">Dell OptiPlex</samp>
                     <samp class="label label-default annotation" style="left:2%; top:50%">
@@ -154,9 +154,9 @@ Full set of high-resolution pictures for all workspaces are available at
 <div class="row">
     <div class="col-xs-12">
         <div class="thumbnail">
-            <a href="http://imgur.com/pSoGfFu" target="_blank">
+            <a href="https://imgur.com/pSoGfFu" target="_blank">
                 <div class="annotparent">
-                    <img src="http://i.imgur.com/pSoGfFuh.jpg" class="img-responsive img-thumbnail">
+                    <img src="//i.imgur.com/pSoGfFuh.jpg" class="img-responsive img-thumbnail">
                     <samp class="label label-default annotation" style="left:4%; top:4%">2005 August 19</samp>
                 </div>
             </a>

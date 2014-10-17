@@ -43,22 +43,22 @@ class Image(object):
     IMAGE_TEMPLATE_CAPTION = u"""
     <div class="{css_class}">
         <div class="thumbnail">
-            <a href="http://imgur.com/{full}" target="_blank">
-                <img src="http://i.imgur.com/{full}{size}.{ext}" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/{full}" target="_blank">
+                <img src="https://i.imgur.com/{full}{size}.{ext}" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">{caption}</div>
         </div>
     </div>"""
     IMAGE_TEMPLATE_THUMB = u"""
     <div class="{css_class}">
-        <a href="http://imgur.com/{full}" target="_blank">
-            <img src="http://i.imgur.com/{full}{size}.{ext}" class="img-responsive thumbnail">
+        <a href="https://imgur.com/{full}" target="_blank">
+            <img src="https://i.imgur.com/{full}{size}.{ext}" class="img-responsive thumbnail">
         </a>
     </div>"""
     IMAGE_TEMPLATE_BIG_THUMB = u"""
         <div class="{css_class}">
-            <a href="http://imgur.com/{full}" target="_blank">
-                <img src="http://i.imgur.com/{full}{size}.{ext}" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/{full}" target="_blank">
+                <img src="https://i.imgur.com/{full}{size}.{ext}" class="img-responsive img-thumbnail">
             </a>
         </div>"""
     SIZES = {6: 'm', 5: 'm', 4: 'm', 3: 'l', 2: 'l', 1: 'h'}

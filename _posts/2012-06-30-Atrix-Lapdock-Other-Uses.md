@@ -16,13 +16,13 @@ actually has a couple of magnets to keep it in place, and two small plastic clip
 <div class="thumbnail">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <a href="http://imgur.com/WpsmI" target="_blank">
-                <img src="http://i.imgur.com/WpsmIl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/WpsmI" target="_blank">
+                <img src="//i.imgur.com/WpsmIl.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <a href="http://imgur.com/5HAGw" target="_blank">
-                <img src="http://i.imgur.com/5HAGwl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/5HAGw" target="_blank">
+                <img src="//i.imgur.com/5HAGwl.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
     </div>
@@ -34,23 +34,23 @@ actually has a couple of magnets to keep it in place, and two small plastic clip
 
 
 
-All high-res images used on this page are available [here](http://imgur.com/a/zEkwz). Below are a few YouTube videos I
+All high-res images used on this page are available [here](https://imgur.com/a/zEkwz). Below are a few YouTube videos I
 posted about the Lapdock (the second shows that the Lapdock 500 isn't "hacker-friendly").
 
 <div class="well well-sm">
     <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/VfdKq33WgHw"></iframe>
+        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/VfdKq33WgHw"></iframe>
     </div>
 </div>
 
 <div class="well well-sm">
     <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/zCxTTrTZSSM"></iframe>
+        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/zCxTTrTZSSM"></iframe>
     </div>
 </div>
 
 <div class="well well-sm">
     <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/x_yhJ_QBfaU"></iframe>
+        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/x_yhJ_QBfaU"></iframe>
     </div>
 </div>

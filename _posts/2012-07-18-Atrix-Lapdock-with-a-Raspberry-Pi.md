@@ -33,26 +33,26 @@ Here is the script. Save it in **/etc/init.d/disable-ethernet** and then run **s
 {% gist 5894185 %}
 
 * Adapters used:
-    * [HDMI Male to Micro HDMI Female](http://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079)
+    * [HDMI Male to Micro HDMI Female](https://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079)
       (delivery took one month)
-    * [Micro USB B Male to Female](http://www.ebay.com/itm/ws/eBayISAPI.dll?ViewItem&item=270928425953)
+    * [Micro USB B Male to Female](https://www.ebay.com/itm/ws/eBayISAPI.dll?ViewItem&item=270928425953)
       (delivery took one month)
 
 <div class="thumbnail">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <a href="http://imgur.com/cZR03" target="_blank">
-                <img src="http://i.imgur.com/cZR03l.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/cZR03" target="_blank">
+                <img src="//i.imgur.com/cZR03l.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <a href="http://imgur.com/MrTBN" target="_blank">
-                <img src="http://i.imgur.com/MrTBNl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/MrTBN" target="_blank">
+                <img src="//i.imgur.com/MrTBNl.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <a href="http://imgur.com/vCYfG" target="_blank">
-                <img src="http://i.imgur.com/vCYfGl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/vCYfG" target="_blank">
+                <img src="//i.imgur.com/vCYfGl.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
     </div>

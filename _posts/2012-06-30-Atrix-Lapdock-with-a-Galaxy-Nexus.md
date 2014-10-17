@@ -13,27 +13,27 @@ Additionally, the two adapters that connect to the Lapdock had to be modified to
 plastic around the connector with a Dremel grinding bit.
 
 * Adapters used:
-    * [HDMI Male to Micro HDMI Female](http://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079)
+    * [HDMI Male to Micro HDMI Female](https://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079)
       (delivery took one month)
     * HDMI Female/Female Coupler
-    * [6 foot MHL Cable (Male HDMI)](http://www.amazon.com/gp/product/B006V7F380)
-    * [Micro USB B Male to Female](http://www.ebay.com/itm/ws/eBayISAPI.dll?ViewItem&item=270928425953)
+    * [6 foot MHL Cable (Male HDMI)](https://www.amazon.com/gp/product/B006V7F380)
+    * [Micro USB B Male to Female](https://www.ebay.com/itm/ws/eBayISAPI.dll?ViewItem&item=270928425953)
       (delivery took one month)
 
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/qs9ph" target="_blank">
-            <img src="http://i.imgur.com/qs9phl.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/qs9ph" target="_blank">
+            <img src="//i.imgur.com/qs9phl.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/VpSTT" target="_blank">
-            <img src="http://i.imgur.com/VpSTTl.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/VpSTT" target="_blank">
+            <img src="//i.imgur.com/VpSTTl.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/Ct9Ii" target="_blank">
-            <img src="http://i.imgur.com/Ct9Iil.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/Ct9Ii" target="_blank">
+            <img src="//i.imgur.com/Ct9Iil.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
@@ -41,13 +41,13 @@ plastic around the connector with a Dremel grinding bit.
 <div class="thumbnail">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <a href="http://imgur.com/vCYfG" target="_blank">
-                <img src="http://i.imgur.com/vCYfGl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/vCYfG" target="_blank">
+                <img src="//i.imgur.com/vCYfGl.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <a href="http://imgur.com/2SA93" target="_blank">
-                <img src="http://i.imgur.com/2SA93l.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/2SA93" target="_blank">
+                <img src="//i.imgur.com/2SA93l.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
     </div>

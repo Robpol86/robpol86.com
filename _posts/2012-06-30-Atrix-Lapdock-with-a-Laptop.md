@@ -9,20 +9,20 @@ time I traveled I had to deal with a single monitor. Not anymore! I don't even h
 I travel.
 
 * Adapters used:
-    * [HDMI Male to Micro HDMI Female](http://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079)
+    * [HDMI Male to Micro HDMI Female](https://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079)
       (delivery took one month)
     * HDMI Female/Female Coupler
 
 <div class="thumbnail">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <a href="http://imgur.com/ldQ0c" target="_blank">
-                <img src="http://i.imgur.com/ldQ0cl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/ldQ0c" target="_blank">
+                <img src="//i.imgur.com/ldQ0cl.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <a href="http://imgur.com/KONZZ" target="_blank">
-                <img src="http://i.imgur.com/KONZZl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/KONZZ" target="_blank">
+                <img src="//i.imgur.com/KONZZl.jpg" class="img-responsive img-thumbnail">
             </a>
         </div>
     </div>

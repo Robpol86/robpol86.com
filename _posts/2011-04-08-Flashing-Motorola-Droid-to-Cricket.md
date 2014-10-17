@@ -11,12 +11,12 @@ My guide will explain the exact steps I took to get my Droid working on **Cricke
 
 I used the following resources for my guide:
 
-* [http://forum.xda-developers.com/showthread.ph...](hlinkttp://forum.xda-developers.com/showthread.php?t=708937)
-* [http://www.mycricketforum.com/verizon-motorol...](http://www.mycricketforum.com/verizon-motorola-droid/5057-*sticky*-how-flash-motorola-droid-cricket-2-2-froyo-talk-text-mms-internet.html)
-* [http://www.mycricketforum.com/flashing-tools-...](http://www.mycricketforum.com/flashing-tools-files-programming/6450-%2Asticky%2A-qpst-tutorial-pictures-cricket.html)
-* [http://www.whiterabbit.org/android/](http://www.whiterabbit.org/android/)
+* [https://forum.xda-developers.com/showthread.ph...](https://forum.xda-developers.com/showthread.php?t=708937)
+* [https://www.mycricketforum.com/verizon-motorol...](https://www.mycricketforum.com/verizon-motorola-droid/5057-*sticky*-how-flash-motorola-droid-cricket-2-2-froyo-talk-text-mms-internet.html)
+* [https://www.mycricketforum.com/flashing-tools-...](https://www.mycricketforum.com/flashing-tools-files-programming/6450-%2Asticky%2A-qpst-tutorial-pictures-cricket.html)
+* [https://www.whiterabbit.org/android/](https://www.whiterabbit.org/android/)
 
-After flashing, everything works for me except sending [long SMS](http://en.wikipedia.org/wiki/Concatenated_SMS)
+After flashing, everything works for me except sending [long SMS](https://en.wikipedia.org/wiki/Concatenated_SMS)
 (multipart texts that require two or more messages to be sent).
 
 * Placing and receiving calls work.
@@ -32,7 +32,7 @@ Cricket using a new $55/mo Android plan.
 # Preface
 
 I decided to break my contract with Verizon and incur a $95 ETF to port my number to Google Voice once I discovered I
-could make/receive Gvoice calls for free [using a $50 device](http://www.obihai.com/product-primer.html) with my
+could make/receive Gvoice calls for free [using a $50 device](https://www.obihai.com/product-primer.html) with my
 landline telephones. When I ported my number on Saturday, it took 23.5 hours to finish porting on Sunday. On that day I
 called Verizon to get a new phone number, but the representative informed me I will have to wait 7 days to reactivate
 my phone without disturbing the porting process. I didn't want to risk losing my number so I decided to just wait a
@@ -47,10 +47,10 @@ my mind up to move to Cricket while I waited for a phone I liked to come out.
 ## Software
 
 1. Motorola Droid (US version, not the Milestone), rooted (probably) with SPRecovery (probably).
-2. [Drivers for your phone](http://www.motorola.com/consumers/v/index.jsp?vgnextoid=bda09ec8009a0210VgnVCM1000008806b00aRCRD).
-3. (probably?) [Android SDK](http://developer.android.com/sdk/index.html).
+2. [Drivers for your phone](https://www.motorola.com/consumers/v/index.jsp?vgnextoid=bda09ec8009a0210VgnVCM1000008806b00aRCRD).
+3. (probably?) [Android SDK](https://developer.android.com/sdk/index.html).
 4. [42900.zip]({{ site.baseurl }}/static/binaries/42900.zip) (unzip this to get 42900.prl).
-5. [HW VSP Singleport 3.1.2](http://www.hw-group.com/products/hw_vsp/index_en.html#DOWNLOAD)
+5. [HW VSP Singleport 3.1.2](https://www.hw-group.com/products/hw_vsp/index_en.html#DOWNLOAD)
 6. CDMA Workshop 2.7 (google it).
 7. QPST 2.7.355 (google it).
 
@@ -79,7 +79,7 @@ When you have your phone number and `MIN`, continue on to the next section.
 
 Once you have your `MIN` and phone number:
 
-1. Generate a **CDMA Workshop 2.7** NVRAM file from here: [http://www.whiterabbit.org/android/](http://www.whiterabbit.org/android/)
+1. Generate a **CDMA Workshop 2.7** NVRAM file from here: [https://www.whiterabbit.org/android/](https://www.whiterabbit.org/android/)
     1. Where it says **Enter your login string**: enter **0000000000@mycricket.com** (replace zeros with your ten-digit
        phone number).
     2. Click **Generate**, it will download a text file roughly 6 KB in size.
@@ -90,32 +90,32 @@ Once you have your `MIN` and phone number:
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/SndBdi5" target="_blank">
-                <img src="http://i.imgur.com/SndBdi5m.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/SndBdi5" target="_blank">
+                <img src="//i.imgur.com/SndBdi5m.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 1</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/2s0oJBW" target="_blank">
-                <img src="http://i.imgur.com/2s0oJBWm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/2s0oJBW" target="_blank">
+                <img src="//i.imgur.com/2s0oJBWm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 2</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/sWaejkq" target="_blank">
-                <img src="http://i.imgur.com/sWaejkqm.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/sWaejkq" target="_blank">
+                <img src="//i.imgur.com/sWaejkqm.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 3</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
         <div class="thumbnail">
-            <a href="http://imgur.com/IJgDFM4" target="_blank">
-                <img src="http://i.imgur.com/IJgDFM4m.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/IJgDFM4" target="_blank">
+                <img src="//i.imgur.com/IJgDFM4m.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 4</div>
         </div>
@@ -183,16 +183,16 @@ but that's what I did).
 <div class="row">
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/NqeznNP" target="_blank">
-                <img src="http://i.imgur.com/NqeznNPl.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/NqeznNP" target="_blank">
+                <img src="//i.imgur.com/NqeznNPl.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 5</div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6">
         <div class="thumbnail">
-            <a href="http://imgur.com/aHlRCy6" target="_blank">
-                <img src="http://i.imgur.com/aHlRCy6l.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/aHlRCy6" target="_blank">
+                <img src="//i.imgur.com/aHlRCy6l.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Figure 6</div>
         </div>
@@ -210,7 +210,7 @@ but that's what I did).
     5. Username: phonenumber@mycricket.com
     6. Password: cricket
     7. Server: wap.mycricket.com
-    8. MMSC: http://mms.mycricket.com/servlets/mms
+    8. MMSC: https://mms.mycricket.com/servlets/mms
     9. MMS proxy: wap.mycricket.com
     10. MMS port: 8080
     11. MCC: 310

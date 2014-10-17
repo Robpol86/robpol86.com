@@ -1,7 +1,7 @@
 # Robpol86.com
 
 This is my personal website. It's built with [Jekyll](http://jekyllrb.com/), generously hosted for free on
-[GitHub Pages](http://pages.github.com/), using a [Bootstrap3](http://getbootstrap.com/) theme (actually it's
+[GitHub Pages](https://pages.github.com/), using a [Bootstrap3](http://getbootstrap.com/) theme (actually it's
 [Bootswatch](http://bootswatch.com/)).
 
 Besides using Bootswatch, this theme is entireley "custom made" by me. It's kind of usable by others but some changes

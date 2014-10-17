@@ -22,8 +22,8 @@ there's something I can short out on the controller board to skip this check.
         screws. There are 15 screws total (not counting the two used for the pull-out tray).
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/on1EG" target="_blank">
-            <img src="http://i.imgur.com/on1EGm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/on1EG" target="_blank">
+            <img src="//i.imgur.com/on1EGm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
@@ -38,8 +38,8 @@ there's something I can short out on the controller board to skip this check.
         disconnect it from the Lapdock's controller board. Do the same with the touchpad's cable while you're at it.
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/4zK6V" target="_blank">
-            <img src="http://i.imgur.com/4zK6Vm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/4zK6V" target="_blank">
+            <img src="//i.imgur.com/4zK6Vm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
@@ -52,8 +52,8 @@ there's something I can short out on the controller board to skip this check.
         pulling up from there.
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/nH3Vw" target="_blank">
-            <img src="http://i.imgur.com/nH3Vwm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/nH3Vw" target="_blank">
+            <img src="//i.imgur.com/nH3Vwm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
@@ -68,8 +68,8 @@ there's something I can short out on the controller board to skip this check.
         from the palm rest. Be very gentle, the clips are fragile and I broke one during this step.
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/qVXHC" target="_blank">
-            <img src="http://i.imgur.com/qVXHCm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/qVXHC" target="_blank">
+            <img src="//i.imgur.com/qVXHCm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
@@ -83,8 +83,8 @@ there's something I can short out on the controller board to skip this check.
         To remove the smaller cable, I used my thumb nails (both) to pry the plastic connector from the controller.
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/VxcB7" target="_blank">
-            <img src="http://i.imgur.com/VxcB7m.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/VxcB7" target="_blank">
+            <img src="//i.imgur.com/VxcB7m.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
@@ -97,8 +97,8 @@ there's something I can short out on the controller board to skip this check.
         the right) the monitor should lift right off.
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-4">
-        <a href="http://imgur.com/bcGIk" target="_blank">
-            <img src="http://i.imgur.com/bcGIkm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/bcGIk" target="_blank">
+            <img src="//i.imgur.com/bcGIkm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
@@ -109,65 +109,65 @@ Here are a bunch of close-ups of the Lapdock's controller board.
 
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/GnLRF" target="_blank">
-            <img src="http://i.imgur.com/GnLRFm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/GnLRF" target="_blank">
+            <img src="//i.imgur.com/GnLRFm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/UOARn" target="_blank">
-            <img src="http://i.imgur.com/UOARnm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/UOARn" target="_blank">
+            <img src="//i.imgur.com/UOARnm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/9AxyU" target="_blank">
-            <img src="http://i.imgur.com/9AxyUm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/9AxyU" target="_blank">
+            <img src="//i.imgur.com/9AxyUm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/knTzK" target="_blank">
-            <img src="http://i.imgur.com/knTzKm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/knTzK" target="_blank">
+            <img src="//i.imgur.com/knTzKm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/mx9AW" target="_blank">
-            <img src="http://i.imgur.com/mx9AWm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/mx9AW" target="_blank">
+            <img src="//i.imgur.com/mx9AWm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/S6zx9" target="_blank">
-            <img src="http://i.imgur.com/S6zx9m.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/S6zx9" target="_blank">
+            <img src="//i.imgur.com/S6zx9m.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/2PbFf" target="_blank">
-            <img src="http://i.imgur.com/2PbFfm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/2PbFf" target="_blank">
+            <img src="//i.imgur.com/2PbFfm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/WNuEX" target="_blank">
-            <img src="http://i.imgur.com/WNuEXm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/WNuEX" target="_blank">
+            <img src="//i.imgur.com/WNuEXm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/HD108" target="_blank">
-            <img src="http://i.imgur.com/HD108m.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/HD108" target="_blank">
+            <img src="//i.imgur.com/HD108m.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/R5mq1" target="_blank">
-            <img src="http://i.imgur.com/R5mq1m.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/R5mq1" target="_blank">
+            <img src="//i.imgur.com/R5mq1m.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/pphBk" target="_blank">
-            <img src="http://i.imgur.com/pphBkm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/pphBk" target="_blank">
+            <img src="//i.imgur.com/pphBkm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-2">
-        <a href="http://imgur.com/uW0oK" target="_blank">
-            <img src="http://i.imgur.com/uW0oKm.jpg" class="img-responsive thumbnail">
+        <a href="https://imgur.com/uW0oK" target="_blank">
+            <img src="//i.imgur.com/uW0oKm.jpg" class="img-responsive thumbnail">
         </a>
     </div>
 </div>
@@ -177,8 +177,8 @@ Here are a bunch of close-ups of the Lapdock's controller board.
 <div class="row">
     <div class="col-xs-12">
         <div class="thumbnail">
-            <a href="http://imgur.com/n3Yv0" target="_blank">
-                <img src="http://i.imgur.com/n3Yv0h.jpg" class="img-responsive img-thumbnail">
+            <a href="https://imgur.com/n3Yv0" target="_blank">
+                <img src="//i.imgur.com/n3Yv0h.jpg" class="img-responsive img-thumbnail">
             </a>
             <div class="caption">Only a dream for now.</div>
         </div>
