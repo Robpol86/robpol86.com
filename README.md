@@ -4,6 +4,9 @@ This is my personal website. It's built with [Jekyll](http://jekyllrb.com/), gen
 [GitHub Pages](https://pages.github.com/), using a [Bootstrap3](http://getbootstrap.com/) theme (actually it's
 [Bootswatch](http://bootswatch.com/)).
 
+SSL is provided for free by [CloudFlare](https://www.cloudflare.com/). I followed
+[this guide](https://me.net.nz/blog/github-pages-secure-with-cloudflare/) while setting it up with GitHub Pages.
+
 Besides using Bootswatch, this theme is entireley "custom made" by me. It's kind of usable by others but some changes
 will probably have to be made if you want to fork this repo.
 
