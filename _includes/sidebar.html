@@ -24,7 +24,7 @@
             {% if page_title == post.title %}
                 <li class="active"><a href="#">{{ post.title }}</a></li>
             {% else %}
-                <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
             {% endif %}
         {% endif %}{% endfor %}
     </ul>

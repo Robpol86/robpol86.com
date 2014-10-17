@@ -49,7 +49,7 @@ my mind up to move to Cricket while I waited for a phone I liked to come out.
 1. Motorola Droid (US version, not the Milestone), rooted (probably) with SPRecovery (probably).
 2. [Drivers for your phone](https://www.motorola.com/consumers/v/index.jsp?vgnextoid=bda09ec8009a0210VgnVCM1000008806b00aRCRD).
 3. (probably?) [Android SDK](https://developer.android.com/sdk/index.html).
-4. [42900.zip]({{ site.baseurl }}/static/binaries/42900.zip) (unzip this to get 42900.prl).
+4. [42900.zip]({{ site.url }}{{ site.baseurl }}/static/binaries/42900.zip) (unzip this to get 42900.prl).
 5. [HW VSP Singleport 3.1.2](https://www.hw-group.com/products/hw_vsp/index_en.html#DOWNLOAD)
 6. CDMA Workshop 2.7 (google it).
 7. QPST 2.7.355 (google it).
