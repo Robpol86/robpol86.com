@@ -1,5 +1,4 @@
 gems:
-    - jekyll-redirect-from
     - jekyll-sitemap
 highlighter:    pygments
 lsi:            false
