@@ -1,5 +1,7 @@
 - name: colorclass
 
+- name: etaprogress
+
 - name: terminaltables
 
 - name: Flask-Celery-Helper
