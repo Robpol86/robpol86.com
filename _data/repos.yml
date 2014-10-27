@@ -2,6 +2,8 @@
 
 - name: etaprogress
 
+- name: jira-context
+
 - name: terminaltables
 
 - name: Flask-Celery-Helper
