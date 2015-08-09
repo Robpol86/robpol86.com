@@ -1,7 +1,0 @@
-gems:
-    - jekyll-sitemap
-highlighter:    pygments
-lsi:            false
-permalink:      /:categories/:title
-timezone:       America/Los_Angeles
-url:            https://robpol86.com

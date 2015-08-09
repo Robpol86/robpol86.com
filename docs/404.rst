@@ -1,0 +1,7 @@
+.. _404:
+
+=============
+404 Not Found
+=============
+
+This shouldn't happen. I'll fix it one day.
