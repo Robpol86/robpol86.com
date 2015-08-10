@@ -23,7 +23,7 @@ install:
 script:
   - cd docs
   - sphinx-build . _build/html
-  - sed -i 's|="_static|="/_static|g' _build/html/404.html
+  - sed -i -e '\|https\?://|! s|href="\(\w\)|href="/\1|g' -e 's|="_static|="/_static|g' _build/html/404.html
 
 after_success:
   - cd _build/html
