@@ -1,0 +1,25 @@
+language: python
+
+python:
+  - 3.4
+
+env:
+  - NFSN_DEST=/home/public
+
+before_install:
+  - touch .ssh_key && chmod 600 .ssh_key
+  - openssl aes-256-cbc -K $encrypted_fd059ec139f0_key -iv $encrypted_fd059ec139f0_iv -in nfsn.enc -out .ssh_key -d
+  - eval $(ssh-agent -s)
+  - ssh-add .ssh_key
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - cd docs
+  - sphinx-build . _build/html
+
+after_success:
+  - cd _build/html
+  - [ "$TRAVIS_BRANCH" != "master" ] && export NFSN_DEST="$NFSN_DEST/$TRAVIS_BRANCH"
+  - rsync -icrz --delete ./ $NFSN_LOGIN@ssh.phx.nearlyfreespeech.net:$NFSN_DEST
