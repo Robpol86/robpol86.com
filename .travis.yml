@@ -5,8 +5,13 @@ python:
 
 env:
   - NFSN_DEST=/home/public
+    NFSN_HOST=ssh.phx.nearlyfreespeech.net
+
+addons:
+  ssh_known_hosts: ssh.phx.nearlyfreespeech.net
 
 before_install:
+  - '[ "$TRAVIS_BRANCH" != "master" ] && export NFSN_DEST="$NFSN_DEST/$TRAVIS_BRANCH"'
   - touch .ssh_key && chmod 600 .ssh_key
   - openssl aes-256-cbc -K $encrypted_fd059ec139f0_key -iv $encrypted_fd059ec139f0_iv -in nfsn.enc -out .ssh_key -d
   - eval $(ssh-agent -s)
@@ -21,5 +26,4 @@ script:
 
 after_success:
   - cd _build/html
-  - [ "$TRAVIS_BRANCH" != "master" ] && export NFSN_DEST="$NFSN_DEST/$TRAVIS_BRANCH"
-  - rsync -icrz --delete ./ $NFSN_LOGIN@ssh.phx.nearlyfreespeech.net:$NFSN_DEST
+  - rsync -icrz --delete --delete-excluded --exclude={.doctrees,.buildinfo} ./ $NFSN_LOGIN@$NFSN_HOST:$NFSN_DEST
