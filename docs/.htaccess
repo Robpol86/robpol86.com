@@ -1,15 +1,1 @@
 ErrorDocument 404 /404.html
-
-RewriteEngine on
-RewriteRule Berto89 https://robpol86.com/rns_510_vim.html [R=301,L,NC]
-RewriteRule imagecfg https://robpol86.com/imagecfg.html [R=301,L,NC]
-RewriteRule Jetta https://robpol86.com/vw_jsw_2010.html [R=301,L,NC]
-RewriteRule Motion https://robpol86.com/rns_510_vim.html [R=301,L]
-RewriteRule ^index\.php/Atrix_Lapdock_Other_Uses https://robpol86.com/atrix_lapdock.html [R=301,L]
-RewriteRule ^index\.php/Flashing_Motorola_Droid_to_Cricket https://robpol86.com/flash_droid_cricket.html [R=301,L]
-RewriteRule ^index\.php/Lapdock_500_Teardown https://robpol86.com/atrix_lapdock.html [R=301,L]
-RewriteRule ^index\.php/US_RNS-510_Video_In_Motion https://robpol86.com/rns_510_vim.html [R=301,L]
-RewriteRule ^image\.php https://robpol86.com/photo_albums.html [R=301,L]
-RewriteRule ^menu\.php https://robpol86.com/ [R=301,L]
-RewriteRule index\.php https://robpol86.com/ [R=301,L]
-RewriteRule ^(.*)$ https://robpol86.com/$1 [R=301,L]
