@@ -337,3 +337,10 @@ you want to transmit.
 
 Usually this creates either one, two, and sometimes three QR codes in /tmp/ suffixed with numbers. After ``startx``
 loads the GUI open the images and scan them with your phone or whatever receiving device you are using.
+
+Receiving End
+`````````````
+
+1. Scan QR codes on an Android device one at a time.
+2. In "Barcode Scanner" choose "Share via email" and then select Dropbox.
+3. Once all files are in Dropbox run: ``cat [1-3].txt |base64 -D |openssl enc -aes-256-cfb -d |tar -xzvC ~/inbound_certs``
