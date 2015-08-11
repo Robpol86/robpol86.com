@@ -286,3 +286,22 @@ these additional certificates.
     chmod 444 certs/ca.cert.pem
     openssl req -key private/ca.key.pem -new -x509 -days 1827 -sha256 -extensions v3_ca -out certs/ca.cert.pem
     openssl x509 -noout -text -in certs/ca.cert.pem |more  # Confirm everything looks good.
+
+You're done generating your root certificate and private key. You're technically "done". However I'm sure you want to
+find out how you can actually use what you've made. Check out the sections below in `Frequent Tasks` for more
+information.
+
+For starters you'll want to export ``certs/ca.cert.pem`` and install it on all client computers. Read the
+`Bridging the Air Gap` section below.
+
+Frequent Tasks
+==============
+
+This section will contain additional sub sections with instructions on how to complete some tasks you may repeat for
+different use cases. Things like creating SSL certificates for one or more servers or how to bridge the air gap every
+time you create a new SSL cert.
+
+Bridging the Air Gap
+--------------------
+
+Copying certificate and SSL private keys from this air gapped...
