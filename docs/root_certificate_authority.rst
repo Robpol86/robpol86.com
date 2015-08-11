@@ -18,10 +18,11 @@ learned from https://jamielinux.com/docs/openssl-certificate-authority/index.htm
 2. I will not be creating an intermediate pair here. Since my intentions are just setting up SSL certs on a handful of
    internal web interfaces and maybe even WPA2 Enterprise one day, I didn't think it was worth setting this up. It might
    make revoking certs not as quick, but I don't see myself signing very many certs after my initial run.
-3. We'll include steps on how to bridge the `air gap <https://en.wikipedia.org/wiki/Air_gap_(networking)>`_. For maximum
+3. I'll include steps on how to bridge the `air gap <https://en.wikipedia.org/wiki/Air_gap_(networking)>`_. For maximum
    paranoid-tier security we will not be plugging in any USB flash drives (or USB anything excluding keyboards) or
    network cables. WiFi adapters are also obviously forbidden. For this we'll be using
    `qrencode <http://fukuchi.org/works/qrencode/>`_.
+4. I'll also include a note about setting up a dedicated domain name for your home network.
 
 The goal here is to setup an offline root CA. It will be online at first to get updates (this is optional) but right
 before generating the root pair we will remove any network connectivity from the host and never EVER connect it to any
@@ -97,21 +98,39 @@ from now on. When you get that prompt should run:
 
 After putting in your LUKS password just exit and it will keep booting like usual.
 
+In the section
+
 Copy the OpenSSL Config
 =======================
+
+.. note::
+
+    Based on a few `articles <http://www.mdmarra.com/2012/11/why-you-shouldnt-use-local-in-your.html>`_ I've
+    `found <http://serverfault.com/questions/71052/choosing-local-versus-public-domain-name-for-active-directory>`_
+    while `considering <http://serverfault.com/questions/17255/top-level-domain-domain-suffix-for-private-network>`_
+    which domain to use at home, I thought I would mention it here even though it's more of a
+    network-related topic rather than an SSL/Certificate topic. I highly encourage you to either purchase a dedicated
+    domain name for your home network or at least use a dedicated subdomain on a domain you already own.
+
+    In the table below I'll use ``myhome.net`` as an example. Org Name is just a name so in this case the value would be
+    "MyHome.net". If you used ``home.mycooldomain.com`` then the Org Name equivalent may be "Home.MyCoolDomain.com". It
+    can actually be set to anything but this is what I've done for my home network.
 
 Copy the following to ``/etc/ssl/openssl.cnf``. Paste/copy the following and overwrite whatever was in there
 before. It's still ok to have network access for this part.
 
 You'll have to replace the following values:
 
-======================= ======================================================= =============
-To Replace              Replace With                                            Example
-======================= ======================================================= =============
-REPLACE_ME_COUNTRY_NAME The two-letter ISO abbreviation for your country        US
-REPLACE_ME_STATE_NAME   The state or province where you live. No abbreviations. California
-REPLACE_ME_LOCALITY     The city where you are located.                         San Francisco
-======================= ======================================================= =============
+=================== =================================================== =============
+To Replace          Replace With                                        Example
+=================== =================================================== =============
+SUB_COUNTRY_NAME    Two-letter ISO abbreviation for your country.       US
+SUB_STATE_NAME      State or province where you live. No abbreviations. California
+SUB_LOCALITY        City where you are located.                         San Francisco
+SUB_ORG_NAME        Name of your organization.                          MyHome.net
+SUB_UNIT_NAME       Section of the organization.                        Home
+SUB_EMAIL           Your contact email.                                 xx@yy.zz
+=================== =================================================== =============
 
 .. code-block:: ini
 
@@ -177,12 +196,12 @@ REPLACE_ME_LOCALITY     The city where you are located.                         
     emailAddress                    = Email Address
 
     # Optionally, specify some defaults.
-    countryName_default             = REPLACE_ME_COUNTRY_NAME
-    stateOrProvinceName_default     = REPLACE_ME_STATE_NAME
-    localityName_default            = REPLACE_ME_LOCALITY
-    0.organizationName_default      = REPLACE_ME_ORG_NAME
-    organizationalUnitName_default  = REPLACE_ME_UNIT_NAME
-    emailAddress_default            = REPLACE_ME_EMAIL
+    countryName_default             = SUB_COUNTRY_NAME
+    stateOrProvinceName_default     = SUB_STATE_NAME
+    localityName_default            = SUB_LOCALITY
+    0.organizationName_default      = SUB_ORG_NAME
+    organizationalUnitName_default  = SUB_UNIT_NAME
+    emailAddress_default            = SUB_EMAIL
 
     [ v3_ca ]
     # Extensions for a typical CA (`man x509v3_config`).
@@ -230,3 +249,40 @@ This is the moment we've all been waiting for! Remove all USB devices (sans keyb
 this is on a Raspberry Pi either swap it out with a Model A (the one without an ethernet port), or fill in the ethernet
 port with hot glue. Do the same with all but one USB ports. Or just be super duper sure never to plug in things when
 using this SD card.
+
+OpenSSL Directory Structure
+===========================
+
+Everything will live in ``/root/ca``. It will also all be owned by root. Remember this computer is a dedicated CA so it
+won't be doing anything else at all except hosting your very important root certificate private key and the root
+certificate itself.
+
+Run these commands as root:
+
+.. code-block:: bash
+
+    mkdir /root/ca; cd /root/ca; mkdir certs crl csr newcerts private
+    chmod 700 private; touch index.txt
+    echo 1000 > serial
+
+Finally Generate the Pair
+=========================
+
+This is where we actually generate the root key and certificate. The root key is used to sign additional certificate
+pairs for specific devices/servers, and the root certificate is what you'll export to clients that should trust any of
+these additional certificates.
+
+.. note::
+    The ``openssl req`` command will prompt you for some information. The defaults you've specified in openssl.cnf will
+    be fine. However it will prompt you for "Common Name". Put in the fully qualified domain name of this certificate
+    authority.
+
+.. code-block:: bash
+
+    touch private/ca.key.pem
+    chmod 400 private/ca.key.pem
+    openssl genrsa -aes256 -out private/ca.key.pem 8192  # This took 15 minutes to run.
+    touch certs/ca.cert.pem
+    chmod 444 certs/ca.cert.pem
+    openssl req -key private/ca.key.pem -new -x509 -days 1827 -sha256 -extensions v3_ca -out certs/ca.cert.pem
+    openssl x509 -noout -text -in certs/ca.cert.pem |more  # Confirm everything looks good.
