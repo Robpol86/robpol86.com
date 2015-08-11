@@ -304,4 +304,36 @@ time you create a new SSL cert.
 Bridging the Air Gap
 --------------------
 
-Copying certificate and SSL private keys from this air gapped...
+Here we will go over how to transfer files from the offline and air gapped root CA to your computer so you can transmit
+public data such as certificates.
+
+Transmitting data entails two parts:
+
+1. Transmitting from the root CA using a QR code displayed in a terminal window.
+2. Receiving the data on your workstation using your Android phone.
+
+This guide focuses on Android phones since that's all I have but it should work fine on any platform provided there's
+good QR code reading software.
+
+Transmitting Files
+``````````````````
+
+With these commands we will tar up the files we intend to transmit, encrypt them for safety, base64 the encrypted binary
+data into a string, pass it to ``qrencode``, and finally display the QR codes(s) to be scanned by the receiver. Run
+these commands on your Raspberry Pi (or whatever is your root CA). Be sure to replace ``FILE1`` with one or more files
+you want to transmit.
+
+.. note::
+    Since certificates and keys are relatively large we need the "high resolution" provided by a graphical user
+    interface. Having a 1024x768 screen buffer isn't enough to transmit data unless you really enjoy scanning tons of QR
+    codes and reassembling them manually.
+
+.. code-block:: bash
+
+    cd /root/ca
+    rm /tmp/qr*.png  # Remove any previously created QR codes.
+    tar -czv FILE1 |openssl enc -aes-256-cfb -salt |base64 -w0 |qrencode -o /tmp/qr.png -Sv40
+    startx
+
+Usually this creates either one, two, and sometimes three QR codes in /tmp/ suffixed with numbers. After ``startx``
+loads the GUI open the images and scan them with your phone or whatever receiving device you are using.
