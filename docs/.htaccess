@@ -16,3 +16,6 @@ RewriteRule index\.php https://robpol86.com/ [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule imagecfg https://robpol86.com/imagecfg.html [R=301,L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule lapdock https://robpol86.com/atrix_lapdock.html [R=301,L,NC]
