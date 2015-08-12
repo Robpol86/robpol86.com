@@ -104,8 +104,6 @@ from now on. When you get that prompt should run:
 
 After putting in your LUKS password just exit and it will keep booting like usual.
 
-In the section
-
 Copy the OpenSSL Config
 =======================
 
