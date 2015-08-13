@@ -2,7 +2,6 @@ ErrorDocument 404 /404.html
 
 RewriteEngine on
 RewriteBase /
-RewriteRule Berto89 https://robpol86.com/rns_510_vim.html [R=301,L,NC]
 RewriteRule Jetta https://robpol86.com/vw_jsw_2010.html [R=301,L,NC]
 RewriteRule Motion https://robpol86.com/rns_510_vim.html [R=301,L]
 RewriteRule workspaces https://robpol86.com/photo_albums.html [R=301,L]
@@ -19,3 +18,6 @@ RewriteRule imagecfg https://robpol86.com/imagecfg.html [R=301,L,NC]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule lapdock https://robpol86.com/atrix_lapdock.html [R=301,L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule Berto89 https://robpol86.com/rns_510_vim.html [R=301,L,NC]

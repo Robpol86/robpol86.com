@@ -77,7 +77,7 @@ At this point you should be able to insert a DVD while driving and the screen wi
 Download
 ========
 
-:download:`Here is the zip file with both ISOs. <RECODE_VIM_Berto89.zip>`
+:download:`RECODE_VIM_Berto89.zip`
 
 References
 ==========
