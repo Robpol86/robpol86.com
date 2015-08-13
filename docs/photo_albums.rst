@@ -30,6 +30,13 @@ July 13th, 2015
 
 .. imgur-embed:: a/hWyW0
 
+October 25th, 2013
+------------------
+
+:imgur-description:`a/1ncP4`
+
+.. imgur-embed:: a/1ncP4
+
 Comments
 ========
 
