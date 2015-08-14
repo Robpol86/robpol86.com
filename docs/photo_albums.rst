@@ -37,6 +37,13 @@ October 25th, 2013
 
 .. imgur-embed:: a/1ncP4
 
+August 21st, 2012
+-----------------
+
+:imgur-description:`a/lBGaa`
+
+.. imgur-embed:: a/lBGaa
+
 Comments
 ========
 
