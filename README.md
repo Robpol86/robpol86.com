@@ -1,13 +1,10 @@
 # Robpol86.com
 
-This is my personal website. It's built with [Jekyll](http://jekyllrb.com/), generously hosted for free on
-[GitHub Pages](https://pages.github.com/), using a [Bootstrap3](http://getbootstrap.com/) theme (actually it's
-[Bootswatch](http://bootswatch.com/)).
+This is my personal website. It's built with [Sphinx](http://sphinx-doc.org/), hosted on 
+[NearlyFreeSpeech.NET](https://www.nearlyfreespeech.net/), using the 
+[Read the Docs Theme](https://github.com/snide/sphinx_rtd_theme) theme.
 
-SSL is provided for free by [CloudFlare](https://www.cloudflare.com/). I followed
-[this guide](https://me.net.nz/blog/github-pages-secure-with-cloudflare/) while setting it up with GitHub Pages.
+SSL is provided for free by [CloudFlare](https://www.cloudflare.com/).
 
-Besides using Bootswatch, this theme is entireley "custom made" by me. It's kind of usable by others but some changes
-will probably have to be made if you want to fork this repo.
-
-If you do want to fork it, the "main" file would be **_layouts/post.html**.
+I use [Travis CI](https://travis-ci.org/) to automatically build and push HTML files to NFSN (using rsync) every time I 
+push them to this GitHub repo.
