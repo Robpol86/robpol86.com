@@ -45,7 +45,7 @@ air gap).
    ahead and ``sudo apt-get update && sudo apt-get upgrade``. I followed
    `Raspbian Setup (Raspberry Pi) <https://gist.github.com/Robpol86/3d4730818816f866452e>`_ (you don't need to install
    any of those packages in that link, just upgrade).
-2. Ok now install these required packages: ``sudo apt-get install busybox cryptsetup pv qrencode``
+2. Ok now install these required packages: ``sudo apt-get install busybox cryptsetup pv qrencode acl``
 
 Full Disk Encryption
 --------------------
@@ -291,6 +291,11 @@ This is where we actually generate the root key and certificate. The root key is
 pairs for specific devices/servers, and the root certificate is what you'll export to clients that should trust any of
 these additional certificates.
 
+.. warning::
+    The root key ``ca.key.pem`` you'll be generating is the most sensitive file on this dedicated computer. Keep it as
+    secure as possible. When ``openssl genrsa`` asks you for a password enter a unique and very secure password. Make
+    sure ``setfacl`` worked and the permissions are: ``-r-------- 1 root root 1.8K Aug 15 12:21 private/ca.key.pem``
+
 .. note::
     The ``openssl req`` command will prompt you for some information. The defaults you've specified in openssl.cnf will
     be fine. However it will prompt you for "Common Name". Put in the fully qualified domain name of this certificate
@@ -376,20 +381,18 @@ certificate and its private key. You'll need to install both files on the web se
 very sensitive and is used to sign SSL sessions to keep it secure as you transfer it to the web server!
 
 .. note::
-    Two things. When prompted for a pass phrase, enter nothing. Leave it blank and just press enter. Usually when your
-    web server restarts you don't want it asking for a password to unlock the private key. Second, when asked for a
-    "Common Name" you'll need to enter the web server's FQDN. So instead of accessing your router admin page using
-    http://192.168.0.1 you'll instead be using https://router.myhome.net for example. Common Name here will be
-    ``router.myhome.net``.
+    When asked for a "Common Name" you'll need to enter the web server's FQDN. So instead of accessing your router admin
+    page using http://192.168.0.1 you'll instead be using https://router.myhome.net for example. Common Name here will
+    be ``router.myhome.net``.
 
-On the Raspberry Pi run these commands. The substitute ``router.myhome.net`` with whatever FQDN your target web server
+On the Raspberry Pi run these commands. Substitute ``router.myhome.net`` with whatever FQDN your target web server
 will use.
 
 .. code-block:: bash
 
     cd /root/ca
     openssl genrsa -out private/router.myhome.net.key.pem 4096
-    openssl req -key private/router.myhome.net.key.pem -new -sha256 -out csr/router.myhome.net.csr.pem  # No pass phrase; CN is FQDN.
+    openssl req -key private/router.myhome.net.key.pem -new -sha256 -out csr/router.myhome.net.csr.pem  # CN is FQDN.
     openssl ca -extensions server_cert -days 365 -notext -md sha256 -in csr/router.myhome.net.csr.pem -out certs/router.myhome.net.cert.pem
     rm csr/router.myhome.net.csr.pem
     openssl x509 -noout -text -in certs/router.myhome.net.cert.pem |more  # Confirm everything looks good.
