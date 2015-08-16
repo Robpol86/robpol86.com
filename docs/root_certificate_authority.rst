@@ -347,7 +347,8 @@ Run these commands on your Raspberry Pi. Be sure to replace ``FILES`` with one o
 
 .. note::
     The large command involving "openssl enc" will prompt you for a password. You'll only use this password once when
-    you decrypt the data on the receiving computer in the next section.
+    you decrypt the data on the receiving computer in the next section. I use this command to generate a random password
+    15 to 25 characters long: ``openssl rand -base64 45 |cut -c -$((15+RANDOM%11))``
 
 .. code-block:: bash
 
@@ -379,6 +380,11 @@ Issuing Server Certificates
 This section covers issuing SSL certificates for web servers such as router admin pages. We will generate an SSL
 certificate and its private key. You'll need to install both files on the web server. Keep in mind the private key is
 very sensitive and is used to sign SSL sessions to keep it secure as you transfer it to the web server!
+
+.. warning::
+    Keep in mind that since your Raspberry Pi never again will access the internet its clock will be frozen in time
+    whenever it's powered off. Before issuing any certs manually update the time with something like:
+    ``sudo date -s "Aug 15 18:10"``
 
 .. note::
     When asked for a "Common Name" you'll need to enter the web server's FQDN. So instead of accessing your router admin
