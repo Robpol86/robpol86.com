@@ -24,7 +24,7 @@ html_context = dict(
     source_suffix='.rst',
 )
 html_copy_source = False
-html_extra_path = ['.htaccess', 'robots.txt']
+html_extra_path = ['_downloads']
 html_favicon = 'favicon.ico'
 html_show_copyright = False
 html_theme = 'sphinx_rtd_theme'
