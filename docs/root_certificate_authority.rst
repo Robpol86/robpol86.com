@@ -347,13 +347,14 @@ Run these commands on your Raspberry Pi. Be sure to replace ``FILES`` with one o
 
 .. note::
     The large command involving "openssl enc" will prompt you for a password. You'll only use this password once when
-    you decrypt the data on the receiving computer in the next section. I use this command to generate a random password
-    15 to 25 characters long: ``openssl rand -base64 45 |cut -c -$((15+RANDOM%11))``
+    you decrypt the data on the receiving computer in the next section. I use the ``openssl rand`` command to generate a
+    random password 15 to 25 characters long.
 
 .. code-block:: bash
 
     rm /tmp/qr*.png  # Remove any previously created QR codes.
-    tar -czv FILES |openssl enc -aes-256-cfb -salt |base64 -w0 |qrencode -o /tmp/qr.png -Sv40
+    openssl rand -base64 45 |cut -c -$((15+RANDOM%11)) |tee /tmp/pw.txt
+    tar -czv FILES |openssl enc -aes-256-cfb -salt -pass file:/tmp/pw.txt |base64 -w0 |qrencode -o /tmp/qr.png -Sv40
     startx  # Only needed if you don't already run a GUI.
 
 This creates either one or more QR codes in ``/tmp`` suffixed with numbers. After ``startx`` loads the GUI open the
