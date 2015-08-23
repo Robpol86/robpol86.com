@@ -18,3 +18,4 @@ Contents
     vw_jsw_2010
     photo_albums
     root_certificate_authority
+    bareos_tape_backup
