@@ -1,8 +1,8 @@
 .. _bareos_tape_backup:
 
-==================
-Bareos Tape Backup
-==================
+============================
+Bareos Tape Backup on a 124T
+============================
 
 I use `Bareos <https://www.bareos.org/en/>`_ (a fork of `Bacula <http://bacula.org/>`_) to backup my data at home from a
 Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it's probably
