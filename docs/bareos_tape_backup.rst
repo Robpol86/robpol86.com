@@ -47,8 +47,8 @@ First we need to make sure the tape drive and autoloader have been detected by t
 .. code-block:: none
 
     $ lsscsi -g
-    [0:0:6:0]    tape    IBM      ULTRIUM-TD3      93GM  /dev/st0   /dev/sg1
-    [0:0:6:1]    mediumx DELL     PV-124T          0085  /dev/sch0  /dev/sg2
+    [0:0:6:0]    tape    IBM      ULTRIUM-TD3      93GM  /dev/st0   /dev/sg2
+    [0:0:6:1]    mediumx DELL     PV-124T          0085  /dev/sch0  /dev/sg3
 
 If you don't see any ``sg`` devices you can try these commands, I had to run them on my CentOS installation:
 
@@ -126,7 +126,7 @@ not plan on
       director = myserver-dir = all, !skipped, !restored
     }
 
-For the storage daemon substitute ``/dev/sg2`` and ``/dev/nst0`` below with the device files found on your system. We'll
+For the storage daemon substitute ``/dev/sg3`` and ``/dev/nst0`` below with the device files found on your system. We'll
 be verifying them in the next section.
 
 .. code-block:: kconfig
@@ -145,7 +145,7 @@ be verifying them in the next section.
     Autochanger {
       Name = PV-124T
       Device = ULTRIUM-TD3
-      Changer Device = /dev/sg2
+      Changer Device = /dev/sg3
       Changer Command = "/usr/lib/bareos/scripts/mtx-changer %c %o %S %a %d"
     }
 
@@ -196,14 +196,14 @@ Next we'll test the autoloader as well as the storage daemon config:
 
 .. code-block:: bash
 
-    sudo mtx -f /dev/sg2 inquiry  # Test autoloader.
+    sudo mtx -f /dev/sg3 inquiry  # Test autoloader.
     sudo btape /dev/nst0  # Run "test" in the console.
 
 This is what I got when I ran those two commands:
 
 .. code-block:: none
 
-    $ sudo mtx -f /dev/sg2 inquiry
+    $ sudo mtx -f /dev/sg3 inquiry
     Product Type: Medium Changer
     Vendor ID: 'DELL    '
     Product ID: 'PV-124T         '
@@ -692,6 +692,26 @@ Remove any tapes from the drive.
 Finally run ``find /home/bareos/tmp/restores/home/bareos/selftest/ -type f -exec sha1sum {} \+`` and compare sha sums.
 You can test if your data is actually encrypted by temporarily removing the PKI lines from ``bareos-fd.conf`` and
 running the ``restore`` command again.
+
+Reusing Old Tapes
+=================
+
+Several years ago before Bareos I used Bacula. I consider the data on my old tapes as disposable and I want to start
+fresh. Unfortunately Bareos (and Bacula) doesn't have an easy way to reuse tapes. The best method I've found was to
+manually wipe them. I run these commands:
+
+.. code-block:: bash
+
+    # Stop Bareos services.
+    for s in dir sd fd; do sudo systemctl stop bareos-$s.service; done
+    # Make sure drive is unlocked and unloaded. Also which slots tapes are in.
+    sudo mtx -f /dev/sg3 status
+    # Wipe selected tapes. Here {1..16} expands to all 16 slots.
+    for t in {1..16}; do
+        sudo mtx -f /dev/sg3 load $t 0
+        sudo mt -f /dev/nst0 weof
+        sudo mtx -f /dev/sg3 unload $t 0
+    done
 
 Comments
 ========
