@@ -100,7 +100,7 @@ a bad idea to grant login privileges to bareos).
 File/Storage Daemon Config
 --------------------------
 
-Overwrite these two files. Make sure to substitute ``myserver`` with the original setting. Omit the PKI lines if you do
+Overwrite these two files. Make sure to substitute ``moops`` with the original setting. Omit the PKI lines if you do
 not plan on
 `encrypting your backup file data <http://doc.bareos.org/master/html/bareos-manual-main-reference.html#x1-30500027.2>`_.
 
@@ -108,22 +108,22 @@ not plan on
 
     # /etc/bareos/bareos-fd.conf
     Director {
-      Name = myserver-dir
+      Name = moops-dir
       Password = "PUT_ORIGINAL_VALUE_HERE"
     }
 
     FileDaemon {
-      Name = myserver-fd
+      Name = moops-fd
       Maximum Concurrent Jobs = 20
       PKI Signatures = Yes  # Enable Data Signing
       PKI Encryption = Yes  # Enable Data Encryption
-      PKI Keypair = /etc/bareos/myserver-fd.pem  # Public and Private Keys
+      PKI Keypair = /etc/bareos/moops-fd.pem  # Public and Private Keys
       PKI Master Key = /etc/bareos/master.cert  # ONLY the Public Key
     }
 
     Messages {
       Name = Standard
-      director = myserver-dir = all, !skipped, !restored
+      director = moops-dir = all, !skipped, !restored
     }
 
 For the storage daemon substitute ``/dev/sg3`` and ``/dev/nst0`` below with the device files found on your system. We'll
@@ -133,12 +133,12 @@ be verifying them in the next section.
 
     # /etc/bareos/bareos-sd.conf
     Storage {
-      Name = myserver-sd
+      Name = moops-sd
       Maximum Concurrent Jobs = 20
     }
 
     Director {
-      Name = myserver-dir
+      Name = moops-dir
       Password = "PUT_ORIGINAL_VALUE_HERE"
     }
 
@@ -171,7 +171,7 @@ be verifying them in the next section.
 
     Messages {
       Name = Standard
-      director = myserver-dir = all
+      director = moops-dir = all
     }
 
 Verify Storage Config
@@ -459,7 +459,7 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
 
     # Where I store my files.
     FileSet {
-      Name = OSXMain
+      Name = BoscoMain
       Include {
         Options {
           CheckFileChanges = yes
@@ -467,27 +467,13 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
           Signature = SHA1
           Verify = 1
         }
-        File = /home/bareos/osx/Main
-      }
-    }
-
-    # Time machine.
-    FileSet {
-      Name = OSXBackups
-      Include {
-        Options {
-          CheckFileChanges = yes
-          NoATime = yes
-          Signature = SHA1
-          Verify = 1
-        }
-        File = /home/bareos/osx/Backups.backupdb
+        File = /home/bareos/bosco/Main
       }
     }
 
     # Other files to backup.
     FileSet {
-      Name = OSXOld
+      Name = BoscoOld
       Include {
         Options {
           CheckFileChanges = yes
@@ -495,7 +481,7 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
           Signature = SHA1
           Verify = 1
         }
-        File = /home/bareos/osx/Old
+        File = /home/bareos/bosco/Old
       }
     }
 
@@ -508,7 +494,7 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
       Name = DefaultJob
       Type = Backup
       Level = Full
-      Client = myserver-fd
+      Client = moops-fd
       Storage = Tape
       Messages = Standard
       Pool = Full
@@ -531,22 +517,22 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
     }
 
     Job {
-      Name = BackupOSXMain
-      FileSet = OSXMain
+      Name = BackupBoscoMain
+      FileSet = BoscoMain
       JobDefs = DefaultJob
       Priority = 8
     }
 
     Job {
-      Name = BackupOSXBackups
-      FileSet = OSXBackups
+      Name = BackupBoscoBackups
+      FileSet = BoscoBackups
       JobDefs = DefaultJob
       Priority = 9
     }
 
     Job {
-      Name = BackupOSXOld
-      FileSet = OSXOld
+      Name = BackupBoscoOld
+      FileSet = BoscoOld
       JobDefs = DefaultJob
       Priority = 10
     }
@@ -555,8 +541,8 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
     Job {
       Name = RestoreFiles
       Type = Restore
-      Client = myserver-fd
-      FileSet = OSXMain
+      Client = moops-fd
+      FileSet = BoscoMain
       Storage = File
       Pool = Full
       Messages = Standard
@@ -570,7 +556,7 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
     @/etc/bareos/bareos-dir.d/jobs.conf
 
     Director {
-      Name = myserver-dir
+      Name = moops-dir
       QueryFile = /usr/lib/bareos/scripts/query.sql
       Maximum Concurrent Jobs = 10
       Password = "PUT_ORIGINAL_VALUE_HERE"  # Console password
@@ -579,14 +565,14 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
     }
 
     Client {
-      Name = myserver-fd
-      Address = myserver.myhome.net
+      Name = moops-fd
+      Address = moops.myhome.net
       Password = "PUT_ORIGINAL_VALUE_HERE"
     }
 
     Storage {
       Name = Tape
-      Address = myserver.myhome.net
+      Address = moops.myhome.net
       Auto Changer = yes
       Password = "PUT_ORIGINAL_VALUE_HERE"
       Device = PV-124T
@@ -595,7 +581,7 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
 
     Storage {
       Name = File
-      Address = myserver.myhome.net
+      Address = moops.myhome.net
       Password = "PUT_ORIGINAL_VALUE_HERE"
       Device = FileStorage
       Media Type = File
@@ -712,6 +698,16 @@ manually wipe them. I run these commands:
         sudo mt -f /dev/nst0 weof
         sudo mtx -f /dev/sg3 unload $t 0
     done
+
+Backing Up Data
+===============
+
+These are the commands I run to backup my data.
+
+.. code-block:: bash
+
+    # On the client.
+    rsync -irtv --delete Main Old moops:/home/bareos/bosco
 
 Comments
 ========
