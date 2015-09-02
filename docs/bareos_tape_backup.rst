@@ -511,7 +511,7 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
       Name = BackupCatalog
       FileSet = Catalog
       JobDefs = DefaultJob
-      RunBeforeJob = "/usr/lib/bareos/scripts/make_catalog_backup.pl MyCatalog"
+      RunBeforeJob = "/usr/lib/bareos/scripts/make_catalog_backup.pl Catalog"
       RunAfterJob  = /usr/lib/bareos/scripts/delete_catalog_backup
       Priority = 11
     }
@@ -521,13 +521,6 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
       FileSet = BoscoMain
       JobDefs = DefaultJob
       Priority = 8
-    }
-
-    Job {
-      Name = BackupBoscoBackups
-      FileSet = BoscoBackups
-      JobDefs = DefaultJob
-      Priority = 9
     }
 
     Job {
@@ -708,6 +701,26 @@ These are the commands I run to backup my data.
 
     # On the client.
     rsync -irtv --delete Main Old moops:/home/bareos/bosco
+
+.. code-block:: bash
+
+    # On the server.
+    sudo su -c 'for f in /sys/class/scsi_host/host*/scan; do echo "- - -" > $f; done'
+    lsscsi -g  # Verify autoloader and tape drive are present.
+    sudo systemctl start mariadb.service
+    for s in fd sd dir; do sudo systemctl start bareos-$s.service; done
+    sudo mtx -f /dev/sg3 status  # Verify tape drive (element 0) is empty.
+    sudo bconsole
+
+.. code-block:: bash
+
+    # In bconsole on the server.
+    update slots
+    list volumes  # If new tapes are present, run label barcodes
+    run job=BackupBoscoMain
+    run job=BackupBoscoOld
+    run job=BackupCatalog
+    status client
 
 Comments
 ========
