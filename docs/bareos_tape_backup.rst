@@ -722,6 +722,21 @@ These are the commands I run to backup my data.
     run job=BackupCatalog
     status client
 
+Once all three jobs finish (you can queue them up at the same time) you're done. I always eject all tapes and store them
+off-site, so I run these commands within ``bconsole``:
+
+.. code-block:: bash
+
+    unmount Tape  # Unloads the last tape from the drive.
+    list jobs
+    list volumes jobid=1 jobid=2 jobid=3
+
+Then I use my `tape_bulk_eject.py <https://github.com/Robpol86/tape_bulk_eject>`_ tool to eject all those tapes:
+
+.. code-block:: bash
+
+    ./tape_bulk_eject.py "000039L3|000031L3" "000031L3|000021L3|000032L3|000033L3|000030L3"
+
 Comments
 ========
 
