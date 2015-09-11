@@ -732,10 +732,13 @@ off-site, so I run these commands within ``bconsole``:
     list jobs
     list volumes jobid=1 jobid=2 jobid=3
 
-Then I use my `tape_bulk_eject.py <https://github.com/Robpol86/tape_bulk_eject>`_ tool to eject all those tapes:
+Then I use my `tape_bulk_eject.py <https://github.com/Robpol86/tape_bulk_eject>`_ tool to eject all those tapes. I also
+stop all services since I don't leave my autoloader running all the time (it's too loud for my living room).
 
 .. code-block:: bash
 
+    for s in dir sd fd; do sudo systemctl stop bareos-$s.service; done
+    sudo systemctl stop mariadb.service
     ./tape_bulk_eject.py "000039L3|000031L3" "000031L3|000021L3|000032L3|000033L3|000030L3"
 
 Comments
