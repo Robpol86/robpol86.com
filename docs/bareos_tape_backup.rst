@@ -604,10 +604,12 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
 
     Pool {
       Name = Full
-      Pool Type = Backup
-      Recycle = yes
       AutoPrune = yes
       Label Format = Full-
+      Pool Type = Backup
+      Recycle = yes
+      VolumeRetention = 20d
+      VolumeUseDuration = 3d
     }
 
     Pool {
