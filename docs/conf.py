@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 import sphinx_rtd_theme
 
@@ -9,7 +10,7 @@ extensions = ['sphinxcontrib.disqus', 'sphinxcontrib.imgur']
 master_doc = 'index'
 nitpicky = True
 project = 'Robpol86.com'
-release = '1.0'
+release = datetime.utcnow().strftime('%Y.%m.%d')
 templates_path = ['_templates']
 version = release
 
