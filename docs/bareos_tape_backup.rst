@@ -104,6 +104,12 @@ Overwrite these two files. Make sure to substitute ``moops`` with the original s
 not plan on
 `encrypting your backup file data <http://doc.bareos.org/master/html/bareos-manual-main-reference.html#x1-30500027.2>`_.
 
+.. warning::
+
+    While Bareos does support encryption, ``bscan`` and ``bextract`` do not! This means if you ever lose your Bareos
+    server and you do not have a clear-text backup of your MySQL database, you won't be able to restore the catalog
+    from tape (even if you have your encryption keys) without a lot of manual and unsupported work.
+
 .. code-block:: kconfig
 
     # /etc/bareos/bareos-fd.conf
@@ -512,7 +518,7 @@ like that you can just merge these into ``bareos-dir.conf`` and it'll work just 
       FileSet = Catalog
       JobDefs = DefaultJob
       RunBeforeJob = "/usr/lib/bareos/scripts/make_catalog_backup.pl Catalog"
-      RunAfterJob  = /usr/lib/bareos/scripts/delete_catalog_backup
+      # RunAfterJob  = /usr/lib/bareos/scripts/delete_catalog_backup
       Priority = 11
     }
 
@@ -724,6 +730,14 @@ These are the commands I run to backup my data.
     run job=BackupBoscoOld
     run job=BackupCatalog
     status client
+
+Finally you'll want to backup your Bareos database somewhere in case you need to restore the catalog on another machine
+or if you lose your Bareos/MySQL server. You only need to do this if you encrypt your tapes.
+
+.. code-block:: bash
+
+    sudo cat /var/lib/bareos/bareos.sql |gzip -9 > ~/bareos.sql.gz
+    sudo rm /var/lib/bareos/bareos.sql
 
 Once all three jobs finish (you can queue them up at the same time) you're done. I always eject all tapes and store them
 off-site, so I run these commands within ``bconsole``:
