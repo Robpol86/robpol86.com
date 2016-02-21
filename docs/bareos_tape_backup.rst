@@ -731,14 +731,6 @@ These are the commands I run to backup my data.
     run job=BackupCatalog
     status client
 
-Finally you'll want to backup your Bareos database somewhere in case you need to restore the catalog on another machine
-or if you lose your Bareos/MySQL server. You only need to do this if you encrypt your tapes.
-
-.. code-block:: bash
-
-    sudo cat /var/lib/bareos/bareos.sql |gzip -9 > ~/bareos.sql.gz
-    sudo rm /var/lib/bareos/bareos.sql
-
 Once all three jobs finish (you can queue them up at the same time) you're done. I always eject all tapes and store them
 off-site, so I run these commands within ``bconsole``:
 
@@ -747,6 +739,14 @@ off-site, so I run these commands within ``bconsole``:
     unmount Tape  # Unloads the last tape from the drive.
     list jobs
     list volumes jobid=1 jobid=2 jobid=3
+
+Finally you'll want to backup your Bareos database somewhere in case you need to restore the catalog on another machine
+or if you lose your Bareos/MySQL server. You only need to do this if you encrypt your tapes.
+
+.. code-block:: bash
+
+    sudo cat /var/lib/bareos/bareos.sql |gzip -9 > ~/bareos.sql.gz
+    sudo rm /var/lib/bareos/bareos.sql
 
 Then I use my `tape_bulk_eject.py <https://github.com/Robpol86/tape_bulk_eject>`_ tool to eject all those tapes. I also
 stop all services since I don't leave my autoloader running all the time (it's too loud for my living room).
