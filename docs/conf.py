@@ -1,25 +1,26 @@
-import os
-from datetime import datetime
+"""Sphinx configuration file."""
 
-import sphinx_rtd_theme
+import os
+import time
+from datetime import datetime
 
 
 # General configuration.
 author = 'Robpol86'
-extensions = ['sphinxcontrib.disqus', 'sphinxcontrib.imgur']
+copyright = '{}, {}'.format(time.strftime('%Y'), author)
 master_doc = 'index'
-nitpicky = True
 project = 'Robpol86.com'
-release = datetime.utcnow().strftime('%Y.%m.%d')
+pygments_style = 'friendly'
+release = version = datetime.utcnow().strftime('%Y.%m.%d')
 templates_path = ['_templates']
-version = release
+extensions = list()
 
 
 # Options for HTML output.
 html_context = dict(
     conf_py_path='/docs/',
     display_github=True,
-    github_repo=os.environ.get('TRAVIS_REPO_SLUG', '/robpol86.com').split('/', 1)[1],
+    github_repo=os.environ.get('TRAVIS_REPO_SLUG', '/' + project).split('/', 1)[1],
     github_user=os.environ.get('TRAVIS_REPO_SLUG', 'robpol86/').split('/', 1)[0],
     github_version=os.environ.get('TRAVIS_BRANCH', 'master'),
     source_suffix='.rst',
@@ -27,12 +28,15 @@ html_context = dict(
 html_copy_source = False
 html_extra_path = ['.htaccess', 'robots.txt']
 html_favicon = 'favicon.ico'
-html_show_copyright = False
 html_theme = 'sphinx_rtd_theme'
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_title = project
 
 
-# Options for extensions.
+# disqus
+extensions.append('sphinxcontrib.disqus')
 disqus_shortname = 'rob86wiki'
+
+
+# imgur
+extensions.append('sphinxcontrib.imgur')
 imgur_client_id = '13d3c73555f2190'

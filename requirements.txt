@@ -1,5 +1,4 @@
-Sphinx
-sphinx-autobuild
-sphinx_rtd_theme
-sphinxcontrib-disqus
-sphinxcontrib-imgur
+Sphinx==1.4.5
+sphinx_rtd_theme==0.1.10a0
+sphinxcontrib-disqus==1.1.0
+sphinxcontrib-imgur==1.0.0
