@@ -37,6 +37,11 @@ extensions.append('sphinxcontrib.disqus')
 disqus_shortname = 'rob86wiki'
 
 
+# google analytics
+extensions.append('sphinxcontrib.googleanalytics')
+googleanalytics_id = 'UA-30840244-1'
+
+
 # imgur
 extensions.append('sphinxcontrib.imgur')
 imgur_client_id = '13d3c73555f2190'
