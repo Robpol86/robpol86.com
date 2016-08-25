@@ -4,7 +4,4 @@
 {% extends "!layout.html" %}
 
 {% set css_files = css_files + ['_static/pygments.css'] %}
-
-{% block extrahead %}
-    {% if pagename == '404' and scv_is_root %}<base href="/">{% endif %}
-{% endblock %}
+{% if pagename == '404' and scv_is_root %}{% set metatags = '<base href="/">\n  ' + metatags %}{% endif %}
