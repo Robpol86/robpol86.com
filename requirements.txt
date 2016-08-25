@@ -3,4 +3,4 @@ sphinx_rtd_theme==0.1.10a0
 sphinxcontrib-disqus==1.1.0
 sphinxcontrib-googleanalytics==0.1
 sphinxcontrib-imgur==1.0.0
-sphinxcontrib-versioning==2.1.2
+sphinxcontrib-versioning==2.1.3
