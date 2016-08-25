@@ -6,8 +6,8 @@ python: 3.5
 sudo: false
 
 # Run.
-install: make bootstrap
-script: make build
+install: pip install -r requirements.txt
+script: sphinx-build docs docs/_build/html
 after_success:
   - eval "$(ssh-agent -s)"; touch docs/key; chmod 0600 docs/key
   - openssl aes-256-cbc -d -K $encrypted_fd059ec139f0_key -iv $encrypted_fd059ec139f0_iv < docs/key.enc > docs/key
