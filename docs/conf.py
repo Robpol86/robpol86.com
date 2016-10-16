@@ -4,6 +4,9 @@ import os
 import time
 from datetime import datetime
 
+from docutils import nodes
+from docutils.parsers.rst import roles
+
 
 # General configuration.
 author = 'Robpol86'
@@ -52,3 +55,26 @@ imgur_target_default_page = True
 # SCVersioning.
 scv_grm_exclude = ('.gitignore',)
 scv_show_banner = True
+
+
+def github_roles(name, rawtext, text, *_):
+    """Handle several GitHub rst inline roles.
+
+    :param str name: Role name (e.g. 'gh-repo').
+    :param str rawtext: Entire role and value markup (e.g. ':gh-repo:`terminaltables`').
+    :param str text: The parameter used in the role markup (e.g. 'terminaltables').
+
+    :return: 2-item tuple of lists. First list are the rst nodes replacing the role. Second is a list of errors.
+    :rtype: tuple
+    """
+    if name == 'gh-repo':
+        node = nodes.reference(rawtext, text, refuri='https://github.com/Robpol86/' + text)
+    else:
+        kind = name[3:].lower()
+        url = 'https://img.shields.io/github/{}/Robpol86/{}.svg?style=social'.format(kind, text)
+        node = nodes.image(rawtext, uri=url)
+    return [node], []
+roles.register_canonical_role('gh-forks', github_roles)
+roles.register_canonical_role('gh-repo', github_roles)
+roles.register_canonical_role('gh-stars', github_roles)
+roles.register_canonical_role('gh-watchers', github_roles)
