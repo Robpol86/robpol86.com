@@ -16,7 +16,7 @@ a new one that's much better. The magnets in Google's charger are stronger and i
 any glue, tape, or additional magnets either. To make your own all you need is:
 
 1. `Nexus Wireless Charger (Model A010) <https://play.google.com/store/devices/details?id=nexus_wireless_charger>`_
-2. `Mountek nGroove Snap Magnetic Vehicle Mount <https://www.amazon.com/dp/B00E9L0HGI>`_ (or a magnetic flat surface)
+2. `Mountek nGroove Snap Magnetic Vehicle Mount`_ (or a magnetic flat surface)
 3. A 2 amp USB car adapter (I used `PowerGen 2.4Amps / 12W Dual USB <https://www.amazon.com/gp/product/B006SU0SX0>`_)
 
 The magnets in the nGroove Snap are just strong enough to attract the magnets in the wireless charger. The silicon
@@ -53,7 +53,7 @@ I used the following items:
 
 * 30 Neodymium Magnets 5/16 x 1/8 inch Disc N48
 * `LG Electronics WCP-300 Wireless Charging Pad <https://www.amazon.com/gp/product/B00C6VP03I/>`_
-* `Mountek nGroove Snap Magnetic Vehicle Mount <https://www.amazon.com/gp/product/B00E9L0HGI/>`_
+* `Mountek nGroove Snap Magnetic Vehicle Mount`_
 
 For the final iteration, I reassembled the charging pad and everything holds together with just the magnetic force.
 This is what I did:
@@ -119,3 +119,5 @@ Comments
 ========
 
 .. disqus::
+
+.. _Mountek nGroove Snap Magnetic Vehicle Mount: https://www.amazon.com/dp/B00E9L0HGI
