@@ -26,14 +26,11 @@ that I was able to drive around for three hours with my phone on the charger wit
 All you need to do is mount the nGroove Snap and then place the charger on it, and that’s it! I routed the cable behind
 my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 
-.. image:: https://i.imgur.com/GJE9zkvm.jpg
-    :target: https://imgur.com/GJE9zkv
+.. imgur-image:: GJE9zkv
     :width: 33%
-.. image:: https://i.imgur.com/55krwnAm.jpg
-    :target: https://imgur.com/55krwnA
+.. imgur-image:: 55krwnA
     :width: 33%
-.. image:: https://i.imgur.com/7lHFKUvm.jpg
-    :target: https://imgur.com/7lHFKUv
+.. imgur-image:: 7lHFKUv
     :width: 33%
 
 Previous Implementation
@@ -93,21 +90,16 @@ case for it and add more magnets.
 
 Here are some pictures of the final version, sans washers.
 
-.. image:: https://i.imgur.com/COavxfYt.jpg
-    :target: https://imgur.com/COavxfY
+.. imgur-image:: COavxfY
     :width: 33%
-.. image:: https://i.imgur.com/qJONaXGt.jpg
-    :target: https://imgur.com/qJONaXG
+.. imgur-image:: qJONaXG
     :width: 33%
-.. image:: https://i.imgur.com/GhOvZg9t.jpg
-    :target: https://imgur.com/GhOvZg9
+.. imgur-image:: GhOvZg9
     :width: 33%
 
-.. image:: https://i.imgur.com/OvXMV5wm.jpg
-    :target: https://imgur.com/OvXMV5w
+.. imgur-image:: OvXMV5w
     :width: 49%
-.. image:: https://i.imgur.com/dRQ4q77m.jpg
-    :target: https://imgur.com/dRQ4q77
+.. imgur-image:: dRQ4q77
     :width: 49%
 
 And here are some pictures after I routed the `wire inside the <https://www.amazon.com/gp/product/B003YKX6WW/>`_ center
@@ -116,14 +108,11 @@ route the wire. The front plate of the AC vents snaps on so I was able to pry it
 wire in. I cut out a small notch of plastic to give the wire some room without blocking any of the vents' moving parts.
 The only downside is I can't close the little cubby anymore. Oh well.
 
-.. image:: https://i.imgur.com/sRKNN6Fb.jpg
-    :target: https://imgur.com/sRKNN6F
+.. imgur-image:: sRKNN6F
     :width: 33%
-.. image:: https://i.imgur.com/8R5ROC4b.jpg
-    :target: https://imgur.com/8R5ROC4
+.. imgur-image:: 8R5ROC4
     :width: 33%
-.. image:: https://i.imgur.com/7jA3c1Jb.jpg
-    :target: https://imgur.com/7jA3c1J
+.. imgur-image:: 7jA3c1J
     :width: 33%
 
 Comments

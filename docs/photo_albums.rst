@@ -23,6 +23,13 @@ Eventually I came across this one back at Symantec as they were about to throw i
 also scored that tape autoloader and 2200VA UPS, and over $500 worth of brand new, never used, still shrink wrapped
 LTO-3 tapes. They were in a garbage bin!
 
+September 17th, 2016
+--------------------
+
+:imgur-description:`a/ePSyN`
+
+.. imgur-embed:: a/ePSyN
+
 July 13th, 2015
 ---------------
 

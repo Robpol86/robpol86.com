@@ -42,14 +42,11 @@ Next remove the two screws holding in the little cubby and 12v outlet pictured i
 up giving you access to the two cables. Press the clips and remove the cables, then pull out the cubby. In the third
 image you can see that there is a lot of room down there.
 
-.. image:: https://i.imgur.com/NWCmESIt.jpg
-    :target: https://imgur.com/NWCmESI
+.. imgur-image:: NWCmESI
     :width: 33%
-.. image:: https://i.imgur.com/nbwMYCwt.jpg
-    :target: https://imgur.com/nbwMYCw
+.. imgur-image:: nbwMYCw
     :width: 33%
-.. image:: https://i.imgur.com/k41ZdxSt.jpg
-    :target: https://imgur.com/k41ZdxS
+.. imgur-image:: k41ZdxS
     :width: 33%
 
 Step 2: Remove Head Unit
@@ -62,14 +59,11 @@ Use your trim removal tool to gentry pop out the trim around the head unit. Ther
 image below. Then just remove the four screws holding in the head unit and side it out. I didn’t bother unplugging any
 of the cables, I just left my shifter in 4th gear and rested the head unit on it.
 
-.. image:: https://i.imgur.com/RjFyVQpt.jpg
-    :target: https://imgur.com/RjFyVQp
+.. imgur-image:: RjFyVQp
     :width: 33%
-.. image:: https://i.imgur.com/PJJv47mt.jpg
-    :target: https://imgur.com/PJJv47m
+.. imgur-image:: PJJv47m
     :width: 33%
-.. image:: https://i.imgur.com/ZxgLd1it.jpg
-    :target: https://imgur.com/ZxgLd1i
+.. imgur-image:: ZxgLd1i
     :width: 33%
 
 Step 3: Remove Air Vents
@@ -78,11 +72,9 @@ Step 3: Remove Air Vents
 This one is easy. Just remove the two screws circled in the first image below and pull it out. You'll have to remove the
 cable for the hazard lights button. It's clipped on and also held in place with some plastic thing. Just pull that up.
 
-.. image:: https://i.imgur.com/Ww02qMKm.jpg
-    :target: https://imgur.com/Ww02qMK
+.. imgur-image:: Ww02qMK
     :width: 49%
-.. image:: https://i.imgur.com/jX1kQG4m.jpg
-    :target: https://imgur.com/jX1kQG4
+.. imgur-image:: jX1kQG4
     :width: 49%
 
 Step 4: Run Cable through Vents
@@ -104,14 +96,11 @@ the USB cable through. Then I just slid the cable down towards the hole.
 
 In the end, the USB cable runs down the right side of the air vents. It's a tight fit.
 
-.. image:: https://i.imgur.com/oEIw1kSt.jpg
-    :target: https://imgur.com/oEIw1kS
+.. imgur-image:: oEIw1kS
     :width: 33%
-.. image:: https://i.imgur.com/lwmxAvct.jpg
-    :target: https://imgur.com/lwmxAvc
+.. imgur-image:: lwmxAvc
     :width: 33%
-.. image:: https://i.imgur.com/7O0EUpUt.jpg
-    :target: https://imgur.com/7O0EUpU
+.. imgur-image:: 7O0EUpU
     :width: 33%
 
 Step 5: Reassembling Everything
@@ -129,14 +118,11 @@ and the two screws on the air vents. I waited until the last minute to put back 
 I installed the car mount and charger, and then pulled on the USB cable just enough to have it reach the charger with
 minimal slack.
 
-.. image:: https://i.imgur.com/wzcOYuQt.jpg
-    :target: https://imgur.com/wzcOYuQ
+.. imgur-image:: wzcOYuQ
     :width: 33%
-.. image:: https://i.imgur.com/2CMNydnt.jpg
-    :target: https://imgur.com/2CMNydn
+.. imgur-image:: 2CMNydn
     :width: 33%
-.. image:: https://i.imgur.com/nd3whf1t.jpg
-    :target: https://imgur.com/nd3whf1
+.. imgur-image:: nd3whf1
     :width: 33%
 
 Step 6: Run Cable through Cubby
@@ -147,14 +133,11 @@ has a bulky USB connector. I didn't take any pictures but the cubby has a couple
 to give me trouble. I had to use a lot of force getting the cable through, almost breaking it (but luckily it was
 fine).
 
-.. image:: https://i.imgur.com/55krwnAm.jpg
-    :target: https://imgur.com/55krwnA
+.. imgur-image:: 55krwnA
     :width: 33%
-.. image:: https://i.imgur.com/7lHFKUvm.jpg
-    :target: https://imgur.com/7lHFKUv
+.. imgur-image:: 7lHFKUv
     :width: 33%
-.. image:: https://i.imgur.com/7WTPx0v.gif
-    :target: https://imgur.com/7WTPx0v
+.. imgur-image:: 7WTPx0v
     :width: 33%
 
 Delivery

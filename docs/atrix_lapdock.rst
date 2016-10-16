@@ -12,11 +12,9 @@ It's a good idea to remove the plate on the docking area (underneath where the p
 plug in the adapters or have to sand/shave them less. You can easily pull it off with your finger nails (the plate
 actually has a couple of magnets to keep it in place, and two small plastic clips).
 
-.. image:: https://i.imgur.com/WpsmIm.jpg
-    :target: https://imgur.com/WpsmI
+.. imgur-image:: WpsmI
     :width: 49%
-.. image:: https://i.imgur.com/5HAGwm.jpg
-    :target: https://imgur.com/5HAGw
+.. imgur-image:: 5HAGw
     :width: 49%
 
 Pictures and Videos
@@ -50,11 +48,9 @@ Works with the Nexus 4 just fine, appears to maintain aspect ratio. Adapters use
 * `SlimPort SP1002 (HDMI) <https://www.amazon.com/dp/B009UZBLSG/>`_
 * `HDMI Port Saver (Male to Female) 90 Degree <https://www.monoprice.com/products/product.asp?p_id=3733>`_
 
-.. image:: https://i.imgur.com/MJs3n49m.jpg
-    :target: https://imgur.com/MJs3n49
+.. imgur-image:: MJs3n49
     :width: 49%
-.. image:: https://i.imgur.com/MUViVQIm.jpg
-    :target: https://imgur.com/MUViVQI
+.. imgur-image:: MUViVQI
     :width: 49%
 
 Using USB OTG
@@ -89,14 +85,11 @@ Steps taken to accomplish:
     If you can see, I ran ``lsusb`` on the phone, removed the USB WiFi adapter, and ran ``lsusb`` again. Notice the
     shorter "paragraph" on my phone. Definitely working.
 
-.. image:: https://i.imgur.com/qbs7sWgb.jpg
-    :target: https://imgur.com/qbs7sWg
+.. imgur-image:: qbs7sWg
     :width: 33%
-.. image:: https://i.imgur.com/yNgacICb.jpg
-    :target: https://imgur.com/yNgacIC
+.. imgur-image:: yNgacIC
     :width: 33%
-.. image:: https://i.imgur.com/K7glCXNb.jpg
-    :target: https://imgur.com/K7glCXN
+.. imgur-image:: K7glCXN
     :width: 33%
 
 Using USB OTG and Miracast
@@ -124,14 +117,11 @@ Adapters used:
     enough power through. So I had to splice another USB cable into the micro USB extension and route the USB data
     cables (green and white) to the spliced cable.
 
-.. image:: https://i.imgur.com/cZR03m.jpg
-    :target: https://imgur.com/cZR03
+.. imgur-image:: cZR03
     :width: 33%
-.. image:: https://i.imgur.com/MrTBNm.jpg
-    :target: https://imgur.com/MrTBN
+.. imgur-image:: MrTBN
     :width: 33%
-.. image:: https://i.imgur.com/vCYfGm.jpg
-    :target: https://imgur.com/vCYfG
+.. imgur-image:: vCYfG
     :width: 33%
 
 With a Laptop
@@ -143,11 +133,9 @@ time I traveled I had to deal with a single monitor. Not anymore! Adapters used:
 * `HDMI Male to Micro HDMI Female <https://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079>`_
 * HDMI Female/Female Coupler
 
-.. image:: https://i.imgur.com/ldQ0cl.jpg
-    :target: https://imgur.com/ldQ0c
+.. imgur-image:: ldQ0c
     :width: 49%
-.. image:: https://i.imgur.com/KONZZl.jpg
-    :target: https://imgur.com/KONZZ
+.. imgur-image:: KONZZ
     :width: 49%
 
 With a Wii
@@ -161,14 +149,11 @@ the way. This should work just fine with the Xbox 360, PS3, or any other HDMI de
 * HDMI Female/Female Coupler
 * `Wii HDMI Adapter <https://www.amazon.com/gp/product/B0057UNPQO/>`_
 
-.. image:: https://i.imgur.com/TXiVxm.jpg
-    :target: https://imgur.com/TXiVx
+.. imgur-image:: TXiVx
     :width: 33%
-.. image:: https://i.imgur.com/UkdYJm.jpg
-    :target: https://imgur.com/UkdYJ
+.. imgur-image:: UkdYJ
     :width: 33%
-.. image:: https://i.imgur.com/cc5TKm.jpg
-    :target: https://imgur.com/cc5TK
+.. imgur-image:: cc5TK
     :width: 33%
 
 Lapdock 500 Teardown

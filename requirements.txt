@@ -1,6 +1,6 @@
-Sphinx==1.4.5
+robpol86-sphinxcontrib-googleanalytics==0.1
+Sphinx==1.4.8
 sphinx_rtd_theme==0.1.10a0
 sphinxcontrib-disqus==1.1.0
-sphinxcontrib-googleanalytics==0.1
-sphinxcontrib-imgur==1.0.0
-sphinxcontrib-versioning==2.1.3
+sphinxcontrib-imgur==2.0.1
+sphinxcontrib-versioning==2.2.0

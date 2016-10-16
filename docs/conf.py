@@ -45,6 +45,8 @@ googleanalytics_id = 'UA-30840244-1'
 # imgur
 extensions.append('sphinxcontrib.imgur')
 imgur_client_id = '13d3c73555f2190'
+imgur_target_default_gallery = True
+imgur_target_default_page = True
 
 
 # SCVersioning.

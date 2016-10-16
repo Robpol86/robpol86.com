@@ -92,3 +92,4 @@ ENV/
 *.rpm
 .idea/
 requirements*.txt
+.DS_Store
