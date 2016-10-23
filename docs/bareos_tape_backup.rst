@@ -724,7 +724,7 @@ These are the commands I run to backup my data.
 
     # In bconsole on the server.
     update slots
-    # New tapes: label barcodes slots=1−5,10
+    # New tapes: label slot=8,12,14-16 barcodes
     list volumes
     run job=BackupBoscoMain
     run job=BackupBoscoOld
