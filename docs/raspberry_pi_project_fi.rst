@@ -238,6 +238,83 @@ though (I get around 15 KiB/s). Good enough for my use case however.
 .. imgur-image:: 87aSM89
     :width: 49%
 
+Optimizations
+=============
+
+Unfortunately in my experience the modem isn't very reliable between reboots or unplugging/plugging while the system is
+running. I keep having to run the ``usb_modeswitch`` and ``wvdial`` commands manually to get back online. Since I plan
+on leaving my Raspberry Pi unattended for days at a time I want it to automatically handle reconnects correctly.
+
+Permanent Modem Mode
+--------------------
+
+First step is to remove the need for ``usb_modeswitch``. Since I don't plan on using this 3G modem on a Windows or OS X
+system I'll be "permanently" (reversible, just changing the default setting) setting it to modem mode instead of ZeroCD
+mode. We'll need to issue AT commands to the modem. I'll be using ``screen``:
+
+.. code-block:: bash
+
+    sudo apt-get install screen
+    screen /dev/ttyUSB0  # If not present run the usb_modeswitch command.
+    # Test by typing "AT" (without quotes) and pressing enter. It should reply "OK".
+
+.. tip::
+
+    Exit screen with ``ctrl+a`` and then press ``k``.
+
+Get the current settings from the modem (AT^SETPORT?) and also what values correspond to which settings (AT^SETPORT=?):
+
+.. code::
+
+    AT^SETPORT?
+    A1,A2:1,2,3,7,A1,A2
+
+    OK
+    AT^SETPORT=?
+    1:MODEM
+    2:PCUI
+    3:DIAG
+    4:PCSC
+    5:GPS
+    6:GPS CONTROL
+    7:NDIS
+    A:BLUE TOOTH
+    B:FINGER PRINT
+    D:MMS
+    E:PC VOICE
+    A1:CDROM
+    A2:SD
+
+
+    OK
+
+.. note::
+
+    I kept reading about ``AT^U2DIAG=0`` however I kept getting back "ERROR" when typing any U2DIAG command variant.
+    Luckily "SETPORT" does what I'm looking for.
+
+Values before the colon are initial modes and values after the colon are modes that are enabled after the usb_modeswitch
+command. As you can see only the CDROM and SD card modes are enabled by default until usb_modeswitch is run, which then
+includes the modem. We can use the undocumented "FF" mode as a noop to just disable the special "initial" mode and
+always start off with the modem.
+
+.. warning::
+
+    Be VERY careful with the SETPORT command. If you omit one of the modes you could accidentally lock yourself out of
+    the modem forever (e.g. excluding PCUI or MODEM mode will cause /dev/ttyUSB0 to never come back).
+
+.. code::
+
+    AT^SETPORT="FF;1,2,3,7"
+    OK
+    AT^SETPORT?
+    ff:1,2,3,7
+
+    OK
+
+Exit screen, pull out the modem, and plug it back in. I finally got wwan0 instantly and I went ahead and deleted
+``/etc/usb_modeswitch.d/12d1:1446`` since I didn't need it anymore.
+
 References
 ==========
 
@@ -245,6 +322,7 @@ References
 * https://www.instructables.com/id/Raspberry-Pi-as-a-3g-Huawei-E303-wireless-Edima/
 * http://www.frank-d.info/cellular-backup-again-via-googles-project-fi-a-cisco-3825-and-an-hwic-3g-gsm
 * http://knilluz.buurnet.nl/?p=1327
+* http://blog.yolo.pro/permanently-disable-mode-switching-on-huawei-e3372s/
 
 Comments
 ========
