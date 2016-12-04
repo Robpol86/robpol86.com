@@ -7,15 +7,17 @@ Raspberry Pi on Project Fi
 This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google's
 `Project Fi <https://fi.google.com>`_ cellular service. If you already use Project Fi as your main cellphone service
 provider then you can use their `data only SIM cards <https://support.google.com/fi?p=data_only_SIM>`_ to get your
-Raspberry Pi online for relatively cheap depending on your use case. I was able to power the 3G modem directly from the
-USB port on my Pi Zero. You'll probably need a good USB power supply to power everything.
+Raspberry Pi online for relatively cheap depending on your use case.
 
 .. imgur-image:: PmqSPyj
     :width: 49%
 .. imgur-image:: dE4GgBg
     :width: 49%
 
-You will need:
+I was able to power the 3G modem directly from the USB port on my Pi Zero. You'll probably need a good USB power supply
+to power everything.
+
+I'll be covering a couple of different ways to get all of this working. You will need:
 
 1. Raspberry Pi running Raspbian (I used a Pi Zero version 1.3).
 2. Project Fi data only SIM card (I've previously activated mine on a Nexus 5).
@@ -30,8 +32,9 @@ Installing on Linux
 
 The first step is getting the OS to recognize the modem. There is a problem with some 3G USB modems in that they
 simulate a virtual CD-ROM drive (ZeroCD mode). This drive has drivers and software needed by Windows and OS X to control
-the modem. However this trick doesn't work well on Linux. It usually sees the CD-ROM drive and stops probing for more
-hardware so the modem isn't available.
+the modem, and once installed and running that software takes care of switching the device into modem mode. However this
+trick doesn't work well on Linux since we don't (and can't) use that software to do the switch. So we only see the
+virtual CD-ROM drive (or SD card if it has one) and not the modem.
 
 You can see this for yourself: plug in the modem into a USB port on the Raspberry Pi and run ``lsusb``. You should see
 something like this:
@@ -42,18 +45,22 @@ something like this:
     Bus 001 Device 007: ID 12d1:1446 Huawei Technologies Co., Ltd. E1552/E1800/E173 (HSPA modem)
 
 The above is **NOT** what we want. Even though it says "HSPA modem" it is in fact in ZeroCD mode. You won't have wwan0
-in ``ifconfig``.
+in ``ifconfig`` and you won't see any ``/dev/ttyUSB*`` devices.
 
 .. tip::
 
-    If you do see ``wwan0`` in ifconfig then you can probably skip the entire USB Mode Switch section below. On Raspbian
-    Lite I had to use usb_modeswitch but on Raspbian with PIXEL I didn't need it.
+    If you do see ``wwan0`` in ifconfig or have ``/dev/ttyUSB*`` devices then you can probably skip following
+    sub-sections and head on over to the `Dialing`_ section below. On Raspbian Lite I had to use usb_modeswitch but on
+    Raspbian with PIXEL I didn't need it.
+
+There are two solutions to this: using `USB Mode Switch`_ software to switch to modem mode on Linux or the
+"software-free" `Permanent Modem Mode`_ approach. I'll explain both below:
 
 USB Mode Switch
 ---------------
 
-We'll be using ``usb_modeswitch`` to fix that problem. Luckily it comes pre-installed in Raspbian. If for some reason
-you don't have it you can just run ``sudo apt-get install usb-modeswitch``.
+A very common and safe solution is to use ``usb_modeswitch``. Luckily it comes pre-installed on Raspbian. If for some
+reason you don't have it you can just run ``sudo apt-get install usb-modeswitch``.
 
 First cherry pick the correct file from configPack.tar.gz and put it in /etc/usb_modeswitch.d. Remember that if you had
 something other than "12d1:1446" in your ``lsusb`` output you'll want to use that device ID instead in the command
@@ -110,7 +117,7 @@ Now we can test it:
      Could not reset endpoint (probably harmless): -99
     -> Run lsusb to note any changes. Bye!
 
-And now we've got wwan0:
+And now we've got ``wwan0`` and ``/dev/ttyUSB*`` files:
 
 .. code::
 
@@ -124,21 +131,105 @@ And now we've got wwan0:
               collisions:0 txqueuelen:1000
               RX bytes:0 (0.0 B)  TX bytes:8393 (8.1 KiB)
 
-Reboot your Raspberry Pi to make sure wwan0 is persistent.
+    pi@raspberrypi:~ $ ls /dev/ttyUSB*
+    /dev/ttyUSB0  /dev/ttyUSB1  /dev/ttyUSB2
 
-Authenticating
-==============
+If you don't see wwan0 but do see ttyUSB* files then you should be fine. `WvDial`_ only needs those ttyUSB* files.
 
-While we have wwan0 present we still don't have internet (notice the 169.254.*.* fallback IP address). To get network
-service we'll need to setup PPP with the proper APN settings. We'll be using ``wvdial`` for this.
+Permanent Modem Mode
+--------------------
 
-First install it:
+This is a more risky yet robust solution. Unfortunately in my experience ``usb_modeswitch`` wasn't very reliable between
+reboots. I kept having to run the ``sudo usb_modeswitch`` command to manually do the switch to modem mode. Since I plan
+on keeping my Raspberry Pi unattended for weeks/months at a time I can't be there to do the mode switch myself, nor do
+I want to setup an ugly cronjob to do it (feels like a band-aid solution to me).
+
+There is a way to disable this "switch" feature on my 3G modem using the ``SETPORT`` AT command (other Huawei modems
+support the ``U2DIAG`` AT command but mine didn't seem to have it). You can always reverse this change if you keep the
+original values written down somewhere.
+
+.. warning::
+
+    Be **VERY** careful with the SETPORT command. If you omit one of the modes you could accidentally lock yourself out
+    of the modem forever (e.g. excluding PCUI or MODEM mode will cause /dev/ttyUSB0 to never come back).
+
+We'll need to issue AT commands to the modem. I'll be using ``screen``. You'll need to have the ``/dev/ttyUSB0`` file
+present so if you don't have it you'll need to run through the `USB Mode Switch`_ section or run
+``sudo sg_raw /dev/sr0 11 06 20 00 00 00 00 00 01 00`` to temporarily switch to the modem.
+
+.. code-block:: bash
+
+    sudo apt-get install screen
+    screen /dev/ttyUSB0
+    # Test by typing "AT" (without quotes) and pressing enter. It should reply "OK".
+
+.. tip::
+
+    Exit screen with ``ctrl+a`` and then press ``k``.
+
+First get the current settings from the modem (AT^SETPORT?) and also what values correspond to which settings
+(AT^SETPORT=?):
+
+.. code::
+
+    AT^SETPORT?
+    A1,A2:1,2,3,7,A1,A2
+
+    OK
+    AT^SETPORT=?
+    1:MODEM
+    2:PCUI
+    3:DIAG
+    4:PCSC
+    5:GPS
+    6:GPS CONTROL
+    7:NDIS
+    A:BLUE TOOTH
+    B:FINGER PRINT
+    D:MMS
+    E:PC VOICE
+    A1:CDROM
+    A2:SD
+
+
+    OK
+
+Values before the colon are initial modes and values after the colon are post-switch modes. As you can see only the
+CDROM and SD card modes are enabled by default until usb_modeswitch is run, which then includes the modem. We can use
+the undocumented "FF" mode as a noop to just disable the special "initial" mode and always start off with the modem.
+
+.. code::
+
+    AT^SETPORT="FF;1,2,3,7"
+    OK
+    AT^SETPORT?
+    ff:1,2,3,7
+
+    OK
+
+Exit screen, pull out the modem, and plug it back in. You should get wwan0 instantly.
+
+Dialing
+=======
+
+You may currently have wwan0 present, but it doesn't have a public IP address (you'll have a
+`link-local address <https://en.wikipedia.org/wiki/Link-local_address>`_ instead). We'll need to issue "dial" commands
+to the modem to get it connected (just like the old 56k days!).
+
+WvDial
+------
+
+``wvdial`` should theoretically handle auto-redialing on disconnect and other edge-cases, though I haven't tested it.
+We'll have it dial up with the Project Fi APN ``h2g2``. Other cellular providers require a username and password to dial
+but Project Fi doesn't need that.
+
+First install wvdial:
 
 .. code-block:: bash
 
     sudo apt-get install wvdial
 
-Then open ``/etc/wvdial.conf`` and make it look like this (**h2g2** is the Project Fi APN):
+Then open ``/etc/wvdial.conf`` and make it look like this:
 
 .. code-block:: ini
 
@@ -217,103 +308,12 @@ Once it hangs with no errors you can open another terminal (or re-run wvdial in 
     rtt min/avg/max/mdev = 221.998/532.237/961.983/283.804 ms
     pi@raspberrypi:~ $
 
-Automatically Connect
----------------------
-
-We've got network service, however every time you want to use it you need to run the ``wvdial`` command in another
-terminal. Wouldn't it be nice if it auto-dialed on boot?
-
-Write this to ``/etc/network/interfaces.d/ppp0``:
-
-.. code::
-
-    auto ppp0
-    iface ppp0 inet wvdial
-
-Now reboot. When you log back in you should see ppp0 connected and you should be able to ping out. It is pretty slow
-though (I get around 15 KiB/s). Good enough for my use case however.
+It is pretty slow though (I get around 15 KiB/s). Good enough for my use case however.
 
 .. imgur-image:: zTRT6Ja
     :width: 49%
 .. imgur-image:: 87aSM89
     :width: 49%
-
-Optimizations
-=============
-
-Unfortunately in my experience the modem isn't very reliable between reboots or unplugging/plugging while the system is
-running. I keep having to run the ``usb_modeswitch`` and ``wvdial`` commands manually to get back online. Since I plan
-on leaving my Raspberry Pi unattended for days at a time I want it to automatically handle reconnects correctly.
-
-Permanent Modem Mode
---------------------
-
-First step is to remove the need for ``usb_modeswitch``. Since I don't plan on using this 3G modem on a Windows or OS X
-system I'll be "permanently" (reversible, just changing the default setting) setting it to modem mode instead of ZeroCD
-mode. We'll need to issue AT commands to the modem. I'll be using ``screen``:
-
-.. code-block:: bash
-
-    sudo apt-get install screen
-    screen /dev/ttyUSB0  # If not present run the usb_modeswitch command.
-    # Test by typing "AT" (without quotes) and pressing enter. It should reply "OK".
-
-.. tip::
-
-    Exit screen with ``ctrl+a`` and then press ``k``.
-
-Get the current settings from the modem (AT^SETPORT?) and also what values correspond to which settings (AT^SETPORT=?):
-
-.. code::
-
-    AT^SETPORT?
-    A1,A2:1,2,3,7,A1,A2
-
-    OK
-    AT^SETPORT=?
-    1:MODEM
-    2:PCUI
-    3:DIAG
-    4:PCSC
-    5:GPS
-    6:GPS CONTROL
-    7:NDIS
-    A:BLUE TOOTH
-    B:FINGER PRINT
-    D:MMS
-    E:PC VOICE
-    A1:CDROM
-    A2:SD
-
-
-    OK
-
-.. note::
-
-    I kept reading about ``AT^U2DIAG=0`` however I kept getting back "ERROR" when typing any U2DIAG command variant.
-    Luckily "SETPORT" does what I'm looking for.
-
-Values before the colon are initial modes and values after the colon are modes that are enabled after the usb_modeswitch
-command. As you can see only the CDROM and SD card modes are enabled by default until usb_modeswitch is run, which then
-includes the modem. We can use the undocumented "FF" mode as a noop to just disable the special "initial" mode and
-always start off with the modem.
-
-.. warning::
-
-    Be VERY careful with the SETPORT command. If you omit one of the modes you could accidentally lock yourself out of
-    the modem forever (e.g. excluding PCUI or MODEM mode will cause /dev/ttyUSB0 to never come back).
-
-.. code::
-
-    AT^SETPORT="FF;1,2,3,7"
-    OK
-    AT^SETPORT?
-    ff:1,2,3,7
-
-    OK
-
-Exit screen, pull out the modem, and plug it back in. I finally got wwan0 instantly and I went ahead and deleted
-``/etc/usb_modeswitch.d/12d1:1446`` since I didn't need it anymore.
 
 References
 ==========
@@ -323,6 +323,7 @@ References
 * http://www.frank-d.info/cellular-backup-again-via-googles-project-fi-a-cisco-3825-and-an-hwic-3g-gsm
 * http://knilluz.buurnet.nl/?p=1327
 * http://blog.yolo.pro/permanently-disable-mode-switching-on-huawei-e3372s/
+* https://www.raspberrypi.org/forums/viewtopic.php?t=18996
 
 Comments
 ========
