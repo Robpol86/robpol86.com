@@ -27,6 +27,7 @@ GitHub Projects
     flash_droid_cricket
     root_certificate_authority
     bareos_tape_backup
+    raspberry_pi_project_fi
 
 .. toctree::
     :maxdepth: 2
