@@ -26,7 +26,7 @@ I'll be covering a couple of different ways to get all of this working. You will
 .. note::
 
     The Jet 2.0 is basically a **Huawei UMG366**, similar to the **Huawei E366** modem. I'm only able to get EDGE speeds
-    on it (both on Linux and on a Windows XP laptop with T-Mobile software).
+    on it (both on Linux and on a Windows XP laptop with T-Mobile software) so I wouldn't recommend getting it.
 
 Installing on Linux
 ===================
