@@ -25,7 +25,8 @@ I'll be covering a couple of different ways to get all of this working. You will
 
 .. note::
 
-    The Jet 2.0 is basically a **Huawei UMG366**, similar to the **Huawei E366** modem.
+    The Jet 2.0 is basically a **Huawei UMG366**, similar to the **Huawei E366** modem. I'm only able to get EDGE speeds
+    on it (both on Linux and on a Windows XP laptop with T-Mobile software).
 
 Installing on Linux
 ===================
@@ -151,7 +152,7 @@ original values written down somewhere.
 .. warning::
 
     Be **VERY** careful with the SETPORT command. If you omit one of the modes you could accidentally lock yourself out
-    of the modem forever (e.g. excluding PCUI or MODEM mode will cause /dev/ttyUSB0 to never come back).
+    of the modem forever (e.g. excluding PCUI mode may cause /dev/ttyUSB0 to never come back).
 
 We'll need to issue AT commands to the modem. I'll be using ``screen``. You'll need to have the ``/dev/ttyUSB0`` file
 present so if you don't have it you'll need to run through the `USB Mode Switch`_ section or run
@@ -214,7 +215,8 @@ Dialing
 
 You may currently have wwan0 present, but it doesn't have a public IP address (you'll have a
 `link-local address <https://en.wikipedia.org/wiki/Link-local_address>`_ instead). We'll need to issue "dial" commands
-to the modem to get it connected (just like the old 56k days!).
+to the modem to get it connected (just like the old 56k days!). I've found a couple of different ways to do this: the
+"easy" software-ppp approach `WvDial`_ and the Huawei-specific (but still safe) non-ppp approach `NDISDUP`_.
 
 WvDial
 ------
@@ -315,6 +317,93 @@ It is pretty slow though (I get around 15 KiB/s). Good enough for my use case ho
 .. imgur-image:: 87aSM89
     :width: 49%
 
+NDISDUP
+-------
+
+There is a way to skip needing ``wvdial`` altogether and let the modem handle it for us. Apparently though this only
+works for Huawei modems (lucky for me). This isn't a permanent solution so we'll be automatically running this every
+time the wwan0 interface is brought up.
+
+If you read through the `WvDial`_ section, you'll notice that network traffic goes through ``ppp0`` instead of ``wwan0``
+and indeed wwan0 is never even used. It looks like wwan0 is a virtual NDIS ethernet adapter that the modem provides, yet
+is usually unused. We'll be using it here.
+
+Before making changes lets try manually enabling it. Log into the serial console with a tty program (I'll be using
+``screen``):
+
+.. code-block:: bash
+
+    sudo apt-get install screen
+    screen /dev/ttyUSB0
+    # Test by typing "AT" (without quotes) and pressing enter. It should reply "OK".
+
+.. tip::
+
+    Exit screen with ``ctrl+a`` and then press ``k``.
+
+Now issue the ``NDISDUP`` AT command (h2g2 is the Project Fi APN):
+
+.. code::
+
+    AT^NDISDUP=1,1,"h2g2"
+    OK
+
+Now run the DHCP client to get an IP address:
+
+.. code::
+
+    pi@raspberrypi:~ $ sudo dhclient -v wwan0
+    Internet Systems Consortium DHCP Client 4.3.1
+    Copyright 2004-2014 Internet Systems Consortium.
+    All rights reserved.
+    For info, please visit https://www.isc.org/software/dhcp/
+
+    Listening on LPF/wwan0/f6:0a:21:71:c9:56
+    Sending on   LPF/wwan0/f6:0a:21:71:c9:56
+    Sending on   Socket/fallback
+    DHCPDISCOVER on wwan0 to 255.255.255.255 port 67 interval 8
+    DHCPREQUEST on wwan0 to 255.255.255.255 port 67
+    DHCPOFFER from 25.39.9.157
+    DHCPACK from 25.39.9.157
+    bound to 25.39.9.158 -- renewal in 3110 seconds.
+
+You should have internet access now. To automate all of this we can create a pre-up rule for the network interface.
+We'll need the ``qmicli`` utility to check if we have cell service before trying to dial in with NDISDUP. It'll also be
+easier to use than issuing AT command with echo and not being able to find out if the command failed or succeeded.
+Install it with ``sudo apt-get install libqmi-utils``.  Edit ``/etc/network/interfaces.d/wwan0`` with the following file
+contents:
+
+.. code::
+
+    allow-hotplug wwan0
+    iface wwan0 inet dhcp
+         pre-up for _ in $(seq 1 10); do /usr/bin/test -c /dev/cdc-wdm0 && break; /bin/sleep 1; done
+         pre-up for _ in $(seq 1 10); do /usr/bin/qmicli -d /dev/cdc-wdm0 --nas-get-signal-strength && break; /bin/sleep 1; done
+         pre-up APN=h2g2 /usr/bin/qmi-network /dev/cdc-wdm0 start
+         post-down /usr/bin/qmi-network /dev/cdc-wdm0 stop
+
+Now run the following to test:
+
+.. code-block:: bash
+
+    sudo ifup wwan0  # Needed for ifdown to work.
+    sudo ifdown wwan0
+    sudo ifup wwan0
+
+You should still have network access. Reboot to make sure it works. Unplug and plug back in while the system is running.
+If it still re-connects just fine feel free to uninstall ``wvdial`` if you've previously installed it.
+
+.. tip::
+
+    If the modem doesn't auto-connect on boot but does after ``ifup`` try editing ``/etc/network/interfaces`` and
+    changing ``source-directory /etc/network/interfaces.d`` to ``source /etc/network/interfaces.d/*``.
+
+In my experience this setup seems pretty robust. I tried different reboot/power cycle/unplug/replug scenarios and I even
+placed my Raspberry Pi in my microwave (poor-man's grounded faraday cage) to block out cellular signals for a few
+minutes. Every time the Raspberry Pi managed to re-connect automatically.
+
+.. imgur-image:: ZfQYQF9
+
 References
 ==========
 
@@ -324,6 +413,9 @@ References
 * http://knilluz.buurnet.nl/?p=1327
 * http://blog.yolo.pro/permanently-disable-mode-switching-on-huawei-e3372s/
 * https://www.raspberrypi.org/forums/viewtopic.php?t=18996
+* https://askubuntu.com/questions/853615/files-in-etc-network-interfaces-d-ignored-but-not-etc-network-interfaces-itse
+* https://www.linuxquestions.org/questions/linux-wireless-networking-41/help-using-3g-usb-dongle-4175537653/#post5337637
+* https://lists.freedesktop.org/archives/modemmanager-devel/2014-December/001706.html
 
 Comments
 ========
