@@ -20,14 +20,20 @@ GitHub Projects
 
 .. toctree::
     :maxdepth: 2
-    :caption: Guides
+    :caption: General Guides
 
     imagecfg
     rns_510_vim
     flash_droid_cricket
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Linux Guides
+
     root_certificate_authority
     bareos_tape_backup
     raspberry_pi_project_fi
+    postfix_gmail_forwarding
 
 .. toctree::
     :maxdepth: 2
