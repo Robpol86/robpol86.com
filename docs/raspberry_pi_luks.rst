@@ -134,6 +134,17 @@ Now it's time to wipe your SD card's main partition and create an empty encrypte
 ``cryptsetup`` command will prompt you for the password you want to use for your encrypted partition. Make sure it's a
 strong one.
 
+.. note::
+
+    While copying data back to the SD card I got a bunch of these messages:
+
+    .. code-block:: text
+
+        [ 2280.148837] INFO: task kworker/u8:5:357 blocked for more than 120 seconds.
+                             Not tainted 4.4.38-v7+ #938
+
+    I ignored these since the ``sha1sum`` command I ran afterward assured me the data was copied over correctly.
+
 .. code-block:: bash
 
     cryptsetup -y --cipher aes-cbc-essiv:sha256 --key-size 256 luksFormat /dev/mmcblk0p2
