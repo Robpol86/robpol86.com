@@ -34,6 +34,7 @@ GitHub Projects
     bareos_tape_backup
     raspberry_pi_project_fi
     postfix_gmail_forwarding
+    raspberry_pi_luks
 
 .. toctree::
     :maxdepth: 2
