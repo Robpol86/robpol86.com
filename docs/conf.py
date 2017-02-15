@@ -11,7 +11,7 @@ from docutils.parsers.rst import roles
 # General configuration.
 author = 'Robpol86'
 copyright = '{}, {}'.format(time.strftime('%Y'), author)
-html_last_updated_fmt = '%c'
+html_last_updated_fmt = '%c {}'.format(time.tzname[time.localtime().tm_isdst])
 master_doc = 'index'
 project = 'Robpol86.com'
 pygments_style = 'friendly'

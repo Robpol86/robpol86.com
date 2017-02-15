@@ -78,7 +78,7 @@ This is the important one. It sets the exe to use CPU0:
 Download
 ========
 
-:download:`Imagecfg.zip`
+:download:`Imagecfg.zip <_static/Imagecfg.zip>`
 
 Comments
 ========

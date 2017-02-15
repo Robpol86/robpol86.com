@@ -43,23 +43,8 @@ First install some software:
 Now we want ``resize2fs`` and ``fdisk`` to be included in our initramfs so we'll need to create a hook file. Write the
 following to ``/etc/initramfs-tools/hooks/resize2fs``:
 
-.. code-block:: bash
-
-    #!/bin/sh
-    set -e
-    PREREQ=""
-    prereqs () {
-      echo "${PREREQ}"
-    }
-    case "${1}" in
-      prereqs)
-        prereqs
-        exit 0
-        ;;
-    esac
-    . /usr/share/initramfs-tools/hook-functions
-    copy_exec /sbin/resize2fs /sbin
-    copy_exec /sbin/fdisk /sbin
+.. literalinclude:: _static/resize2fs.sh
+    :language: bash
 
 Finally let's build the new initramfs and make sure our utilities have been installed. The ``mkinitramfs`` command may
 print some WARNINGs from cryptsetup, but that should be fine since we're using ``CRYPTSETUP=y``. As long as cryptsetup

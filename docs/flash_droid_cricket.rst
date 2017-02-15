@@ -47,7 +47,7 @@ Software
 1. Motorola Droid (US version, not the Milestone), rooted (probably) with SPRecovery (probably).
 2. `Drivers for your phone <https://www.motorola.com/consumers/v/index.jsp?vgnextoid=bda09ec8009a0210VgnVCM1000008806b00aRCRD>`_.
 3. (probably?) `Android SDK <https://developer.android.com/sdk/index.html>`_.
-4. Unzip this to get 42900.prl: :download:`42900.zip`
+4. Unzip this to get 42900.prl: :download:`42900.zip <_static/42900.zip>`
 5. `HW VSP Singleport 3.1.2 <http://www.hw-group.com/products/hw_vsp/index_en.html#DOWNLOAD>`_
 6. CDMA Workshop 2.7 (google it).
 7. QPST 2.7.355 (google it).
