@@ -41,68 +41,28 @@ If you aren't using a Raspberry Pi for your root CA you can safely skip this sec
 be setting up LUKS full disk encryption. You'll need to install OpenSSL and ``qrencode`` (for transmitting keys over the
 air gap).
 
-1. Install Raspbian and boot up the Raspberry Pi. It's ok to have network access for now. If you have internet access go
-   ahead and ``sudo apt-get update && sudo apt-get upgrade``. I followed
+1. Install Raspbian and boot up the Raspberry Pi. It's ok to have network access for now. I followed
    `Raspbian Setup (Raspberry Pi) <https://gist.github.com/Robpol86/3d4730818816f866452e>`_ (you don't need to install
    any of those packages in that link, just upgrade).
-2. Ok now install these required packages: ``sudo apt-get install busybox cryptsetup pv qrencode acl``
+2. Upgrade all of your packages since this will be the last time the system will have internet access:
+   ``sudo apt-get update && sudo apt-get upgrade``.
+3. ``sudo reboot`` in case a new kernel was installed.
+4. Encrypt your root partition following this guide I wrote: :ref:`raspberry_pi_luks`
+5. Ok now install these required packages: ``sudo apt-get install qrencode acl``
 
-Full Disk Encryption
---------------------
+Date Prompt on Boot
+-------------------
 
-I got most of these steps from: http://paxswill.com/blog/2013/11/04/encrypted-raspberry-pi/ . You'll need a Linux
-computer (or a VM that can mount an SD card using a USB adapter) to perform the initial encryption since the Raspbian
-can't encrypt itself.
+Since Raspberry Pis don't have real time clocks they don't keep track of the time when powered off. Usually they handle
+this by getting the current time from the internet after booting up but since our root CA will never have internet
+access again we need to always set the current time every time it boots up.
 
-On the Raspberry Pi:
+Since time is very important for signing certificates we'll want to avoid forgetting this. You can install this systemd
+file to have it prompt you for the current time before the Raspberry Pi finishes booting up, guaranteeing you won't
+forget:
 
-1. ``sudo mkinitramfs -o /boot/initramfs.gz``
-2. Append ``initramfs initramfs.gz followkernel`` to ``/boot/config.txt``.
-
-Now shut down the Raspberry Pi and mount the SD card on another Linux computer. Run these commands on that computer
-(``/dev/sdb2`` here is the SD card's OS partition).
-
-.. warning::
-    The ``luksFormat`` command will nuke your SD card and it will also be asking you for a LUKS password. Make sure it's
-    a long password with lots of special characters.
-
-.. note::
-    The ``pv`` command below just lets use see a pretty progress bar since copying data to/from the SD card takes a long
-    time. It's not required and you can omit it if you want.
-
-.. code-block:: bash
-
-    sudo dd if=/dev/sdb2 bs=4M |pv |dd of=/tmp/raspbian-plain.img  # Dumps data to file.
-    e2fsck -f /tmp/raspbian-plain.img  # Check the dump file.
-    resize2fs -M /tmp/raspbian-plain.img  # Shrink the dump file to save time.
-    sudo cryptsetup -v -y --cipher aes-cbc-essiv:sha256 --key-size 256 luksFormat /dev/sdb2
-    sudo cryptsetup -v luksOpen /dev/sdb2 sdcard  # Mount empty encrypted partition.
-    dd if=/tmp/raspbian-plain.img |pv |sudo dd of=/dev/mapper/sdcard bs=4M  # Restore data.
-    sudo e2fsck /dev/mapper/sdcard  # Check the encrypted SD card partition.
-    sudo resize2fs /dev/mapper/sdcard  # Expand back to full size.
-    mkdir /tmp/pi_root /tmp/pi_boot  # Use these to finish setting up LUKS.
-    sudo mount /dev/sdb1 /tmp/pi_boot
-    sudo mount /dev/mapper/sdcard /tmp/pi_root
-
-We still need to setup the last steps that allows the Raspberry Pi to mount encrypted partitions. Keep running these
-steps on the Linux computer:
-
-1. In ``/tmp/pi_boot/cmdline.txt`` change ``root=/dev/mmcblk0p2`` to ``root=/dev/mapper/sdcard`` and append
-   ``cryptdevice=/dev/mmcblk0p2:sdcard`` to the end of the file.
-2. In ``/tmp/pi_root/etc/fstab`` change ``/dev/mmcblk0p2`` to ``/dev/mapper/sdcard``.
-3. In ``/tmp/pi_root/etc/crypttab`` append ``sdcard  /dev/mmcblk0p2  none    luks`` to the end of the file.
-
-Now go ahead and unmount the SD card and put it back in the Raspberry Pi:
-
-1. ``sudo umount /tmp/pi_boot /tmp/pi_root``
-2. ``sudo cryptsetup luksClose sdcard``
-
-When you try to boot the Raspberry Pi it will fail and drop to the ``initramfs`` prompt. This will happen every time
-from now on. When you get that prompt should run:
-
-* ``cryptsetup luksOpen /dev/mmcblk0p2 sdcard``
-
-After putting in your LUKS password just exit and it will keep booting like usual.
+.. literalinclude:: _static/date-prompt.service
+    :language: ini
 
 Copy the OpenSSL Config
 =======================
