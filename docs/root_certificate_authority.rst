@@ -13,7 +13,7 @@ Preface
 =======
 
 This guide will go over setting up an offline root certificate authority for your home network. It is based on what I've
-learned from https://jamielinux.com/docs/openssl-certificate-authority/index.html with a few changes:
+learned from https://jamielinux.com/docs/openssl-certificate-authority/index.html with a few differences:
 
 1. This guide will include steps on setting up the root CA on a Raspberry Pi, though it should really work on any linux
    computer. If you plan on using something else as your root CA (a $200 Chromebook, an old Linux computer, etc) then
@@ -50,11 +50,11 @@ air gap).
 4. Encrypt your root partition following this guide I wrote: :ref:`raspberry_pi_luks`
 5. Ok now install these required packages: ``sudo apt-get install qrencode acl``
 
-Date Prompt on Boot
--------------------
+Boot Date Prompt on Raspberry Pi
+--------------------------------
 
-Since Raspberry Pis don't have real time clocks they don't keep track of the time when powered off. Usually they handle
-this by getting the current time from the internet after booting up but since our root CA will never have internet
+Raspberry Pis don't have real time clocks so they don't keep track of the time when powered off. Usually they handle
+this by getting the current time from the internet after booting up. However since our root CA will never have internet
 access again we need to always set the current time every time it boots up.
 
 Since time is very important for signing certificates we'll want to avoid forgetting this. You can install this systemd
@@ -99,14 +99,6 @@ SUB_EMAIL           Your contact email.                                 xx@yy.zz
 .. literalinclude:: _static/openssl.cnf
     :language: ini
 
-Air Gap
-=======
-
-This is the moment we've all been waiting for! Remove all USB devices (sans keyboard) and network cables/connections. If
-this is on a Raspberry Pi either swap it out with a Model A (the one without an ethernet port), or fill in the ethernet
-port with hot glue. Do the same with all but one USB ports. Or just be super duper sure never to plug in things when
-using this SD card.
-
 OpenSSL Directory Structure
 ===========================
 
@@ -114,15 +106,16 @@ Everything will live in ``/root/ca``. It will also all be owned by root. Remembe
 won't be doing anything else at all except hosting your very important root certificate private key and the root
 certificate itself.
 
-Run these commands as root:
+Run these commands to setup directories and permissions:
 
 .. code-block:: bash
 
-    mkdir -p /root/ca/{certs,crl,csr,newcerts,private}
-    setfacl -d -m u::rx -m g::- -m o::- /root/ca/private
-    setfacl -d -m u::rx -m g::rx -m o::rx /root/ca/certs
-    chmod 700 /root/ca/private; touch /root/ca/index.txt
-    echo 1000 > /root/ca/serial
+    sudo mkdir -p /root/ca/{certs,crl,csr,newcerts,private}
+    sudo setfacl -d -m u::rx -m g::- -m o::- /root/ca/private
+    sudo setfacl -d -m u::rx -m g::rx -m o::rx /root/ca/certs
+    sudo chmod 700 /root/ca/private
+    sudo touch /root/ca/index.txt
+    echo 1000 |sudo tee /root/ca/serial
 
 Those ``setfacl`` commands set filesystem ACLs which enforce default maximum file permissions for new files/directories.
 A brief description for these directories:
@@ -137,6 +130,14 @@ Directory               Description
 ``/root/ca/private``    Private keys. VERY SENSITIVE.
 ======================= =============================
 
+Air Gap
+=======
+
+This is the moment we've all been waiting for! Remove all USB devices (sans keyboard) and network cables/connections. If
+this is on a Raspberry Pi either swap it out with a Model A (the one without an ethernet port), or fill in the ethernet
+port with hot glue. Do the same with all but one USB ports. Or just be super duper sure never to plug in things when
+using this SD card.
+
 Finally Generate the Pair
 =========================
 
@@ -145,19 +146,21 @@ pairs for specific devices/servers, and the root certificate is what you'll expo
 these additional certificates.
 
 .. warning::
+
     The root key ``ca.key.pem`` you'll be generating is the most sensitive file on this dedicated computer. Keep it as
     secure as possible. When ``openssl genrsa`` asks you for a password enter a unique and very secure password. Make
     sure ``setfacl`` worked and the permissions are: ``-r-------- 1 root root 1.8K Aug 15 12:21 private/ca.key.pem``
 
 .. note::
+
     The ``openssl req`` command will prompt you for some information. The defaults you've specified in openssl.cnf will
-    be fine. However it will prompt you for "Common Name". Put in the fully qualified domain name of this certificate
+    be fine. However it will prompt you for **Common Name**. Put in the fully qualified domain name of this certificate
     authority.
 
 .. code-block:: bash
 
     cd /root/ca
-    openssl genrsa -aes256 -out private/ca.key.pem 8192  # This took 15 minutes to run.
+    openssl genrsa -aes256 -out private/ca.key.pem 8192
     openssl req -key private/ca.key.pem -new -x509 -days 1827 -sha256 -extensions v3_ca -out certs/ca.cert.pem
     openssl x509 -noout -text -in certs/ca.cert.pem |more  # Confirm everything looks good.
 
@@ -194,11 +197,13 @@ data into a string, pass it to ``qrencode``, and finally display the QR codes(s)
 Run these commands on your Raspberry Pi. Be sure to replace ``FILES`` with one or more files you want to transmit.
 
 .. note::
+
     Since certificates and keys are relatively large we need the "high resolution" provided by a graphical user
     interface. Having a 1024x768 terminal screen buffer isn't enough to transmit data unless you really enjoy scanning
     tons of QR codes and reassembling them manually.
 
 .. note::
+
     The large command involving "openssl enc" will prompt you for a password. You'll only use this password once when
     you decrypt the data on the receiving computer in the next section. I use the ``openssl rand`` command to generate a
     random password 15 to 25 characters long.
@@ -236,11 +241,13 @@ certificate and its private key. You'll need to install both files on the web se
 very sensitive and is used to sign SSL sessions to keep it secure as you transfer it to the web server!
 
 .. warning::
+
     Keep in mind that since your Raspberry Pi never again will access the internet its clock will be frozen in time
     whenever it's powered off. Before issuing any certs manually update the time with something like:
     ``sudo date -s "Aug 15 18:10"``
 
 .. note::
+
     When asked for a "Common Name" you'll need to enter the web server's FQDN. So instead of accessing your router admin
     page using http://192.168.0.1 you'll instead be using https://router.myhome.net for example. Common Name here will
     be ``router.myhome.net``.
