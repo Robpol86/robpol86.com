@@ -46,6 +46,14 @@ following to ``/etc/initramfs-tools/hooks/resize2fs``:
 .. literalinclude:: _static/resize2fs.sh
     :language: bash
 
+.. note::
+
+    Raspbian ships with two Linux kernels: one for the Raspberry Pi 1 (including Pi Zero), and another for the Raspberry
+    Pi 2 and 3. In order to keep the ability of using one SD card on all Raspberry Pis the above script will include the
+    other kernel's modules (the current kernel's modules are the only ones included by default). This will double the
+    size of the ``initramfs.gz`` file. If you don't plan on using this SD card on a different Raspberry Pi you can set
+    ``COMPATIBILITY`` to ``false`` and re-run ``mkinitramfs`` below.
+
 Finally let's build the new initramfs and make sure our utilities have been installed. The ``mkinitramfs`` command may
 print some WARNINGs from cryptsetup, but that should be fine since we're using ``CRYPTSETUP=y``. As long as cryptsetup
 itself is present in the initramfs it won't be a problem.
@@ -165,9 +173,9 @@ in our new initramfs:
 
 .. code-block:: bash
 
-    sudo cp /boot/initramfs.gz /boot/initramfs.gz.old
-    sudo mkinitramfs -o /boot/initramfs.gz
-    lsinitramfs /boot/initramfs.gz |grep -P "sbin/(cryptsetup|resize2fs|fdisk)"
+    sudo mkinitramfs -o /tmp/initramfs.gz
+    lsinitramfs /tmp/initramfs.gz |grep -P "sbin/(cryptsetup|resize2fs|fdisk)"
+    sudo cp /tmp/initramfs.gz /boot/initramfs.gz
     sudo reboot
 
 And that's it. It should prompt you with something like "Please unlock disk /dev/mmcblk0p2 (sdcard)". If you're running
