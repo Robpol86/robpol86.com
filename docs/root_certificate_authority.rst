@@ -9,46 +9,49 @@ to get to your IPMI web interface? Have I got a guide for you!
 
 .. imgur-embed:: a/PFrHX
 
-Preface
-=======
-
 This guide will go over setting up an offline root certificate authority for your home network. It is based on what I've
 learned from https://jamielinux.com/docs/openssl-certificate-authority/index.html with a few differences:
 
-1. This guide will include steps on setting up the root CA on a Raspberry Pi, though it should really work on any linux
-   computer. If you plan on using something else as your root CA (a $200 Chromebook, an old Linux computer, etc) then
-   substitute "Raspberry Pi" used throughout this guide for whatever you're using.
-2. We will not be creating an intermediate pair here. Since my intentions are just setting up SSL certs on a handful of
+1. We will not be creating an intermediate pair here. Since my intentions are just setting up SSL certs on a handful of
    internal web interfaces and maybe even WPA2 Enterprise one day, I didn't think it was worth setting this up. It might
    make revoking certs not as quick, but I don't see myself signing very many certs after my initial run.
-3. I'll include steps on how to bridge the `air gap <https://en.wikipedia.org/wiki/Air_gap_(networking)>`_. For maximum
+2. I'll include steps on how to bridge the `air gap <https://en.wikipedia.org/wiki/Air_gap_(networking)>`_. For maximum
    paranoid-tier security we will not be plugging in any USB flash drives (or USB anything excluding keyboards) or
    network cables. WiFi adapters are also obviously forbidden. For this we'll be using
    `qrencode <https://fukuchi.org/works/qrencode/>`_.
+3. I'll be assuming the Linux computer you're using has a GUI (desktop environment). This is to reduce the number of QR
+   codes needed since you'll have more resolution with a GUI than with a frame buffer so you can fit more data in each
+   QR code.
 4. For additional paranoid-tier security we'll generate a 8192-bit long RSA key for our root CA. 4096-bit keys are fine
    too but I'm crazy. We'll also be creating 4096-bit SSL keys instead of the usual 2048-bit. If you're using OS X and
-   you get an error trying to install the root certificate, read
-   https://apple.stackexchange.com/questions/110261/mac-os-x-10-9-and-8192-bit-certificates-error-67762/ .
+   you get an error trying to install the root certificate, read:
+   https://apple.stackexchange.com/questions/110261/mac-os-x-10-9-and-8192-bit-certificates-error-67762/
 
-The goal here is to setup an offline root CA. It will be online at first to get updates (this is optional) but right
-before generating the root pair we will remove any network connectivity from the host and never EVER connect it to any
-networks or USB devices. This will be an offline and air gapped root CA.
+While this guide should work fine with any Linux computer I'll be focusing on Debian-based distributions. This guide has
+been tested on **Debian Jessie** on an old T60 Thinkpad and **2017-01-11-raspbian-jessie.zip** on a Raspberry Pi.
 
-Preparing the Raspberry Pi
-==========================
+The goal here is to setup an offline root CA. It will be online at first to get updates but right before generating the
+root pair we will remove any network connectivity from the host and never EVER connect it to any networks or USB
+devices. This will be an offline and air gapped root CA.
 
-If you aren't using a Raspberry Pi for your root CA you can safely skip this section. The gist of this section is we'll
-be setting up LUKS full disk encryption. You'll need to install OpenSSL and ``qrencode`` (for transmitting keys over the
-air gap).
+Preparing the Host
+==================
 
-1. Install Raspbian and boot up the Raspberry Pi. It's ok to have network access for now. I followed
+This section will go over preparing a newly-installed Debian/Raspbian system. For machines without a real time clock
+(e.g. Raspberry Pis) we'll setup a script that runs during boot that prompts you for the current time.
+
+1. Perform a clean install of Debian (or install the latest Raspbian PIXEL image on the Raspberry Pi) and boot up the
+   host. It's ok to have network access for now. For my Raspberry Pi I followed
    `Raspbian Setup (Raspberry Pi) <https://gist.github.com/Robpol86/3d4730818816f866452e>`_ (you don't need to install
    any of those packages in that link, just upgrade).
+
+   A. If you're using Debian be sure to create an **encrypted** LVM or partition.
+   B. On a Raspberry Pi you can follow my guide to encrypt the main partition: :ref:`raspberry_pi_luks`
+
 2. Upgrade all of your packages since this will be the last time the system will have internet access:
    ``sudo apt-get update && sudo apt-get upgrade``.
 3. ``sudo reboot`` in case a new kernel was installed.
-4. Encrypt your root partition following this guide I wrote: :ref:`raspberry_pi_luks`
-5. Finally install these required packages: ``sudo apt-get install qrencode acl``
+4. Finally install these required packages: ``sudo apt-get install qrencode acl``
 
 Boot Date Prompt on Raspberry Pi
 --------------------------------
@@ -80,10 +83,8 @@ Copy the OpenSSL Config
     "MyHome.net". If you used ``home.mycooldomain.com`` then the Org Name equivalent may be "Home.MyCoolDomain.com". It
     can actually be set to anything but this is what I've done for my home network.
 
-Copy the following to ``/etc/ssl/openssl.cnf``. Paste/copy the following and overwrite whatever was in there
-before. It's still ok to have network access for this part.
-
-You'll have to replace the following values:
+The first step is to configure OpenSSL. You'll need to replace some values in the configuration file I'll be providing
+to you. Refer to the table below for what you'll be replacing.
 
 =================== =================================================== =============
 To Replace          Replace With                                        Example
@@ -95,6 +96,9 @@ SUB_ORG_NAME        Name of your organization.                          MyHome.n
 SUB_UNIT_NAME       Section of the organization.                        Home
 SUB_EMAIL           Your contact email.                                 xx@yy.zz
 =================== =================================================== =============
+
+Overwrite all of ``/etc/ssl/openssl.cnf`` with the following (it's still ok to have network access for this part). Be
+sure to replace ``SUB_`` strings.
 
 .. literalinclude:: _static/openssl.cnf
     :language: ini
@@ -179,8 +183,8 @@ to do these two steps:
 1. Install the public root certificate on client computers so they can trust your servers instead of getting SSL errors.
 2. Creating an SSL certificate to install on your web servers (router admin pages, IPMI interfaces, etc.).
 
-For the former you'll want to export the ``/root/ca/certs/ca.cert.pem`` file and install it on client computers/devices.
-For example the "Keychain Access" app in OS X can install that file in the System keychain (not System Roots), an you'll
+For the former you'll want to export the ``certs/ca.cert.pem`` file and install it on client computers/devices. For
+example the "Keychain Access" app in OS X can install that file in the System keychain (not System Roots), an you'll
 need to manually set the trust to "Always Trust". You may also have to restart web browsers (or just reboot) to get rid
 of SSL errors. Instructions for exporting this file is available in the `Bridging the Air Gap`_ section below.
 
@@ -243,23 +247,18 @@ This section covers issuing SSL certificates for web servers such as router admi
 certificate and its private key. You'll need to install both files on the web server. Keep in mind the private key is
 very sensitive and is used to sign SSL sessions to keep it secure as you transfer it to the web server!
 
-.. warning::
-
-    Keep in mind that since your Raspberry Pi never again will access the internet its clock will be frozen in time
-    whenever it's powered off. Before issuing any certs manually update the time with something like:
-    ``sudo date -s "Aug 15 18:10"``
-
 .. note::
 
-    When asked for a "Common Name" you'll need to enter the web server's FQDN. So instead of accessing your router admin
-    page using http://192.168.0.1 you'll instead be using https://router.myhome.net for example. Common Name here will
-    be ``router.myhome.net``.
+    When asked for a **Common Name** you'll need to enter the web server's FQDN. So instead of accessing your router
+    admin page using http://192.168.0.1 you'll instead be using https://router.myhome.net for example. Common Name here
+    will be ``router.myhome.net``.
 
-On the Raspberry Pi run these commands. Substitute ``router.myhome.net`` with whatever FQDN your target web server
+On the root CA host run these commands. Substitute ``router.myhome.net`` with whatever FQDN your target web server
 will use.
 
 .. code-block:: bash
 
+    date  # Verify the date is correct. If not: sudo date -s "Aug 15 18:10"
     sudo su -
     cd /root/ca
     CN=router.myhome.net
@@ -268,10 +267,10 @@ will use.
     openssl ca -extensions server_cert -notext -in csr/$CN.csr.pem -out certs/$CN.cert.pem
     rm csr/$CN.csr.pem
     openssl x509 -noout -text -in certs/$CN.cert.pem |more  # Confirm everything looks good.
+    cat index.txt  # Verify new cert is present.
 
-Verify that the **Issuer** is the root CA and the **Subject** is the certificate itself. Also verify
-``/root/ca/index.txt`` mentions the new certificate. You will need to install both
-``/root/ca/certs/router.myhome.net.cert.pem`` and ``/root/ca/private/router.myhome.net.key.pem`` on the web server. Read
+Verify that the **Issuer** is the root CA and the **Subject** is the certificate itself. You will need to install both
+``certs/router.myhome.net.cert.pem`` and ``private/router.myhome.net.key.pem`` on the web server. Read
 `Bridging the Air Gap`_ for instructions on how to do this securely.
 
 Comments
