@@ -22,7 +22,7 @@ crl               = $dir/crl/ca.crl.pem
 crl_extensions    = crl_ext
 default_crl_days  = 30
 
-default_md        = sha512
+default_md        = sha256
 name_opt          = ca_default
 cert_opt          = ca_default
 default_days      = 375
@@ -44,7 +44,6 @@ emailAddress            = optional
 default_bits        = 4096
 distinguished_name  = req_distinguished_name
 string_mask         = utf8only
-default_md          = sha512
 
 # Extension to add when the -x509 option is used.
 x509_extensions     = v3_ca

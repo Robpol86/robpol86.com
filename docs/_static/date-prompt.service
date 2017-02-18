@@ -1,5 +1,7 @@
 # Prompt for current date during boot.
 #
+# https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/date-prompt.service
+#
 # Stops the system from booting up to 2 minutes or until user enters the
 # current time in the console. Useful for Raspberry Pis and other systems
 # with no real time clocks.

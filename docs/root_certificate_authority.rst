@@ -48,7 +48,7 @@ air gap).
    ``sudo apt-get update && sudo apt-get upgrade``.
 3. ``sudo reboot`` in case a new kernel was installed.
 4. Encrypt your root partition following this guide I wrote: :ref:`raspberry_pi_luks`
-5. Ok now install these required packages: ``sudo apt-get install qrencode acl``
+5. Finally install these required packages: ``sudo apt-get install qrencode acl``
 
 Boot Date Prompt on Raspberry Pi
 --------------------------------
@@ -133,10 +133,18 @@ Directory               Description
 Air Gap
 =======
 
-This is the moment we've all been waiting for! Remove all USB devices (sans keyboard) and network cables/connections. If
-this is on a Raspberry Pi either swap it out with a Model A (the one without an ethernet port), or fill in the ethernet
-port with hot glue. Do the same with all but one USB ports. Or just be super duper sure never to plug in things when
-using this SD card.
+This is the moment we've all been waiting for! Just copy one more file and then isolate the host from the world
+permanently.
+
+Place the following file into ``/usr/local/bin/airgap`` and ``chmod +x`` it. We'll use this script to convert files into
+QR codes after compressing and encrypting them.
+
+.. literalinclude:: _static/airgap.sh
+    :language: bash
+
+Now remove all USB devices (sans keyboard) and network cables/connections. If this is on a Raspberry Pi either swap it
+out with a Model A (the one without WiFi or ethernet ports), or fill in the ethernet port with hot glue. Do the same
+with all but one USB ports. Or just be super duper sure never to plug in things when using this SD card.
 
 Finally Generate the Pair
 =========================
@@ -159,9 +167,10 @@ these additional certificates.
 
 .. code-block:: bash
 
+    sudo su -  # Become root.
     cd /root/ca
     openssl genrsa -aes256 -out private/ca.key.pem 8192
-    openssl req -key private/ca.key.pem -new -x509 -days 1827 -sha256 -extensions v3_ca -out certs/ca.cert.pem
+    openssl req -key private/ca.key.pem -new -x509 -days 1827 -extensions v3_ca -out certs/ca.cert.pem
     openssl x509 -noout -text -in certs/ca.cert.pem |more  # Confirm everything looks good.
 
 You're done generating your root certificate and private key. You're technically "done". However you'll probably want
@@ -186,47 +195,41 @@ different use cases.
 Bridging the Air Gap
 --------------------
 
-We can use ``qrencode`` to encode small bits of data into QR codes to be scanned by your phone and reassembled on
-another computer. This is a one-way data transfer so your Raspberry Pi remains secure and air gapped.
-
-Create QR Codes
-```````````````
-
-With these commands we will tar up the files we intend to transmit, encrypt them for safety, base64 the encrypted binary
-data into a string, pass it to ``qrencode``, and finally display the QR codes(s) to be scanned by a phone/tablet/laptop.
-Run these commands on your Raspberry Pi. Be sure to replace ``FILES`` with one or more files you want to transmit.
+We can use the ``airgap`` script we copied earlier to encode files into one or more QR codes to be scanned by your phone
+and reassembled on another computer. This is a one-way data transfer so your root CA host remains secure and air gapped.
 
 .. note::
 
-    Since certificates and keys are relatively large we need the "high resolution" provided by a graphical user
-    interface. Having a 1024x768 terminal screen buffer isn't enough to transmit data unless you really enjoy scanning
-    tons of QR codes and reassembling them manually.
+    ``airgap`` will print a password at the end of its run. Use this one-time password to decrypt the files on the
+    receiving computer.
 
-.. note::
+For example if you want to just export the ``certs/ca.cert.pem`` file you'll do something like this (you can also
+specify multiple files for airgap to encode at once):
 
-    The large command involving "openssl enc" will prompt you for a password. You'll only use this password once when
-    you decrypt the data on the receiving computer in the next section. I use the ``openssl rand`` command to generate a
-    random password 15 to 25 characters long.
+.. code-block:: text
 
-.. code-block:: bash
+    pi@raspberrypi:~ $ sudo su -
+    root@raspberrypi:~# cd /root/ca
+    root@raspberrypi:~/ca# airgap certs/ca.cert.pem
+    Compressing, encrypting, and encoding 1 file(s)...
+    certs/ca.cert.pem
+    Done
+    -rw-r--r-- 1 root root 7219 Feb 16 16:28 /tmp/qr-01.png
+    -rw-r--r-- 1 root root 6816 Feb 16 16:28 /tmp/qr-02.png
+    Password: 3SOD8voj8bT
+    root@raspberrypi:~/ca#
 
-    rm /tmp/qr*.png  # Remove any previously created QR codes.
-    openssl rand -base64 45 |cut -c -$((15+RANDOM%11)) |tee /tmp/pw.txt
-    tar -czv FILES |openssl enc -aes-256-cfb -salt -pass file:/tmp/pw.txt |base64 -w0 |qrencode -o /tmp/qr.png -Sv40
-    startx  # Only needed if you don't already run a GUI.
-
-This creates either one or more QR codes in ``/tmp`` suffixed with numbers. After ``startx`` loads the GUI open the
-images and scan them with your phone or whatever device you are using.
+Then in the GUI open both of those files and scan them with your phone using a QR scanner app. If you're scanning QR
+codes with an Android phone using
+`Barcode Scanner <https://play.google.com/store/apps/details?id=com.google.zxing.client.android>`_ you can "Share via
+email" which gives you the option to share to Dropbox (for some dumb reason) which makes it easy to get encrypted data
+on your computer.
 
 Reconstructing Data
 ```````````````````
 
-This section presumes you've scanned the QR codes and saved the large strings of data somewhere on a Linux or OS X
-computer. If you're scanning QR codes with an Android phone using "Barcode Scanner" you can "Share via email" which
-gives you the option to share to Dropbox (for some dumb reason) which makes it easy to get encrypted data on your
-computer.
-
-Run these commands to reassemble and decrypt data:
+Once you've scanned the QR codes and saved the large strings of data somewhere on a Linux or OS X computer run these
+commands to reassemble and decrypt data:
 
 .. code-block:: bash
 
@@ -257,12 +260,14 @@ will use.
 
 .. code-block:: bash
 
+    sudo su -
     cd /root/ca
-    openssl genrsa -out private/router.myhome.net.key.pem 4096
-    openssl req -key private/router.myhome.net.key.pem -new -sha256 -out csr/router.myhome.net.csr.pem  # CN is FQDN.
-    openssl ca -extensions server_cert -days 365 -notext -md sha256 -in csr/router.myhome.net.csr.pem -out certs/router.myhome.net.cert.pem
-    rm csr/router.myhome.net.csr.pem
-    openssl x509 -noout -text -in certs/router.myhome.net.cert.pem |more  # Confirm everything looks good.
+    CN=router.myhome.net
+    openssl genrsa -out private/$CN.key.pem 4096
+    openssl req -key private/$CN.key.pem -new -out csr/$CN.csr.pem  # CN is FQDN.
+    openssl ca -extensions server_cert -notext -in csr/$CN.csr.pem -out certs/$CN.cert.pem
+    rm csr/$CN.csr.pem
+    openssl x509 -noout -text -in certs/$CN.cert.pem |more  # Confirm everything looks good.
 
 Verify that the **Issuer** is the root CA and the **Subject** is the certificate itself. Also verify
 ``/root/ca/index.txt`` mentions the new certificate. You will need to install both
