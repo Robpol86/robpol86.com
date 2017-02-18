@@ -165,6 +165,7 @@ in our new initramfs:
 
 .. code-block:: bash
 
+    sudo cp /boot/initramfs.gz /boot/initramfs.gz.old
     sudo mkinitramfs -o /boot/initramfs.gz
     lsinitramfs /boot/initramfs.gz |grep -P "sbin/(cryptsetup|resize2fs|fdisk)"
     sudo reboot
