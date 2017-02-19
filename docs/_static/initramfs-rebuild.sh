@@ -4,7 +4,7 @@
 # https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/initramfs-rebuild.sh
 # Save as (chmod +x): /etc/kernel/postinst.d/initramfs-rebuild
 
-# Remove splash from cmdline
+# Remove splash from cmdline.
 if grep -q '\bsplash\b' /boot/cmdline.txt; then
   sed -i 's/ \?splash \?/ /' /boot/cmdline.txt
 fi
