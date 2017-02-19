@@ -40,6 +40,14 @@ First install some software:
 
     sudo apt-get install busybox cryptsetup initramfs-tools
 
+Next we'll need to add a kernel post-install script. Since Raspbian doesn't normally use an initrd/initramfs it doesn't
+auto-update the one we're about to create when a new kernel version comes out. Our initramfs holds kernel modules since
+they're needed before the encrypted root file system can be mounted. When the kernel version changes it won't be able to
+find its new modules. To fix this write the following to ``/etc/kernel/postinst.d/initramfs-rebuild``:
+
+.. literalinclude:: _static/initramfs-rebuild.sh
+    :language: bash
+
 Now we want ``resize2fs`` and ``fdisk`` to be included in our initramfs so we'll need to create a hook file. Write the
 following to ``/etc/initramfs-tools/hooks/resize2fs``:
 
@@ -60,6 +68,7 @@ itself is present in the initramfs it won't be a problem.
 
 .. code-block:: bash
 
+    sudo chmod +x /etc/kernel/postinst.d/initramfs-rebuild
     sudo chmod +x /etc/initramfs-tools/hooks/resize2fs
     sudo -E CRYPTSETUP=y mkinitramfs -o /boot/initramfs.gz
     lsinitramfs /boot/initramfs.gz |grep -P "sbin/(cryptsetup|resize2fs|fdisk)"
@@ -79,8 +88,8 @@ on another computer, should you wish to abort this process. Edit these files wit
 
 .. describe:: /boot/cmdline.txt
 
-    1. Replace ``root=/dev/mmcblk0p2`` with ``root=/dev/mapper/sdcard``
-    2. Append ``cryptdevice=/dev/mmcblk0p2:sdcard`` to the end of the line.
+    1. Append ``cryptdevice=/dev/mmcblk0p2:sdcard`` to the end of the line.
+    2. Replace ``root=/dev/mmcblk0p2`` with ``root=/dev/mapper/sdcard``
 
 .. describe:: /etc/fstab
 
