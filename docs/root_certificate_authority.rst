@@ -184,7 +184,7 @@ to do these two steps:
 2. Creating an SSL certificate to install on your web servers (router admin pages, IPMI interfaces, etc.).
 
 For the former you'll want to export the ``certs/ca.cert.pem`` file and install it on client computers/devices. For
-example the "Keychain Access" app in OS X can install that file in the System keychain (not System Roots), an you'll
+example the **Keychain Access** app in OS X can install that file in the System keychain (not System Roots), an you'll
 need to manually set the trust to "Always Trust". You may also have to restart web browsers (or just reboot) to get rid
 of SSL errors. Instructions for exporting this file is available in the `Bridging the Air Gap`_ section below.
 
@@ -272,6 +272,21 @@ will use.
 Verify that the **Issuer** is the root CA and the **Subject** is the certificate itself. You will need to install both
 ``certs/router.myhome.net.cert.pem`` and ``private/router.myhome.net.key.pem`` on the web server. Read
 `Bridging the Air Gap`_ for instructions on how to do this securely.
+
+Adding to Java Certificate Store
+--------------------------------
+
+Java seems to have its own certificate store separate from the Operating System's. So in the case of IPMI you'll have a
+valid HTTPS connection to the web interface but when trying to open the Console Redirection you'll get certificate
+warnings.
+
+To fix this you'll need to add the host's (not root) certificate to Java's certificate store. On OS X:
+
+1. Open **System Preferences**. Click on the **Java** icon at the bottom.
+2. In the new window click on the **Security** tab and then the **Manage Certificates** button at the bottom.
+3. Set certificate type to **Secure Site CA**.
+4. Click Import, set File Format to **All Files**, and import ``router.myhome.net.cert.pem``.
+5. Click Close and OK.
 
 Comments
 ========
