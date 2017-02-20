@@ -149,7 +149,7 @@ strong one.
 
 .. code-block:: bash
 
-    cryptsetup -y --cipher aes-cbc-essiv:sha256 --key-size 256 luksFormat /dev/mmcblk0p2
+    cryptsetup --cipher aes-cbc-essiv:sha256 luksFormat /dev/mmcblk0p2
     cryptsetup luksOpen /dev/mmcblk0p2 sdcard  # Mounts the encrypted file system.
     dd bs=4k count=1397823 if=/dev/sda of=/dev/mapper/sdcard # Copy back your data.
     dd bs=4k count=1397823 if=/dev/mapper/sdcard |sha1sum # Make sure it's the same!
