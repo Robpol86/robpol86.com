@@ -58,6 +58,7 @@ scv_grm_exclude = ('.gitignore',)
 scv_show_banner = True
 
 
+# GitHub rst inline roes.
 def github_roles(name, rawtext, text, *_):
     """Handle several GitHub rst inline roles.
 
@@ -79,3 +80,28 @@ roles.register_canonical_role('gh-forks', github_roles)
 roles.register_canonical_role('gh-repo', github_roles)
 roles.register_canonical_role('gh-stars', github_roles)
 roles.register_canonical_role('gh-watchers', github_roles)
+
+
+def html_page_context(app, pagename, templatename, context, doctree):
+    """Update the Jinja2 HTML context.
+
+    :param sphinx.application.Sphinx app: Sphinx application object.
+    :param str pagename: Name of the page being rendered (without .html or any file extension).
+    :param str templatename: Page name with .html.
+    :param dict context: Jinja2 HTML context.
+    :param docutils.nodes.document doctree: Tree of docutils nodes.
+    """
+    # Disable `includehidden=True` from sphinx_rtd_theme.
+    toctree = context['toctree']
+    context['toctree'] = lambda **kwargs: toctree(**dict(kwargs, includehidden=False))
+
+
+def setup(app):
+    """Called by Sphinx during phase 0 (initialization).
+
+    :param sphinx.application.Sphinx app: Sphinx application object.
+
+    :returns: Extension version.
+    :rtype: dict
+    """
+    app.connect('html-page-context', html_page_context)

@@ -49,3 +49,8 @@ GitHub Projects
 
     vw_jsw_2010
     photo_albums
+
+.. toctree::
+    :hidden:
+
+    404
