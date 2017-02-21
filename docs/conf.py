@@ -16,6 +16,7 @@ master_doc = 'index'
 project = 'Robpol86.com'
 pygments_style = 'friendly'
 release = version = datetime.utcnow().strftime('%Y.%m.%d')
+suppress_warnings = ['image.nonlocal_uri']
 templates_path = ['_templates']
 extensions = list()
 
