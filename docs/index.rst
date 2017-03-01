@@ -54,3 +54,4 @@ GitHub Projects
     :hidden:
 
     404
+    my_awesome_server
