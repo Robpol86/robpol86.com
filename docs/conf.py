@@ -2,7 +2,6 @@
 
 import os
 import time
-from datetime import datetime
 
 from docutils import nodes
 from docutils.parsers.rst import roles
@@ -15,7 +14,6 @@ html_last_updated_fmt = '%c {}'.format(time.tzname[time.localtime().tm_isdst])
 master_doc = 'index'
 project = 'Robpol86.com'
 pygments_style = 'friendly'
-release = version = datetime.utcnow().strftime('%Y.%m.%d')
 suppress_warnings = ['image.nonlocal_uri']
 templates_path = ['_templates']
 extensions = list()
