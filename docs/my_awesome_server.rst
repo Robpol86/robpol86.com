@@ -171,6 +171,8 @@ I'll be making heavy use of Docker on my server. Fedora ships with a forked vers
     sudo systemctl start docker
     sudo systemctl enable docker.service
     sudo docker run hello-world
+    url="https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)"
+    sudo curl -L $url -o /usr/local/bin/docker-compose; sudo chmod +x $_
 
 LUKS and Btrfs
 ==============
@@ -214,7 +216,7 @@ Now it's time to create the Btrfs partition on top of LUKS as well as Btrfs subv
     # Create the Btrfs top volume.
     sudo mkfs.btrfs -L storage -m raid10 -d raid10 /dev/mapper/storage_*
     uuid=$(sudo btrfs filesystem show storage |grep -Po '(?<=uuid: )[0-9a-f-]+$')
-    sudo tee -a /etc/fstab <<< "UUID=$uuid /storage btrfs defaults 0 2"
+    sudo tee -a /etc/fstab <<< "UUID=$uuid /storage btrfs autodefrag 0 2"
     sudo mkdir /storage; sudo mount -a
     # Create subvolumes.
     for n in Local Main Media Old Stuff Temporary TimeMachine; do
@@ -278,6 +280,17 @@ Now replace ``/etc/samba/smb.conf`` with:
 .. literalinclude:: _static/smb.conf
     :language: ini
 
+**Before starting Samba** I found that I had to edit its ssytemd service unit file. There was a race condition during
+boot where NetworkManager has not yet assigned my VLAN interface's static IP. Samba tries to bind to the IP of the
+interface and runs into the error "bind failed on port 139 socket_addr = 10.168.192.4".
+
+Run ``sudo systemctl edit nmb.service``, it will open up an empty file. Populate that with:
+
+.. code-block:: ini
+
+    [Unit]
+    After=syslog.target network.target network-online.target
+
 Finally run:
 
 .. code-block:: bash
@@ -293,9 +306,31 @@ Finally run:
 Alerting
 ========
 
-* TODO: btrfs disk failed
-* TODO: btrfs inconsistent data?
-* TODO: imminent disk failure
+I want everything I would normally check periodically on my server to be emailed to me instead. This will involve simple
+cron jobs and more complicated emails derived from metrics.
+
+.. code-block:: bash
+
+    sudo dnf install smartmontools
+    sudo systemctl start smartd
+
+Add these to the **root** crontab. The email configuration from earlier in this document will take care of forwarding
+root emails to my real email address.
+
+.. code-block:: bash
+
+    @hourly journalctl --since="1 hour ago" --priority=warning --quiet
+    @monthly /usr/sbin/btrfs scrub start -Bd /storage
+
+Setup InfluxDB and friends:
+
+.. code-block:: bash
+
+    sudo mkdir -p /opt/influxdb; sudo git clone https://github.com/Robpol86/influxdb.git $_
+    cd /opt/influxdb; sudo /usr/local/bin/docker-compose up -d
+    sudo firewall-cmd --add-port=8086/tcp --permanent
+    sudo firewall-cmd --add-port=8083/tcp --permanent
+    sudo systemctl restart firewalld.service
 
 References
 ==========
