@@ -44,10 +44,10 @@ Network
 While my server has 10GbE copper NICs and I've got a 16 port 10GbE copper managed switch at home, my stupid trash can
 Mac Pro only has dual gigabit NICs. 10GbE copper thunderbolt NICs are too expensive as well.
 
-To make the most of my Mac Pro I'll need to use VLANs. My server will use VLAN tagging and Samba will only listen on the
-VLAN interface in its own subnet. The only other host on this VLAN will be my Mac Pro's second NIC. This way NIC1 will
+To make the most of my Mac Pro I'll need to use VLANs. My server will use VLAN tagging and Samba will also listen on the
+VLAN interface (separate subnet). The only other host on this VLAN will be my Mac Pro's second NIC. This way NIC1 will
 be free to download data from my gigabit internet connection, whilst NIC2 will be dedicated to transfering files to my
-server's Samba share. That way I can download files from the internet to my server via my Mac Pro at gigabit speeds.
+server's Samba share. This lets me download files from the internet to my server via my Mac Pro at gigabit speeds.
 
 VLANs
 -----
@@ -156,24 +156,6 @@ VLAN
 
 That's it!
 
-Docker
-------
-
-I'll be making heavy use of Docker on my server. Fedora ships with a forked version of Docker. I'd rather run the latest
-"real" Docker so I ran these commands:
-
-.. code-block:: bash
-
-    sudo dnf -y remove docker docker-common container-selinux docker-selinux
-    sudo dnf config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/fedora/docker.repo
-    sudo dnf makecache fast
-    sudo dnf install docker-engine
-    sudo systemctl start docker
-    sudo systemctl enable docker.service
-    sudo docker run hello-world
-    url="https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)"
-    sudo curl -L $url -o /usr/local/bin/docker-compose; sudo chmod +x $_
-
 LUKS and Btrfs
 ==============
 
@@ -254,8 +236,8 @@ subvolumes (basically just directories from Samba's point of view).
     sudo chmod 0750 /storage/{Main,Media,Old,Stuff}
     sudo chmod 0751 /storage/Temporary
     sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Main,Media,Old,Stuff,Temporary}
-    mkdir -m 0770 /storage/Temporary/Scanned; sudo chgrp printer $_  # Run as robpol86.
-    sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Temporary/Scanned
+    mkdir -m 0770 /storage/Temporary/Printer; sudo chgrp printer $_  # Run as robpol86.
+    sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Temporary/Printer
 
 Next I'll install Samba, set Samba-specific passwords used by remote clients, and configure SELinux (other Samba guides
 love to disable SELinux or set ``samba_export_all_rw`` which is basically the same as disabling SELinux).
@@ -280,23 +262,13 @@ Now replace ``/etc/samba/smb.conf`` with:
 .. literalinclude:: _static/smb.conf
     :language: ini
 
-**Before starting Samba** I found that I had to edit its ssytemd service unit file. There was a race condition during
-boot where NetworkManager has not yet assigned my VLAN interface's static IP. Samba tries to bind to the IP of the
-interface and runs into the error "bind failed on port 139 socket_addr = 10.168.192.4".
-
-Run ``sudo systemctl edit nmb.service``, it will open up an empty file. Populate that with:
-
-.. code-block:: ini
-
-    [Unit]
-    After=syslog.target network.target network-online.target
-
-Finally run:
+Finally run the following. Add firewall rules to force my OS X host to use the NAS VLAN for Samba.
 
 .. code-block:: bash
 
     sudo chmod +x /usr/local/bin/dfree_btrfs
     sudo firewall-cmd --permanent --add-service=samba
+    sudo firewall-cmd --permanent --add-rich-rule="rule family=ipv4 source address=10.192.168.20 service name=samba drop"
     sudo systemctl restart firewalld.service
     sudo systemctl start smb.service
     sudo systemctl enable smb.service
@@ -322,15 +294,8 @@ root emails to my real email address.
     @hourly journalctl --since="1 hour ago" --priority=warning --quiet
     @monthly /usr/sbin/btrfs scrub start -Bd /storage
 
-Setup InfluxDB and friends:
-
-.. code-block:: bash
-
-    sudo mkdir -p /opt/influxdb; sudo git clone https://github.com/Robpol86/influxdb.git $_
-    cd /opt/influxdb; sudo /usr/local/bin/docker-compose up -d
-    sudo firewall-cmd --add-port=8086/tcp --permanent
-    sudo firewall-cmd --add-port=8083/tcp --permanent
-    sudo systemctl restart firewalld.service
+Setup InfluxDB and friends by following this guide (takes care of installing Docker too):
+https://github.com/Robpol86/influxdb/wiki
 
 References
 ==========
