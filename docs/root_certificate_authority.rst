@@ -181,14 +181,18 @@ You're done generating your root certificate and private key. You're technically
 to do these two steps:
 
 1. Install the public root certificate on client computers so they can trust your servers instead of getting SSL errors.
-2. Creating an SSL certificate to install on your web servers (router admin pages, IPMI interfaces, etc.).
+2. Creating an SSL certificate to install on your web servers (router admin pages, IPMI interfaces, etc.). For more
+   info see: `Issuing Server Certificates`_
 
 For the former you'll want to export the ``certs/ca.cert.pem`` file and install it on client computers/devices. For
-example the **Keychain Access** app in OS X can install that file in the System keychain (not System Roots), an you'll
-need to manually set the trust to "Always Trust". You may also have to restart web browsers (or just reboot) to get rid
-of SSL errors. Instructions for exporting this file is available in the `Bridging the Air Gap`_ section below.
+example:
 
-For the ladder you'll have to scroll down to the `Issuing Server Certificates`_ section for more information.
+* OS X: The **Keychain Access** app can install that file in the System keychain (not System Roots), an you'll need to
+  manually set the trust to "Always Trust" (ou may also have to restart web browsers or just reboot to get rid of SSL
+  errors).
+* Fedora/CentOS/RHEL: Copy that file to ``/etc/pki/ca-trust/source/anchors/`` and then run ``sudo update-ca-trust``.
+
+Instructions for exporting this file is available in the `Bridging the Air Gap`_ section below.
 
 Frequent Tasks
 ==============
