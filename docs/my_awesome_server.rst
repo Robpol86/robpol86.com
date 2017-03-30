@@ -14,12 +14,12 @@ I'll be outlining the steps I took in setting up my current home Linux server. I
 
 1. A file server for all of my media/backups/etc.
 2. `Docker <https://www.docker.com/>`_ server.
-3. Automated Bluray/DVD ripping (backups) station.
+3. `Metrics <https://robpol86.github.io/influxdb/>`_ collecting and email alerting.
 4. `Plex <https://www.plex.tv/>`_ media server.
-5. Apple Time Machine backup server.
-6. `Metrics <https://github.com/influxdata/chronograf>`_ collector and email alerting.
-7. Tape backup server.
-8. Automated video file transcoder.
+5. Automated video file transcoder.
+6. Automated Bluray/DVD ripping (backups) station.
+7. Apple Time Machine backup server.
+8. Tape backup server.
 9. Audio/video file ID3/metadata validator.
 
 Hardware
@@ -275,8 +275,8 @@ Finally run the following. Add firewall rules to force my OS X host to use the N
     sudo systemctl start nmb.service
     sudo systemctl enable nmb.service
 
-Alerting
-========
+Monitoring/Graphing/Alerting
+============================
 
 I want everything I would normally check periodically on my server to be emailed to me instead. This will involve simple
 cron jobs and more complicated emails derived from metrics.
@@ -295,7 +295,7 @@ root emails to my real email address.
     @monthly /usr/sbin/btrfs scrub start -Bd /storage
 
 Setup InfluxDB and friends by following this guide (takes care of installing Docker too):
-https://github.com/Robpol86/influxdb/wiki
+https://robpol86.github.io/influxdb/
 
 References
 ==========
