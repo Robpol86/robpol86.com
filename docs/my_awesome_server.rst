@@ -297,6 +297,47 @@ root emails to my real email address.
 Setup InfluxDB and friends by following this guide (takes care of installing Docker too):
 https://robpol86.github.io/influxdb/
 
+Plex
+====
+
+To give Plex access to my media I'll use sticky bits (setgid) to grant read access to my files to the plex group. I'll
+also run Plex within Docker.
+
+.. code-block:: bash
+
+    sudo useradd -M -s /sbin/nologin plex
+    sudo chmod -R g+s /storage/Media && sudo chgrp -R plex $_
+    sudo docker run -d --name plex --restart always -h $HOSTNAME \
+        -e "ADVERTISE_IP=http://$HOSTNAME:32400/" \
+        -e "ALLOWED_NETWORKS=10.192.168.0/24" \
+        -e "PLEX_GID=$(id plex -g)" \
+        -e "PLEX_UID=$(id plex -u)" \
+        -e "TZ=$(realpath --relative-to /usr/share/zoneinfo /etc/localtime)" \
+        -e "VERSION=latest" \
+        -p 1900:1900/udp \
+        -p 3005:3005/tcp \
+        -p 32400:32400/tcp \
+        -p 32410:32410/udp \
+        -p 32412:32412/udp \
+        -p 32413:32413/udp \
+        -p 32414:32414/udp \
+        -p 32469:32469/tcp \
+        -p 8324:8324/tcp \
+        -v /storage/Local/plex/config:/config \
+        -v /storage/Media:/data:ro \
+        -v /transcode \
+        plexinc/pms-docker
+    for p in $(sudo docker inspect plex |jq -r '.[].NetworkSettings.Ports |keys |join(" ")'); do
+        sudo firewall-cmd --permanent --add-port=$p
+    done
+    sudo systemctl restart firewalld.service
+
+Then browse to http://filesrv.rob86.net:32400/web/index.html to do the initial setup. Enable settings such as:
+
+* Update my library automatically
+* Run a partial scan when changes are detected
+* Update my library periodically
+
 References
 ==========
 
