@@ -16,8 +16,8 @@ I'll be outlining the steps I took in setting up my current home Linux server. I
 2. `Docker <https://www.docker.com/>`_ server.
 3. `Metrics <https://robpol86.github.io/influxdb/>`_ collecting and email alerting.
 4. `Plex <https://www.plex.tv/>`_ media server.
-5. Automated video file transcoder.
-6. Automated Bluray/DVD ripping (backups) station.
+5. Automated Bluray/DVD ripping (backups) station.
+6. Automated video file transcoder.
 7. Apple Time Machine backup server.
 8. Tape backup server.
 9. Audio/video file ID3/metadata validator.
@@ -33,10 +33,16 @@ Case            `Travla T2241`_ dual mini-ITX with `Seasonic 250 watt`_ power su
 Motherboard/CPU `Supermicro X10SDV-TLN4F-O`_ with Xeon D-1541
 Memory          Kingston KVR24R17D8K4/64 (64GB)
 M.2 SSD         Samsung 960 PRO 512GB
-Storage HDDs    6x Seagate 10TB IronWolf Pro (ST10000NE0004)
+Storage HDDs    4x Seagate 10TB IronWolf Pro (ST10000NE0004)
 SAS HBA         HighPoint RocketRAID 2721 4-Port Internal / 4 Port External
 External Tape   *TBD*
 =============== ===========================================================================================
+
+.. _TV stand/cabinet: https://www.standoutdesigns.com/products/media-console-solid-wood-majestic-ex-70-inch-wide
+.. _UPS: http://www.apc.com/shop/us/en/products/APC-Smart-UPS-1500VA-LCD-RM-2U-120V/P-SMT1500RM2U
+.. _Travla T2241: http://www.travla.com/business/index.php?id_product=49&controller=product
+.. _Seasonic 250 watt: https://seasonic.com/product/ss-250-su-active-pfc-f0/
+.. _Supermicro X10SDV-TLN4F-O: http://www.supermicro.com/products/motherboard/Xeon/D/X10SDV-TLN4F.cfm
 
 Network
 =======
@@ -106,6 +112,8 @@ using their own LUKS key file (same file for all HDDs, but not SSD).
 I follow https://gist.github.com/Robpol86/6226495 when setting up any Linux system, including my server. However I don't
 setup my HDDs during setup, I leave them alone.
 
+.. _LUKS: https://fedoraproject.org/wiki/Disk_Encryption_User_Guide
+
 Sending Email
 -------------
 
@@ -166,7 +174,7 @@ I also want to use Btrfs for RAID10 (RAID5 is a bad idea with 6x10TB and RAID6 s
 vs RAID10 stressing just one other drive). Since encryption isn't supported by Btrfs at this time I need to use LUKS.
 Since I want to use LUKS with Btrfs my only option is to LUKS the drives first and then use Btrfs RAID ontop of them.
 
-To avoid having to type in the same password six times on boot I'm instead using a random key file stored in /etc. It's
+To avoid having to type in the same password four times on boot I'm instead using a random key file stored in /etc. It's
 less safe but I'm encrypting my drives in case my server gets stolen. So since I'm using a traditional LUKS password on
 my main SSD this key file will be encrypted anyway.
 
@@ -228,8 +236,8 @@ subvolumes (basically just directories from Samba's point of view).
 
 .. code-block:: bash
 
-    sudo useradd -p $(openssl rand 32 |openssl passwd -1 -stdin) -M -s /sbin/nologin stuff
-    sudo useradd -p $(openssl rand 32 |openssl passwd -1 -stdin) -M -s /sbin/nologin printer
+    sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin stuff
+    sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin printer
     sudo usermod -a -G printer robpol86
     sudo chown robpol86:robpol86 /storage/{Main,Media,Old,Temporary}
     sudo chown stuff:stuff /storage/Stuff
@@ -338,14 +346,15 @@ Then browse to http://filesrv.rob86.net:32400/web/index.html to do the initial s
 * Run a partial scan when changes are detected
 * Update my library periodically
 
+BD/DVD Backups
+==============
+
+Follow the README at https://hub.docker.com/r/robpol86/makemkv/ with some changes:
+
+1. Store MKVs in ``/storage/Temporary/MakeMKV``
+2. Use ``robpol86`` UID and GIDs
+
 References
 ==========
 
 * http://nyeggen.com/post/2014-04-05-full-disk-encryption-with-btrfs-and-multiple-drives-in-ubuntu/
-
-.. _TV stand/cabinet: https://www.standoutdesigns.com/products/media-console-solid-wood-majestic-ex-70-inch-wide
-.. _Seasonic 250 watt: https://seasonic.com/product/ss-250-su-active-pfc-f0/
-.. _UPS: http://www.apc.com/shop/us/en/products/APC-Smart-UPS-1500VA-LCD-RM-2U-120V/P-SMT1500RM2U
-.. _Travla T2241: http://www.travla.com/business/index.php?id_product=49&controller=product
-.. _Supermicro X10SDV-TLN4F-O: http://www.supermicro.com/products/motherboard/Xeon/D/X10SDV-TLN4F.cfm
-.. _LUKS: https://fedoraproject.org/wiki/Disk_Encryption_User_Guide
