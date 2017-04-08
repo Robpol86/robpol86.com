@@ -13,12 +13,12 @@ I've had home servers since I was in high school in 2002. However I've never doc
 I'll be outlining the steps I took in setting up my current home Linux server. It's a general purpose server, acting as:
 
 1. A file server for all of my media/backups/etc.
-2. `Docker <https://www.docker.com/>`_ server.
-3. `Metrics <https://robpol86.github.io/influxdb/>`_ collecting and email alerting.
-4. `Plex <https://www.plex.tv/>`_ media server.
-5. Automated Bluray/DVD ripping (backups) station.
-6. Automated video file transcoder.
-7. Apple Time Machine backup server.
+2. Apple Time Machine backup server.
+3. `Docker <https://www.docker.com/>`_ server.
+4. `Metrics <https://robpol86.github.io/influxdb/>`_ collecting and email alerting.
+5. `Plex <https://www.plex.tv/>`_ media server.
+6. Automated Bluray/DVD ripping (backups) station.
+7. Automated video file transcoder.
 8. Tape backup server.
 9. Audio/video file ID3/metadata validator.
 
@@ -232,30 +232,52 @@ subvolumes (basically just directories from Samba's point of view).
     sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin stuff
     sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin printer
     sudo usermod -a -G printer robpol86
-    sudo chown robpol86:robpol86 /storage/{Main,Media,Old,Temporary}
+    sudo chown robpol86:robpol86 /storage/{Main,Media,Old,Temporary,TimeMachine}
     sudo chown stuff:stuff /storage/Stuff
-    sudo chmod 0750 /storage/{Main,Media,Old,Stuff}
+    sudo chmod 0750 /storage/{Main,Media,Old,Stuff,TimeMachine}
     sudo chmod 0751 /storage/Temporary
-    sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Main,Media,Old,Stuff,Temporary}
+    sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Main,Media,Old,Stuff,Temporary,TimeMachine}
     mkdir -m 0770 /storage/Temporary/Printer; sudo chgrp printer $_  # Run as robpol86.
     sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Temporary/Printer
 
-Next I'll install Samba, set Samba-specific passwords used by remote clients, and configure SELinux (other Samba guides
-love to disable SELinux or set ``samba_export_all_rw`` which is basically the same as disabling SELinux).
+Normally I'd then install Samba the usual way with dnf. However at this time support for Apple's Time Machine `isn't`_
+yet `available`_. My workaround is to build a custom RPM with the ``F_FULLSYNC`` feature patched in until Samba
+officially supports it.
 
 .. code-block:: bash
 
-    sudo dnf install samba policycoreutils-python-utils
+    sudo dnf install @development-tools fedora-packager
+    fedpkg co -ab f25 samba && cd $_
+    fedpkg sources
+    curl -L https://github.com/samba-team/samba/pull/64.patch -o samba-fullsync.patch
+    # Edit samba.spec to add: Patch1: samba-fullsync.patch
+    fedpkg prep
+    sudo dnf builddep --spec samba.spec
+    fedpkg local
+    sudo dnf install noarch/samba-common-4.5.8* \
+        x86_64/{libwbclient,libsmbclient,samba{,-libs,-client,-client-libs,-common{-libs,-tools}}}-4.5.8*
+
+Next I'll install set Samba-specific passwords used by remote clients and configure SELinux (other Samba guides love to
+disable SELinux or set ``samba_export_all_rw`` which is basically the same as disabling SELinux).
+
+.. code-block:: bash
+
+    sudo dnf install avahi policycoreutils-python-utils
     sudo smbpasswd -a stuff && sudo smbpasswd -e $_
     sudo smbpasswd -a printer && sudo smbpasswd -e $_
     sudo smbpasswd -a robpol86 && sudo smbpasswd -e $_
     sudo semanage fcontext -a -t samba_share_t /storage
-    sudo semanage fcontext -a -t samba_share_t "/storage/(Main|Media|Old|Stuff|Temporary)(/.*)?"
+    sudo semanage fcontext -a -t samba_share_t "/storage/(Main|Media|Old|Stuff|Temporary|TimeMachine)(/.*)?"
     sudo restorecon -R -v /storage
 
 Then write the following to ``/usr/local/bin/dfree_btrfs``:
 
 .. literalinclude:: _static/dfree_btrfs.sh
+    :language: bash
+
+And write the following to ``/etc/avahi/services/timemachine.service``:
+
+.. literalinclude:: _static/timemachine.service
     :language: bash
 
 Now replace ``/etc/samba/smb.conf`` with:
@@ -271,10 +293,11 @@ Finally run the following. Add firewall rules to force my OS X host to use the N
     sudo firewall-cmd --permanent --add-service=samba
     sudo firewall-cmd --permanent --add-rich-rule="rule family=ipv4 source address=10.192.168.20 service name=samba drop"
     sudo systemctl restart firewalld.service
-    sudo systemctl start smb.service
-    sudo systemctl enable smb.service
-    sudo systemctl start nmb.service
-    sudo systemctl enable nmb.service
+    sudo systemctl start smb.service nmb.service avahi-daemon.service
+    sudo systemctl enable smb.service nmb.service avahi-daemon.service
+
+.. _isn't: https://bugzilla.samba.org/show_bug.cgi?id=12380
+.. _available: https://github.com/samba-team/samba/pull/64
 
 Monitoring/Graphing/Alerting
 ============================
