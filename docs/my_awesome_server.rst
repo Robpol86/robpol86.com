@@ -174,23 +174,17 @@ I also want to use Btrfs for RAID10 (RAID5 is a bad idea with 6x10TB and RAID6 s
 vs RAID10 stressing just one other drive). Since encryption isn't supported by Btrfs at this time I need to use LUKS.
 Since I want to use LUKS with Btrfs my only option is to LUKS the drives first and then use Btrfs RAID ontop of them.
 
-To avoid having to type in the same password four times on boot I'm instead using a random key file stored in /etc. It's
-less safe but I'm encrypting my drives in case my server gets stolen. So since I'm using a traditional LUKS password on
-my main SSD this key file will be encrypted anyway.
-
 Run the following to set LUKS up:
 
 .. code-block:: bash
 
     sudo dnf install cryptsetup btrfs-progs
-    sudo sh -c 'umask 0277 && dd if=/dev/random of=/etc/hdd_key bs=1 count=128'
-    (set -e; for d in /dev/sd[a-f]; do
-        name=storage_$(lsblk -dno SERIAL $d)
+    (set -ex; for d in /dev/sd[b-e]; do
+        name=storage_$(lsblk -dno SERIAL $d |grep . || basename $d)
         (! sudo grep -q "$name" /etc/crypttab)
         sudo fdisk -l $d |grep "Disk $d"
-        sudo cryptsetup --key-file /etc/hdd_key --cipher aes-cbc-essiv:sha256 luksFormat $d
-        uuid=$(lsblk -dno UUID $d)
-        sudo tee -a /etc/crypttab <<< "$name UUID=$uuid /etc/hdd_key luks"
+        sudo cryptsetup --cipher aes-cbc-essiv:sha256 luksFormat $d
+        sudo tee -a /etc/crypttab <<< "$name UUID=$(lsblk -dno UUID $d) none"
     done)
     sudo systemctl daemon-reload && sudo systemctl restart cryptsetup.target
 
@@ -212,7 +206,6 @@ Now it's time to create the Btrfs partition on top of LUKS as well as Btrfs subv
     for n in Local Main Media Old Stuff Temporary TimeMachine; do
         sudo btrfs subvolume create /storage/$n
     done
-    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 Reboot to make sure ``/storage`` is mounted.
 
