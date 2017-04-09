@@ -50,10 +50,14 @@ Network
 While my server has 10GbE copper NICs and I've got a 16 port 10GbE copper managed switch at home, my stupid trash can
 Mac Pro only has dual gigabit NICs. 10GbE copper thunderbolt NICs are too expensive as well.
 
-To make the most of my Mac Pro I'll need to use VLANs. My server will use VLAN tagging and Samba will also listen on the
-VLAN interface (separate subnet). The only other host on this VLAN will be my Mac Pro's second NIC. This way NIC1 will
-be free to download data from my gigabit internet connection, whilst NIC2 will be dedicated to transfering files to my
-server's Samba share. This lets me download files from the internet to my server via my Mac Pro at gigabit speeds.
+To make the most of my Mac Pro I'll need to use `LACP`_. My `switch`_ only supports layer 2 hashing, which means it
+determines which port on my Mac should get traffic based on the source and destination MAC addresses. Lucky for me the
+MAC addresses of my server is computed by my switch to send that traffic to NIC1 on my Mac Pro, whilst my pfSense
+router's MAC address is computed to have traffic sent to NIC2. This lets me download files from the internet to my
+server via my Mac Pro at gigabit speeds.
+
+.. _LACP: https://en.wikipedia.org/wiki/Link_aggregation#Link_Aggregation_Control_Protocol
+.. _switch: https://www.amazon.com/NETGEAR-ProSAFE-10-Gigabit-Ethernet-XS716T-100NES/dp/B01ELW0QY2
 
 VLANs
 -----
@@ -71,10 +75,6 @@ VLANs
 
     Only used by the guest WiFi SSID. In case neighbors need to borrow my internet they can use this network, which will
     be separate from my general network. DHCP served by my pfSense box.
-
-.. describe:: VLAN4: NAS
-
-    Used for Samba. Only NIC2 on my Mac Pro and my server (VLAN tagging/trunking) will be on this VLAN.
 
 .. describe:: VLAN5: ONT
 
@@ -97,10 +97,11 @@ Port    Device       VLAN
 7       WiFi AP      2 (2+3 tagged)
 8       Desk         2
 9       Mac Pro NIC1 2
-10      Mac Pro NIC2 4
+10      Mac Pro NIC2 2
 11      *empty*      1
 12      *empty*      3
 13-16   *empty*      2
+LAG1    Mac Pro 1+2  2
 ======= ============ ==================
 
 Operating System
@@ -154,15 +155,6 @@ Then run:
 
 You should receive both emails in your personal email account. If not make sure the numbers in your SparkPost's
 dashboard's usage report have increased.
-
-VLAN
-----
-
-.. code-block:: bash
-
-    sudo nmcli con add type vlan ifname vlan4 dev eno3 id 4 ip4 10.168.192.4/24
-
-That's it!
 
 LUKS and Btrfs
 ==============
@@ -285,13 +277,12 @@ Now replace ``/etc/samba/smb.conf`` with:
 .. literalinclude:: _static/smb.conf
     :language: ini
 
-Finally run the following. Add firewall rules to force my OS X host to use the NAS VLAN for Samba.
+Finally run the following.
 
 .. code-block:: bash
 
     sudo chmod +x /usr/local/bin/dfree_btrfs
     sudo firewall-cmd --permanent --add-service=samba
-    sudo firewall-cmd --permanent --add-rich-rule="rule family=ipv4 source address=10.192.168.20 service name=samba drop"
     sudo systemctl restart firewalld.service
     sudo systemctl start smb.service nmb.service avahi-daemon.service
     sudo systemctl enable smb.service nmb.service avahi-daemon.service
