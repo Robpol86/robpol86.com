@@ -301,12 +301,17 @@ cron jobs and more complicated emails derived from metrics.
     sudo dnf install smartmontools
     sudo systemctl start smartd
 
+Then write the following to ``/usr/local/bin/filtered_journalctl``:
+
+.. literalinclude:: _static/filtered_journalctl.sh
+    :language: bash
+
 Add these to the **root** crontab. The email configuration from earlier in this document will take care of forwarding
 root emails to my real email address.
 
 .. code-block:: bash
 
-    @hourly journalctl --since="1 hour ago" --priority=warning --quiet
+    @hourly /usr/local/bin/filtered_journalctl --since "1 hour ago" --priority warning
     @monthly /usr/sbin/btrfs scrub start -Bd /storage
 
 Setup InfluxDB and friends by following this guide (takes care of installing Docker too):
