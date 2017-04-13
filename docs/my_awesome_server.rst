@@ -12,15 +12,12 @@ My Awesome Server
 I've had home servers since I was in high school in 2002. However I've never documented how I set them up before. Here
 I'll be outlining the steps I took in setting up my current home Linux server. It's a general purpose server, acting as:
 
-1. A file server for all of my media/backups/etc.
-2. Apple Time Machine backup server.
-3. `Docker <https://www.docker.com/>`_ server.
-4. `Metrics <https://robpol86.github.io/influxdb/>`_ collecting and email alerting.
-5. `Plex <https://www.plex.tv/>`_ media server.
-6. Automated Bluray/DVD ripping (backups) station.
-7. Automated video file transcoder.
-8. Tape backup server.
-9. Audio/video file ID3/metadata validator.
+#. A file server for all of my media/backups/etc.
+#. Apple Time Machine backup server.
+#. `Docker <https://www.docker.com/>`_ server.
+#. `Metrics <https://robpol86.github.io/influxdb/>`_ collecting and email alerting.
+#. `Plex <https://www.plex.tv/>`_ media server.
+#. Automated Bluray/DVD ripping (backups) station.
 
 Hardware
 ========
@@ -311,6 +308,8 @@ root emails to my real email address.
 
 .. code-block:: bash
 
+    @daily dnf check-update -C |wc -l |xargs test 10 -lt && dnf check-update -C
+    @daily dnf updateinfo list sec
     @hourly /usr/local/bin/filtered_journalctl --since "1 hour ago" --priority warning
     @monthly /usr/sbin/btrfs scrub start -Bd /storage
 
@@ -363,8 +362,8 @@ BD/DVD Backups
 
 Follow the README at https://hub.docker.com/r/robpol86/makemkv/ with some changes:
 
-1. Store MKVs in ``/storage/Temporary/MakeMKV``
-2. Use ``robpol86`` UID and GIDs
+#. Store MKVs in ``/storage/Temporary/MakeMKV``
+#. Use ``robpol86`` UID and GIDs
 
 References
 ==========

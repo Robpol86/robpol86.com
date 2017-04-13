@@ -16,7 +16,9 @@ journalctl -o json "$@" |while read -r line; do
     ident=
     message=
     pid=
+    systemd_unit=
     timestamp=
+    unit=
 
     # Read JSON into bash variables.
     while IFS="=" read -r -d '' key value; do
@@ -25,15 +27,28 @@ journalctl -o json "$@" |while read -r line; do
             _COMM) comm="$value" ;;
             _HOSTNAME) hostname="$value" ;;
             _PID) pid="$value" ;;
+            _SYSTEMD_UNIT) systemd_unit="$value" ;;
             CONTAINER_NAME) container_name="$value" ;;
             MESSAGE) message="$value" ;;
             SYSLOG_IDENTIFIER) ident="$value" ;;
+            UNIT) unit="$value" ;;
         esac
     done < <(jq -j 'to_entries|map("\(.key)=\(.value)")|.[]|.+"\u0000"' <<< "$line")
 
     # Filter influxdb statements.
     if [ "$container_name" == "influxdb" ] && [ "${message::3}" == "[I]" ]; then
         continue
+    fi
+
+    # Filter intermittent makecache errors.
+    if [ "$unit" == "dnf-makecache.service" ]; then
+        continue
+    fi
+
+    # Filter iptables warnings due to docker.
+    if [ "$systemd_unit" == "firewalld.service" ] && [ "${message::24}" == "WARNING: COMMAND_FAILED:" ]; then
+        if [[ "${message^^}" == *"DOCKER"* ]] || [[ "$message" == *" br-"* ]]; then continue; fi
+        if [[ "${message^^}" =~ $(echo '\b172.1(7|8).0.2\b') ]]; then continue; fi
     fi
 
     # Handle source column.
