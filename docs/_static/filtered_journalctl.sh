@@ -45,10 +45,12 @@ journalctl -o json "$@" |while read -r line; do
         continue
     fi
 
-    # Filter iptables warnings due to docker.
+    # Filter warnings due to docker.
     if [ "$systemd_unit" == "firewalld.service" ] && [ "${message::24}" == "WARNING: COMMAND_FAILED:" ]; then
         if [[ "${message^^}" == *"DOCKER"* ]] || [[ "$message" == *" br-"* ]]; then continue; fi
         if [[ "${message^^}" =~ $(echo "\b172.1(7|8).0.2\b") ]]; then continue; fi
+    elif [ "$syslog_ident" == "systemd-udevd" ]; then
+        if [ "${message::50}" == "Could not generate persistent MAC address for veth" ]; then continue; fi
     fi
 
     # Filter kernel messages.

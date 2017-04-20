@@ -104,7 +104,7 @@ LAG1    Mac Pro 1+2  2
 Operating System
 ================
 
-I'm using Fedora 25 Server installed on my M.2 SSD using `LUKS`_. I'll also be encryping all of my non-SSD hard drives
+I'm using Fedora 25 Server installed on my M.2 SSD using `LUKS`_. I'll also be encrypting all of my non-SSD hard drives
 using their own LUKS key file (same file for all HDDs, but not SSD).
 
 I follow https://gist.github.com/Robpol86/6226495 when setting up any Linux system, including my server. However I don't
@@ -192,7 +192,7 @@ Now it's time to create the Btrfs partition on top of LUKS as well as Btrfs subv
     sudo tee -a /etc/fstab <<< "UUID=$uuid /storage btrfs autodefrag 0 2"
     sudo mkdir /storage; sudo mount -a
     # Create subvolumes.
-    for n in Local Main Media Old Stuff Temporary TimeMachine; do
+    for n in Common Local Main Media Old Temporary TimeMachine; do
         sudo btrfs subvolume create /storage/$n
     done
 
@@ -205,27 +205,19 @@ I'll have three Samba users on my server. Each user will have a separate passwor
 as printers may not store them 100% securely and I wouldn't want that to be an attack vector for my server (lifting the
 password from the printer and then logging in and running sudo on my server).
 
-======== ==========================================================================
-User     Description
-======== ==========================================================================
-robpol86 The main user for my server. Will own everything besides "Stuff".
-stuff    Separate user for "Stuff" in case I use it for malware testing/etc.
-printer  Scanned documents will be put in "Temporary". Also writable by "robpol86".
-======== ==========================================================================
-
 Before installing anything I'll create additional users as per the table above and set permissions on the Btrfs
 subvolumes (basically just directories from Samba's point of view).
 
 .. code-block:: bash
 
-    sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin stuff
+    sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin common
     sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin printer
     sudo usermod -a -G printer robpol86
     sudo chown robpol86:robpol86 /storage/{Main,Media,Old,Temporary,TimeMachine}
-    sudo chown stuff:stuff /storage/Stuff
-    sudo chmod 0750 /storage/{Main,Media,Old,Stuff,TimeMachine}
+    sudo chown common:common /storage/Common
+    sudo chmod 0750 /storage/{Common,Main,Media,Old,TimeMachine}
     sudo chmod 0751 /storage/Temporary
-    sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Main,Media,Old,Stuff,Temporary,TimeMachine}
+    sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Common,Main,Media,Old,Temporary,TimeMachine}
     mkdir -m 0770 /storage/Temporary/Printer; sudo chgrp printer $_  # Run as robpol86.
     sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Temporary/Printer
 
@@ -252,11 +244,11 @@ disable SELinux or set ``samba_export_all_rw`` which is basically the same as di
 .. code-block:: bash
 
     sudo dnf install avahi policycoreutils-python-utils
-    sudo smbpasswd -a stuff && sudo smbpasswd -e $_
+    sudo smbpasswd -a common && sudo smbpasswd -e $_
     sudo smbpasswd -a printer && sudo smbpasswd -e $_
     sudo smbpasswd -a robpol86 && sudo smbpasswd -e $_
     sudo semanage fcontext -a -t samba_share_t /storage
-    sudo semanage fcontext -a -t samba_share_t "/storage/(Main|Media|Old|Stuff|Temporary|TimeMachine)(/.*)?"
+    sudo semanage fcontext -a -t samba_share_t "/storage/(Common|Main|Media|Old|Temporary|TimeMachine)(/.*)?"
     sudo restorecon -R -v /storage
 
 Then write the following to ``/usr/local/bin/dfree_btrfs``:
@@ -309,7 +301,7 @@ root emails to my real email address.
 .. code-block:: bash
 
     @daily dnf check-update -C |wc -l |xargs test 10 -lt && dnf check-update -C
-    @daily dnf updateinfo list sec
+    @daily dnf updateinfo -C list sec |grep -v "Last metadata expiration check"
     @hourly /usr/local/bin/filtered_journalctl --since "1 hour ago" --priority warning
     @monthly /usr/sbin/btrfs scrub start -Bd /storage
 
@@ -362,7 +354,7 @@ BD/DVD Backups
 
 Follow the README at https://hub.docker.com/r/robpol86/makemkv/ with some changes:
 
-#. Store MKVs in ``/storage/Temporary/MakeMKV``
+#. Store MKVs in ``/storage/Media/MakeMKV``
 #. Use ``robpol86`` UID and GIDs
 
 References
