@@ -1,0 +1,159 @@
+From 9f8d692fa9d46e969b08ff5bf808453cfc4dea76 Mon Sep 17 00:00:00 2001
+From: Kevin Anderson <andersonkw2@gmail.com>
+Date: Sun, 23 Oct 2016 20:32:27 -0400
+Subject: [PATCH 1/2] vfs_fruit: Add capability to advertise FULLSYNC
+
+Add the capability to advertise FULLSYNC volume capabilities
+to clients that request them. This is mainly used for supporting
+Mac OS Time Machine backups from clients. The capability does
+not perform any additional action.
+---
+ docs-xml/manpages/vfs_fruit.8.xml | 21 +++++++++++++++++++++
+ libcli/smb/smb2_create_ctx.h      |  3 ++-
+ source3/modules/vfs_fruit.c       | 11 ++++++++++-
+ 3 files changed, 33 insertions(+), 2 deletions(-)
+
+diff --git a/docs-xml/manpages/vfs_fruit.8.xml b/docs-xml/manpages/vfs_fruit.8.xml
+index 7a84f87..d389f40 100644
+--- a/docs-xml/manpages/vfs_fruit.8.xml
++++ b/docs-xml/manpages/vfs_fruit.8.xml
+@@ -108,6 +108,27 @@
+ 	  </varlistentry>
+ 
+ 	  <varlistentry>
++	    <term>fruit:advertise_fullsync = [ true | false ]</term>
++	    <listitem>
++	      <para>Controls if the FULLSYNC volume capability is advertised to clients</para>
++
++	      <itemizedlist>
++		<listitem><para><command>false (default)</command>
++		Disables advertising the FULLSYNC volume capability to clients.
++		</para></listitem>
++
++		<listitem><para><command>true</command> - Enables advertising
++		the FULLSYNC volume capability to clients. This is necessary for supporting
++		Time Machine backups from Mac OSX clients. This value only advertises the
++		capability and does nothing else with the sync requests from clients.
++		</para></listitem>
++
++	      </itemizedlist>
++
++	    </listitem>
++	  </varlistentry>
++
++	  <varlistentry>
+ 	    <term>fruit:metadata = [ stream | netatalk ]</term>
+ 	    <listitem>
+ 	      <para>Controls where the OS X metadata stream is stored:</para>
+diff --git a/libcli/smb/smb2_create_ctx.h b/libcli/smb/smb2_create_ctx.h
+index cb194f5..1c65e6c 100644
+--- a/libcli/smb/smb2_create_ctx.h
++++ b/libcli/smb/smb2_create_ctx.h
+@@ -30,7 +30,7 @@
+ 
+ /* "AAPL" Server Query request/response bitmap */
+ #define SMB2_CRTCTX_AAPL_SERVER_CAPS 1
+-#define SMB2_CRTCTX_AAPL_VOLUME_CAPS 2
++#define SMB2_CRTCTX_AAPL_VOLUME_CAPS 6
+ #define SMB2_CRTCTX_AAPL_MODEL_INFO  4
+ 
+ /* "AAPL" Client/Server Capabilities bitmap */
+@@ -42,5 +42,6 @@
+ /* "AAPL" Volume Capabilities bitmap */
+ #define SMB2_CRTCTX_AAPL_SUPPORT_RESOLVE_ID 1
+ #define SMB2_CRTCTX_AAPL_CASE_SENSITIVE     2
++#define SMB2_CRTCTX_AAPL_FULL_SYNC          4
+ 
+ #endif
+diff --git a/source3/modules/vfs_fruit.c b/source3/modules/vfs_fruit.c
+index 6e7899aa..c0101c1 100644
+--- a/source3/modules/vfs_fruit.c
++++ b/source3/modules/vfs_fruit.c
+@@ -133,6 +133,7 @@ struct fruit_config_data {
+ 	bool copyfile_enabled;
+ 	bool veto_appledouble;
+ 	bool posix_rename;
++	bool advertise_fullsync;
+ 
+ 	/*
+ 	 * Additional options, all enabled by default,
+@@ -1352,6 +1353,9 @@ static int init_fruit_config(vfs_handle_struct *handle)
+ 	config->use_aapl = lp_parm_bool(
+ 		-1, FRUIT_PARAM_TYPE_NAME, "aapl", true);
+ 
++	config->advertise_fullsync = lp_parm_bool(
++		-1, FRUIT_PARAM_TYPE_NAME, "advertise_fullsync", false);
++
+ 	config->unix_info_enabled = lp_parm_bool(
+ 		-1, FRUIT_PARAM_TYPE_NAME, "nfs_aces", true);
+ 
+@@ -1827,6 +1831,7 @@ static NTSTATUS check_aapl(vfs_handle_struct *handle,
+ 	DATA_BLOB blob = data_blob_talloc(req, NULL, 0);
+ 	uint64_t req_bitmap, client_caps;
+ 	uint64_t server_caps = SMB2_CRTCTX_AAPL_UNIX_BASED;
++	uint64_t volume_caps;
+ 	smb_ucs2_t *model;
+ 	size_t modellen;
+ 
+@@ -1898,7 +1903,11 @@ static NTSTATUS check_aapl(vfs_handle_struct *handle,
+ 	if (req_bitmap & SMB2_CRTCTX_AAPL_VOLUME_CAPS) {
+ 		SBVAL(p, 0,
+ 		      lp_case_sensitive(SNUM(handle->conn->tcon->compat)) ?
+-		      SMB2_CRTCTX_AAPL_CASE_SENSITIVE : 0);
++		      volume_caps |= SMB2_CRTCTX_AAPL_CASE_SENSITIVE : 0);
++
++		if (config->advertise_fullsync) {
++			SBVAL(p, 0, volume_caps |= SMB2_CRTCTX_AAPL_FULL_SYNC);
++		}
+ 		ok = data_blob_append(req, &blob, p, 8);
+ 		if (!ok) {
+ 			return NT_STATUS_UNSUCCESSFUL;
+
+From bdd62adfc29f768cca5ecb6fb2d4bad2c6b0cf35 Mon Sep 17 00:00:00 2001
+From: Kevin Anderson <andersonkw2@gmail.com>
+Date: Tue, 25 Oct 2016 16:21:19 -0400
+Subject: [PATCH 2/2] vfs_fruit: Add/Fix config option to enable/disable
+ fullsync
+
+Add a configuration option to disable/enable fullsync
+and to fix mistakenly overwriting values incorrectly.
+
+Signed-off-by: Kevin Anderson <andersonkw2@gmail.com>
+---
+ source3/modules/vfs_fruit.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/source3/modules/vfs_fruit.c b/source3/modules/vfs_fruit.c
+index c0101c1..91c93f1 100644
+--- a/source3/modules/vfs_fruit.c
++++ b/source3/modules/vfs_fruit.c
+@@ -1831,7 +1831,7 @@ static NTSTATUS check_aapl(vfs_handle_struct *handle,
+ 	DATA_BLOB blob = data_blob_talloc(req, NULL, 0);
+ 	uint64_t req_bitmap, client_caps;
+ 	uint64_t server_caps = SMB2_CRTCTX_AAPL_UNIX_BASED;
+-	uint64_t volume_caps;
++	uint64_t volume_caps = 0;
+ 	smb_ucs2_t *model;
+ 	size_t modellen;
+ 
+@@ -1901,13 +1901,16 @@ static NTSTATUS check_aapl(vfs_handle_struct *handle,
+ 	}
+ 
+ 	if (req_bitmap & SMB2_CRTCTX_AAPL_VOLUME_CAPS) {
+-		SBVAL(p, 0,
+-		      lp_case_sensitive(SNUM(handle->conn->tcon->compat)) ?
+-		      volume_caps |= SMB2_CRTCTX_AAPL_CASE_SENSITIVE : 0);
++		if(lp_case_sensitive(SNUM(handle->conn->tcon->compat))) {
++		      volume_caps |= SMB2_CRTCTX_AAPL_CASE_SENSITIVE;
++		}
+ 
+ 		if (config->advertise_fullsync) {
+-			SBVAL(p, 0, volume_caps |= SMB2_CRTCTX_AAPL_FULL_SYNC);
++			volume_caps |= SMB2_CRTCTX_AAPL_FULL_SYNC;
+ 		}
++
++		SBVAL(p, 0, volume_caps);
++
+ 		ok = data_blob_append(req, &blob, p, 8);
+ 		if (!ok) {
+ 			return NT_STATUS_UNSUCCESSFUL;

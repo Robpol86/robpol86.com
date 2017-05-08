@@ -104,13 +104,14 @@ LAG1    Mac Pro 1+2  2
 Operating System
 ================
 
-I'm using Fedora 25 Server installed on my M.2 SSD using `LUKS`_. I'll also be encryping all of my non-SSD hard drives
-using their own LUKS key file (same file for all HDDs, but not SSD).
+I'm using Fedora 25 Server installed on my M.2 SSD using `LUKS`_. I'll also be encrypting all of my non-SSD hard drives
+using the same password since `Plymouth`_ on Fedora does password caching.
 
 I follow https://gist.github.com/Robpol86/6226495 when setting up any Linux system, including my server. However I don't
 setup my HDDs during setup, I leave them alone.
 
 .. _LUKS: https://fedoraproject.org/wiki/Disk_Encryption_User_Guide
+.. _Plymouth: https://en.wikipedia.org/wiki/Plymouth_(software)
 
 Sending Email
 -------------
@@ -168,7 +169,7 @@ Run the following to set LUKS up:
 .. code-block:: bash
 
     sudo dnf install cryptsetup btrfs-progs
-    (set -ex; for d in /dev/sd[b-e]; do
+    (set -ex; for d in /dev/sd[a-d]; do
         name=storage_$(lsblk -dno SERIAL $d |grep . || basename $d)
         (! sudo grep -q "$name" /etc/crypttab)
         sudo fdisk -l $d |grep "Disk $d"
@@ -192,11 +193,40 @@ Now it's time to create the Btrfs partition on top of LUKS as well as Btrfs subv
     sudo tee -a /etc/fstab <<< "UUID=$uuid /storage btrfs autodefrag 0 2"
     sudo mkdir /storage; sudo mount -a
     # Create subvolumes.
-    for n in Local Main Media Old Stuff Temporary TimeMachine; do
+    for n in Common Local Main Media Old Temporary TimeMachine; do
         sudo btrfs subvolume create /storage/$n
     done
 
 Reboot to make sure ``/storage`` is mounted.
+
+Users and Permissions
+---------------------
+
+Then create users and chown directories. Users will need passwords defined so they'll work with Samba.
+
+.. code-block:: bash
+
+    # Users/groups.
+    sudo groupadd timemachine
+    sudo useradd -M -s /sbin/nologin -p "$(openssl rand 32 |openssl passwd -1 -stdin)" common
+    sudo useradd -M -s /sbin/nologin -p "$(openssl rand 32 |openssl passwd -1 -stdin)" printer
+    sudo useradd -M -s /sbin/nologin media
+    sudo usermod -a -G media,printer,timemachine robpol86
+    # TimeMachine: multiple users can access. Their files readable only by them.
+    sudo chgrp timemachine /storage/TimeMachine && sudo chmod 0770 $_
+    sudo setfacl -d -m u::rwx -m g::- -m o::- /storage/TimeMachine
+    # Printer: a place for my printer to drop scanned documents.
+    sudo mkdir -m 0770 /storage/Local/Printer && sudo chown printer:printer $_
+    sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Local/Printer
+    # Media: a place for MakeMKV to write video files to and Plex to playback.
+    sudo mkdir -m 0770 /storage/Local/MakeMKV && sudo chown media:media $_
+    sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Local/MakeMKV
+    sudo chown robpol86:media /storage/Media && sudo chmod 2750 $_
+    # Others.
+    sudo chown common:common /storage/Common
+    sudo chown robpol86:robpol86 /storage/{Main,Old,Temporary}
+    sudo chmod 0750 /storage/{Common,Main,Old,Temporary}
+    sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Common,Main,Media,Old,Temporary}
 
 Samba
 =====
@@ -204,30 +234,6 @@ Samba
 I'll have three Samba users on my server. Each user will have a separate password in Samba's database since things such
 as printers may not store them 100% securely and I wouldn't want that to be an attack vector for my server (lifting the
 password from the printer and then logging in and running sudo on my server).
-
-======== ==========================================================================
-User     Description
-======== ==========================================================================
-robpol86 The main user for my server. Will own everything besides "Stuff".
-stuff    Separate user for "Stuff" in case I use it for malware testing/etc.
-printer  Scanned documents will be put in "Temporary". Also writable by "robpol86".
-======== ==========================================================================
-
-Before installing anything I'll create additional users as per the table above and set permissions on the Btrfs
-subvolumes (basically just directories from Samba's point of view).
-
-.. code-block:: bash
-
-    sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin stuff
-    sudo useradd -p "$(openssl rand 32 |openssl passwd -1 -stdin)" -M -s /sbin/nologin printer
-    sudo usermod -a -G printer robpol86
-    sudo chown robpol86:robpol86 /storage/{Main,Media,Old,Temporary,TimeMachine}
-    sudo chown stuff:stuff /storage/Stuff
-    sudo chmod 0750 /storage/{Main,Media,Old,Stuff,TimeMachine}
-    sudo chmod 0751 /storage/Temporary
-    sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Main,Media,Old,Stuff,Temporary,TimeMachine}
-    mkdir -m 0770 /storage/Temporary/Printer; sudo chgrp printer $_  # Run as robpol86.
-    sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Temporary/Printer
 
 Normally I'd then install Samba the usual way with dnf. However at this time support for Apple's Time Machine `isn't`_
 yet `available`_. My workaround is to build a custom RPM with the ``F_FULLSYNC`` feature patched in until Samba
@@ -238,7 +244,7 @@ officially supports it.
     sudo dnf install @development-tools fedora-packager
     fedpkg co -ab f25 samba && cd $_
     fedpkg sources
-    curl -L https://github.com/samba-team/samba/pull/64.patch -o samba-fullsync.patch
+    wget https://raw.githubusercontent.com/Robpol86/robpol86.com/master/docs/_static/samba-fullsync.patch
     # Edit samba.spec to add: Patch1: samba-fullsync.patch
     fedpkg prep
     sudo dnf builddep --spec samba.spec
@@ -252,11 +258,12 @@ disable SELinux or set ``samba_export_all_rw`` which is basically the same as di
 .. code-block:: bash
 
     sudo dnf install avahi policycoreutils-python-utils
-    sudo smbpasswd -a stuff && sudo smbpasswd -e $_
+    sudo smbpasswd -a common && sudo smbpasswd -e $_
     sudo smbpasswd -a printer && sudo smbpasswd -e $_
     sudo smbpasswd -a robpol86 && sudo smbpasswd -e $_
     sudo semanage fcontext -a -t samba_share_t /storage
-    sudo semanage fcontext -a -t samba_share_t "/storage/(Main|Media|Old|Stuff|Temporary|TimeMachine)(/.*)?"
+    sudo semanage fcontext -a -t samba_share_t "/storage/(Common|Main|Media|Old|Temporary|TimeMachine)(/.*)?"
+    sudo semanage fcontext -a -t samba_share_t "/storage/Local/(MakeMKV|Printer)(/.*)?"
     sudo restorecon -R -v /storage
 
 Then write the following to ``/usr/local/bin/dfree_btrfs``:
@@ -309,7 +316,7 @@ root emails to my real email address.
 .. code-block:: bash
 
     @daily dnf check-update -C |wc -l |xargs test 10 -lt && dnf check-update -C
-    @daily dnf updateinfo list sec
+    @daily dnf updateinfo -C list sec |grep -v "Last metadata expiration check"
     @hourly /usr/local/bin/filtered_journalctl --since "1 hour ago" --priority warning
     @monthly /usr/sbin/btrfs scrub start -Bd /storage
 
@@ -319,18 +326,16 @@ https://robpol86.github.io/influxdb/
 Plex
 ====
 
-To give Plex access to my media I'll use sticky bits (setgid) to grant read access to my files to the plex group. I'll
+To give Plex access to my media I'll use sticky bits (setgid) to grant read access to my files to the media group. I'll
 also run Plex within Docker.
 
 .. code-block:: bash
 
-    sudo useradd -M -s /sbin/nologin plex
-    sudo chmod -R g+s /storage/Media && sudo chgrp -R plex $_
     sudo docker run -d --name plex --restart always -h $HOSTNAME \
         -e "ADVERTISE_IP=http://$HOSTNAME:32400/" \
         -e "ALLOWED_NETWORKS=10.192.168.0/24" \
-        -e "PLEX_GID=$(id plex -g)" \
-        -e "PLEX_UID=$(id plex -u)" \
+        -e "PLEX_GID=$(id media -g)" \
+        -e "PLEX_UID=$(id media -u)" \
         -e "TZ=$(realpath --relative-to /usr/share/zoneinfo /etc/localtime)" \
         -e "VERSION=latest" \
         -p 1900:1900/udp \
@@ -342,6 +347,7 @@ also run Plex within Docker.
         -p 32414:32414/udp \
         -p 32469:32469/tcp \
         -p 8324:8324/tcp \
+        -v /storage/Local/MakeMKV:/data2:ro \
         -v /storage/Local/plex/config:/config \
         -v /storage/Media:/data:ro \
         -v /transcode \
@@ -360,10 +366,7 @@ Then browse to http://filesrv.rob86.net:32400/web/index.html to do the initial s
 BD/DVD Backups
 ==============
 
-Follow the README at https://hub.docker.com/r/robpol86/makemkv/ with some changes:
-
-#. Store MKVs in ``/storage/Temporary/MakeMKV``
-#. Use ``robpol86`` UID and GIDs
+Follow the README at: https://github.com/Robpol86/makemkv/tree/robpol86
 
 References
 ==========
