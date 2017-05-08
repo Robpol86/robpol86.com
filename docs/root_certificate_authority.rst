@@ -119,7 +119,7 @@ Run these commands to setup directories and permissions:
     sudo setfacl -d -m u::rx -m g::rx -m o::rx /root/ca/certs
     sudo chmod 700 /root/ca/private
     sudo touch /root/ca/index.txt
-    echo 1000 |sudo tee /root/ca/serial
+    sudo tee /root/ca/serial <<< 1000
 
 Those ``setfacl`` commands set filesystem ACLs which enforce default maximum file permissions for new files/directories.
 A brief description for these directories:
@@ -166,13 +166,14 @@ these additional certificates.
 .. note::
 
     The ``openssl req`` command will prompt you for some information. The defaults you've specified in openssl.cnf will
-    be fine. However it will prompt you for **Common Name**. Put in the fully qualified domain name of this certificate
+    be fine. However double check that the **Common Name** is the fully qualified domain name of this certificate
     authority.
 
 .. code-block:: bash
 
     sudo su -  # Become root.
     cd /root/ca
+    export CN=$(hostname --fqdn)
     openssl genrsa -aes256 -out private/ca.key.pem 8192
     openssl req -key private/ca.key.pem -new -x509 -days 1827 -extensions v3_ca -out certs/ca.cert.pem
     openssl x509 -noout -text -in certs/ca.cert.pem |more  # Confirm everything looks good.
@@ -265,7 +266,7 @@ will use.
     date  # Verify the date is correct. If not: sudo date -s "Aug 15 18:10"
     sudo su -
     cd /root/ca
-    CN=router.myhome.net
+    export CN=router.myhome.net
     openssl genrsa -out private/$CN.key.pem 4096
     openssl req -key private/$CN.key.pem -new -out csr/$CN.csr.pem  # CN is FQDN.
     openssl ca -extensions server_cert -notext -in csr/$CN.csr.pem -out certs/$CN.cert.pem

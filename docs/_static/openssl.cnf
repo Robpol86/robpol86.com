@@ -1,4 +1,7 @@
 # /etc/ssl/openssl.cnf
+
+CN = ""  # Leave blank.
+
 [ ca ]
 default_ca = CA_default
 
@@ -64,10 +67,12 @@ stateOrProvinceName_default     = SUB_STATE_NAME
 localityName_default            = SUB_LOCALITY
 0.organizationName_default      = SUB_ORG_NAME
 organizationalUnitName_default  = SUB_UNIT_NAME
+commonName_default              = $ENV::CN
 emailAddress_default            = SUB_EMAIL
 
 [ v3_ca ]
 # Extensions for a typical CA (`man x509v3_config`).
+subjectAltName = DNS:$ENV::CN
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid:always,issuer
 basicConstraints = critical, CA:true, pathlen:0
@@ -88,6 +93,7 @@ extendedKeyUsage = clientAuth, emailProtection
 basicConstraints = CA:FALSE
 nsCertType = server
 nsComment = "OpenSSL Generated Server Certificate"
+subjectAltName = DNS:$ENV::CN
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid,issuer:always
 keyUsage = critical, digitalSignature, keyEncipherment
