@@ -249,8 +249,8 @@ officially supports it.
     fedpkg prep
     sudo dnf builddep --spec samba.spec
     fedpkg local
-    sudo dnf install noarch/samba-common-4.5.8* \
-        x86_64/{libwbclient,libsmbclient,samba{,-libs,-client,-client-libs,-common{-libs,-tools}}}-4.5.8*
+    sudo dnf install noarch/samba-common-4.5.* \
+        x86_64/{libwbclient,libsmbclient,samba{,-libs,-client,-client-libs,-common{-libs,-tools}}}-4.5.*
 
 Next I'll install set Samba-specific passwords used by remote clients and configure SELinux (other Samba guides love to
 disable SELinux or set ``samba_export_all_rw`` which is basically the same as disabling SELinux).
@@ -315,8 +315,8 @@ root emails to my real email address.
 
 .. code-block:: bash
 
-    @daily dnf check-update -C |wc -l |xargs test 10 -lt && dnf check-update -C
-    @daily dnf updateinfo -C list sec |grep -v "Last metadata expiration check"
+    0 20 * * * dnf check-update -C |wc -l |xargs test 20 -lt && dnf check-update -C
+    1 20 * * * dnf updateinfo -C list sec |grep -v "Last metadata expiration check"
     @hourly /usr/local/bin/filtered_journalctl --since "1 hour ago" --priority warning
     @monthly /usr/sbin/btrfs scrub start -Bd /storage
 
