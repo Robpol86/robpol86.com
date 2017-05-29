@@ -294,6 +294,30 @@ Finally run the following.
 .. _isn't: https://bugzilla.samba.org/show_bug.cgi?id=12380
 .. _available: https://github.com/samba-team/samba/pull/64
 
+apcupsd
+=======
+
+My UPS has a `Network Management Card`_ which I'll use for graphing and email alerts. I also want my Server (and Mac Pro
+desktop) to shut down when there's a power outage and low battery.
+
+.. code-block:: bash
+
+    sudo dnf install apcupsd
+    sudo chmod 640 /etc/apcupsd/apcupsd.conf
+    # Set: UPSCABLE ether; UPSTYPE pcnet; DEVICE <nmc IP>:device:<admin user phrase>
+    # Also: NETSERVER off
+    sudo firewall-cmd --permanent --add-port=3052/udp
+    sudo systemctl restart firewalld.service
+    sudo systemctl start apcupsd.service
+    sudo systemctl enable apcupsd.service
+
+Then write the following to ``/etc/apcupsd/doshutdown``:
+
+.. literalinclude:: _static/doshutdown.sh
+    :language: bash
+
+.. _Network Management Card: http://www.apc.com/shop/us/en/products/UPS-Network-Management-Card-2-with-Environmental-Monitoring/P-AP9631
+
 Monitoring/Graphing/Alerting
 ============================
 
