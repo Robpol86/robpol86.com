@@ -1,0 +1,28 @@
+version: 2
+
+jobs:
+    build:
+        machine: true
+        working_directory: ~/project
+
+        steps:
+            - checkout
+
+            - run:
+                name: Install Dependencies
+                command: |
+                    sudo add-apt-repository -y ppa:jonathonf/python-3.6
+                    sudo apt-get update
+                    sudo apt-get install -y python3.6
+                    curl https://bootstrap.pypa.io/get-pip.py |sudo python3.6
+                    sudo pip3.6 install -r requirements.txt
+
+            - deploy:
+                name: Build and Upload Docs
+                command: |
+                    sphinx-build -W docs docs/_build/html
+                    git config --global user.email "builds@circleci.com"
+                    git config --global user.name "CircleCI"
+                    git remote add nfsn "robpol86_robpol86@ssh.phx.nearlyfreespeech.net:/home/private/repo"
+                    export ${!CIRCLE*}
+                    sphinx-versioning push -P nfsn docs nfsn-pages .
