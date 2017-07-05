@@ -3,7 +3,7 @@ ErrorDocument 404 /404.html
 RewriteEngine on
 RewriteBase /
 
-# Match from beginning.
+# Legacy.
 RewriteRule ^guides/Flashing-Motorola-Droid-to-Cricket https://robpol86.com/flash_droid_cricket.html [R=301,L]
 RewriteRule ^guides/Wireless-Charging-Car-Dock https://robpol86.com/wireless_charging_car_dock.html [R=301,L]
 RewriteRule ^image\.php https://robpol86.com/photo_albums.html [R=301,L]
@@ -17,7 +17,7 @@ RewriteRule jetta https://robpol86.com/vw_jsw_2010.html [R=301,L,NC]
 RewriteRule Motion https://robpol86.com/rns_510_vim.html [R=301,L]
 RewriteRule workspaces https://robpol86.com/photo_albums.html [R=301,L]
 
-# Keywords that avoid infinite loops.
+# Keywords without recursion.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule imagecfg https://robpol86.com/imagecfg.html [R=301,L,NC]
 RewriteCond %{REQUEST_FILENAME} !-f
