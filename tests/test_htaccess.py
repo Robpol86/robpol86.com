@@ -115,9 +115,23 @@ def test_rewrite_keywords_recursion(path, location):
             assert response.headers['Location'] == expected
 
 
+def test_rewrite_deleted():
+    """Test RewriteRules for deleted branch redirects."""
+    # Redirect if file exists up one dir.
+    response = requests.head('http://localhost:8080/sub/imagecfg.html')
+    assert response.status_code == 301
+    assert response.headers['Location'] == 'https://robpol86.com/imagecfg.html'
+    # Don't redirect if file doesn't exists up one dir.
+    response = requests.head('http://localhost:8080/sub/dne.html')
+    assert response.status_code == 404
+    # Don't redirect if requested file exists.
+    response = requests.head('http://localhost:8080/branch/imagecfg.html')
+    assert response.status_code == 200
+
+
 @pytest.mark.parametrize('path', ['index.php', 'menu.php'])
 def test_rewrite_catch_alls(path):
-    """Test catch all redirects.
+    """Test RewriteRules for catch all redirects.
 
     :param str path: URL to query.
     """

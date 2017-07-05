@@ -22,13 +22,14 @@ jobs:
             - run:
                 name: Build Docker Image
                 command : |
-                    pushd $(mktemp -d) && mkdir -p htdocs/sub
+                    pushd $(mktemp -d) && mkdir -p htdocs/sub htdocs/branch
                     cp ~/project/tests/Dockerfile .
                     cp ~/project/docs/.htaccess htdocs/
                     echo "Hello World" > htdocs/index.html
                     echo "Hello Sub" > htdocs/sub/sub.html
                     echo "This is the 404 page." > htdocs/404.html
                     echo "Hello ImageCFG" > htdocs/imagecfg.html
+                    echo "Hello ImageCFG2" > htdocs/branch/imagecfg.html
                     echo "Hello Lapdock" > htdocs/lapdock.html
                     echo "Hello Berto89" > htdocs/berto89.iso
                     docker build -t httpd_alpine .
