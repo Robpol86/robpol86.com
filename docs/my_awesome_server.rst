@@ -44,17 +44,7 @@ External Tape   *TBD*
 Network
 =======
 
-While my server has 10GbE copper NICs and I've got a 16 port 10GbE copper managed switch at home, my stupid trash can
-Mac Pro only has dual gigabit NICs. 10GbE copper thunderbolt NICs are too expensive as well.
-
-To make the most of my Mac Pro I'll need to use `LACP`_. My `switch`_ only supports layer 2 hashing, which means it
-determines which port on my Mac should get traffic based on the source and destination MAC addresses. Lucky for me the
-MAC addresses of my server is computed by my switch to send that traffic to NIC1 on my Mac Pro, whilst my pfSense
-router's MAC address is computed to have traffic sent to NIC2. This lets me download files from the internet to my
-server via my Mac Pro at gigabit speeds.
-
-.. _LACP: https://en.wikipedia.org/wiki/Link_aggregation#Link_Aggregation_Control_Protocol
-.. _switch: https://www.amazon.com/NETGEAR-ProSAFE-10-Gigabit-Ethernet-XS716T-100NES/dp/B01ELW0QY2
+This section describes my home network topology.
 
 VLANs
 -----
@@ -73,11 +63,11 @@ VLANs
     Only used by the guest WiFi SSID. In case neighbors need to borrow my internet they can use this network, which will
     be separate from my general network. DHCP served by my pfSense box.
 
-.. describe:: VLAN5: ONT
+.. describe:: VLAN5: WAN
 
-    My gigabit "modem" will be on this VLAN, along with my pfSense box. Instead of plugging in the ONT directly to my
-    pfSense box both will plug into my switch but be on their own VLAN. Easier cable management and if I ever want to
-    get a second gigabit line I can plug in the second ONT into my switch.
+    Internet traffic comes into this VLAN, along with my pfSense box. Instead of plugging it directly to my pfSense box
+    both will plug into my switch but be on their own VLAN. Easier cable management and if I ever want to get a second
+    internet line I can plug that into my switch.
 
 Switchports
 -----------
@@ -85,20 +75,22 @@ Switchports
 ======= ============ ==================
 Port    Device       VLAN
 ======= ============ ==================
-1       ONT          5
-2       pfSense WAN  5
-3       pfSense LAN  2 (3 tagged)
-4       Server       2 (4 tagged)
-5       UPS          2
-6       Chromecast   2
-7       WiFi AP      2 (2+3 tagged)
-8       Desk         2
-9       Mac Pro NIC1 2
-10      Mac Pro NIC2 2
+1       pfSense      2 (3+5 tagged)
+2       Server       2
+3       UPS          2
+4       Chromecast   2
+5       WiFi AP      2 (2+3 tagged)
+6       Desk         2
+7       Mac Pro      2
+8       *empty*      2
+9       *empty*      2
+10      *empty*      2
 11      *empty*      1
 12      *empty*      3
-13-16   *empty*      2
-LAG1    Mac Pro 1+2  2
+13      *empty*      2
+14      *empty*      2
+15      *empty*      2
+16      Upstream     5
 ======= ============ ==================
 
 Operating System
@@ -112,6 +104,33 @@ setup my HDDs during setup, I leave them alone.
 
 .. _LUKS: https://fedoraproject.org/wiki/Disk_Encryption_User_Guide
 .. _Plymouth: https://en.wikipedia.org/wiki/Plymouth_(software)
+
+Fixing ATA Errors
+-----------------
+
+I've been seeing these messages for all of my Seagate 10 TB drives periodically in ``dmesg``:
+
+.. code-block:: text
+
+    ata2.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+    ata2.00: failed command: FLUSH CACHE EXT
+    ata2.00: cmd ea/00:00:00:00:00/00:00:00:00:00/a0 tag 16
+             res 40/00:00:00:4f:c2/00:00:00:00:00/00 Emask 0x4 (timeout)
+    ata2.00: status: { DRDY }
+    ata2: hard resetting link
+    ata2: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+    ata2.00: configured for UDMA/133
+    ata2.00: retrying FLUSH 0xea Emask 0x4
+    ata2: EH complete
+
+The only solution that worked for me was to disable `NCQ <https://en.wikipedia.org/wiki/Native_Command_Queuing>`_. I did
+this by adding the `libata.force=noncq` kernel boot option:
+
+.. code-block:: bash
+
+    sudo vim /etc/default/grub
+    # Append libata.force=noncq to GRUB_CMDLINE_LINUX.
+    sudo grub2-mkconfig -o $(sudo find /boot -name grub.cfg)
 
 Sending Email
 -------------

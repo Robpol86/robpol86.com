@@ -56,7 +56,7 @@ journalctl -o json "$@" |while read -r line; do
 
     # Filter kernel messages.
     if [ "$syslog_ident" == "kernel" ]; then
-        if [[ "$message" =~ "audit_printk_skb: "[0-9]+" callbacks suppressed" ]]; then continue; fi
+        if [[ "$message" =~ "audit"d?"_printk_skb: "[0-9]+" callbacks suppressed" ]]; then continue; fi
     fi
 
     # Handle source column.
