@@ -174,6 +174,7 @@ these additional certificates.
     sudo su -  # Become root.
     cd /root/ca
     export CN=$(hostname --fqdn)
+    export SAN=DNS:$CN
     openssl genrsa -aes256 -out private/ca.key.pem 8192
     openssl req -key private/ca.key.pem -new -x509 -days 1827 -extensions v3_ca -out certs/ca.cert.pem
     openssl x509 -noout -text -in certs/ca.cert.pem |more  # Confirm everything looks good.
@@ -267,12 +268,24 @@ will use.
     sudo su -
     cd /root/ca
     export CN=router.myhome.net
+    export SAN=DNS:$CN
     openssl genrsa -out private/$CN.key.pem 4096
     openssl req -key private/$CN.key.pem -new -out csr/$CN.csr.pem  # CN is FQDN.
     openssl ca -extensions server_cert -notext -in csr/$CN.csr.pem -out certs/$CN.cert.pem
     rm csr/$CN.csr.pem
     openssl x509 -noout -text -in certs/$CN.cert.pem |more  # Confirm everything looks good.
     cat index.txt  # Verify new cert is present.
+
+.. tip::
+
+    If you want to issue a certificate with multiple Subject Alternative Names (e.g. one cert for ``server.myhome.net``
+    and ``sub.server.myhome.net``) you can set them in the ``SAN`` environment variable. Below is an example for a
+    certificate valid for the main domain as well as all (single-level) wildcard sub-domains:
+
+    .. code-block:: bash
+
+        export CN=server.myhome.net
+        export SAN=DNS:$CN,DNS:*.$CN
 
 Verify that the **Issuer** is the root CA and the **Subject** is the certificate itself. You will need to install both
 ``certs/router.myhome.net.cert.pem`` and ``private/router.myhome.net.key.pem`` on the web server. Read

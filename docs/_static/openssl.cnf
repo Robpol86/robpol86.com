@@ -72,7 +72,7 @@ emailAddress_default            = SUB_EMAIL
 
 [ v3_ca ]
 # Extensions for a typical CA (`man x509v3_config`).
-subjectAltName = DNS:$ENV::CN
+subjectAltName = $ENV::SAN
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid:always,issuer
 basicConstraints = critical, CA:true, pathlen:0
@@ -93,7 +93,7 @@ extendedKeyUsage = clientAuth, emailProtection
 basicConstraints = CA:FALSE
 nsCertType = server
 nsComment = "OpenSSL Generated Server Certificate"
-subjectAltName = DNS:$ENV::CN
+subjectAltName = $ENV::SAN
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid,issuer:always
 keyUsage = critical, digitalSignature, keyEncipherment
