@@ -27,8 +27,8 @@ RewriteRule berto89 https://robpol86.com/rns_510_vim.html [R=301,L,NC]
 
 # Redirect deleted branches.
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} ^/[^/]+(/.+\.html)$
-RewriteCond %{DOCUMENT_ROOT}%1 -f
+RewriteCond %{REQUEST_URI} ^/[^/]+/(.+\.html)$
+RewriteCond %{DOCUMENT_ROOT}/%1 -f
 RewriteRule .+ https://robpol86.com/%1 [R=301,L]
 
 # Catch-alls.
