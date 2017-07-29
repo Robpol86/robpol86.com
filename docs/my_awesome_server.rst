@@ -18,6 +18,9 @@ I'll be outlining the steps I took in setting up my current home Linux server. I
 #. `Metrics <https://robpol86.github.io/influxdb/>`_ collecting and email alerting.
 #. `Plex <https://www.plex.tv/>`_ media server.
 #. Automated Bluray/DVD ripping (backups) station.
+#. TODO: Automated video file transcoder.
+#. TODO: Audio/video file ID3/metadata validator.
+#. TODO: Usenet/Torrent downloader.
 
 Hardware
 ========
@@ -30,9 +33,7 @@ Case            `Travla T2241`_ dual mini-ITX with `Seasonic 250 watt`_ power su
 Motherboard/CPU `Supermicro X10SDV-TLN4F-O`_ with Xeon D-1541
 Memory          Kingston KVR24R17D8K4/64 (64GB)
 M.2 SSD         Samsung 960 PRO 512GB
-Storage HDDs    4x Seagate 10TB IronWolf Pro (ST10000NE0004)
-SAS HBA         HighPoint RocketRAID 2721 4-Port Internal / 4 Port External
-External Tape   *TBD*
+Storage HDDs    6x Seagate 10TB IronWolf Pro (ST10000NE0004)
 =============== ===========================================================================================
 
 .. _TV stand/cabinet: https://www.standoutdesigns.com/products/media-console-solid-wood-majestic-ex-70-inch-wide
@@ -96,7 +97,7 @@ Port    Device       VLAN
 Operating System
 ================
 
-I'm using Fedora 25 Server installed on my M.2 SSD using `LUKS`_. I'll also be encrypting all of my non-SSD hard drives
+I'm using Fedora 26 Server installed on my M.2 SSD using `LUKS`_. I'll also be encrypting all of my non-SSD hard drives
 using the same password since `Plymouth`_ on Fedora does password caching.
 
 I follow https://gist.github.com/Robpol86/6226495 when setting up any Linux system, including my server. However I don't
@@ -188,7 +189,7 @@ Run the following to set LUKS up:
 .. code-block:: bash
 
     sudo dnf install cryptsetup btrfs-progs
-    (set -ex; for d in /dev/sd[a-d]; do
+    (set -ex; for d in /dev/sd[a-f]; do
         name=storage_$(lsblk -dno SERIAL $d |grep . || basename $d)
         (! sudo grep -q "$name" /etc/crypttab)
         sudo fdisk -l $d |grep "Disk $d"
@@ -212,7 +213,7 @@ Now it's time to create the Btrfs partition on top of LUKS as well as Btrfs subv
     sudo tee -a /etc/fstab <<< "UUID=$uuid /storage btrfs autodefrag 0 2"
     sudo mkdir /storage; sudo mount -a
     # Create subvolumes.
-    for n in Common Local Main Media Old Temporary TimeMachine; do
+    for n in Local Main Media Old Stuff Temporary TimeMachine; do
         sudo btrfs subvolume create /storage/$n
     done
 
@@ -226,14 +227,19 @@ Then create users and chown directories. Users will need passwords defined so th
 .. code-block:: bash
 
     # Users/groups.
+    sudo groupadd shared
     sudo groupadd timemachine
-    sudo useradd -M -s /sbin/nologin -p "$(openssl rand 32 |openssl passwd -1 -stdin)" common
     sudo useradd -M -s /sbin/nologin -p "$(openssl rand 32 |openssl passwd -1 -stdin)" printer
+    sudo useradd -M -s /sbin/nologin -p "$(openssl rand 32 |openssl passwd -1 -stdin)" stuff
     sudo useradd -M -s /sbin/nologin media
-    sudo usermod -a -G media,printer,timemachine robpol86
+    sudo usermod -a -G media,printer,shared,timemachine robpol86
+    sudo usermod -a -G shared stuff
     # TimeMachine: multiple users can access. Their files readable only by them.
     sudo chgrp timemachine /storage/TimeMachine && sudo chmod 0770 $_
     sudo setfacl -d -m u::rwx -m g::- -m o::- /storage/TimeMachine
+    # Shared: multiple users can access. Their files readable and writable by members.
+    sudo mkdir -m 0770 /storage/Local/Shared && sudo chgrp shared $_
+    sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Local/Shared
     # Printer: a place for my printer to drop scanned documents.
     sudo mkdir -m 0770 /storage/Local/Printer && sudo chown printer:printer $_
     sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Local/Printer
@@ -242,10 +248,10 @@ Then create users and chown directories. Users will need passwords defined so th
     sudo setfacl -d -m u::rwx -m g::rwx -m o::- /storage/Local/MakeMKV
     sudo chown robpol86:media /storage/Media && sudo chmod 2750 $_
     # Others.
-    sudo chown common:common /storage/Common
+    sudo chown stuff:stuff /storage/Stuff
     sudo chown robpol86:robpol86 /storage/{Main,Old,Temporary}
-    sudo chmod 0750 /storage/{Common,Main,Old,Temporary}
-    sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Common,Main,Media,Old,Temporary}
+    sudo chmod 0750 /storage/{Main,Old,Stuff,Temporary}
+    sudo setfacl -d -m u::rwx -m g::rx -m o::- /storage/{Main,Media,Old,Stuff,Temporary}
 
 Samba
 =====
@@ -261,15 +267,15 @@ officially supports it.
 .. code-block:: bash
 
     sudo dnf install @development-tools fedora-packager
-    fedpkg co -ab f25 samba && cd $_
+    fedpkg co -ab f26 samba && cd $_
     fedpkg sources
-    wget https://raw.githubusercontent.com/Robpol86/robpol86.com/master/docs/_static/samba-fullsync.patch
+    curl -L https://github.com/samba-team/samba/pull/64.patch -o samba-fullsync.patch
     # Edit samba.spec to add: Patch1: samba-fullsync.patch
     fedpkg prep
     sudo dnf builddep --spec samba.spec
     fedpkg local
-    sudo dnf install noarch/samba-common-4.5.* \
-        x86_64/{libwbclient,libsmbclient,samba{,-libs,-client,-client-libs,-common{-libs,-tools}}}-4.5.*
+    sudo dnf install noarch/samba-common-4.6.* \
+        x86_64/{libwbclient,libsmbclient,samba{,-libs,-client,-client-libs,-common{-libs,-tools}}}-4.6.*
 
 Next I'll install set Samba-specific passwords used by remote clients and configure SELinux (other Samba guides love to
 disable SELinux or set ``samba_export_all_rw`` which is basically the same as disabling SELinux).
@@ -277,12 +283,12 @@ disable SELinux or set ``samba_export_all_rw`` which is basically the same as di
 .. code-block:: bash
 
     sudo dnf install avahi policycoreutils-python-utils
-    sudo smbpasswd -a common && sudo smbpasswd -e $_
     sudo smbpasswd -a printer && sudo smbpasswd -e $_
     sudo smbpasswd -a robpol86 && sudo smbpasswd -e $_
+    sudo smbpasswd -a stuff && sudo smbpasswd -e $_
     sudo semanage fcontext -a -t samba_share_t /storage
-    sudo semanage fcontext -a -t samba_share_t "/storage/(Common|Main|Media|Old|Temporary|TimeMachine)(/.*)?"
-    sudo semanage fcontext -a -t samba_share_t "/storage/Local/(MakeMKV|Printer)(/.*)?"
+    sudo semanage fcontext -a -t samba_share_t "/storage/(Main|Media|Old|Stuff|Temporary|TimeMachine)(/.*)?"
+    sudo semanage fcontext -a -t samba_share_t "/storage/Local/(MakeMKV|Printer|Shared)(/.*)?"
     sudo restorecon -R -v /storage
 
 Then write the following to ``/usr/local/bin/dfree_btrfs``:
@@ -339,6 +345,8 @@ Then write the following to ``/etc/apcupsd/doshutdown``:
 
 Monitoring/Graphing/Alerting
 ============================
+
+TODO: Use subdomains for Grafana/etc.
 
 I want everything I would normally check periodically on my server to be emailed to me instead. This will involve simple
 cron jobs and more complicated emails derived from metrics.
@@ -410,6 +418,142 @@ BD/DVD Backups
 ==============
 
 Follow the README at: https://github.com/Robpol86/makemkv/tree/robpol86
+
+GitLab CE
+=========
+
+GitLab's Docker image hosts its own sshd service. First I need to create an interface alias for it to listen on:
+
+.. code-block:: bash
+
+    sudo vim /etc/sysconfig/network-scripts/ifcfg-eno3
+    # Add: IPADDR2=10.192.168.40
+    # Add: NETMASK2=255.255.255.0
+    sudo ifdown eno3; sudo ifup $_
+
+Next I need to tell my main sshd to listen on just the main interface instead of all interfaces.
+
+.. code-block:: bash
+
+    sudo vim /etc/ssh/sshd_config
+    # ListenAddress 10.192.168.4
+    sudo systemctl reload sshd.service
+
+Start:
+
+.. code-block:: bash
+
+    sudo docker run -d --name gitlab --restart always -h git.$HOSTNAME \
+        -p 10.192.168.40:80:80 -p 10.192.168.40:443:443 -p 10.192.168.40:22:22 \
+        -v /etc/filesrv.rob86.net.cert.pem:/etc/ssl/git.filesrv.rob86.net.crt:ro \
+        -v /etc/filesrv.rob86.net.key.pem:/etc/ssl/git.filesrv.rob86.net.key:ro \
+        -v /storage/Local/gitlab/etc:/etc/gitlab:Z \
+        -v /storage/Local/gitlab/log:/var/log/gitlab:Z \
+        -v /storage/Local/gitlab/opt:/var/opt/gitlab:Z \
+        gitlab/gitlab-ce:latest
+
+Configure SMTP by editing ``/storage/Local/gitlab/etc/gitlab.rb``:
+
+.. code-block:: ruby
+
+    external_url 'https://git.filesrv.rob86.net'
+    nginx['redirect_http_to_https'] = true
+    nginx['ssl_certificate'] = "/etc/ssl/git.filesrv.rob86.net.crt"
+    nginx['ssl_certificate_key'] = "/etc/ssl/git.filesrv.rob86.net.key"
+    gitlab_rails['smtp_enable'] = true
+    gitlab_rails['smtp_address'] = 'smtp.sparkpostmail.com'
+    gitlab_rails['smtp_port'] = 587
+    gitlab_rails['smtp_user_name'] = 'SMTP_Injection'
+    gitlab_rails['smtp_password'] = '<API_KEY>'
+    gitlab_rails['smtp_domain'] = 'robpol86.com'
+    gitlab_rails['smtp_authentication'] = 'login'
+    gitlab_rails['smtp_enable_starttls_auto'] = true
+    gitlab_rails['gitlab_email_from'] = 'gitlab@robpol86.com'
+
+Then run:
+
+.. code-block:: bash
+
+    sudo docker restart gitlab
+
+Finally navigate to https://git.filesrv.rob86.net/
+
+Backup Strategy
+===============
+
+For backups my main threat model is two-fold:
+
+#. **Physical security**: someone breaking into my apartment and stealing my equipment and hard drives. This extends to
+   my backups (I don't want a thief getting all of my data if they steal my backup hard drive).
+#. **Ransomware**: I could make a mistake one day (nobody's perfect) or get infected via a 0-day. If all of my data is
+   encrypted by ransomware the only road to recovery is a good backup strategy.
+
+I was planning on using LTO7 tapes for backup but the $3000+ drive and $85 for each tape would add up to a lot of money
+up front. Instead I'm going with regular hard drives for my backup. I'll secure each hard drive using LUKS full disk
+encryption along with native `Btrfs compression <https://btrfs.wiki.kernel.org/index.php/Compression>`_. When restoring
+I'll mount the drive with `enforced read-only`_ mode to prevent any possibility of malware infecting my backups.
+
+I've got four 8 TB archive drives sitting around so I'll put them to good use as my backup drives. In the future once
+all of my data results in more than 8 TB of storage I'll manually span my backups by assigning Btrfs subvolumes to
+different disks. If a subvolume exceeds 8 TB of data then I'll have to go with more granular spanning but I'll worry
+about that in the future.
+
+.. _enforced read-only: https://www.amazon.com/Coolgear-SATA-Adapter-Write-Protect-Selection/dp/B005C55OYA
+
+First Run
+---------
+
+On a new system we need to prepare it for backups. Run these commands:
+
+.. code-block:: bash
+
+    sudo mkdir /backup
+    sudo dnf install rsync
+
+Then write the following to ``/usr/local/bin/backup``:
+
+.. literalinclude:: _static/backup.sh
+    :language: bash
+
+New Drives
+----------
+
+I initialize a new backup hard drive with:
+
+.. code-block:: bash
+
+    sudo fdisk -l /dev/sdg  # Make sure this is the right drive.
+    sudo cryptsetup --cipher aes-cbc-essiv:sha256 luksFormat /dev/sdg
+    sudo cryptsetup luksOpen /dev/sdg backup
+    sudo mkfs.btrfs -L backup$(date +%Y%m%d) /dev/mapper/backup
+    sudo cryptsetup luksClose /dev/mapper/backup
+
+Backup Procedure
+----------------
+
+Using the script I wrote backup the subvolumes to the drive:
+
+.. code-block:: bash
+
+    until [ -b /dev/sdg ]; do sleep 1; done
+    sudo cryptsetup luksOpen /dev/sdg backup
+    sudo mount -o compress /dev/mapper/backup /backup
+    sudo backup Local Main Media Old Stuff TimeMachine
+    sudo umount /backup
+    sudo cryptsetup luksClose /dev/mapper/backup
+
+Restore Procedure
+-----------------
+
+If I need to restore data from a backup I'll run these commands. Remember to switch the Coolgear adapter to
+**read-only** before plugging in the drive.
+
+.. code-block:: bash
+
+    sudo cryptsetup luksOpen --readonly /dev/sdg backup
+    sudo mount -o ro /dev/mapper/backup /backup
+    sudo umount /backup
+    sudo cryptsetup luksClose /dev/mapper/backup
 
 References
 ==========
