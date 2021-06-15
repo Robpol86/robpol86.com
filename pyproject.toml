@@ -1,0 +1,71 @@
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "Robpol86.com"
+version = "0.0.1"
+description = "My personal website."
+readme = "README.md"
+authors = ["Robpol86 <robpol86@gmail.com>"]
+license = "BSD-2-Clause"
+classifiers = [
+    "Private :: Do Not Upload",
+]
+
+[tool.poetry.urls]
+repository = "https://github.com/Robpol86/robpol86.com"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+# Project dependencies.
+myst-parser = {version = ">=0.14.0", extras = ["linkify"]}
+sphinx = ">=3.5"
+sphinx-autobuild = "*"  # not semver
+sphinx-book-theme = ">=0.1.0"
+sphinx-copybutton = ">=0.3.1"
+sphinx-disqus = ">=1.2.0"
+sphinx-last-updated-by-git = ">=0.3.0"
+sphinx-notfound-page = ">=0.7.1"
+sphinx-panels = ">=0.6.0"
+sphinxcontrib-imgur = {git = "https://github.com/Robpol86/sphinx-imgur", branch = "quick_fix"}
+sphinxext-opengraph = ">=0.4.2"
+
+[tool.poetry.dev-dependencies]
+# Linters.
+black = "*"
+flake8 = ">=3.9.2"
+flake8-docstrings = ">=1.6.0"
+flake8-import-order = ">=0.18.1"
+pep8-naming = ">=0.11.1"
+pylint = ">=2.8.3"
+# Tests.
+docker = ">=5.0.0"
+pytest = ">=6.2.4"
+pytest-icdiff = ">=0.5"
+
+[tool.black]
+line-length = 125
+target-version = ["py37", "py38", "py39"]
+
+[tool.pylint.FORMAT]
+disable = ["fixme", "redefined-builtin", "invalid-name", "unused-argument"]
+good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
+ignore = [".venv/*", "build/*", "dist/*"]
+max-args = 6
+max-line-length = 125
+reports = false
+
+[tool.pylint.SIMILARITIES]
+ignore-imports = true
+min-similarity-lines = 7
+
+[tool.pylint.TYPECHECK]
+ignored-modules = ["distutils", "py"]
+
+[tool.pytest.ini_options]
+addopts = "--durations=15 --showlocals --verbose --verbose"
+filterwarnings = [
+    "ignore::DeprecationWarning:sphinx.*:",
+]
+log_level = "DEBUG"
