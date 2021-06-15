@@ -6,5 +6,4 @@ This is my personal website. It's built with [Sphinx](http://sphinx-doc.org/), h
 
 SSL is provided for free by [CloudFlare](https://www.cloudflare.com/).
 
-I use [CircleCI](https://circleci.com/gh/Robpol86/robpol86.com) to automatically build and push HTML files to NFSN
-(using [SCVersioning](https://robpol86.github.io/sphinxcontrib-versioning/)) every time I push them to this GitHub repo.
+I use GitHub Actions to automatically build and push HTML files to NFSN.

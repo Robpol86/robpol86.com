@@ -1,0 +1,15 @@
+name: Continuous Integration/Deploy
+
+on:
+  push:
+  release: {types: [published]}
+
+jobs:
+
+  build:
+    name: Build HTML
+    runs-on: ubuntu-latest
+    steps:
+      - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
+      - {name: Install Python, uses: actions/setup-python@v2, with: {python-version: 3.9}}
+      # TODO
