@@ -19,6 +19,7 @@ deps:
 lint: _HELP = Run linters
 lint: deps
 	poetry check
+	poetry run black --check --color --diff .
 	poetry run flake8 --application-import-names tests
 	poetry run pylint tests docs/conf.py
 
