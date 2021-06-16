@@ -16,4 +16,33 @@ jobs:
       - {name: Install dependencies, run: make deps}
       - {name: Run lints, run: make lint}
       - {name: Run tests, run: make test}
-      - {name: Build docs, run: make docs}
+      - name: Build docs
+        env:
+          OGP_SITE_URL: "https://${{ github.event_name != 'release' && 'rob86stage.' || '' }}robpol86.com/"
+        run: make docs
+      - name: Store HTML files artifact
+        uses: actions/upload-artifact@v2
+        with: {name: html, path: build/html/, if-no-files-found: error}
+
+  publish:
+    name: Publish to NFSN
+    needs: build
+    concurrency: "publish-${{ github.event_name }}"
+    runs-on: ubuntu-latest
+    steps:
+      - {name: Fetch HTML files, uses: actions/download-artifact@v2, with: {name: html, path: html}}
+      - name: Archive HTML files
+        if: "${{ github.event_name == 'release' }}"
+        run: tar -czvf html.tar.gz html/
+      - name: Setup SSH
+        uses: shimataro/ssh-key-action@v2
+        with: {key: "${{ secrets.NFSN_SSH_KEY }}", known_hosts: "${{ secrets.NFSN_SSH_HOST }}"}
+      - name: Deploy
+        env:
+          NFSN_HOST: ssh.phx.nearlyfreespeech.net
+          NFSN_USER: "${{ github.event_name == 'release' && secrets.NFSN_SSH_USER_PROD || secrets.NFSN_SSH_USER_STAGE }}"
+        run: rsync -rptcivh --delete --stats html/ "${{env.NFSN_USER}}@${{env.NFSN_HOST}}:/home/public"
+      - name: Upload HTML Archive to Release
+        if: "${{ github.event_name == 'release' }}"
+        uses: svenstaro/upload-release-action@v2
+        with: {file: html.tar.gz, repo_token: "${{ secrets.GITHUB_TOKEN }}", tag: "${{ github.ref }}"}
