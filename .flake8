@@ -5,7 +5,6 @@ exclude =
     dist/*,
 ignore =
     D401,
-    E305,
 import-order-style = smarkets
 max-line-length = 125
 statistics = True

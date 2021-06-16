@@ -16,3 +16,4 @@ jobs:
       - {name: Install dependencies, run: make deps}
       - {name: Run lints, run: make lint}
       - {name: Run tests, run: make test}
+      - {name: Build docs, run: make docs}

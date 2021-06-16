@@ -4,19 +4,8 @@ Robpol86.com
 
 Welcome to my website, where I host random guides/articles and other stuff.
 
-GitHub Projects
-===============
-
-========================================== =============================================================================
-:gh-repo:`terminaltables`                  :gh-watchers:`terminaltables` :gh-stars:`terminaltables`
-                                           :gh-forks:`terminaltables`
-:gh-repo:`Flask-Large-Application-Example` :gh-watchers:`Flask-Large-Application-Example`
-                                           :gh-stars:`Flask-Large-Application-Example`
-                                           :gh-forks:`Flask-Large-Application-Example`
-:gh-repo:`Flask-Celery-Helper`             :gh-watchers:`Flask-Celery-Helper` :gh-stars:`Flask-Celery-Helper`
-                                           :gh-forks:`Flask-Celery-Helper`
-:gh-repo:`colorclass`                      :gh-watchers:`colorclass` :gh-stars:`colorclass` :gh-forks:`colorclass`
-========================================== =============================================================================
+Site Contents
+=============
 
 .. toctree::
     :maxdepth: 2
@@ -49,8 +38,3 @@ GitHub Projects
 
     vw_jsw_2010
     photo_albums
-
-.. toctree::
-    :hidden:
-
-    404

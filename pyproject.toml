@@ -49,7 +49,7 @@ line-length = 125
 target-version = ["py37", "py38", "py39"]
 
 [tool.pylint.FORMAT]
-disable = ["fixme", "redefined-builtin", "invalid-name", "unused-argument"]
+disable = ["fixme"]
 good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
 ignore = [".venv/*", "build/*", "dist/*"]
 max-args = 6
