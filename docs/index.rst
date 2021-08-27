@@ -34,7 +34,8 @@ Site Contents
 
 .. toctree::
     :maxdepth: 2
-    :caption: Pictures
+    :caption: Miscellaneous
 
+    vw_alltrack_2019
     vw_jsw_2010
     photo_albums
