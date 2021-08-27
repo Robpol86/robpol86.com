@@ -61,7 +61,7 @@ live in San Francisco and while my car is parked overnight in a garage, I occasi
 year nobody has broken in to steal the camera.
 
 As a precaution I bought the tamper-proof case so a thief can't just pull out the wires and take the camera. Additionally I
-zip-tied the wires tightly to the internal metal part of my rearview mirror (and threaded it through a narrow hole for more
+zip tied the wires tightly to the internal metal part of my rearview mirror (and threaded it through a narrow hole for more
 strength). Hopefully this means anyone that wants to steal the camera will need to bring a knife or scissors along, and I'm
 hoping those are the minority of opportunistic thieves in the city.
 
