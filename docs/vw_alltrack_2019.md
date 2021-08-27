@@ -93,7 +93,8 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 In the photos below you'll see two pairs of wires from my fusebox. I ran a second wire from a second tapped fuse since I may
 add a second pair of cameras in the future. You'll only need to run one pair of wires. Use **15 amp** fuses if you're going
 with the batteries, you can tap either
-[fuse 48 or 36](https://fuse-box.info/volkswagen/volkswagen-golf-vii-mk7-2013-2020-fuses).
+[fuse 48 or 36](https://fuse-box.info/volkswagen/volkswagen-golf-vii-mk7-2013-2020-fuses). These are switched fuses so when
+the ignition is off they'll lose power and prevent the BlackVue battery from draining your car's battery when parked.
 
 ### Photos
 
