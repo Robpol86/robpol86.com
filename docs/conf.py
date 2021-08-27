@@ -62,13 +62,13 @@ html_theme_options = {
         "</p>"
     ),
     "google_analytics_id": "UA-30840244-1",  # https://pydata-sphinx-theme.readthedocs.io
+    "logo_only": True,
     "path_to_docs": "docs",
     "repository_branch": os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main",
     "repository_url": "https://github.com/Robpol86/robpol86.com",
     "use_edit_page_button": False,  # TODO https://github.com/pydata/pydata-sphinx-theme/issues/424
     "use_repository_button": True,
 }
-html_title = ""
 
 
 # https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
