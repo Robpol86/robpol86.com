@@ -56,7 +56,7 @@ distance in a parking lot.
 
 ## 20-02 Dashcam
 
-I installed a BlackVue dashcam along with three batteries to get about 2 days of recoding time while my vehicle is parked. I
+I installed a BlackVue dashcam along with three batteries to get about 2 days of recording time while my vehicle is parked. I
 live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street and after a
 year nobody has broken in to steal the camera.
 
