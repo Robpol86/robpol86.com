@@ -56,9 +56,9 @@ distance in a parking lot.
 
 ## 20-02 Dashcam
 
-I installed a BlackVue dashcam along with three batteries to get about 2 days of recording time while my vehicle is parked. I
-live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street and after a
-year nobody has broken in to steal the camera.
+I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
+parked. I live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street
+and after a year nobody has broken in to steal the camera.
 
 As a precaution I bought the tamper-proof case so a thief can't just pull out the wires and take the camera. Additionally I
 zip tied the wires tightly to the internal metal part of my rearview mirror (and threaded it through a narrow hole for more
@@ -88,12 +88,11 @@ Blackvue B-124X Power Magic Ultra Battery Pack
 
 BlackVue B-124E Power Magic Ultra Battery Expansion
     * $267
-    * I bought two of these
 ```
 
-In the photos below you'll see two pairs of wires from my fusebox and four batteries. I ran a second wire from a second
-tapped fuse since I may add a second pair of cameras in the future. You'll only need to run one pair of wires. Use **15 amp**
-fuses if you're going with the batteries, you can tap either
+In the photos below you'll see two pairs of wires from my fusebox. I ran a second wire from a second tapped fuse since I may
+add a second pair of cameras in the future. You'll only need to run one pair of wires. Use **15 amp** fuses if you're going
+with the batteries, you can tap either
 [fuse 48 or 36](https://fuse-box.info/volkswagen/volkswagen-golf-vii-mk7-2013-2020-fuses).
 
 ### Photos
