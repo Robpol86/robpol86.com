@@ -107,7 +107,7 @@ the ignition is off they'll lose power and prevent the BlackVue battery from dra
 ## 20-02 Under-Seat Drawer
 
 Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
-seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car\
+seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
 with felt so things wouldn't rattle.
 
 I bought the drawer for $156 on ECS Tuning:
