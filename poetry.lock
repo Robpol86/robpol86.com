@@ -911,7 +911,7 @@ Sphinx = ">=0.6"
 type = "git"
 url = "https://github.com/Robpol86/youtube"
 reference = "quick_fix"
-resolved_reference = "8596f3c964c2d8c09a3079c1666a6cdb3dca3896"
+resolved_reference = "f53167128e1e4212a67f9755c78ee0f22739014c"
 
 [[package]]
 name = "sphinxext-opengraph"
