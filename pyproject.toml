@@ -31,6 +31,8 @@ sphinx-panels = ">=0.6.0"
 sphinxcontrib-imgur = {git = "https://github.com/Robpol86/sphinx-imgur", branch = "quick_fix"}
 # sphinxext-opengraph = ">=0.4.2"  # TODO https://github.com/wpilibsuite/sphinxext-opengraph/issues/43
 sphinxext-opengraph = {git = "https://github.com/Robpol86/sphinxext-opengraph", branch = "quick_fix"}
+# TODO https://github.com/sphinx-contrib/youtube/issues/17
+sphinxcontrib-youtube = {git = "https://github.com/Robpol86/youtube", branch = "quick_fix"}
 
 [tool.poetry.dev-dependencies]
 # Linters.
