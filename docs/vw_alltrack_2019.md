@@ -2,13 +2,26 @@
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
-## 21-08 Photo
+## 21-08 Drag Race
 
 Taken off of Shoreline Hwy in Stinson Beach CA.
 
-```{image} _static/img/alltrack_photo_2021-08-23.jpg
+```{figure} _static/img/alltrack_photo_2021-08-23.jpg
 :alt: Alltrack Photo 2021-08-23
 :width: 100%
+```
+
+Also took it to the drag strip.
+
+```{youtube} 8T0vEKU7lGg
+:width: 100%
+```
+
+&nbsp;
+
+```{youtube} imPz7bAErr8
+:width: 100%
+:timestamp: 18538
 ```
 
 ## 21-08 P3 Vent Gauge

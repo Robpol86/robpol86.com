@@ -18,6 +18,7 @@ extensions = [
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
     "sphinx_panels",  # https://sphinx-panels.readthedocs.io
     "sphinxcontrib.imgur",
+    "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
 ]
 project = "Robpol86.com"

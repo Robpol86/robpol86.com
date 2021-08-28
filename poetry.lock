@@ -896,6 +896,24 @@ lint = ["flake8", "mypy", "docutils-stubs"]
 test = ["pytest"]
 
 [[package]]
+name = "sphinxcontrib-youtube"
+version = "1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = "*"
+develop = false
+
+[package.dependencies]
+Sphinx = ">=0.6"
+
+[package.source]
+type = "git"
+url = "https://github.com/Robpol86/youtube"
+reference = "quick_fix"
+resolved_reference = "8596f3c964c2d8c09a3079c1666a6cdb3dca3896"
+
+[[package]]
 name = "sphinxext-opengraph"
 version = "0.4.2"
 description = "Sphinx Extension to enable OGP support"
@@ -1012,7 +1030,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "bed842031acf2558dc6a6c586e3af927f1094e497bfa64c9862fb168c7dc038d"
+content-hash = "b297d60764d3f08be5f4adc7cd651882af699e8dfdcd8515de1ac1222d3aad22"
 
 [metadata.files]
 alabaster = [
@@ -1450,6 +1468,7 @@ sphinxcontrib-serializinghtml = [
     {file = "sphinxcontrib-serializinghtml-1.1.5.tar.gz", hash = "sha256:aa5f6de5dfdf809ef505c4895e51ef5c9eac17d0f287933eb49ec495280b6952"},
     {file = "sphinxcontrib_serializinghtml-1.1.5-py2.py3-none-any.whl", hash = "sha256:352a9a00ae864471d3a7ead8d7d79f5fc0b57e8b3f95e9867eb9eb28999b92fd"},
 ]
+sphinxcontrib-youtube = []
 sphinxext-opengraph = []
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
