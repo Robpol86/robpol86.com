@@ -2,6 +2,35 @@
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
+## 21-09 OBDeleven
+
+These modifications are done with a [OBDeleven](https://obdeleven.com) device.
+
+### Refuel Quantity
+
+Adds a screen in my MFD where the car estimates how much fuel it would take to fill the tank. Handy for when I have to
+prepay with cash at gas stations.
+
+* Apps > Refuel quantity in dashboard > ON
+* https://forum.obdeleven.com/thread/536/refuel-quantity-dashboard
+
+```{image} _static/img/alltrack_refuel_quantity.jpg
+:alt: Refuel quantity in dashboard
+:width: 100%
+```
+
+### Automatic DST
+
+Instead of having to toggle DST manually the car does it automatically.
+
+* Vehicle > 5F Multimedia > Long Coding > Summertime-automatic > USA
+* https://www.golfmk7.com/forums/index.php?threads/automatic-summer-time.341637
+
+```{image} _static/img/alltrack_auto_dst.jpg
+:alt: Automatic daylight saving time switchover
+:width: 100%
+```
+
 ## 21-08 Drag Race
 
 Taken off of Shoreline Hwy in Stinson Beach CA.
@@ -69,6 +98,9 @@ distance in a parking lot.
 
 ## 20-02 Dashcam
 
+```{imgur-image} 9dVe8pY
+```
+
 I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
 parked. I live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street
 and after a year nobody has broken in to steal the camera.
@@ -103,18 +135,23 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
     * $267
 ```
 
-In the photos below you'll see two pairs of wires from my fusebox. I ran a second wire from a second tapped fuse since I may
-add a second pair of cameras in the future. You'll only need to run one pair of wires. Use **15 amp** fuses if you're going
-with the batteries, you can tap either
-[fuse 48 or 36](https://fuse-box.info/volkswagen/volkswagen-golf-vii-mk7-2013-2020-fuses). These are switched fuses so when
-the ignition is off they'll lose power and prevent the BlackVue battery from draining your car's battery when parked.
+### Front Camera Pair
 
-### Photos
-
-```{imgur-image} 9dVe8pY
-```
+I first installed just the two cameras in the front and wired them to the batteries in my cargo area. For now I didn't wire
+the batteries to my fuse panel, using the rear 12v outlet instead.
 
 ```{imgur-embed} a/Z3HBWOX
+```
+
+### Hardwire Batteries
+
+Once I was happy with the cameras I finished the project by hardwiring the batteries to my fuse box. I used the included fuse
+taps and I used **15 amp** fuses. In the photos below you'll see two pairs of wires from my fusebox. I ran a second wire from
+a second tapped fuse since I may add a second pair of cameras in the future. I tapped
+[fuse 48 and 36](https://fuse-box.info/volkswagen/volkswagen-golf-vii-mk7-2013-2020-fuses). These are switched fuses so when
+the ignition is off they'll lose power and prevent the BlackVue battery from draining my car's battery when parked.
+
+```{imgur-embed} a/HHRnuuV
 ```
 
 ## 20-02 Under-Seat Drawer
