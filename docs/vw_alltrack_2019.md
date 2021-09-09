@@ -2,9 +2,40 @@
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
+## 21-09 Rear Dashcam Pair
+
+```{imgur-image} 3ypCZaP
+```
+
+Installed a second pair of cameras to get a better view out of the rear of my car for read-end crashes as well as another IR
+camera pointed towards the front of the car. This way I have a sort of 360 view from both inside-pointing cameras. Like the
+front camera I also bought a tamper-proof case for the rear one. Similarly I also use BlackVue batteries to keep the camera
+powered overnight.
+
+### Items Purchased
+
+BlackVue DR750-2CH IR LTE Dashcam
+: * $450
+  * 1080p main camera
+  * 1080p infrared second camera
+  * LTE, WiFi, GPS, microSD slot
+  * LTE seems to only use about 6 MiB a day on average
+
+Blackvue B-124X Power Magic Ultra Battery Pack
+: * $330
+  * Installed in the cargo area
+
+BlackVue B-124E Power Magic Ultra Battery Expansion
+: * $269
+
+### Photos
+
+```{imgur-embed} a/Sq4ENiu
+```
+
 ## 21-09 OBDeleven
 
-These modifications are done with a [OBDeleven](https://obdeleven.com) device.
+These modifications are done with an [OBDeleven](https://obdeleven.com) device.
 
 ### Refuel Quantity
 
@@ -96,7 +127,7 @@ distance in a parking lot.
 :width: 100%
 ```
 
-## 20-02 Dashcam
+## 20-02 Front Dashcam Pair
 
 ```{imgur-image} 9dVe8pY
 ```
@@ -118,22 +149,20 @@ my car. Luckily nothing broke but I kept getting ABS errors until I figured out 
 
 ### Items Purchased
 
-```{glossary}
 BlackVue DR900S-2CH Dashcam
-    * $490
-    * Installed behind rearview mirror
-    * 4K main camera
-    * 1080p infrared second camera
-    * WiFi, GPS, microSD slot
+: * $490
+  * Installed behind rearview mirror
+  * 4K main camera
+  * 1080p infrared second camera
+  * WiFi, GPS, microSD slot
 
 Blackvue B-124X Power Magic Ultra Battery Pack
-    * $330
-    * Installed in the cargo area
-    * Comes with 3 meter long cables which just barely reached with no slack left
+: * $330
+  * Installed in the cargo area
+  * Comes with 3 meter long cables which just barely reached with no slack left
 
 BlackVue B-124E Power Magic Ultra Battery Expansion
-    * $267
-```
+: * $267
 
 ### Front Camera Pair
 
