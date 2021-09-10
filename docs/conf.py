@@ -62,7 +62,6 @@ html_theme_options = {
         'Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>'
         "</p>"
     ),
-    "google_analytics_id": "UA-30840244-1",  # https://pydata-sphinx-theme.readthedocs.io
     "logo_only": True,
     "path_to_docs": "docs",
     "repository_branch": os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main",
