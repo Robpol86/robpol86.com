@@ -27,8 +27,10 @@ Site Contents
 
 .. toctree::
     :maxdepth: 2
-    :caption: Experiments
+    :caption: Projects
 
+    vw_alltrack_2019
+    3d_printer_mpms2
     wireless_charging_car_dock
     atrix_lapdock
 
@@ -36,6 +38,5 @@ Site Contents
     :maxdepth: 2
     :caption: Miscellaneous
 
-    vw_alltrack_2019
     vw_jsw_2010
     photo_albums
