@@ -16,13 +16,13 @@ Adding Monoprice Maker Select v2, updating Golf Alltrack SE
 - Removing AirTag section (occasionally caused issues with radar system).
 - Updated fire extinguisher section.
 - Renaming "Experiments" section to "Projects".
+- Enabling edit page button that points to `/blob/` URLs.
 
 ### Behind the Scenes
 
 - Updated from Python 3.9 to 3.10 in CI.
 - Added CHANGELOG file.
 - Updated Python dependencies.
-- Enabling edit page button that points to `/blob/` URLs.
 
 ## 2021-09-10
 
