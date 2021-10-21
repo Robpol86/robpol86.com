@@ -19,11 +19,11 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.7"
 # Project dependencies.
-myst-parser = {version = ">=0.14.0", extras = ["linkify"]}
-sphinx = ">=3.5"
+myst-parser = {version = ">=0.15.2", extras = ["linkify"]}
+sphinx = ">=4.2.0"
 sphinx-autobuild = "*"  # not semver
-sphinx-book-theme = ">=0.1.0"
-sphinx-copybutton = ">=0.3.1"
+sphinx-book-theme = ">=0.1.6"
+sphinx-copybutton = ">=0.4.0"
 sphinx-disqus = ">=1.2.0"
 sphinx-last-updated-by-git = ">=0.3.0"
 sphinx-notfound-page = ">=0.7.1"
