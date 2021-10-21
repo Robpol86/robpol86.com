@@ -116,14 +116,14 @@ It stays put after driving for weeks and doesn't get in the way of lifting the c
 :width: 100%
 ```
 
-## 21-05 AirTag
+### 21-10 Update
 
-I found that the best place to put an AirTag on my car is behind the front VW emblem out of the way of the radar sensor. The
-cover is plastic, so it doesn't hurt bluetooth range that much. I can also hear the AirTag play its sound from a decent
-distance in a parking lot.
+Every now and then the fire extinguisher would move a bit, getting in the way of the bottom cover/floor. I fixed this by
+using some zip ties to hold the extinguisher in place. I made sure it's still easy to remove during an emergency, just slide
+off the zip tie with my thumb.
 
-```{image} _static/img/alltrack_airtag.jpg
-:alt: AirTag
+```{image} _static/img/alltrack_fire_extinguisher_update.jpg
+:alt: Fire Extinguisher Update
 :width: 100%
 ```
 

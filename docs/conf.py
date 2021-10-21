@@ -27,6 +27,11 @@ templates_path = ["_templates"]
 
 
 # Options for HTML output.
+html_context = {
+    "edit_page_url_template": (
+        "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
+    ),
+}
 html_extra_path = [
     ".htaccess",
     "robots.txt",
@@ -66,7 +71,7 @@ html_theme_options = {
     "path_to_docs": "docs",
     "repository_branch": os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main",
     "repository_url": "https://github.com/Robpol86/robpol86.com",
-    "use_edit_page_button": False,  # TODO https://github.com/pydata/pydata-sphinx-theme/issues/424
+    "use_edit_page_button": True,
     "use_repository_button": True,
 }
 
