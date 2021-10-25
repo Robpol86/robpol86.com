@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- *No changes.*
+- Using "Oct `21" datestamps instead of "21-10" to make it more human-readable.
 
 ## 2021-10-21
 
