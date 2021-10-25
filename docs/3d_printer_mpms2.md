@@ -3,7 +3,7 @@
 I bought my first 3D printer from [Amazon](https://www.amazon.com/gp/product/B018GZBC3Y) in 2018 for $300. It's on the
 cheaper end but there's a large community behind it.
 
-## 21-10 Magnetic Build Plate
+## Oct &#39;21 Magnetic Build Plate
 
 I've been using a [220x220mm Borosilicate Glass Bed](https://www.amazon.com/gp/product/B07BHG5HCV) placed on top of the
 BuildTak sheet that came with my printer along with glue stick with some success. This upgrade replaces all that with a

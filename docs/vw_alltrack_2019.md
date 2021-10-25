@@ -2,7 +2,7 @@
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
-## 21-09 Rear Dashcam Pair
+## Sept &#39;21 Rear Dashcam Pair
 
 ```{imgur-image} 3ypCZaP
 ```
@@ -33,7 +33,7 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 ```{imgur-embed} a/Sq4ENiu
 ```
 
-## 21-09 OBDeleven
+## Sept &#39;21 OBDeleven
 
 These modifications are done with an [OBDeleven](https://obdeleven.com) device.
 
@@ -62,7 +62,7 @@ Instead of having to toggle DST manually the car does it automatically.
 :width: 100%
 ```
 
-## 21-08 Drag Race
+## Aug &#39;21 Drag Race
 
 Taken off of Shoreline Hwy in Stinson Beach CA.
 
@@ -84,7 +84,7 @@ Also took it to the drag strip.
 :timestamp: 18538
 ```
 
-## 21-08 P3 Vent Gauge
+## Aug &#39;21 P3 Vent Gauge
 
 Installed this to have a boost gauge in my air vent:
 [P3 V3 OBD2 - VW Mk7 / Mk7.5 Gauge (2014-2020)](https://www.p3cars.com/volkswagen/p3-v3-obd2-vw-mk7-mk7-5-gauge-2014-2019/)
@@ -103,7 +103,7 @@ potential shorts.
 :width: 100%
 ```
 
-## 21-06 Fire Extinguisher
+## June &#39;21 Fire Extinguisher
 
 Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
 [Amerex Dry Chemical Fire Extinguisher B417T](https://www.amazon.com/gp/product/B001VXRYCM)
@@ -127,7 +127,7 @@ off the zip tie with my thumb.
 :width: 100%
 ```
 
-## 20-02 Front Dashcam Pair
+## Feb &#39;20 Front Dashcam Pair
 
 ```{imgur-image} 9dVe8pY
 ```
@@ -183,7 +183,7 @@ the ignition is off they'll lose power and prevent the BlackVue battery from dra
 ```{imgur-embed} a/HHRnuuV
 ```
 
-## 20-02 Under-Seat Drawer
+## Feb &#39;20 Under-Seat Drawer
 
 Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
 seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
@@ -198,7 +198,7 @@ I bought the drawer for $156 on ECS Tuning:
 ```{imgur-embed} a/7PauDgm
 ```
 
-## 20-01 Trashcan
+## Jan &#39;20 Trashcan
 
 Bought this from Amazon:
 [display4top Auto Car Trash Can Bin Waste Container](https://www.amazon.com/gp/product/B07TCT96SH)
