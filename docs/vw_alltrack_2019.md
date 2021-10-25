@@ -2,6 +2,31 @@
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
+## Oct &#39;21 EcoHitch Install
+
+I decided to go with the [EcoHitch x7315](https://torkliftcentral.com/2015-2017-volkswagen-golf-sportwagen-alltrack-tsi-ecohitch).
+Installing was straight forward, but it ended up taking my entire Sunday to complete. Overall I'm very happy with how it
+turned out.
+
+I ended up getting my own bolts instead of using the bolts that came with the hitch based on what
+[jjvincent](https://www.vwvortex.com/threads/hitch-vs-warranty.8489450/#post-103482505) said, but this is optional. If you
+want to do the same I bought them from [McMaster-Carr](https://www.mcmaster.com/91029A107/) (from:
+https://www.mcmaster.com/bolts/fastener-strength-grade-class~class-12-9/extreme-strength-metric-class-12-9-steel-hex-head-screws/thread-size~m8/).
+
+I used the following tools:
+
+* [Precision Instruments PREC2FR100F Torque Wrench](https://www.amazon.com/gp/product/B000YOX568)
+* 13mm and 10mm sockets
+* 1 ft socket extension
+* Ratchet
+* T25 and T15 Torx drivers
+* Crescent wrench (adjustable spanner)
+* [Plastic trim removal tools](https://www.amazon.com/gp/product/B005NMCE04) and a flat screwdriver
+* [X-ACTO knife](https://www.amazon.com/gp/product/B00JWFIKOC)
+
+```{imgur-embed} a/uD7nNgv
+```
+
 ## Sept &#39;21 Rear Dashcam Pair
 
 ```{imgur-image} 3ypCZaP
