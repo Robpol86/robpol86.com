@@ -6,7 +6,14 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- *No changes.*
+
+## 2021-10-25
+
+Updating Monoprice Maker Select v2 and Golf Alltrack SE, better date formatting
+
 - Using "Oct `21" datestamps instead of "21-10" to make it more human-readable.
+- Adding EcoHitch Install and Upgrading Parts posts.
 
 ## 2021-10-21
 
