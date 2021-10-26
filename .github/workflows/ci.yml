@@ -22,15 +22,21 @@ jobs:
         id: lighthouse
         uses: foo-software/lighthouse-check-action@master
         with:
-          urls: >-
+          outputDirectory: build/lighthouse
+          urls: >-  # TODO parse sitemap.xml to make this dynamic and check all pages
             http://localhost:8000/index.html,
             http://localhost:8000/imagecfg.html
+          verbose: true
       - name: Verify Lighthouse
         uses: foo-software/lighthouse-check-status-action@master
         with:
           lighthouseCheckResults: ${{ steps.lighthouse.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: "96"
-          minBestPracticesScore: "85"
-          minPerformanceScore: "95"
-          minProgressiveWebAppScore: "50"
-          minSeoScore: "80"
+          minAccessibilityScore: 88  # TODO: 96
+          minBestPracticesScore: 85
+          minPerformanceScore: 56  # TODO: 95
+          minProgressiveWebAppScore: 50
+          minSeoScore: 70  # TODO: 80
+      - name: Store Lighthouse HTML report artifact
+        uses: actions/upload-artifact@v2
+        with: {name: lighthouse, path: build/lighthouse/, if-no-files-found: error}
+        if: always()
