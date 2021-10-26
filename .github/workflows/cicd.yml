@@ -18,7 +18,7 @@ jobs:
       - {name: Run tests, run: make test}
       - name: Build docs
         env:
-          OGP_SITE_URL: "https://${{ github.event_name != 'release' && 'rob86stage.' || '' }}robpol86.com/"
+          SPHINX_HTML_BASEURL: "https://${{ github.event_name != 'release' && 'rob86stage.' || '' }}robpol86.com/"
         run: make docs
       - name: Store HTML files artifact
         uses: actions/upload-artifact@v2

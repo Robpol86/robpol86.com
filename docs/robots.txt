@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: {{ config.html_baseurl.rstrip("/") }}/sitemap.xml

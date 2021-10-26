@@ -28,6 +28,7 @@ sphinx-disqus = ">=1.2.0"
 sphinx-last-updated-by-git = ">=0.3.0"
 sphinx-notfound-page = ">=0.7.1"
 sphinx-panels = ">=0.6.0"
+sphinx-sitemap = ">=2.2.0"
 sphinxcontrib-imgur = {git = "https://github.com/Robpol86/sphinx-imgur", branch = "quick_fix"}
 # sphinxext-opengraph = ">=0.4.2"  # TODO https://github.com/wpilibsuite/sphinxext-opengraph/issues/43
 sphinxext-opengraph = {git = "https://github.com/Robpol86/sphinxext-opengraph", branch = "quick_fix"}

@@ -7,6 +7,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 ## [Unreleased]
 
 - Remove "documentation" from every `<title />`.
+- Generate a sitemap.xml file and reference it in a now-dynamic robots.txt file.
 
 ## 2021-10-25
 
