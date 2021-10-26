@@ -24,7 +24,7 @@ jobs:
         with:
           urls: >-
             http://localhost:8000/index.html,
-            http://localhost:8000/imagecfg.html,
+            http://localhost:8000/imagecfg.html
       - name: Verify Lighthouse
         uses: foo-software/lighthouse-check-status-action@master
         with:
