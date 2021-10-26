@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- *No changes.*
+- Remove "documentation" from every `<title />`.
 
 ## 2021-10-25
 
