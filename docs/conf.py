@@ -4,6 +4,9 @@
 
 import os
 import time
+from pathlib import Path
+
+from sphinx.application import Sphinx
 
 
 # General configuration.
@@ -17,6 +20,7 @@ extensions = [
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
     "sphinx_panels",  # https://sphinx-panels.readthedocs.io
+    "sphinx_sitemap",  # https://github.com/jdillard/sphinx-sitemap
     "sphinxcontrib.imgur",
     "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
@@ -27,6 +31,7 @@ templates_path = ["_templates"]
 
 
 # Options for HTML output.
+html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "http://127.0.0.1:8000/")
 html_context = {
     "edit_page_url_template": (
         "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
@@ -115,9 +120,32 @@ imgur_target_default_page = True
 
 
 # https://sphinxext-opengraph.readthedocs.io/en/latest/#options
-ogp_site_url = os.environ.get("OGP_SITE_URL", "")
+ogp_site_url = html_baseurl
 ogp_description_length = 300
-ogp_image = f"{ogp_site_url.rstrip('/')}/{html_logo}"
+ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo}"
 ogp_site_name = "Robpol86.com"
 ogp_type = "article"
 ogp_use_first_image = True
+
+
+# robots.txt templating
+def render_robots_txt(app: Sphinx, _):
+    """Parse Jinja2 templating in robots.txt file.
+
+    :param app: Sphinx application object.
+    :param _: Unused.
+    """
+    robots_txt_path = Path(app.outdir) / "robots.txt"
+    if robots_txt_path.is_file():
+        contents = robots_txt_path.read_text(encoding="utf8")
+        context = dict(app.config.html_context, config=app.config)
+        rendered = app.builder.templates.render_string(contents, context)
+        robots_txt_path.write_text(rendered, encoding="utf8")
+
+
+def setup(app: Sphinx):
+    """Called by Sphinx.
+
+    :param app: Sphinx application object.
+    """
+    app.connect("build-finished", render_robots_txt)
