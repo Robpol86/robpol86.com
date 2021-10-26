@@ -25,6 +25,7 @@ extensions = [
     "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
 ]
+language = "en"
 project = "Robpol86.com"
 pygments_style = "vs"
 templates_path = ["_templates"]

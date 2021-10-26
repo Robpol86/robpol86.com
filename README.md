@@ -10,7 +10,6 @@ I use GitHub Actions to automatically build and push HTML files to NFSN.
 
 ## TODO
 
-* https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/accessibility.html?highlight=sitemap#natural-language
 * https://libraries.io/pypi/sphinx-disqus/sourcerank
 * https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/accessibility.html?highlight=sitemap#lighthouse
 * https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/accessibility.html?highlight=sitemap#pa11y-ci
