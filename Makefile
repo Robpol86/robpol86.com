@@ -43,9 +43,9 @@ build/html/index.html: deps
 	poetry run sphinx-build -n -W docs $(@D)
 	@echo Documentation available here: $@
 
-.PHONY: docs
-docs: _HELP = Build HTML documentation
-docs: build/html/index.html
+.PHONY: docs build
+docs build: _HELP = Build HTML documentation
+docs build: build/html/index.html
 
 autobuild: _HELP = Start a web server, open browser, and auto-rebuild HTML on file changes
 autobuild: build/html/index.html
