@@ -34,11 +34,11 @@ jobs:
         uses: foo-software/lighthouse-check-status-action@master
         with:
           lighthouseCheckResults: ${{ steps.lighthouse.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: 88  # TODO: 96
-          minBestPracticesScore: 85
-          minPerformanceScore: 21  # TODO: 95
-          minProgressiveWebAppScore: 50
-          minSeoScore: 70  # TODO: 80
+          # TODO: minAccessibilityScore: 96
+          # TODO: minBestPracticesScore: 85
+          # TODO: minPerformanceScore: 95
+          # TODO: minProgressiveWebAppScore: 50
+          # TODO: minSeoScore: 80
       - name: Store Lighthouse HTML report artifact
         uses: actions/upload-artifact@v2
         with: {name: lighthouse, path: build/lighthouse/, if-no-files-found: error}

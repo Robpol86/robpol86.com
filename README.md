@@ -11,4 +11,5 @@ I use GitHub Actions to automatically build and push HTML files to NFSN.
 ## TODO
 
 * https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/accessibility.html?highlight=sitemap#pa11y-ci
+* https://www.foo.software/dashboard/pages?pageId=61788bbca5079b002509850c
 * Download button, make it nostalgic, model it after some old thing.
