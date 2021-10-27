@@ -16,29 +16,32 @@ jobs:
       - {name: Run lints, run: make lint}
       - {name: Run tests, run: make test}
       - {name: Build docs, run: make docs}
-      - name: Start HTTP server
+      - name: Prepare Lighthouse
+        id: sitemap-csv
         run: |
-          mkdir -v build/lighthouse
           make autobuild &
           curl --retry 10 --retry-connrefused --retry-max-time 60 http://127.0.0.1:8000/index.html
+          mkdir -v build/lighthouse
+          sudo apt-get update && sudo apt-get install -y xmlstarlet
+          echo -n "::set-output name=urls::"
+          xmlstarlet sel -t -v "//*[local-name()='loc']/text()" build/html/sitemap.xml |tr "\n" ","
+          echo
       - name: Run Lighthouse
         id: lighthouse
         uses: foo-software/lighthouse-check-action@master
         with:
           outputDirectory: build/lighthouse
-          urls: >-  # TODO parse sitemap.xml to make this dynamic and check all pages
-            http://localhost:8000/index.html,
-            http://localhost:8000/imagecfg.html
+          urls: ${{ steps.sitemap-csv.outputs.urls }}
           verbose: true
       - name: Verify Lighthouse
         uses: foo-software/lighthouse-check-status-action@master
         with:
           lighthouseCheckResults: ${{ steps.lighthouse.outputs.lighthouseCheckResults }}
-          # TODO: minAccessibilityScore: 96
-          # TODO: minBestPracticesScore: 85
-          # TODO: minPerformanceScore: 95
-          # TODO: minProgressiveWebAppScore: 50
-          # TODO: minSeoScore: 80
+          minAccessibilityScore: 1  # TODO: 96
+          minBestPracticesScore: 1  # TODO: 85
+          minPerformanceScore: 1  # TODO: 95
+          minProgressiveWebAppScore: 1  # TODO: 50
+          minSeoScore: 1  # TODO: 80
       - name: Store Lighthouse HTML report artifact
         uses: actions/upload-artifact@v2
         with: {name: lighthouse, path: build/lighthouse/, if-no-files-found: error}

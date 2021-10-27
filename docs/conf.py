@@ -32,7 +32,7 @@ templates_path = ["_templates"]
 
 
 # Options for HTML output.
-html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "http://127.0.0.1:8000/")
+html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "http://localhost:8000/")
 html_context = {
     "edit_page_url_template": (
         "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
@@ -112,6 +112,10 @@ disqus_shortname = "rob86wiki"
 
 # https://sphinx-panels.readthedocs.io/en/latest/#sphinx-configuration
 panels_add_bootstrap_css = False
+
+
+# https://github.com/jdillard/sphinx-sitemap#customizing-the-url-scheme
+# sitemap_url_scheme = "{link}"  # TODO
 
 
 # https://github.com/Robpol86/sphinx-imgur
