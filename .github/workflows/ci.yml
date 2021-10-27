@@ -29,7 +29,9 @@ jobs:
       - {name: Fetch HTML files, uses: actions/download-artifact@v2, with: {name: html, path: html}}
       - run: mkdir reports
       - name: Start HTTP server
-        run: make autobuild & curl --retry 10 --retry-connrefused --retry-max-time 60 http://localhost:8000/index.html
+        run: |
+          python3 -m http.server -d html 8000 &
+          curl --retry 10 --retry-connrefused --retry-max-time 60 http://localhost:8000/index.html
       - name: Convert sitemap.xml into csv
         id: sitemap
         run: |
