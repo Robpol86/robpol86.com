@@ -115,7 +115,7 @@ panels_add_bootstrap_css = False
 
 
 # https://github.com/jdillard/sphinx-sitemap#customizing-the-url-scheme
-# sitemap_url_scheme = "{link}"  # TODO
+sitemap_url_scheme = "{link}"
 
 
 # https://github.com/Robpol86/sphinx-imgur
