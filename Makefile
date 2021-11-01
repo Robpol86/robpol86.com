@@ -13,29 +13,19 @@ deps:
 	poetry install
 	poetry run python -V
 
-## Testing
+## Linting
 
 .PHONY: lint
 lint: _HELP = Run linters
 lint: deps
 	poetry check
 	poetry run black --check --color --diff .
-	poetry run flake8 --application-import-names tests
-	poetry run pylint tests docs/conf.py
-
-.PHONY: test
-test: _HELP = Run tests
-test: deps
-	poetry run pytest tests
-
-.PHONY: testpdb
-testpdb: _HELP = Run tests and drop into the debugger on failure
-testpdb: deps
-	poetry run pytest --pdb tests
+	poetry run flake8
+	poetry run pylint docs/conf.py
 
 .PHONY: all
-all: _HELP = Run linters, tests, and build docs
-all: lint test docs
+all: _HELP = Run linters and build docs
+all: lint docs
 
 ## Build
 
