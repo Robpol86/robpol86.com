@@ -43,10 +43,6 @@ flake8-docstrings = ">=1.6.0"
 flake8-import-order = ">=0.18.1"
 pep8-naming = ">=0.11.1"
 pylint = ">=2.8.3"
-# Tests.
-docker = ">=5.0.0"
-pytest = ">=6.2.4"
-pytest-icdiff = ">=0.5"
 
 [tool.black]
 line-length = 125
