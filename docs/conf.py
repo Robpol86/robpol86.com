@@ -100,8 +100,8 @@ myst_url_schemes = ["http", "https", "mailto"]
 notfound_context = dict(
     title="404 Not Found",
     body="<h1>404 Not Found</h1>\n\n"
-    "Believe it or not this page isn't at home. Please leave a message at the beep.<br>\n"
-    "It must be gone, or it'd give a response. Where could it be? Believe it or not it's not home!",
+    '<iframe src="https://funhtml5games.com?embed=lemmings" style="width:742px;height:401px;border:none;" '
+    'frameborder="0" scrolling="no"></iframe>',
 )
 notfound_urls_prefix = ""
 

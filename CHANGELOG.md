@@ -10,6 +10,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 - Generate a sitemap.xml file and reference it in a now-dynamic robots.txt file.
 - Setting baseline natural language to "en" for assistive technology.
 - Remove tests since they're all disabled and one (docker) has a [security issue](https://github.com/docker/docker-py/issues/2902).
+- Update 404 page with a Lemmings iframe.
 
 ## 2021-10-25
 
