@@ -6,6 +6,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- *No changes.*
+
+## 2021-11-05
+
+New page: T-Mobile Franklin T9 Hacking
+
 - Remove "documentation" from every `<title />`.
 - Generate a sitemap.xml file and reference it in a now-dynamic robots.txt file.
 - Setting baseline natural language to "en" for assistive technology.
