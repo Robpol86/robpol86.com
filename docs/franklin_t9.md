@@ -131,14 +131,49 @@ I edited that file using Paint 3D to keep the transparency.
 
 ## Telegraf
 
-```bash
-git clone -b t9 https://github.com/Robpol86/telegraf.git
-chmod +x telegraf
-make -C telegraf t9
-scp telegraf root@192.168.0.1:/data/
-# scp config
-/data/telegraf --config /data/telegraf_t9.conf --test
-```
+TODO make my own init script since theirs doesn't do single instance. Also telegraf wasn't sending data.
+
+Build and copy telegraf
+:   ```bash
+    git clone -b franklin_t9 https://github.com/Robpol86/telegraf.git
+    cd telegraf
+    GOARCH=arm GOARM=7 GOOS=linux LDFLAGS="-s -w" make all
+    upx --best --lzma telegraf
+    scp telegraf root@192.168.0.1:/data/
+    ```
+
+Save to /etc/default/telegraf
+:   ```bash
+    INFLUX_BUCKET="replace me"
+    INFLUX_ORG="replace me"
+    INFLUX_TOKEN="replace me"
+    INFLUX_URL="https://us-west-2-1.aws.cloud2.influxdata.com"
+    STDOUT=/dev/null
+    STDERR=/dev/null
+    ```
+
+Save to /etc/telegraf/telegraf.conf
+:   ```{literalinclude} _static/telegraf_t9.conf
+    :language: toml
+    ```
+
+Enable the service
+:   ```bash
+    # Verify telegraf runs.
+    /data/telegraf --config /etc/telegraf/telegraf.conf --test
+    # Permissions.
+    addgroup telegraf
+    adduser -H -S -s /bin/false telegraf telegraf
+    chown telegraf /etc/default/telegraf
+    chmod 0640 /etc/default/telegraf
+    # Install the init script.
+    wget https://raw.githubusercontent.com/influxdata/telegraf/master/scripts/init.sh -O /etc/init.d/start_telegraf
+    chmod +x /etc/init.d/start_telegraf
+    ln -s /data/telegraf /usr/bin/telegraf
+    # Start.
+    update-rc.d start_telegraf defaults
+    /etc/init.d/start_telegraf start
+    ```
 
 ## Comments
 
