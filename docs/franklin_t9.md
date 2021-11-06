@@ -129,6 +129,17 @@ I edited that file using Paint 3D to keep the transparency.
 :width: 100%
 ```
 
+## Telegraf
+
+```bash
+git clone -b t9 https://github.com/Robpol86/telegraf.git
+chmod +x telegraf
+make -C telegraf t9
+scp telegraf root@192.168.0.1:/data/
+# scp config
+/data/telegraf --config /data/telegraf_t9.conf --test
+```
+
 ## Comments
 
 ```{disqus}
