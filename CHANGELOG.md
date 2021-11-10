@@ -8,6 +8,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - *No changes.*
 
+## 2021-11-09
+
+New sections for Franklin T9 Hacking
+
+- Added new sections: Fastboot, ADB, Automatic Power On, and Interesting Information.
+
 ## 2021-11-05
 
 New page: T-Mobile Franklin T9 Hacking
