@@ -1,8 +1,16 @@
 # T-Mobile Franklin T9 Hacking
 
 My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
-data. I'll be using it with [Google Fi](https://fi.google.com/) (using APN **h2g2**) to avoid paying any monthly fees for
-another "line".
+data. I'm using it with [Google Fi](https://fi.google.com/).
+
+```{admonition} Work in Progress
+:class: note
+
+As of November 12 2021 this page is still being actively updated.
+```
+
+```{imgur-embed} a/mwJuieo
+```
 
 ## Downgrade Firmware
 
@@ -153,11 +161,6 @@ say "Welcome" the entire time.
 ```
 
 To get out of fastboot mode just power cycle it or run `fastboot continue`.
-
-Since I posted one side of the circuit board here's the other side even thought it's irrelevant to this section:
-
-```{imgur-image} aC7SUuC
-```
 
 ### Easy Way
 
