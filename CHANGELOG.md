@@ -8,6 +8,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - Added pictures of Franklin T9 circuit board without RF shields.
 - Using subsections under Interesting Information section.
+- Moving large command outputs into external files instead of embedding in franklin_t9.md.
 
 ## 2021-11-09
 
