@@ -210,9 +210,81 @@ it between the case and the button so it's always pressed down.
 :width: 100%
 ```
 
-## Interesting Information
+## Interesting Info
 
-For anyone who's curious here are some dumps:
+### `free -m`
+
+```text
+             total         used         free       shared      buffers
+Mem:           169          112           56            5            0
+-/+ buffers:                112           56
+Swap:            0            0            0
+```
+
+### `df -h`
+
+```text
+Filesystem                Size      Used Available Use% Mounted on
+ubi0:rootfs              49.2M     45.8M      3.3M  93% /
+tmpfs                    64.0K      4.0K     60.0K   6% /dev
+tmpfs                    78.0M     36.0K     77.9M   0% /run
+tmpfs                    78.0M      5.2M     72.7M   7% /var/volatile
+tmpfs                    78.0M         0     78.0M   0% /media/ram
+ubi0:usrfs                8.1M    724.0K      7.4M   9% /data
+ubi0:cachefs             63.1M     55.5M      4.3M  93% /cache
+/dev/ubi1_0              29.9M     26.5M      3.4M  89% /firmware
+```
+
+### `cat /proc/cpuinfo`
+
+```text
+processor       : 0
+model name      : ARMv7 Processor rev 5 (v7l)
+BogoMIPS        : 38.40
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xc07
+CPU revision    : 5
+Hardware        : Qualcomm Technologies, Inc MDM9207
+Revision        : 0000
+Serial          : 0000000000000000
+Processor       : ARMv7 Processor rev 5 (v7l)
+```
+
+### `cat /proc/cmdline`
+
+```{literalinclude} _static/t9_cmdline.txt
+:language: text
+```
+
+### `cat /proc/mtd`
+
+```text
+dev:    size   erasesize  name
+mtd0: 00140000 00020000 "sbl"
+mtd1: 00140000 00020000 "mibib"
+mtd2: 00c00000 00020000 "efs2"
+mtd3: 000c0000 00020000 "tz"
+mtd4: 00060000 00020000 "rpm"
+mtd5: 000a0000 00020000 "aboot"
+mtd6: 007e0000 00020000 "boot"
+mtd7: 01040000 00020000 "scrub"
+mtd8: 02900000 00020000 "modem"
+mtd9: 00140000 00020000 "misc"
+mtd10: 007e0000 00020000 "recovery"
+mtd11: 00180000 00020000 "fota"
+mtd12: 011e0000 00020000 "recoveryfs"
+mtd13: 00040000 00020000 "sec"
+mtd14: 091e0000 00020000 "system"
+```
+
+### `iw list`
+
+```{literalinclude} _static/t9_iw_list.txt
+:language: text
+```
 
 ### `cat /sys/devices/1800000.qcom,debug/uevent`
 
@@ -245,83 +317,9 @@ CONFIG_USB_MSM_OTG=y
 CONFIG_USB_F_MASS_STORAGE=y
 ```
 
-### `df -h`
-
-```text
-Filesystem                Size      Used Available Use% Mounted on
-ubi0:rootfs              49.2M     45.8M      3.3M  93% /
-tmpfs                    64.0K      4.0K     60.0K   6% /dev
-tmpfs                    78.0M     36.0K     77.9M   0% /run
-tmpfs                    78.0M      5.2M     72.7M   7% /var/volatile
-tmpfs                    78.0M         0     78.0M   0% /media/ram
-ubi0:usrfs                8.1M    724.0K      7.4M   9% /data
-ubi0:cachefs             63.1M     55.5M      4.3M  93% /cache
-/dev/ubi1_0              29.9M     26.5M      3.4M  89% /firmware
-```
-
-### `free -m`
-
-```text
-             total         used         free       shared      buffers
-Mem:           169          112           56            5            0
--/+ buffers:                112           56
-Swap:            0            0            0
-```
-
-### `cat /proc/mtd`
-
-```text
-dev:    size   erasesize  name
-mtd0: 00140000 00020000 "sbl"
-mtd1: 00140000 00020000 "mibib"
-mtd2: 00c00000 00020000 "efs2"
-mtd3: 000c0000 00020000 "tz"
-mtd4: 00060000 00020000 "rpm"
-mtd5: 000a0000 00020000 "aboot"
-mtd6: 007e0000 00020000 "boot"
-mtd7: 01040000 00020000 "scrub"
-mtd8: 02900000 00020000 "modem"
-mtd9: 00140000 00020000 "misc"
-mtd10: 007e0000 00020000 "recovery"
-mtd11: 00180000 00020000 "fota"
-mtd12: 011e0000 00020000 "recoveryfs"
-mtd13: 00040000 00020000 "sec"
-mtd14: 091e0000 00020000 "system"
-```
-
-### `cat /proc/cpuinfo`
-
-```text
-processor       : 0
-model name      : ARMv7 Processor rev 5 (v7l)
-BogoMIPS        : 38.40
-Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae
-CPU implementer : 0x41
-CPU architecture: 7
-CPU variant     : 0x0
-CPU part        : 0xc07
-CPU revision    : 5
-Hardware        : Qualcomm Technologies, Inc MDM9207
-Revision        : 0000
-Serial          : 0000000000000000
-Processor       : ARMv7 Processor rev 5 (v7l)
-```
-
-### `cat /proc/cmdline`
-
-```{literalinclude} _static/t9_cmdline.txt
-:language: text
-```
-
 ### `usb_composition`
 
 ```{literalinclude} _static/t9_usb_composition.txt
-:language: text
-```
-
-### `iw list`
-
-```{literalinclude} _static/t9_iw_list.txt
 :language: text
 ```
 
