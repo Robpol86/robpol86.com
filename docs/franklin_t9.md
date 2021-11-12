@@ -210,6 +210,32 @@ it between the case and the button so it's always pressed down.
 :width: 100%
 ```
 
+## Notes
+
+Miscellaneous notes I took during my investigation.
+
+### Datasheets
+
+* https://datasheets.maximintegrated.com/en/ds/MAX77818.pdf
+
+### Extract Kernel
+
+Retrieve boot image from flash
+:   ```bash
+    # Shelled into hotspot
+    grep boot /proc/mtd  # Mine says mtd6: 007e0000 00020000 "boot"
+    # Local computer
+    ssh root@192.168.0.1 dd if=/dev/mtd6ro |dd of=mtd6ro-boot.bin
+    ```
+
+Extract compressed kernel image
+:   ```bash
+    git clone https://github.com/xiaolu/mkbootimg_tools.git
+    mkbootimg_tools/mkboot mtd6ro-boot.bin mtd6ro-boot
+    binwalk mtd6ro-boot/kernel  # Mine says 16431 0x402F gzip compressed data
+    dd if=mtd6ro-boot/kernel of=piggy.gz bs=1 skip=16431
+    ```
+
 ## Interesting Info
 
 ### `free -m`
@@ -253,10 +279,32 @@ Serial          : 0000000000000000
 Processor       : ARMv7 Processor rev 5 (v7l)
 ```
 
+### `uname -a`
+
+```text
+Linux mdm9607 3.18.48 #1 PREEMPT Fri Nov 13 14:21:47 KST 2020 armv7l GNU/Linux
+```
+
+### `lsmod`
+
+```text
+shortcut_fe_cm 6828 0 - Live 0xbf470000 (O)
+shortcut_fe_ipv6 66440 1 shortcut_fe_cm, Live 0xbf45a000 (O)
+shortcut_fe 68047 1 shortcut_fe_cm, Live 0xbf444000 (O)
+wlan 4467738 0 - Live 0xbf000000 (O)
+```
+
 ### `cat /proc/cmdline`
 
 ```{literalinclude} _static/t9_cmdline.txt
 :language: text
+```
+
+### `cat /build.prop`
+
+```text
+ro.build.version.release=202011131402
+ro.product.name=mdm9607-base
 ```
 
 ### `cat /proc/mtd`
@@ -308,18 +356,21 @@ OF_COMPATIBLE_N=1
 MODALIAS=of:NusbT<NULL>Cqcom,hsusb-otg
 ```
 
-### `gzip -dc /proc/config.gz |grep -v "^#" |grep -iE "swap|otg|mass"`
-
-```bash
-CONFIG_SWAP=y
-CONFIG_ARCH_USE_BUILTIN_BSWAP=y
-CONFIG_USB_MSM_OTG=y
-CONFIG_USB_F_MASS_STORAGE=y
-```
-
 ### `usb_composition`
 
 ```{literalinclude} _static/t9_usb_composition.txt
+:language: text
+```
+
+### `dtc -I fs -O dts /proc/device-tree`
+
+```{literalinclude} _static/t9_device_tree.dts
+```
+% TODO: https://github.com/pygments/pygments/issues/1949 :language: dts
+
+### `gzip -dc /proc/config.gz`
+
+```{literalinclude} _static/t9_kernel_config.txt
 :language: text
 ```
 
