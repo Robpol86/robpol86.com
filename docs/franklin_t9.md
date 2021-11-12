@@ -210,6 +210,57 @@ it between the case and the button so it's always pressed down.
 :width: 100%
 ```
 
+## Mount USB Flash Drive
+
+* `scp -r root@192.168.0.1:/proc/device-tree /tmp/`
+* `dtc -I fs -O dts /tmp/device-tree |grep otg`
+
+```
+qcom,hsusb-otg-mode = < 0x01 >;
+qcom,hsusb-otg-phy-type = < 0x03 >;
+qcom,hsusb-otg-otg-control = < 0x02 >;
+```
+
+https://android.googlesource.com/kernel/msm/+/refs/tags/android-12.0.0_r0.13/Documentation/devicetree/bindings/usb/msm-hsusb.txt
+
+```
+- qcom,hsusb-otg-mode: Operational mode. Can be one of
+        1 - Peripheral only mode
+	    2 - Host only mode
+	    3 - OTG mode
+	    Based on the mode, OTG driver registers platform devices for gadget and host.
+- qcom,hsusb-otg-phy-type: PHY type can be one of
+	    1 - Chipidea PHY (obsolete)
+	    2 - Synopsis Pico PHY
+	    3 - Synopsis Femto PHY
+	    4 - QUSB ULPI PHY
+- qcom,hsusb-otg-otg-control: OTG control (VBUS and ID notifications) can be one of
+        1 - PHY control
+	    2 - PMIC control
+	    3 - User control (via debugfs)
+```
+
+* `dtc -I fs -O dts /tmp/device-tree |grep otg-mode`
+
+```text
+No size specified (using byte-data access)
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+20: 23 03 00 ff 00
+c0: ff ff ff ff ff ff 75
+f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 00
+```
+
+0x20:   100011
+0x21:       11
+0x22:        0
+0x23: 11111111
+0x24:        0
+0xc6: 01110101
+0xff:        0
+
+`echo -n 5-0036 > /sys/bus/i2c/drivers/dummy/unbind`
+`echo -n 5-0069 > /sys/bus/i2c/drivers/dummy/unbind`
+
 ## Notes
 
 Miscellaneous notes I took during my investigation.
@@ -235,6 +286,19 @@ Extract compressed kernel image
     binwalk mtd6ro-boot/kernel  # Mine says 16431 0x402F gzip compressed data
     dd if=mtd6ro-boot/kernel of=piggy.gz bs=1 skip=16431
     ```
+
+### i2c
+
+On a host computer (WSL2 Debian):
+
+```bash
+sudo apt-get install 'gcc-arm*'
+wget https://mirrors.edge.kernel.org/pub/software/utils/i2c-tools/i2c-tools-4.3.tar.gz
+tar -xzf i2c-tools-4.3.tar.gz
+cd i2c-tools-4.3
+CC=arm-linux-gnueabi-gcc USE_STATIC_LIB=1 make
+scp i2cdetect i2cdump i2cget i2cset root@192.168.0.1:/usr/bin/
+```
 
 ## Interesting Info
 
@@ -354,6 +418,90 @@ OF_FULLNAME=/soc/usb@78d9000
 OF_COMPATIBLE_0=qcom,hsusb-otg
 OF_COMPATIBLE_N=1
 MODALIAS=of:NusbT<NULL>Cqcom,hsusb-otg
+```
+
+### `i2cdetect -y -a -r 5`
+
+```text
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00: -- -- -- -- 04 05 06 07 -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- UU -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- UU -- -- UU -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+```
+
+### `ls -lah /sys/bus/i2c/devices/5-0066/`
+
+```text
+total 0
+drwxr-xr-x    6 root     root           0 Dec 31  1969 .
+drwxr-xr-x    8 root     root           0 Dec 31  1969 ..
+lrwxrwxrwx    1 root     root           0 Nov 11 17:40 driver -> ../../../../bus/i2c/drivers/max77818
+drwxr-xr-x    4 root     root           0 Dec 31  1969 max77818-charger
+drwxr-xr-x    4 root     root           0 Dec 31  1969 max77818-fuelgauge
+drwxr-xr-x    3 root     root           0 Nov 11 17:40 max77818-regulator
+-r--r--r--    1 root     root        4.0K Nov 11 17:40 modalias
+-r--r--r--    1 root     root        4.0K Nov 11 17:40 name
+drwxr-xr-x    2 root     root           0 Nov 11 17:40 power
+lrwxrwxrwx    1 root     root           0 Nov 11 17:40 subsystem -> ../../../../bus/i2c
+-rw-r--r--    1 root     root        4.0K Nov 11 17:40 uevent
+```
+
+### `grep . /sys/bus/i2c/devices/*/* 2>/dev/null`
+
+```text
+/sys/bus/i2c/devices/5-0036/modalias:i2c:dummy
+/sys/bus/i2c/devices/5-0036/name:dummy
+/sys/bus/i2c/devices/5-0036/uevent:DRIVER=dummy
+/sys/bus/i2c/devices/5-0036/uevent:MODALIAS=i2c:dummy
+/sys/bus/i2c/devices/5-0066/modalias:i2c:max77818
+/sys/bus/i2c/devices/5-0066/name:max77818
+/sys/bus/i2c/devices/5-0066/uevent:DRIVER=max77818
+/sys/bus/i2c/devices/5-0066/uevent:OF_NAME=max77818
+/sys/bus/i2c/devices/5-0066/uevent:OF_FULLNAME=/soc/i2c@78b9000/max77818@66
+/sys/bus/i2c/devices/5-0066/uevent:OF_COMPATIBLE_0=maxim,max77818
+/sys/bus/i2c/devices/5-0066/uevent:OF_COMPATIBLE_N=1
+/sys/bus/i2c/devices/5-0066/uevent:MODALIAS=i2c:max77818
+/sys/bus/i2c/devices/5-0067/modalias:i2c:eeprom
+/sys/bus/i2c/devices/5-0067/name:eeprom
+/sys/bus/i2c/devices/5-0067/uevent:MODALIAS=i2c:eeprom
+/sys/bus/i2c/devices/5-0069/modalias:i2c:dummy
+/sys/bus/i2c/devices/5-0069/name:dummy
+/sys/bus/i2c/devices/5-0069/uevent:DRIVER=dummy
+/sys/bus/i2c/devices/5-0069/uevent:MODALIAS=i2c:dummy
+/sys/bus/i2c/devices/i2c-5/name:MSM-I2C-v2-adapter
+/sys/bus/i2c/devices/i2c-5/uevent:OF_NAME=i2c
+/sys/bus/i2c/devices/i2c-5/uevent:OF_FULLNAME=/soc/i2c@78b9000
+/sys/bus/i2c/devices/i2c-5/uevent:OF_COMPATIBLE_0=qcom,i2c-msm-v2
+/sys/bus/i2c/devices/i2c-5/uevent:OF_COMPATIBLE_N=1
+/sys/bus/i2c/devices/i2c-5/uevent:OF_ALIAS_0=i2c5
+```
+
+### `i2cdump -y -f 5 0x66`
+
+```text
+No size specified (using byte-data access)
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
+00: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+10: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+20: 23 03 00 ff 00 ff ff ff ff ff ff ff ff ff ff ff    #?..............
+30: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+40: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+50: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+60: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+70: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+90: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+c0: ff ff ff ff ff ff 75 ff ff ff ff ff ff ff ff ff    ......u.........
+d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 00    ................
 ```
 
 ### `usb_composition`
