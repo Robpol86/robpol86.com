@@ -1,0 +1,38 @@
+boot hsusb composition: 9057
+boot hsic composition: empty
+Choose Composition by Pid:
+   901D -	DIAG + ADB
+   9021 -	DIAG + QMI_RMNET (Android)
+   9022 -	DIAG + ADB + QMI_RMNET (Android)
+   9024 -	RNDIS + ADB [Android]
+   9025 -	DIAG + ADB + MODEM + NMEA + QMI_RMNET + Mass Storage (Android)
+   902B -	RNDIS + ADB + Mass Storage
+   902D -	RNDIS + DIAG + ADB [Android]
+   9039 -	MTP + ADB(Android)
+   9049 -	DIAG + ADB + DUN + RMNET + Mass Storage + QDSS [Android]
+   904A -	DIAG + QDSS [Android]
+   9056 -	DIAG + ADB + SERIAL + RMNET + Mass Storage + Audio [Android]
+   9057 -	RNDIS : ECM
+   9059 -	DIAG+ADB+RNDIS : ECM
+   905B -	MBIM
+   9060 -	DIAG + QDSS + ADB
+   9063 -	RNDIS : ECM : MBIM
+   9064 -	DIAG + ADB + MODEM + QMI_RMNET : ECM : MBIM
+   9067 -	Mass storage + QMI_RMNET : Mass Storage + MBIM
+   9084 -	DIAG + QDSS + ADB + RMNET
+   9085 -	DIAG+ADB+MBIM+GNSS
+   9091 -	DIAG + MODEM + QMI_RMNET + ADB
+   90A1 -	DIAG + ADB + (multiplexed) QMI_RMNET (Android)
+   90A9 -	DIAG + ADB + MODEM + NMEA + QDSS (bulk in) + RMNET : ECM : MBIM
+   90AD -	DIAG + ADB + MODEM + NMEA (Disable in 9x07 only : + QMI_RMNET + Mass Storage + DPL)
+   90B1 -	ECM
+   90CA -	DIAG + ADB + UAC2
+   90CD -	DIAG + ADB + GNSS
+   90D5 -	DIAG + ADB + MBIM + GNSS + DUN
+   90D6 -	DIAG + MBIM + GNSS + DUN
+   90F3 -	DIAG + RmNet + IPC_ROUTER
+   F000 -	Mass Storage
+   __emptyfile__ -	
+   empty -	it is used to allow either hsic or hsusb to have no composition at all(must reboot to take effect).
+   hsic_next -	
+   hsusb_next -	
