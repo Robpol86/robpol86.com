@@ -68,7 +68,7 @@ int main(void) {
     ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xb7, &valU16, &lsbU8, &msbU8);
     printf("get done\n");
 
-    printf("Read temp alert Register %d ret = %d, valU16=%d, lsbU8=%d, msbU8=%d\n", 0xb7, ret, valU16, lsbU8, msbU8);
+    printf("Read temp alert Register 0x%08x ret = %d, valU16=%d, lsbU8=0x%08x, msbU8=0x%08x\n", 0xb7, ret, valU16, lsbU8, msbU8);
 
     close(i2cFile);
     printf("Closed\n");
