@@ -13,7 +13,7 @@ class MAX77818:
             self.connected = True
         except IOError:
             self.connected = False
-        if (self.read(0xbd) & 0xC >> 2) == 3:
+        if (self.read(0xBD) & 0xC >> 2) == 3:
             self.unlocked = True
             print("Self.unlocked = {}".format(self.unlocked))
         else:
@@ -42,64 +42,64 @@ class MAX77818:
         return data
 
     def set_lock(self, lock):
-        lock_reg = self.read(0xbd)
-        if lock in ["unlock", "Unlock", "U", 'u', 0, True]:
-            self.write(0xbd, (lock_reg & 0xF3) | 0xC)
+        lock_reg = self.read(0xBD)
+        if lock in ["unlock", "Unlock", "U", "u", 0, True]:
+            self.write(0xBD, (lock_reg & 0xF3) | 0xC)
             self.unlocked = True
         else:
-            self.write(0xbd, lock_reg & 0xF3)
+            self.write(0xBD, lock_reg & 0xF3)
             self.unlocked = False
 
     def set_cv(self, voltage):
         # locks = self.unlocked
         # if not self.unlocked:
-        self.set_lock('unlock')
-        chg_cnfg_04 = self.read(0xbb)
+        self.set_lock("unlock")
+        chg_cnfg_04 = self.read(0xBB)
         if type(voltage) is float or type(voltage) is int:
             if voltage < 4.33999:
                 v = max(0, int(((voltage * 1000) - 3650) / 25))
             elif voltage < 4.34999:
                 v = 0x1C
             else:
-                v = min(0x2b, max(0x1D, 0x1D + int(((voltage * 1000) - 4350) / 25)))
-        elif voltage in ['up', 'Up', 'UP', 'u', 'U']:
+                v = min(0x2B, max(0x1D, 0x1D + int(((voltage * 1000) - 4350) / 25)))
+        elif voltage in ["up", "Up", "UP", "u", "U"]:
             v = min((chg_cnfg_04 & 0x3F) + 1, 0x2B)
-        elif voltage in ['d', 'down', 'Down', 'D']:
+        elif voltage in ["d", "down", "Down", "D"]:
             v = max((chg_cnfg_04 & 0x3F) - 1, 0x0)
         else:
             v = min(0x2B, max(0, int(voltage, 16)))
         print("Voltage = {}, hex = {}".format(voltage, hex(v)))
-        self.write(0xbb, (chg_cnfg_04 & 0xC0) | v)
+        self.write(0xBB, (chg_cnfg_04 & 0xC0) | v)
         # self.set_lock(locks)
 
     def set_cc(self, curr):
         locks = self.unlocked
         if not self.unlocked:
-            self.set_lock('unlock')
-        chg_cnfg_02 = self.read(0xb9)
+            self.set_lock("unlock")
+        chg_cnfg_02 = self.read(0xB9)
         if type(curr) is float or type(curr) is int:
             if curr < 4.0:  # Amps to mA
                 curr = curr * 1000.0
-            c = min(max(0, int(curr / 50)), 0x3f)
+            c = min(max(0, int(curr / 50)), 0x3F)
         else:
             try:
                 curr = int(curr, 16)
-                c = min(max(0, int(curr)), 0x3f)
+                c = min(max(0, int(curr)), 0x3F)
             except IOError:
                 print("Invalid CC value")
                 return
-        self.write(0xb9, ((chg_cnfg_02 & 0xC0) | c))
+        self.write(0xB9, ((chg_cnfg_02 & 0xC0) | c))
         self.set_lock(locks)
 
     def set_input_lim(self, curr):
         if type(curr) is float or type(curr) is int:
             if curr < 6.0:  # Amps to mA
                 curr = curr * 1000.0
-            c = min(max(0, int(curr / 33)), 0x7f)
+            c = min(max(0, int(curr / 33)), 0x7F)
         else:
             try:
                 curr = int(curr, 16)
-                c = min(max(0, int(curr)), 0x7f)
+                c = min(max(0, int(curr)), 0x7F)
             except IOError:
                 print("Invalid input current limit value")
                 return
@@ -107,13 +107,13 @@ class MAX77818:
         self.write(0xC0, c)
 
     def set_mode(self, mode):
-        chg_cnfg_00 = self.read(0xb7)
-        self.write(0xb7, (chg_cnfg_00 & 0xF0) | min(0xF, mode))
+        chg_cnfg_00 = self.read(0xB7)
+        self.write(0xB7, (chg_cnfg_00 & 0xF0) | min(0xF, mode))
 
     def show_chg_details(self):
-        dtls0 = self.read(0xb3)
-        dtls1 = self.read(0xb4)
-        dtls2 = self.read(0xb5)
+        dtls0 = self.read(0xB3)
+        dtls1 = self.read(0xB4)
+        dtls2 = self.read(0xB5)
         if dtls0 & 0x60 == 0x60:
             print("MAX77818 VBUS Valid")
         if dtls0 & 0x1 == 1:
@@ -122,5 +122,5 @@ class MAX77818:
         print("CHG_DTLS = " + "   ".join(map(hex, [dtls0, dtls1, dtls2])))
 
     def get_chg_stat(self):
-        data = self.read(0xb4)
+        data = self.read(0xB4)
         return data & 0xF
