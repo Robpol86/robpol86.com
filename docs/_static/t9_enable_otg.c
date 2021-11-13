@@ -1,6 +1,10 @@
 /*
  * Enable OTG mode via max77818 i2c.
  *
+ * Datasheet: https://datasheets.maximintegrated.com/en/ds/MAX77818.pdf
+ *      All registers are 16 bits wide and are read and written as 2-byte values. When the MSB of a register is read, the MSB
+ *      and LSB are latched simultaneously and held for the duration of the Read Data command.
+ *
  * WSL2 Debian prerequisites:
  *      sudo apt-get install 'gcc-arm*'
  *
@@ -53,22 +57,62 @@ int max77818_get_i2c_regU16(int file, unsigned char addr, unsigned char reg, uns
 }
 
 
+int max77818_set_i2c_regU16(int file, unsigned char addr, unsigned char reg, unsigned char lsb, unsigned char msb) {
+    unsigned char outbuf[3];
+    struct i2c_rdwr_ioctl_data packets;
+    struct i2c_msg messages[1];
+
+    messages[0].addr  = addr; //Warn - address swapped, for example, B6 is 6D
+    messages[0].flags = 0;
+    messages[0].len   = sizeof(outbuf);
+    messages[0].buf   = outbuf;
+
+    outbuf[0] = reg;
+    outbuf[1] = lsb;
+    outbuf[2] = msb;
+
+    packets.msgs  = messages;
+    packets.nmsgs = 1;
+
+    if(ioctl(file, I2C_RDWR, &packets) < 0) return 0;
+
+    return 1;
+}
+
+
 int main(void) {
     printf("Start\n");
     int ret, i2cFile;
     u_int16_t valU16;
     u_int8_t lsbU8, msbU8;
 
-    if ((i2cFile = open("/dev/i2c-5", O_RDWR)) < 0) printf("open failed: %d\n", i2cFile);
-    printf("Opened\n");
+    // Open i2c connection.
+    if ((i2cFile = open("/dev/i2c-5", O_RDWR)) < 0) {
+        printf("ERROR: open /dev/i2c-5 failed: %d\n", i2cFile);
+        return -i2cFile;
+    }
+    if ((ret = ioctl(i2cFile, I2C_SLAVE_FORCE, 0x69)) < 0) {
+        printf("ERROR: ioctl failed: %d\n", ret);
+        return -ret;
+    }
 
-    if ((ret = ioctl(i2cFile, I2C_SLAVE_FORCE, 0x69)) < 0) printf("ioctl failed: %d\n", ret);
-    printf("ioctl init done\n");
-
+    // Current config.
+    valU16 = lsbU8 = msbU8 = 0;
     ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xb7, &valU16, &lsbU8, &msbU8);
-    printf("get done\n");
+    printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xb7, ret, valU16, lsbU8, msbU8);
 
-    printf("Read temp alert Register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xb7, ret, valU16, lsbU8, msbU8);
+    // Is it locked?
+    valU16 = lsbU8 = msbU8 = 0;
+    ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xbd, &valU16, &lsbU8, &msbU8);
+    printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xbd, ret, valU16, lsbU8, msbU8);
+    if (lsbU8 != 0x03) {
+        printf("Charger config is LOCKED\n");
+    }
+
+//    //Set External Temp to 20 degrees to 0x08
+//    lsbU8 = 0; //0.0039 deg per unit
+//    msbU8 = 20;//1 deg per unit, so 20 is 20 degrees
+//    ret = max77818_set_i2c_regU16(i2cFile, 0xCB, 0xb7, lsbU8, msbU8);
 
     close(i2cFile);
     printf("Closed\n");
