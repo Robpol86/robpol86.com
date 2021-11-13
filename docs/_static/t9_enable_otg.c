@@ -102,27 +102,13 @@ int main(void) {
     ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xb7, &valU16, &lsbU8, &msbU8);
     printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xb7, ret, valU16, lsbU8, msbU8);
 
-    // Unlock.
-    valU16 = lsbU8 = msbU8 = 0;
-    ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xbd, &valU16, &lsbU8, &msbU8);
-    printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xbd, ret, valU16, lsbU8, msbU8);
-    if (lsbU8 != 0x03) {
-        printf("Charger config is LOCKED\n");
-        // TODO unlock.
-        valU16 = lsbU8 = msbU8 = 0;
-        ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xbd, &valU16, &lsbU8, &msbU8);
-        printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xbd, ret, valU16, lsbU8, msbU8);
-        if (lsbU8 != 0x03) {
-            printf("ERROR: Charger config is still LOCKED\n");
-            close(i2cFile);
-            return 1;
-        }
-    }
+    // Change mode to 0x0f.
+    // TODO.
 
-//    //Set External Temp to 20 degrees to 0x08
-//    lsbU8 = 0; //0.0039 deg per unit
-//    msbU8 = 20;//1 deg per unit, so 20 is 20 degrees
-//    ret = max77818_set_i2c_regU16(i2cFile, 0xCB, 0xb7, lsbU8, msbU8);
+    // Did it work?
+    valU16 = lsbU8 = msbU8 = 0;
+    ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xb7, &valU16, &lsbU8, &msbU8);
+    printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xb7, ret, valU16, lsbU8, msbU8);
 
     close(i2cFile);
     printf("Closed\n");
