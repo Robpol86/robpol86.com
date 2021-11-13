@@ -103,7 +103,9 @@ int main(void) {
     printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xb7, ret, valU16, lsbU8, msbU8);
 
     // Change mode to 0x0f.
-    // TODO.
+    lsbU8 = 0x0f;
+    ret = max77818_set_i2c_regU16(i2cFile, 0x69, 0xb7, lsbU8, msbU8);
+    printf("Set config @ register 0x%02x ret = %d\n", 0xb7, ret);
 
     // Did it work?
     valU16 = lsbU8 = msbU8 = 0;
