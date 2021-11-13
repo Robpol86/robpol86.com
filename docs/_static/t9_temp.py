@@ -36,6 +36,76 @@ class MAX77818:
         else:
             bus.write_i2c_block_data(slave, address, data)
 
+    @staticmethod
+    def rw(reg, s=0x36):
+        data = bus.read_word_data(s, reg)
+        return data
+
+    def set_lock(self, lock):
+        lock_reg = self.read(0xbd)
+        if lock in ["unlock", "Unlock", "U", 'u', 0, True]:
+            self.write(0xbd, (lock_reg & 0xF3) | 0xC)
+            self.unlocked = True
+        else:
+            self.write(0xbd, lock_reg & 0xF3)
+            self.unlocked = False
+
+    def set_cv(self, voltage):
+        # locks = self.unlocked
+        # if not self.unlocked:
+        self.set_lock('unlock')
+        chg_cnfg_04 = self.read(0xbb)
+        if type(voltage) is float or type(voltage) is int:
+            if voltage < 4.33999:
+                v = max(0, int(((voltage * 1000) - 3650) / 25))
+            elif voltage < 4.34999:
+                v = 0x1C
+            else:
+                v = min(0x2b, max(0x1D, 0x1D + int(((voltage * 1000) - 4350) / 25)))
+        elif voltage in ['up', 'Up', 'UP', 'u', 'U']:
+            v = min((chg_cnfg_04 & 0x3F) + 1, 0x2B)
+        elif voltage in ['d', 'down', 'Down', 'D']:
+            v = max((chg_cnfg_04 & 0x3F) - 1, 0x0)
+        else:
+            v = min(0x2B, max(0, int(voltage, 16)))
+        print("Voltage = {}, hex = {}".format(voltage, hex(v)))
+        self.write(0xbb, (chg_cnfg_04 & 0xC0) | v)
+        # self.set_lock(locks)
+
+    def set_cc(self, curr):
+        locks = self.unlocked
+        if not self.unlocked:
+            self.set_lock('unlock')
+        chg_cnfg_02 = self.read(0xb9)
+        if type(curr) is float or type(curr) is int:
+            if curr < 4.0:  # Amps to mA
+                curr = curr * 1000.0
+            c = min(max(0, int(curr / 50)), 0x3f)
+        else:
+            try:
+                curr = int(curr, 16)
+                c = min(max(0, int(curr)), 0x3f)
+            except IOError:
+                print("Invalid CC value")
+                return
+        self.write(0xb9, ((chg_cnfg_02 & 0xC0) | c))
+        self.set_lock(locks)
+
+    def set_input_lim(self, curr):
+        if type(curr) is float or type(curr) is int:
+            if curr < 6.0:  # Amps to mA
+                curr = curr * 1000.0
+            c = min(max(0, int(curr / 33)), 0x7f)
+        else:
+            try:
+                curr = int(curr, 16)
+                c = min(max(0, int(curr)), 0x7f)
+            except IOError:
+                print("Invalid input current limit value")
+                return
+        # print("Current = {}     Reg = {}".format(curr, hex(c)))
+        self.write(0xC0, c)
+
     def set_mode(self, mode):
         chg_cnfg_00 = self.read(0xb7)
         self.write(0xb7, (chg_cnfg_00 & 0xF0) | min(0xF, mode))
