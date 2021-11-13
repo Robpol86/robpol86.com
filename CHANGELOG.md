@@ -12,7 +12,8 @@ Franklin T9 page updates and changes
 - Using subsections under Interesting Information section.
 - Moving large command outputs into external files instead of embedding in franklin_t9.md.
 - Changed order of Interesting Info section.
-- Added device tree, full kernel config, datasheets, notes section, uname, lsmod, and build.prop.
+- Added device tree, full kernel config, datasheets, notes section, uname, lsmod, dmesg, and build.prop.
+- Added steps on how to use SSH key authentication.
 
 ## 2021-11-09
 

@@ -73,6 +73,16 @@ Upload new configuration file
   * Finally `ssh root@192.168.0.1` with password {guilabel}`frk9x07`
   * Prevent new firmware from auto-installing by running: `mv /etc/init.d/start_omadm /home/root/`
 
+Generate SSH key to use instead of password authentication
+:   ```bash
+    # On local computer
+    ssh-keygen -t rsa -b 4096 -f ~/.ssh/franklin_t9
+    cat ~/.ssh/franklin_t9.pub
+    # On hotspot
+    mkdir /home/root/.ssh
+    touch /home/root/.ssh/authorized_keys  # Paste public key in this file
+    ```
+
 ## Static DHCP
 
 One feature that I need for my project that's missing is static DHCP. I want certain clients to always get the same IP
@@ -360,6 +370,11 @@ MODALIAS=of:NusbT<NULL>Cqcom,hsusb-otg
 
 ```{literalinclude} _static/t9_usb_composition.txt
 :language: text
+```
+
+### `cat /proc/kmsg  # dmesg`
+
+```{literalinclude} _static/t9_dmsg.txt
 ```
 
 ### `dtc -I fs -O dts /proc/device-tree`
