@@ -544,6 +544,11 @@ f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 00    ................
 :language: text
 ```
 
+### `cat /proc/kmsg  # dmesg`
+
+```{literalinclude} _static/t9_dmsg.txt
+```
+
 ### `dtc -I fs -O dts /proc/device-tree`
 
 ```{literalinclude} _static/t9_device_tree.dts
