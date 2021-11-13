@@ -93,6 +93,7 @@ int main(void) {
     }
     if ((ret = ioctl(i2cFile, I2C_SLAVE_FORCE, 0x69)) < 0) {
         printf("ERROR: ioctl failed: %d\n", ret);
+        close(i2cFile);
         return -ret;
     }
 
@@ -101,12 +102,21 @@ int main(void) {
     ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xb7, &valU16, &lsbU8, &msbU8);
     printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xb7, ret, valU16, lsbU8, msbU8);
 
-    // Is it locked?
+    // Unlock.
     valU16 = lsbU8 = msbU8 = 0;
     ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xbd, &valU16, &lsbU8, &msbU8);
     printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xbd, ret, valU16, lsbU8, msbU8);
     if (lsbU8 != 0x03) {
         printf("Charger config is LOCKED\n");
+        // TODO unlock.
+        valU16 = lsbU8 = msbU8 = 0;
+        ret = max77818_get_i2c_regU16(i2cFile, 0x69, 0xbd, &valU16, &lsbU8, &msbU8);
+        printf("Current config @ register 0x%02x ret = %d, valU16=%d, lsbU8=0x%02x, msbU8=0x%02x\n", 0xbd, ret, valU16, lsbU8, msbU8);
+        if (lsbU8 != 0x03) {
+            printf("ERROR: Charger config is still LOCKED\n");
+            close(i2cFile);
+            return 1;
+        }
     }
 
 //    //Set External Temp to 20 degrees to 0x08
