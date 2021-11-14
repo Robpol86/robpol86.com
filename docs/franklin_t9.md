@@ -3,12 +3,6 @@
 My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
 data. I'm using it with [Google Fi](https://fi.google.com/).
 
-```{admonition} Work in Progress
-:class: note
-
-As of November 12 2021 this page is still being actively updated.
-```
-
 ```{imgur-embed} a/mwJuieo
 ```
 
@@ -82,6 +76,40 @@ Generate SSH key to use instead of password authentication
     mkdir /home/root/.ssh
     touch /home/root/.ssh/authorized_keys  # Paste public key in this file
     ```
+
+## Flash Dumps
+
+https://mega.nz/folder/K1ITBaqY#ess3TbmfhzrKCe_EyU5jSg
+
+The dumps in the above link were created using the below command. I wasn't able to dump `mtd2`. Every time I tried to read it
+the hotspot started to hang and I had to power cycle it.
+
+```bash
+for i in 0 1 {3..14}; do ssh 192.168.0.1 dd "if=/dev/mtd${i}ro" |pv > "mtd${i}ro.bin"; done
+```
+
+Something funny I noticed when running `strings mtd0ro-sbl.bin`:
+
+```text
+gcc_spmi_ser_clk
+gcc_spmi_ahb_clk
+`i9FBj
+ pGO
+BF1F F
+fs_pm_ptable_nand.c
+@!hF
+FJx@
+@"|@
+`a|
+DBGP
+ pGpGp
+DENTAL PLAN!
+`BiB
+ pGo
+zppG
+fs_efs2.c
+fs_efs2.c
+```
 
 ## Static DHCP
 
@@ -364,6 +392,66 @@ OF_FULLNAME=/soc/usb@78d9000
 OF_COMPATIBLE_0=qcom,hsusb-otg
 OF_COMPATIBLE_N=1
 MODALIAS=of:NusbT<NULL>Cqcom,hsusb-otg
+```
+
+### `lsusb  # From host computer`
+
+Powered on normally
+:   ```text
+    Bus 001 Device 031: ID 05c6:902d Qualcomm, Inc. MDM9207-MTP _SN:26F711A1
+    ```
+
+Fastboot mode
+:   ```text
+    Bus 001 Device 030: ID 18d1:d00d Google Inc. Xiaomi Mi/Redmi 2 (fastboot)
+    ```
+
+### `cat /proc/tty/drivers`
+
+```text
+/dev/tty             /dev/tty        5       0 system:/dev/tty
+/dev/console         /dev/console    5       1 system:console
+/dev/ptmx            /dev/ptmx       5       2 system
+/dev/vc/0            /dev/vc/0       4       0 system:vtmaster
+g_serial             /dev/ttyGS    239 0-3 serial
+acm                  /dev/ttyACM   166 0-31 serial
+smd_tty_driver       /dev/smd      245 0-36 serial
+msm_serial_hsl       /dev/ttyHSL   246 0-2 serial
+msm_serial_hs        /dev/ttyHS    247 0-255 serial
+pty_slave            /dev/pts      136 0-1048575 pty:slave
+pty_master           /dev/ptm      128 0-1048575 pty:master
+unknown              /dev/tty        4 1-63 console
+```
+
+### `fastboot getvar all`
+
+```text
+(bootloader) version:0.5
+(bootloader) variant:modem UFS
+(bootloader) secure:no
+(bootloader) version-baseband:
+(bootloader) version-bootloader:
+(bootloader) display-panel:
+(bootloader) off-mode-charge:0
+(bootloader) charger-screen-enabled:0
+(bootloader) max-download-size: 0x8000000
+(bootloader) serialno:12345678
+(bootloader) kernel:lk
+(bootloader) product:
+all:
+Finished. Total time: 0.021s
+```
+
+### `fastboot oem device-info`
+
+```text
+(bootloader)    Device tampered: false
+(bootloader)    Device unlocked: false
+(bootloader)    Device critical unlocked: false
+(bootloader)    Charger screen enabled: false
+(bootloader)    Display panel:
+OKAY [  0.006s]
+Finished. Total time: 0.007s
 ```
 
 ### `usb_composition`
