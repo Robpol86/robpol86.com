@@ -6,7 +6,9 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- *No changes.*
+Franklin T9 page updates and changes
+
+- Added Flash Dumps, lsusb, and fastboot output sections.
 
 ## 2021-11-12
 
