@@ -5,6 +5,7 @@
 import os
 import time
 from pathlib import Path
+from urllib.parse import urlparse
 
 from sphinx.application import Sphinx
 
@@ -131,6 +132,10 @@ ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo}"
 ogp_site_name = "Robpol86.com"
 ogp_type = "article"
 ogp_use_first_image = True
+ogp_custom_meta_tags = [
+    '<meta name="twitter:card" content="summary_large_image">',
+    f'<meta property="twitter:domain" content="{urlparse(html_baseurl).netloc}">',
+]
 
 
 # robots.txt templating

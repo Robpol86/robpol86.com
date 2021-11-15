@@ -9,6 +9,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 Franklin T9 page updates and changes
 
 - Added Flash Dumps, lsusb, and fastboot output sections.
+- Large opengraph images when posting to Discord.
 
 ## 2021-11-12
 
