@@ -20,9 +20,9 @@ repository = "https://github.com/Robpol86/robpol86.com"
 python = "^3.7"
 # Project dependencies.
 myst-parser = {version = ">=0.15.2", extras = ["linkify"]}
-sphinx = ">=4.2.0"
+sphinx = ">=4.3.0"
 sphinx-autobuild = "*"  # not semver
-sphinx-book-theme = ">=0.1.6"
+sphinx-book-theme = ">=0.1.7"
 sphinx-copybutton = ">=0.4.0"
 sphinx-disqus = ">=1.2.0"
 sphinx-last-updated-by-git = ">=0.3.0"
@@ -37,12 +37,12 @@ sphinxcontrib-youtube = {git = "https://github.com/Robpol86/youtube", branch = "
 
 [tool.poetry.dev-dependencies]
 # Linters.
-black = "*"
-flake8 = ">=3.9.2"
+black = "*"  # not semver
+flake8 = ">=4.0.1"
 flake8-docstrings = ">=1.6.0"
 flake8-import-order = ">=0.18.1"
-pep8-naming = ">=0.11.1"
-pylint = ">=2.8.3"
+pep8-naming = ">=0.12.1"
+pylint = ">=2.11.1"
 
 [tool.black]
 line-length = 125
