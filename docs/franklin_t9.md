@@ -468,8 +468,8 @@ Finished. Total time: 0.007s
 ### `dtc -I fs -O dts /proc/device-tree`
 
 ```{literalinclude} _static/t9_device_tree.dts
+:language: dts
 ```
-% TODO: https://github.com/pygments/pygments/issues/1949 :language: dts
 
 ### `gzip -dc /proc/config.gz`
 

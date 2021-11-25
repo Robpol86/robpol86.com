@@ -10,6 +10,9 @@ Franklin T9 page updates and changes
 
 - Added Flash Dumps, lsusb, and fastboot output sections.
 - Large opengraph images when posting to Discord.
+- Using unreleased pygments with dts syntax highlighting fix.
+- Using newer unreleased sphinxcontrib-youtube extension.
+- Updated opengraph extension with absolute path fix.
 
 ## 2021-11-12
 

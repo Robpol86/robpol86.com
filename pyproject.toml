@@ -20,6 +20,7 @@ repository = "https://github.com/Robpol86/robpol86.com"
 python = "^3.7"
 # Project dependencies.
 myst-parser = {version = ">=0.15.2", extras = ["linkify"]}
+pygments = {git = "https://github.com/pygments/pygments", branch = "master"}  # TODO remove when v2.11.0 is released
 sphinx = ">=4.3.0"
 sphinx-autobuild = "*"  # not semver
 sphinx-book-theme = ">=0.1.7"
@@ -30,10 +31,8 @@ sphinx-notfound-page = ">=0.7.1"
 sphinx-panels = ">=0.6.0"
 sphinx-sitemap = ">=2.2.0"
 sphinxcontrib-imgur = {git = "https://github.com/Robpol86/sphinx-imgur", branch = "quick_fix"}
-# sphinxext-opengraph = ">=0.4.2"  # TODO https://github.com/wpilibsuite/sphinxext-opengraph/issues/43
-sphinxext-opengraph = {git = "https://github.com/Robpol86/sphinxext-opengraph", branch = "quick_fix3"}
-# TODO https://github.com/sphinx-contrib/youtube/issues/17
-sphinxcontrib-youtube = {git = "https://github.com/Robpol86/youtube", branch = "quick_fix"}
+sphinxcontrib-youtube = {git = "https://github.com/Robpol86/youtube", branch = "timestamp_support"}  # TODO pr17
+sphinxext-opengraph = ">=0.5.0"
 
 [tool.poetry.dev-dependencies]
 # Linters.
