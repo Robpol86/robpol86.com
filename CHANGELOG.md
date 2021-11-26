@@ -6,7 +6,11 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-Franklin T9 page updates and changes
+- N/A
+
+## 2021-11-25
+
+Franklin T9 page updates, dependency updates
 
 - Added Flash Dumps, lsusb, and fastboot output sections.
 - Large opengraph images when posting to Discord.
