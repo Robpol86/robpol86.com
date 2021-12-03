@@ -13,7 +13,7 @@ Started by a thread called “Where You Rock” on Big-O-Software Forums in earl
 show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.
 
 .. imgur-embed:: a/ZHAJF
-    :og_imgur_id: 8D4uNTL
+    :og_imgur_id: tONwe6S
 
 Rack Cabinet
 ============
