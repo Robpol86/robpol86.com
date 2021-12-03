@@ -13,7 +13,7 @@ Started by a thread called “Where You Rock” on Big-O-Software Forums in earl
 show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.
 
 .. imgur-embed:: a/ZHAJF
-    :og_imgur_id: 8D4uNTL
+    :og_imgur_id: tONwe6S
 
 Rack Cabinet
 ============
@@ -24,6 +24,24 @@ Craigslist in 2007 for $100 but it had round holes and it was very shallow. Turn
 Eventually I came across this one back at Symantec as they were about to throw it away once our lab was shut down. I
 also scored that tape autoloader and 2200VA UPS, and over $500 worth of brand new, never used, still shrink wrapped
 LTO-3 tapes. They were in a garbage bin!
+
+June 6th, 2020
+--------------
+
+Having my equipment hidden in a TV cabinet was all fine and well but after a while I got the server rack itch. So during the
+pandemic I learned Fusion 360 and made my own custom 10u rack posts. It turned out nicer than I expected! 3D models are
+available here: https://github.com/Robpol86/TV-Cabinet-Rack-Posts
+
+.. imgur-embed:: a/5uRXe7J
+
+July 12th, 2017
+---------------
+
+I replaced my super cool Dell rack recently with a more normal-looking setup in my living room. After countless weeks looking
+for the right TV cabinet I finally found one deep enough to house a couple of 2U rackmount cases and a rackmount switch. It
+turned out nicer than I had expected! Don't ask me how much all this cost.
+
+.. imgur-embed:: a/WX1FA
 
 September 17th, 2016
 --------------------

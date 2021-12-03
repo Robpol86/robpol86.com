@@ -6,10 +6,17 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## 2021-12-03
+
 - Using rsync `--delete-after` to avoid race condition where files are removed before index.html is updated.
 - Switch from old and crap-patched to new and proper [sphinx-imgur](https://sphinx-imgur.readthedocs.io/) extension. Fixes
   compatibility with opengraph extension.
 - Fixed image alignments in some documents where two or three images are supposed to sit side by side flush with each other.
+- Updating photo albums with new (old) rack cabinet albums.
+- Changed OpenGraph type from "article" to "website". They look the same in Discord and article has a bunch of extra tags
+  that I won't be using: https://ogp.me/#no_vertical
 
 ## 2021-11-25
 
