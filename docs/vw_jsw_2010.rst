@@ -133,7 +133,7 @@ fine).
 
     * - .. imgur:: 55krwnA
       - .. imgur:: 7lHFKUv
-      - .. imgur:: 7WTPx0v
+      - .. imgur:: 7WTPx0v.gif
 
 Delivery
 ========
