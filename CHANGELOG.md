@@ -15,6 +15,8 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
   compatibility with opengraph extension.
 - Fixed image alignments in some documents where two or three images are supposed to sit side by side flush with each other.
 - Updating photo albums with new (old) rack cabinet albums.
+- Changed OpenGraph type from "article" to "website". They look the same in Discord and article has a bunch of extra tags
+  that I won't be using: https://ogp.me/#no_vertical
 
 ## 2021-11-25
 

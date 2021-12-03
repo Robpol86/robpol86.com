@@ -124,7 +124,7 @@ ogp_site_url = html_baseurl
 ogp_description_length = 300
 ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo}"
 ogp_site_name = "Robpol86.com"
-ogp_type = "article"
+ogp_type = "website"
 ogp_use_first_image = True
 ogp_custom_meta_tags = [
     '<meta name="twitter:card" content="summary_large_image">',
