@@ -27,6 +27,7 @@ For crimping the wires I used the following:
 * [Wire Stripper Automatic 3 in 1 Multi-Function Wire Pliers (22AWG-8AWG)](https://www.amazon.com/dp/B08XXL3B7K)
 
 ```{imgur-embed} a/X5GBxkk
+:og_imgur_id: YJWyMhi
 ```
 
 ## Oct &#39;21 Magnetic Build Plate

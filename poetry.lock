@@ -657,6 +657,20 @@ sphinx = "*"
 docs = ["sphinx-notfound-page", "sphinx-panels", "sphinx-rtd-theme", "sphinx-copybutton", "toml"]
 
 [[package]]
+name = "sphinx-imgur"
+version = "3.0.0"
+description = "Embed Imgur images and albums in Sphinx documents/pages."
+category = "main"
+optional = false
+python-versions = ">=3.6.2,<4.0.0"
+
+[package.dependencies]
+sphinx = "*"
+
+[package.extras]
+docs = ["sphinx-copybutton", "sphinx-notfound-page", "sphinx-panels", "sphinx-rtd-theme", "sphinxext-opengraph", "toml"]
+
+[[package]]
 name = "sphinx-last-updated-by-git"
 version = "0.3.0"
 description = "Get the \"last updated\" time for each Sphinx page from Git"
@@ -740,25 +754,6 @@ python-versions = ">=3.6"
 [package.extras]
 lint = ["flake8", "mypy", "docutils-stubs"]
 test = ["pytest", "html5lib"]
-
-[[package]]
-name = "sphinxcontrib-imgur"
-version = "2.0.2.dev1"
-description = ""
-category = "main"
-optional = false
-python-versions = "*"
-develop = false
-
-[package.dependencies]
-requests = "*"
-sphinx = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/Robpol86/sphinx-imgur"
-reference = "quick_fix"
-resolved_reference = "148de937afb7759a0dbf0bf409ad1e4e1f761e94"
 
 [[package]]
 name = "sphinxcontrib-jsmath"
@@ -911,7 +906,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "16729d5b0231a96ebca86437bcd252911a0cb8617684d2a6b3cf9fe059485956"
+content-hash = "bac6452abc44f24ac4e76a630ec41b937301e2e119732ee95b2aafa5368cec8b"
 
 [metadata.files]
 alabaster = [
@@ -1268,6 +1263,10 @@ sphinx-disqus = [
     {file = "sphinx-disqus-1.2.0.tar.gz", hash = "sha256:7ae439646a80b910172f75d0a0d848a551c6b785a14661a5345de4f593bd8f0a"},
     {file = "sphinx_disqus-1.2.0-py3-none-any.whl", hash = "sha256:75d3c1eebe054b10bf4866d8faefd8ac64563dad665bc2d607aedba83b6ba12e"},
 ]
+sphinx-imgur = [
+    {file = "sphinx-imgur-3.0.0.tar.gz", hash = "sha256:db5dbd1169f60468394ebfb9b3f1387a4f4ed567b061c98ad1312048afe5a760"},
+    {file = "sphinx_imgur-3.0.0-py3-none-any.whl", hash = "sha256:6048f2a6a00192124849d679ca3ac7c29eaad6150e4a51a238ba9337f42d772e"},
+]
 sphinx-last-updated-by-git = [
     {file = "sphinx-last-updated-by-git-0.3.0.tar.gz", hash = "sha256:425dbac8eb0cb78f6b14ab9b42345800547a8863d6c7b00c970e9509e2174336"},
     {file = "sphinx_last_updated_by_git-0.3.0-py3-none-any.whl", hash = "sha256:b5c188e1f6e04452333f7b68f6902ee698ad68b23f357ee023c2d028d4a5e001"},
@@ -1295,7 +1294,6 @@ sphinxcontrib-htmlhelp = [
     {file = "sphinxcontrib-htmlhelp-2.0.0.tar.gz", hash = "sha256:f5f8bb2d0d629f398bf47d0d69c07bc13b65f75a81ad9e2f71a63d4b7a2f6db2"},
     {file = "sphinxcontrib_htmlhelp-2.0.0-py2.py3-none-any.whl", hash = "sha256:d412243dfb797ae3ec2b59eca0e52dac12e75a241bf0e4eb861e450d06c6ed07"},
 ]
-sphinxcontrib-imgur = []
 sphinxcontrib-jsmath = [
     {file = "sphinxcontrib-jsmath-1.0.1.tar.gz", hash = "sha256:a9925e4a4587247ed2191a22df5f6970656cb8ca2bd6284309578f2153e0c4b8"},
     {file = "sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl", hash = "sha256:2ec2eaebfb78f3f2078e73666b1415417a116cc848b72e5172e596c871103178"},
