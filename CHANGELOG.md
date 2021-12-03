@@ -10,6 +10,8 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## 2021-12-03
 
+Latest Imgur extension with OpenGraph support
+
 - Using rsync `--delete-after` to avoid race condition where files are removed before index.html is updated.
 - Switch from old and crap-patched to new and proper [sphinx-imgur](https://sphinx-imgur.readthedocs.io/) extension. Fixes
   compatibility with opengraph extension.
