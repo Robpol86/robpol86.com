@@ -9,7 +9,7 @@ Linux computer to tape. Backing up to tape is a lot more convenient that backing
 debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool!
 
 .. imgur-embed:: 7DZQt
-    :hide_post_details: True
+    :hide_post_details:
 
 Equipment Used
 ==============

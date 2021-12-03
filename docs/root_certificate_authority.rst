@@ -8,6 +8,7 @@ Tired of getting those SSL error pages when accessing your router's admin interf
 to get to your IPMI web interface? Have I got a guide for you!
 
 .. imgur-embed:: a/PFrHX
+    :og_imgur_id: 4NS0cDs
 
 This guide will go over setting up an offline root certificate authority for your home network. It is based on what I've
 learned from https://jamielinux.com/docs/openssl-certificate-authority/index.html with a few differences:

@@ -4,6 +4,7 @@ My goal for this project is to have an LTE hotspot in my car that shuts off auto
 data. I'm using it with [Google Fi](https://fi.google.com/).
 
 ```{imgur-embed} a/mwJuieo
+:og_imgur_id: yZjfLix
 ```
 
 ## Downgrade Firmware

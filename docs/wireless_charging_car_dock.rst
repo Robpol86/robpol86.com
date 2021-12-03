@@ -4,8 +4,8 @@
 Wireless Charging Car Dock
 ==========================
 
-.. imgur-embed:: 7WTPx0v
-    :hide_post_details: True
+.. imgur-embed:: 7WTPx0v.gif
+    :hide_post_details:
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
 find very many car docks out there with wireless charging, and I read that Nokia's wireless charging car dock didn't
@@ -26,18 +26,17 @@ that I was able to drive around for three hours with my phone on the charger wit
 All you need to do is mount the nGroove Snap and then place the charger on it, and that’s it! I routed the cable behind
 my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 
-.. imgur-image:: GJE9zkv
-    :width: 33%
-.. imgur-image:: 55krwnA
-    :width: 33%
-.. imgur-image:: 7lHFKUv
-    :width: 33%
+.. list-table::
+
+    * - .. imgur:: GJE9zkv
+      - .. imgur:: 55krwnA
+      - .. imgur:: 7lHFKUv
 
 Previous Implementation
 =======================
 
-.. imgur-embed:: X8fbOGl
-    :hide_post_details: True
+.. imgur-embed:: X8fbOGl.gif
+    :hide_post_details:
 
 So I built my own. I originally posted everything
 `on the XDA forums <https://forum.xda-developers.com/showthread.php?p=47509705#post47509705>`_. Since the Nexus 5 has
@@ -47,7 +46,7 @@ Francisco to San Jose and it never fell off. I was using GPS (Google Maps) and i
 much distance between the phone and the transmitting coil, my battery meter went up a little bit.
 
 .. imgur-embed:: a/dhFnO
-    :hide_post_details: True
+    :hide_post_details:
 
 I used the following items:
 
@@ -90,17 +89,16 @@ case for it and add more magnets.
 
 Here are some pictures of the final version, sans washers.
 
-.. imgur-image:: COavxfY
-    :width: 33%
-.. imgur-image:: qJONaXG
-    :width: 33%
-.. imgur-image:: GhOvZg9
-    :width: 33%
+.. list-table::
 
-.. imgur-image:: OvXMV5w
-    :width: 49%
-.. imgur-image:: dRQ4q77
-    :width: 49%
+    * - .. imgur:: COavxfY
+      - .. imgur:: qJONaXG
+      - .. imgur:: GhOvZg9
+
+.. list-table::
+
+    * - .. imgur:: OvXMV5w
+      - .. imgur:: dRQ4q77
 
 And here are some pictures after I routed the `wire inside the <https://www.amazon.com/gp/product/B003YKX6WW/>`_ center
 console. After you take out the shifter boot, little cubby, head unit, and air vents there is a ton of room inside to
@@ -108,12 +106,11 @@ route the wire. The front plate of the AC vents snaps on so I was able to pry it
 wire in. I cut out a small notch of plastic to give the wire some room without blocking any of the vents' moving parts.
 The only downside is I can't close the little cubby anymore. Oh well.
 
-.. imgur-image:: sRKNN6F
-    :width: 33%
-.. imgur-image:: 8R5ROC4
-    :width: 33%
-.. imgur-image:: 7jA3c1J
-    :width: 33%
+.. list-table::
+
+    * - .. imgur:: sRKNN6F
+      - .. imgur:: 8R5ROC4
+      - .. imgur:: 7jA3c1J
 
 Comments
 ========

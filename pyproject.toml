@@ -26,11 +26,11 @@ sphinx-autobuild = "*"
 sphinx-book-theme = ">=0.1.7"
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
+sphinx-imgur = "*"
 sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"
 sphinx-panels = "*"
 sphinx-sitemap = "*"
-sphinxcontrib-imgur = {git = "https://github.com/Robpol86/sphinx-imgur", branch = "quick_fix"}
 sphinxcontrib-youtube = {git = "https://github.com/Robpol86/youtube", branch = "timestamp_support"}  # TODO pr17
 sphinxext-opengraph = "*"
 

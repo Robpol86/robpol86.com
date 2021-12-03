@@ -25,6 +25,7 @@ I used the following tools:
 * [X-ACTO knife](https://www.amazon.com/gp/product/B00JWFIKOC)
 
 ```{imgur-embed} a/uD7nNgv
+:og_imgur_id: 0Yt6Rpz
 ```
 
 ## Sept &#39;21 Rear Dashcam Pair

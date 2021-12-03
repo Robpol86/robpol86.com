@@ -19,10 +19,10 @@ extensions = [
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
+    "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
     "sphinx_panels",  # https://sphinx-panels.readthedocs.io
     "sphinx_sitemap",  # https://github.com/jdillard/sphinx-sitemap
-    "sphinxcontrib.imgur",
     "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
 ]
@@ -117,12 +117,6 @@ panels_add_bootstrap_css = False
 
 # https://github.com/jdillard/sphinx-sitemap#customizing-the-url-scheme
 sitemap_url_scheme = "{link}"
-
-
-# https://github.com/Robpol86/sphinx-imgur
-imgur_client_id = "13d3c73555f2190"
-imgur_target_default_gallery = True
-imgur_target_default_page = True
 
 
 # https://sphinxext-opengraph.readthedocs.io/en/latest/#options
