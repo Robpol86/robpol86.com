@@ -9,38 +9,39 @@ jobs:
   build:
     name: Build HTML
     runs-on: ubuntu-latest
+    env:
+      SPHINX_HTML_BASEURL: "https://${{ github.event_name != 'release' && 'rob86stage.' || '' }}robpol86.com/"
     steps:
       - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
       - {name: Install Python, uses: actions/setup-python@v2, with: {python-version: "3.10"}}
       - {name: Install Poetry, uses: abatilo/actions-poetry@v2.1.4}
       - {name: Install dependencies, run: make deps}
-      - name: Build docs
-        env:
-          SPHINX_HTML_BASEURL: "https://${{ github.event_name != 'release' && 'rob86stage.' || '' }}robpol86.com/"
-        run: make docs
-      - name: Store HTML files artifact
-        uses: actions/upload-artifact@v2
-        with: {name: html, path: build/html/, if-no-files-found: error}
+      - {name: Build docs, run: make docs}
+      - {name: Store HTML, uses: actions/upload-artifact@v2, with: {name: html, path: build/html/, if-no-files-found: error}}
 
   publish:
     name: Publish to NFSN
     needs: build
     concurrency: "publish-${{ github.event_name }}"
     runs-on: ubuntu-latest
+    env:
+      NFSN_HOST: ssh.phx.nearlyfreespeech.net
+      NFSN_USER: "${{ github.event_name == 'release' && secrets.NFSN_SSH_USER_PROD || secrets.NFSN_SSH_USER_STAGE }}"
     steps:
       - {name: Fetch HTML files, uses: actions/download-artifact@v2, with: {name: html, path: html}}
-      - name: Archive HTML files
-        if: "${{ github.event_name == 'release' }}"
-        run: tar -czvf html.tar.gz html/
       - name: Setup SSH
         uses: shimataro/ssh-key-action@v2
         with: {key: "${{ secrets.NFSN_SSH_KEY }}", known_hosts: "${{ secrets.NFSN_SSH_HOST }}"}
-      - name: Deploy
-        env:
-          NFSN_HOST: ssh.phx.nearlyfreespeech.net
-          NFSN_USER: "${{ github.event_name == 'release' && secrets.NFSN_SSH_USER_PROD || secrets.NFSN_SSH_USER_STAGE }}"
-        run: rsync -rptcivh --delete --stats html/ "${{env.NFSN_USER}}@${{env.NFSN_HOST}}:/home/public"
+      - {name: Deploy, run: "rsync -rptcivh --delete-after --stats html/ ${{env.NFSN_USER}}@${{env.NFSN_HOST}}:/home/public"}
+
+  archive:
+    name: Archive Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: "${{ github.event_name == 'release' }}"
+    steps:
+      - {name: Fetch HTML files, uses: actions/download-artifact@v2, with: {name: html, path: html}}
+      - {name: Archive HTML files, run: tar -czvf html.tar.gz html/}
       - name: Upload HTML Archive to Release
-        if: "${{ github.event_name == 'release' }}"
         uses: svenstaro/upload-release-action@v2
         with: {file: html.tar.gz, repo_token: "${{ secrets.GITHUB_TOKEN }}", tag: "${{ github.ref }}"}

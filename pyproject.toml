@@ -19,29 +19,29 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.7"
 # Project dependencies.
-myst-parser = {version = ">=0.15.2", extras = ["linkify"]}
+myst-parser = {version = "*", extras = ["linkify"]}
 pygments = {git = "https://github.com/pygments/pygments", branch = "master"}  # TODO remove when v2.11.0 is released
-sphinx = ">=4.3.0"
-sphinx-autobuild = "*"  # not semver
+sphinx = "*"
+sphinx-autobuild = "*"
 sphinx-book-theme = ">=0.1.7"
-sphinx-copybutton = ">=0.4.0"
-sphinx-disqus = ">=1.2.0"
-sphinx-last-updated-by-git = ">=0.3.0"
-sphinx-notfound-page = ">=0.7.1"
-sphinx-panels = ">=0.6.0"
-sphinx-sitemap = ">=2.2.0"
+sphinx-copybutton = "*"
+sphinx-disqus = "*"
+sphinx-last-updated-by-git = "*"
+sphinx-notfound-page = "*"
+sphinx-panels = "*"
+sphinx-sitemap = "*"
 sphinxcontrib-imgur = {git = "https://github.com/Robpol86/sphinx-imgur", branch = "quick_fix"}
 sphinxcontrib-youtube = {git = "https://github.com/Robpol86/youtube", branch = "timestamp_support"}  # TODO pr17
-sphinxext-opengraph = ">=0.5.0"
+sphinxext-opengraph = "*"
 
 [tool.poetry.dev-dependencies]
 # Linters.
-black = "*"  # not semver
-flake8 = ">=4.0.1"
-flake8-docstrings = ">=1.6.0"
-flake8-import-order = ">=0.18.1"
-pep8-naming = ">=0.12.1"
-pylint = ">=2.11.1"
+black = "*"
+flake8 = "*"
+flake8-docstrings = "*"
+flake8-import-order = "*"
+pep8-naming = "*"
+pylint = "*"
 
 [tool.black]
 line-length = 125
@@ -51,7 +51,6 @@ target-version = ["py37", "py38", "py39"]
 disable = ["fixme"]
 good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
 ignore = [".venv/*", "build/*", "dist/*"]
-max-args = 6
 max-line-length = 125
 reports = false
 

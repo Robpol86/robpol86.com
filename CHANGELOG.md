@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Using rsync `--delete-after` to avoid race condition where files are removed before index.html is updated.
 
 ## 2021-11-25
 
