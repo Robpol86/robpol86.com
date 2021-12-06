@@ -8,6 +8,8 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - TOCTree: Reorganized and grouped into new names.
 - Converted index.rst into index.md.
+- GitHub button at the top no longer is a mouseover menu. Links directly to `/blob/` like the RTD theme.
+- Stop creating `_sources` directory, source files already on public GitHub.
 
 ## 2021-12-03
 
