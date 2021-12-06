@@ -1,0 +1,10 @@
+{# Have the GitHub button be a link to the /blob/ page instead of a mouseover menu. #}
+<!-- GitHub link -->
+{% if theme_repository_url and theme_use_edit_page_button %}
+    <a class="edit-button" href="{{ get_edit_url() }}">
+        <button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom"
+                aria-label="{{ translate('Edit this page') }}" title="{{ translate('Edit this page') }}">
+            <i class="fab fa-github"></i>
+        </button>
+    </a>
+{% endif %}

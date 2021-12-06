@@ -1,7 +1,5 @@
 """Sphinx configuration file."""
-
 # pylint: disable=invalid-name
-
 import os
 import time
 from pathlib import Path
@@ -39,6 +37,7 @@ html_context = {
         "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
     ),
 }
+html_copy_source = False
 html_extra_path = [
     ".htaccess",
     "robots.txt",
@@ -79,7 +78,6 @@ html_theme_options = {
     "repository_branch": os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main",
     "repository_url": "https://github.com/Robpol86/robpol86.com",
     "use_edit_page_button": True,
-    "use_repository_button": True,
 }
 html_title = "Robpol86.com"
 

@@ -32,7 +32,7 @@ jobs:
       - name: Setup SSH
         uses: shimataro/ssh-key-action@v2
         with: {key: "${{ secrets.NFSN_SSH_KEY }}", known_hosts: "${{ secrets.NFSN_SSH_HOST }}"}
-      - {name: Deploy, run: "rsync -rptcivh --delete-after --stats html/ ${{env.NFSN_USER}}@${{env.NFSN_HOST}}:/home/public"}
+      - {name: rsync, run: "rsync -rptcivh --delete-after --stats html/ ${{env.NFSN_USER}}@${{env.NFSN_HOST}}:/home/public"}
 
   archive:
     name: Archive Release
