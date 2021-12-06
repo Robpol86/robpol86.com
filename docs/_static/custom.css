@@ -13,3 +13,15 @@ body {
 .topbar {
     background-color: inherit;
 }
+
+/* Improve visually on iPhones. Mainly for Hyperlinks box in index.md. */
+@media (max-width: 719.98px) {
+    /* Prevents admonitions within ```{margin}``` from cutting off. */
+    div.sidebar, div.margin, div.margin-caption p.caption, .cell.tag_popout, .cell.tag_margin {
+        width: 50%;
+    }
+    /* Remove ugly border around admonitions within ```{margin}```. */
+    div.sidebar, aside.sidebar {
+        border: 0;
+    }
+}
