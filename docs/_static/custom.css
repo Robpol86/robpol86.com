@@ -13,3 +13,17 @@ body {
 .topbar {
     background-color: inherit;
 }
+
+/* Prevents admonition in sidebar from cutting off on iPhones. Mainly for Hyperlinks box in index.md. */
+@media (max-width: 719.98px) {
+    div.sidebar, div.margin, div.margin-caption p.caption, .cell.tag_popout, .cell.tag_margin {
+        width: 50%;
+    }
+}
+
+/* Remove ugly border around admonition in sidebar on iPhones. Mainly for Hyperlinks box in index.md. */
+@media (max-width: 719.98px) {
+    div.sidebar, aside.sidebar {
+        border: 0;
+    }
+}
