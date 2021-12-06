@@ -1,0 +1,15 @@
+/* Background image. */
+body {
+    background-image: url("setup.jpg");
+}
+.bd-toc nav {
+    background: inherit;
+}
+@media (min-width: 720px) {
+    #site-navigation {
+        background: inherit;
+    }
+}
+.topbar {
+    background-color: inherit;
+}
