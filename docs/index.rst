@@ -9,35 +9,30 @@ Site Contents
 
 .. toctree::
     :maxdepth: 2
-    :caption: General Guides
+    :caption: Projects
+
+    vw_alltrack_2019
+    3d_printer_mpms2
+    franklin_t9
+    photo_albums
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Tutorials
 
     imagecfg
     rns_510_vim
+    raspberry_pi_luks
+    root_certificate_authority
+    raspberry_pi_project_fi
+    postfix_gmail_forwarding
+    bareos_tape_backup
     flash_droid_cricket
 
 .. toctree::
     :maxdepth: 2
-    :caption: Linux Guides
+    :caption: Archived Projects
 
-    root_certificate_authority
-    bareos_tape_backup
-    raspberry_pi_project_fi
-    postfix_gmail_forwarding
-    raspberry_pi_luks
-
-.. toctree::
-    :maxdepth: 2
-    :caption: Projects
-
-    franklin_t9
-    vw_alltrack_2019
-    3d_printer_mpms2
     wireless_charging_car_dock
     atrix_lapdock
-
-.. toctree::
-    :maxdepth: 2
-    :caption: Miscellaneous
-
     vw_jsw_2010
-    photo_albums
