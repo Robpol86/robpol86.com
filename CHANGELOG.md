@@ -7,6 +7,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 ## [Unreleased]
 
 - TOCTree: Reorganized and grouped into new names.
+- Converted index.rst into index.md.
 
 ## 2021-12-03
 
