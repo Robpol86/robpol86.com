@@ -6,6 +6,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## 2021-12-05
+
+Background image and autobiography
+
 - TOCTree: Reorganized and grouped into new names.
 - Converted index.rst into index.md.
 - GitHub button at the top no longer is a mouseover menu. Links directly to `/blob/` like the RTD theme.
