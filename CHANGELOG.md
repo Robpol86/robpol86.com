@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- TOCTree: Reorganized and grouped into new names.
 
 ## 2021-12-03
 
