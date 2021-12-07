@@ -1,0 +1,22 @@
+/*
+ * Background image.
+ */
+
+body {
+    background-image: url("setup.jpg");
+}
+
+.topbar {
+    background-color: inherit;
+}
+
+.bd-toc nav {
+    background: inherit;
+}
+
+@media (min-width: 720px) {
+    /* Make the left column transparent except on mobile where the column slides over the main content. */
+    #site-navigation {
+        background: inherit;
+    }
+}
