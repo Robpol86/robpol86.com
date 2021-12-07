@@ -45,7 +45,7 @@ pylint = "*"
 
 [tool.black]
 line-length = 125
-target-version = ["py37", "py38", "py39"]
+target-version = ["py37", "py38", "py39", "py310"]
 
 [tool.pylint.FORMAT]
 disable = ["fixme"]

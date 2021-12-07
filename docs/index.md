@@ -7,7 +7,7 @@
 * **[GitHub](https://github.com/Robpol86)**
 * **[Stack Overflow](https://stackoverflow.com/users/1198943/robpol86)**
 * **[LinkedIn](https://www.linkedin.com/in/robpooley/)**
-* {download}`Résumé <_static/resume.pdf>`
+* **{{ resume_link }}**
 ```
 :::
 
@@ -38,14 +38,14 @@ photo_albums
 :maxdepth: 2
 :caption: Tutorials
 
-imagecfg
-rns_510_vim
 raspberry_pi_luks
 root_certificate_authority
 raspberry_pi_project_fi
 postfix_gmail_forwarding
 bareos_tape_backup
 flash_droid_cricket
+rns_510_vim
+imagecfg
 ```
 
 ```{toctree}
