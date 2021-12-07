@@ -3,6 +3,16 @@ export POETRY_VIRTUALENVS_IN_PROJECT = true
 
 ## Dependencies
 
+init: _HELP = Initialize Python VirtualEnv via Poetry (optional PYTHON_PATH or PYTHON_VERSION env vars)
+init: PYTHON_VERSION ?= 3.7
+init:
+ifdef PYTHON_PATH
+	poetry env use $(PYTHON_PATH)
+else
+	command -V python$(PYTHON_VERSION) < /dev/null
+	poetry env use $(shell command -v python$(PYTHON_VERSION) < /dev/null)
+endif
+
 poetry.lock: _HELP = Lock dependency versions to file
 poetry.lock:
 	poetry lock
@@ -13,23 +23,17 @@ deps:
 	poetry install
 	poetry run python -V
 
-## Linting
+## Main
 
 .PHONY: lint
 lint: _HELP = Run linters
-lint: deps
+lint:
 	poetry check
 	poetry run black --check --color --diff .
 	poetry run flake8
 	poetry run pylint docs/conf.py
 
-.PHONY: all
-all: _HELP = Run linters and build docs
-all: lint docs
-
-## Build
-
-build/html/index.html: deps
+build/html/index.html::
 	poetry run sphinx-build -n -W docs $(@D)
 	@echo Documentation available here: $@
 
