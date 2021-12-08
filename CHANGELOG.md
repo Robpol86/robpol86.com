@@ -6,6 +6,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## 2021-12-07
+
 - Made resume link style consistent with the other links within the admonition in index.md.
 - Split custom.css into two scoped files.
 - Reordered Tutorials TOC list.
