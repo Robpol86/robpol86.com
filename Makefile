@@ -43,7 +43,7 @@ docs build: build/html/index.html
 
 autobuild: _HELP = Start a web server, open browser, and auto-rebuild HTML on file changes
 autobuild: build/html/index.html
-	poetry run sphinx-autobuild --open-browser --delay=1 -n -W docs $(<D)
+	poetry run sphinx-autobuild --open-browser --delay=1 --host localhost -n -W docs $(<D)
 
 ## Misc
 

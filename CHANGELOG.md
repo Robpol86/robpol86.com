@@ -6,7 +6,9 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Speed up CI/CD by caching .venv in GitHub Actions.
+- Automatically purge Cloudflare cache on deploy.
+- Open browser to localhost instead of 127.0.0.1 on autobuild to fix broken Imgur images.
 
 ## 2021-12-07
 

@@ -15,7 +15,8 @@ jobs:
       - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
       - {name: Install Python, uses: actions/setup-python@v2, with: {python-version: "3.10"}}
       - {name: Install Poetry, uses: abatilo/actions-poetry@v2.1.4}
-      - {name: Install dependencies, run: make deps}
+      - {name: Cache venv, uses: actions/cache@v2, with: {path: .venv, key: "${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}"}, id: cache}
+      - {name: Install dependencies, run: make deps, if: "steps.cache.outputs.cache-hit != 'true'"}
       - {name: Build docs, run: make docs}
       - {name: Store HTML, uses: actions/upload-artifact@v2, with: {name: html, path: build/html/, if-no-files-found: error}}
 
@@ -25,6 +26,8 @@ jobs:
     concurrency: "publish-${{ github.event_name }}"
     runs-on: ubuntu-latest
     env:
+      CF_AUTH: "Authorization: Bearer ${{ secrets.TOKEN_CF_PURGE_CACHE }}"
+      CF_URL: https://api.cloudflare.com/client/v4/zones/5efb26a03250a8bc392727af05a39aba/purge_cache
       NFSN_HOST: ssh.phx.nearlyfreespeech.net
       NFSN_USER: "${{ github.event_name == 'release' && secrets.NFSN_SSH_USER_PROD || secrets.NFSN_SSH_USER_STAGE }}"
     steps:
@@ -33,6 +36,11 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with: {key: "${{ secrets.NFSN_SSH_KEY }}", known_hosts: "${{ secrets.NFSN_SSH_HOST }}"}
       - {name: rsync, run: "rsync -rptcivh --delete-after --stats html/ ${{env.NFSN_USER}}@${{env.NFSN_HOST}}:/home/public"}
+      - name: Purge Cloudflare Cache
+        run: |
+          curl -sS -X POST "${{env.CF_URL}}" -H "${{env.CF_AUTH}}" --data '{"purge_everything":true}' |
+            tee /dev/stderr |
+            grep -q '"success": true,'
 
   archive:
     name: Archive Release
