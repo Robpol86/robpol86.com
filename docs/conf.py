@@ -113,6 +113,10 @@ notfound_urls_prefix = ""
 disqus_shortname = "rob86wiki"
 
 
+# https://sphinx-imgur.readthedocs.io/en/v3.0.0/usage.html
+imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
+
+
 # https://sphinx-panels.readthedocs.io/en/latest/#sphinx-configuration
 panels_add_bootstrap_css = False
 

@@ -38,6 +38,7 @@ photo_albums
 :maxdepth: 2
 :caption: Tutorials
 
+windows_11_mac
 raspberry_pi_luks
 root_certificate_authority
 raspberry_pi_project_fi
