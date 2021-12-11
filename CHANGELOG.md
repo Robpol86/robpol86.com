@@ -9,6 +9,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 - Speed up CI/CD by caching .venv in GitHub Actions.
 - Automatically purge Cloudflare cache on deploy.
 - Open browser to localhost instead of 127.0.0.1 on autobuild to fix broken Imgur images.
+- Updated dependencies: New MyST version.
+- PNG version of site logo only for OpenGraph since there's no SVG support.
+- Remove left/right margin for figure captions to reduce wrapping.
+- Make top bar background white again when user scrolls down. Looks better.
 
 ## 2021-12-07
 

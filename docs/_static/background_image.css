@@ -10,6 +10,10 @@ body {
     background-color: inherit;
 }
 
+.scrolled .topbar {
+    background-color: white;
+}
+
 .bd-toc nav {
     background: inherit;
 }
