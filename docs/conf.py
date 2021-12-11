@@ -124,7 +124,7 @@ sitemap_url_scheme = "{link}"
 # https://sphinxext-opengraph.readthedocs.io/en/latest/#options
 ogp_site_url = html_baseurl
 ogp_description_length = 300
-ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo}"
+ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo.rsplit('.', 1)[0]}.png"
 ogp_site_name = "Robpol86.com"
 ogp_type = "website"
 ogp_use_first_image = True
