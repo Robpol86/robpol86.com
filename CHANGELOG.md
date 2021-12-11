@@ -6,6 +6,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## 2021-12-11
+
 New page: Installing Windows 11 on a Mac
 
 - Speed up CI/CD by caching .venv in GitHub Actions.
