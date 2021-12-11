@@ -7,27 +7,16 @@ body {
 }
 
 .topbar {
-    background-color: inherit;
-}
-
-.scrolled .topbar {
-    background-color: white;
-    -webkit-box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
-    -moz-border-radius: 0 0 6px 6px;
-    -webkit-border-radius: 0 0 6px 6px;
-    -khtml-border-radius: 0 0 6px 6px;
-    border-radius: 0 0 6px 6px;
+    background-image: url("setup.jpg");
 }
 
 .bd-toc nav {
-    background: inherit;
+    background-image: url("setup.jpg");
 }
 
 @media (min-width: 720px) {
     /* Make the left column transparent except on mobile where the column slides over the main content. */
     #site-navigation {
-        background: inherit;
+        background-image: url("setup.jpg");
     }
 }
