@@ -12,6 +12,13 @@ body {
 
 .scrolled .topbar {
     background-color: white;
+    -webkit-box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px;
+    -khtml-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
 }
 
 .bd-toc nav {
