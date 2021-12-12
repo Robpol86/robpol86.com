@@ -110,6 +110,43 @@ do the repartitioning from Windows.
 3. Resize {guilabel}`C:BOOTCAMP` to use up the empty space left by step 2.
 4. Apply and reboot.
 
+## BitLocker
+
+```{list-table}
+* - ```{imgur-figure} EKbY5zv
+    :ext: png
+    Use gpedit.msc to disable the TPM check
+    ```
+  - ```{imgur-figure} I6XTevu
+    :ext: png
+    Now you can enable BitLocker
+    ```
+  - ```{imgur-figure} mop8gO7
+    :ext: png
+    This error is expected
+    ```
+```
+
+I always enable BitLocker full disk encryption on all of my machines. This is what I do to enable it on Macs (steps taken
+from: https://www.howtogeek.com/howto/6229/how-to-use-bitlocker-on-drives-without-tpm/).
+
+* Run as Administrator: `gpedit.msc`
+  * Computer Configuration
+    * Administrative Templates
+      * Windows Components
+        * BitLocker Drive Encryption
+          * Operating System Drives
+            * **Require additional authentication at startup**
+
+Once you follow the above steps you'll want to:
+
+1. Select **Enabled**
+2. Make sure checkbox is checked: **Allow BitLocker without a compatible TPM**
+3. Leave subsequent fields configured to: **Allow ...**
+4. Click OK
+
+Now you can enable BitLocker the usual way.
+
 ## Restore macOS
 
 ```{list-table}
