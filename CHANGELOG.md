@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- Partially revert background hacking. Avoiding "inherit" for background.
+- N/A
 
 ## 2021-12-11
 
@@ -18,9 +18,9 @@ New page: Installing Windows 11 on a Mac
 - Updated dependencies: New MyST version.
 - PNG version of site logo only for OpenGraph since there's no SVG support.
 - Remove left/right margin for figure captions to reduce wrapping.
-- Make top bar background white when user scrolls down. Also added shadows to all three sides and rounded bottom corners.
+- Partially revert background hacking. Avoiding "inherit" for background since it breaks assumptions made by theme.
 - Imgur links defaults to full size image (though Imgur redirects visitors to the old page unless they click through first).
-- Added new page: Installing Windows 11 on a Mac
+- Added new page: Installing Windows 11 on a Mac. Including BitLocker instructions.
 
 ## 2021-12-07
 
