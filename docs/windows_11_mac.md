@@ -28,7 +28,7 @@ Mount the Windows 11 ISO
 
 Convert the Windows 10 ISO to a temporary writable image and mount it
 :   ```bash
-    hdiutil makehybrid -hfs -o Win10_To_11.dmg Win10_21H1_English_x64.iso
+    hdiutil makehybrid Win10_21H1_English_x64.iso -hfs -o Win10_To_11.dmg
     hdiutil resize -size 6g Win10_To_11.dmg
     hdiutil attach Win10_To_11.dmg -readwrite -mountpoint /Volumes/Win10_To_11
     ```
@@ -36,19 +36,21 @@ Convert the Windows 10 ISO to a temporary writable image and mount it
 Copy the payload file from the Windows 11 ISO into the temporary image
 :   ```bash
     chmod +w /Volumes/Win10_To_11/sources
-    rm /Volumes/Win10_To_11/sources/install.wim
-    cp /Volumes/Win11/sources/install.wim /Volumes/Win10_To_11/sources/
+    rm -fv /Volumes/Win10_To_11/sources/install.wim
+    cp -v /Volumes/Win11/sources/install.wim /Volumes/Win10_To_11/sources/
     ```
 
 Unmount and convert the temporary image file into the final Boot Camp ISO file
 :   ```bash
     hdiutil detach /Volumes/Win10_To_11
-    hdiutil makehybrid -iso -udf -o Win11_English_x64v1_Boot_Camp.iso Win10_To_11.dmg
+    hdiutil makehybrid Win10_To_11.dmg -udf -iso \
+        -eltorito-boot boot/etfsboot.com -no-emul-boot -boot-load-size 8 \
+        -o Win11_English_x64v1_Boot_Camp.iso
     ```
 
 Clean up
 :   ```bash
-    rm Win10_To_11.dmg
+    rm -v Win10_To_11.dmg
     hdiutil detach /Volumes/Win11
     ```
 
