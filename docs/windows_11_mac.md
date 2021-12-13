@@ -5,7 +5,7 @@ the current TPM 2.0 requirement, since at this time Boot Camp does not provide T
 
 ## Create ISO
 
-```{imgur} hwUiK7j
+```{imgur} 1J45UMB
 :ext: png
 ```
 
@@ -43,9 +43,10 @@ Copy the payload file from the Windows 11 ISO into the temporary image
 Unmount and convert the temporary image file into the final Boot Camp ISO file
 :   ```bash
     hdiutil detach /Volumes/Win10_To_11
-    hdiutil makehybrid Win10_To_11.dmg -udf -iso \
-        -eltorito-boot boot/etfsboot.com -no-emul-boot -boot-load-size 8 \
-        -o Win11_English_x64v1_Boot_Camp.iso
+    hdiutil makehybrid Win10_To_11.dmg -udf -iso -eltorito-specification "( \
+        {no-emul-boot = 1; boot-load-size = 8; eltorito-boot = boot/etfsboot.com;}, \
+        {no-emul-boot = 1; boot-load-size = 2880; eltorito-boot = efi/microsoft/boot/efisys.bin; eltorito-platform = 0xEF;} \
+        )" -o Win11_English_x64v1_Boot_Camp.iso
     ```
 
 Clean up
@@ -53,6 +54,16 @@ Clean up
     rm -v Win10_To_11.dmg
     hdiutil detach /Volumes/Win11
     ```
+
+```{admonition} For the Curious
+:class: seealso
+
+* The `eltorito-specification` string is a NeXTSTEP plist defining the boot catalog. This isn't needed when using the ISO
+  exclusively with Boot Camp, but it's needed to make the ISO properly bootable in both traditional BIOS and modern EFI
+  non-Apple computers. This way you can use the same ISO with virtual machines on hosts without TPM 2.0.
+* `boot-load-size` was derived from the eltorito-boot file size in bytes divided by the 512 byte sector size.
+* I found the value of `eltorito-platform` by doing a diff of the [dumpet](https://github.com/rhboot/dumpet) output.
+```
 
 ## Install
 
@@ -80,7 +91,9 @@ This step is pretty straightforward. You follow the same steps as you would when
    and reboot.
 5. If you plan on removing macOS don't enable BitLocker yet.
 
-```{tip}
+```{admonition} For the Curious
+:class: seealso
+
 In case you were wondering how I took screen shots during the Windows installation:
 
 1. Downloaded [NirCmd](https://www.nirsoft.net/utils/nircmd.html) onto an SD card and inserted it into my MacBook.
