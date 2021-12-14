@@ -6,6 +6,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## 2021-12-13
+
 - Restyled commands in Windows 11 on Mac page.
 - Made Windows 11 Boot Camp ISO bootable on traditional BIOS and UEFI PCs.
 
