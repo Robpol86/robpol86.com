@@ -183,6 +183,116 @@ over the internet and remove Windows.
 5. Show all devices (under the View menu) and erase your SSD. I chose to format my SSD as APFS with GUID Partition Map.
 6. Then close Disk Utility and proceed with "Reinstall macOS".
 
+## Tweaks and Software
+
+This section is mainly for my own reference. It's the usual software and configuration I use on most of my Windows machines.
+
+### Registry Settings
+
+Require pressing Ctrl+Alt+Del to log in
+:   ```powershell
+    reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /f /v DisableCAD /t REG_DWORD /d 0
+    ```
+
+Folder options
+:   ```powershell
+    $key = "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    # Set new explorer windows' default folder to Downloads (undocumented).
+    reg add $key /f /v LaunchTo /t REG_DWORD /d 3
+    # Unhide system files and file extensions.
+    reg add $key /f /v Hidden /t REG_DWORD /d 1
+    reg add $key /f /v HideFileExt /t REG_DWORD /d 0
+    # Other folder options.
+    reg add $key /f /v UseCompactMode /t REG_DWORD /d 1
+    reg add $key /f /v SeparateProcess /t REG_DWORD /d 1
+    ```
+
+Always default folder types to "Documents" instead of unpredictably opening in videos/images/etc. modes
+:   ```powershell
+    $pfx = "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell"
+    reg delete "$pfx\Bags" /f
+    reg delete "$pfx\BagMRU" /f
+    reg add "$pfx" /f /v "BagMRU Size" /t REG_DWORD /d 10000
+    reg add "$pfx\Bags\AllFolders\Shell" /f /v FolderType /d Documents
+    ```
+
+Fix default explorer search bar size and default folder view sorting and columns
+:   ```powershell
+    $pfx = "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell"
+    reg add "$pfx\Bags\AllFolders\Shell" /f /v NavBar /t REG_BINARY /d 000000000000000000000000000000008b000000870000003153505305d5cdd59c2e1b10939708002b2cf9ae6b0000005a000000007b00360044003800420042003300440033002d0039004400380037002d0034004100390031002d0041004200350036002d003400460033003000430046004600450046004500390046007d005f0057006900640074006800000013000000960000000000000000000000
+    $key = "$pfx\Bags\AllFolders\Shell\{7D49D726-3C21-4F05-99AA-FDC2C9474656}"
+    reg add $key /f /v ColInfo /t REG_BINARY /d 00000000000000000000000000000000fddfdffd100000000000000000000000040000001800000030f125b7ef471a10a5f102608c9eebac0a0000001001000030f125b7ef471a10a5f102608c9eebac0c0000005000000030f125b7ef471a10a5f102608c9eebac040000007800000030f125b7ef471a10a5f102608c9eebac0e00000090000000
+    reg add $key /f /v GroupByDirection /t REG_DWORD /d 1
+    reg add $key /f /v GroupByKey:FMTID /d "{00000000-0000-0000-0000-000000000000}"
+    reg add $key /f /v GroupByKey:PID /t REG_DWORD /d 0
+    reg add $key /f /v GroupView /t REG_DWORD /d 0
+    reg add $key /f /v Mode /t REG_DWORD /d 4
+    reg add $key /f /v Sort /t REG_BINARY /d 000000000000000000000000000000000100000030f125b7ef471a10a5f102608c9eebac0a00000001000000
+    # Restart explorer.
+    taskkill /f /im explorer.exe; explorer.exe
+    ```
+
+### Remove Bloat
+
+```powershell
+Get-ProvisionedAppxPackage -online |
+    Where-Object { $_.DisplayName -like "Microsoft.Xbox*" -or $_.DisplayName -eq "Microsoft.GamingApp" } |
+    ForEach-Object { Remove-ProvisionedAppxPackage -online -allusers -PackageName $_.PackageName }
+
+Get-AppxPackage -allusers -name Microsoft.549981C3F5F10 |Remove-AppxPackage -allusers  # Cortana
+Get-AppxPackage -allusers -name Microsoft.BingNews |Remove-AppxPackage -allusers  # Microsoft News
+Get-AppxPackage -allusers -name Microsoft.GetHelp |Remove-AppxPackage -allusers  # Get Help
+Get-AppxPackage -allusers -name Microsoft.Getstarted |Remove-AppxPackage -allusers  # Tips
+Get-AppxPackage -allusers -name Microsoft.MicrosoftOfficeHub |Remove-AppxPackage -allusers  # Office
+Get-AppxPackage -allusers -name Microsoft.MicrosoftStickyNotes |Remove-AppxPackage -allusers  # Sticky Notes
+Get-AppxPackage -allusers -name Microsoft.Todos |Remove-AppxPackage -allusers  # Microsoft To Do
+Get-AppxPackage -allusers -name Microsoft.WindowsCommunicationsApps |Remove-AppxPackage -allusers  # Mail and Calendar
+Get-AppxPackage -allusers -name Microsoft.WindowsFeedbackHub |Remove-AppxPackage -allusers  # Feedback Hub
+Get-AppxPackage -allusers -name Microsoft.WindowsMaps |Remove-AppxPackage -allusers  # Maps
+Get-AppxPackage -allusers -name Microsoft.YourPhone |Remove-AppxPackage -allusers  # Your Phone
+Get-AppxPackage -allusers -name Microsoft.ZuneMusic |Remove-AppxPackage -allusers  # Groove Music
+Get-AppxPackage -allusers -name Microsoft.ZuneVideo |Remove-AppxPackage -allusers  # Movies & TV
+Get-AppxPackage -allusers -name MicrosoftTeams |Remove-AppxPackage -allusers  # Microsoft Teams
+```
+
+Afterwards I had to reboot to get the Microsoft Store to sync.
+
+### Software
+
+```{attention} Update all packages in the Microsoft Store Library first.
+```
+
+`winget install --name "Windows Subsystem for Linux" -s msstore`
+:   * `DISM /online /enable-feature /featurename:VirtualMachinePlatform`
+    * `Set-Service -StartupType Automatic ssh-agent`
+    * `Start-Service ssh-agent`
+    * `wsl --install Ubuntu`
+    * `sudo apt-get update && sudo apt-get install -y zsh`
+    * https://github.com/Robpol86/dotfiles
+    * https://gist.github.com/Robpol86/3d4730818816f866452e
+    ```bash
+    sudo ln -s /usr/bin/wslview /usr/bin/open
+    ```
+
+`winget install -e --id Docker.DockerDesktop`
+:   * Reboot
+    * Launch Docker Desktop > Settings > General
+        * Start Docker Desktop when you log in: **Uncheck**
+        * Open Docker Dashboard at startup: **Uncheck**
+
+`winget install -e --id Microsoft.PowerToys -s winget`
+:   * Keyboard Manager > Remap a key
+        * {kbd}`Caps Lock` -> {kbd}`Esc`
+    * PowerRename > Use Boost library: **On**
+
+`winget install -e --id Microsoft.VisualStudioCode`
+:   * Enable Settings Sync
+        * Sign in with Microsoft
+
+`winget install -e --id JetBrains.PyCharm.Professional`
+:   * Open project > File > Manage IDE Settings
+        * Sync Settings to JetBrains Account > Get Settings from Account
+
 ## Comments
 
 ```{disqus}

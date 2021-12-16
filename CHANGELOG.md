@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Added Tweaks and Software section to Windows 11 on a Mac page.
 
 ## 2021-12-13
 
