@@ -7,6 +7,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 ## [Unreleased]
 
 - Added Tweaks and Software section to Windows 11 on a Mac page.
+- Moved all images to Imgur now that sphinx-imgur works fine with OpenGraph.
 
 ## 2021-12-13
 

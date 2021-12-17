@@ -170,7 +170,7 @@ You can easily change the logo on the little LCD by editing a PNG file. Since my
 
 I edited that file using Paint 3D to keep the transparency.
 
-```{image} _static/img/t9_logo.jpg
+```{imgur} MUdUSiT
 :alt: Hacked Logo
 :width: 100%
 ```
@@ -244,7 +244,7 @@ It turns out if you hold down the power button when you plug in the device, it w
 to hold the button it won't shut back down. Knowing this the solution is to cut a piece of plastic into a "U" shape and wedge
 it between the case and the button so it's always pressed down.
 
-```{image} _static/img/t9_power_wedge.jpg
+```{imgur} 4Pdh8oi
 :alt: T9 Power Button Wedge
 :width: 100%
 ```

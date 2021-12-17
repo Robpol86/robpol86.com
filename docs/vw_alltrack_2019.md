@@ -30,7 +30,8 @@ I used the following tools:
 
 ## Sept &#39;21 Rear Dashcam Pair
 
-```{imgur-image} 3ypCZaP
+```{imgur-figure} 3ypCZaP
+:width: 100%
 ```
 
 Installed a second pair of cameras to get a better view out of the rear of my car for read-end crashes as well as another IR
@@ -71,7 +72,7 @@ prepay with cash at gas stations.
 * Apps > Refuel quantity in dashboard > ON
 * https://forum.obdeleven.com/thread/536/refuel-quantity-dashboard
 
-```{image} _static/img/alltrack_refuel_quantity.jpg
+```{imgur-figure} cJgOPtJ
 :alt: Refuel quantity in dashboard
 :width: 100%
 ```
@@ -83,7 +84,7 @@ Instead of having to toggle DST manually the car does it automatically.
 * Vehicle > 5F Multimedia > Long Coding > Summertime-automatic > USA
 * https://www.golfmk7.com/forums/index.php?threads/automatic-summer-time.341637
 
-```{image} _static/img/alltrack_auto_dst.jpg
+```{imgur-figure} 6UlKtvf
 :alt: Automatic daylight saving time switchover
 :width: 100%
 ```
@@ -92,7 +93,7 @@ Instead of having to toggle DST manually the car does it automatically.
 
 Taken off of Shoreline Hwy in Stinson Beach CA.
 
-```{figure} _static/img/alltrack_photo_2021-08-23.jpg
+```{imgur-figure} kh7I65B
 :alt: Alltrack Photo 2021-08-23
 :width: 100%
 ```
@@ -119,12 +120,12 @@ I didn't bother hooking up the dimmer wire since you can dim it manually by hold
 controller box using zip ties (it's on tight and doesn't move at all) and I heatshrinked the unused wires to avoid any
 potential shorts.
 
-```{figure} _static/img/alltrack_vent_gauge.jpg
+```{imgur-figure} qAFrhWS
 :alt: Vent Gauge
 :width: 100%
 ```
 
-```{figure} _static/img/alltrack_vent_install.jpg
+```{imgur-figure} KXQqsg6
 :alt: Controller Mount
 :width: 100%
 ```
@@ -137,25 +138,26 @@ Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
 I then zip tied it to my car placing some velcro around the fire extinguisher, so it's easy to pull out during an emergency.
 It stays put after driving for weeks and doesn't get in the way of lifting the cover to access my spare tire.
 
-```{image} _static/img/alltrack_fire_extinguisher.jpg
+```{imgur-figure} 705hYoS
 :alt: Fire Extinguisher
 :width: 100%
 ```
 
-### 21-10 Update
+### Oct &#39;21 Update
 
 Every now and then the fire extinguisher would move a bit, getting in the way of the bottom cover/floor. I fixed this by
 using some zip ties to hold the extinguisher in place. I made sure it's still easy to remove during an emergency, just slide
 off the zip tie with my thumb.
 
-```{image} _static/img/alltrack_fire_extinguisher_update.jpg
+```{imgur-figure} CJUFaP7
 :alt: Fire Extinguisher Update
 :width: 100%
 ```
 
 ## Feb &#39;20 Front Dashcam Pair
 
-```{imgur-image} 9dVe8pY
+```{imgur-figure} 9dVe8pY
+:width: 100%
 ```
 
 I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
@@ -218,7 +220,8 @@ with felt so things wouldn't rattle.
 I bought the drawer for $156 on ECS Tuning:
 [Driver's Seat Tray Kit Titanium Black 5GM 882 599 KT](https://www.ecstuning.com/b-genuine-volkswagen-audi-parts/drivers-seat-tray-kit-titanium-black/5gm882599kt/)
 
-```{imgur-image} W7T6lmB
+```{imgur-figure} W7T6lmB
+:width: 100%
 ```
 
 ```{imgur-embed} a/7PauDgm
@@ -231,7 +234,7 @@ Bought this from Amazon:
 
 Sadly it's no longer available.
 
-```{image} _static/img/alltrack_trashcan.jpg
+```{imgur-figure} BwicdEg
 :alt: Trashcan
 :width: 100%
 ```
