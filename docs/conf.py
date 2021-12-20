@@ -7,6 +7,9 @@ from urllib.parse import urlparse
 
 from sphinx.application import Sphinx
 
+GIT_BRANCH = os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main"
+GIT_URL = "https://github.com/Robpol86/robpol86.com"
+
 
 # General configuration.
 copyright = f'{time.strftime("%Y")}, Robpol86'  # pylint: disable=redefined-builtin  # noqa
@@ -72,12 +75,13 @@ html_theme_options = {
         'Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a><br>'
         'Theme: <a href="https://sphinx-book-theme.readthedocs.io/">Sphinx Book Theme</a><br>'
         'Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>'
+        f'License: <a href="{GIT_URL}/blob/{GIT_BRANCH}/LICENSE">BSD-2-Clause</a><br>'
         "</p>"
     ),
     "logo_only": True,
     "path_to_docs": "docs",
-    "repository_branch": os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main",
-    "repository_url": "https://github.com/Robpol86/robpol86.com",
+    "repository_branch": GIT_BRANCH,
+    "repository_url": GIT_URL,
     "use_edit_page_button": True,
 }
 html_title = "Robpol86.com"
