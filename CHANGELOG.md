@@ -6,6 +6,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## 2021-12-24
+
+Euro Tail Lights, license links, diff HTML files
+
 - Diffing HTML files between workflow build and current production.
 - Added Euro Tail Lights section to Alltrack page.
 - Added Tweaks and Software section to Windows 11 on a Mac page.
