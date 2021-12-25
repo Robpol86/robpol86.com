@@ -7,6 +7,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 ## [Unreleased]
 
 - Diffing HTML files between workflow build and current production.
+- Added Euro Tail Lights section to Alltrack page.
 - Added Tweaks and Software section to Windows 11 on a Mac page.
 - Moved all images to Imgur now that sphinx-imgur works fine with OpenGraph.
 - Added link to LICENSE file in the left sidebar.
