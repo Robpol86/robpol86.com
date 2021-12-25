@@ -54,4 +54,4 @@ jobs:
       - {name: Fetch workflow build, uses: actions/download-artifact@v2, with: {name: html_wf, path: html_wf}}
       - {name: Fetch latest release, uses: actions/download-artifact@v2, with: {name: html_prod, path: html_prod}}
       - {name: Clean, run: "find . '(' -name __pycache__ -o -name .doctrees ')' -type d -exec rm -rv {} +"}
-      - {name: Diff, run:  "diff --color=always --recursive html_prod/ html_wf/ || true"}
+      - {name: Diff, run: "diff --color=always --recursive html_prod/ html_wf/ || true"}
