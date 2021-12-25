@@ -1,0 +1,50 @@
+name: Diff against Production
+
+on:
+  pull_request:
+  push:
+
+jobs:
+
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query GitHub API for latest release
+        run: "curl -o latest.json https://api.github.com/repos/${{ github.repository }}/releases/latest"
+      - name: Set tag name
+        run: jq -r '"::set-output name=tag_name::" + .tag_name' < latest.json
+        id: tag_name
+      - name: Download release artifact
+        env: {REPO: "${{ github.repository }}", TAG: "${{ steps.tag_name.outputs.tag_name }}"}
+        run: "curl -L https://github.com/${{ env.REPO }}/releases/download/${{ env.TAG }}/html.tar.gz |tar -xzv"
+      - name: Store HTML
+        uses: actions/upload-artifact@v2
+        with: {name: html_prod, path: html/, if-no-files-found: error}
+    outputs:
+      tag_name: ${{ steps.tag_name.outputs.tag_name }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: fetch
+    env:
+      SPHINX_GITHUB_BRANCH: "${{ needs.fetch.outputs.tag_name }}"
+      SPHINX_HTML_BASEURL: "https://robpol86.com/"
+    steps:
+      - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
+      - {name: Install Python, uses: actions/setup-python@v2, with: {python-version: "3.10"}}
+      - {name: Install Poetry, uses: abatilo/actions-poetry@v2.1.4}
+      - {name: Cache venv, uses: actions/cache@v2, with: {path: .venv, key: "${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}"}, id: cache}
+      - {name: Install dependencies, run: make deps, if: "steps.cache.outputs.cache-hit != 'true'"}
+      - {name: Build docs, run: make docs}
+      - {name: Store HTML, uses: actions/upload-artifact@v2, with: {name: html, path: build/html/, if-no-files-found: error}}
+
+  diff:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - {name: Fetch workflow build, uses: actions/download-artifact@v2, with: {name: html, path: html_wf}}
+      - {name: Fetch latest release, uses: actions/download-artifact@v2, with: {name: html_prod, path: html_prod}}
+      - {name: Clean, run: "find . '(' -name __pycache__ -o -name .doctrees ')' -type d -exec rm -rv {} +"}
+      - {name: Prettify, uses: creyD/prettier_action@v4.1.1, with: {prettier_options: "--write html_*/**/*.{js,css,html}"}}
+      - {name: Diff, run:  "diff --color=always --recursive html_prod/ html_wf/ || true"}
+      - {name: Store both, uses: actions/upload-artifact@v2, with: {name: both, path: html_*/, if-no-files-found: error}}
