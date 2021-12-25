@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 from sphinx.application import Sphinx
 
-GIT_BRANCH = os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main"
+GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main"
 GIT_URL = "https://github.com/Robpol86/robpol86.com"
 
 
