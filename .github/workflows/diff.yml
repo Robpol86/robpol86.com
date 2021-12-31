@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Query GitHub API for latest release
         run: "curl -o latest.json https://api.github.com/repos/${{ github.repository }}/releases/latest"
+      - name: Validate
+        run: jq -r '.tag_name // error' < latest.json |grep .
       - name: Set tag name
         run: jq -r '"::set-output name=tag_name::" + .tag_name' < latest.json
         id: tag_name
