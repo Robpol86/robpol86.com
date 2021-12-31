@@ -16,6 +16,10 @@ North American Region LED tail lights (not sure if this is a standard feature of
 appearance package) so when I bought the EUR LED kit I had to take this into account when choosing the wiring harness. Even
 with this choice I still had to make modifications to the harness before installing, which I'll go over below.
 
+```{seealso}
+https://www.vwvortex.com/threads/installing-euro-led-tail-lights-on-my-us-2019-alltrack-se-nar-led-to-euro-led.9491919/
+```
+
 Items purchased:
 
 * [Mk7 European Light Switch 5GG941431D](https://www.thebeardeddetailer.com/swag-store/mk7-european-light-switch)
@@ -318,6 +322,10 @@ I ended up getting my own bolts instead of using the bolts that came with the hi
 [jjvincent](https://www.vwvortex.com/threads/hitch-vs-warranty.8489450/#post-103482505) said, but this is optional. If you
 want to do the same I bought them from [McMaster-Carr](https://www.mcmaster.com/91029A107/) (from:
 https://www.mcmaster.com/bolts/fastener-strength-grade-class~class-12-9/extreme-strength-metric-class-12-9-steel-hex-head-screws/thread-size~m8/).
+
+```{seealso}
+https://www.vwvortex.com/threads/installing-2-ecohitch-on-my-us-2019-alltrack-se.9487399
+```
 
 I used the following tools:
 

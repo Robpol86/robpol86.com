@@ -20,7 +20,7 @@ repository = "https://github.com/Robpol86/robpol86.com"
 python = "^3.7"
 # Project dependencies.
 myst-parser = {version = "*", extras = ["linkify"]}
-pygments = {git = "https://github.com/pygments/pygments", branch = "master"}  # TODO remove when v2.11.0 is released
+pygments = "*"
 sphinx = "*"
 sphinx-autobuild = "*"
 sphinx-book-theme = ">=0.1.7"
