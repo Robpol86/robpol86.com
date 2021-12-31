@@ -92,6 +92,7 @@ myst_enable_extensions = [
     "colon_fence",
     "deflist",
     "dollarmath",
+    "fieldlist",
     "linkify",
     "replacements",
     "substitution",

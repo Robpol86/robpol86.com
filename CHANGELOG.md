@@ -6,7 +6,9 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Enabling MyST `fieldlist` extension for future use.
+- Added forums post links to latest Alltrack page entries.
+- Resolved Pygments dependency TODO now that v2.11.0 has been released.
 
 ## 2021-12-24
 
