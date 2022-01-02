@@ -6,6 +6,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## 2022-01-02
+
+Alltrack page: MIB2 Developer Mode
+
 - Added MIB2 Developer Mode section to Alltrack page.
 
 ## 2021-12-31
