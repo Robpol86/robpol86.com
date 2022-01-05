@@ -8,6 +8,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - N/A
 
+## 2022-01-04
+
+New page: MIB2 Hacking
+
+- Added MIB2 Composition Media Hacking with some initial findings.
+
 ## 2022-01-02
 
 Alltrack page: MIB2 Developer Mode
