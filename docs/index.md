@@ -29,6 +29,7 @@ enough to get a contracting position shortly after at Symantec and eventually go
 :caption: Projects
 
 vw_alltrack_2019
+mib2_comp_media
 3d_printer_mpms2
 franklin_t9
 photo_albums
