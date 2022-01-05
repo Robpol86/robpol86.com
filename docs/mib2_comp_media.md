@@ -1,9 +1,9 @@
 # MIB2 Composition Media Hacking
 
 My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
-[QNX 6.5.0](http://www.qnx.com/developers/docs/6.5.0SP1.update/#./com.qnx.doc.momentics_quickstart/about.html). This unit has
-CarPlay/Android Auto but lacks navigation or maps of its own (though it has GPS). Lucky for me, it's possible to gain root
-access to the unit.
+[QNX 6.5.0](http://www.qnx.com/developers/docs/6.5.0SP1.update/#./com.qnx.doc.momentics_quickstart/about.html) (with firmware
+MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has
+GPS). Lucky for me, it's possible to gain root access to the unit.
 
 I used these resources to learn about this:
 
