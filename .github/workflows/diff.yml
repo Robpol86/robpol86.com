@@ -27,8 +27,8 @@ jobs:
         env: {REPO: "${{ github.repository }}", TAG: "${{ needs.query.outputs.tag_name }}"}
         run: "curl -L https://github.com/${{ env.REPO }}/releases/download/${{ env.TAG }}/html.tar.gz |tar -xzv"
       - name: Prettify
-        uses: creyD/prettier_action@v4.1.1
-        with: {prettier_options: "--write html/**/*.{js,css,html}"}
+        uses: creyD/prettier_action@v3.3
+        with: {prettier_options: "--write html/**/*.{js,css,html,xml}", prettier_plugins: "@prettier/plugin-xml"}
       - name: Store HTML
         uses: actions/upload-artifact@v2
         with: {name: html_prod, path: html/, if-no-files-found: error}
@@ -46,7 +46,7 @@ jobs:
       - {name: Cache venv, uses: actions/cache@v2, with: {path: .venv, key: "${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}"}, id: cache}
       - {name: Install dependencies, run: make deps, if: "steps.cache.outputs.cache-hit != 'true'"}
       - {name: Build docs, run: make docs}
-      - {name: Prettify, uses: creyD/prettier_action@v4.1.1, with: {prettier_options: "--write build/html/**/*.{js,css,html}"}}
+      - {name: Prettify, uses: creyD/prettier_action@v3.3, with: {prettier_options: "--write html/**/*.{js,css,html,xml}", prettier_plugins: "@prettier/plugin-xml"}}
       - {name: Store HTML, uses: actions/upload-artifact@v2, with: {name: html_wf, path: build/html/, if-no-files-found: error}}
 
   diff:
