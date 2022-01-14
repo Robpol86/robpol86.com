@@ -162,6 +162,35 @@ Enable the service
     /etc/init.d/start_wifi_toggle start
     ```
 
+## Auto Reboot When No LTE
+
+During long road trips I've noticed the hotspot doesn't automatically reconnect LTE even when I'm back in the service area.
+Connecting via the web UI manually doesn't seem to work, but rebooting fixes it. Here I'll add a script that checks every 15
+minutes for internet connectivity and if there isn't any it will automatically reboot the hotspot.
+
+Save to /etc/default/auto_reboot
+:   ```bash
+    PING_HOSTS[0]=1.1.1.1  # Cloudflare DNS
+    PING_HOSTS[1]=8.8.8.8  # Google DNS
+    ```
+
+Save to /usr/bin/auto_reboot.sh
+:   ```{literalinclude} _static/auto_reboot.sh
+    :language: bash
+    ```
+
+Save to /etc/init.d/start_auto_reboot
+:   ```{literalinclude} _static/start_auto_reboot.sh
+    :language: bash
+    ```
+
+Enable the service
+:   ```bash
+    chmod +x /usr/bin/auto_reboot.sh /etc/init.d/start_auto_reboot
+    update-rc.d start_auto_reboot defaults
+    /etc/init.d/start_auto_reboot start
+    ```
+
 ## Custom Logos
 
 You can easily change the logo on the little LCD by editing a PNG file. Since my unit is locked to T-Mobile I used:

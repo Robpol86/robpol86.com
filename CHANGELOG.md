@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Added Auto Reboot section to Franklin T9 page.
 
 ## 2022-01-04
 
