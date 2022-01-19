@@ -23,15 +23,27 @@ deps:
 	poetry install $(if $(NO_DEV),--no-dev)
 	poetry run python -V
 
-## Main
+## Testing
 
 .PHONY: lint
 lint: _HELP = Run linters
 lint:
 	poetry check
 	poetry run black --check --color --diff .
-	poetry run flake8
-	poetry run pylint docs/conf.py
+	poetry run flake8 --application-import-names docs,tests
+	poetry run pylint docs tests
+
+.PHONY: test
+test: _HELP = Run tests
+test:
+	poetry run pytest tests
+
+.PHONY: testpdb
+testpdb: _HELP = Run tests and drop into the debugger on failure
+testpdb:
+	poetry run pytest --pdb tests
+
+## Build
 
 build/html/index.html::
 	poetry run sphinx-build -n -W docs $(@D)
