@@ -8,6 +8,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - Added Auto Reboot section to Franklin T9 page.
 - De-duplicating steps in multiple GitHub Actions workflows by defining my own composite action in this same repo.
+- Optimizing GitHub Actions by only installing dev dependencies in ci.yml and not deploy/diff.
 
 ## 2022-01-04
 

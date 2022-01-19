@@ -2,6 +2,10 @@ name: Initialize Dependencies
 description: Install project dependencies
 
 inputs:
+  no-dev-deps:
+    description: Whether to exclude pyproject.toml tool.poetry.dev-dependencies
+    required: false
+    default: "true"
   python-version:
     description: Python version to install
     required: false
@@ -23,8 +27,9 @@ runs:
     - name: Cache venv
       id: cache
       uses: actions/cache@v2
-      with: {path: .venv, key: "${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}"}
+      with: {path: .venv, key: "${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}-${{ inputs.no-dev-deps }}"}
     - name: Install dependencies
       if: "steps.cache.outputs.cache-hit != 'true'"
+      env: {NO_DEV: "${{ inputs.no-dev-deps == 'true' && 'true' || '' }}"}
       shell: bash
       run: make deps
