@@ -15,7 +15,16 @@ outputs:
 runs:
   using: composite
   steps:
-    - {name: Install Python, uses: actions/setup-python@v2, with: {python-version: "${{ inputs.python-version }}"}}
-    - {name: Install Poetry, uses: abatilo/actions-poetry@v2.1.4}
-    - {name: Cache venv, uses: actions/cache@v2, with: {path: .venv, key: "${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}"}, id: cache}
-    - {name: Install dependencies, run: make deps, shell: bash, if: "steps.cache.outputs.cache-hit != 'true'"}
+    - name: Install Python
+      uses: actions/setup-python@v2
+      with: {python-version: "${{ inputs.python-version }}"}
+    - name: Install Poetry
+      uses: abatilo/actions-poetry@v2.1.4
+    - name: Cache venv
+      id: cache
+      uses: actions/cache@v2
+      with: {path: .venv, key: "${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}"}
+    - name: Install dependencies
+      if: "steps.cache.outputs.cache-hit != 'true'"
+      shell: bash
+      run: make deps
