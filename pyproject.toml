@@ -23,7 +23,7 @@ myst-parser = {version = "*", extras = ["linkify"]}
 pygments = "*"
 sphinx = "*"
 sphinx-autobuild = "*"
-sphinx-book-theme = ">=0.1.7"
+sphinx-book-theme = "^0.1"  # TODO verify fixes.css works with v0.2.*
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
 sphinx-imgur = "*"
