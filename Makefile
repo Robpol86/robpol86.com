@@ -18,9 +18,9 @@ poetry.lock:
 	poetry lock
 
 .PHONY: deps
-deps: _HELP = Install project dependencies
+deps: _HELP = Install project dependencies (optional NO_DEV env var)
 deps:
-	poetry install
+	poetry install $(if $(NO_DEV),--no-dev)
 	poetry run python -V
 
 ## Main

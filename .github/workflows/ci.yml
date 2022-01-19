@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
-      - {name: Initialize dependencies, uses: ./.github/actions/init-deps}
+      - {name: Initialize dependencies, uses: ./.github/actions/init-deps, with: {no-dev-deps: "false"}}
       - {name: Run lints, run: make lint}
       - {name: Build docs, run: make docs}
