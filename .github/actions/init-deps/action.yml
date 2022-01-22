@@ -11,11 +11,6 @@ inputs:
     required: false
     default: "3.10"
 
-outputs:
-  python-version:
-    description: Same as input
-    value: ${{ inputs.python-version }}
-
 runs:
   using: composite
   steps:
@@ -33,3 +28,8 @@ runs:
       env: {NO_DEV: "${{ inputs.no-dev-deps == 'true' && 'true' || '' }}"}
       shell: bash
       run: make deps
+
+outputs:
+  python-version:
+    description: Same as input
+    value: ${{ inputs.python-version }}

@@ -1,0 +1,51 @@
+name: Publish to NFSN
+description: Rsync HTML files to web host and purge Cloudflare cache
+
+inputs:
+  ssh-key:
+    description: SSH private key
+    required: true
+  known-hosts:
+    description: SSH known host public key
+    required: false
+    default: >
+      ssh.phx.nearlyfreespeech.net,208.94.116.211
+      ecdsa-sha2-nistp256
+      AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEkD1YQOPCy0w/g/OqpBys337RAtyK/HDmW2i0BUW4mnN5em2jkB69nhJP91nU8s05OfB1MgxVVzyXc80Ounbzw=
+  source:
+    description: Source directory to rsync from
+    required: true
+  target:
+    description: Remote directory to rsync to
+    required: false
+    default: /home/public
+  host:
+    description: NFSN SSH host or IP
+    required: false
+    default: ssh.phx.nearlyfreespeech.net
+  user:
+    description: NFSN SSH user, defines the environnment
+    required: true
+  cf-token:
+    description: Cloudflare API authentication token
+    required: true
+  cf-zone-id:
+    description: Cloudflare zone identifier for API call
+    required: false
+    default: 5efb26a03250a8bc392727af05a39aba
+
+runs:
+  using: composite
+  steps:
+    - name: Setup SSH
+      uses: shimataro/ssh-key-action@v2
+      with: {key: "${{ inputs.ssh-key }}", known_hosts: "${{ inputs.known-hosts }}"}
+    - name: Rsync
+      shell: bash
+      run: rsync -rptcivh --delete-after --stats ${{ inputs.source }} ${{ inputs.user }}@${{ inputs.host }}:${{ inputs.target }}
+    - name: Purge Cloudflare Cache
+      env:
+        CF_AUTH: "Authorization: Bearer ${{ inputs.cf-token }}"
+        CF_URL: "https://api.cloudflare.com/client/v4/zones/${{ inputs.cf-zone-id }}/purge_cache"
+      shell: bash
+      run: curl -f '${{ env.CF_URL }}' -H '${{ env.CF_AUTH }}' --data '{"purge_everything":true}'
