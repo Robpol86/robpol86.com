@@ -19,21 +19,8 @@ jobs:
     outputs:
       tag_name: ${{ steps.tag_name.outputs.tag_name }}
 
-  fetch:
-    runs-on: ubuntu-latest
-    needs: query
-    steps:
-      - name: Download release artifact
-        env: {REPO: "${{ github.repository }}", TAG: "${{ needs.query.outputs.tag_name }}"}
-        run: "curl -L https://github.com/${{ env.REPO }}/releases/download/${{ env.TAG }}/html.tar.gz |tar -xzv"
-      - name: Prettify
-        uses: creyD/prettier_action@v3.3
-        with: {prettier_options: "--write html/**/*.{js,css,html,xml}", prettier_plugins: "@prettier/plugin-xml"}
-      - name: Store HTML
-        uses: actions/upload-artifact@v2
-        with: {name: html_prod, path: html/, if-no-files-found: error}
-
   build:
+    name: Build HTML
     runs-on: ubuntu-latest
     needs: query
     env:
@@ -43,14 +30,29 @@ jobs:
       - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
       - {name: Initialize dependencies, uses: ./.github/actions/init-deps}
       - {name: Build docs, run: make docs}
-      - {name: Prettify, uses: creyD/prettier_action@v3.3, with: {prettier_options: "--write html/**/*.{js,css,html,xml}", prettier_plugins: "@prettier/plugin-xml"}}
-      - {name: Store HTML, uses: actions/upload-artifact@v2, with: {name: html_wf, path: build/html/, if-no-files-found: error}}
+      - {name: Prettify, uses: ./.github/actions/prettify, with: {path: html}}
+      - name: Store HTML
+        uses: actions/upload-artifact@v2
+        with: {name: html_feature, path: build/html/, if-no-files-found: error}
+
+  fetch:
+    runs-on: ubuntu-latest
+    needs: query
+    steps:
+      - {name: Check out repository code, uses: actions/checkout@v2}
+      - name: Download release artifact
+        env: {REPO: "${{ github.repository }}", TAG: "${{ needs.query.outputs.tag_name }}"}
+        run: "curl -L https://github.com/${{ env.REPO }}/releases/download/${{ env.TAG }}/html.tar.gz |tar -xzv"
+      - {name: Prettify, uses: ./.github/actions/prettify, with: {path: html}}
+      - name: Store HTML
+        uses: actions/upload-artifact@v2
+        with: {name: html_prod, path: html/, if-no-files-found: error}
 
   diff:
     runs-on: ubuntu-latest
     needs: [fetch, build]
     steps:
-      - {name: Fetch workflow build, uses: actions/download-artifact@v2, with: {name: html_wf, path: html_wf}}
+      - {name: Fetch this feature build, uses: actions/download-artifact@v2, with: {name: html_feature, path: html_feature}}
       - {name: Fetch latest release, uses: actions/download-artifact@v2, with: {name: html_prod, path: html_prod}}
       - {name: Clean, run: "find . '(' -name __pycache__ -o -name .doctrees ')' -type d -exec rm -rv {} +"}
-      - {name: Diff, run: "diff --color=always --recursive html_prod/ html_wf/ || true"}
+      - {name: Diff, run: "diff --color=always --recursive html_prod/ html_feature/ || true"}
