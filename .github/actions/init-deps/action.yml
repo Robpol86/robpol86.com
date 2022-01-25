@@ -23,8 +23,18 @@ runs:
       id: cache
       uses: actions/cache@v2
       with: {path: .venv, key: "${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}-${{ inputs.no-dev-deps }}"}
+    - name: Validate venv
+      id: validate
+      if: "steps.cache.outputs.cache-hit == 'true'"
+      shell: bash
+      run: |
+        poetry env info --ansi
+        if poetry env info --no-ansi |grep -qE "^Valid: +True"; then
+          echo "::set-output name=is-valid::true"
+        fi
+      # TODO: Evict cache on invalid venv: https://github.com/actions/cache/issues/2
     - name: Install dependencies
-      if: "steps.cache.outputs.cache-hit != 'true'"
+      if: "steps.validate.outputs.is-valid != 'true'"
       env: {NO_DEV: "${{ inputs.no-dev-deps == 'true' && 'true' || '' }}"}
       shell: bash
       run: make deps

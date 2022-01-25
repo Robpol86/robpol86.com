@@ -1,4 +1,4 @@
-name: Publish to NFSN
+name: Deploy to NFSN
 description: Rsync HTML files to web host and purge Cloudflare cache
 
 inputs:
