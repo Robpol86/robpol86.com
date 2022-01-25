@@ -20,6 +20,7 @@ jobs:
       tag_name: ${{ steps.tag_name.outputs.tag_name }}
 
   build:
+    name: Build HTML
     runs-on: ubuntu-latest
     needs: query
     env:
@@ -30,7 +31,9 @@ jobs:
       - {name: Initialize dependencies, uses: ./.github/actions/init-deps}
       - {name: Build docs, run: make docs}
       - {name: Prettify, uses: ./.github/actions/prettify, with: {path: html}}
-      - {name: Store HTML, uses: actions/upload-artifact@v2, with: {name: html_wf, path: build/html/, if-no-files-found: error}}
+      - name: Store HTML
+        uses: actions/upload-artifact@v2
+        with: {name: html_feature, path: build/html/, if-no-files-found: error}
 
   fetch:
     runs-on: ubuntu-latest
@@ -49,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [fetch, build]
     steps:
-      - {name: Fetch workflow build, uses: actions/download-artifact@v2, with: {name: html_wf, path: html_wf}}
+      - {name: Fetch this feature build, uses: actions/download-artifact@v2, with: {name: html_feature, path: html_feature}}
       - {name: Fetch latest release, uses: actions/download-artifact@v2, with: {name: html_prod, path: html_prod}}
       - {name: Clean, run: "find . '(' -name __pycache__ -o -name .doctrees ')' -type d -exec rm -rv {} +"}
-      - {name: Diff, run: "diff --color=always --recursive html_prod/ html_wf/ || true"}
+      - {name: Diff, run: "diff --color=always --recursive html_prod/ html_feature/ || true"}
