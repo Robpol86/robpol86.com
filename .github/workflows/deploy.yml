@@ -26,7 +26,7 @@ jobs:
       - {name: Check out repository code, uses: actions/checkout@v2}
       - {name: Fetch HTML files, uses: actions/download-artifact@v2, with: {name: html, path: build/html/}}
       - name: Deploy
-        uses: ./.github/actions/publish
+        uses: ./.github/actions/deploy
         with:
           source: build/html/
           user: "${{ github.event_name == 'release' && secrets.NFSN_SSH_USER_PROD || secrets.NFSN_SSH_USER_STAGE }}"

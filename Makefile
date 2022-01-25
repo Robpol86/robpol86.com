@@ -21,6 +21,8 @@ poetry.lock:
 deps: _HELP = Install project dependencies (optional NO_DEV env var)
 deps:
 	poetry install $(if $(NO_DEV),--no-dev)
+	poetry env info --ansi
+	poetry env info --no-ansi |grep -qE "^Valid: +True"
 	poetry run python -V
 
 ## Testing
