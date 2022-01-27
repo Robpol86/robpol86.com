@@ -20,14 +20,15 @@ I locally develop this project on an Ubuntu VM via Windows WSL2. To get started:
 ```bash
 # Install Python and Poetry.
 sudo apt-get update && sudo apt-get install python3
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+curl -sSL https://install.python-poetry.org | python3 -
 
 # Setup local environment.
 make distclean
 make init
 make deps
 
-# Build.
-make lint
+# Build and test.
 make docs
+make test
+make lint
 ```
