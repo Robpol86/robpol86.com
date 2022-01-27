@@ -4,7 +4,7 @@ export POETRY_VIRTUALENVS_IN_PROJECT = true
 ## Dependencies
 
 init: _HELP = Initialize Python VirtualEnv via Poetry (optional PYTHON_PATH or PYTHON_VERSION env vars)
-init: PYTHON_VERSION ?= 3.7
+init: PYTHON_VERSION ?= 3
 init:
 ifdef PYTHON_PATH
 	poetry env use $(PYTHON_PATH)
