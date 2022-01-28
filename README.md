@@ -10,8 +10,8 @@ I use GitHub Actions to automatically build and push HTML files to NFSN.
 
 ## Releases
 
-Deployments to production are done by GitHub Actions when a new [release](https://github.com/Robpol86/robpol86.com/releases)
-is manually created. All branch and tag pushes trigger a deployment to staging, whilst pull requests only trigger CI linting.
+Deployments to production are done by GitHub Actions when a new tag matching the format YYYY-MM-DD is manually pushed. All
+branch and tag pushes trigger a deployment to staging, whilst pull requests only trigger CI linting and testing.
 
 ## Local Development
 
