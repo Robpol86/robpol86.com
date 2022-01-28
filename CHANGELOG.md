@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Latest version of sphinx-book-theme with performance enhancements.
 
 ## 2022-01-28
 
