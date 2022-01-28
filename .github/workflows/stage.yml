@@ -42,7 +42,7 @@ jobs:
       - {name: Get body, id: cl, uses: ./.github/actions/read-changelog, with: {section: "[Unreleased]", has_title: "false"}}
       - name: Get title
         id: commit
-        run: "head -1 <<< '${{ github.event.commits[0].message }}' |xargs -0 printf '::set-output name=title::%s'"
+        run: 'jq -r .head_commit.message < "$GITHUB_EVENT_PATH" |head -1 |xargs -0 printf "::set-output name=title::%s"'
       - name: Delete existing pre-release
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with: {delete_release: true, tag_name: _pre-release}
