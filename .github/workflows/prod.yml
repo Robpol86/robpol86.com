@@ -1,7 +1,7 @@
 name: Deploy to Production
 
 on:
-  release: {types: [published]}
+  push: {tags: ["[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"]}
 
 jobs:
 
@@ -30,13 +30,18 @@ jobs:
           ssh-key: "${{ secrets.NFSN_SSH_KEY }}"
           cf-token: "${{ secrets.TOKEN_CF_PURGE_CACHE }}"
 
-  archive:
-    name: Archive Release
+  release:
+    name: Create Release
     runs-on: ubuntu-latest
     needs: publish
     steps:
-      - {name: Fetch HTML files, uses: actions/download-artifact@v2, with: {name: html, path: html}}
-      - {name: Archive HTML files, run: tar -czvf html.tar.gz html/}
-      - name: Upload HTML Archive to Release
-        uses: svenstaro/upload-release-action@v2
-        with: {file: html.tar.gz, repo_token: "${{ secrets.GITHUB_TOKEN }}", tag: "${{ github.ref }}"}
+      - {name: Check out repository code, uses: actions/checkout@v2}
+      - {name: Fetch HTML files, uses: actions/download-artifact@v2, with: {name: html, path: build/html/}}
+      - {name: Archive HTML files, run: tar -C build -czvf html.tar.gz html/}
+      - {name: Parse changelog, id: cl, uses: ./.github/actions/read-changelog, with: {section: "${{ github.ref_name }}"}}
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "${{ steps.cl.outputs.title }}"
+          body: "${{ steps.cl.outputs.body }}"
+          files: html.tar.gz
