@@ -31,7 +31,7 @@ sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"
 sphinx-panels = "*"
 sphinx-sitemap = "*"
-sphinxcontrib-youtube = {git = "https://github.com/Robpol86/youtube", branch = "timestamp_support"}  # TODO pr17
+sphinxcontrib-youtube = "*"
 sphinxext-opengraph = "*"
 
 [tool.poetry.dev-dependencies]
