@@ -23,7 +23,7 @@ myst-parser = {version = "*", extras = ["linkify"]}
 pygments = "*"
 sphinx = "*"
 sphinx-autobuild = "*"
-sphinx-book-theme = ">=0.2"
+sphinx-book-theme = "*"
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
 sphinx-imgur = "*"
@@ -35,6 +35,8 @@ sphinxcontrib-youtube = "*"
 sphinxext-opengraph = "*"
 
 [tool.poetry.dev-dependencies]
+# Project.
+sphinx-book-theme = ">=0.2"
 # Linters.
 black = "*"
 flake8 = "*"
