@@ -1,7 +1,7 @@
 root: index
 subtrees:
   - caption: Projects
-    maxdepth: 1
+    maxdepth: 2
     entries:
       - file: vw_alltrack_2019
       - file: mib2_comp_media
@@ -9,7 +9,7 @@ subtrees:
       - file: franklin_t9
       - file: photo_albums
   - caption: Tutorials
-    maxdepth: 1
+    maxdepth: 2
     entries:
       - file: windows_11_mac
       - file: raspberry_pi_luks
@@ -20,12 +20,8 @@ subtrees:
       - file: flash_droid_cricket
       - file: rns_510_vim
       - file: imagecfg
-  - caption: Posts
-    maxdepth: 1
-    entries:
-      - file: posts/2022-02-27-my-first-example
   - caption: Archived Projects
-    maxdepth: 1
+    maxdepth: 2
     entries:
       - file: wireless_charging_car_dock
       - file: atrix_lapdock
