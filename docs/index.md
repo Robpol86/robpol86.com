@@ -51,6 +51,13 @@ imagecfg
 ```
 
 ```{toctree}
+:maxdepth: 1
+:caption: Posts
+
+posts/2022-02-27-my-first-example
+```
+
+```{toctree}
 :maxdepth: 2
 :caption: Archived Projects
 
