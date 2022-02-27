@@ -85,6 +85,7 @@ html_theme_options = {
     "use_edit_page_button": True,
 }
 html_title = "Robpol86.com"
+html_use_index = True
 
 
 # https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
