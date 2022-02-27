@@ -20,6 +20,7 @@ extensions = [
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
+    # "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
     "sphinx_panels",  # https://sphinx-panels.readthedocs.io
