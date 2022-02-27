@@ -24,7 +24,7 @@ subtrees:
     maxdepth: 1
     reversed: True
     entries:
-      - glob: posts/*/*-*
+      - glob: posts/[0-9][0-9][0-9][0-9]/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*
   - caption: Archived Projects
     maxdepth: 1
     entries:
