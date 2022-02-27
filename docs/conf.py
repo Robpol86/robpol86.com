@@ -6,8 +6,7 @@ from pathlib import Path
 from typing import List
 from urllib.parse import urlparse
 
-from docutils import nodes as du_nodes
-from docutils.nodes import TextElement
+from docutils import nodes
 from sphinx.application import Sphinx
 from sphinx.domains.index import IndexDirective
 
@@ -169,17 +168,16 @@ class TagsDirective(IndexDirective):
 
     def run(self) -> List:
         """Called by Sphinx."""
-        nodes = super().run()
-        entries = nodes[0]["entries"]  # noqa
+        indexnode, targetnode = super().run()
+        entries = indexnode["entries"]  # noqa
 
         # Create bulleted list.
-        list_node = du_nodes.bullet_list()
+        listnode = nodes.bullet_list()
         for entry in entries:
             tag = entry[1]
-            list_node += du_nodes.list_item("", du_nodes.paragraph(text=tag))
+            listnode += nodes.list_item("", nodes.paragraph(text=tag))
 
-        nodes.append(list_node)
-        return nodes
+        return [indexnode, targetnode, listnode]
 
 
 def setup(app: Sphinx):
