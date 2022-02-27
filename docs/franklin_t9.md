@@ -1,6 +1,6 @@
 # T-Mobile Franklin T9 Hacking
 
-```{index} hacking, franklin_t9
+```{tags} hacking, franklin_t9
 ```
 
 My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting

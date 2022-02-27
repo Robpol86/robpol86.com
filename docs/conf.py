@@ -6,6 +6,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from sphinx.application import Sphinx
+from sphinx.domains.index import IndexDirective
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main"
 GIT_URL = "https://github.com/Robpol86/robpol86.com"
@@ -72,6 +73,8 @@ html_theme = "sphinx_book_theme"
 html_theme_options = {
     "extra_navbar": (
         "<p>"
+        '<a href="/genindex.html">Tags</a><br>'
+        '<a href="/sitemap.html">Sitemap</a><br>'
         'Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a><br>'
         'Theme: <a href="https://sphinx-book-theme.readthedocs.io/">Sphinx Book Theme</a><br>'
         'Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>'
@@ -159,9 +162,14 @@ def render_robots_txt(app: Sphinx, _):
         robots_txt_path.write_text(rendered, encoding="utf8")
 
 
+class TagsDirective(IndexDirective):
+    """TODO."""
+
+
 def setup(app: Sphinx):
     """Called by Sphinx.
 
     :param app: Sphinx application object.
     """
     app.connect("build-finished", render_robots_txt)
+    app.add_directive("tags", TagsDirective)
