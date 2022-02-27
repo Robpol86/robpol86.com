@@ -20,7 +20,7 @@ extensions = [
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
-    # "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
+    "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
     "sphinx_panels",  # https://sphinx-panels.readthedocs.io
@@ -117,6 +117,10 @@ notfound_urls_prefix = ""
 
 # https://sphinx-disqus.readthedocs.io/en/v1.2.0/install.html
 disqus_shortname = "rob86wiki"
+
+
+# https://sphinx-external-toc.readthedocs.io/en/latest/user_guide/sphinx.html
+external_toc_path = ".toc.yml"
 
 
 # https://sphinx-imgur.readthedocs.io/en/v3.0.0/usage.html
