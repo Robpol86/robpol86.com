@@ -25,7 +25,7 @@ enough to get a contracting position shortly after at Symantec and eventually go
 ## Site Contents
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 :caption: Projects
 
 vw_alltrack_2019
@@ -36,7 +36,7 @@ photo_albums
 ```
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 :caption: Tutorials
 
 windows_11_mac
@@ -58,7 +58,7 @@ posts/2022-02-27-my-first-example
 ```
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 :caption: Archived Projects
 
 wireless_charging_car_dock
