@@ -1,5 +1,8 @@
 # Golf Alltrack SE
 
+```{tags} vehicle
+```
+
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
 ## Jan &#39;22 MIB2 Developer Mode

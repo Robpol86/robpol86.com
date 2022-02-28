@@ -3,9 +3,13 @@
 import os
 import time
 from pathlib import Path
+from typing import List
 from urllib.parse import urlparse
 
+from docutils import nodes
 from sphinx.application import Sphinx
+from sphinx.domains.index import IndexDirective
+from sphinx.errors import SphinxError
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main"
 GIT_URL = "https://github.com/Robpol86/robpol86.com"
@@ -72,6 +76,7 @@ html_theme = "sphinx_book_theme"
 html_theme_options = {
     "extra_navbar": (
         "<p>"
+        '<a href="/genindex.html">Tags</a> | <a href="/sitemap.xml">Sitemap</a><br>'
         'Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a><br>'
         'Theme: <a href="https://sphinx-book-theme.readthedocs.io/">Sphinx Book Theme</a><br>'
         'Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>'
@@ -85,6 +90,7 @@ html_theme_options = {
     "use_edit_page_button": True,
 }
 html_title = "Robpol86.com"
+html_use_index = True
 
 
 # https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
@@ -158,9 +164,37 @@ def render_robots_txt(app: Sphinx, _):
         robots_txt_path.write_text(rendered, encoding="utf8")
 
 
+class TagsDirective(IndexDirective):
+    """Enhanced Sphinx index directive so it acts more like a tag manager."""
+
+    def run(self) -> List:
+        """Called by Sphinx."""
+        index_node, target_node = super().run()
+        tags = [t[1] for t in index_node["entries"]]
+        if not tags:
+            return [index_node, target_node]
+        if tags != sorted(tags):
+            raise SphinxError(f"Tags not in alphabetical order in document {self.env.docname}")
+
+        # Build nodes.
+        human_readable_tag_list = nodes.emphasis("Tags: ", "Tags: ")
+        idx_last = len(tags) - 1
+        for idx, tag in enumerate(tags):
+            tag_node = nodes.inline(tag, tag, classes=["guilabel"])
+            uri = f"{html_baseurl}genindex.html#{tag[0].upper()}"
+            linked_tag_node = nodes.reference("", "", tag_node, refuri=uri, internal=True)
+            # Insert.
+            human_readable_tag_list.append(linked_tag_node)
+            if idx != idx_last:
+                human_readable_tag_list.append(nodes.Text(", ", ", "))
+
+        return [index_node, target_node, nodes.paragraph("", "", human_readable_tag_list)]
+
+
 def setup(app: Sphinx):
     """Called by Sphinx.
 
     :param app: Sphinx application object.
     """
     app.connect("build-finished", render_robots_txt)
+    app.add_directive("tags", TagsDirective)

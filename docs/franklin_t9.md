@@ -1,5 +1,8 @@
 # T-Mobile Franklin T9 Hacking
 
+```{tags} hacking, hotspot
+```
+
 My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
 data. I'm using it with [Google Fi](https://fi.google.com/).
 

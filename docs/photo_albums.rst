@@ -4,10 +4,14 @@
 Photo Albums
 ============
 
+.. tags:: photos
+
 Here are several of my random photo albums. As you can see, I am quite fond of taking pictures of my possessions.
 
 Desk Pictures
 =============
+
+.. tags:: desk
 
 Started by a thread called “Where You Rock” on Big-O-Software Forums in early 2003, I began to take pictures of my desk to
 show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.
@@ -17,6 +21,8 @@ show off. Since then I have tried to take pictures of all my desks after signifi
 
 Rack Cabinet
 ============
+
+.. tags:: homelab
 
 Ever since I took a Cisco CCNA class back in high school in 2002 I've always wanted a rack at home. I even bought one on
 Craigslist in 2007 for $100 but it had round holes and it was very shallow. Turns out it was meant for music equipment.
