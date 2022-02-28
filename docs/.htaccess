@@ -25,11 +25,9 @@ RewriteRule lapdock https://robpol86.com/atrix_lapdock.html [R=301,L,NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule berto89 https://robpol86.com/rns_510_vim.html [R=301,L,NC]
 
-# Redirect deleted branches.
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} ^/[^/]+/(.+\.html)$
-RewriteCond %{DOCUMENT_ROOT}/%1 -f
-RewriteRule .+ https://robpol86.com/%1 [R=301,L]
+# Redirect tags to genindex.
+RewriteRule ^tags\.html https://robpol86.com/genindex.html [R=301,L]
+RewriteRule ^tags/?$ https://robpol86.com/genindex.html [R=301,L]
 
 # Catch-alls.
 RewriteRule index\.php https://robpol86.com/ [R=301,L]

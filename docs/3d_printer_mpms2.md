@@ -1,5 +1,8 @@
 # Monoprice Maker Select v2
 
+```{tags} 3d-printing
+```
+
 I bought my first 3D printer from [Amazon](https://www.amazon.com/gp/product/B018GZBC3Y) in 2018 for $300. It's on the
 cheaper end but there's a large community behind it.
 
