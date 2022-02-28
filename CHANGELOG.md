@@ -8,6 +8,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - Latest version of sphinx-book-theme with performance enhancements.
 - Implemented support for tagging documents using a slightly customized Sphinx `index` directive.
+- Using sphinx_external_toc to support blog posts.
 
 ## 2022-01-28
 

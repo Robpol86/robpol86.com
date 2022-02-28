@@ -1,0 +1,28 @@
+root: index
+subtrees:
+  - caption: Projects
+    maxdepth: 2
+    entries:
+      - file: vw_alltrack_2019
+      - file: mib2_comp_media
+      - file: 3d_printer_mpms2
+      - file: franklin_t9
+      - file: photo_albums
+  - caption: Tutorials
+    maxdepth: 2
+    entries:
+      - file: windows_11_mac
+      - file: raspberry_pi_luks
+      - file: root_certificate_authority
+      - file: raspberry_pi_project_fi
+      - file: postfix_gmail_forwarding
+      - file: bareos_tape_backup
+      - file: flash_droid_cricket
+      - file: rns_510_vim
+      - file: imagecfg
+  - caption: Archived Projects
+    maxdepth: 2
+    entries:
+      - file: wireless_charging_car_dock
+      - file: atrix_lapdock
+      - file: vw_jsw_2010
