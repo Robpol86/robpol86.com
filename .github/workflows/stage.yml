@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
-      - {name: Initialize dependencies, uses: Robpol86/actions-init-deps-python-poetry@v1}
+      - {name: Initialize dependencies, uses: Robpol86/actions-init-deps-py@v2}
       - {name: Build docs, run: make docs, env: {SPHINX_HTML_BASEURL: "https://rob86stage.robpol86.com/"}}
       - {name: Store HTML, uses: actions/upload-artifact@v2, with: {name: html, path: build/html/, if-no-files-found: error}}
 
