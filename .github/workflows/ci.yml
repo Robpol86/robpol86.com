@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
-      - {name: Initialize dependencies, uses: Robpol86/actions-init-deps-python-poetry@v1, with: {no-dev-deps: "false"}}
+      - {name: Initialize dependencies, uses: Robpol86/actions-init-deps-py@v2, with: {no-dev-deps: "false"}}
       - {name: Run tests, run: make test, env: {PY_COLORS: 1}}
       - {name: Run lints, run: make lint}
       - {name: Build docs, run: make docs}
