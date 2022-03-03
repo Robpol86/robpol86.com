@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
-      - {name: Initialize dependencies, uses: Robpol86/actions-init-deps-py@v2}
+      - {name: Initialize dependencies, uses: Robpol86/actions-init-deps-py@v3, with: {no-dev: "true"}}
       - {name: Build docs, run: make docs, env: {SPHINX_HTML_BASEURL: "https://rob86stage.robpol86.com/", SPHINX_GITHUB_BRANCH: main}}
       - {name: Prettify, uses: ./.github/actions/prettify, with: {path: build/html}}
       - name: Store HTML
