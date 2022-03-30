@@ -19,7 +19,7 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.7"
 # Project dependencies.
-myst-parser = {version = "^0.16", extras = ["linkify"]}  # TODO investigate &amp; bug.
+myst-parser = {version = "*", extras = ["linkify"]}
 pygments = "*"
 sphinx = "*"
 sphinx-autobuild = "*"
@@ -37,7 +37,8 @@ sphinxext-opengraph = "*"
 
 [tool.poetry.dev-dependencies]
 # Project.
-sphinx-book-theme = ">=0.2"
+myst-parser = "^0.16"  # TODO investigate &amp; bug.
+sphinx-book-theme = "0.2.0"  # TODO investigate CSS changes.
 # Linters.
 black = "*"
 flake8 = "*"
