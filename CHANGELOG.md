@@ -6,9 +6,16 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## 2022-03-30
+
+Installing Windows 11 on a Mac: Removing more bloatware
+
 - Latest version of sphinx-book-theme with performance enhancements.
 - Implemented support for tagging documents using a slightly customized Sphinx `index` directive.
 - Using sphinx_external_toc to support future blog posts.
+- Updated Windows 11 on Macs page to remove more bloat along with some tweaks.
 
 ## 2022-01-28
 

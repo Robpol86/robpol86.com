@@ -239,11 +239,14 @@ Get-ProvisionedAppxPackage -online |
     Where-Object { $_.DisplayName -like "Microsoft.Xbox*" -or $_.DisplayName -eq "Microsoft.GamingApp" } |
     ForEach-Object { Remove-ProvisionedAppxPackage -online -allusers -PackageName $_.PackageName }
 
+Get-AppxPackage -allusers -name Disney.* |Remove-AppxPackage -allusers  # Disney+
 Get-AppxPackage -allusers -name Microsoft.549981C3F5F10 |Remove-AppxPackage -allusers  # Cortana
 Get-AppxPackage -allusers -name Microsoft.BingNews |Remove-AppxPackage -allusers  # Microsoft News
+Get-AppxPackage -allusers -name Microsoft.BingWeather |Remove-AppxPackage -allusers  # Microsoft Weather
 Get-AppxPackage -allusers -name Microsoft.GetHelp |Remove-AppxPackage -allusers  # Get Help
 Get-AppxPackage -allusers -name Microsoft.Getstarted |Remove-AppxPackage -allusers  # Tips
 Get-AppxPackage -allusers -name Microsoft.MicrosoftOfficeHub |Remove-AppxPackage -allusers  # Office
+Get-AppxPackage -allusers -name Microsoft.MicrosoftSolitaireCollection |Remove-AppxPackage -allusers  # Solitaire
 Get-AppxPackage -allusers -name Microsoft.MicrosoftStickyNotes |Remove-AppxPackage -allusers  # Sticky Notes
 Get-AppxPackage -allusers -name Microsoft.Todos |Remove-AppxPackage -allusers  # Microsoft To Do
 Get-AppxPackage -allusers -name Microsoft.WindowsCommunicationsApps |Remove-AppxPackage -allusers  # Mail and Calendar
@@ -253,6 +256,7 @@ Get-AppxPackage -allusers -name Microsoft.YourPhone |Remove-AppxPackage -alluser
 Get-AppxPackage -allusers -name Microsoft.ZuneMusic |Remove-AppxPackage -allusers  # Groove Music
 Get-AppxPackage -allusers -name Microsoft.ZuneVideo |Remove-AppxPackage -allusers  # Movies & TV
 Get-AppxPackage -allusers -name MicrosoftTeams |Remove-AppxPackage -allusers  # Microsoft Teams
+Get-AppxPackage -allusers -name SpotifyAB.SpotifyMusic |Remove-AppxPackage -allusers  # Spotify
 ```
 
 Afterwards I had to reboot to get the Microsoft Store to sync.
@@ -267,6 +271,7 @@ Afterwards I had to reboot to get the Microsoft Store to sync.
     * `Set-Service -StartupType Automatic ssh-agent`
     * `Start-Service ssh-agent`
     * `wsl --install Ubuntu`
+    * *A new window should appear prompting you to setup your user and password*
     * `sudo apt-get update && sudo apt-get install -y zsh`
     * https://github.com/Robpol86/dotfiles
     * https://gist.github.com/Robpol86/3d4730818816f866452e
@@ -281,17 +286,17 @@ Afterwards I had to reboot to get the Microsoft Store to sync.
         * Open Docker Dashboard at startup: **Uncheck**
 
 `winget install -e --id Microsoft.PowerToys -s winget`
-:   * Keyboard Manager > Remap a key
-        * {kbd}`Caps Lock` -> {kbd}`Esc`
-    * PowerRename > Use Boost library: **On**
+:   * PowerRename > Use Boost library: **On**
 
 `winget install -e --id Microsoft.VisualStudioCode`
 :   * Enable Settings Sync
         * Sign in with Microsoft
 
 `winget install -e --id JetBrains.PyCharm.Professional`
-:   * Open project > File > Manage IDE Settings
-        * Sync Settings to JetBrains Account > Get Settings from Account
+:   * Open > Login with Account (opens web browser to authenticate and obtain license)
+    * Open project > File > Manage IDE Settings > Sync Settings to JetBrains Account
+        * Sync Plugins Silently
+        * Get Settings from Account
 
 ## Comments
 
