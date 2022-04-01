@@ -261,42 +261,75 @@ Get-AppxPackage -allusers -name SpotifyAB.SpotifyMusic |Remove-AppxPackage -allu
 
 Afterwards I had to reboot to get the Microsoft Store to sync.
 
-### Software
+### WSL2 and Ubuntu
 
-```{attention} Update all packages in the Microsoft Store Library first.
+In a Powershell admin window:
+
+```powershell
+# Enable Virtual Machine support on Windows
+DISM /online /enable-feature /featurename:VirtualMachinePlatform
+
+# Install WSL2 from the Microsoft Store
+winget install --name "Windows Subsystem for Linux" -s msstore
+
+# Install Ubuntu (a new terminal window should open to complete setup)
+wsl --install Ubuntu
 ```
 
-`winget install --name "Windows Subsystem for Linux" -s msstore`
-:   * `DISM /online /enable-feature /featurename:VirtualMachinePlatform`
-    * `Set-Service -StartupType Automatic ssh-agent`
-    * `Start-Service ssh-agent`
-    * `wsl --install Ubuntu`
-    * *A new window should appear prompting you to setup your user and password*
-    * `sudo apt-get update && sudo apt-get install -y zsh`
-    * https://github.com/Robpol86/dotfiles
-    * https://gist.github.com/Robpol86/3d4730818816f866452e
-    ```bash
-    sudo ln -s /usr/bin/wslview /usr/bin/open
-    ```
+From inside Ubuntu I setup zsh as my shell:
 
-`winget install -e --id Docker.DockerDesktop`
-:   * Reboot
-    * Launch Docker Desktop > Settings > General
-        * Start Docker Desktop when you log in: **Uncheck**
-        * Open Docker Dashboard at startup: **Uncheck**
+```shell
+sudo apt-get update && sudo apt-get install -y zsh
+```
 
-`winget install -e --id Microsoft.PowerToys -s winget`
-:   * PowerRename > Use Boost library: **On**
+Then I install additional software:
 
-`winget install -e --id Microsoft.VisualStudioCode`
-:   * Enable Settings Sync
-        * Sign in with Microsoft
+1. https://github.com/Robpol86/dotfiles
+2. https://gist.github.com/Robpol86/3d4730818816f866452e#installupdate-software
+3. https://gist.github.com/Robpol86/3d4730818816f866452e#shellgit
 
-`winget install -e --id JetBrains.PyCharm.Professional`
-:   * Open > Login with Account (opens web browser to authenticate and obtain license)
-    * Open project > File > Manage IDE Settings > Sync Settings to JetBrains Account
-        * Sync Plugins Silently
-        * Get Settings from Account
+#### SSH Agent
+
+This is how I setup WSL2 with an SSH agent that stores keys on the Windows host so that they persist after reboots. No more
+constantly running `ssh-add` after booting!
+
+In a Powershell admin window enable the Windows ssh-agent:
+
+```powershell
+Set-Service -StartupType Automatic ssh-agent
+Start-Service ssh-agent
+```
+
+Then from inside Ubuntu I run:
+
+```bash
+# Install npiperelay into C:\Users\Public\Libraries so multiple Windows users can use this feature
+wget https://github.com/jstarks/npiperelay/releases/download/v0.1.0/npiperelay_windows_amd64.zip
+unzip npiperelay_windows_amd64.zip npiperelay.exe -d /mnt/c/Users/Public/Libraries/
+rm npiperelay_windows_amd64.zip
+
+# Enable the ssh-agent from the Linux side when you start new shell sessions
+# If you use bash replace the file paths with /etc/profile or /etc/bash.bashrc
+sudo tee -a /etc/zsh/zshenv <<< 'export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"'
+sudo tee -a /etc/zsh/zlogin <<'EOF'
+if ! ss -a |grep -q "$SSH_AUTH_SOCK"; then
+    rm -f "$SSH_AUTH_SOCK"
+    setsid socat "UNIX-LISTEN:$SSH_AUTH_SOCK,fork" "EXEC:/mnt/c/Users/Public/Libraries/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent,nofork"
+fi
+EOF
+```
+
+Finally open a new Windows Terminal tab and run this from Ubuntu to verify communication with the Windows ssh-agent:
+
+```bash
+# Should say "The agent has no identities."
+ssh-add -l
+
+# I get: robpol86 ... 0:00 socat UNIX-LISTEN:/home/robpol86/.ssh/agent.sock,fork \
+#           EXEC:/mnt/c/Users/Public/Libraries/npiperelay.exe -ei \
+#           -s //./pipe/openssh-ssh-agent,nofork
+ps aux |grep -v grep |grep ssh-agent
+```
 
 ## Comments
 
