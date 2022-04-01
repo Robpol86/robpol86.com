@@ -8,6 +8,13 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - N/A
 
+## 2022-04-01
+
+Installing Windows 11 on a Mac: WSL2 ssh-agent steps
+
+- Moved WSL2 ssh-agent steps from gist to here since steps were split between the two before.
+- Removed software steps out of here since they're out of scope.
+
 ## 2022-03-30
 
 Installing Windows 11 on a Mac: Removing more bloatware
