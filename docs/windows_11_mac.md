@@ -268,7 +268,11 @@ In a Powershell admin window:
 ```powershell
 # Enable Virtual Machine support on Windows
 DISM /online /enable-feature /featurename:VirtualMachinePlatform
+```
 
+REBOOT
+
+```powershell
 # Install WSL2 from the Microsoft Store
 winget install --name "Windows Subsystem for Linux" -s msstore
 
