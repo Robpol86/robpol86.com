@@ -17,8 +17,6 @@ jobs:
 
       - name: Initialize dependencies
         uses: Robpol86/actions-init-deps-py@v3
-        with:
-          python-version: "3.10"  # TODO fromJSON(somefile.json) ?
 
       - name: Run tests
         env:
