@@ -19,11 +19,9 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.7"
 # Project dependencies.
-myst-parser = {version = "*", extras = ["linkify"]}
-pygments = "*"
-sphinx = "*"
-sphinx-autobuild = "*"
-sphinx-book-theme = "*"
+myst-parser = {version = "^0.16", extras = ["linkify"]}  # TODO investigate &amp; bug.
+Sphinx = "*"
+sphinx-book-theme = "0.2.0"  # TODO investigate CSS changes.
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
 sphinx-external-toc = "*"
@@ -36,9 +34,6 @@ sphinxcontrib-youtube = "*"
 sphinxext-opengraph = "*"
 
 [tool.poetry.dev-dependencies]
-# Project.
-myst-parser = "^0.16"  # TODO investigate &amp; bug.
-sphinx-book-theme = "0.2.0"  # TODO investigate CSS changes.
 # Linters.
 black = "*"
 flake8 = "*"
@@ -49,17 +44,26 @@ pylint = "*"
 # Tests.
 pytest = "*"
 pytest-icdiff = "*"
+# Docs.
+sphinx-autobuild = "*"
 
 [tool.black]
 line-length = 125
 target-version = ["py37", "py38", "py39", "py310"]
 
 [tool.pylint.FORMAT]
-disable = ["fixme"]
 good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
 ignore = [".venv/*", "build/*", "dist/*"]
 max-line-length = 125
 reports = false
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = [
+    "consider-using-f-string",
+    "duplicate-code",
+    "fixme",
+    "too-many-arguments",
+]
 
 [tool.pylint.SIMILARITIES]
 ignore-imports = true
