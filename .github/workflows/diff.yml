@@ -22,16 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - {name: Check out repository code, uses: actions/checkout@v2}
-      - name: Determine asset URL
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const release = github.rest.repos.getReleaseByTag({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag: '_pre-release'
-            })
-            console.log(release)
       - name: Download pre-release asset
         env: {URL: "https://github.com/${{ github.repository }}/releases/download/_pre-release/html.tar.gz"}
         run: |
