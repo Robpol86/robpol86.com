@@ -26,7 +26,7 @@ button for 3 seconds and have them saved to the SD card. You'll need an [OBD11/O
 ```
 
 ```{seealso}
-https://www.youtube.com/watch?v=R9WlrkBioi8&ab_channel=mr-fix
+https://www.youtube.com/watch?v=R9WlrkBioi8
 ```
 
 In the FEC/SWaP menu I have the following features enabled and disabled:
@@ -47,7 +47,7 @@ Disabled Codes
   * `00070400` (Electronic Voice Amplifier / ICC)
 
 ```{seealso}
-https://www.youtube.com/watch?v=p5LA7dU4_WI&ab_channel=mr-fix
+https://www.youtube.com/watch?v=p5LA7dU4_WI
 https://mst2fecgen.mibsolution.one/
 ```
 
