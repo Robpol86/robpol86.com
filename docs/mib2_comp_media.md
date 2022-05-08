@@ -10,7 +10,7 @@ GPS). Lucky for me, it's possible to gain root access to the unit.
 
 I used these resources to learn about this:
 
-* https://www.youtube.com/watch?v=R9WlrkBioi8&ab_channel=mr-fix
+* https://www.youtube.com/watch?v=R9WlrkBioi8
 * https://mibsolution.one/#/1/9/MST2%20%20-%20DELPHI/Instruction
 
 ## Root Shell
