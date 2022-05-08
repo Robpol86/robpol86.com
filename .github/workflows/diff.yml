@@ -2,7 +2,6 @@ name: Diff
 
 on:
   pull_request:
-  push:  # TODO remove
 
 jobs:
 
@@ -12,19 +11,27 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-        with: {fetch-depth: 0}
+        with:
+          fetch-depth: 0
       - name: Initialize dependencies
         uses: Robpol86/actions-init-deps-py@v3
-        with: {no-dev: "true"}
+        with:
+          no-dev: "true"
       - name: Build docs
-        env: {SPHINX_HTML_BASEURL: "https://rob86stage.robpol86.com/", SPHINX_GITHUB_BRANCH: main}
+        env:
+          SPHINX_GITHUB_BRANCH: main
+          SPHINX_HTML_BASEURL: "https://rob86stage.robpol86.com/"
         run: make docs
       - name: Prettify
         uses: ./.github/actions/prettify
-        with: {path: build/html}
+        with:
+          path: build/html
       - name: Store HTML
         uses: actions/upload-artifact@v2
-        with: {name: html_feature, path: build/html/, if-no-files-found: error}
+        with:
+          name: html_feature
+          if-no-files-found: error
+          path: build/html/
 
   fetch:
     name: Fetch Pre-Release HTML
@@ -33,7 +40,8 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Download pre-release asset
-        env: {URL: "https://github.com/${{ github.repository }}/releases/download/_pre-release/html.tar.gz"}
+        env:
+          URL: "https://github.com/${{ github.repository }}/releases/download/_pre-release/html.tar.gz"
         run: |
           mkdir build
           until wget "$URL" -O html.tar.gz; do sleep 5; done
@@ -41,10 +49,14 @@ jobs:
         timeout-minutes: 1
       - name: Prettify
         uses: ./.github/actions/prettify
-        with: {path: build/html}
+        with:
+          path: build/html
       - name: Store HTML
         uses: actions/upload-artifact@v2
-        with: {name: html_pre, path: build/html/, if-no-files-found: error}
+        with:
+          name: html_pre
+          if-no-files-found: error
+          path: build/html/
 
   diff:
     name: Diff
@@ -53,10 +65,14 @@ jobs:
     steps:
       - name: Fetch this feature build
         uses: actions/download-artifact@v2
-        with: {name: html_feature, path: html_feature}
+        with:
+          name: html_feature
+          path: html_feature
       - name: Fetch latest pre-release
         uses: actions/download-artifact@v2
-        with: {name: html_pre, path: html_pre}
+        with:
+          name: html_pre
+          path: html_pre
       - name: Clean
         run: "find . '(' -name __pycache__ -o -name .doctrees ')' -type d -exec rm -rv {} +"
       - name: Diff
@@ -74,7 +90,8 @@ jobs:
           fi
       - name: Post diff to PR if any changes are detected
         uses: actions/github-script@v5
-        env: {DIFF_NONZERO: "${{ steps.diff.outputs.nonzero }}"}
+        env:
+          DIFF_NONZERO: "${{ steps.diff.outputs.nonzero }}"
         with:
           script: |
             const heading = 'Diff Against [Pre-Release](https://github.com/Robpol86/robpol86.com/releases/tag/_pre-release)'
