@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - {name: Check out repository code, uses: actions/checkout@v2}
-      - name: Download pre-release artifact
+      - name: Download pre-release asset
         env: {URL: "https://github.com/${{ github.repository }}/releases/download/_pre-release/html.tar.gz"}
         run: |
           mkdir build
