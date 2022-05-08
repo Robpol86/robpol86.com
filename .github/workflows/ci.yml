@@ -2,15 +2,29 @@ name: CI
 
 on:
   pull_request:
-  push:
+  push: {branches-ignore: ["**_pr"]}
 
 jobs:
 
   ci:
     runs-on: ubuntu-latest
     steps:
-      - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
-      - {name: Initialize dependencies, uses: Robpol86/actions-init-deps-py@v3}
-      - {name: Run tests, run: make test, env: {PY_COLORS: 1}}
-      - {name: Run lints, run: make lint}
-      - {name: Build docs, run: make docs}
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Initialize dependencies
+        uses: Robpol86/actions-init-deps-py@v3
+
+      - name: Run tests
+        env:
+          PY_COLORS: 1
+        run: make test
+
+      - name: Run lints
+        run: make lint
+
+      - name: Build docs
+        run: make docs
