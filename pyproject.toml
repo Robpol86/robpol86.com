@@ -1,6 +1,6 @@
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "Robpol86.com"
@@ -21,7 +21,7 @@ python = "^3.7"
 # Project dependencies.
 myst-parser = {version = "*", extras = ["linkify"]}
 pygments = "*"
-sphinx = "*"
+Sphinx = "*"
 sphinx-autobuild = "*"
 sphinx-book-theme = "*"
 sphinx-copybutton = "*"
@@ -70,7 +70,4 @@ ignored-modules = ["distutils", "py"]
 
 [tool.pytest.ini_options]
 addopts = "--durations=15 --showlocals --verbose --verbose"
-filterwarnings = [
-    "ignore::DeprecationWarning:sphinx.*:",
-]
 log_level = "DEBUG"
