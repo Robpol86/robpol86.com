@@ -23,7 +23,6 @@ myst-parser = {version = "*", extras = ["linkify"]}
 Sphinx = "*"
 sphinx-book-theme = "0.2.0"  # TODO investigate CSS changes.
 sphinx-copybutton = "*"
-sphinx-design = "*"
 sphinx-disqus = "*"
 sphinx-external-toc = "*"
 sphinx-imgur = "*"
