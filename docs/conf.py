@@ -108,7 +108,7 @@ myst_enable_extensions = [
 myst_substitutions = {
     "resume_link": f"[Résumé]({html_baseurl.rstrip('/')}/{html_static_path[0].strip('/')}/resume.pdf)",
 }
-myst_url_schemes = ["http", "https", "mailto"]
+myst_url_schemes = ("http", "https", "mailto")
 
 
 # https://sphinx-notfound-page.readthedocs.io/en/latest/configuration.html
