@@ -28,12 +28,13 @@ sphinx-external-toc = "*"
 sphinx-imgur = "*"
 sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"
-sphinx-panels = "*"
 sphinx-sitemap = "*"
 sphinxcontrib-youtube = "*"
 sphinxext-opengraph = "*"
 
 [tool.poetry.dev-dependencies]
+# IDE.
+docutils-stubs = "*"
 # Linters.
 black = "*"
 flake8 = "*"

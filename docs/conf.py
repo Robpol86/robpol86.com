@@ -27,7 +27,6 @@ extensions = [
     "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
-    "sphinx_panels",  # https://sphinx-panels.readthedocs.io
     "sphinx_sitemap",  # https://github.com/jdillard/sphinx-sitemap
     "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
@@ -131,10 +130,6 @@ external_toc_path = ".toc.yml"
 
 # https://sphinx-imgur.readthedocs.io/en/v3.0.0/usage.html
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
-
-
-# https://sphinx-panels.readthedocs.io/en/latest/#sphinx-configuration
-panels_add_bootstrap_css = False
 
 
 # https://github.com/jdillard/sphinx-sitemap#customizing-the-url-scheme
