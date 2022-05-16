@@ -9,6 +9,7 @@ description = "My personal website."
 readme = "README.md"
 authors = ["Robpol86 <robpol86@gmail.com>"]
 license = "BSD-2-Clause"
+packages = [{include = "robpol86_com"}]
 classifiers = [
     "Private :: Do Not Upload",
 ]
