@@ -18,6 +18,7 @@ env:
     .doctrees/
     __pycache__/
   PRETTIER_GLOB: "**/*.{js,css,html,xml}"
+  PYTHON_VERSION: "3.10"
   ROOT_DIR_DIFF: ./docs/_build/html
   TRUNCATE_TO_BYTES: 256000
 
@@ -36,6 +37,7 @@ jobs:
         uses: Robpol86/actions-init-deps-py@v3
         with:
           no-dev: "true"
+          python-version: "${{ env.PYTHON_VERSION }}"
       - name: Build docs
         env:
           SPHINX_GITHUB_BRANCH: main
