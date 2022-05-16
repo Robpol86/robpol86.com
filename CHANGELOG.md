@@ -8,14 +8,14 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - N/A
 
-## 2022-04-01
+## [2022.4.1]
 
 Installing Windows 11 on a Mac: WSL2 ssh-agent steps
 
 - Moved WSL2 ssh-agent steps from gist to here since steps were split between the two before.
 - Removed software steps out of here since they're out of scope.
 
-## 2022-03-30
+## [2022.3.30]
 
 Installing Windows 11 on a Mac: Removing more bloatware
 
@@ -24,7 +24,7 @@ Installing Windows 11 on a Mac: Removing more bloatware
 - Using sphinx_external_toc to support future blog posts.
 - Updated Windows 11 on Macs page to remove more bloat along with some tweaks.
 
-## 2022-01-28
+## [2022.1.28]
 
 Franklin T9: Auto Reboot
 
@@ -33,19 +33,19 @@ Franklin T9: Auto Reboot
 - Optimizing GitHub Actions by only installing dev dependencies in ci.yml and not deploy/diff.
 - Linting CHANGELOG.md file in CI via pytest.
 
-## 2022-01-04
+## [2022.1.4]
 
 New page: MIB2 Hacking
 
 - Added MIB2 Composition Media Hacking with some initial findings.
 
-## 2022-01-02
+## [2022.1.2]
 
 Alltrack page: MIB2 Developer Mode
 
 - Added MIB2 Developer Mode section to Alltrack page.
 
-## 2021-12-31
+## [2021.12.31]
 
 Alltrack page: Forums links
 
@@ -53,7 +53,7 @@ Alltrack page: Forums links
 - Added forums post links to latest Alltrack page entries.
 - Resolved Pygments dependency TODO now that v2.11 has been released.
 
-## 2021-12-24
+## [2021.12.24]
 
 Euro Tail Lights, license links, diff HTML files
 
@@ -63,14 +63,14 @@ Euro Tail Lights, license links, diff HTML files
 - Moved all images to Imgur now that sphinx-imgur works fine with OpenGraph.
 - Added link to LICENSE file in the left sidebar.
 
-## 2021-12-13
+## [2021.12.13]
 
 Windows 11 on a Mac: BIOS and EFI bootable
 
 - Restyled commands in Windows 11 on Mac page.
 - Made Windows 11 Boot Camp ISO bootable on traditional BIOS and UEFI PCs.
 
-## 2021-12-11
+## [2021.12.11]
 
 New page: Installing Windows 11 on a Mac
 
@@ -84,7 +84,7 @@ New page: Installing Windows 11 on a Mac
 - Imgur links defaults to full size image (though Imgur redirects visitors to the old page unless they click through first).
 - Added new page: Installing Windows 11 on a Mac. Including BitLocker instructions.
 
-## 2021-12-07
+## [2021.12.7]
 
 Style consistency
 
@@ -92,7 +92,7 @@ Style consistency
 - Split custom.css into two scoped files.
 - Reordered Tutorials TOC list.
 
-## 2021-12-05
+## [2021.12.5]
 
 Background image and autobiography
 
@@ -103,7 +103,7 @@ Background image and autobiography
 - Adding a background image to every page.
 - Adding a short autobiography.
 
-## 2021-12-03
+## [2021.12.3]
 
 Latest Imgur extension with OpenGraph support
 
@@ -115,7 +115,7 @@ Latest Imgur extension with OpenGraph support
 - Changed OpenGraph type from "article" to "website". They look the same in Discord and article has a bunch of extra tags
   that I won't be using: https://ogp.me/#no_vertical
 
-## 2021-11-25
+## [2021.11.25]
 
 Franklin T9 page updates, dependency updates
 
@@ -125,7 +125,7 @@ Franklin T9 page updates, dependency updates
 - Using newer unreleased sphinxcontrib-youtube extension.
 - Updated opengraph extension with absolute path fix.
 
-## 2021-11-12
+## [2021.11.12]
 
 Franklin T9 page updates and changes
 
@@ -136,13 +136,13 @@ Franklin T9 page updates and changes
 - Added device tree, full kernel config, datasheets, notes section, uname, lsmod, dmesg, and build.prop.
 - Added steps on how to use SSH key authentication.
 
-## 2021-11-09
+## [2021.11.9]
 
 New sections for Franklin T9 Hacking
 
 - Added new sections: Fastboot, ADB, Automatic Power On, and Interesting Information.
 
-## 2021-11-05
+## [2021.11.5]
 
 New page: T-Mobile Franklin T9 Hacking
 
@@ -152,14 +152,14 @@ New page: T-Mobile Franklin T9 Hacking
 - Remove tests since they're all disabled and one (docker) has a [security issue](https://github.com/docker/docker-py/issues/2902).
 - Update 404 page with a Lemmings iframe.
 
-## 2021-10-25
+## [2021.10.25]
 
 Updating Monoprice Maker Select v2 and Golf Alltrack SE, better date formatting
 
 - Using "Oct `21" datestamps instead of "21-10" to make it more human-readable.
 - Adding EcoHitch Install and Upgrading Parts posts.
 
-## 2021-10-21
+## [2021.10.21]
 
 Adding Monoprice Maker Select v2, updating Golf Alltrack SE
 
@@ -175,38 +175,38 @@ Adding Monoprice Maker Select v2, updating Golf Alltrack SE
 - Added CHANGELOG file.
 - Updated Python dependencies.
 
-## 2021-09-10
+## [2021.9.10]
 
 Moving Google Analytics to Cloudflare
 
-## 2021-09-09
+## [2021.9.9]
 
 Updating Golf Alltrack SE
 
 - Added Rear Dashcam Pair section
 - Using definition list instead of glossary for duplicates
 
-## 2021-09-06
+## [2021.9.6]
 
 Updating Golf Alltrack SE
 
 - Adding OBDeleven mods with some pictures.
 - Split Dashcam section into two parts.
 
-## 2021-08-28
+## [2021.8.28]
 
 Updating Golf Alltrack SE
 
 - Embedding drag race youtube video.
 
-## 2021-08-27
+## [2021.8.27]
 
 Added Golf Alltrack SE
 
 - Updated Python dependencies.
 - Adding new page: Golf Alltrack SE
 
-## 2021-06-15
+## [2021.6.15]
 
 Refreshed Website
 

@@ -23,7 +23,7 @@ def test_changelog(request: FixtureRequest):
     seen_released = False
     for line in handle:
         if line.startswith("## "):
-            assert re.findall(r"^## \d{4}-\d{2}-\d{2}\n$", line, re.MULTILINE)
+            assert re.findall(r"^## \[\d{4}[.]\d{1,2}[.]\d{1,2}]\n$", line, re.MULTILINE)
             seen_released = True
             break
     assert seen_released
