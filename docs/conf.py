@@ -5,9 +5,10 @@ import time
 from urllib.parse import urlparse
 
 from robpol86_com import __license__, __version__ as version
+from robpol86_com.ci import git_branch, git_url
 
-GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or None
-GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if "GITHUB_REPOSITORY" in os.environ else None
+GIT_BRANCH = git_branch()
+GIT_URL = git_url()
 
 
 # General configuration.
