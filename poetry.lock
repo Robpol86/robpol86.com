@@ -730,6 +730,17 @@ sphinx = ["ablog (>=0.10.13,<0.11.0)", "ipywidgets", "folium", "numpy", "matplot
 testing = ["coverage", "myst-nb (>=0.13,<1.0)", "pytest (>=6.0.1,<6.1.0)", "pytest-cov", "pytest-regressions (>=2.0.1,<2.1.0)", "sphinx-thebe"]
 
 [[package]]
+name = "sphinx-carousel"
+version = "1.0.0"
+description = "A Sphinx extension for creating slideshows using Bootstrap Carousels."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Sphinx = ">=4.0.0"
+
+[[package]]
 name = "sphinx-copybutton"
 version = "0.5.0"
 description = "Add a copy button to each of your code cells."
@@ -985,7 +996,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "21cfca6df487ef006a9dfa92423142c3ed9f87e912415495e4df6f7591f51a91"
+content-hash = "0f4220dcff5422a9f91e4cfcb00de251393ddd1cdb3f9e66cd4a5a2dc3f982ae"
 
 [metadata.files]
 alabaster = [
@@ -1349,6 +1360,10 @@ sphinx-autobuild = [
 sphinx-book-theme = [
     {file = "sphinx-book-theme-0.2.0.tar.gz", hash = "sha256:9f9762f2c6372e7ebaac905707628efe80386d3e5160945d8965d309aeed940d"},
     {file = "sphinx_book_theme-0.2.0-py3-none-any.whl", hash = "sha256:4247c7fb938da804dda6a92b617c65eb44a10838ba891b62ddfeb8da4d934554"},
+]
+sphinx-carousel = [
+    {file = "sphinx-carousel-1.0.0.tar.gz", hash = "sha256:f1cf78879286965ecd7ba0b4d2b48073bd4e03e0a641792ea5eb124717d54f1a"},
+    {file = "sphinx_carousel-1.0.0-py3-none-any.whl", hash = "sha256:2b356dc35770dbcf3a7c3f25a6d9f78b2ad157323a0a398997258a64fc32cb27"},
 ]
 sphinx-copybutton = [
     {file = "sphinx-copybutton-0.5.0.tar.gz", hash = "sha256:a0c059daadd03c27ba750da534a92a63e7a36a7736dcf684f26ee346199787f6"},

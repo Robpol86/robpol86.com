@@ -18,6 +18,7 @@ extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "robpol86_com.legacy",
+    "sphinx_carousel.carousel",  # https://sphinx-carousel.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
     "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
