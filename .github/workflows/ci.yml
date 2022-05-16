@@ -6,7 +6,11 @@ on:
 
 jobs:
 
-  ci:
+  test:
+    name: Test
+    strategy:
+      matrix:
+        python: ["3.8", "3.9", "3.10"]
     runs-on: ubuntu-latest
     steps:
 
@@ -17,6 +21,9 @@ jobs:
 
       - name: Initialize dependencies
         uses: Robpol86/actions-init-deps-py@v3
+        with:
+          cache-buster: "${{ join(matrix.*, '|') }}"
+          python-version: "${{ matrix.python }}"
 
       - name: Run tests
         env:

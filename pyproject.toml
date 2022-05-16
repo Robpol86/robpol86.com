@@ -17,7 +17,7 @@ classifiers = [
 repository = "https://github.com/Robpol86/robpol86.com"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 # Project dependencies.
 myst-parser = {version = "*", extras = ["linkify"]}
 Sphinx = "*"
@@ -50,7 +50,7 @@ sphinx-autobuild = "*"
 
 [tool.black]
 line-length = 125
-target-version = ["py37", "py38", "py39", "py310"]
+target-version = ["py38", "py39", "py310"]
 
 [tool.pylint.FORMAT]
 good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
