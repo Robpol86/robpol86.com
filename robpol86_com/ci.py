@@ -9,9 +9,9 @@ def git_branch() -> Optional[str]:
         # Overridden.
         return os.environ["SPHINX_GITHUB_BRANCH"]
 
-    if branch := os.environ.get("GITHUB_BASE_REF", ""):
+    if pr_sha := os.environ.get("GITHUB_HEAD_REF", ""):
         # In a pull request.
-        return branch
+        return pr_sha
 
     if branch := os.environ.get("GITHUB_REF_NAME", ""):
         return branch
