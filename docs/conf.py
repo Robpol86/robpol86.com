@@ -102,7 +102,6 @@ myst_enable_extensions = [
     "linkify",
     "replacements",
     "substitution",
-    "tasklist",
 ]
 myst_substitutions = {
     "resume_link": f"[Résumé]({html_baseurl.rstrip('/')}/{html_static_path[0].strip('/')}/resume.pdf)",
