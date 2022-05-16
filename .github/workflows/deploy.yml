@@ -1,7 +1,16 @@
-name: Deploy to Production
+name: Deploy
 
 on:
-  push: {tags: ["[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"]}
+  push:
+    # Staging
+    branches: ["**"]
+    # Production
+    tags: ["[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"]
+
+env:
+  BASEURL_PROD: https://robpol86.com/
+  BASEURL_STAGE: https://rob86stage.robpol86.com/
+  IS_PROD: "${{ startsWith(github.ref, 'refs/tags/') && 'true' || '' }}"
 
 jobs:
 
@@ -11,7 +20,7 @@ jobs:
     steps:
       - {name: Check out repository code, uses: actions/checkout@v2, with: {fetch-depth: 0}}
       - {name: Initialize dependencies, uses: Robpol86/actions-init-deps-py@v3, with: {no-dev: "true"}}
-      - {name: Build docs, run: make docs, env: {SPHINX_HTML_BASEURL: "https://robpol86.com/"}}
+      - {name: Build docs, run: make docs, env: {SPHINX_HTML_BASEURL: "${{ env.IS_PROD && env.BASEURL_PROD || env.BASEURL_STAGE }}"}}
       - {name: Store HTML, uses: actions/upload-artifact@v2, with: {name: html, path: ./docs/_build/html/, if-no-files-found: error}}
 
   publish:
@@ -26,12 +35,13 @@ jobs:
         uses: ./.github/actions/deploy
         with:
           source: ./docs/_build/html/
-          user: "${{ secrets.NFSN_SSH_USER_PROD }}"
+          user: "${{ env.IS_PROD && secrets.NFSN_SSH_USER_PROD || secrets.NFSN_SSH_USER_STAGE }}"
           ssh-key: "${{ secrets.NFSN_SSH_KEY }}"
           cf-token: "${{ secrets.TOKEN_CF_PURGE_CACHE }}"
 
   release:
     name: Create Release
+    if: startsWith(github.ref, 'refs/tags/')  # env.IS_PROD
     runs-on: ubuntu-latest
     needs: publish
     steps:
