@@ -22,7 +22,7 @@ jobs:
       - name: Initialize dependencies
         uses: Robpol86/actions-init-deps-py@v3
         with:
-          cache-buster: "${{ join(matrix.*, '|') }}-2022-05-16"
+          cache-buster: "${{ join(matrix.*, '|') }}"
           python-version: "${{ matrix.python }}"
 
       - name: Run tests

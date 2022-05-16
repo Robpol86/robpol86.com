@@ -35,7 +35,6 @@ jobs:
       - name: Initialize dependencies
         uses: Robpol86/actions-init-deps-py@v3
         with:
-          cache-buster: "2022-05-16"
           no-dev: "true"
       - name: Build docs
         env:
