@@ -4,6 +4,8 @@ import os
 import time
 from urllib.parse import urlparse
 
+from robpol86_com import __license__
+
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or "main"
 GIT_URL = "https://github.com/Robpol86/robpol86.com"
@@ -75,13 +77,13 @@ html_theme_options = {
         'Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a><br>'
         'Theme: <a href="https://sphinx-book-theme.readthedocs.io/">Sphinx Book Theme</a><br>'
         'Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>'
-        f'License: <a href="{GIT_URL}/blob/{GIT_BRANCH}/LICENSE">BSD-2-Clause</a><br>'
+        f'License: <a href="{GIT_URL}/blob/{GIT_BRANCH}/LICENSE">{__license__}</a><br>'
         "</p>"
     ),
     "logo_only": True,
     "path_to_docs": "docs",
-    "repository_branch": GIT_BRANCH,
-    "repository_url": GIT_URL,
+    "repository_branch": os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or None,
+    "repository_url": f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if "GITHUB_REPOSITORY" in os.environ else None,
     "use_edit_page_button": True,
 }
 html_title = project
