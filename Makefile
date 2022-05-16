@@ -1,4 +1,5 @@
 .DEFAULT_GOAL = help
+PROJECT_NAME = robpol86_com
 export POETRY_VIRTUALENVS_IN_PROJECT = true
 
 ## Dependencies
@@ -23,12 +24,9 @@ relock:
 	rm -f poetry.lock && $(MAKE) poetry.lock
 
 .PHONY: deps
-deps: _HELP = Install project dependencies (optional NO_DEV env var)
+deps: _HELP = Install project dependencies
 deps:
-	poetry install $(if $(NO_DEV),--no-dev)
-	poetry env info --ansi
-	poetry env info --no-ansi |grep -qE "^Valid: +True"
-	poetry run python -V
+	poetry install
 
 ## Testing
 
@@ -37,38 +35,57 @@ lint: _HELP = Run linters
 lint:
 	poetry check
 	poetry run black --check --color --diff .
-	poetry run flake8 --application-import-names docs,tests
-	poetry run pylint docs tests
+	poetry run flake8 --application-import-names $(PROJECT_NAME),docs,tests
+	poetry run pylint $(PROJECT_NAME) docs tests
 
 .PHONY: test
-test: _HELP = Run tests
+test: _HELP = Run unit tests
 test:
-	poetry run pytest tests
+	@echo NotImplemented
 
 .PHONY: testpdb
-testpdb: _HELP = Run tests and drop into the debugger on failure
+testpdb: _HELP = Run unit tests and drop into the debugger on failure
 testpdb:
-	poetry run pytest --pdb tests
+	@echo NotImplemented
+
+.PHONY: it
+it: _HELP = Run integration tests
+it:
+	poetry run pytest tests/integration_tests
+
+.PHONY: itpdb
+itpdb: _HELP = Run integration tests and drop into the debugger on failure
+itpdb:
+	poetry run pytest --pdb tests/integration_tests
+
+.PHONY: all
+all: _HELP = Run linters, unit tests, integration tests, and builds
+all: test it lint docs build
 
 ## Build
 
-build/html/index.html::
-	poetry run sphinx-build -n -W docs $(@D)
+.PHONY: build
+build: _HELP = Build Python package (sdist and wheel)
+build:
+	@echo NotImplemented
+
+docs/_build/html/index.html::
+	poetry run sphinx-build -T -n -W docs $(@D)
 	@echo Documentation available here: $@
 
-.PHONY: docs build
-docs build: _HELP = Build HTML documentation
-docs build: build/html/index.html
+.PHONY: docs
+docs: _HELP = Build HTML documentation
+docs: docs/_build/html/index.html
 
 autodocs: _HELP = Start a web server, open browser, and auto-rebuild HTML on file changes
-autodocs: build/html/index.html
+autodocs: docs/_build/html/index.html
 	poetry run sphinx-autobuild --open-browser --delay=1 --host localhost -n -W docs $(<D)
 
 ## Misc
 
 clean: _HELP = Remove temporary files
 clean:
-	rm -rfv *.egg-info/ *cache*/ .*cache*/ .coverage* coverage.xml htmlcov/ dist/ build/ requirements.txt
+	rm -rfv *.egg-info/ *cache*/ .*cache*/ .coverage* coverage.xml htmlcov/ dist/ docs/_build/ requirements.txt
 	find . -path '*/.*' -prune -o -name __pycache__ -type d -exec rm -r {} +
 
 distclean: _HELP = Remove temporary files including virtualenv
