@@ -20,7 +20,7 @@ copyright = f'{time.strftime("%Y")}, Robpol86'  # pylint: disable=redefined-buil
 html_last_updated_fmt = f"%c {time.tzname[time.localtime().tm_isdst]}"
 exclude_patterns = []
 extensions = [
-    "myst_parser",  # https://myst-parser.readthedocs.io/en/latest/index.html
+    "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
@@ -89,26 +89,17 @@ html_theme_options = {
     "repository_url": GIT_URL,
     "use_edit_page_button": True,
 }
-html_title = "Robpol86.com"
+html_title = project
 html_use_index = True
 
 
-# https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
-myst_enable_extensions = [
-    "colon_fence",
-    "deflist",
-    "fieldlist",
-    "linkify",
-    "replacements",
-    "substitution",
-]
-myst_substitutions = {
-    "resume_link": f"[Résumé]({html_baseurl.rstrip('/')}/{html_static_path[0].strip('/')}/resume.pdf)",
-}
+# Extension settings.
+disqus_shortname = "rob86wiki"
+external_toc_path = ".toc.yml"
+imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
+myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "substitution"]
+myst_substitutions = {"resume_link": f"[Résumé]({html_baseurl.rstrip('/')}/{html_static_path[0].strip('/')}/resume.pdf)"}
 myst_url_schemes = ("http", "https", "mailto")
-
-
-# https://sphinx-notfound-page.readthedocs.io/en/latest/configuration.html
 notfound_context = dict(
     title="404 Not Found",
     body="<h1>404 Not Found</h1>\n\n"
@@ -116,38 +107,19 @@ notfound_context = dict(
     'frameborder="0" scrolling="no"></iframe>',
 )
 notfound_urls_prefix = ""
-
-
-# https://sphinx-disqus.readthedocs.io/en/v1.2.0/install.html
-disqus_shortname = "rob86wiki"
-
-
-# https://sphinx-external-toc.readthedocs.io/en/latest/user_guide/sphinx.html
-external_toc_path = ".toc.yml"
-
-
-# https://sphinx-imgur.readthedocs.io/en/v3.0.0/usage.html
-imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
-
-
-# https://github.com/jdillard/sphinx-sitemap#customizing-the-url-scheme
-sitemap_url_scheme = "{link}"
-
-
-# https://sphinxext-opengraph.readthedocs.io/en/latest/#options
-ogp_site_url = html_baseurl
-ogp_description_length = 300
-ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo.rsplit('.', 1)[0]}.png"
-ogp_site_name = "Robpol86.com"
-ogp_type = "website"
-ogp_use_first_image = True
 ogp_custom_meta_tags = [
     '<meta name="twitter:card" content="summary_large_image">',
     f'<meta property="twitter:domain" content="{urlparse(html_baseurl).netloc}">',
 ]
+ogp_description_length = 300
+ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo.rsplit('.', 1)[0]}.png"
+ogp_site_name = html_title
+ogp_site_url = html_baseurl
+ogp_type = "website"
+ogp_use_first_image = True
+sitemap_url_scheme = "{link}"
 
 
-# robots.txt templating
 def render_robots_txt(app: Sphinx, _):
     """Parse Jinja2 templating in robots.txt file.
 
