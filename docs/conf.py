@@ -4,7 +4,7 @@ import os
 import time
 from urllib.parse import urlparse
 
-from robpol86_com import __version__
+from robpol86_com import __license__
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or None
 GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if "GITHUB_REPOSITORY" in os.environ else None
@@ -76,7 +76,7 @@ html_theme_options = {
         'Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a><br>'
         'Theme: <a href="https://sphinx-book-theme.readthedocs.io/">Sphinx Book Theme</a><br>'
         'Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>'
-        f'License: <a href="{GIT_URL}/blob/{GIT_BRANCH}/LICENSE">{__version__}</a><br>'
+        f'License: <a href="{GIT_URL}/blob/{GIT_BRANCH}/LICENSE">{__license__}</a><br>'
         "</p>"
     ),
     "logo_only": True,
