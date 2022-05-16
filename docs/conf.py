@@ -4,7 +4,7 @@ import os
 import time
 from urllib.parse import urlparse
 
-from robpol86_com import __license__
+from robpol86_com import __license__, __version__ as version
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or None
 GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if "GITHUB_REPOSITORY" in os.environ else None
@@ -30,6 +30,7 @@ extensions = [
 language = "en"
 project = "Robpol86.com"
 pygments_style = "vs"
+release = version
 templates_path = ["_templates"]
 
 
