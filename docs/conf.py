@@ -5,9 +5,10 @@ import time
 from urllib.parse import urlparse
 
 from robpol86_com import __license__, __version__ as version
-from robpol86_com.ci import git_url_branch
+from robpol86_com.ci import git_branch, git_url
 
-GIT_URL, GIT_BRANCH = git_url_branch()
+GIT_BRANCH = git_branch()
+GIT_URL = git_url()
 
 
 # General configuration.

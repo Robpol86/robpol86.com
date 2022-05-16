@@ -1,24 +1,28 @@
 """Code mainly used in continuous integration."""
 import os
-from typing import Optional, Tuple
+from typing import Optional
 
 
-def git_url_branch() -> Tuple[Optional[str], Optional[str]]:
-    """Determine the git URL and branch used for repo links."""
+def git_branch() -> Optional[str]:
+    """Return the git branch for repo links."""
+    if "SPHINX_GITHUB_BRANCH" in os.environ:
+        # Overridden.
+        return os.environ["SPHINX_GITHUB_BRANCH"]
+
+    if branch := os.environ.get("GITHUB_BASE_REF", ""):
+        # In a pull request.
+        return branch
+
+    if branch := os.environ.get("GITHUB_REF_NAME", ""):
+        return branch
+
+    # Running locally, disable repo links.
+    return None
+
+
+def git_url() -> Optional[str]:
+    """Return the base url for repo links."""
     if "GITHUB_REPOSITORY" in os.environ:
         # Running from GitHub Actions.
-        url = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}'
-        if "SPHINX_GITHUB_BRANCH" in os.environ:
-            # Apply override.
-            branch = os.environ["SPHINX_GITHUB_BRANCH"]
-        elif "GITHUB_BASE_REF" in os.environ:
-            # In a pull request.
-            branch = os.environ["GITHUB_SHA"]
-        else:
-            branch = os.environ["GITHUB_REF_NAME"]
-    else:
-        # Running locally, disable repo links.
-        url = None
-        branch = None
-
-    return url, branch
+        return f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}'
+    return None
