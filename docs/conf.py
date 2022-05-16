@@ -16,7 +16,8 @@ GIT_URL = "https://github.com/Robpol86/robpol86.com"
 
 
 # General configuration.
-copyright = f'{time.strftime("%Y")}, Robpol86'  # pylint: disable=redefined-builtin  # noqa
+author = "Robpol86"
+copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-builtin  # noqa
 html_last_updated_fmt = f"%c {time.tzname[time.localtime().tm_isdst]}"
 exclude_patterns = []
 extensions = [
@@ -34,6 +35,7 @@ extensions = [
 language = "en"
 project = "Robpol86.com"
 pygments_style = "vs"
+show_authors = False
 templates_path = ["_templates"]
 
 
