@@ -18,7 +18,7 @@ env:
     .doctrees/
     __pycache__/
   PRETTIER_GLOB: "**/*.{js,css,html,xml}"
-  ROOT_DIR_DIFF: ./build/html
+  ROOT_DIR_DIFF: ./docs/_build/html
   TRUNCATE_TO_BYTES: 256000
 
 jobs:

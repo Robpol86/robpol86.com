@@ -7,7 +7,7 @@ from _pytest.fixtures import FixtureRequest
 
 def test_changelog(request: FixtureRequest):
     """Verify changelog formatting for recent entries."""
-    changelog = Path(__file__).parent.parent / "CHANGELOG.md"
+    changelog = Path(__file__).parent.parent.parent / "CHANGELOG.md"
     handle = changelog.open("r")
     request.addfinalizer(handle.close)
 
