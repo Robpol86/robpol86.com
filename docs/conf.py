@@ -35,6 +35,11 @@ release = version
 
 # Options for HTML output.
 html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "http://localhost:8000/")
+html_context = {
+    "edit_page_url_template": (
+        "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
+    ),
+}
 html_copy_source = False
 html_css_files = ["background_image.css"]
 html_extra_path = [
