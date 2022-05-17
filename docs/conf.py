@@ -36,7 +36,7 @@ release = version
 # Options for HTML output.
 html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "http://localhost:8000/")
 html_copy_source = False
-html_css_files = []
+html_css_files = ["background_image.css"]
 html_extra_path = [
     ".htaccess",
     "robots.txt",
