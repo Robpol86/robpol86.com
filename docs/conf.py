@@ -83,7 +83,9 @@ html_theme_options = {
     "path_to_docs": "docs",
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
+    "use_download_button": False,
     "use_edit_page_button": not not GIT_URL,  # pylint: disable=unneeded-not
+    "use_fullscreen_button": False,
 }
 html_title = project
 html_use_index = True
