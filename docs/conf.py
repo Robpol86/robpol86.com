@@ -43,7 +43,7 @@ html_context = {
     ),
 }
 html_copy_source = False
-html_css_files = ["background_image.css"]
+html_css_files = ["background_image.css", "fixes.css"]
 html_extra_path = [
     ".htaccess",
     "robots.txt",
