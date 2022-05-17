@@ -92,6 +92,11 @@ html_use_index = True
 
 
 # Extension settings.
+carousel_show_buttons_on_top = True
+carousel_show_captions_below = True
+carousel_show_controls = True
+carousel_show_indicators = True
+carousel_show_shadows = True
 disqus_shortname = "rob86wiki"
 external_toc_path = ".toc.yml"
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"

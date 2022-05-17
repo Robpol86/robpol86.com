@@ -45,7 +45,39 @@ Items needed:
 * Isopropyl alcohol (I used 91%) to remove adhesive residue
 * Gloves (I used nitrile gloves) to prevent adhesive from reconstituting on your fingers
 
-```{imgur-embed} a/9dOZSm7
+```{carousel}
+:data-bs-ride: false
+
+:::{imgur-figure} O6toHP4
+Removed the original BuildTak sheet from my Monoprice Maker Select v2.
+:::
+
+:::{imgur-figure} 9dOZSm7
+:::
+
+:::{imgur-figure} BSiu7G3
+:::
+
+:::{imgur-figure} AQ4ZU37
+:::
+
+:::{imgur-figure} fXsf2fm
+:::
+
+:::{imgur-figure} xnsWJTr
+:::
+
+:::{imgur-figure} KfuU1sd
+:::
+
+:::{imgur-figure} qV4PvZy
+:::
+
+:::{imgur-figure} gQZBOjY
+:::
+
+:::{imgur-figure} FtYoGQn
+:::
 ```
 
 https://www.reddit.com/r/3Dprinting/comments/qcfqpk/first_mod_since_buying_my_printer_in_2018/
