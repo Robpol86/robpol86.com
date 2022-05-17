@@ -6,8 +6,8 @@ body {
     background-image: url("setup.jpg");
 }
 
-.topbar {
-    /*background-image: url("setup.jpg");*/
+.header-article {
+    background-image: url("setup.jpg");
 }
 
 .bd-toc nav {
