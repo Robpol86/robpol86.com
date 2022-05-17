@@ -75,6 +75,10 @@ html_theme_options = {
         "</p>"
     ),
     "logo_only": True,
+    "path_to_docs": "docs",
+    "repository_branch": GIT_BRANCH,
+    "repository_url": GIT_URL,
+    "use_edit_page_button": not not GIT_URL,  # pylint: disable=unneeded-not
 }
 html_title = project
 html_use_index = True
