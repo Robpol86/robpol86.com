@@ -11,12 +11,12 @@ body {
 }
 
 .bd-toc nav {
-    background-image: url("setup.jpg");
+    background: unset;
 }
 
 @media (min-width: 720px) {
     /* Make the left column transparent except on mobile where the column slides over the main content. */
     #site-navigation {
-        background-image: url("setup.jpg");
+        background: unset;
     }
 }

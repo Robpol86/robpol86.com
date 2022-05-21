@@ -6,7 +6,22 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Use `background: unset` instead of repeating background image.
+- Change tag formatting to match changelog version formatting.
+- Refactor deploy. (#153)
+- Style: explode yml (#151)
+- Combining stage/prod workflows. (#150)
+- Setting to a real version. (#147)
+- Boilerplate, output directory, reorg tests. (#146)
+- Disabling GitHub page link locally. (#145)
+- Adding robpol86_com package. (#144)
+- Restyle conf.py. (#142)
+- Drop unused MyST extensions. (#141)
+- Dropping Python 3.7 support. (#139)
+- Removing sphinx-panels. (#138)
+- Latest myst-parser. (#132)
+- Refactor HTML Diff in PRs. (#136)
+- Style changes from other repos. (#129)
 
 ## [2022.4.1]
 
