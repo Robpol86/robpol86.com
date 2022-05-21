@@ -41,6 +41,7 @@ html_context = {
     "edit_page_url_template": (
         "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
     ),
+    "license": __license__,
 }
 html_copy_source = False
 html_css_files = ["background_image.css", "fixes.css"]
@@ -74,11 +75,14 @@ html_theme = "sphinx_book_theme"
 html_theme_options = {
     "extra_navbar": (
         "<p>"
-        '<a href="/genindex.html">Tags</a> | <a href="/sitemap.xml">Sitemap</a><br>'
+        '<a href="{{ pathto("genindex") }}">Tags</a> | '
+        '<a href="{{ pathto("sitemap")|replace(".html", ".xml") }}">Sitemap</a><br>'
         'Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a><br>'
         'Theme: <a href="https://sphinx-book-theme.readthedocs.io/">Sphinx Book Theme</a><br>'
         'Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>'
-        f'License: <a href="{GIT_URL}/blob/{GIT_BRANCH}/LICENSE">{__license__}</a><br>'
+        "{% if theme_repository_url %}"
+        'License: <a href="{{ theme_repository_url }}/blob/{{ theme_repository_branch }}/LICENSE">{{ license }}</a><br>'
+        "{% endif %}"
         "</p>"
     ),
     "logo_only": True,
