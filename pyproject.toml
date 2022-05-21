@@ -22,7 +22,7 @@ python = "^3.8"
 # Project dependencies.
 myst-parser = {version = "*", extras = ["linkify"]}
 Sphinx = "*"
-sphinx-book-theme = "0.2.0"  # TODO investigate CSS changes.
+sphinx-book-theme = ">=0.3.2"
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
 sphinx-external-toc = "*"
