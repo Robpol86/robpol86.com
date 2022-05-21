@@ -15,6 +15,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 - Using real versions similar to semver but date-based.
 - Latest book theme.
 - Removing download and fullscreen buttons.
+- Templatizing `html_theme_options["extra_navbar"]`.
 
 ## [2022.4.1]
 
