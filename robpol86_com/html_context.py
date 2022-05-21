@@ -1,14 +1,13 @@
-"""Modify page edit button/link.
-
-https://github.com/executablebooks/sphinx-book-theme/blob/v0.3.2/src/sphinx_book_theme/header_buttons/__init__.py
-"""
+"""Modify HTML context."""
 from typing import Dict, List
 
 from sphinx.application import Sphinx
 
 
-def change_icon(_, __, ___, context: Dict, ____):
-    """Change edit button icon.
+def change_icon_tooltip(_, __, ___, context: Dict, ____):
+    """Change edit button icon and tooltip.
+
+    https://github.com/executablebooks/sphinx-book-theme/blob/v0.3.2/src/sphinx_book_theme/header_buttons/__init__.py
 
     :param _: Unused.
     :param __: Unused.
@@ -28,4 +27,4 @@ def setup(app: Sphinx):
 
     :param app: Sphinx application object.
     """
-    app.connect("html-page-context", change_icon, priority=999)
+    app.connect("html-page-context", change_icon_tooltip, priority=999)
