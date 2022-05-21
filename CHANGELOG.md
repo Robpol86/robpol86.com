@@ -6,7 +6,13 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Updated repo boilerplate to match sphinx-carousel.
+- Refactored and restyled deploy and HTML diff workflows.
+- Latest myst-parser.
+- Dropping Python 3.7 support after updating Python in desktop WSL.
+- Moving code from `conf.py` into `robpol86_com` package.
+- Disabling GitHub page link when building locally, no more faking.
+- Using real versions similar to semver but date-based.
 
 ## [2022.4.1]
 
