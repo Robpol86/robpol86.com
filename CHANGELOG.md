@@ -13,6 +13,8 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 - Moving code from `conf.py` into `robpol86_com` package.
 - Disabling GitHub page link when building locally, no more faking.
 - Using real versions similar to semver but date-based.
+- Latest book theme.
+- Removing download and fullscreen buttons.
 
 ## [2022.4.1]
 
