@@ -6,6 +6,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## [2022.5.21]
+
+Latest Sphinx Book Theme and refactored repo
+
 - Updated repo boilerplate to match sphinx-carousel.
 - Refactored and restyled deploy and HTML diff workflows.
 - Latest myst-parser.
