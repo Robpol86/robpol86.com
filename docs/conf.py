@@ -45,7 +45,7 @@ html_context = {
     "license": __license__,
 }
 html_copy_source = False
-html_css_files = ["background_image.css", "fixes.css"]
+html_css_files = ["aside_margin.css", "background_image.css"]
 html_extra_path = [
     ".htaccess",
     "robots.txt",
