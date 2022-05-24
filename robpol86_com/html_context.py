@@ -22,8 +22,8 @@ def change_icon_tooltip(_, __, ___, context: Dict, ____):
             button["tooltip"] = "View page source"
 
 
-def parse_extra_navbar(app: Sphinx, __, ___, context: Dict, ____):
-    """Parse Jinja2 in extra_navbar theme option.
+def set_extra_navbar(app: Sphinx, __, ___, context: Dict, ____):
+    """Set extra_navbar theme option.
 
     :param app: Sphinx application object.
     :param __: Unused.
@@ -31,9 +31,7 @@ def parse_extra_navbar(app: Sphinx, __, ___, context: Dict, ____):
     :param context: HTML context.
     :param ____: Unused.
     """
-    theme_extra_navbar: str = context.get("theme_extra_navbar", "")
-    if theme_extra_navbar:
-        context["theme_extra_navbar"] = app.builder.templates.render_string(theme_extra_navbar, context)
+    context["theme_extra_navbar"] = app.builder.templates.render("extra_navbar.html", context)
 
 
 def setup(app: Sphinx):
@@ -42,4 +40,4 @@ def setup(app: Sphinx):
     :param app: Sphinx application object.
     """
     app.connect("html-page-context", change_icon_tooltip, priority=999)
-    app.connect("html-page-context", parse_extra_navbar)
+    app.connect("html-page-context", set_extra_navbar)
