@@ -17,6 +17,7 @@ exclude_patterns = []
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
+    "robpol86_com.create_static",
     "robpol86_com.html_context",
     "robpol86_com.legacy",
     "sphinx_carousel.carousel",  # https://sphinx-carousel.readthedocs.io
