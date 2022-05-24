@@ -20,7 +20,7 @@ def create_files(app: Sphinx) -> List:
     config = app.config
     outdir = app.outdir
     context = {
-        "html_baseurl": config.html_baseurl
+        "html_baseurl": config.html_baseurl,
     }
     for template_name in FILES:
         page_name = os.path.splitext(template_name)[0]
