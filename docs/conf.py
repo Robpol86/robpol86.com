@@ -72,18 +72,6 @@ html_logo = "_static/logo.svg"
 html_static_path = ["_static"]
 html_theme = "sphinx_book_theme"
 html_theme_options = {
-    "extra_navbar": (
-        "<p>"
-        '<a href="{{ pathto("genindex") }}">Tags</a> | '
-        '<a href="{{ pathto("sitemap")|replace(".html", ".xml") }}">Sitemap</a><br>'
-        'Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a><br>'
-        'Theme: <a href="https://sphinx-book-theme.readthedocs.io/">Sphinx Book Theme</a><br>'
-        'Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>'
-        "{% if theme_repository_url %}"
-        'License: <a href="{{ theme_repository_url }}/blob/{{ theme_repository_branch }}/LICENSE">{{ license }}</a><br>'
-        "{% endif %}"
-        "</p>"
-    ),
     "logo_only": True,
     "path_to_docs": "docs",
     "repository_branch": GIT_BRANCH,
