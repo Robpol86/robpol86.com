@@ -3,7 +3,6 @@ import os
 from typing import List
 
 from sphinx.application import Sphinx
-from sphinx.builders.html import StandaloneHTMLBuilder
 
 FILES = [
     "robots.txt",
@@ -17,14 +16,15 @@ def create_files(app: Sphinx) -> List:
 
     :param app: Sphinx application.
     """
-    builder: StandaloneHTMLBuilder = app.builder
+    builder = app.builder
+    outdir = app.outdir
     for template_name in FILES:
         page_name = os.path.splitext(template_name)[0]
         builder.handle_page(
             pagename=page_name,
             addctx={},
             templatename=template_name,
-            # outfilename=template_name,
+            outfilename=os.path.join(outdir, template_name),
         )
     return []
 
