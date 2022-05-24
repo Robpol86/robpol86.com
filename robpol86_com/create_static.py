@@ -23,9 +23,8 @@ def create_files(app: Sphinx) -> List:
         "html_baseurl": config.html_baseurl,
     }
     for template_name in FILES:
-        page_name = os.path.splitext(template_name)[0]
         builder.handle_page(
-            pagename=page_name,
+            pagename="",
             addctx=context,
             templatename=template_name,
             outfilename=os.path.join(outdir, template_name),
