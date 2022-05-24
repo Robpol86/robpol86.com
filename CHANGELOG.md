@@ -8,6 +8,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - Switching from old-style iframes to the sphinx extension in the Atrix Lapdock page.
 - Replacing single-image Imgur embeds into figures.
+- Using [Sphinx Carousel](https://sphinx-carousel.readthedocs.io/).
 
 ## [2022.5.21]
 

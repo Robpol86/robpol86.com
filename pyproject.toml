@@ -23,6 +23,7 @@ python = "^3.8"
 myst-parser = {version = "*", extras = ["linkify"]}
 Sphinx = "*"
 sphinx-book-theme = ">=0.3.2"
+sphinx-carousel = "*"
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
 sphinx-external-toc = "*"

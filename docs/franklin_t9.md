@@ -6,8 +6,46 @@
 My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
 data. I'm using it with [Google Fi](https://fi.google.com/).
 
-```{imgur-embed} a/mwJuieo
-:og_imgur_id: yZjfLix
+```{carousel}
+:show_dark:
+:data-bs-interval: "false"
+
+:::{imgur} yZjfLix
+:::
+:::{imgur} MUdUSiT
+:::
+:::{imgur} 4Pdh8oi
+:::
+:::{imgur} 6qS4mh5
+:::
+:::{imgur} m7iPSx8
+:::
+:::{imgur} 7t02RPc
+:::
+:::{imgur} Jgq94Qp
+:::
+:::{imgur} IzUS6AD
+:::
+:::{imgur} sY2JXzl
+:::
+:::{imgur} qcAAd6q
+:::
+:::{imgur} UgbzUxF
+:::
+:::{imgur} KtwAoH9
+:::
+:::{imgur} lO1oBgL
+:::
+:::{imgur} 8KnzN30
+:::
+:::{imgur} zRzUg1m
+:::
+:::{imgur} 6U8BpT3
+:::
+:::{imgur} 0m4FKnV
+:::
+:::{imgur} zbxHXjR
+:::
 ```
 
 ## Downgrade Firmware
