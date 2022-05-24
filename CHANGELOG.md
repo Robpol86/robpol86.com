@@ -6,7 +6,8 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Switching from old-style iframes to the sphinx extension in the Atrix Lapdock page.
+- Replacing single-image Imgur embeds into figures.
 
 ## [2022.5.21]
 

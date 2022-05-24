@@ -4,8 +4,7 @@
 Wireless Charging Car Dock
 ==========================
 
-.. imgur-embed:: 7WTPx0v.gif
-    :hide_post_details:
+.. imgur-figure:: 7WTPx0v.gif
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
 find very many car docks out there with wireless charging, and I read that Nokia's wireless charging car dock didn't
@@ -35,8 +34,7 @@ my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 Previous Implementation
 =======================
 
-.. imgur-embed:: X8fbOGl.gif
-    :hide_post_details:
+.. imgur-figure:: X8fbOGl.gif
 
 So I built my own. I originally posted everything
 `on the XDA forums <https://forum.xda-developers.com/showthread.php?p=47509705#post47509705>`_. Since the Nexus 5 has

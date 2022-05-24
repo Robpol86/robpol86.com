@@ -22,21 +22,17 @@ Pictures and Videos
 
 .. imgur-embed:: a/zEkwz
 
-.. raw:: html
+.. youtube:: VfdKq33WgHw
+    :width: 100%
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/VfdKq33WgHw?rel=0" frameborder="0"></iframe>
+.. youtube:: zCxTTrTZSSM
+    :width: 100%
 
-.. raw:: html
+.. youtube:: x_yhJ_QBfaU
+    :width: 100%
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/zCxTTrTZSSM?rel=0" frameborder="0"></iframe>
-
-.. raw:: html
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/x_yhJ_QBfaU?rel=0" frameborder="0"></iframe>
-
-.. raw:: html
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/P1zKD66GSYo?rel=0" frameborder="0"></iframe>
+.. youtube:: P1zKD66GSYo
+    :width: 100%
 
 With a Nexus 4
 ==============

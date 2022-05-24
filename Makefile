@@ -41,12 +41,12 @@ lint:
 .PHONY: test
 test: _HELP = Run unit tests
 test:
-	@echo NotImplemented
+	@echo NotImplemented: $@
 
 .PHONY: testpdb
 testpdb: _HELP = Run unit tests and drop into the debugger on failure
 testpdb:
-	@echo NotImplemented
+	@echo NotImplemented: $@
 
 .PHONY: it
 it: _HELP = Run integration tests
@@ -67,7 +67,7 @@ all: test it lint docs build
 .PHONY: build
 build: _HELP = Build Python package (sdist and wheel)
 build:
-	@echo NotImplemented
+	@echo NotImplemented: $@
 
 docs/_build/html/index.html::
 	poetry run sphinx-build -T -n -W docs $(@D)
