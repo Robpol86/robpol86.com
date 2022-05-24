@@ -6,6 +6,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## [2022.5.23]
+
+Sphinx Carousel
+
 - Switching from old-style iframes to the sphinx extension in the Atrix Lapdock page.
 - Replacing single-image Imgur embeds into figures.
 - Using [Sphinx Carousel](https://sphinx-carousel.readthedocs.io/).
