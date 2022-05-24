@@ -1,6 +1,6 @@
 """Generate static files from templates."""
-from pathlib import Path
-from typing import Dict
+import os
+from typing import Dict, List, Tuple
 
 from sphinx.application import Sphinx
 
@@ -9,20 +9,12 @@ FILES = [
 ]
 
 
-def create_files(app: Sphinx, __, ___, context: Dict, ____):
+def create_files(_) -> List[Tuple[str, Dict, str]]:
     """Create files and save to root of Sphinx outdir.
 
-    :param app: Sphinx application object.
-    :param __: Unused.
-    :param ___: Unused.
-    :param context: HTML context.
-    :param ____: Unused.
+    :return: Page name, supplemental Jinja2 context, and template file name.
     """
-    outdir = app.outdir
-    for file_name in FILES:
-        rendered = app.builder.templates.render(file_name, context)
-        target = Path(outdir) / file_name
-        target.write_text(rendered, encoding="utf8")
+    return [(os.path.splitext(f)[0], {}, f) for f in FILES]
 
 
 def setup(app: Sphinx):
@@ -30,4 +22,4 @@ def setup(app: Sphinx):
 
     :param app: Sphinx application object.
     """
-    app.connect("html-page-context", create_files)  # TODO this runs on every page!
+    app.connect("html-collect-pages", create_files)
