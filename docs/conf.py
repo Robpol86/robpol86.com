@@ -47,8 +47,6 @@ html_context = {
 html_copy_source = False
 html_css_files = ["aside_margin.css", "background_image.css"]
 html_extra_path = [
-    ".htaccess",
-    "robots.txt",
     # favicon
     "_static/android-chrome-192x192.png",
     "_static/android-chrome-512x512.png",
