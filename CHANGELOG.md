@@ -7,6 +7,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 ## [Unreleased]
 
 - Renamed fixes.css to aside_margin.css to keep CSS files scoped.
+- Moved extra_navbar from conf.py into _templates/extra_navbar.html.
 
 ## [2022.5.23]
 
