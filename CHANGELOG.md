@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Renamed fixes.css to aside_margin.css to keep CSS files scoped.
 
 ## [2022.5.23]
 
