@@ -28,7 +28,7 @@ def move_to_root(app: Sphinx, exc: Optional[Exception]):
                 file_path.rename(target_path)
                 break
         else:
-            log.warning("File not found: %s", file_name)
+            log.warning("File not found in %r: %s", app.config.html_static_path, file_name)
 
 
 def setup(app: Sphinx):
