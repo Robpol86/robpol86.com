@@ -17,9 +17,9 @@ exclude_patterns = []
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
-    # "robpol86_com.create_static",
     "robpol86_com.html_context",
     "robpol86_com.legacy",
+    "robpol86_com.move_static",
     "sphinx_carousel.carousel",  # https://sphinx-carousel.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
@@ -116,4 +116,7 @@ ogp_site_name = html_title
 ogp_site_url = html_baseurl
 ogp_type = "website"
 ogp_use_first_image = True
+robpol86_com_move_static_to_root = [
+    "robots.txt",
+]
 sitemap_url_scheme = "{link}"
