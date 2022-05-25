@@ -3,10 +3,11 @@ from pathlib import Path
 from typing import Optional
 
 from sphinx.application import Sphinx
+from sphinx.util import logging
 
 
 def move_to_root(app: Sphinx, exc: Optional[Exception]):
-    """Move static files from outdir/_static to outdir.
+    """Move static files from html_static_path into outdir.
 
     :param app: Sphinx application.
     :param exc: If an exception occurred during the build.
@@ -14,6 +15,7 @@ def move_to_root(app: Sphinx, exc: Optional[Exception]):
     if exc:
         return
 
+    log = logging.getLogger(__name__)
     outdir = Path(app.outdir)
     static_paths = [outdir / p for p in app.config.html_static_path]
     files = app.config.robpol86_com_move_static_to_root
@@ -25,6 +27,8 @@ def move_to_root(app: Sphinx, exc: Optional[Exception]):
                 target_path = outdir / file_name
                 file_path.rename(target_path)
                 break
+        else:
+            log.warning("File not found: %s", file_name)
 
 
 def setup(app: Sphinx):
