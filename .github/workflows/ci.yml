@@ -38,3 +38,21 @@ jobs:
 
       - name: Build docs
         run: make docs
+
+  linkcheck:
+    name: Linkcheck
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Initialize dependencies
+        uses: Robpol86/actions-init-deps-py@v3
+        with:
+          python-version: "3.10"
+
+      - name: Run linkcheck
+        run: make linkcheck

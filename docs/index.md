@@ -1,16 +1,5 @@
 # Robert Pooley
 
-:::{margin}
-```{admonition} Hyperlinks
-:class: seealso
-
-* **[GitHub](https://github.com/Robpol86)**
-* **[Stack Overflow](https://stackoverflow.com/users/1198943/robpol86)**
-* **[LinkedIn](https://www.linkedin.com/in/robpooley/)**
-* **{{ resume_link }}**
-```
-:::
-
 Welcome to my website that I've been maintaining since I was in the 6th grade. I've always enjoyed learning how things work
 and sharing my findings with others. My website is basically dedicated to the latter part as you can see. Fun fact: the
 domain name is the handle I've been using online since the 7th grade (I first used it as my AOL screen name).

@@ -87,6 +87,29 @@ html_title = project
 html_use_index = True
 
 
+# Linkcheck settings.
+linkcheck_exclude_documents = [
+    # TODO remove
+    "3d_printer_mpms2",
+    "atrix_lapdock",
+    "bareos_tape_backup",
+    "flash_droid_cricket",
+    "franklin_t9",
+    "imagecfg",
+    "mib2_comp_media",
+    "photo_albums",
+    "postfix_gmail_forwarding",
+    "raspberry_pi_luks",
+    "raspberry_pi_project_fi",
+    "rns_510_vim",
+    "root_certificate_authority",
+    "vw_alltrack_2019",
+    "vw_jsw_2010",
+    "wireless_charging_car_dock",
+]
+linkcheck_ignore = []  # TODO add mega?
+
+
 # Extension settings.
 carousel_show_buttons_on_top = True
 carousel_show_captions_below = True
