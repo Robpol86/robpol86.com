@@ -19,6 +19,7 @@ extensions = [
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "robpol86_com.html_context",
     "robpol86_com.legacy",
+    "robpol86_com.move_static",
     "sphinx_carousel.carousel",  # https://sphinx-carousel.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
@@ -42,13 +43,13 @@ html_context = {
     "edit_page_url_template": (
         "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
     ),
+    "html_baseurl": html_baseurl,
     "license": __license__,
 }
 html_copy_source = False
 html_css_files = ["aside_margin.css", "background_image.css"]
 html_extra_path = [
     ".htaccess",
-    "robots.txt",
     # favicon
     "_static/android-chrome-192x192.png",
     "_static/android-chrome-512x512.png",
@@ -115,4 +116,7 @@ ogp_site_name = html_title
 ogp_site_url = html_baseurl
 ogp_type = "website"
 ogp_use_first_image = True
+robpol86_com_move_static_to_root = [
+    "robots.txt",
+]
 sitemap_url_scheme = "{link}"

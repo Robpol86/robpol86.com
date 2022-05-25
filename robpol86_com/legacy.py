@@ -1,25 +1,10 @@
 """Old code that needs to be revisited and reorganized."""
-from pathlib import Path
 from typing import List
 
 from docutils import nodes
 from sphinx.application import Sphinx
 from sphinx.domains.index import IndexDirective
 from sphinx.errors import SphinxError
-
-
-def render_robots_txt(app: Sphinx, _):
-    """Parse Jinja2 templating in robots.txt file.
-
-    :param app: Sphinx application object.
-    :param _: Unused.
-    """
-    robots_txt_path = Path(app.outdir) / "robots.txt"
-    if robots_txt_path.is_file():
-        contents = robots_txt_path.read_text(encoding="utf8")
-        context = dict(app.config.html_context, config=app.config)
-        rendered = app.builder.templates.render_string(contents, context)
-        robots_txt_path.write_text(rendered, encoding="utf8")
 
 
 class TagsDirective(IndexDirective):
@@ -54,5 +39,4 @@ def setup(app: Sphinx):
 
     :param app: Sphinx application object.
     """
-    app.connect("build-finished", render_robots_txt)
     app.add_directive("tags", TagsDirective)
