@@ -37,4 +37,4 @@ def setup(app: Sphinx):
 
     :param app: Sphinx application.
     """
-    app.connect("html-collect-pages", create_files)
+    # app.connect("html-collect-pages", create_files)

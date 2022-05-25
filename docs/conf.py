@@ -43,6 +43,7 @@ html_context = {
     "edit_page_url_template": (
         "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
     ),
+    "html_baseurl": html_baseurl,
     "license": __license__,
 }
 html_copy_source = False
