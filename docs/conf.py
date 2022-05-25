@@ -17,6 +17,7 @@ exclude_patterns = []
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
+    "robpol86_com.create_static",
     "robpol86_com.html_context",
     "robpol86_com.legacy",
     "sphinx_carousel.carousel",  # https://sphinx-carousel.readthedocs.io
@@ -48,7 +49,6 @@ html_copy_source = False
 html_css_files = ["aside_margin.css", "background_image.css"]
 html_extra_path = [
     ".htaccess",
-    "robots.txt",
     # favicon
     "_static/android-chrome-192x192.png",
     "_static/android-chrome-512x512.png",
