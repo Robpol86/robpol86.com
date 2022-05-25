@@ -1,4 +1,4 @@
-"""Old code that needs to be revisited and reorganized."""
+"""Tagging."""
 from typing import List
 
 from docutils import nodes
@@ -20,11 +20,13 @@ class TagsDirective(IndexDirective):
             raise SphinxError(f"Tags not in alphabetical order in document {self.env.docname}")
 
         # Build nodes.
+        env = self.env
+        builder = env.app.builder
         human_readable_tag_list = nodes.emphasis("Tags: ", "Tags: ")
         idx_last = len(tags) - 1
         for idx, tag in enumerate(tags):
             tag_node = nodes.inline(tag, tag, classes=["guilabel"])
-            uri = f"{self.config.html_baseurl}genindex.html#{tag[0].upper()}"
+            uri = f"{builder.get_relative_uri(env.docname, 'genindex')}#{tag[0].upper()}"
             linked_tag_node = nodes.reference("", "", tag_node, refuri=uri, internal=True)
             # Insert.
             human_readable_tag_list.append(linked_tag_node)

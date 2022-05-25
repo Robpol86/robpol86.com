@@ -285,8 +285,8 @@ sudo apt-get update && sudo apt-get install -y zsh
 Then I install additional software:
 
 1. https://github.com/Robpol86/dotfiles
-2. https://gist.github.com/Robpol86/3d4730818816f866452e#installupdate-software
-3. https://gist.github.com/Robpol86/3d4730818816f866452e#shellgit
+2. https://gist.github.com/Robpol86/3d4730818816f866452e#user-content-installupdate-software
+3. https://gist.github.com/Robpol86/3d4730818816f866452e#user-content-shellgit
 
 #### SSH Agent
 
