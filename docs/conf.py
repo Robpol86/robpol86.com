@@ -94,7 +94,6 @@ linkcheck_exclude_documents = [
     "atrix_lapdock",
     "bareos_tape_backup",
     "flash_droid_cricket",
-    "franklin_t9",
     "imagecfg",
     "mib2_comp_media",
     "photo_albums",
@@ -108,8 +107,9 @@ linkcheck_exclude_documents = [
     "wireless_charging_car_dock",
 ]
 linkcheck_ignore = [
-    r"https://mega.nz/folder/\w+#",
+    "genindex.html",  # TODO remove
     "http://192.168.0.1/",  # noqa
+    r"https://mega.nz/folder/\w+#",
 ]
 linkcheck_timeout = 5
 
