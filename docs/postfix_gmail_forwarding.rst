@@ -35,7 +35,7 @@ Install Postfix
 ===============
 
 First we must install software to forward mail and handle authenticating to the external SMTP server. There are several
-MTAs (message transfer agents) available but I'll be using `Postfix <http://www.postfix.org/>`_. Let's install it:
+MTAs (message transfer agents) available but I'll be using `Postfix <https://www.postfix.org/>`_. Let's install it:
 
 .. note::
 
@@ -132,4 +132,4 @@ Comments
 
 .. disqus::
 
-.. _local mail spool: http://superuser.com/questions/306163/what-is-the-you-have-new-mail-message-in-linux-unix
+.. _local mail spool: https://superuser.com/questions/306163/what-is-the-you-have-new-mail-message-in-linux-unix
