@@ -10,6 +10,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 - Moved extra_navbar from conf.py into _templates/extra_navbar.html.
 - Refactored `legacy.render_robots_txt` into `move_static.move_to_root`.
 - Fixing tags: using relative links instead of relying on html_baseurl.
+- Using Sphinx's linkcheck builder in Makefile and CI.
 
 ## [2022.5.23]
 
