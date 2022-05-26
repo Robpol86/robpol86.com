@@ -96,7 +96,6 @@ linkcheck_exclude_documents = [
     "flash_droid_cricket",
     "franklin_t9",
     "imagecfg",
-    "index",
     "mib2_comp_media",
     "photo_albums",
     "postfix_gmail_forwarding",
@@ -121,7 +120,6 @@ disqus_shortname = "rob86wiki"
 external_toc_path = ".toc.yml"
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
 myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "substitution"]
-myst_substitutions = {"resume_link": f"[Résumé]({html_baseurl.rstrip('/')}/{html_static_path[0].strip('/')}/resume.pdf)"}
 myst_url_schemes = ("http", "https", "mailto")
 notfound_context = dict(
     title="404 Not Found",
