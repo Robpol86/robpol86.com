@@ -96,6 +96,7 @@ linkcheck_exclude_documents = [
     "flash_droid_cricket",
     "franklin_t9",
     "imagecfg",
+    "index",
     "mib2_comp_media",
     "photo_albums",
     "postfix_gmail_forwarding",

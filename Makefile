@@ -82,9 +82,9 @@ autodocs: docs/_build/html/index.html
 	poetry run sphinx-autobuild --open-browser --delay=1 --host localhost -n -W docs $(<D)
 
 .PHONY: linkcheck
-linkcheck:
-	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs docs/_build/linkcheck
-	cat docs/_build/linkcheck/output.txt
+linkcheck: docs/_build/html/index.html
+	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D)
+	cat $(<D)/output.txt
 
 ## Misc
 
