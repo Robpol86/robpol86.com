@@ -107,7 +107,11 @@ linkcheck_exclude_documents = [
     "vw_jsw_2010",
     "wireless_charging_car_dock",
 ]
-linkcheck_ignore = []  # TODO add mega?
+linkcheck_ignore = [
+    r"https://mega.nz/folder/\w+#",
+    "http://192.168.0.1/",  # noqa
+]
+linkcheck_timeout = 5
 
 
 # Extension settings.
