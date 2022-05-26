@@ -22,10 +22,12 @@ def move_to_root(app: Sphinx, exc: Optional[Exception]):
 
     for file_name in files:
         for static in static_paths:
-            file_path = static / file_name
-            if file_path.exists():
-                target_path = outdir / file_name
-                file_path.rename(target_path)
+            source_path = static / file_name
+            target_path = outdir / file_name
+            if target_path.exists() and not source_path.exists():
+                break  # Already moved.
+            if source_path.exists():
+                source_path.rename(target_path)
                 break
         else:
             log.warning("File not found in %r: %s", app.config.html_static_path, file_name)
