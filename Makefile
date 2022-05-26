@@ -81,6 +81,10 @@ autodocs: _HELP = Start a web server, open browser, and auto-rebuild HTML on fil
 autodocs: docs/_build/html/index.html
 	poetry run sphinx-autobuild --open-browser --delay=1 --host localhost -n -W docs $(<D)
 
+.PHONY: linkcheck
+linkcheck: docs/_build/html/index.html
+	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D) || ret=$$? && cat $(<D)/output.txt && exit $$ret
+
 ## Misc
 
 clean: _HELP = Remove temporary files

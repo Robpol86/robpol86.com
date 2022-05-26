@@ -7,7 +7,7 @@
 * **[GitHub](https://github.com/Robpol86)**
 * **[Stack Overflow](https://stackoverflow.com/users/1198943/robpol86)**
 * **[LinkedIn](https://www.linkedin.com/in/robpooley/)**
-* **{{ resume_link }}**
+* **[Résumé](_static/resume.pdf)**
 ```
 :::
 

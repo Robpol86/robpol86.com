@@ -87,6 +87,32 @@ html_title = project
 html_use_index = True
 
 
+# Linkcheck settings.
+linkcheck_exclude_documents = [
+    # TODO remove all
+    "3d_printer_mpms2",
+    "atrix_lapdock",
+    "bareos_tape_backup",
+    "flash_droid_cricket",
+    "mib2_comp_media",
+    "photo_albums",
+    "postfix_gmail_forwarding",
+    "raspberry_pi_luks",
+    "raspberry_pi_project_fi",
+    "rns_510_vim",
+    "root_certificate_authority",
+    "vw_alltrack_2019",
+    "vw_jsw_2010",
+    "wireless_charging_car_dock",
+]
+linkcheck_ignore = [
+    "genindex.html",  # TODO remove this
+    "http://192.168.0.1/",  # noqa
+    r"https://mega.nz/folder/\w+#",
+]
+linkcheck_timeout = 5
+
+
 # Extension settings.
 carousel_show_buttons_on_top = True
 carousel_show_captions_below = True
@@ -97,7 +123,6 @@ disqus_shortname = "rob86wiki"
 external_toc_path = ".toc.yml"
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
 myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "substitution"]
-myst_substitutions = {"resume_link": f"[Résumé]({html_baseurl.rstrip('/')}/{html_static_path[0].strip('/')}/resume.pdf)"}
 myst_url_schemes = ("http", "https", "mailto")
 notfound_context = dict(
     title="404 Not Found",
