@@ -83,7 +83,8 @@ autodocs: docs/_build/html/index.html
 
 .PHONY: linkcheck
 linkcheck: docs/_build/html/index.html
-	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D) || ret=$$? && cat $(<D)/output.txt && exit $$ret
+	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D) || \
+		{ ret=$$?; echo; cat $(<D)/output.txt; exit $$ret; }
 
 ## Misc
 
