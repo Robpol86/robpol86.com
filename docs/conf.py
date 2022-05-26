@@ -92,7 +92,6 @@ linkcheck_exclude_documents = [
     # TODO remove
     "3d_printer_mpms2",
     "atrix_lapdock",
-    "bareos_tape_backup",
     "flash_droid_cricket",
     "mib2_comp_media",
     "postfix_gmail_forwarding",
