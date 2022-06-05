@@ -6,6 +6,12 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## [2022.6.5]
+
+HomeLink Rearview Mirror
+
 - Renamed fixes.css to aside_margin.css to keep CSS files scoped.
 - Moved extra_navbar from conf.py into _templates/extra_navbar.html.
 - Refactored `legacy.render_robots_txt` into `move_static.move_to_root`.
