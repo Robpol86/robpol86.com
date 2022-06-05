@@ -1,6 +1,6 @@
 # Golf Alltrack SE
 
-```{tags} vehicle
+```{tags} alltrack, vehicle
 ```
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.

@@ -1,14 +1,14 @@
 # HomeLink Rearview Mirror
 
-```{tags} vehicle
+```{tags} alltrack, vehicle
 ```
 
 ```{imgur-figure} Cvf4Nmp.gif
 ```
 
-My car came with an auto-dimming mirror, but I wanted the one with garage door buttons integrated in it. Since my Alltrack
-had the rain sensor option installed I already had power available to my mirror, so this upgrade was super easy to do. No
-coding was required.
+My 2019 Golf Alltrack SE came with an auto-dimming mirror, but I wanted the one with garage door buttons integrated in it.
+Since my car had the rain sensor option installed I already had power available to my mirror, so this upgrade was super easy
+to do. No coding was required.
 
 Parts needed:
 
