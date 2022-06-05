@@ -54,7 +54,7 @@ September 17th, 2016
 
 My server rack cabinet at home. Built my own router and zip tied a keystone panel so pulling out my rack doesn't involve
 disconnecting my speaker wire. Listen to https://youtu.be/WPDZoOKX8ag to hear how much noise this puts out (not really that
-much). For pix of the underside look at last year's gallery: http://imgur.com/gallery/hWyW0
+much). For pix of the underside look at last year's gallery: https://imgur.com/gallery/hWyW0
 
 .. imgur-embed:: a/ePSyN
 

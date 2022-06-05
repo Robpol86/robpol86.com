@@ -1,8 +1,9 @@
 [flake8]
-exclude =
+extend-exclude =
     .venv/*,
     build/*,
     dist/*,
+    docs/_build/*,
 ignore =
     D401,
 import-order-style = smarkets

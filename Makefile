@@ -60,7 +60,7 @@ itpdb:
 
 .PHONY: all
 all: _HELP = Run linters, unit tests, integration tests, and builds
-all: test it lint docs build
+all: test it lint docs linkcheck build
 
 ## Build
 
@@ -84,7 +84,7 @@ autodocs: docs/_build/html/index.html
 .PHONY: linkcheck
 linkcheck: docs/_build/html/index.html
 	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D) && ret=0 || ret=$$? && \
-		{ echo; cat $(<D)/output.txt; exit $$ret; }
+		{ echo; sort $(<D)/output.txt; exit $$ret; }
 
 ## Misc
 
