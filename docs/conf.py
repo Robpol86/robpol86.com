@@ -108,9 +108,11 @@ linkcheck_ignore = [
     r"[/.]*genindex.html",  # TODO remove this
     r"https://[\w.]*mibsolution.one/#",
     r"https://mega.nz/(file|folder)/\w+#",
+    r"https://parts.vw.com/",  # Times out frequently
     r"https://www.qnx.com/developers/docs/[\w.]+/#",
     r"https?://192.168.\d+.\d+/",
 ]
+linkcheck_retries = 3
 linkcheck_timeout = 5
 
 

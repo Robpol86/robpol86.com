@@ -11,6 +11,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 - Refactored `legacy.render_robots_txt` into `move_static.move_to_root`.
 - Fixing tags: using relative links instead of relying on html_baseurl.
 - Using Sphinx's linkcheck builder in Makefile and CI.
+- First "blog" post: HomeLink mirror install
 
 ## [2022.5.23]
 
