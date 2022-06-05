@@ -88,13 +88,15 @@ html_use_index = True
 
 
 # Linkcheck settings.
+linkcheck_allowed_redirects = {
+    r"https://www.amazon.com/dp/\w+$": "https://www.amazon.com/[^/]+/dp/",
+    r"https://youtu.be/\w+$": "https://www.youtube.com/watch?",
+}
 linkcheck_exclude_documents = [
     # TODO remove all
     "atrix_lapdock",
     "bareos_tape_backup",
     "flash_droid_cricket",
-    "mib2_comp_media",
-    "photo_albums",
     "raspberry_pi_luks",
     "raspberry_pi_project_fi",
     "rns_510_vim",
@@ -103,9 +105,11 @@ linkcheck_exclude_documents = [
     "wireless_charging_car_dock",
 ]
 linkcheck_ignore = [
-    "genindex.html",  # TODO remove this
-    "http://192.168.0.1/",  # noqa
-    r"https://mega.nz/folder/\w+#",
+    r"[/.]*genindex.html",  # TODO remove this
+    r"https://[\w.]*mibsolution.one/#",
+    r"https://mega.nz/(file|folder)/\w+#",
+    r"https://www.qnx.com/developers/docs/[\w.]+/#",
+    r"https?://192.168.\d+.\d+/",
 ]
 linkcheck_timeout = 5
 

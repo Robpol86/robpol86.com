@@ -56,7 +56,12 @@ target-version = ["py38", "py39", "py310"]
 
 [tool.pylint.FORMAT]
 good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
-ignore = [".venv/*", "build/*", "dist/*"]
+ignore = [
+    ".venv/*",
+    "build/*",
+    "dist/*",
+    "docs/_build/*",
+]
 max-line-length = 125
 reports = false
 
