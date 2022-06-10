@@ -122,24 +122,6 @@ class SierraGenerator:
         resp = hexlify(resp).decode("utf-8").upper()
         return resp
 
-    def test(self):
-        # MSM9200 expected=AT!OPENLOCK?BE96CBBEE0829BCA => EEDBF8BFF8DAE346 (!OPENLOCK), 84E7405583ED5845 (!OPENMEP)
-        # EM7305 expected=AT!OPENLOCK?8101A18AB3C3E66A => D1E128FCA8A963ED
-
-        devicegeneration = "MSM9200"
-        challenge = "BE96CBBEE0829BCA"
-        openlock, openmep, opencnd = self.run(devicegeneration, challenge)
-
-        if devicegeneration == "MSM9200":
-            if openlock == "EEDBF8BFF8DAE346" and openmep == "84E7405583ED5845":
-                challenge = "8101A18AB3C3E66A"
-                openlock, openmep, opencnd = self.run(devicegeneration, challenge)
-                if openlock == "D1E128FCA8A963ED":
-                    print("MSM9200 passed")
-        elif devicegeneration == "MDM9x40":
-            if openlock == "1033773720F6EE66":
-                print("MDM9x40 passed")
-
     def SierraPreInit(self, counter, key, keylen, challengelen, mcount):
         if counter != 0:
             tmp2 = 0
@@ -206,39 +188,6 @@ class SierraGenerator:
             retval = [1, keylen]
         return retval
 
-    def sierra_calc8F(self, challenge, a=0, b=1, c=2, d=3, e=4, ret=0, ret2=2):
-        # MDM9200
-        self.rtbl[b] = (self.rtbl[b] + self.tbl[(self.rtbl[d] & 0xFF)]) & 0xFF
-        uVar2 = self.rtbl[c] & 0xFF
-        bVar1 = self.tbl[uVar2]
-        uVar4 = self.rtbl[b] & 0xFF
-        self.tbl[uVar2] = self.tbl[uVar4]
-        self.rtbl[d] = (self.rtbl[d] + 1) & 0xFF
-        uVar5 = self.rtbl[a] & 0xFF
-        self.tbl[uVar4] = self.tbl[uVar5]
-        uVar3 = self.rtbl[d] & 0xFF
-        self.tbl[uVar5] = self.tbl[uVar3]
-        self.tbl[uVar3] = bVar1
-        self.rtbl[ret] = challenge  # c
-        self.rtbl[ret2] = (
-            self.tbl[
-                self.tbl[
-                    (
-                        self.tbl[(self.rtbl[e] + self.tbl[bVar1]) & 0xFF]
-                        + (self.tbl[uVar5] & 0xFF)
-                        + (self.tbl[uVar2] & 0xFF)
-                        & 0xFF
-                    )
-                    & 0xFF
-                ]
-                & 0xFF
-            ]
-            ^ self.tbl[((self.tbl[uVar4] & 0xFF) + (bVar1 & 0xFF)) & 0xFF]
-            ^ challenge
-        )  # a
-        self.rtbl[e] = (self.rtbl[e] + self.tbl[bVar1]) & 0xFF
-        return self.rtbl[ret2] & 0xFF  # a
-
     def SierraAlgo(self, challenge, a=0, b=1, c=2, d=3, e=4, ret=3, ret2=1, flag=1):  # M9x15
         v6 = self.rtbl[e]
         v0 = (v6 + 1) & 0xFF
@@ -291,18 +240,6 @@ class SierraGenerator:
                 exec(PROD_TABLE[self.devicegeneration]["run"])
             self.SierraFinish()
         return resultbuffer
-
-
-def readreply(ser):
-    info = []
-    while True:
-        tmp = ser.readline().decode("utf-8").replace("\r", "").replace("\n", "")
-        if "OK" in info:
-            return info
-        elif "ERROR" in info or info == "":
-            return -1
-        info.append(tmp)
-    return info
 
 
 def main(argv):
