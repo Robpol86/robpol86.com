@@ -1,6 +1,17 @@
 # Server Cabinet June 2022
 
-https://imgur.com/a/gePnvYN
+Items used:
+
+* Cabinet
+* Posts
+* Patch Panel
+* Switch
+* PDU
+* Case
+* UPS
+* Fans
+
+## Pictures
 
 ```{carousel}
 :data-bs-interval: "false"
@@ -68,4 +79,11 @@ Zip tying my dashcam wires to the mirror before installing it.
 %
 Zip tying my dashcam wires to the mirror before installing it.
 :::
+```
+
+Imgur mirror: https://imgur.com/a/gePnvYN
+
+## Comments
+
+```{disqus}
 ```
