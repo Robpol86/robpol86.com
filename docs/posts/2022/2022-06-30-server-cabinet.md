@@ -1,15 +1,19 @@
 # Server Cabinet June 2022
 
+```{tags} homelab
+```
+
 Items used:
 
-* Cabinet
-* Posts
-* Patch Panel
-* Switch
-* PDU
-* Case
-* UPS
-* Fans
+* [Majestic EX 70-inch TV Cabinet](https://bawoodworksllc.com/collections/media-consoles)
+* [Custom vertical rack posts](https://github.com/Robpol86/TV-Cabinet-Rack-Posts)
+* [Noctua 5V 120mm Fans](https://noctua.at/en/products/fan/nf-f12-5v)
+* [Cable Matters 24 Port Keystone Patch Panel](https://www.amazon.com/gp/product/B0072JVT02)
+* [NETGEAR XS716T 16-Port 10-Gigabit Ethernet Switch](https://www.netgear.com/business/wired/switches/smart/xs716t/)
+* [Tripp Lite PDUMH15-6 Metered PDU](https://www.tripplite.com/1-4kw-single-phase-metered-pdu-120v~pdumh156)
+* [APC Smart-UPS SMT1500RM2U](https://www.apc.com/us/en/product/SMT1500RM2U)
+* [Travla T2241 2U Dual Mini-ITX Case](http://www.travla.com.tw/products_detail.php?index_id=56&index_m1_id=4&index_m2_id=23)
+* [P-Link IPC-Rail18 Universal 18-inch Slide Rails](http://www.plinkusa.net/webrail18.htm)
 
 ## Pictures
 
