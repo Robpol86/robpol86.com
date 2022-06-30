@@ -7,6 +7,7 @@ Items used:
 
 * [Majestic EX 70-inch TV Cabinet](https://bawoodworksllc.com/collections/media-consoles)
 * [Custom vertical rack posts](https://github.com/Robpol86/TV-Cabinet-Rack-Posts)
+* [StarTech RDA2U Inverted Server Rack Depth Extender](https://www.startech.com/en-us/server-management/rda2u)
 * [Noctua 5V 120mm Fans](https://noctua.at/en/products/fan/nf-f12-5v)
 * [Cable Matters 24 Port Keystone Patch Panel](https://www.amazon.com/gp/product/B0072JVT02)
 * [NETGEAR XS716T 16-Port 10-Gigabit Ethernet Switch](https://www.netgear.com/business/wired/switches/smart/xs716t/)
@@ -21,15 +22,16 @@ Items used:
 :data-bs-interval: "false"
 
 :::{imgur-figure} Z6tRbFb
-%
-New mirror connector is nearly the same as my factory one except some pins are in different positions. Worked fine though.
+Secret Living Room Rack
+
+My newly rewired 9U server rack cabinet hidden in my living room.
 :::
 
 :::{imgur-figure} WbPfod5
-%
-Remove this black plastic trim by wedging a trim removal tool in the bottom center to split the two pieces apart. Do it
-gently, I broke the middle clip doing this (picture of clips is from a spare I bought, part numbers 3G0-858-633-82V and
-3G0-858-634-82V).
+Drilling Three Holes
+
+I had to drill three holes near the bend on my custom designed rack posts to keep them flush against the TV cabient walls.
+Eaiser, faster, and cheaper than updating my design and having new ones fabricated.
 :::
 
 :::{imgur-figure} yarRE7Z
