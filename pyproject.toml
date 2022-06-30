@@ -31,7 +31,7 @@ sphinx-imgur = "*"
 sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"
 sphinx-sitemap = "*"
-sphinxcontrib-youtube = "*"
+sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
 sphinxext-opengraph = "*"
 
 [tool.poetry.dev-dependencies]
