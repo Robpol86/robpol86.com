@@ -31,7 +31,7 @@ My newly rewired 9U server rack cabinet hidden in my living room.
 :::{imgur-figure} WbPfod5
 Drilling Three Holes
 
-I had to drill additional holes near the bend on my custom designed rack posts to keep them flush against the TV cabient
+I had to drill additional holes near the bend on my custom designed rack posts to keep them flush against the TV cabinet
 walls. Easier, faster, and cheaper than updating my design and having new ones fabricated.
 :::
 
@@ -61,7 +61,7 @@ removing it lol.
 :::{imgur-figure} cyOykBp
 Installed Switch
 
-Next I installed my trusty old 10 gig switch. I'm super exited that Google Fiber sent me a router with an SFP module that I
+Next I installed my trusty old 10 gig switch. I'm super excited that Google Fiber sent me a router with an SFP module that I
 could plug directly into my switch, it's basically a "modem" on a stick! For those that are curious this only runs at 1 Gbps
 speeds so I'm currently just paying for Google's 1 gigabit service instead of their 2 gig offering.
 :::
@@ -96,7 +96,7 @@ In the future I may add another 2U case.
 :::{imgur-figure} FtpUBBL
 Center I/O
 
-I added a keystone surface mount box to make plugging and unplugging wires easy, in case I rearrage my living room or
+I added a keystone surface mount box to make plugging and unplugging wires easy, in case I rearrange my living room or
 something. The dark blue CAT6 cable goes to the garage for one of my UniFi access points, the light blue LC/UPC fiber cable
 goes to a switch in my office and the gray CAT5e cable goes up to my Chromecast behind the TV. The power strip is also for my
 TV and game consoles.
