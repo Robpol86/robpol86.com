@@ -107,6 +107,12 @@ Behind the Cabinet
 
 Here's what the back looks like. More keystones!
 :::
+
+:::{imgur-figure} JhRB3DB
+VLAN Configuration
+
+This is how I configured the VLANs on my Netgear switch. So glad I took the Cisco CCNA class in high school.
+:::
 ```
 
 Imgur mirror: https://imgur.com/a/gePnvYN
