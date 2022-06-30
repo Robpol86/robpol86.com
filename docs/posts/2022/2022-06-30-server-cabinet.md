@@ -94,13 +94,18 @@ In the future I may add another 2U case.
 :::
 
 :::{imgur-figure} FtpUBBL
-%
-Zip tying my dashcam wires to the mirror before installing it.
+Center I/O
+
+I added a keystone surface mount case to make plugging and unplugging wires easy, in case I rearrage my living room or
+something. The dark blue CAT6 cable goes to the garage for one of my UniFi access points, the light blue LC/UPC fiber cable
+goes to a switch in my office and the gray CAT5e cable goes up to my Chromecast behind the TV. The power strip is also for my
+TV and game consoles.
 :::
 
 :::{imgur-figure} TW0HioA
-%
-Zip tying my dashcam wires to the mirror before installing it.
+Behind the Cabinet
+
+Here's what the back looks like. More keystones!
 :::
 ```
 
