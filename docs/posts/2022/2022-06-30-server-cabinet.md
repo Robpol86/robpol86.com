@@ -8,8 +8,8 @@ the extenders so I could recess the patch panel and switch, making room for the 
 I can't find any right angle adapters for the LC/UPC fiber patch cables!
 
 It took me a couple of years of off and on searching and buying to finally find some rails that actually fit inside the
-cabinet. The only downside to the rails is that my rack is a bit louder than before since I no longer have the rubber feet
-absorbing the vibration of my spinning hard drives. It's not too bad though.
+cabinet. The only downside is that my rack is a bit louder than before since I no longer have the rubber feet absorbing the
+vibration of my spinning hard drives. It's not too bad though.
 
 ## Items Used
 
