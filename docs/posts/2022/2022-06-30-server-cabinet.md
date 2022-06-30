@@ -23,7 +23,7 @@ Items used:
 :data-bs-interval: "false"
 
 :::{imgur-figure} Z6tRbFb
-Secret Living Room Rack
+Stealth Living Room Rack
 
 My newly rewired 9U server rack cabinet hidden in my living room.
 :::
@@ -46,39 +46,39 @@ internet service and the blue fiber cable goes to my office on the other side of
 Installed UPS
 
 Next I installed my UPS with some right-angle power adapters. The two USB power adapters are for the TV cabinet ventilation
-fans. Two fans and two power adapters for redundancy in case one is defective.
+fans. Two fans and two power adapters for redundancy in case one is defective. The white USB cable going out of the cabinet
+is for a Nest camera.
 :::
 
 :::{imgur-figure} iAaxoC5
 Installed PDU
 
-Here I installed a PDU on the rear posts with my UniFi PoE injector zipped tied to it. I made some magnetic labels for my
-patch panel and 3d printed a magnetic door stop, though it's falling apart after a couple of years of adding and removing
-lol.
+Here I installed a PDU at the top of the rear posts with my UniFi PoE injector zipped tied to it. I made some magnetic labels
+for my patch panel and 3d printed a magnetic door stop, though it's falling apart after a couple of years of adding and
+removing it lol.
 :::
 
 :::{imgur-figure} cyOykBp
 Installed Switch
 
-Next I installed my old 10 gig switch. I'm super exited that Google Fiber sent me a router with an SFP module that I could
-plug directly into my switch, it's basically a "modem" on a stick! For those that are curious this only runs at 1 Gbps speeds
-so I'm currently just paying for Google's 1 gigabit service instead of their 2 gig offering.
+Next I installed my trusty old 10 gig switch. I'm super exited that Google Fiber sent me a router with an SFP module that I
+could plug directly into my switch, it's basically a "modem" on a stick! For those that are curious this only runs at 1 Gbps
+speeds so I'm currently just paying for Google's 1 gigabit service instead of their 2 gig offering.
 :::
 
 :::{imgur-figure} sJ8ooy9
 Installed Dual Server
 
-Another thing I'm excited about is I managed to finally find some slide rails small enough to fit in my shallow rack. I got
-rid of my old shelf and have now properly racked my dual mini-ITX 2U server chassis. I made sure the network and power cables
-have enough slack so I can fully extend the server without having to power it down.
+Another thing I'm excited about is that I managed to finally find some slide rails small enough to fit in my shallow-depth
+rack. I got rid of my old shelf and have now properly racked my dual mini-ITX 2U server chassis. I made sure the network and
+power cables have enough slack so I can fully extend the server without having to power it down.
 :::
 
 :::{imgur-figure} qGJPNGQ
-Rear Door and Fan Assembly
+Rear Panel and Fan Assembly
 
-Lastly I plugged in the two 5V Noctua fans into those USB power adapters. Don't want anything to overheat, and it does indeed
-get a bit warm in there what with my 6 spinning hard drives. The white USB cable going out of the cabinet is for a Nest
-camera.
+Lastly I plugged in the two 5V Noctua fans into those USB power adapters. I don't want anything to overheat and it does
+indeed get a bit warm in there what with my 6 spinning hard drives.
 :::
 
 :::{imgur-figure} 6W8LIkj
@@ -96,7 +96,7 @@ In the future I may add another 2U case.
 :::{imgur-figure} FtpUBBL
 Center I/O
 
-I added a keystone surface mount case to make plugging and unplugging wires easy, in case I rearrage my living room or
+I added a keystone surface mount box to make plugging and unplugging wires easy, in case I rearrage my living room or
 something. The dark blue CAT6 cable goes to the garage for one of my UniFi access points, the light blue LC/UPC fiber cable
 goes to a switch in my office and the gray CAT5e cable goes up to my Chromecast behind the TV. The power strip is also for my
 TV and game consoles.
