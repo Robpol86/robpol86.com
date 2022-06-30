@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "Robpol86.com"
-version = "2022.6.5"
+version = "2022.6.30"
 description = "My personal website."
 readme = "README.md"
 authors = ["Robpol86 <robpol86@gmail.com>"]
@@ -31,7 +31,7 @@ sphinx-imgur = "*"
 sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"
 sphinx-sitemap = "*"
-sphinxcontrib-youtube = "*"
+sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
 sphinxext-opengraph = "*"
 
 [tool.poetry.dev-dependencies]

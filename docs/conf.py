@@ -89,7 +89,8 @@ html_use_index = True
 
 # Linkcheck settings.
 linkcheck_allowed_redirects = {
-    r"https://www.amazon.com/dp/\w+$": "https://www.amazon.com/[^/]+/dp/",
+    r"https://www.amazon.com/": "https://www.amazon.com/[^/]+/dp/",
+    r"https://www.apc.com/us/en/product/\w+$": "https://www.apc.com/us/en/product/",
     r"https://youtu.be/\w+$": "https://www.youtube.com/watch?",
 }
 linkcheck_exclude_documents = [
