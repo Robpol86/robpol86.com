@@ -8,6 +8,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - N/A
 
+## [2022.6.30]
+
+New post: Server Cabinet June 2022
+
 ## [2022.6.5]
 
 HomeLink Rearview Mirror
