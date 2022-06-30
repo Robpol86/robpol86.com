@@ -8,6 +8,7 @@ Items used:
 * [Majestic EX 70-inch TV Cabinet](https://bawoodworksllc.com/collections/media-consoles)
 * [Custom vertical rack posts](https://github.com/Robpol86/TV-Cabinet-Rack-Posts)
 * [StarTech RDA2U Inverted Server Rack Depth Extender](https://www.startech.com/en-us/server-management/rda2u)
+* [Hug-A-Plug Grounded Right Angle Adapter (old design)](https://www.hugaplug.com/)
 * [Noctua 5V 120mm Fans](https://noctua.at/en/products/fan/nf-f12-5v)
 * [Cable Matters 24 Port Keystone Patch Panel](https://www.amazon.com/gp/product/B0072JVT02)
 * [NETGEAR XS716T 16-Port 10-Gigabit Ethernet Switch](https://www.netgear.com/business/wired/switches/smart/xs716t/)
@@ -30,20 +31,22 @@ My newly rewired 9U server rack cabinet hidden in my living room.
 :::{imgur-figure} WbPfod5
 Drilling Three Holes
 
-I had to drill three holes near the bend on my custom designed rack posts to keep them flush against the TV cabient walls.
-Eaiser, faster, and cheaper than updating my design and having new ones fabricated.
+I had to drill additional holes near the bend on my custom designed rack posts to keep them flush against the TV cabient
+walls. Easier, faster, and cheaper than updating my design and having new ones fabricated.
 :::
 
 :::{imgur-figure} yarRE7Z
-%
-Original mirror with the trim removed. To remove the mirror you just need to twist it counter-clockwise (towards the driver
-side).
+Wiring First
+
+Crimped custom-length CAT6 cables and got lucky with 1 meter long fiber cables. The yellow fiber cable is for my Google Fiber
+internet service and the blue fiber cable goes to my office on the other side of the wall.
 :::
 
 :::{imgur-figure} I0y0A9q
-%
-The new mirror. I run my dashcam wires through the mirror's metal base to avoid having the wires tear up my headliner in case
-somebody tries to steal it by pulling hard on it.
+Installed UPS
+
+Next I installed my UPS with some right-angle power adapters. The two USB power adapters are for the TV cabinet ventilation
+fans. Two fans and two power adapters for redundancy in case one is defective.
 :::
 
 :::{imgur-figure} iAaxoC5
