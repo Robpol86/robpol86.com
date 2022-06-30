@@ -3,7 +3,15 @@
 ```{tags} homelab
 ```
 
-Items used:
+I got a couple of items that warranted rewiring my TV cabinet rack: StarTech extenders and P-Link server rails. I inverted
+the extenders so I could recess the patch panel and switch, making room for the SFP modules and fiber cables. I can't believe
+I can't find any right angle adapters for the LC/UPC fiber patch cables!
+
+It took me a couple of years of off and on searching and buying to finally find some rails that actually fit inside the
+cabinet. The only downside to the rails is that my rack is a bit louder than before since I no longer have the rubber feet
+absorbing the vibration of my spinning hard drives. It's not too bad though.
+
+## Items Used
 
 * [Majestic EX 70-inch TV Cabinet](https://bawoodworksllc.com/collections/media-consoles)
 * [Custom vertical rack posts](https://github.com/Robpol86/TV-Cabinet-Rack-Posts)
