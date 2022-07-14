@@ -65,17 +65,15 @@ the same drill and slowly carved the threads. I was super surprised at the resul
 :::{imgur-figure} joKQgiy
 Head Fitting
 
-Next I installed my trusty old 10 gig switch. I'm super excited that Google Fiber sent me a router with an SFP module that I
-could plug directly into my switch, it's basically a "modem" on a stick! For those that are curious this only runs at 1 Gbps
-speeds so I'm currently just paying for Google's 1 gigabit service instead of their 2 gig offering.
+The PTFE teflon tubing kit I bought came with teflon tubes and two types of push-in fittings. The blue fittings prevent the
+teflon tube from getting past the fitting, letting the filament get through without resistance.
 :::
 
 :::{imgur-figure} f3CX7MR
-Tube
+Teflon Tube
 
-Another thing I'm excited about is that I managed to finally find some slide rails small enough to fit in my shallow-depth
-rack. I got rid of my old shelf and have now properly racked my dual mini-ITX 2U server chassis. I made sure the network and
-power cables have enough slack so I can fully extend the server without having to power it down.
+The black fittings that came with the kit allow the teflon tube to push through but keeps it in place during printing. I got
+super lucky and it turns out the black fitting screws into TODO.
 :::
 
 :::{imgur-figure} UoAtduN
