@@ -27,27 +27,27 @@ down to the platform before every print.
 :data-bs-interval: "false"
 
 :::{imgur-figure} KHWYDpz
-Stealth Living Room Rack
+Before and After
 
 My newly rewired 9U server rack cabinet hidden in my living room.
 :::
 
 :::{imgur-figure} CDeC10F
-Drilling Three Holes
+Bottom Cable Management
 
 I had to drill additional holes near the bend on my custom designed rack posts to keep them flush against the TV cabinet
 walls. Easier, faster, and cheaper than updating my design and having new ones fabricated.
 :::
 
 :::{imgur-figure} VfdJDt8
-Wiring First
+Stop Button
 
 Crimped custom-length CAT6 cables and got lucky with 1 meter long fiber cables. The yellow fiber cable is for my Google Fiber
 internet service and the blue fiber cable goes to my office on the other side of the wall.
 :::
 
 :::{imgur-figure} w9NQt2t
-Installed UPS
+Rear Cable Management
 
 Next I installed my UPS with some right-angle power adapters. The two USB power adapters are for the TV cabinet ventilation
 fans. Two fans and two power adapters for redundancy in case one is defective. The white USB cable going out of the cabinet
@@ -55,7 +55,7 @@ is for a Nest camera.
 :::
 
 :::{imgur-figure} 6GdAPM7
-Installed PDU
+Thread Tapping
 
 Here I installed a PDU at the top of the rear posts with my UniFi PoE injector zipped tied to it. I made some magnetic labels
 for my patch panel and 3d printed a magnetic door stop, though it's falling apart after a couple of years of adding and
@@ -63,7 +63,7 @@ removing it lol.
 :::
 
 :::{imgur-figure} joKQgiy
-Installed Switch
+Head Fitting
 
 Next I installed my trusty old 10 gig switch. I'm super excited that Google Fiber sent me a router with an SFP module that I
 could plug directly into my switch, it's basically a "modem" on a stick! For those that are curious this only runs at 1 Gbps
@@ -71,7 +71,7 @@ speeds so I'm currently just paying for Google's 1 gigabit service instead of th
 :::
 
 :::{imgur-figure} f3CX7MR
-Installed Dual Server
+Tube
 
 Another thing I'm excited about is that I managed to finally find some slide rails small enough to fit in my shallow-depth
 rack. I got rid of my old shelf and have now properly racked my dual mini-ITX 2U server chassis. I made sure the network and
@@ -79,7 +79,7 @@ power cables have enough slack so I can fully extend the server without having t
 :::
 
 :::{imgur-figure} UoAtduN
-Rear Panel and Fan Assembly
+UPS
 
 Lastly I plugged in the two 5V Noctua fans into those USB power adapters. I don't want anything to overheat and it does
 indeed get a bit warm in there what with my 6 spinning hard drives.
