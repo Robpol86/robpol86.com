@@ -1,4 +1,4 @@
-# Snapmaker A350T Teflon Tube
+# Snapmaker 2.0 A350T Teflon Tube
 
 ```{tags} 3d-printing
 ```
@@ -11,19 +11,16 @@ It took me a couple of years of off and on searching and buying to finally find 
 cabinet. The only downside is that my rack is a bit louder than before since I no longer have the rubber feet absorbing the
 vibration of my spinning hard drives. It's not too bad though.
 
+https://www.youtube.com/watch?v=-lo55eJFlio&ab_channel=TechCentric
+
 ## Items Used
 
-* [Majestic EX 70-inch TV Cabinet](https://bawoodworksllc.com/collections/media-consoles)
-* [Custom vertical rack posts](https://github.com/Robpol86/TV-Cabinet-Rack-Posts)
-* [StarTech RDA2U Inverted Server Rack Depth Extender](https://www.startech.com/en-us/server-management/rda2u)
-* [Hug-A-Plug Grounded Right Angle Adapter (old design)](https://www.hugaplug.com/)
-* [Noctua 5V 120mm Fans](https://noctua.at/en/products/fan/nf-f12-5v)
-* [Cable Matters 24 Port Keystone Patch Panel](https://www.amazon.com/gp/product/B0072JVT02)
-* [NETGEAR XS716T 16-Port 10-Gigabit Ethernet Switch](https://www.netgear.com/business/wired/switches/smart/xs716t/)
-* [Tripp Lite PDUMH15-6 Metered PDU](https://www.tripplite.com/1-4kw-single-phase-metered-pdu-120v~pdumh156)
-* [APC Smart-UPS SMT1500RM2U](https://www.apc.com/us/en/product/SMT1500RM2U)
-* [Travla T2241 2U Dual Mini-ITX Case](http://www.travla.com.tw/products_detail.php?index_id=56&index_m1_id=4&index_m2_id=23)
-* [P-Link IPC-Rail18 Universal 18-inch Slide Rails](http://www.plinkusa.net/webrail18.htm)
+* [Snapmaker 2.0 Modular 3-in-1 3D Printer A350T](https://snapmaker.com/snapmaker-2)
+* [Snapmaker 2.0 Enclosure](https://snapmaker.com/snapmaker-2-enclosure-air-purifier#enclosure)
+* [Snapmaker 2.0 Emergency Stop Button](https://us.snapmaker.com/products/snapmaker-2-0-emergency-stop-button)
+* [SIQUK 5x PTFE Tubing (1M), 10x PC4-M6 and 10x PC4-M10 Fittings for 1.75mm Filament](https://www.amazon.com/gp/product/B07PV8754Z/)
+* [DeWALT DWA1450 17 piece Metric Tap & Die Set](https://www.amazon.com/DEWALT-DWA1450-METRIC-TAP-DIE/dp/B00LP4C648)
+* [DeWALT DCD777 20V MAX Compact Brushless Drill/Driver](https://www.dewalt.com/product/dcd777c2/20v-max-compact-brushless-drilldriver)
 
 ## Pictures
 
