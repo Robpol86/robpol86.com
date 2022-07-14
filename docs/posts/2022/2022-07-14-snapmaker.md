@@ -28,8 +28,6 @@ down to the platform before every print.
 
 :::{imgur-figure} KHWYDpz
 Before and After
-
-My newly rewired 9U server rack cabinet hidden in my living room.
 :::
 
 :::{imgur-figure} CDeC10F
@@ -66,7 +64,7 @@ the same drill and slowly carved the threads. I was super surprised at the resul
 Head Fitting
 
 The PTFE teflon tubing kit I bought came with teflon tubes and two types of push-in fittings. The blue fittings prevent the
-teflon tube from getting past the fitting, letting the filament get through without resistance.
+teflon tube from going all the way through.
 :::
 
 :::{imgur-figure} f3CX7MR
