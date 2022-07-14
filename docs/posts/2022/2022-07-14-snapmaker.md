@@ -3,15 +3,14 @@
 ```{tags} 3d-printing
 ```
 
-I got a couple of items that warranted rewiring my TV cabinet rack: StarTech extenders and P-Link server rails. I inverted
-the extenders so I could recess the patch panel and switch, making room for the SFP modules and fiber cables. I can't believe
-I can't find any right angle adapters for the LC/UPC fiber patch cables!
+I recently upgraded from my cheap and finicky [Monoprice 3D printer](../../3d_printer_mpms2.md) to an expensive and versatile
+one (it WAS the latest and greatest [for a few weeks 😭](https://snapmaker.com/snapmaker-artisan)). After using it for a few
+times I already got the modding itch.
 
-It took me a couple of years of off and on searching and buying to finally find some rails that actually fit inside the
-cabinet. The only downside is that my rack is a bit louder than before since I no longer have the rubber feet absorbing the
-vibration of my spinning hard drives. It's not too bad though.
-
-https://www.youtube.com/watch?v=-lo55eJFlio&ab_channel=TechCentric
+This post was inspired by [Tech Centric's video post](https://www.youtube.com/watch?v=-lo55eJFlio). I took care of some cable
+management (I didn't like the cables rubbing against the enclosure or touching the hot platform) and used a teflon tube to
+stop the filament from getting caught on the vertical posts when the print head moves from home (which is at the very top)
+down to the platform before every print.
 
 ## Items Used
 
