@@ -72,15 +72,16 @@ teflon tube from getting past the fitting, letting the filament get through with
 :::{imgur-figure} f3CX7MR
 Teflon Tube
 
-The black fittings that came with the kit allow the teflon tube to push through but keeps it in place during printing. I got
-super lucky and it turns out the black fitting screws into TODO.
+The black fitting that comes with the kit allows the teflon tube to push through but keeps it in place during normal usage.
+It turns out these fittings are the perfect size. It easily screws into the plastic snap bushing that came with the enclosure
+so I didn't need to drill or tap anything for this one.
 :::
 
 :::{imgur-figure} UoAtduN
 UPS
 
-Lastly I plugged in the two 5V Noctua fans into those USB power adapters. I don't want anything to overheat and it does
-indeed get a bit warm in there what with my 6 spinning hard drives.
+I have my 3D printer on a UPS in case there are any brownouts or blackouts to avoid interrupting long prints. Though if I
+would buy a UPS again I would get a bigger one with more run time.
 :::
 ```
 
