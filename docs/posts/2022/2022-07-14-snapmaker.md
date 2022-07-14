@@ -35,31 +35,31 @@ My newly rewired 9U server rack cabinet hidden in my living room.
 :::{imgur-figure} CDeC10F
 Bottom Cable Management
 
-I had to drill additional holes near the bend on my custom designed rack posts to keep them flush against the TV cabinet
-walls. Easier, faster, and cheaper than updating my design and having new ones fabricated.
+I didn't want any of the cables dragging on the table under the printer to avoid any snagging when moving this heavy printer.
+I accomplished this with plety of zip ties and rotating the CAN hub by 90 degrees. I also eliminated any slack with the
+heated platform cable so it no longer touches the platform itself.
 :::
 
 :::{imgur-figure} VfdJDt8
 Stop Button
 
-Crimped custom-length CAT6 cables and got lucky with 1 meter long fiber cables. The yellow fiber cable is for my Google Fiber
-internet service and the blue fiber cable goes to my office on the other side of the wall.
+The cable for the stop button with enclosures is super long. Instead I used the much shorter cable meant for non-enclosed
+printers, and I did not route it through the power cable cut out near the bottom of the printer.
 :::
 
 :::{imgur-figure} w9NQt2t
 Rear Cable Management
 
-Next I installed my UPS with some right-angle power adapters. The two USB power adapters are for the TV cabinet ventilation
-fans. Two fans and two power adapters for redundancy in case one is defective. The white USB cable going out of the cabinet
-is for a Nest camera.
+Wrapped the fan cable around the fan itself. No more slack anywhere!
 :::
 
 :::{imgur-figure} 6GdAPM7
 Thread Tapping
 
-Here I installed a PDU at the top of the rear posts with my UniFi PoE injector zipped tied to it. I made some magnetic labels
-for my patch panel and 3d printed a magnetic door stop, though it's falling apart after a couple of years of adding and
-removing it lol.
+This is the fun part. Instead of 3d printing a new print head cover with threads for the teflon tube fitting I ended up
+tapping the original metal cover with M6 threads. I set my power drill to low-speed-high-torque mode (number 1 on the drill's
+top switch) and used the drill bit that came with the tap and die set to expand the center hole. Then I used the M6 tap with
+the same drill and slowly carved the threads. I was super surprised at the results!
 :::
 
 :::{imgur-figure} joKQgiy
