@@ -48,10 +48,11 @@ Rear Cable Management
 :::{imgur-figure} 6GdAPM7
 Thread Tapping
 
-This is the fun part. Instead of 3d printing a new print head cover with threads for the teflon tube fitting I ended up
+This was the fun part. Instead of 3D printing a new print head cover with threads for the teflon tube fitting I ended up
 tapping the original metal cover with M6 threads. I set my power drill to low-speed-high-torque mode (number 1 on the drill's
 top switch) and used the drill bit that came with the tap and die set to expand the center hole. Then I used the M6 tap with
-the same drill and slowly carved the threads. I was super surprised at the results!
+the same drill and slowly carved the threads. I was super surprised with the results, the push-in fitting screwed on smoothly
+and stays put very firmly without any play.
 :::
 
 :::{imgur-figure} joKQgiy
@@ -65,7 +66,7 @@ going all the way through.
 Teflon Tube
 
 The black fitting that comes with the kit allows the teflon tube to push through but keeps it in place during normal usage.
-It turns out these fittings are the perfect size. It easily screws into the plastic snap bushing that came with the enclosure
+It turns out these fittings are the perfect size. It easily screws into the plastic snap-bushing that came with the enclosure
 so I didn't need to drill or tap anything for this one.
 :::
 
@@ -73,7 +74,7 @@ so I didn't need to drill or tap anything for this one.
 UPS
 
 I have my 3D printer on a UPS since my lights flicker during thunder storms. However if I would buy a UPS again I would get a
-bigger one to get more run time.
+bigger one to get more run time. This APC Back-UPS Pro 700 shows run times between 30 and 8 minutes during 3D printing.
 :::
 ```
 
