@@ -9,10 +9,8 @@ times I already got the modding itch.
 
 This project was inspired by [Tech Centric's video post](https://www.youtube.com/watch?v=-lo55eJFlio). I also implemented a
 bit of cable management since I dislike loose cables touching the heated platform or dragging on the table surface below the
-printer.
-
-I also rotated the controller 90 degrees. I didn't like the cables rubbing against the enclosure side panel and they made it
-tricky to remove/replace the enclosure without having to disconnect them all.
+printer. Rotating the controller 90 degrees stopped the cables from rubbing against the enclosure side panel so I no longer
+need to disconnect them when removing or replacing the enclosure.
 
 ## Items Used
 
