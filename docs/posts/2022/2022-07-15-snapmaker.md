@@ -7,10 +7,9 @@ I recently upgraded from my cheap and finicky [Monoprice 3D printer](../../3d_pr
 one (it WAS the latest and greatest [for a few weeks 😭](https://snapmaker.com/snapmaker-artisan)). After using it a few
 times I already got the modding itch.
 
-This project was inspired by [Tech Centric's video post](https://www.youtube.com/watch?v=-lo55eJFlio). I took care of some
-cable management (I didn't like the cables rubbing against the enclosure or touching the hot platform) and used a teflon tube
-to stop the filament from getting caught on the vertical posts when the print head moves from home (which is at the very top)
-down to the platform before every print.
+This project was inspired by [Tech Centric's video post](https://www.youtube.com/watch?v=-lo55eJFlio). I also implemented a
+bit of cable management since I dislike loose cables touching the heated platform or dragging on the table surface below the
+printer.
 
 I also rotated the controller 90 degrees. I didn't like the cables rubbing against the enclosure side panel and they made it
 tricky to remove/replace the enclosure without having to disconnect them all.
