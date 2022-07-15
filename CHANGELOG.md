@@ -8,6 +8,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - N/A
 
+## [2022.7.15]
+
+New post: Snapmaker 2.0 A350T Teflon Tube
+
 ## [2022.6.30]
 
 New post: Server Cabinet June 2022
