@@ -73,7 +73,7 @@ so I didn't need to drill or tap anything for this one.
 :::{imgur-figure} UoAtduN
 UPS
 
-I have my 3D printer on a UPS since my lights flicker during thunder storms. However if I would buy a UPS again I would get a
+I have my 3D printer on a UPS since my lights flicker during thunderstorms. However if I would buy a UPS again I would get a
 bigger one to get more run time. This APC Back-UPS Pro 700 shows run times between 30 and 8 minutes during 3D printing.
 :::
 ```
