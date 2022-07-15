@@ -39,15 +39,10 @@ eliminated any slack with the heated platform cable so it no longer touches the 
 
 :::{imgur-figure} VfdJDt8
 Stop Button
-
-The cable for the stop button with enclosures is super long. Instead I used the much shorter cable meant for non-enclosed
-printers, and I did not route it through the power cable cut out near the bottom of the printer.
 :::
 
 :::{imgur-figure} w9NQt2t
 Rear Cable Management
-
-Wrapped the fan cable around the fan itself. No more slack anywhere!
 :::
 
 :::{imgur-figure} 6GdAPM7
