@@ -12,6 +12,9 @@ cable management (I didn't like the cables rubbing against the enclosure or touc
 to stop the filament from getting caught on the vertical posts when the print head moves from home (which is at the very top)
 down to the platform before every print.
 
+I also rotated the controller 90 degrees. I didn't like the cables rubbing against the enclosure side panel and making it
+tricky to remove/replace the enclosure without having to disconnect all the cables.
+
 ## Items Used
 
 * [Snapmaker 2.0 Modular 3-in-1 3D Printer A350T](https://snapmaker.com/snapmaker-2)
@@ -34,8 +37,7 @@ Before and After
 Bottom Cable Management
 
 I didn't want any of the cables dragging on the table under the printer to avoid any snagging when moving this heavy printer.
-I accomplished this with plety of zip ties and rotating the CAN hub by 90 degrees. I also eliminated any slack with the
-heated platform cable so it no longer touches the platform itself.
+I also eliminated any slack with the heated platform cable so it no longer touches the platform itself.
 :::
 
 :::{imgur-figure} VfdJDt8
@@ -63,8 +65,8 @@ the same drill and slowly carved the threads. I was super surprised at the resul
 :::{imgur-figure} joKQgiy
 Head Fitting
 
-The PTFE teflon tubing kit I bought came with teflon tubes and two types of push-in fittings. The blue fittings prevent the
-teflon tube from going all the way through.
+The PTFE teflon tubing kit I bought came with two types of push-in fittings. The blue fittings prevent the teflon tube from
+going all the way through.
 :::
 
 :::{imgur-figure} f3CX7MR
@@ -78,8 +80,8 @@ so I didn't need to drill or tap anything for this one.
 :::{imgur-figure} UoAtduN
 UPS
 
-I have my 3D printer on a UPS in case there are any brownouts or blackouts to avoid interrupting long prints. Though if I
-would buy a UPS again I would get a bigger one with more run time.
+I have my 3D printer on a UPS since my lights flicker during thunder storms. However if I would buy a UPS again I would get a
+bigger one to get more run time.
 :::
 ```
 
