@@ -81,7 +81,7 @@ bigger one to get more run time. This APC Back-UPS Pro 700 shows run times betwe
 ### Mirrors
 
 * Imgur: https://imgur.com/a/kcDW72p
-* Reddit: TODO
+* Reddit: https://www.reddit.com/r/3Dprinting/comments/w012e5/snapmaker_20_a350t_teflon_tube
 
 ## Comments
 
