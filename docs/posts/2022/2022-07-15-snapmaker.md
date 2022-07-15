@@ -4,7 +4,7 @@
 ```
 
 I recently upgraded from my cheap and finicky [Monoprice 3D printer](../../3d_printer_mpms2.md) to an expensive and versatile
-one (it WAS the latest and greatest [for a few weeks 😭](https://snapmaker.com/snapmaker-artisan)). After using it for a few
+one (it WAS the latest and greatest [for a few weeks 😭](https://snapmaker.com/snapmaker-artisan)). After using it a few
 times I already got the modding itch.
 
 This project was inspired by [Tech Centric's video post](https://www.youtube.com/watch?v=-lo55eJFlio). I took care of some
@@ -12,8 +12,8 @@ cable management (I didn't like the cables rubbing against the enclosure or touc
 to stop the filament from getting caught on the vertical posts when the print head moves from home (which is at the very top)
 down to the platform before every print.
 
-I also rotated the controller 90 degrees. I didn't like the cables rubbing against the enclosure side panel and making it
-tricky to remove/replace the enclosure without having to disconnect all the cables.
+I also rotated the controller 90 degrees. I didn't like the cables rubbing against the enclosure side panel and they made it
+tricky to remove/replace the enclosure without having to disconnect them all.
 
 ## Items Used
 
