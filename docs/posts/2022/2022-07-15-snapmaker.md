@@ -36,8 +36,8 @@ Before and After
 :::{imgur-figure} CDeC10F
 Bottom Cable Management
 
-I didn't want any of the cables dragging on the table under the printer to avoid any snagging when moving this heavy printer.
-I also eliminated any slack with the heated platform cable so it no longer touches the platform itself.
+I didn't want any of the cables dragging on the table under the printer to avoid any snagging when moving it. I also
+eliminated any slack with the heated platform cable so it no longer touches the platform itself.
 :::
 
 :::{imgur-figure} VfdJDt8
