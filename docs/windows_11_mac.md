@@ -232,35 +232,6 @@ Fix default explorer search bar size and default folder view sorting and columns
     taskkill /f /im explorer.exe; explorer.exe
     ```
 
-### Remove Bloat
-
-```powershell
-Get-ProvisionedAppxPackage -online |
-    Where-Object { $_.DisplayName -like "Microsoft.Xbox*" -or $_.DisplayName -eq "Microsoft.GamingApp" } |
-    ForEach-Object { Remove-ProvisionedAppxPackage -online -allusers -PackageName $_.PackageName }
-
-Get-AppxPackage -allusers -name Disney.* |Remove-AppxPackage -allusers  # Disney+
-Get-AppxPackage -allusers -name Microsoft.549981C3F5F10 |Remove-AppxPackage -allusers  # Cortana
-Get-AppxPackage -allusers -name Microsoft.BingNews |Remove-AppxPackage -allusers  # Microsoft News
-Get-AppxPackage -allusers -name Microsoft.BingWeather |Remove-AppxPackage -allusers  # Microsoft Weather
-Get-AppxPackage -allusers -name Microsoft.GetHelp |Remove-AppxPackage -allusers  # Get Help
-Get-AppxPackage -allusers -name Microsoft.Getstarted |Remove-AppxPackage -allusers  # Tips
-Get-AppxPackage -allusers -name Microsoft.MicrosoftOfficeHub |Remove-AppxPackage -allusers  # Office
-Get-AppxPackage -allusers -name Microsoft.MicrosoftSolitaireCollection |Remove-AppxPackage -allusers  # Solitaire
-Get-AppxPackage -allusers -name Microsoft.MicrosoftStickyNotes |Remove-AppxPackage -allusers  # Sticky Notes
-Get-AppxPackage -allusers -name Microsoft.Todos |Remove-AppxPackage -allusers  # Microsoft To Do
-Get-AppxPackage -allusers -name Microsoft.WindowsCommunicationsApps |Remove-AppxPackage -allusers  # Mail and Calendar
-Get-AppxPackage -allusers -name Microsoft.WindowsFeedbackHub |Remove-AppxPackage -allusers  # Feedback Hub
-Get-AppxPackage -allusers -name Microsoft.WindowsMaps |Remove-AppxPackage -allusers  # Maps
-Get-AppxPackage -allusers -name Microsoft.YourPhone |Remove-AppxPackage -allusers  # Your Phone
-Get-AppxPackage -allusers -name Microsoft.ZuneMusic |Remove-AppxPackage -allusers  # Groove Music
-Get-AppxPackage -allusers -name Microsoft.ZuneVideo |Remove-AppxPackage -allusers  # Movies & TV
-Get-AppxPackage -allusers -name MicrosoftTeams |Remove-AppxPackage -allusers  # Microsoft Teams
-Get-AppxPackage -allusers -name SpotifyAB.SpotifyMusic |Remove-AppxPackage -allusers  # Spotify
-```
-
-Afterwards I had to reboot to get the Microsoft Store to sync.
-
 ### WSL2 and Ubuntu
 
 In a Powershell admin window:
