@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Increasing temporary size of Windows 11 Mac ISO for NTLite users. 
 
 ## [2022.7.15]
 

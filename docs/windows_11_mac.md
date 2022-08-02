@@ -29,7 +29,7 @@ Mount the Windows 11 ISO
 Convert the Windows 10 ISO to a temporary writable image and mount it
 :   ```bash
     hdiutil makehybrid Win10_21H1_English_x64.iso -hfs -o Win10_To_11.dmg
-    hdiutil resize -size 6g Win10_To_11.dmg
+    hdiutil resize -size 10g Win10_To_11.dmg
     hdiutil attach Win10_To_11.dmg -readwrite -mountpoint /Volumes/Win10_To_11
     ```
 
