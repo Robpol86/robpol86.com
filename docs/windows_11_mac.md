@@ -102,6 +102,103 @@ In case you were wondering how I took screen shots during the Windows installati
 1. From {guilabel}`C:` I ran: `nircmd savescreenshot screen.png`
 ```
 
+## Alternative: Manual Install
+
+[fotsies]: https://fgimian.github.io/blog/2016/03/12/installing-windows-10-on-a-mac-without-bootcamp/
+[tpm-bypass]: https://www.ntlite.com/community/index.php?threads/tpm-and-secureboot-bypass-in-settings-v2-3-0-8394.2464/
+
+The above steps work fine for a vanilla Windows 11 ISO, but it didn't work properly with a custom ISO I built using
+[NTLite](https://www.ntlite.com/). I discovered that even though I [removed the TPM requirement][tpm-bypass], I wasn't able
+to get Boot Camp to use the custom ISO on my 2019 MacBook Air (however it worked just fine on my 2013 Mac Pro). I ended up
+bypassing the Boot Camp Assistant almost completely and installing my customized Windows 11 ISO manually using
+[Fotsies' tutorial][fotsies].
+
+Before starting I had to prepare my MacBook and grab a few things:
+
+1. Grab a **10 GiB** or greater USB flash drive (the faster the better)
+2. Also have a USB keyboard and mouse handy
+    1. The keyboard and touchpad on my 2019 MacBook Air didn't work during Windows setup since there are no Boot Camp drivers
+       yet.
+3. Download and extract [unetbootin](https://unetbootin.github.io/) somewhere on your Mac
+    1. Or if you use [Homebrew](https://brew.sh/): `brew install unetbootin`
+4. [Allow booting from a external or removable media](https://support.apple.com/en-us/HT208198)
+
+You'll also need to obtain the Windows Support Software from the Boot Camp Assistant:
+
+1. Open the Boot Camp Assistant
+2. Action > Download Windows Support Software
+3. Save as **WindowsSupport** in your Downloads directory
+4. Close the Boot Camp Assistant, we won't be needing it anymore
+
+### Format USB Flash Drive
+
+```{list-table}
+* - ```{imgur-figure} GvtHamn
+    :ext: png
+    Disk Utility
+    ```
+  - ```{imgur-figure} O9Ytvtw
+    :ext: png
+    Erase USB Drive
+    ```
+  - ```{imgur-figure} nlgkq4N
+    :ext: png
+    UNetbootin
+    ```
+```
+
+Insert your USB flash drive and open **Disk Utility**. Under the view menu select **Show All Devices** and **erase** your USB
+flash drive using the following options (also take note what the device name is for the next step, e.g. *disk2*):
+
+* **Name**: WindowsUSB
+* **Format**: ExFAT
+* **Scheme**: Master Boot Record
+
+Then use **unetbootin** to copy the installation files onto the USB flash drive:
+
+* **Diskimage**: ISO (browse to your Windows ISO file)
+* **Type**: USB Drive
+* **Drive**: *your USB drive* (e.g. */dev/disk2s1*)
+
+Click OK and wait until it's done. Depending on the speed of your USB flash drive it can take more than 10 minutes. When it's
+done copy the **WindowsSupport** directory from your Downloads directory to the USB flash drive, we'll need it at the very
+end.
+
+### Repartition Main SSD
+
+```{warning} Backup any important files just in case something goes wrong and you lose all of your files on your computer.
+```
+
+```{list-table}
+* - ```{imgur-figure} HL5fUTI
+    :ext: png
+    Partition SSD
+    ```
+  - ```{imgur-figure} 2k0QnAP
+    :ext: png
+    Add Partition
+    ```
+  - ```{imgur-figure} ViA41PH
+    :ext: png
+    Name it BOOTCAMP
+    ```
+```
+
+1. Open Disk Utility and select your internal SSD and click **Partition**
+2. Click the **+** (plus) button and add a new partition (not a volume)
+3. Name the new partition **BOOTCAMP** and format it as **ExFAT** (it will be reformatted as NTFS during Windows setup)
+4. Click Apply
+
+Finally boot from the USB flash drive by holding the **option** (or alt) key as you restart your Mac. You should see
+**EFI Boot** in the list. When the Windows installer comes up you'll need to format the BOOTCAMP partition with **NTFS** by
+clicking on the pink **Format** button. After Windows finishes installing don't forget to install Boot Camp software by
+running **Setup.exe** (found in your USB flash drive inside the WindowsSupport > BootCamp directory).
+
+### Remove Windows
+
+Even though we didn't use the Boot Camp Assistant to install windows I was able to use it to restore my Mac back to normal.
+It removed the Windows partition and removed the Windows EFI entry as well!
+
 ## Remove macOS
 
 ```{list-table}
