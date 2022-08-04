@@ -6,7 +6,14 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- Increasing temporary size of Windows 11 Mac ISO for NTLite users. 
+- N/A
+
+## [2022.8.4]
+
+Updated Windows 11 on a Mac
+
+- Increasing temporary size of Windows 11 Mac ISO for NTLite users. Also added alternative install instructions.
+- Fixed newly broken link. Looks like Travla is out of business or something.
 
 ## [2022.7.15]
 
