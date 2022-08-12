@@ -16,6 +16,13 @@ Built with [Sphinx](http://sphinx-doc.org/), hosted on [NearlyFreeSpeech.NET](ht
 
 I use GitHub Actions to automatically build and push HTML files to NFSN.
 
+## Metrics
+
+Google Analytics is enabled on my website via a [CloudFlare app](https://www.cloudflare.com/apps/googleanalytics).
+
+* [Google Analytics](https://analytics.google.com/analytics/web/#/p275999550/reports/intelligenthome)
+* [Google Search Console](https://search.google.com/search-console?resource_id=https%3A%2F%2Frobpol86.com%2F)
+
 ## Releases
 
 Deployments to production are done by GitHub Actions when a new tag matching the format YYYY-MM-DD is manually pushed. All

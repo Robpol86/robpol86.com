@@ -91,7 +91,8 @@ html_use_index = True
 linkcheck_allowed_redirects = {
     r"https://www.amazon.com/": "https://www.amazon.com/[^/]+/dp/",
     r"https://www.apc.com/us/en/product/\w+$": "https://www.apc.com/us/en/product/",
-    r"https://youtu.be/\w+$": "https://www.youtube.com/watch?",
+    r"https://www.mcmaster.com/": "https://www.mcmaster.com/ShellHomepageRefresh[.]aspx[?]searchTerm=",
+    r"https://youtu.be/\w+$": "https://www.youtube.com/watch[?]",
 }
 linkcheck_exclude_documents = [
     # TODO remove all
@@ -102,14 +103,15 @@ linkcheck_exclude_documents = [
     "raspberry_pi_project_fi",
     "rns_510_vim",
     "root_certificate_authority",
-    "vw_alltrack_2019",
     "wireless_charging_car_dock",
 ]
 linkcheck_ignore = [
     r"[/.]*genindex.html",  # TODO remove this
     r"https://[\w.]*mibsolution.one/#",
+    r"https://media.vw.com/",  # All curls result in 403
     r"https://mega.nz/(file|folder)/\w+#",
     r"https://parts.vw.com/",  # Times out frequently
+    r"https://www.ecstuning.com/",  # All curls result in 403
     r"https://www.qnx.com/developers/docs/[\w.]+/#",
     r"https?://192.168.\d+.\d+/",
 ]
