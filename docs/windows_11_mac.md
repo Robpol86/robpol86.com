@@ -185,7 +185,7 @@ end.
 ```
 
 1. Open Disk Utility and select your internal SSD and click **Partition**
-2. Click the **+** (plus) button and add a new partition (not a volume)
+2. Click the **+** (plus) button and click **Add Partition** (not a volume)
 3. Name the new partition **BOOTCAMP** and format it as **ExFAT** (it will be reformatted as NTFS during Windows setup)
 4. Click Apply
 

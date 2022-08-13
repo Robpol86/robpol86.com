@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Touched up instructions on Windows 11 on a Mac page.
 
 ## [2022.8.4]
 
