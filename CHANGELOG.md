@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- Touched up instructions on Windows 11 on a Mac page.
+- Touched up instructions on Windows 11 on a Mac page. Also clarifying it's for Intel Macs.
 
 ## [2022.8.4]
 

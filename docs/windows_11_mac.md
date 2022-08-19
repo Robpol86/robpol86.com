@@ -1,7 +1,7 @@
-# Installing Windows 11 on a Mac
+# Install Windows 11 on an Intel Mac
 
-This guide lays out the steps I take to install Windows 11 on my Apple computers using a custom ISO. This allows me to bypass
-the current TPM 2.0 requirement, since at this time Boot Camp does not provide TPM 2.0 to Windows.
+This guide lays out the steps I take to install Windows 11 on my Intel-based Apple computers using a custom ISO. This allows
+me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does not provide TPM 2.0 to Windows.
 
 ## Create ISO
 
