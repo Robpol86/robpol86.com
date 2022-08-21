@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "Robpol86.com"
-version = "2022.8.4"
+version = "2022.8.21"
 description = "My personal website."
 readme = "README.md"
 authors = ["Robpol86 <robpol86@gmail.com>"]
