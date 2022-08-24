@@ -8,6 +8,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - N/A
 
+## [2022.8.24]
+
+New post: OEMTools 24938 Gauge Mod
+
 ## [2022.8.21]
 
 Updated Windows 11 on a Mac
