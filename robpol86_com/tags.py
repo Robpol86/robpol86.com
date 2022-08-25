@@ -5,7 +5,6 @@ from docutils import nodes
 from sphinx.application import Sphinx
 from sphinx.domains.index import IndexDirective
 from sphinx.errors import SphinxError
-from sphinx.util.docutils import SphinxDirective
 
 
 class TagsDirective(IndexDirective):
@@ -37,30 +36,9 @@ class TagsDirective(IndexDirective):
         return [index_node, target_node, nodes.paragraph("", "", human_readable_tag_list)]
 
 
-class RelatedDocsByTag(SphinxDirective):
-    """Bullet list directive listing documents with the requested tag."""
-
-    has_content = False
-    option_spec = {}
-    required_arguments = 1
-    optional_arguments = 0
-
-    def run(self) -> List[nodes.Element]:
-        """Main method."""
-        ul_node = nodes.bullet_list(bullet="*")
-        for text, ref in [("TODO1", "https://robpol86.com"), ("TODO2", "https://rob86stage.robpol86.com")]:
-            text_node = nodes.Text(text, text)
-            a_href_node = nodes.reference("", "", text_node, refuri=ref, internal=True)
-            p_node = nodes.paragraph("", "", a_href_node)
-            li_node = nodes.list_item("", p_node)
-            ul_node.append(li_node)
-        return [ul_node]
-
-
 def setup(app: Sphinx):
     """Called by Sphinx.
 
     :param app: Sphinx application object.
     """
     app.add_directive("tags", TagsDirective)
-    app.add_directive("related", RelatedDocsByTag)
