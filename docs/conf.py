@@ -34,6 +34,7 @@ language = "en"
 project = "Robpol86.com"
 pygments_style = "vs"
 release = version
+suppress_warnings = ["myst.strikethrough"]
 templates_path = ["_templates"]
 
 
@@ -128,7 +129,7 @@ carousel_show_shadows = True
 disqus_shortname = "rob86wiki"
 external_toc_path = ".toc.yml"
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
-myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "substitution"]
+myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
 myst_url_schemes = ("http", "https", "mailto")
 notfound_context = dict(
     title="404 Not Found",
