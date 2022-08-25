@@ -49,14 +49,11 @@ class RelatedDocsByTag(SphinxDirective):
         """Main method."""
         ul_node = nodes.bullet_list(bullet="*")
         for text, ref in [("TODO1", "https://robpol86.com"), ("TODO2", "https://rob86stage.robpol86.com")]:
-            li_node = nodes.list_item("", nodes.paragraph(text, text))
+            text_node = nodes.Text(text, text)
+            a_href_node = nodes.reference("", "", text_node, refuri=ref, internal=True)
+            p_node = nodes.paragraph("", "", a_href_node)
+            li_node = nodes.list_item("", p_node)
             ul_node.append(li_node)
-            # a_href_node = nodes.reference("", "", internal=False, refuri=ref)  # TODO internal = true
-            # a_href_node.append(nodes.Text(text, text))
-            # p_node = nodes.paragraph(text=text)
-            # li_node = nodes.list_item()
-            # li_node += a_href_node
-            # ul_node.append(li_node)
         return [ul_node]
 
 

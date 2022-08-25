@@ -92,3 +92,4 @@ ENV/
 *.rpm
 .idea/
 .DS_Store
+.vscode/
