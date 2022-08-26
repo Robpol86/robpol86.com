@@ -27,7 +27,7 @@ show off. Since then I have tried to take pictures of all my desks after signifi
         was my last desk at Apple.
 
 Old
-```
+---
 
 .. imgur-embed:: a/ZHAJF
     :og_imgur_id: tONwe6S
