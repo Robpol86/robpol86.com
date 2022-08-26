@@ -16,6 +16,19 @@ Desk Pictures
 Started by a thread called “Where You Rock” on Big-O-Software Forums in early 2003, I began to take pictures of my desk to
 show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.
 
+.. carousel::
+    :data-bs-interval: "false"
+
+    .. imgur-figure:: tONwe6S
+
+        ..
+
+        Moved buildings in the South Bay. This one has offices instead of cubicles. Sharing this with one other person. This
+        was my last desk at Apple.
+
+Old
+```
+
 .. imgur-embed:: a/ZHAJF
     :og_imgur_id: tONwe6S
 
