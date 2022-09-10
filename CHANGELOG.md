@@ -6,6 +6,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
+- N/A
+
+## [2022.9.10]
+
 - Manually linking to related posts for Golf Alltrack page.
 
 ## [2022.8.24]
