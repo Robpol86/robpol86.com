@@ -10,7 +10,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [2022.9.10]
 
-- Manually linking to related posts for Golf Alltrack page.
+Alltrack page: Manually linking to related posts
 
 ## [2022.8.24]
 
