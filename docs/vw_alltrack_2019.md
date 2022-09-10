@@ -3,14 +3,18 @@
 ```{tags} alltrack, vehicle
 ```
 
-This page ~~is a log book of all the modifications I've done~~ to my 2019 Alltrack.
+This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
-## New Entries
+## Aug &#39;22 OEMTools 24938 Gauge Mod
 
-I've changed my mind about this page. Instead I'm adding new entries in individual blog-like posts. I've listed all the new
-"blog" posts related to my Alltrack below:
+Another dedicated post loosely related to my Alltrack:
 
 * [](posts/2022/2022-08-23-oemtools-gauge.md)
+
+## Jun &#39;22 HomeLink Rearview Mirror
+
+I posted the installation steps in a dedicated post here:
+
 * [](posts/2022/2022-06-05-alltrack-homelink-mirror.md)
 
 ## Jan &#39;22 MIB2 Developer Mode
