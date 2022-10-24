@@ -13,7 +13,7 @@ Sadly the enclosure is only engineered to have the large door on the right so th
 Steps:
 
 1. Remove all plexiglass panels and doors.
-2. Remove the rear top rail (TODO, with the converter hub) and the rear bottom rail (TODO).
+2. Remove the rear top (with the converter hub) and bottom 24 BEAM A350-4 rails.
 3. Measure the offsets of the foot fixture indentations on the bottom rails.
 4. Facing front to back flip the entire enclosure 180 degrees (e.g. top is now on the bottom).
 5. Relocate the LED strips from the bottom back to the top rails (tiny screws won't be needed anymore).
@@ -36,8 +36,6 @@ Drawbacks:
   the main hub on the right side of the printer.
 * I bought the emergency stop button, so I don't know if the spare M4 sliding T-Nuts I have came from that or from the
   enclosure. If you don't have four extra T-Nuts for the foot fixtures you'll need to buy some or 3d print some.
-* Even though I had spare T-Nuts I only had spare M4x10 screws, which were slightly too long. I mitigated this by adding some
-  1.3 mm washers.
 
 ## Pictures
 
