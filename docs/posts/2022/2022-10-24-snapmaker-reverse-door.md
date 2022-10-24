@@ -18,7 +18,7 @@ Steps:
 4. Facing front to back flip the entire enclosure 180 degrees (e.g. top is now on the bottom).
 5. Relocate the LED strips from the bottom back to the top rails (tiny screws won't be needed anymore).
 6. Flip the hall sensor 180 degrees.
-7. For the foot fixtures insert two M4 sliding T-Nuts into each bottom rail.
+7. For the foot fixtures insert two M4 2020 slide-in T-nuts into each bottom rail.
 8. Mark on the now bottom rails the foot fixture offsets.
 9. Reinstall the rear rails, keeping the one with the converter hub at the top.
 10. Install the doors. Flip the small-door panel with the touchscreen cutout.
@@ -34,9 +34,10 @@ Drawbacks:
   can't be pushed towards the printer causing a collision mid-print (by making sure the foot fixture screws are tightened).
 * The touchscreen will now be on the left side at the front, so the cord will be extended as it crosses diagonally towards
   the main hub on the right side of the printer.
-* I bought the emergency stop button, so I don't know if the spare M4 sliding T-Nuts I have came from that or from the
-  enclosure. If you don't have four extra T-Nuts for the foot fixtures you'll need to buy some or 3d print some.
-* The top panel not enough screws optionally get some T-Nuts TODO.
+* I bought the emergency stop button, so I don't know if the spare M4 2020 slide-in T-nuts I have came from that or from the
+  enclosure.
+* The top panel's screw holes will only align with the shorter front/back rails. You can optionally drill holes into the
+  panel or buy additional T-nuts for the long rails.
 
 ## Pictures
 
