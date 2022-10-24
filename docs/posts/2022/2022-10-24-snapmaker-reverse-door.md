@@ -36,6 +36,7 @@ Drawbacks:
   the main hub on the right side of the printer.
 * I bought the emergency stop button, so I don't know if the spare M4 sliding T-Nuts I have came from that or from the
   enclosure. If you don't have four extra T-Nuts for the foot fixtures you'll need to buy some or 3d print some.
+* The top panel not enough screws optionally get some T-Nuts TODO.
 
 ## Pictures
 
