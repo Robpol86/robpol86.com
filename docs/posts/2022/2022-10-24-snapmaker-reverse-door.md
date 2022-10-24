@@ -14,7 +14,7 @@ Steps:
 
 1. Remove all plexiglass panels and doors.
 2. Remove the rear top (with the converter hub) and bottom 24 BEAM A350-4 rails.
-3. Measure the offsets of the foot fixture indentations on the bottom rails.
+3. Measure the offsets of the foot fixture indentations on the bottom rails (my enclosure measured 123 mm offset).
 4. Facing front to back flip the entire enclosure 180 degrees (e.g. top is now on the bottom).
 5. Relocate the LED strips from the bottom back to the top rails (tiny screws won't be needed anymore).
 6. Flip the hall sensor 180 degrees.
