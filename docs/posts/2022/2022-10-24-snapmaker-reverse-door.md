@@ -38,3 +38,16 @@ Drawbacks:
   enclosure. If you don't have four extra T-Nuts for the foot fixtures you'll need to buy some or 3d print some.
 * Even though I had spare T-Nuts I only had spare M4x10 screws, which were slightly too long. I mitigated this by adding some
   1.3 mm washers.
+
+## Pictures
+
+TODO
+
+## Links
+
+* TODO snapmaker community post.
+
+## Comments
+
+```{disqus}
+```
