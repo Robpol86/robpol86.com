@@ -14,15 +14,27 @@ Steps:
 
 1. Remove all plexiglass panels and doors.
 2. Remove the rear top rail (TODO, with the converter hub) and the rear bottom rail (TODO).
-3. Measure the offsets for the ... TODO
+3. Measure the offsets of the foot fixture indentations on the bottom rails.
 4. Facing front to back flip the entire enclosure 180 degrees (e.g. top is now on the bottom).
 5. Relocate the LED strips from the bottom back to the top rails (tiny screws won't be needed anymore).
 6. Flip the hall sensor 180 degrees.
-7. For the foot fixtures insert two M4 T-Nuts into each bottom rail (I also had to use 1.3 mm washers).
-8. Reinstall the rear rails, keeping the one with the converter hub at the top.
-9. Install the doors. Flip the small-door panel with the touchscreen cutout.
-10. Put some 10 mm wide 3 mm thick self-adhesive weather stripping on the flipped panel.
+7. For the foot fixtures insert two M4 sliding T-Nuts into each bottom rail.
+8. Mark on the now bottom rails the foot fixture offsets.
+9. Reinstall the rear rails, keeping the one with the converter hub at the top.
+10. Install the doors. Flip the small-door panel with the touchscreen cutout.
+11. Put some 10 mm wide 3 mm thick self-adhesive weather stripping on the flipped panel.
 
 Drawbacks:
 
-* TODO
+* The LED strips were held firmly in place by two small screws each originally. They'll be loose now but there's little play
+  and won't really be a problem when the enclosure is fully reassembled.
+* The bottom rails have indentations so the foot fixtures can be installed precisely. Originally there is very little space
+  between the movable platform and the front of the enclosure when the Y-axis is at it's maximum. It's up to you to mark the
+  offsets correctly and verify the platform won't collide with the enclosure on max Y. You should also verify the enclosure
+  can't be pushed towards the printer causing a collision mid-print (by making sure the foot fixture screws are tightened).
+* The touchscreen will now be on the left side at the front, so the cord will be extended as it crosses diagonally towards
+  the main hub on the right side of the printer.
+* I bought the emergency stop button, so I don't know if the spare M4 sliding T-Nuts I have came from that or from the
+  enclosure. If you don't have four extra T-Nuts for the foot fixtures you'll need to buy some or 3d print some.
+* Even though I had spare T-Nuts I only had spare M4x10 screws, which were slightly too long. I mitigated this by adding some
+  1.3 mm washers.
