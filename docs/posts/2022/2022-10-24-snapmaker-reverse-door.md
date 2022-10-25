@@ -12,13 +12,16 @@ Sadly the enclosure is only engineered to have the large door on the right so th
 
 ### Drawbacks
 
-* **Foot fixtures**: The bottom rails have indentations so the foot fixtures can be installed precisely.
-    * Solution: measure the distance between the indentation and the end of the bottom rails and mark them on the top rails
+[t-nuts]: https://www.amazon.com/KOOTANS-Thread-Aluminum-Extrusions-Profiles/dp/B0811KZB1P
+
+* **Foot fixtures**: The bottom rails have indentations so the foot fixtures can be installed precisely. Additionally the
+  top rails lack the additional screw holes for these fixtures.
+    * Solution: If you bought the emergency stop button you may have four spare T-nuts and M4x8 screws you can use (if not
+      you can buy extra [M4 2020 slide-in T-nuts](t-nuts) or you can just drill and tap new threaded holes in the rail). You
+      should also measure the distance between the indentation and the end of the bottom rails and mark them on the top rails
       with a marker. Don't forget to do this four times.
 * The touchscreen will now be on the left side at the front, so the cord will be extended as it crosses diagonally towards
   the main hub on the right side of the printer.
-* I bought the emergency stop button, so I don't know if the spare M4 2020 slide-in T-nuts I have came from that or from the
-  enclosure.
 * The top panel's screw holes will only align with the shorter front/back rails. You can optionally drill holes into the
   panel or buy additional T-nuts for the long rails.
 
