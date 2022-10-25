@@ -12,10 +12,9 @@ Sadly the enclosure is only engineered to have the large door on the right so th
 
 ### Drawbacks
 
-* The bottom rails have indentations so the foot fixtures can be installed precisely. Originally there is very little space
-  between the movable platform and the front of the enclosure when the Y-axis is at it's maximum. It's up to you to mark the
-  offsets correctly and verify the platform won't collide with the enclosure on max Y. You should also verify the enclosure
-  can't be pushed towards the printer causing a collision mid-print (by making sure the foot fixture screws are tightened).
+* **Foot fixtures**: The bottom rails have indentations so the foot fixtures can be installed precisely.
+    * Solution: measure the distance between the indentation and the end of the bottom rails and mark them on the top rails
+      with a marker. Don't forget to do this four times.
 * The touchscreen will now be on the left side at the front, so the cord will be extended as it crosses diagonally towards
   the main hub on the right side of the printer.
 * I bought the emergency stop button, so I don't know if the spare M4 2020 slide-in T-nuts I have came from that or from the
@@ -41,9 +40,9 @@ Sadly the enclosure is only engineered to have the large door on the right so th
 
 TODO
 
-## Links
+## See Also
 
-* TODO snapmaker community post.
+* https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 
 ## Comments
 
