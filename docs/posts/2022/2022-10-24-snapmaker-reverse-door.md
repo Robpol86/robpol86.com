@@ -23,8 +23,10 @@ Sadly the enclosure is only engineered to have the large door on the right so th
   instead of the bottom. We'll be fixing this by flipping the panel but this will place the foam strips facing out instead of
   in.
     * Solution: Buy some 10 mm wide by 3 mm thick self-adhesive [weather stripping][stripping] (or cut yours to size).
-* The top panel's screw holes will only align with the shorter front/back rails. You can optionally drill holes into the
-  panel or buy additional T-nuts for the long rails.
+* **Top panel**: The bottom side of the enclosure doesn't have as many screw holes as the top. Only the two narrow sides of
+  the top panel will have holes that align.
+    * Solution: You can drill additional holes on the plexiglass top panel or using more T-nuts but I ended up just relying
+      on the four screws to hold the top panel in place, so this was a non-problem for me.
 
 ## Steps
 
