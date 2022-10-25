@@ -8,6 +8,10 @@ left. It also has a smaller door on the front. This post is how I went about swa
 Sadly the enclosure is only engineered to have the large door on the right so there are a couple of minor drawbacks to this
 "mod". Overall I feel that the pros outweigh the cons.
 
+```{seealso}
+https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
+```
+
 ## Drawbacks
 
 [t-nuts]: https://www.amazon.com/KOOTANS-Thread-Aluminum-Extrusions-Profiles/dp/B0811KZB1P
@@ -26,7 +30,7 @@ Sadly the enclosure is only engineered to have the large door on the right so th
 * **Top panel**: The bottom side of the enclosure doesn't have as many screw holes as the top. Only the two narrow sides of
   the top panel will have holes that align.
     * Solution: You can drill additional holes on the plexiglass top panel or using more T-nuts but I ended up just relying
-      on the four screws to hold the top panel in place, so this was a non-problem for me.
+      on the four screws to hold the top panel in place, so this was a non-issue for me.
 
 ## Steps
 
@@ -45,10 +49,6 @@ Sadly the enclosure is only engineered to have the large door on the right so th
 ## Pictures
 
 TODO
-
-## See Also
-
-* https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 
 ## Comments
 
