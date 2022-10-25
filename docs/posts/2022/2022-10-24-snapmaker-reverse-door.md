@@ -39,7 +39,7 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 3. Measure the offsets of the **foot fixture** indentations on the bottom rails (my enclosure measured 123 mm offset).
 4. Facing front to back flip the entire enclosure 180 degrees (e.g. top is now on the bottom).
 5. Relocate the LED strips from the bottom back to the top rails (the tiny screws aren't really necessary).
-6. Flip the hall sensor 180 degrees.
+6. Flip the hall sensor (little black box on a vertical rail) 180 degrees so you can run the cable along the top.
 7. For the **foot fixtures** insert two M4 2020 slide-in T-nuts into each bottom rail.
 8. Mark on the now bottom rails the **foot fixture** offsets.
 9. Reinstall the rear rails, keeping the one with the converter hub at the top.
