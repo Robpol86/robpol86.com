@@ -11,15 +11,18 @@ Sadly the enclosure is only engineered to have the large door on the right so th
 ## Drawbacks
 
 [t-nuts]: https://www.amazon.com/KOOTANS-Thread-Aluminum-Extrusions-Profiles/dp/B0811KZB1P
+[stripping]: https://www.amazon.com/uxcell-Thick-Adhesive-Weather-Strip/dp/B07L6LB49S
 
 * **Foot fixtures**: The bottom rails have extra screw holes and indentations so that the foot fixtures can be installed
   precisely. The top rails lack these indentations and screw holes.
     * Solution: If you have bought the emergency stop button you may have four spare T-nuts and M4x8 screws you can use (if
-      not you can buy extra [M4 2020 slide-in T-nuts][t-nuts] or you can just drill and tap new threaded holes in the rail).
+      not you can buy extra [M4 2020 slide-in T-nuts][t-nuts] or you can just drill and tap new threaded holes in the rails).
       You should also measure the distance between the indentation and the end of the bottom rails and mark them on the top
       rails with a marker. Don't forget to do this four times.
-* The touchscreen will now be on the left side at the front, so the cord will be extended as it crosses diagonally towards
-  the main hub on the right side of the printer.
+* **Touchscreen**: Since we're rotating everything 180 degrees the touchscreen cutout on the front door will be at the top
+  instead of the bottom. We'll be fixing this by flipping the panel but this will place the foam strips facing out instead of
+  in.
+    * Solution: Buy some 10 mm wide by 3 mm thick self-adhesive [weather stripping][stripping] (or cut yours to size).
 * The top panel's screw holes will only align with the shorter front/back rails. You can optionally drill holes into the
   panel or buy additional T-nuts for the long rails.
 
@@ -34,8 +37,8 @@ Sadly the enclosure is only engineered to have the large door on the right so th
 7. For the **foot fixtures** insert two M4 2020 slide-in T-nuts into each bottom rail.
 8. Mark on the now bottom rails the **foot fixture** offsets.
 9. Reinstall the rear rails, keeping the one with the converter hub at the top.
-10. Install the doors. Flip the small-door panel with the touchscreen cutout.
-11. Put some 10 mm wide 3 mm thick self-adhesive weather stripping on the flipped panel.
+10. Install the doors. Flip the small-door panel with the **touchscreen** cutout and apply the self-adhesive weather
+    stripping on the flipped panel.
 
 ## Pictures
 
