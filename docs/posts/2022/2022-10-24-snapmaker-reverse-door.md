@@ -8,33 +8,31 @@ left. It also has a smaller door on the front. This post is how I went about swa
 Sadly the enclosure is only engineered to have the large door on the right so there are a couple of minor drawbacks to this
 "mod". Overall I feel that the pros outweigh the cons.
 
-## TLDR
-
-### Drawbacks
+## Drawbacks
 
 [t-nuts]: https://www.amazon.com/KOOTANS-Thread-Aluminum-Extrusions-Profiles/dp/B0811KZB1P
 
-* **Foot fixtures**: The bottom rails have indentations so the foot fixtures can be installed precisely. Additionally the
-  top rails lack the additional screw holes for these fixtures.
-    * Solution: If you bought the emergency stop button you may have four spare T-nuts and M4x8 screws you can use (if not
-      you can buy extra [M4 2020 slide-in T-nuts][t-nuts] or you can just drill and tap new threaded holes in the rail). You
-      should also measure the distance between the indentation and the end of the bottom rails and mark them on the top rails
-      with a marker. Don't forget to do this four times.
+* **Foot fixtures**: The bottom rails have extra screw holes and indentations so that the foot fixtures can be installed
+  precisely. The top rails lack these indentations and screw holes.
+    * Solution: If you have bought the emergency stop button you may have four spare T-nuts and M4x8 screws you can use (if
+      not you can buy extra [M4 2020 slide-in T-nuts][t-nuts] or you can just drill and tap new threaded holes in the rail).
+      You should also measure the distance between the indentation and the end of the bottom rails and mark them on the top
+      rails with a marker. Don't forget to do this four times.
 * The touchscreen will now be on the left side at the front, so the cord will be extended as it crosses diagonally towards
   the main hub on the right side of the printer.
 * The top panel's screw holes will only align with the shorter front/back rails. You can optionally drill holes into the
   panel or buy additional T-nuts for the long rails.
 
-### Steps
+## Steps
 
 1. Remove all plexiglass panels and doors.
 2. Remove the rear top (with the converter hub) and bottom 24 BEAM A350-4 rails.
-3. Measure the offsets of the foot fixture indentations on the bottom rails (my enclosure measured 123 mm offset).
+3. Measure the offsets of the **foot fixture** indentations on the bottom rails (my enclosure measured 123 mm offset).
 4. Facing front to back flip the entire enclosure 180 degrees (e.g. top is now on the bottom).
 5. Relocate the LED strips from the bottom back to the top rails (the tiny screws aren't really necessary).
 6. Flip the hall sensor 180 degrees.
-7. For the foot fixtures insert two M4 2020 slide-in T-nuts into each bottom rail.
-8. Mark on the now bottom rails the foot fixture offsets.
+7. For the **foot fixtures** insert two M4 2020 slide-in T-nuts into each bottom rail.
+8. Mark on the now bottom rails the **foot fixture** offsets.
 9. Reinstall the rear rails, keeping the one with the converter hub at the top.
 10. Install the doors. Flip the small-door panel with the touchscreen cutout.
 11. Put some 10 mm wide 3 mm thick self-adhesive weather stripping on the flipped panel.
