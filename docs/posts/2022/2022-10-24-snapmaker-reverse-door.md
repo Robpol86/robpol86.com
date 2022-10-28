@@ -14,15 +14,15 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 
 ## Drawbacks
 
-[t-nuts]: https://www.amazon.com/KOOTANS-Thread-Aluminum-Extrusions-Profiles/dp/B0811KZB1P
+[t-nuts]: https://www.amazon.com/Socell-180Pcs-Hammer-Fastener-Assortment/dp/B07Z4YH6NP
 [stripping]: https://www.amazon.com/uxcell-Thick-Adhesive-Weather-Strip/dp/B07L6LB49S
 
 * **Foot fixtures**: The bottom rails have extra screw holes and indentations so that the foot fixtures can be installed
   precisely. The top rails lack these indentations and screw holes.
     * Solution: If you have bought the emergency stop button you may have four spare T-nuts and M4x8 screws you can use (if
-      not you can buy extra [M4 2020 slide-in T-nuts][t-nuts] or you can just drill and tap new threaded holes in the rails).
-      You should also measure the distance between the indentation and the end of the bottom rails and mark them on the top
-      rails with a marker. Don't forget to do this four times.
+      not you can buy extra [M4 2020 T-nuts][t-nuts] or you can just drill and tap new threaded holes in the rails). You
+      should also measure the distance between the indentation and the end of the bottom rails and mark them on the top rails
+      with a marker. Don't forget to do this four times.
 * **Touchscreen**: Since we're rotating everything 180 degrees the touchscreen cutout on the front door will be at the top
   instead of the bottom. We'll be fixing this by flipping the panel but this will place the foam strips facing out instead of
   in.
@@ -40,7 +40,7 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 4. Facing front to back flip the entire enclosure 180 degrees (e.g. top is now on the bottom).
 5. Relocate the LED strips from the bottom back to the top rails (the tiny screws aren't really necessary).
 6. Flip the hall sensor (little black box on a vertical rail) 180 degrees so you can run the cable along the top.
-7. For the **foot fixtures** insert two M4 2020 slide-in T-nuts into each bottom rail.
+7. For the **foot fixtures** insert two M4 2020 T-nuts into each bottom rail.
 8. Mark on the now bottom rails the **foot fixture** offsets.
 9. Reinstall the rear rails, keeping the one with the converter hub at the top.
 10. Install the doors. Flip the small-door panel with the **touchscreen** cutout and apply the self-adhesive weather
