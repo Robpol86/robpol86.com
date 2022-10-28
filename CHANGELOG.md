@@ -8,6 +8,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - N/A
 
+## [2022.10.27]
+
+Alltrack page: Jack Pads
+
 ## [2022.9.10]
 
 Alltrack page: Manually linking to related posts
