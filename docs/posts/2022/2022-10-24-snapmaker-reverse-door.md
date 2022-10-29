@@ -95,7 +95,7 @@ Installed some additional weather stripping after flipping this enclosure panel 
 
 :::{imgur-figure} Rbld72t
 %
-Out of scope: for my new coffee table setup I'm moving the power supply to be on top of the UPS and not take up table space.
+Unrelated: for my new coffee table setup I'm moving the power supply to be on top of the UPS and not take up table space.
 :::
 
 :::{imgur-figure} iFNKJxn
