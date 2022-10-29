@@ -38,7 +38,7 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 2. Remove the rear top (with the converter hub) and rear bottom 24 BEAM A350-4 rails.
 3. Measure the offsets of the **foot fixture** indentations on the bottom rails (my enclosure measured 123 mm offset).
 4. Facing front to back flip the entire enclosure 180 degrees (e.g. top is now on the bottom).
-5. Relocate the LED strips from the bottom back to the top rails (the tiny screws aren't really necessary).
+5. Relocate the LED strips from the bottom to the top rails (the tiny screws aren't necessary).
 6. Flip the hall sensor (little black box on a vertical rail) 180 degrees so you can run the cable along the top.
 7. For the **foot fixtures** insert two M4 2020 T-nuts into each bottom rail.
 8. Mark on the now bottom rails the **foot fixture** offsets.
@@ -48,7 +48,77 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 
 ## Pictures
 
-TODO
+```{carousel}
+:data-bs-interval: "false"
+
+:::{imgur-figure} J09tdcy
+%
+Finished project.
+:::
+
+:::{imgur-figure} D1sV4X8
+%
+Removed the LED strips from the now-bottom rails to relocate them back to the top of the enclosure.
+:::
+
+:::{imgur-figure} 5cDGBUU
+%
+Flip the hall/door sensor. I used a zip tie to help keep the plastic washers in place. The sensor actually has bright white
+LEDs that light up when it detects when the two doors are closed.
+:::
+
+:::{imgur-figure} yJP9vVH
+%
+Half way through I put the doors on to verify they fit and close properly. The magnets are aligned just fine.
+:::
+
+:::{imgur-figure} wGu1uNO
+%
+Mark where the foot fixtures will go and use T-nuts to fasten them in place.
+:::
+
+:::{imgur-figure} J03jTjo
+%
+The touchscreen cord is long enough to reach its new location. I used a spare screw to ensure it won't ride up and touch the
+hot platform or get pinched by the moving platform.
+:::
+
+:::{imgur-figure} osjlmEC
+%
+Installed some additional weatherstripping after flipping this enclosure panel with the touchscreen cutout.
+:::
+
+:::{imgur-figure} Rbld72t
+%
+Out of scope: for my new coffee table setup I'm moving the power supply to be on top of the UPS and not take up table space.
+:::
+
+:::{imgur-figure} iFNKJxn
+%
+I bought a filament dry box from Amazon instead of relocating the spool holder which would have required cutting or drilling
+into the enclosure panels. This works for me because I already use a teflon tube with my printer.
+:::
+
+:::{imgur-figure} bNa6Ul4
+%
+Done!
+:::
+
+:::{imgur-figure} B6j9Ws3
+%
+Teflon tube routing: dry box
+:::
+
+:::{imgur-figure} XJZNBUH
+%
+Teflon tube routing: enclosure through-hole
+:::
+
+:::{imgur-figure} aDOjJnX
+%
+Teflon tube routing: print head
+:::
+```
 
 ## Comments
 
