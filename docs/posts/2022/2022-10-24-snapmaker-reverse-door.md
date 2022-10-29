@@ -3,10 +3,13 @@
 ```{tags} 3d-printing
 ```
 
-I moved my Snapmaker 2.0 A350T recently. The official enclosure has a solid panel on the right side and a large door on the
-left. It also has a smaller door on the front. This post is how I went about swapping the solid panel and large door around.
-Sadly the enclosure is only engineered to have the large door on the right so there are a couple of minor drawbacks to this
-"mod". Overall I feel that the pros outweigh the cons.
+I recently moved my Snapmaker 2.0 A350T printer to another part of my house. The official enclosure has a solid panel on the
+right side, a large door on the left, and a smaller door on the front. These panels are only designed to be installed in one
+specific order and orientation.
+
+In this post I describe the steps I took to swap the solid panel and large door as well as "flip" the front panel so it opens
+on the opposite side. There are a few minor drawbacks to this modification but the solutions I came up with neutralizes them.
+These workarounds are also non-desctructive and I can restore my enclosure back to its original design.
 
 ```{seealso}
 https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
