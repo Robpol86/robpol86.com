@@ -11,7 +11,7 @@ installed in one specific order and orientation.
 
 In this post I describe the steps I took to swap the solid panel and large door as well as "flip" the front panel so it opens
 on the opposite side. There are a few minor drawbacks to this modification but the solutions I came up with neutralizes them.
-These workarounds are also non-desctructive and I can restore my enclosure back to its original design.
+These workarounds are also non-desctructive so I can restore my enclosure back to its original design.
 
 ```{seealso}
 https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
