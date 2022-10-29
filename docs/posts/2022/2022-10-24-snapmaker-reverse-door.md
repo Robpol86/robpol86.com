@@ -27,7 +27,7 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
     * Solution: If you have bought the emergency stop button you may have four spare T-nuts and M4x8 screws you can use (if
       not you can buy extra [M4 2020 T-nuts][t-nuts] or you can just drill and tap new threaded holes in the rails). You
       should also measure the distance between the indentation and the end of the bottom rails and mark them on the top rails
-      with a marker. Don't forget to do this four times.
+      with a marker.
 * **Touchscreen**: Since we're rotating everything 180 degrees the touchscreen cutout on the front door will be at the top
   instead of the bottom. We'll be fixing this by flipping the panel but this will place the foam strips facing out instead of
   in.
