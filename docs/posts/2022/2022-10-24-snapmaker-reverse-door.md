@@ -90,7 +90,7 @@ hot platform or get pinched by the moving platform.
 
 :::{imgur-figure} osjlmEC
 %
-Installed some additional weatherstripping after flipping this enclosure panel with the touchscreen cutout.
+Installed some additional weather stripping after flipping this enclosure panel with the touchscreen cutout.
 :::
 
 :::{imgur-figure} Rbld72t
