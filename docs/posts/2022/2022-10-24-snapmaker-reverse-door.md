@@ -101,7 +101,7 @@ Unrelated: for my new coffee table setup I'm moving the power supply to be on to
 :::{imgur-figure} iFNKJxn
 %
 I bought a filament dry box from Amazon instead of relocating the spool holder which would have required cutting or drilling
-into the enclosure panels. This works for me because I already use a teflon tube with my printer.
+into the enclosure panels. This works for me because I already use a PTFE/Teflon tube with my printer.
 :::
 
 :::{imgur-figure} bNa6Ul4
