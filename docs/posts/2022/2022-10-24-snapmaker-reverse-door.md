@@ -46,7 +46,7 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 5. Relocate the LED strips from the bottom to the top rails (the tiny screws aren't necessary).
 6. Flip the hall sensor (little black box on a vertical rail) 180 degrees so you can run the cable along the top.
 7. For the **foot fixtures** insert two M4 2020 T-nuts into each bottom rail.
-8. Mark on the now bottom rails the **foot fixture** offsets.
+8. Mark on the now-bottom rails the **foot fixture** offsets.
 9. Reinstall the rear rails, keeping the one with the converter hub at the top.
 10. Install the doors. Flip the small-door panel with the **touchscreen** cutout and apply the self-adhesive weather
     stripping on the flipped panel.
