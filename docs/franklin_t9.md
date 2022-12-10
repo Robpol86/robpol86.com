@@ -325,7 +325,7 @@ Miscellaneous notes I took during my investigation.
 
 ### Datasheets
 
-* https://datasheets.maximintegrated.com/en/ds/MAX77818.pdf
+* https://www.analog.com/media/en/technical-documentation/data-sheets/max77818.pdf
 
 ### Extract Kernel
 

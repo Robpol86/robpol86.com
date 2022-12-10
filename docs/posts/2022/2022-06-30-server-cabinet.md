@@ -20,7 +20,7 @@ vibration of my spinning hard drives. It's not too bad though.
 * [Noctua 5V 120mm Fans](https://noctua.at/en/products/fan/nf-f12-5v)
 * [Cable Matters 24 Port Keystone Patch Panel](https://www.amazon.com/gp/product/B0072JVT02)
 * [NETGEAR XS716T 16-Port 10-Gigabit Ethernet Switch](https://www.netgear.com/support/product/xs716t.aspx)
-* [Tripp Lite PDUMH15-6 Metered PDU](https://www.tripplite.com/1-4kw-single-phase-metered-pdu-120v~pdumh156)
+* [Tripp Lite PDUMH15-6 Metered PDU](https://tripplite.eaton.com/1-4kw-single-phase-metered-pdu-120v~pdumh156)
 * [APC Smart-UPS SMT1500RM2U](https://www.apc.com/us/en/product/SMT1500RM2U)
 * [Travla T2241 2U Dual Mini-ITX Case](http://www.casetronic.com/corporates/49-t2241.html)
 * [P-Link IPC-Rail18 Universal 18-inch Slide Rails](http://www.plinkusa.net/webrail18.htm)
