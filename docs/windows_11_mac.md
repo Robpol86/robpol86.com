@@ -105,7 +105,7 @@ In case you were wondering how I took screen shots during the Windows installati
 ## Alternative: Manual Install
 
 [fotsies]: https://fgimian.github.io/blog/2016/03/12/installing-windows-10-on-a-mac-without-bootcamp/
-[tpm-bypass]: https://www.ntlite.com/community/index.php?threads/tpm-and-secureboot-bypass-in-settings-v2-3-0-8394.2464/
+[tpm-bypass]: https://www.ntlite.com/community/index.php?threads/tpm-and-secureboot-bypass-in-ntlite-settings.2464/
 
 The above steps work fine for a vanilla Windows 11 ISO, but it didn't work properly with a custom ISO I built using
 [NTLite](https://www.ntlite.com/). I discovered that even though I [removed the TPM requirement][tpm-bypass], I wasn't able
