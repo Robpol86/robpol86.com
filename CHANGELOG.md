@@ -8,6 +8,10 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - N/A
 
+## [2022.12.11]
+
+New post: Clutch Bleeder Block Replacement
+
 ## [2022.10.30]
 
 New post: Snapmaker Enclosure Door Reversal

@@ -5,6 +5,12 @@
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
+## Dec &#39;22 Clutch Bleeder Block Mod
+
+I posted the installation steps in a dedicated post here:
+
+* [](posts/2022/2022-12-11-alltrack-clutch-bleeder-block.md)
+
 ## Oct &#39;22 Jack Pads
 
 This modification makes it easier to put my car on jack stands in my garage. It adds a second set of jacking points to the
