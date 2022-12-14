@@ -35,9 +35,9 @@ indefinitely.
 Usage
 =====
 
-ImageCFG will work from any directory, but for ease of use it can be placed in **%systemroot%\system32** (or
-C:\Windows\system32 or C:\Windows\SysWOW64 (thanks chris.xudo333) if system32 doesn't work) and
-**%systemroot%\system32\dllcache** (or C:\Windows\system32\dllcache). Doing so will make ``imagecfg`` a system command
+ImageCFG will work from any directory, but for ease of use it can be placed in **%systemroot%\\system32** (or
+C:\\Windows\\system32 or C:\\Windows\\SysWOW64 (thanks chris.xudo333) if system32 doesn't work) and
+**%systemroot%\\system32\\dllcache** (or C:\\Windows\\system32\\dllcache). Doing so will make ``imagecfg`` a system command
 (run it from anywhere in any cmd window or the run dialog). This article assumes you have done so.
 
 The ``-u`` option sets a specified executable to only run in "uni-processor" mode on multi-processor systems. This is
