@@ -6,7 +6,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- N/A
+- Fixed missing backslashes in ImageCFG page.
 
 ## [2022.12.11]
 
