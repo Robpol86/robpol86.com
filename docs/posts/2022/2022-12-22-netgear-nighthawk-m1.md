@@ -1,4 +1,4 @@
-# Rooting the Netgear Nighthawk M1
+# Netgear Nighthawk M1 Hacking
 
 ```{tags} hacking, hotspot
 ```
@@ -24,7 +24,7 @@ To enable telnet I had to enable engineering mode on the device via an OpenLock 
 script available at two places:
 
 * https://gist.github.com/jkinred/73689e463a08af963c45c137df6646d0
-* [sierrakeygen.py](../../_static/sierrakeygen.py)
+* sierrakeygen.py
 
 You'll need to find out what kind of device your MR1100 is based on. Since my firmware version contains the substring `9X50`
 this tells me I have an `MDM9x50` device.
