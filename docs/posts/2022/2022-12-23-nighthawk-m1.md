@@ -7,7 +7,7 @@ I'm replacing my old [T-Mobile Franklin T9](../../franklin_t9) with a more capab
 [Netgear Nighthawk M1](https://www.netgear.com/home/mobile-wifi/hotspots/mr1100/) is easy to root, supports USB and microSD
 cards for storage (with a caveat that this is disabled when USB tethering is enabled), has a lot more RAM (relatively
 speaking), and works fine with [Google Fi](https://fi.google.com/about). At the time of writing I had my M1 on the latest
-firmware, which is `NTG9X50C_12.06.39.00` (since my SKU is for AT&T but is unlocked and also works with T-Mobile bands).
+firmware, which is `NTG9X50C_12.06.39.00` (my SKU is for AT&T but is unlocked and also works with T-Mobile bands).
 
 ## Telnet and Root
 
@@ -21,7 +21,7 @@ Get access to the hotspot's modem console
     * Telnet to the hotspot using port **5510** (e.g. `telnet 192.168.1.1 5510`)
     * Run the command `AT` (it should reply with "OK")
 
-Get the OpenLock challenge key from the hotspot
+Get the OpenLock challenge code from the hotspot
 :   * Run the command: `AT!OPENLOCK?`
     * Copy the code it responded with (e.g. `ABA5463E8FBDA36B`)
 
@@ -38,7 +38,7 @@ Enable root access
     * Access root by telnetting to port **23** (e.g. `telnet 192.168.1.1 23`)
 
 To disable root access
-:   * Run `AT!OPENLOCK?` again and copy the new code
+:   * Telnet to port 5510, run `AT!OPENLOCK?` again, and copy the new code
     * Use the script again and run the new AT command it prints
     * Run the command: `AT!TELEN=0;!CUSTOM="RDENABLE",0;!CUSTOM="TELNETENABLE",0`
 
