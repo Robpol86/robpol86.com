@@ -9,7 +9,8 @@ cards for storage, has a lot more RAM (relatively speaking), and works fine with
 
 ## Telnet and Root
 
-TODO
+The first step is to gain root access. I fully updated my device first and ended up with `NTG9X50C_12.06.39.00` as the
+firmware version.
 
 ## Static DHCP
 
