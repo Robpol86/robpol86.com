@@ -11,8 +11,15 @@ firmware, which is `NTG9X50C_12.06.39.00` (since my SKU is for AT&T but is unloc
 
 ## Telnet and Root
 
-The first step is to gain root access. This was accomplished by issuing [AT](https://en.wikipedia.org/wiki/Hayes_command_set)
-commands to the hotspot.
+The first step is to get root access. Luckily it's pretty easy to do using a Python script written by
+[bkerler](https://github.com/bkerler).
+
+Get access to the hotspot's modem console
+:   * From the web UI go to: Settings > Setup > Mobile Router Setup
+    * Under "Tethering" select: **Charge + tether**
+    * Connect your computer to the hotspot only using a USB cable (disconnect from WiFi/Ethernet)
+    * Telnet to the hotspot using port **5510** (e.g. `telnet 192.168.1.1 5510`)
+    * Run the command `AT` (it should reply with "OK")
 
 ## Static DHCP
 
