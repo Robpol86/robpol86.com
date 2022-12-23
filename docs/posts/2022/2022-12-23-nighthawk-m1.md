@@ -37,6 +37,11 @@ Enable root access
     * Reboot the hotspot and wait until you regain access to the web UI
     * Access root by telnetting to port **23** (e.g. `telnet 192.168.1.1 23`)
 
+To disable root access
+:   * Run `AT!OPENLOCK?` again and copy the new code
+    * Use the script again and run the new AT command it prints
+    * Run the command: `AT!TELEN=0;!CUSTOM="RDENABLE",0;!CUSTOM="TELNETENABLE",0`
+
 ## Static DHCP
 
 TODO
