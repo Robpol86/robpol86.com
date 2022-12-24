@@ -44,7 +44,28 @@ To disable root access
 
 ## Static DHCP
 
-TODO
+Like on my other hotspot project I want certain clients to always get the same IP address without having to configure them to
+use a static IP (since they also connect to other networks).
+
+While the M1 also uses dnsmasq, it's setup differently from the Franklin T9. Let's take a peek at the process table:
+
+```text
+/ # ps aux |grep dnsmasq
+ 2872 nobody     0:00 dnsmasq -i bridge0 -z --conf-file=/mnt/userrw/swietc/dnsmasq.conf --dhcp-hostsfile=/etc/dhcp_hosts --dhcp-option-force=6,192.168.1.1 --dhcp-option-force=120,abcd.com --dhcp-script=/bin/dnsmasq_script.sh
+ 2873 root       0:00 dnsmasq -i bridge0 -z --conf-file=/mnt/userrw/swietc/dnsmasq.conf --dhcp-hostsfile=/etc/dhcp_hosts --dhcp-option-force=6,192.168.1.1 --dhcp-option-force=120,abcd.com --dhcp-script=/bin/dnsmasq_script.sh
+```
+
+The file `/etc/dhcp_hosts` exists by default but is empty, so we can use that to specify static DHCP entries by running:
+
+```bash
+# Add configuration to separate file (last column [hostname] is optional).
+cat >> /etc/dhcp_hosts <<EOF
+bridge0,74:72:f3:90:ef:f6,192.168.1.10,raspberrypi
+bridge0,96:9c:a2:b5:ae:70,192.168.1.11
+EOF
+```
+
+This survives reboots and user re-configurations from the hotspot web interface.
 
 ## Disable WiFi When Home
 
