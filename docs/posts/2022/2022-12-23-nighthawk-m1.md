@@ -45,27 +45,24 @@ To disable root access
 ## Static DHCP
 
 Like on my other hotspot project I want certain clients to always get the same IP address without having to configure them to
-use a static IP (since they also connect to other networks).
-
-While the M1 also uses dnsmasq, it's setup differently from the Franklin T9. Let's take a peek at the process table:
-
-```text
-/ # ps aux |grep dnsmasq
- 2872 nobody     0:00 dnsmasq -i bridge0 -z --conf-file=/mnt/userrw/swietc/dnsmasq.conf --dhcp-hostsfile=/etc/dhcp_hosts --dhcp-option-force=6,192.168.1.1 --dhcp-option-force=120,abcd.com --dhcp-script=/bin/dnsmasq_script.sh
- 2873 root       0:00 dnsmasq -i bridge0 -z --conf-file=/mnt/userrw/swietc/dnsmasq.conf --dhcp-hostsfile=/etc/dhcp_hosts --dhcp-option-force=6,192.168.1.1 --dhcp-option-force=120,abcd.com --dhcp-script=/bin/dnsmasq_script.sh
-```
-
-The file `/etc/dhcp_hosts` exists by default but is empty, so we can use that to specify static DHCP entries by running:
+use a static IP (since they also connect to other networks). I enabled this by running the following commands:
 
 ```bash
+# Enable dnsmasq conf-dir.
+echo "conf-dir=/etc/dnsmasq.d" >> /etc/default/dnsmasq.conf
+
 # Add configuration to separate file (last column [hostname] is optional).
-cat >> /etc/dhcp_hosts <<EOF
-bridge0,74:72:f3:90:ef:f6,192.168.1.10,raspberrypi
-bridge0,96:9c:a2:b5:ae:70,192.168.1.11
+cat > /etc/dnsmasq.d/static_dhcp.conf <<EOF
+dhcp-host=bridge0,74:72:f3:90:ef:f6,192.168.1.10,raspberrypi
+dhcp-host=bridge0,96:9c:a2:b5:ae:70,192.168.1.11
 EOF
+
+# Remove persistent DHCP leases cache file (discovered via /etc/init.d/dnsmasq).
+rm /var/lib/misc/dnsmasq.leases
 ```
 
-This survives reboots and user re-configurations from the hotspot web interface.
+This survives reboots and user re-configurations from the hotspot web interface. While the main configuration is stored in
+`/mnt/userrw/swietc/dnsmasq.conf` dnsmasq will also read config from `/etc/default/dnsmasq.conf`.
 
 ## Disable WiFi When Home
 
