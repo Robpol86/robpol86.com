@@ -26,7 +26,7 @@ Get the OpenLock challenge code from the hotspot
     * Copy the code it responded with (e.g. `ABA5463E8FBDA36B`)
 
 Generate the unlock code using the script
-:   * Download [sierrakeygen.py](../../_static/sierrakeygen.py)
+:   * Download [sierrakeygen.py](../../_static/netgear/sierrakeygen.py)
     * Run the script: `python3 sierrakeygen.py -d MDM9x50_V1 -l PUT_CODE_HERE`
     * Copy the AT command it printed (e.g. `AT!OPENLOCK="058052AB497C8E84"`)
 
