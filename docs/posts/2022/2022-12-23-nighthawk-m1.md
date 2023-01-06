@@ -45,16 +45,17 @@ To disable root access
 ## Static DHCP
 
 Like on my other hotspot project I want certain clients to always get the same IP address without having to configure them to
-use a static IP (since they also connect to other networks). I enabled this by running the following commands:
+use a static IP (since they also connect to other networks).
+
+While the file `/etc/init.d/dnsmasq` exists, it doesn't seem to be the way dnsmasq starts on the hotspot. Instead
+QCMAP_ConnectionManager is responsible for starting dnsmasq. It also seems to truncate `/etc/dhcp_hosts` on boot so editing
+that file directly won't survive reboots. However editing that file after boot allows us to define static DHCP entries.
 
 ```bash
-# Enable dnsmasq conf-dir.
-echo "conf-dir=/etc/dnsmasq.d" >> /etc/default/dnsmasq.conf
-
 # Add configuration to separate file (last column [hostname] is optional).
 cat > /etc/dnsmasq.d/static_dhcp.conf <<EOF
-dhcp-host=bridge0,74:72:f3:90:ef:f6,192.168.1.10,raspberrypi
-dhcp-host=bridge0,96:9c:a2:b5:ae:70,192.168.1.11
+dhcp-host=B6:76:5A:CE:41:BC,192.168.164.16
+dhcp-host=10:a5:1d:33:d8:f8,192.168.164.017
 EOF
 
 # Remove persistent DHCP leases cache file (discovered via /etc/init.d/dnsmasq).
