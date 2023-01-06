@@ -21,6 +21,7 @@ repository = "https://github.com/Robpol86/robpol86.com"
 python = "^3.8"
 # Project dependencies.
 myst-parser = {version = "*", extras = ["linkify"]}
+pygments = "2.13.0"  # TODO: validate code block changes
 Sphinx = "*"
 sphinx-book-theme = ">=0.3.3"
 sphinx-carousel = "*"
