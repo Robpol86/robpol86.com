@@ -240,7 +240,7 @@ do the repartitioning from Windows.
 ```
 
 I always enable BitLocker full disk encryption on all of my machines. This is what I do to enable it on Macs (steps taken
-from: https://www.howtogeek.com/howto/6229/how-to-use-bitlocker-on-drives-without-tpm/).
+from: https://www.howtogeek.com/6229/how-to-use-bitlocker-on-drives-without-tpm/).
 
 * Run as Administrator: `gpedit.msc`
   * Computer Configuration
