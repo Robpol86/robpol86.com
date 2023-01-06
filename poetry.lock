@@ -823,7 +823,7 @@ test = ["tox"]
 
 [[package]]
 name = "sphinx-sitemap"
-version = "2.4.0"
+version = "2.3.0"
 description = "Sitemap generator for Sphinx"
 category = "main"
 optional = false
@@ -1004,7 +1004,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "03b0936041e02a3cae6d0ead479659ed13fb7ee3c6227be0f0c0cb77499e8a5a"
+content-hash = "a8a2229817ffef4e8cae6b6100a1ce2ccd095b8e8dab48ecb171b43a424b45fc"
 
 [metadata.files]
 alabaster = [
@@ -1385,8 +1385,8 @@ sphinx-notfound-page = [
     {file = "sphinx_notfound_page-0.8.3-py2.py3-none-any.whl", hash = "sha256:c4867b345afccef72de71fb410c412540dfbb5c2de0dc06bde70b331b8f30469"},
 ]
 sphinx-sitemap = [
-    {file = "sphinx-sitemap-2.4.0.tar.gz", hash = "sha256:3e19cff281974c00dfdc72d2d6ac71b737805dbd5666019997a4ac062a6406c0"},
-    {file = "sphinx_sitemap-2.4.0-py3-none-any.whl", hash = "sha256:94a1dab73789558e28e5ccfbc2a758194765707f9eeb06b59725a3bb244f323b"},
+    {file = "sphinx-sitemap-2.3.0.tar.gz", hash = "sha256:7b27b5d9f6ebf75597da7d48c64dcb9271fa269925673d900ee27d6b2c484915"},
+    {file = "sphinx_sitemap-2.3.0-py3-none-any.whl", hash = "sha256:8211ae28413ee529814bd56762873a5e1878fff0f254a7488da762984bdf658c"},
 ]
 sphinxcontrib-applehelp = [
     {file = "sphinxcontrib-applehelp-1.0.2.tar.gz", hash = "sha256:a072735ec80e7675e3f432fcae8610ecf509c5f1869d17e2eecff44389cdbc58"},

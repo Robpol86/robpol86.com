@@ -31,7 +31,7 @@ sphinx-external-toc = "*"
 sphinx-imgur = "*"
 sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"
-sphinx-sitemap = "*"
+sphinx-sitemap = "2.3.0"  # TODO: fix sphinx-sitemap: No pages generated for sitemap.xml
 sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
 sphinxext-opengraph = "*"
 
