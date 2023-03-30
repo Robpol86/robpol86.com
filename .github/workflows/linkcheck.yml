@@ -19,7 +19,7 @@ jobs:
       - name: Initialize dependencies
         uses: Robpol86/actions-init-deps-py@v3
         with:
-          poetry-version: "^1.4"
+          poetry-version: "1.4.*"
           python-version: "3.10"
 
       - name: Run linkcheck

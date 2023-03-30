@@ -23,7 +23,7 @@ jobs:
         uses: Robpol86/actions-init-deps-py@v3
         with:
           cache-buster: "${{ join(matrix.*, '|') }}"
-          poetry-version: "^1.4"
+          poetry-version: "1.4.*"
           python-version: "${{ matrix.python }}"
 
       - name: Run tests
