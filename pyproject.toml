@@ -20,10 +20,10 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.8"
 # Project dependencies.
-myst-parser = {version = "*", extras = ["linkify"]}
+myst-parser = {version = "0.18.1", extras = ["linkify"]}  # TODO
 pygments = "2.13.0"  # TODO: validate code block changes
 Sphinx = "*"
-sphinx-book-theme = ">=0.3.3"
+sphinx-book-theme = "0.3.3"  # TODO
 sphinx-carousel = "*"
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
@@ -33,7 +33,7 @@ sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"
 sphinx-sitemap = "2.3.0"  # TODO: fix sphinx-sitemap: No pages generated for sitemap.xml
 sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
-sphinxext-opengraph = "*"
+sphinxext-opengraph = "0.7.5"  # TODO
 
 [tool.poetry.dev-dependencies]
 # IDE.
