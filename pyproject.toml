@@ -47,7 +47,7 @@ pep8-naming = "*"
 pylint = "*"
 # Tests.
 pytest = "*"
-pytest-icdiff = "*"
+#pytest-icdiff = "*"  # TODO
 # Docs.
 sphinx-autobuild = "*"
 

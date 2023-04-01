@@ -37,7 +37,7 @@ jobs:
         uses: Robpol86/actions-init-deps-py@v3
         with:
           no-dev: "true"
-          poetry-version: "1.2.1"
+          poetry-version: "1.4.0"
           python-version: "${{ env.PYTHON_VERSION }}"
       - name: Build docs
         env:
