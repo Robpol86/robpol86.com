@@ -93,6 +93,7 @@ linkcheck_allowed_redirects = {
     r"https://www.amazon.com/": "https://www.amazon.com/[^/]+/dp/",
     r"https://www.apc.com/us/en/product/\w+$": "https://www.apc.com/us/en/product/",
     r"https://www.mcmaster.com/": "https://www.mcmaster.com/ShellHomepageRefresh[.]aspx[?]searchTerm=",
+    r"https://www.reddit.com/r/": "https://www.reddit.com/r/.*?rdt=[\d]+",
     r"https://youtu.be/\w+$": "https://www.youtube.com/watch[?]",
 }
 linkcheck_exclude_documents = [
