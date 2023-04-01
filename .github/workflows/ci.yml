@@ -10,12 +10,12 @@ jobs:
     name: Test
     strategy:
       matrix:
-        python: ["3.10", "3.11"]
+        python: ["3.8", "3.9", "3.10"]
     runs-on: ubuntu-latest
     steps:
 
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -23,7 +23,7 @@ jobs:
         uses: Robpol86/actions-init-deps-py@v3
         with:
           cache-buster: "${{ join(matrix.*, '|') }}"
-          poetry-version: "1.4.*"
+          poetry-version: "1.2.1"
           python-version: "${{ matrix.python }}"
 
       - name: Run tests

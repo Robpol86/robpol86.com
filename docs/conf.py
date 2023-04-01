@@ -1,5 +1,5 @@
 """Sphinx configuration file."""
-# pylint: disable=invalid-name,use-dict-literal
+# pylint: disable=invalid-name
 import os
 import time
 from urllib.parse import urlparse
