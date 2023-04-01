@@ -18,7 +18,7 @@ env:
     .doctrees/
     __pycache__/
   PRETTIER_GLOB: "**/*.{js,css,html,xml}"
-  PYTHON_VERSION: "3.10"
+  PYTHON_VERSION: "3.10"  # TODO move to JSON?
   ROOT_DIR_DIFF: ./docs/_build/html
   TRUNCATE_TO_BYTES: 256000
 
@@ -37,7 +37,7 @@ jobs:
         uses: Robpol86/actions-init-deps-py@v3
         with:
           no-dev: "true"
-          poetry-version: "1.4.0"
+          poetry-version: "1.4.0"  # TODO move to JSON?
           python-version: "${{ env.PYTHON_VERSION }}"
       - name: Build docs
         env:

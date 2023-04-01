@@ -10,7 +10,7 @@ jobs:
     name: Test
     strategy:
       matrix:
-        python: ["3.8", "3.9", "3.10"]
+        python: ["3.10", "3.11"]  # TODO move to JSON?
     runs-on: ubuntu-latest
     steps:
 
@@ -23,7 +23,7 @@ jobs:
         uses: Robpol86/actions-init-deps-py@v3
         with:
           cache-buster: "${{ join(matrix.*, '|') }}"
-          poetry-version: "1.4.0"
+          poetry-version: "1.4.0"  # TODO move to JSON?
           python-version: "${{ matrix.python }}"
 
       - name: Run tests

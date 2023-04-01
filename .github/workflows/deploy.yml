@@ -12,7 +12,7 @@ env:
   BASEURL_STAGE: https://rob86stage.robpol86.com/
   HTML_ROOT: ./docs/_build/html
   IS_PROD: "${{ startsWith(github.ref, 'refs/tags/') && 'true' || '' }}"
-  PYTHON_VERSION: "3.10"
+  PYTHON_VERSION: "3.10"  # TODO move to JSON?
 
 jobs:
 
@@ -28,7 +28,7 @@ jobs:
         uses: Robpol86/actions-init-deps-py@v3
         with:
           no-dev: "true"
-          poetry-version: "1.4.0"
+          poetry-version: "1.4.0"  # TODO move to JSON?
           python-version: "${{ env.PYTHON_VERSION }}"
       - name: Build docs
         env:
