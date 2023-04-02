@@ -14,7 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: ./.github/actions/checkout-and-init
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: ./.github/actions/init
         with:
           python-version: "${{ matrix.python }}"
 

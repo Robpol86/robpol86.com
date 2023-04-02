@@ -1,4 +1,4 @@
-name: Check out repo and initialize Python and Poetry
+name: Initialize Python and Poetry
 description: Boilerplate steps used by multiple workflows in this repo.
 
 inputs:
@@ -9,11 +9,6 @@ inputs:
 runs:
   using: composite
   steps:
-
-    - name: Check out repository code
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  # Needed by sphinx-last-updated-by-git
 
     - name: Install Poetry
       run: pipx install poetry
