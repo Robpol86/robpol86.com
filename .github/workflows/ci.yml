@@ -19,12 +19,63 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Initialize dependencies
-        uses: Robpol86/actions-init-deps-py@v3
+      - name: Install Python
+        uses: actions/setup-python@v3
+        with: {python-version: "${{ matrix.python }}"}
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2.1.4
+        with: {poetry-version: "1.4.0"}
+
+      - name: Configure Poetry
+        shell: bash
+        run: poetry config virtualenvs.in-project true
+
+      - name: Cache venv
+        id: cache
+        uses: actions/cache@v2
         with:
-          cache-buster: "${{ join(matrix.*, '|') }}"
-          poetry-version: "1.4.0"
-          python-version: "${{ matrix.python }}"
+          key: "init-deps-py-${{ runner.os }}-venv-${{ hashFiles('pyproject.toml', 'poetry.lock') }}-${{ join(matrix.*, '|') }}"
+          path: .venv
+
+      - name: Validate venv
+        id: validate
+        if: "steps.cache.outputs.cache-hit == 'true'"
+        shell: bash
+        run: |
+          temp_file="$(mktemp)"
+          poetry env info --no-ansi |tee "$temp_file"
+          if grep -qE "^Valid: +True" "$temp_file"; then
+            echo "::set-output name=is-valid::true"
+          else
+            echo "::set-output name=is-valid::false"
+          fi
+          rm "$temp_file"
+      # TODO: Evict cache on invalid venv: https://github.com/actions/cache/issues/2
+
+      - name: Install dependencies
+        id: install
+        if: "steps.validate.outputs.is-valid != 'true'"
+        shell: bash
+        env:
+          INSTALL_CMD: "poetry install"
+        run: |
+          ${{ env.INSTALL_CMD }}
+          echo "::set-output name=cmd::$INSTALL_CMD"
+      - name: Validate venv
+        id: validate2
+        if: "steps.validate.outputs.is-valid != 'true'"
+        shell: bash
+        run: |
+          temp_file="$(mktemp)"
+          poetry env info --no-ansi |tee "$temp_file"
+          if ! grep -qE "^Valid: +True" "$temp_file"; then
+            echo "::set-output name=is-valid::false"
+            echo "Virtualenv is invalid" >&2
+            exit 1
+          fi
+          echo "::set-output name=is-valid::true"
+          rm "$temp_file"
 
       - name: Run tests
         env:
