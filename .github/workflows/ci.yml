@@ -14,11 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/checkout@v3
+      - name: Check out repository code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/init
+      - name: Initialize Python and Poetry
+        uses: ./.github/actions/init
         with:
           python-version: "${{ matrix.python }}"
 

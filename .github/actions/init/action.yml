@@ -11,9 +11,11 @@ runs:
   steps:
 
     - name: Install Poetry
+      shell: bash
       run: pipx install poetry
 
     - name: Configure Poetry
+      shell: bash
       run: poetry config virtualenvs.in-project true
 
     - name: Install Python
@@ -24,6 +26,7 @@ runs:
         cache: poetry
 
     - name: Install dependencies
+      shell: bash
       if: steps.python.outputs.cache-hit != 'true'
       run: poetry install
 
