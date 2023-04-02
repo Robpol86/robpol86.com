@@ -35,7 +35,7 @@ sphinx-sitemap = "2.3.0"  # TODO: fix sphinx-sitemap: No pages generated for sit
 sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
 sphinxext-opengraph = "*"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.dev-dependencies]  # TODO new format: groups
 # IDE.
 docutils-stubs = "*"
 # Linters.
