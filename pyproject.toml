@@ -1,5 +1,5 @@
 [build-system]
-requires = ["poetry_core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
@@ -36,9 +36,7 @@ sphinx-sitemap = "2.3.0"  # TODO: fix sphinx-sitemap: No pages generated for sit
 sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
 sphinxext-opengraph = "*"
 
-[tool.poetry.dev-dependencies]  # TODO new format: groups
-# IDE.
-docutils-stubs = "*"
+[tool.poetry.group.dev.dependencies]
 # Linters.
 black = "*"
 flake8 = "*"

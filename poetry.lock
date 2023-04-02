@@ -374,21 +374,6 @@ files = [
 ]
 
 [[package]]
-name = "docutils-stubs"
-version = "0.0.22"
-description = "PEP 561 type stubs for docutils"
-category = "dev"
-optional = false
-python-versions = ">=3.5"
-files = [
-    {file = "docutils-stubs-0.0.22.tar.gz", hash = "sha256:1736d9650cfc20cff8c72582806c33a5c642694e2df9e430717e7da7e73efbdf"},
-    {file = "docutils_stubs-0.0.22-py3-none-any.whl", hash = "sha256:157807309de24e8c96af9a13afe207410f1fc6e5aab5d974fd6b9191f04de327"},
-]
-
-[package.dependencies]
-docutils = ">=0.14"
-
-[[package]]
 name = "exceptiongroup"
 version = "1.1.1"
 description = "Backport of PEP 654 (exception groups)"
@@ -2050,4 +2035,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"  # TODO ^3.10
-content-hash = "c5ebc2bb83dd86e38f07fa4383a4406869acffaa90380bc042060421a0d6bd9d"
+content-hash = "7c6482831e4e9e326311859c46028c8468714f34f508d068b0cf6cf651c3a54c"
