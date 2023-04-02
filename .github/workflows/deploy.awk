@@ -5,5 +5,5 @@ function error(msg) {
 
 function setOutput(name, value) {
   printf("Set Output: %s=%s\n", name, value)
-  printf("::set-output name=%s::%s\n", name, value)
+  printf("%s=%s\n", name, value) >> GITHUB_OUTPUT
 }

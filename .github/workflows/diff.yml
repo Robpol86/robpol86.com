@@ -33,11 +33,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Initialize dependencies
-        uses: Robpol86/actions-init-deps-py@v3
+      - name: Initialize Python and Poetry
+        uses: ./.github/actions/init
         with:
-          no-dev: "true"
-          poetry-version: "1.4.0"
           python-version: "${{ env.PYTHON_VERSION }}"
       - name: Build docs
         env:
@@ -94,9 +92,9 @@ jobs:
           git -C html add .
           git -C html status --porcelain |tee git_status.txt
           if [ -s git_status.txt ]; then
-            echo "::set-output name=changed::true"
+            echo "changed=true" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=no-changes::true"
+            echo "no-changes=true" >> $GITHUB_OUTPUT
             rm -v git_status.txt
           fi
       - name: Git Diff
@@ -105,9 +103,9 @@ jobs:
         run: |
           git -C html diff --diff-filter=M --unified="$DIFF_CONTEXT" HEAD |grep -Pv "^(diff|index) " |tee git_diff.patch
           if [ -s git_diff.patch ]; then
-            echo "::set-output name=modified::true"
+            echo "modified=true" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=no-modifications::true"
+            echo "no-modifications=true" >> $GITHUB_OUTPUT
             rm -v git_diff.patch
           fi
       - name: Truncate

@@ -19,11 +19,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Initialize dependencies
-        uses: Robpol86/actions-init-deps-py@v3
+      - name: Initialize Python and Poetry
+        uses: ./.github/actions/init
         with:
-          cache-buster: "${{ join(matrix.*, '|') }}"
-          poetry-version: "1.4.0"
           python-version: "${{ matrix.python }}"
 
       - name: Run tests

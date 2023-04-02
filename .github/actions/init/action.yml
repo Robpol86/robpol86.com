@@ -1,0 +1,39 @@
+name: Initialize Python and Poetry
+description: Boilerplate steps used by multiple workflows in this repo.
+
+inputs:
+  python-version:
+    description: Python version to install
+    required: true
+
+runs:
+  using: composite
+  steps:
+
+    - name: Install Poetry
+      shell: bash
+      run: pipx install poetry
+
+    - name: Configure Poetry
+      shell: bash
+      run: poetry config virtualenvs.in-project true
+
+    - name: Install Python
+      id: python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "${{ inputs.python-version }}"
+        cache: poetry
+
+    - name: Install dependencies
+      shell: bash
+      if: steps.python.outputs.cache-hit != 'true'
+      run: poetry install
+
+outputs:
+  python-version:
+    description: Same as input
+    value: ${{ inputs.python-version }}
+  cache-hit:
+    description: Poetry cache hit boolean
+    value: ${{ steps.python.outputs.cache-hit }}
