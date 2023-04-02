@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: .github/actions/checkout-and-init.yml
+      - uses: ./.github/actions/checkout-and-init.yml
         with:
           python-version: "3.10"
 
