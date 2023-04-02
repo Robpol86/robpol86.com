@@ -1,5 +1,5 @@
 [build-system]
-requires = ["poetry_core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
@@ -20,10 +20,11 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.8"  # TODO ^3.10
 # Project dependencies.
+babel = "2.11.0"  # TODO: remove after validating changes
 myst-parser = {version = "*", extras = ["linkify"]}
-pygments = "2.13.0"  # TODO: validate code block changes
-Sphinx = "*"
-sphinx-book-theme = ">=0.3.3"
+pygments = "2.13.0"  # TODO: remove after validating code block changes
+Sphinx = "4.5.0"  # TODO: validate sphinx-carousel on Sphinx==5.3.x
+sphinx-book-theme = "0.3.3"  # TODO: validate sphinx-carousel
 sphinx-carousel = "*"
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
@@ -35,9 +36,7 @@ sphinx-sitemap = "2.3.0"  # TODO: fix sphinx-sitemap: No pages generated for sit
 sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
 sphinxext-opengraph = "*"
 
-[tool.poetry.dev-dependencies]  # TODO new format: groups
-# IDE.
-docutils-stubs = "*"
+[tool.poetry.group.dev.dependencies]
 # Linters.
 black = "*"
 flake8 = "*"
