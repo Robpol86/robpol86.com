@@ -25,13 +25,14 @@ jobs:
           poetry config virtualenvs.in-project true
 
       - name: Install Python
+        id: python
         uses: actions/setup-python@v4
         with:
           python-version: "${{ matrix.python }}"
           cache: poetry
 
       - name: Install dependencies
-        # if: "steps.validate.outputs.is-valid != 'true'"
+        if: steps.python.outputs.cache-hit != 'true'
         run: poetry install
 
       - name: Run tests
