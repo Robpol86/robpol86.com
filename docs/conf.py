@@ -132,7 +132,7 @@ external_toc_path = ".toc.yml"
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
 myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
 myst_url_schemes = ("http", "https", "mailto")
-notfound_context = dict(
+notfound_context = dict(  # pylint: disable=use-dict-literal
     title="404 Not Found",
     body="<h1>404 Not Found</h1>\n\n"
     '<iframe src="https://funhtml5games.com?embed=lemmings" style="width:742px;height:401px;border:none;" '

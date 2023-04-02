@@ -18,7 +18,7 @@ classifiers = [
 repository = "https://github.com/Robpol86/robpol86.com"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8"  # TODO ^3.10
 # Project dependencies.
 myst-parser = {version = "*", extras = ["linkify"]}
 pygments = "2.13.0"  # TODO: validate code block changes
@@ -35,7 +35,7 @@ sphinx-sitemap = "2.3.0"  # TODO: fix sphinx-sitemap: No pages generated for sit
 sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
 sphinxext-opengraph = "*"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.dev-dependencies]  # TODO new format: groups
 # IDE.
 docutils-stubs = "*"
 # Linters.
@@ -53,7 +53,7 @@ sphinx-autobuild = "*"
 
 [tool.black]
 line-length = 125
-target-version = ["py38", "py39", "py310"]
+target-version = ["py310", "py311"]
 
 [tool.pylint.FORMAT]
 good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
