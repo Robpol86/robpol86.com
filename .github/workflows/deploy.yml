@@ -49,7 +49,7 @@ jobs:
               exit
             }
             END { exit !flag }
-        run: ${{ env.IS_PROD && 'printenv GITHUB_REF_NAME' || 'poetry version' }} |awk "$AWK_PROGRAM"
+        run: ${{ env.IS_PROD && 'printenv GITHUB_REF_NAME' || 'poetry version' }} |awk -v "GITHUB_OUTPUT=$GITHUB_OUTPUT" "$AWK_PROGRAM"
       - name: Find version in changelog
         id: section_start
         env:
@@ -68,7 +68,7 @@ jobs:
             END {
               if (!found) error("No section found")
             }
-        run: awk "$AWK_PROGRAM" CHANGELOG.md
+        run: awk -v "GITHUB_OUTPUT=$GITHUB_OUTPUT" "$AWK_PROGRAM" CHANGELOG.md
       - name: Get title from changelog
         id: title
         env:
@@ -90,7 +90,7 @@ jobs:
             END {
               if (!found) error("No title found")
             }
-        run: awk "$AWK_PROGRAM" CHANGELOG.md
+        run: awk -v "GITHUB_OUTPUT=$GITHUB_OUTPUT" "$AWK_PROGRAM" CHANGELOG.md
       - name: Get description from changelog if available
         id: description
         env:
@@ -135,7 +135,7 @@ jobs:
               # Print.
               setOutput("DESCRIPTION", description)
             }
-        run: awk "$AWK_PROGRAM" CHANGELOG.md
+        run: awk -v "GITHUB_OUTPUT=$GITHUB_OUTPUT" "$AWK_PROGRAM" CHANGELOG.md
     outputs:
       CL_TITLE: "${{ steps.title.outputs.TITLE }}"
       CL_DESCRIPTION: "${{ steps.description.outputs.DESCRIPTION }}"
