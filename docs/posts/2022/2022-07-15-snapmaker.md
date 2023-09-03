@@ -19,7 +19,7 @@ need to disconnect them when removing or replacing the enclosure.
 * [Snapmaker 2.0 Emergency Stop Button](https://us.snapmaker.com/products/snapmaker-2-0-emergency-stop-button)
 * [SIQUK 5x PTFE Tubing (1M), 10x PC4-M6 and 10x PC4-M10 Fittings for 1.75mm Filament](https://www.amazon.com/gp/product/B07PV8754Z/)
 * [DeWALT DWA1450 17 piece Metric Tap & Die Set](https://www.amazon.com/DEWALT-DWA1450-METRIC-TAP-DIE/dp/B00LP4C648)
-* [DeWALT DCD777 20V MAX Compact Brushless Drill/Driver](https://www.dewalt.com/product/dcd777c2/20v-max-compact-brushless-drilldriver)
+* [DeWALT DCD777 20V MAX Compact Brushless Drill/Driver](https://www.dewalt.com/product/dcd777c2/20v-max-brushless-cordless-compact-drilldriver-kit)
 
 ## Pictures
 
