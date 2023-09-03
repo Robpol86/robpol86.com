@@ -1,4 +1,4 @@
-name: CI
+name: Build
 
 on:
   pull_request:
@@ -6,8 +6,7 @@ on:
 
 jobs:
 
-  test:
-    name: Test
+  Build:
     strategy:
       matrix:
         python: ["3.10", "3.11"]
