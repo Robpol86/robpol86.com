@@ -24,7 +24,7 @@ jobs:
           go-version: ">=1.21.0"
 
       - name: Setup Dart Sass
-        run: snap install dart-sass
+        run: sudo snap install dart-sass
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
