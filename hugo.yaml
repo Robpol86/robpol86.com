@@ -1,0 +1,9 @@
+baseURL: https://robpol86.com/
+languageCode: en-us
+title: Robpol86.com
+
+module:
+  hugoVersion:
+    extended: true
+  imports:
+    - path: gitlab.com/jmfergeau/hugo.386
