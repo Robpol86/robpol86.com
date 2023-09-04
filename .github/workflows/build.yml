@@ -3,6 +3,8 @@ name: Build
 on:
   pull_request:
   push:
+  workflow_call:
+    # TODO inputs.production boolean
 
 jobs:
 
@@ -12,3 +14,21 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for .GitInfo and .Lastmod
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.118.2"  # TODO latest?
+          extended: true
+
+      - name: Build
+        run: hugo --minify  # TODO stage/prod
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: html
+          path: public
