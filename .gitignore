@@ -3,4 +3,5 @@
 .hugo_build.lock
 .idea/
 .vscode/
+_gen/
 public/

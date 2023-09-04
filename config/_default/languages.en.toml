@@ -1,0 +1,27 @@
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "Robpol86.com"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  logo = "img/blowfish_logo_transparent.png"
+  # secondaryLogo = "PATH"
+  description = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
+  # copyright = "Copy, _right?_ :thinking_face:"
+
+[author]
+  name = "Blowfish"
+  image = "img/blowfish_logo.png"
+  headline = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
+  bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
+  links = [
+    { twitter = "https://twitter.com/burufugu" },
+    { mastodon = "https://masto.ai/@blowfish" },
+    { github = "https://github.com/nunocoracao/blowfish" },
+  ]
+
+  
