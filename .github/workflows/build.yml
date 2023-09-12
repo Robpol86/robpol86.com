@@ -34,7 +34,7 @@ jobs:
           hugo-version: "0.118.2"
 
       - name: Install Dependencies
-        run: npm i
+        run: npm i  # TODO fix vulnerabilities
 
       - name: Build
         run: hugo --minify
