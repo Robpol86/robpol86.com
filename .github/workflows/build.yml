@@ -20,7 +20,7 @@ jobs:
 
       - run: printenv SSH_HOST || true  # TODO remove
         env:
-          INPUTS_ENV: ${{ vars.SSH_HOST }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
 
       - name: Checkout
         uses: actions/checkout@v3
