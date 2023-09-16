@@ -18,10 +18,6 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
 
-      - run: printenv SSH_HOST || true  # TODO remove
-        env:
-          SSH_HOST: ${{ vars.SSH_HOST }}
-
       - name: Checkout
         uses: actions/checkout@v3
         with:
