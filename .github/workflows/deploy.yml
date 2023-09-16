@@ -1,0 +1,11 @@
+name: Deploy
+
+on:
+  push:
+
+jobs:
+
+  Build:
+    uses: ./.github/workflows/build.yml
+    with:
+      environment: staging
