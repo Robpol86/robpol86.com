@@ -6,7 +6,8 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 ## [Unreleased]
 
-- Fixed missing backslashes in ImageCFG page.
+- Switched from Python Sphinx to Golang Hugo
+- Fixed missing backslashes in ImageCFG page
 
 ## [2022.12.11]
 

@@ -3,11 +3,17 @@ name: Build
 on:
   pull_request:
   push:
+  workflow_call:
+    inputs:
+      environment:
+        required: false
+        type: string
 
 jobs:
 
   Build:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
 
       - name: Checkout
@@ -38,3 +44,10 @@ jobs:
 
       - name: Build
         run: hugo --minify
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: public
+          path: public
+          if-no-files-found: error
