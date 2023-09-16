@@ -18,7 +18,7 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
 
-      - run: printenv SSH_HOST && true  # TODO remove
+      - run: printenv SSH_HOST || true  # TODO remove
         env:
           INPUTS_ENV: ${{ vars.SSH_HOST }}
 
