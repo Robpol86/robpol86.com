@@ -7,6 +7,4 @@ tags:
   - vehicle
 ---
 
-See also [README.md](https://github.com/razonyang/hugo-theme-bootstrap-skeleton/blob/main/README.md).
-
-<!--more-->
+TODO
