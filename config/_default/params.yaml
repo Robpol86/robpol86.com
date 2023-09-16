@@ -15,33 +15,13 @@ keywords: Hugo, Bootstrap, Blog Theme
 
 # logo: images/logo.png # Logo image. Default to images/logo.webp.
 # logo: false # Disable Logo
-brand: HBS
 
-palette: purple # Default palette. Optional. You'll need to clear the browser cache after modifying this.
-# Available palettes. Default to ALL. Empty array means disable.
-# palettes:
-#  - blue
-#  - blue-gray
-#  - brown
-#  - cyan
-#  - green
-#  - indigo
-#  - orange
-#  - pink
-#  - purple
-#  - red
-#  - teal
-#  - yellow
-
-# color: dark # light, dark or auto. Default to auto.
+palette: green
 
 # fullWidth: true # Full width.
 # fixedHeader: false # Turn on/off fixed header.
 
 dateFormat: ":date_long"
-
-# Google Adsense
-googleAdsense: 
 
 # math: true # Enable math globally.
 # toc: false # Disable TOC globally.
@@ -144,7 +124,7 @@ creativeCommons:
   # sa: true # Adaptations must be shared under the same terms.
 
 # utterances:
-  # repo: razonyang/hugo-theme-bootstrap-skeleton # Replace with your repository.
+  # repo: Robpol86/robpol86.com # Replace with your repository.
   #issueTerm: pathname # pathname, url, title, og:title
   # label: comment
   # By default, light and dark mode correspond to github-light and github-dark, respectively.
@@ -167,20 +147,6 @@ creativeCommons:
   #  - url
   #paginate: 5 # Default to 10.
   #moderation: false # Same as Staticman's moderation.
-
-# See https://giscus.app
-giscus:
-  repo: "razonyang/hugo-theme-bootstrap-skeleton" # required.
-  repoId: "R_kgDOHJi95g" # required.
-  category: "General" # required.
-  categoryId: "DIC_kwDOHJi95s4CTy6q" # required.
-  # theme: "dark" # Default to auto.
-  # mapping: "title" # Default to pathname.
-  # inputPosition: "bottom" # Default to top.
-  # reactions: false # Disable reactions.
-  # metadata: true # Emit discussion metadata.
-  # lang: "en" # Specify language, default to site language.
-  # lazyLoading: false # Default to true.
 
 search:
   paginate: 5 # Pagination. Default to 10.
@@ -226,7 +192,7 @@ fontSize:
 pwa:
   manifest:
     # name:  # Default to site title.
-    short_name: HBS
+    short_name: TODO
     # display: fullscreen # Default to standalone.
     # description:  # Default to site description.
     # theme_color: 
@@ -248,17 +214,17 @@ contact:
     # siteKey: ""
 
 repo:
-  url: https://github.com/razonyang/hugo-theme-bootstrap-skeleton
+  url: https://github.com/Robpol86/robpol86.com
   branch: main
   # subPath: exampleSite
   # dateFormat: 02/01/2006, 15:04:05 PM
 
 topAppBar:
-  # See https://hbs.razonyang.com/v1/en/docs/widgets/social-links/.
+  # See https://hbs.Robpol86.com/v1/en/docs/widgets/social-links/.
   social:
-    github: razonyang/hugo-theme-bootstrap
-    patreon: razonyang
-    paypal: razonyang
+    github: Robpol86/hugo-theme-bootstrap
+    patreon: Robpol86
+    paypal: Robpol86
 
 #docs:
   # nav:
