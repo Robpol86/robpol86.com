@@ -15,4 +15,26 @@ jobs:
   Build:
     uses: ./.github/workflows/build.yml
     with:
-      environment: staging
+      environment: staging  # TODO stage/prod
+
+  Deploy:
+    runs-on: ubuntu-latest
+    environment: staging  # TODO stage/prod
+    needs: Build
+    steps:
+      - name: Download HTML
+        uses: actions/download-artifact@v3
+        with:
+          name: html
+          path: html
+      - name: Setup SSH
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: "${{ secrets.SSH_PRIVATE_KEY }}"
+          known_hosts: "${{ vars.SSH_KNOWN_HOSTS }}"
+      - name: Rsync
+        env:
+          SSH_HOST: "${{ vars.SSH_HOST }}"
+          SSH_USER: "${{ secrets.SSH_USER }}"
+        run: rsync -rptcivh --delete-after --stats ./html/ "$SSH_USER@$SSH_HOST:/home/public"
+      # TODO Purge Cloudflare Cache
