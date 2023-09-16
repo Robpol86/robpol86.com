@@ -1,5 +1,6 @@
 name: Build
 
+
 on:
   pull_request:
   push:
@@ -9,6 +10,7 @@ on:
         required: false
         type: string
 
+
 jobs:
 
   Build:
@@ -16,10 +18,9 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
 
-      - run: printenv ENV && true
+      - run: printenv SSH_HOST && true  # TODO remove
         env:
-          ENV: ${{ inputs.environment }}
-      - run: printenv HUGO_ENV && true
+          INPUTS_ENV: ${{ vars.SSH_HOST }}
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -48,6 +49,8 @@ jobs:
         run: npm i  # TODO fix vulnerabilities
 
       - name: Build
+        env:
+          HUGO_ENV: ${{ inputs.environment }}
         run: hugo --minify
 
       - name: Upload Artifact
