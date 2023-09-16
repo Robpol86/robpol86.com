@@ -16,9 +16,10 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
 
-      - run: printenv ENV HUGO_ENV
+      - run: printenv ENV && true
         env:
           ENV: ${{ inputs.environment }}
+      - run: printenv HUGO_ENV && true
 
       - name: Checkout
         uses: actions/checkout@v3
