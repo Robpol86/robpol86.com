@@ -1,5 +1,7 @@
 name: Deploy
 
+# TODO concurrency
+
 on:
   push:
 
@@ -8,4 +10,4 @@ jobs:
   Build:
     uses: ./.github/workflows/build.yml
     with:
-      environment: staging
+      environment: staging  # TODO didn't work, investigate
