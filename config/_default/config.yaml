@@ -1,23 +1,16 @@
-baseURL: /
-title: Hugo Bootstrap Skeleton
+baseURL: http://localhost:1313/
+title: Robpol86.com
 theme: github.com/razonyang/hugo-theme-bootstrap
-copyright: 'Copyright © 2016-{year} Razon Yang. All Rights Reserved.'
+copyright: 'Copyright © {year} Robpol86'
 defaultContentLanguage: en
-# hasCJKLanguage: true # Uncomment it if your content contains Chinese/Japanese/Korean Languages.
-# defaultContentLanguageInSubdir: true
-# disableLanguages:
-#  - fr
-#  - zh-cn
-#  - zh-tw
 paginate: 10
 # paginatePath: page
 enableRobotsTXT: true
 enableEmoji: true
 pygmentsUseClasses: true
-# googleAnalytics: UA-123-45
-# disqusShortname: yourdiscussshortname
+disqusShortname: rob86wiki
 
-blackfriday:
+blackfriday:  # TODO check out other types: https://gohugo.io/getting-started/configuration-markup/
   hrefTargetBlank: true
 
 taxonomies:
