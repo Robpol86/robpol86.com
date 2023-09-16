@@ -15,7 +15,7 @@ jobs:
   Build:
     uses: ./.github/workflows/build.yml
     with:
-      environment: staging  # TODO stage/prod
+      hugo_env: staging  # TODO stage/prod
 
   Deploy:
     runs-on: ubuntu-latest
@@ -37,4 +37,8 @@ jobs:
           SSH_HOST: "${{ vars.SSH_HOST }}"
           SSH_USER: "${{ secrets.SSH_USER }}"
         run: rsync -rptcivh --delete-after --stats ./html/ "$SSH_USER@$SSH_HOST:/home/public"
-      # TODO Purge Cloudflare Cache
+      - name: Purge Cloudflare Cache
+        env:
+          CF_AUTH: "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}"
+          CF_URL: "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache"
+        run: curl -f "$CF_URL" -H "$CF_AUTH" --data '{"purge_everything":true}'

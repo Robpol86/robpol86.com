@@ -6,7 +6,7 @@ on:
   push:
   workflow_call:
     inputs:
-      environment:
+      hugo_env:
         required: false
         type: string
 
@@ -15,7 +15,6 @@ jobs:
 
   Build:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
     steps:
 
       - name: Checkout
@@ -46,7 +45,7 @@ jobs:
 
       - name: Build
         env:
-          HUGO_ENV: ${{ inputs.environment }}
+          HUGO_ENV: ${{ inputs.hugo_env }}
         run: hugo --minify
 
       - name: Upload Artifact
