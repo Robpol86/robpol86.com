@@ -18,6 +18,7 @@ keywords: Hugo, Bootstrap, Blog Theme
 
 color: light
 palette: green
+palettes: false
 
 # fullWidth: true # Full width.
 # fixedHeader: false # Turn on/off fixed header.
@@ -52,6 +53,8 @@ countTaxonomyPosts: true # Count posts of taxonomy.
 
 # pinnedPost: false # Turn on/off pinned posts.
 pinnedPostCount: 3 # The number of pinned posts.
+
+rss: false
 
 # Custom CSS and JS
 customCSS:
@@ -216,16 +219,15 @@ contact:
 
 repo:
   url: https://github.com/Robpol86/robpol86.com
-  branch: main
+  branch: main  # TODO
   # subPath: exampleSite
   # dateFormat: 02/01/2006, 15:04:05 PM
 
 topAppBar:
+  colorToggle: false
   # See https://hbs.Robpol86.com/v1/en/docs/widgets/social-links/.
   social:
-    github: Robpol86/hugo-theme-bootstrap
-    patreon: Robpol86
-    paypal: Robpol86
+    github: Robpol86/robpol86.com
 
 #docs:
   # nav:
