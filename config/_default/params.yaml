@@ -16,6 +16,7 @@ keywords: Hugo, Bootstrap, Blog Theme
 # logo: images/logo.png # Logo image. Default to images/logo.webp.
 # logo: false # Disable Logo
 
+color: light
 palette: green
 
 # fullWidth: true # Full width.
