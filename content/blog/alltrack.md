@@ -1,10 +1,10 @@
 ---
 title: Golf Alltrack SE
 date: 2021-08-27T16:56:04-07:00
-draft: false  # TODO make default true and remove
 tags:
   - alltrack
   - vehicle
+disqus_identifier: Golf Alltrack SE
 ---
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
