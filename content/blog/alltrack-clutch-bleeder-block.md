@@ -7,8 +7,10 @@ tags:
 disqus_identifier: Clutch Bleeder Block Replacement
 ---
 
+[discussion]: https://www.vwvortex.com/threads/6-mt-owners-do-the-clutch-spring-mod.9119337/
+
 I opted to replace the stock plastic block with an all-metal block from ECS Tuning to get rid of the
-[clutch delay valve][https://www.vwvortex.com/threads/6-mt-owners-do-the-clutch-spring-mod.9119337/]. After doing this mod I definitely felt a difference when pressing the clutch pedal. It
+[clutch delay valve][discussion]. After doing this mod I definitely felt a difference when pressing the clutch pedal. It
 feels lighter and now I understand what people meant when they say the stock clutch feels mushy.
 
 My only regret with this mod was not buying a clutch line cap. Installing the new O-rings took some time, all the while brake
@@ -20,7 +22,11 @@ After replacing the block you need to bleed the clutch. You can bleed it by pump
 pressure bleeding method instead. Reason is I very recently replaced my brake fluid and used this mod as an opportunity to
 replace the remaining old brake fluid in the clutch master cylinder and clutch lines.
 
-TODO
+{{% alert info %}}
+{{< alert-heading >}}Instructional videos used{{< /alert-heading >}}
+* https://www.youtube.com/watch?v=nLM7EoE8tO8
+* https://www.youtube.com/watch?v=96Bn9h5uAyg
+{{% /alert %}}
 
 ## Items Used
 
@@ -40,7 +46,3 @@ TODO
 
 * Imgur: https://imgur.com/a/kPg66Ks
 * VW Vortex: https://www.vwvortex.com/threads/what-did-i-do-to-my-alltrack-today.8372241/page-253#post-115776976
-
-## Comments
-
-TODO page code consistency
