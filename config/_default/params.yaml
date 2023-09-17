@@ -220,7 +220,7 @@ contact:
 repo:
   url: https://github.com/Robpol86/robpol86.com
   branch: main  # TODO
-  # subPath: exampleSite
+  subPath: TODO  # https://hbs.razonyang.com/v1/en/docs/widgets/repository/#requirements
   # dateFormat: 02/01/2006, 15:04:05 PM
 
 topAppBar:
