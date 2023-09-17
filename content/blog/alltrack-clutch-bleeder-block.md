@@ -5,6 +5,7 @@ draft: false  # TODO make default true and remove
 tags:
   - alltrack
   - vehicle
+disqus_identifier: Clutch Bleeder Block Replacement
 ---
 
 I opted to replace the stock plastic block with an all-metal block from ECS Tuning to get rid of the
