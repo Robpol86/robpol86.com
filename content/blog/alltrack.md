@@ -5,7 +5,6 @@ draft: false  # TODO make default true and remove
 tags:
   - alltrack
   - vehicle
-disqus_identifier: Golf Alltrack SE  # TODO remove?
 ---
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
