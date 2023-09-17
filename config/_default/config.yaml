@@ -35,3 +35,5 @@ markup:
       unsafe: true
 
 enableGitInfo: true
+
+# TODO shut down local server and get to the Oops Youre Offline page, customize that
