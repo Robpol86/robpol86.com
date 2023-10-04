@@ -40,7 +40,7 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
 
 ## Pictures
 
-TODO
+{{< carousel >}}
 
 ### Mirrors
 
