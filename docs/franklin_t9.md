@@ -248,7 +248,7 @@ I edited that file using Paint 3D to keep the transparency.
 ## Fastboot
 
 There are a couple of ways to get the device to boot into
-[fastboot mode](https://developer.android.com/studio/command-line#tools-platform): the hard way and the easy way. This
+[fastboot mode](https://developer.android.com/tools#tools-platform): the hard way and the easy way. This
 hotspot is basically an Android device without the screen or phone part.
 
 ### Hard Way

@@ -156,13 +156,11 @@ jobs:
         with:
           key: "${{ secrets.NFSN_SSH_KEY }}"
           known_hosts: >
-            ssh.phx.nearlyfreespeech.net,208.94.116.211
-            ecdsa-sha2-nistp256
-            AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEkD1YQOPCy0w/g/OqpBys337RAtyK/HDmW2i0BUW4mnN5em2jkB69nhJP91nU8s05OfB1MgxVVzyXc80Ounbzw=
+            |1|DPaY4V21SA8hqGGhvfofQD+4Q9s=|AxxSLwKe688+1aemg21SbQL4MxU= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICbXE1f5S3N/flFHUm2i97tzKGJUWzxotY1HHBMIX72h
       - name: Rsync
         env:
           SSH_USER: "${{ env.IS_PROD && secrets.NFSN_SSH_USER_PROD || secrets.NFSN_SSH_USER_STAGE }}"
-        run: rsync -rptcivh --delete-after --stats ./html/ "$SSH_USER@ssh.phx.nearlyfreespeech.net:/home/public"
+        run: rsync -rptcivh --delete-after --stats ./html/ "$SSH_USER@ssh.nyc1.nearlyfreespeech.net:/home/public"
       - name: Purge Cloudflare Cache
         env:
           CF_AUTH: "Authorization: Bearer ${{ secrets.TOKEN_CF_PURGE_CACHE }}"
