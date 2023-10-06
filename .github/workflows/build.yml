@@ -37,22 +37,22 @@ jobs:
           python-version: "3.11"
           cache: poetry
 
-      - name: Install dependencies
+      - name: Install Dependencies
         shell: bash
         run: poetry install
 
-      - name: Run tests
+      - name: Run Tests  # TODO belongs here?
         env:
           PY_COLORS: 1
         run: make test
 
-      - name: Run lints
+      - name: Run Lints  # TODO belongs here?
         run: make lint
 
-      - name: Run integration tests
+      - name: Run Integration Tests  # TODO belongs here?
         run: make it
 
-      - name: Build docs
+      - name: Build
         run: make docs  # TODO minify since cloudflare no longer does that
 
       - name: Upload Artifact
