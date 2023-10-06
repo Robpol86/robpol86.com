@@ -51,17 +51,17 @@ jobs:
         run: poetry install
 
       - name: Run Tests
-        if: ! inputs.skip_lints_tests
+        if: '! inputs.skip_lints_tests'
         env:
           PY_COLORS: 1
         run: make test
 
       - name: Run Lints
-        if: ! inputs.skip_lints_tests
+        if: '! inputs.skip_lints_tests'
         run: make lint
 
       - name: Run Integration Tests
-        if: ! inputs.skip_lints_tests
+        if: '! inputs.skip_lints_tests'
         run: make it
 
       - name: Build
