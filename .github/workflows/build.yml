@@ -1,0 +1,63 @@
+name: Build
+
+
+on:
+  pull_request:
+  push:
+  workflow_call:
+    inputs:
+      environment:  # TODO prod/stage/dev
+        required: false
+        type: string
+
+
+jobs:
+
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Install Poetry
+        shell: bash
+        run: pipx install poetry
+
+      - name: Configure Poetry
+        shell: bash
+        run: poetry config virtualenvs.in-project true
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: poetry
+
+      - name: Install dependencies
+        shell: bash
+        run: poetry install
+
+      - name: Run tests
+        env:
+          PY_COLORS: 1
+        run: make test
+
+      - name: Run lints
+        run: make lint
+
+      - name: Run integration tests
+        run: make it
+
+      - name: Build docs
+        run: make docs  # TODO minify since cloudflare no longer does that
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: html
+          path: docs/_build/html
+          if-no-files-found: error
