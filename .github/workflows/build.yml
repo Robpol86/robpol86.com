@@ -6,7 +6,16 @@ on:
   push:
   workflow_call:
     inputs:
-      environment:  # TODO prod/stage/dev
+      prettyfy:
+        required: false
+        type: boolean
+      skip_lints_tests:
+        required: false
+        type: boolean
+      sphinx_github_branch:  # For HTML diff
+        required: false
+        type: string
+      sphinx_html_baseurl:
         required: false
         type: string
 
@@ -41,19 +50,33 @@ jobs:
         shell: bash
         run: poetry install
 
-      - name: Run Tests  # TODO belongs here?
+      - name: Run Tests
+        if: ! inputs.skip_lints_tests
         env:
           PY_COLORS: 1
         run: make test
 
-      - name: Run Lints  # TODO belongs here?
+      - name: Run Lints
+        if: ! inputs.skip_lints_tests
         run: make lint
 
-      - name: Run Integration Tests  # TODO belongs here?
+      - name: Run Integration Tests
+        if: ! inputs.skip_lints_tests
         run: make it
 
       - name: Build
+        env:
+          SPHINX_GITHUB_BRANCH: "${{ inputs.sphinx_github_branch }}"
+          SPHINX_HTML_BASEURL: "${{ inputs.sphinx_html_baseurl }}"
         run: make docs  # TODO minify since cloudflare no longer does that
+
+      - name: Prettify
+        if: inputs.prettyfy
+        run: |
+          PS4="\n\033[1;33m$PS4\033[0m"
+          set -euxo pipefail
+          npm install -g prettier@2.8.8 @prettier/plugin-xml@2.2.0
+          prettier --write "docs/_build/html/**/*.{js,css,html,xml}"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
