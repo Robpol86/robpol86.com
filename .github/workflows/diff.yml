@@ -19,10 +19,10 @@ env:
   POST_COLLAPSE_GT_LINES: 10
   ROOT_DIR_DIFF: ./docs/_build/html
 
+
 jobs:
 
-  build:
-    name: Build HTML
+  Build:
     if: github.event.action != 'closed' || (github.event.pull_request.merged && github.event.pull_request.base.ref == 'main')
     runs-on: ubuntu-latest
     steps:
@@ -65,11 +65,10 @@ jobs:
           publish_branch: "${{ env.BRANCH_NAME_HTML_OLD }}"
           publish_dir: "${{ env.ROOT_DIR_DIFF }}"
 
-  diff:
-    name: Diff
+  Diff:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
-    needs: build
+    needs: Build
     steps:
       - name: Fetch old HTML
         uses: actions/checkout@v3
@@ -130,11 +129,10 @@ jobs:
       modified: "${{ steps.git_diff.outputs.modified }}"
       no-modifications: "${{ steps.git_diff.outputs.no-modifications }}"
 
-  post:
-    name: Post
+  Post:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
-    needs: diff
+    needs: Diff
     concurrency:
       cancel-in-progress: true
       group: diff-post
@@ -143,7 +141,7 @@ jobs:
       HEADER_URL_BASE: "https://github.com/${{ github.repository }}/tree"
     steps:
       - name: Fetch text/patch files
-        if: needs.diff.outputs.changed
+        if: needs.Diff.outputs.changed
         uses: actions/download-artifact@v3
         with:
           name: git_status_diff
@@ -159,7 +157,7 @@ jobs:
           rename 's/.patch.(\d{3})$/.$1.patch/' *.patch.???
           ls -lah
       - name: Post (no changes)
-        if: needs.diff.outputs.no-changes
+        if: needs.Diff.outputs.no-changes
         uses: actions/github-script@v6
         with:
           script: |
@@ -173,7 +171,7 @@ jobs:
               body: `### ${header}\n\n${body}`
             })
       - name: Post (no modified)
-        if: needs.diff.outputs.changed && needs.diff.outputs.no-modifications
+        if: needs.Diff.outputs.changed && needs.Diff.outputs.no-modifications
         uses: actions/github-script@v6
         with:
           script: |
@@ -191,7 +189,7 @@ jobs:
               body: `### ${header}\n\n${body}`
             })
       - name: Post Diff
-        if: needs.diff.outputs.changed && needs.diff.outputs.modified
+        if: needs.Diff.outputs.changed && needs.Diff.outputs.modified
         uses: actions/github-script@v6
         env:
           IS_TRUNCATED: "${{ hashFiles('git_diff.patch.truncated') }}"
