@@ -64,7 +64,7 @@ jobs:
         if: '! inputs.skip_lints_tests'
         run: make it
 
-      - name: Build  # TODO minify since cloudflare no longer does that
+      - name: Build
         env:
           SPHINX_GITHUB_BRANCH: "${{ inputs.sphinx_github_branch }}"
           SPHINX_HTML_BASEURL: "${{ inputs.sphinx_html_baseurl }}"

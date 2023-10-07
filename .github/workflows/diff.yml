@@ -1,5 +1,6 @@
 name: Diff HTML
 
+
 on:
   pull_request:
     types:
@@ -9,6 +10,7 @@ on:
       - reopened
       # Additional
       - closed
+
 
 env:
   BRANCH_NAME_HTML_OLD: __diff__html_old
@@ -138,6 +140,9 @@ jobs:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     needs: diff
+    concurrency:
+      cancel-in-progress: true
+      group: diff-post
     env:
       HEADER_PREFIX: "Diff Against [Old HTML]"
       HEADER_URL_BASE: "https://github.com/${{ github.repository }}/tree"
