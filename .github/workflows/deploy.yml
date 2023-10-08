@@ -25,7 +25,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Initialize Python and Poetry
-        uses: ./.github/actions/init
+        uses: ./.github/actions/deps
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
       - name: Build docs

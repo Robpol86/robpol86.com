@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Initialize Python and Poetry
-        uses: ./.github/actions/init
+        uses: ./.github/actions/deps
         with:
           python-version: "3.10"
 

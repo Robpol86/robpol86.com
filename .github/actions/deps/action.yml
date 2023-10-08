@@ -1,9 +1,8 @@
-# TODO: DELETE THIS
-name: Initialize Python and Poetry
-description: Boilerplate steps used by multiple workflows in this repo.
+name: Setup Dependencies
+description: Setup project dependencies.
 
 inputs:
-  python-version:
+  python-version:  # TODO remove
     description: Python version to install
     required: true
 
