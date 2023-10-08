@@ -40,12 +40,6 @@ jobs:
         with:
           name: html
           path: html
-      - name: Create .gitignore
-        env:
-          GIT_IGNORE: |
-            .doctrees/
-            __pycache__/
-        run: printenv GIT_IGNORE |tee -a html/.gitignore
       - name: Store HTML in orphaned branch
         uses: peaceiris/actions-gh-pages@v3
         with:
