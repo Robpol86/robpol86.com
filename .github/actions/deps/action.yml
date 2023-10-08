@@ -21,7 +21,7 @@ runs:
         python-version: "3.11"
         cache: poetry
 
-    - name: Install dependencies
+    - name: Install Dependencies
       shell: bash
       if: steps.python.outputs.cache-hit != 'true'
       run: poetry install
