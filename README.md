@@ -1,12 +1,9 @@
 # Robpol86.com
 
 [![Github-CI][github-ci]][github-link]
-[![Code style: black][black-badge]][black-link]
 
-[github-ci]: https://github.com/Robpol86/sphinx-carousel/actions/workflows/ci.yml/badge.svg?branch=main
-[github-link]: https://github.com/Robpol86/sphinx-carousel/actions/workflows/ci.yml
-[black-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
-[black-link]: https://github.com/ambv/black
+[github-ci]: https://github.com/Robpol86/robpol86.com/actions/workflows/build.yml/badge.svg?branch=main
+[github-link]: https://github.com/Robpol86/robpol86.com/actions/workflows/build.yml
 
 My personal website.
 
