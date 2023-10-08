@@ -1,0 +1,73 @@
+name: Build
+
+
+on:
+  pull_request:
+  push:
+  workflow_call:
+    inputs:
+      prettyfy:
+        required: false
+        type: boolean
+      skip_lints_tests:
+        required: false
+        type: boolean
+      sphinx_github_branch:  # For HTML diff
+        required: false
+        type: string
+      sphinx_html_baseurl:
+        required: false
+        type: string
+
+
+jobs:
+
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Dependencies
+        uses: ./.github/actions/deps
+
+      - name: Run Tests
+        if: '! inputs.skip_lints_tests'
+        env:
+          PY_COLORS: 1
+        run: make test
+
+      - name: Run Lints
+        if: '! inputs.skip_lints_tests'
+        run: make lint
+
+      - name: Run Integration Tests
+        if: '! inputs.skip_lints_tests'
+        run: make it
+
+      - name: Build
+        env:
+          SPHINX_GITHUB_BRANCH: "${{ inputs.sphinx_github_branch }}"
+          SPHINX_HTML_BASEURL: "${{ inputs.sphinx_html_baseurl }}"
+        run: |
+          if [ -z "${SPHINX_GITHUB_BRANCH:-}" ]; then unset SPHINX_GITHUB_BRANCH; fi
+          if [ -z "${SPHINX_HTML_BASEURL:-}" ]; then unset SPHINX_HTML_BASEURL; fi
+          make docs && cp -v .gitignore docs/_build/html/
+
+      - name: Prettify
+        if: inputs.prettyfy
+        run: |
+          PS4="\n\033[1;33m$PS4\033[0m"
+          set -euxo pipefail
+          npm install -g prettier@2.8.8 @prettier/plugin-xml@2.2.0
+          prettier --write "docs/_build/html/**/*.{js,css,html,xml}"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: html
+          path: docs/_build/html
+          if-no-files-found: error
