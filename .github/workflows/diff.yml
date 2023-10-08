@@ -27,7 +27,7 @@ jobs:
       prettyfy: true
       skip_lints_tests: true
       sphinx_github_branch: main
-      sphinx_html_baseurl: https://rob86stage.robpol86.com/
+      sphinx_html_baseurl: https://rob86stage.robpol86.com/  # TODO use GitHub Environments variables
 
   Commit:
     if: github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.base.ref == 'main'
