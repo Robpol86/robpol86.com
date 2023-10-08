@@ -12,7 +12,6 @@ env:
   BASEURL_STAGE: https://rob86stage.robpol86.com/
   HTML_ROOT: ./docs/_build/html
   IS_PROD: "${{ startsWith(github.ref, 'refs/tags/') && 'true' || '' }}"
-  PYTHON_VERSION: "3.10"
 
 jobs:
 
@@ -26,8 +25,6 @@ jobs:
           fetch-depth: 0
       - name: Initialize Python and Poetry
         uses: ./.github/actions/deps
-        with:
-          python-version: "${{ env.PYTHON_VERSION }}"
       - name: Build docs
         env:
           SPHINX_HTML_BASEURL: "${{ env.IS_PROD && env.BASEURL_PROD || env.BASEURL_STAGE }}"

@@ -18,8 +18,6 @@ jobs:
 
       - name: Initialize Python and Poetry
         uses: ./.github/actions/deps
-        with:
-          python-version: "3.10"
 
       - name: Run linkcheck
         env:
