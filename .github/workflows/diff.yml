@@ -40,7 +40,11 @@ jobs:
           SPHINX_HTML_BASEURL: "https://rob86stage.robpol86.com/"
         run: make docs
       - name: Create .gitignore
-        run: cp -v .gitignore "$ROOT_DIR_DIFF/"
+        env:
+          GIT_IGNORE: |
+            .doctrees/
+            __pycache__/
+        run: printenv GIT_IGNORE |tee -a "$ROOT_DIR_DIFF/.gitignore"
       - name: Prettify
         run: |
           PS4="\n\033[1;33m$PS4\033[0m"
