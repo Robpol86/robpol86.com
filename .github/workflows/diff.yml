@@ -22,6 +22,7 @@ env:
 jobs:
 
   Build:
+    environment: staging
     uses: ./.github/workflows/build.yml
     with:
       prettyfy: true
