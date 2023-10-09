@@ -26,7 +26,7 @@ jobs:
     with:
       prettyfy: true
       skip_lints_tests: true
-      sphinx_github_branch: main  # TODO "${{ env.BRANCH_NAME_HTML_OLD }}"
+      sphinx_github_branch: __diff__html_old
 
   Commit:
     if: github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.base.ref == 'main'
