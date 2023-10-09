@@ -21,14 +21,26 @@ env:
 
 jobs:
 
+  LoadEnvironment:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Retrieve Variables
+        id: vars
+        env:
+          SPHINX_HTML_BASEURL: ${{ vars.SPHINX_HTML_BASEURL }}
+        run: echo "SPHINX_HTML_BASEURL=$SPHINX_HTML_BASEURL" >> "$GITHUB_OUTPUT"
+    outputs:
+      SPHINX_HTML_BASEURL: "${{ steps.vars.outputs.SPHINX_HTML_BASEURL }}"
+
   Build:
+    needs: LoadEnvironment
     uses: ./.github/workflows/build.yml
     with:
       prettyfy: true
       skip_lints_tests: true
       sphinx_github_branch: main
-      sphinx_html_baseurl: ${{ vars.SPHINX_HTML_BASEURL }}
-    environment: staging
+      sphinx_html_baseurl: ${{ needs.LoadEnvironment.outputs.SPHINX_HTML_BASEURL }}
 
   Commit:
     if: github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.base.ref == 'main'
