@@ -22,13 +22,13 @@ env:
 jobs:
 
   Build:
-    environment: staging
     uses: ./.github/workflows/build.yml
     with:
       prettyfy: true
       skip_lints_tests: true
       sphinx_github_branch: main
-      sphinx_html_baseurl: https://rob86stage.robpol86.com/  # TODO use GitHub Environments variables
+      sphinx_html_baseurl: ${{ vars.SPHINX_HTML_BASEURL }}
+    environment: staging
 
   Commit:
     if: github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.base.ref == 'main'
