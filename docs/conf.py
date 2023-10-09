@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 from robpol86_com import __license__, __version__ as version
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF", "").split("/", 2)[-1] or None
-GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if "GITHUB_REPOSITORY" in os.environ else None
+GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.get("GITHUB_REPOSITORY", "") else None
 
 
 # General configuration.
@@ -39,7 +39,7 @@ templates_path = ["_templates"]
 
 
 # Options for HTML output.
-html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "http://localhost:8000/")
+html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "") or "http://localhost:8000/"
 html_context = {
     "edit_page_url_template": (
         "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"

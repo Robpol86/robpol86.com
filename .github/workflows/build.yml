@@ -53,8 +53,6 @@ jobs:
           SPHINX_GITHUB_BRANCH: "${{ inputs.sphinx_github_branch }}"
           SPHINX_HTML_BASEURL: "${{ inputs.sphinx_html_baseurl }}"
         run: |
-          if [ -z "${SPHINX_GITHUB_BRANCH:-}" ]; then unset SPHINX_GITHUB_BRANCH; fi
-          if [ -z "${SPHINX_HTML_BASEURL:-}" ]; then unset SPHINX_HTML_BASEURL; fi
           make docs && cp -v .gitignore docs/_build/html/
 
       - name: Prettify
