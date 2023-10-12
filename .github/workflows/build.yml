@@ -6,6 +6,9 @@ on:
   push:
   workflow_call:
     inputs:
+      environment:
+        required: false
+        type: string
       prettyfy:
         required: false
         type: boolean
@@ -15,15 +18,13 @@ on:
       sphinx_github_branch:  # For HTML diff
         required: false
         type: string
-      sphinx_html_baseurl:
-        required: false
-        type: string
 
 
 jobs:
 
   Build:
     runs-on: ubuntu-latest
+    environment: "${{ inputs.environment }}"  # Note: can be empty
     steps:
 
       - name: Checkout
@@ -49,9 +50,9 @@ jobs:
         run: make it
 
       - name: Build
-        env:
+        env:  # Note: these can be empty
           SPHINX_GITHUB_BRANCH: "${{ inputs.sphinx_github_branch }}"
-          SPHINX_HTML_BASEURL: "${{ inputs.sphinx_html_baseurl }}"
+          SPHINX_HTML_BASEURL: "${{ vars.SPHINX_HTML_BASEURL }}"
         run: |
           make docs && cp -v .gitignore docs/_build/html/
 
