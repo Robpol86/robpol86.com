@@ -10,6 +10,7 @@ jobs:
   Build:
     uses: ./.github/workflows/build.yml
     with:
+      environment: staging  # TODO staging/production
       skip_lints_tests: true
 
   Deploy:
