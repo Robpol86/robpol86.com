@@ -110,9 +110,7 @@ linkcheck_exclude_documents = [
 linkcheck_ignore = [
     r"[/.]*genindex.html",  # TODO remove this
     r"https://[\w.]*mibsolution.one/#",
-    r"https://media.vw.com/",  # All curls result in 403
     r"https://mega.nz/(file|folder)/\w+#",
-    r"https://www.ecstuning.com/",  # All curls result in 403
     r"https://www.qnx.com/developers/docs/[\w.]+/#",
     r"https?://192.168.\d+.\d+/",
 ]
