@@ -1,8 +1,7 @@
 name: Linkcheck
 
 on:
-  pull_request:
-  push: {branches-ignore: ["**_pr"]}
+  push:
 
 jobs:
 
