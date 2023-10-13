@@ -112,10 +112,7 @@ linkcheck_ignore = [
     r"https://[\w.]*mibsolution.one/#",
     r"https://media.vw.com/",  # All curls result in 403
     r"https://mega.nz/(file|folder)/\w+#",
-    r"https://parts.vw.com/",  # Times out frequently
-    r"https://web.archive.org/",  # Intermittent timeouts
     r"https://www.ecstuning.com/",  # All curls result in 403
-    r"https://www.microsoft.com/",  # Times out frequently
     r"https://www.qnx.com/developers/docs/[\w.]+/#",
     r"https?://192.168.\d+.\d+/",
 ]
