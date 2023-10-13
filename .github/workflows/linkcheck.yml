@@ -22,7 +22,7 @@ jobs:
       - name: Run linkcheck
         run: |
           set -eux
-          if ! make linkcheck; do
+          if ! make linkcheck; then
             while read -r url; do
               curl -sSfv -o /dev/null -w "%{http_code}" "$url" > docs/_build/html/status.txt
               grep '^200$' docs/_build/html/status.txt
