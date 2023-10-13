@@ -84,7 +84,9 @@ autodocs: docs/_build/html/index.html
 .PHONY: linkcheck
 linkcheck: docs/_build/html/index.html
 	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D) && ret=0 || ret=$$? && \
-		{ echo; sort $(<D)/output.txt; exit $$ret; }
+		{ jq -s . $(<D)/output.json > $(<D)/output2.json && mv $(<D)/output2.json $(<D)/output.json; \
+			jq -r '.[] |select(.status == "broken") |.uri' $(<D)/output.json > $(<D)/broken.txt; \
+			echo; sort $(<D)/output.txt; exit $$ret; }
 
 ## Misc
 
