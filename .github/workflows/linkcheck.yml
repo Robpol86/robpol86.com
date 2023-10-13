@@ -20,16 +20,11 @@ jobs:
         uses: ./.github/actions/deps
 
       - name: Run linkcheck
-        env:
-          RETRY: 3
-          SLEEP_FOR: 10
         run: |
-          set -ex
-          until make linkcheck; do
-            if (( i++ < RETRY )); then
-              echo Retrying...
-              sleep "$SLEEP_FOR"
-            else
-              exit 1
-            fi
-          done
+          set -eux
+          if ! make linkcheck; do
+            while read -r url; do
+              curl -sSfv -o /dev/null -w "%{http_code}" "$url" > docs/_build/html/status.txt
+              grep '^200$' docs/_build/html/status.txt
+            done < docs/_build/html/broken.txt
+          fi
