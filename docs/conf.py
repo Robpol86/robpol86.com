@@ -112,6 +112,7 @@ linkcheck_ignore = [
     r"https://[\w.]*mibsolution.one/#",
     r"https://media.vw.com/",  # All curls result in 403
     r"https://mega.nz/(file|folder)/\w+#",
+    r"https://parts.vw.com/",  # Nondeterministic rate limiting in GitHub runner
     r"https://www.ecstuning.com/",  # All curls result in 403
     r"https://www.qnx.com/developers/docs/[\w.]+/#",
     r"https?://192.168.\d+.\d+/",
