@@ -23,7 +23,7 @@ jobs:
           set -eux
           if ! make linkcheck; then
             while read -r url; do
-              curl -sSfv --retry 3 --retry-max-time 45 -o /dev/null -w "%{http_code}" "$url" > docs/_build/html/status.txt
+              curl -sSfv --retry 3 --retry-max-time 45 --retry-all-errors -o /dev/null -w "%{http_code}" "$url" > docs/_build/html/status.txt
               grep '^200$' docs/_build/html/status.txt
             done < docs/_build/html/broken.txt
           fi
