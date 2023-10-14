@@ -2,7 +2,7 @@ name: Deploy
 
 
 on:
-  pull_request:
+  push:  # Must be push, not PR, for GITHUB_REF_NAME in website links
 
 
 jobs:
