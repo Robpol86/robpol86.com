@@ -1,0 +1,127 @@
+name: Release
+run-name: "${{ format('{0} [{1}]', inputs.release_title, github.ref_name) }}"
+
+
+concurrency:
+  cancel-in-progress: true
+  group: release
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_title:
+        description: Title
+        required: true
+        type: string
+
+
+jobs:
+
+  Bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # for git log
+      - name: New Version
+        id: new_version
+        run: date $'+NEW_TAG=%Y-%m-%d\nNEW_VERSION=%-Y.%-m.%-d' |tee -a "$GITHUB_OUTPUT"
+      - name: Last Tag
+        id: last_tag
+        env:
+          NEW_TAG: "${{ steps.new_version.outputs.NEW_TAG }}"
+        run: |
+          set -euxo pipefail
+          if git tag |grep -q "$NEW_TAG"; then
+            echo "::error::Tag $NEW_TAG already exists" >&2
+            exit 1
+          fi
+          git tag |
+            grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' |
+            sort -r |head -1 |
+            xargs -I {} echo "LAST_TAG={}"|
+            tee -a "$GITHUB_OUTPUT"
+      - name: Git Log
+        id: git_log
+        env:
+          LAST_TAG: "${{ steps.last_tag.outputs.LAST_TAG }}"
+        run: |
+          set -euxo pipefail
+          {
+            echo "GIT_LOG<<EOFEOFEOF"
+            git log --pretty="* %h %s" "$LAST_TAG..HEAD" |tee cl_body.md
+            echo EOFEOFEOF
+          } |tee -a "$GITHUB_OUTPUT"
+      - name: Generate Changelog Entry
+        env:
+          NEW_VERSION: "${{ steps.new_version.outputs.NEW_VERSION }}"
+          TITLE: "${{ inputs.release_title }}"
+        run: |
+          set -euxo pipefail
+          test -n "$TITLE"
+          {
+            echo "## [$NEW_VERSION]"
+            echo
+            echo "$TITLE"
+            echo
+            cat cl_body.md
+            echo
+          } |tee cl_entry.md
+      - name: Update CHANGELOG.md
+        run: |
+          set -eux
+          awk '
+            NR==FNR {content[NR]=$0; next}
+            /^## \[/ {
+              if (!p) {
+                for (i=1;i<=length(content);i++) print content[i]
+                p=1
+              }
+            } 1
+          ' cl_entry.md CHANGELOG.md > CHANGELOG2.md
+          mv CHANGELOG2.md CHANGELOG.md
+      - name: Update Version File
+        uses: ./.github/actions/version_bump
+        with:
+          new_version: "${{ steps.new_version.outputs.NEW_VERSION }}"
+      - name: Commit and Push
+        id: commit
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "${{ steps.new_version.outputs.NEW_VERSION }}: ${{ inputs.release_title }}"
+          file_pattern: CHANGELOG.md pyproject.toml
+    outputs:
+      GIT_LOG: "${{ steps.git_log.outputs.GIT_LOG }}"
+      NEW_COMMIT: "${{ steps.commit.outputs.commit_hash }}"
+      NEW_TAG: "${{ steps.new_version.outputs.NEW_TAG }}"
+
+  Deploy:
+    needs: Bump
+    uses: ./.github/workflows/deploy.yml
+    with:
+      commit: "${{ needs.Bump.outputs.NEW_COMMIT }}"
+      environment: production
+    secrets: inherit
+
+  Release:
+    needs: [Bump, Deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download HTML
+        uses: actions/download-artifact@v3
+        with:
+          name: html
+          path: html
+      - name: Archive HTML
+        run: tar -czf html.tar.gz html
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "${{ inputs.release_title }}"
+          body: "${{ needs.Bump.outputs.GIT_LOG }}"
+          files: html.tar.gz
+          tag_name: "${{ needs.Bump.outputs.NEW_TAG }}"
+          fail_on_unmatched_files: true
+          target_commitish: "${{ needs.Bump.outputs.NEW_COMMIT }}"

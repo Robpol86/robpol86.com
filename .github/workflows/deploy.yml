@@ -3,6 +3,14 @@ name: Deploy
 
 on:
   pull_request:
+  workflow_call:
+    inputs:
+      commit:
+        required: false
+        type: string
+      environment:
+        required: false
+        type: string
 
 
 jobs:
@@ -10,16 +18,17 @@ jobs:
   Build:
     uses: ./.github/workflows/build.yml
     with:
-      environment: staging  # TODO staging/production
+      commit: "${{ inputs.commit }}"
+      environment: "${{ inputs.environment || 'staging' }}"
       skip_lints_tests: true
 
   Deploy:
     runs-on: ubuntu-latest
-    environment: staging  # TODO staging/production
+    environment: "${{ inputs.environment || 'staging' }}"
     needs: Build
     concurrency:
       cancel-in-progress: true
-      group: "deploy-staging"  # TODO staging/production
+      group: "deploy-${{ inputs.environment || 'staging' }}"
     steps:
       - name: Download HTML
         uses: actions/download-artifact@v3
