@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="generator"
+      content="Docutils 0.17.1: http://docutils.sourceforge.net/"
+    />
+
+    <meta
+      property="article:modified_time"
+      content="2022-05-24T00:34:17+00:00"
+    />
+    <meta property="og:title" content="Wireless Charging Car Dock" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="http://localhost:8000/wireless_charging_car_dock.html"
+    />
+    <meta property="og:site_name" content="Robpol86.com" />
+    <meta
+      property="og:description"
+      content="So I was tired of having to hold my phone while plugging in a microusb cable after I’ve docked it in my car. I couldn’t find very many car docks out there with wireless charging, and I read that Nokia’s wireless charging car dock didn’t work very well on the Nexus 5. Previously I made my own Qi c..."
+    />
+    <meta property="og:image" content="https://i.imgur.com/7WTPx0v.gif" />
+    <meta property="og:image:alt" content="Robpol86.com" />
+    <meta
+      name="description"
+      content="So I was tired of having to hold my phone while plugging in a microusb cable after I’ve docked it in my car. I couldn’t find very many car docks out there with wireless charging, and I read that Nokia’s wireless charging car dock didn’t work very well on the Nexus 5. Previously I made my own Qi c..."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="localhost:8000" />
+
+    <title>Wireless Charging Car Dock &#8212; Robpol86.com</title>
+
+    <!-- Loaded before other Sphinx assets -->
+    <link
+      href="_static/styles/theme.css?digest=1999514e3f237ded88cf"
+      rel="stylesheet"
+    />
+    <link
+      href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="_static/vendor/fontawesome/5.13.0/css/all.min.css"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2"
+    />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link
+      rel="stylesheet"
+      href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9"
+      type="text/css"
+    />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/aside_margin.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="_static/background_image.css"
+    />
+
+    <!-- Pre-loaded scripts that we'll load fully later -->
+    <link
+      rel="preload"
+      as="script"
+      href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"
+    />
+
+    <script
+      data-url_root="./"
+      id="documentation_options"
+      src="_static/documentation_options.js"
+    ></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/disqus.js"></script>
+    <link
+      rel="canonical"
+      href="http://localhost:8000/wireless_charging_car_dock.html"
+    />
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link
+      rel="next"
+      title="Atrix Lapdock Other Uses"
+      href="atrix_lapdock.html"
+    />
+    <link rel="prev" title="ImageCFG" href="imagecfg.html" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v=210604"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png?v=210604"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png?v=210604"
+    />
+    <link rel="manifest" href="/site.webmanifest?v=210604" />
+    <link
+      rel="mask-icon"
+      href="/safari-pinned-tab.svg?v=210604"
+      color="#7c7c7c"
+    />
+    <link rel="shortcut icon" href="/favicon.ico?v=210604" />
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com" />
+    <meta name="application-name" content="Robpol86.com" />
+    <meta name="msapplication-TileColor" content="#00a300" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+    <!-- Google Analytics -->
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    <!-- Checkboxes to toggle the left sidebar -->
+    <input
+      type="checkbox"
+      class="sidebar-toggle"
+      name="__navigation"
+      id="__navigation"
+      aria-label="Toggle navigation sidebar"
+    />
+    <label class="overlay overlay-navbar" for="__navigation">
+      <div class="visually-hidden">Toggle navigation sidebar</div>
+    </label>
+    <!-- Checkboxes to toggle the in-page toc -->
+    <input
+      type="checkbox"
+      class="sidebar-toggle"
+      name="__page-toc"
+      id="__page-toc"
+      aria-label="Toggle in-page Table of Contents"
+    />
+    <label class="overlay overlay-pagetoc" for="__page-toc">
+      <div class="visually-hidden">Toggle in-page Table of Contents</div>
+    </label>
+    <!-- Headers at the top -->
+    <div class="announcement header-item noprint"></div>
+    <div class="header header-item noprint"></div>
+
+    <div class="container-fluid" id="banner"></div>
+
+    <div class="container-xl">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="bd-sidebar noprint" id="site-navigation">
+          <div class="bd-sidebar__content">
+            <div class="bd-sidebar__top">
+              <div class="navbar-brand-box">
+                <a class="navbar-brand text-wrap" href="index.html">
+                  <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+
+                  <img src="_static/logo.svg" class="logo" alt="logo" />
+                </a>
+              </div>
+              <form
+                class="bd-search d-flex align-items-center"
+                action="search.html"
+                method="get"
+              >
+                <i class="icon fas fa-search"></i>
+                <input
+                  type="search"
+                  class="form-control"
+                  name="q"
+                  id="search-input"
+                  placeholder="Search the docs ..."
+                  aria-label="Search the docs ..."
+                  autocomplete="off"
+                />
+              </form>
+              <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+                <div class="bd-toc-item active">
+                  <p aria-level="2" class="caption" role="heading">
+                    <span class="caption-text"> Posts </span>
+                  </p>
+                  <ul class="nav bd-sidenav">
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="posts/2022/2022-12-11-alltrack-clutch-bleeder-block.html"
+                      >
+                        Clutch Bleeder Block Replacement
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="posts/2022/2022-10-24-snapmaker-reverse-door.html"
+                      >
+                        Snapmaker Enclosure Door Reversal
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="posts/2022/2022-08-23-oemtools-gauge.html"
+                      >
+                        OEMTools 24938 Gauge Mod
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="posts/2022/2022-07-15-snapmaker.html"
+                      >
+                        Snapmaker 2.0 A350T Teflon Tube
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="posts/2022/2022-06-30-server-cabinet.html"
+                      >
+                        Server Cabinet June 2022
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="posts/2022/2022-06-05-alltrack-homelink-mirror.html"
+                      >
+                        HomeLink Rearview Mirror
+                      </a>
+                    </li>
+                  </ul>
+                  <p aria-level="2" class="caption" role="heading">
+                    <span class="caption-text"> Projects </span>
+                  </p>
+                  <ul class="nav bd-sidenav">
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="vw_alltrack_2019.html"
+                      >
+                        Golf Alltrack SE
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="mib2_comp_media.html">
+                        MIB2 Composition Media Hacking
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="3d_printer_mpms2.html"
+                      >
+                        Monoprice Maker Select v2
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="franklin_t9.html">
+                        T-Mobile Franklin T9 Hacking
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="photo_albums.html">
+                        Photo Albums
+                      </a>
+                    </li>
+                  </ul>
+                  <p aria-level="2" class="caption" role="heading">
+                    <span class="caption-text"> Tutorials </span>
+                  </p>
+                  <ul class="nav bd-sidenav">
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="windows_11_mac.html">
+                        Install Windows 11 on an Intel Mac
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="raspberry_pi_luks.html"
+                      >
+                        Raspberry Pi LUKS Root Encryption
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="root_certificate_authority.html"
+                      >
+                        Setting Up a Home Root CA
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="raspberry_pi_project_fi.html"
+                      >
+                        Raspberry Pi on Project Fi
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="postfix_gmail_forwarding.html"
+                      >
+                        Postfix and Gmail Forwarding
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="bareos_tape_backup.html"
+                      >
+                        Bareos Tape Backup on a 124T
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="flash_droid_cricket.html"
+                      >
+                        Flashing Motorola Droid to Cricket
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="rns_510_vim.html">
+                        US RNS-510 Video In Motion
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="imagecfg.html">
+                        ImageCFG
+                      </a>
+                    </li>
+                  </ul>
+                  <p aria-level="2" class="caption" role="heading">
+                    <span class="caption-text"> Archived Projects </span>
+                  </p>
+                  <ul class="current nav bd-sidenav">
+                    <li class="toctree-l1 current active">
+                      <a class="current reference internal" href="#">
+                        Wireless Charging Car Dock
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="atrix_lapdock.html">
+                        Atrix Lapdock Other Uses
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="vw_jsw_2010.html">
+                        Jetta SportWagen TDI
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+            <div class="bd-sidebar__bottom">
+              <!-- To handle the deprecated key -->
+
+              <div class="navbar_extra_footer">
+                <p>
+                  <a href="genindex.html">Tags</a> |
+                  <a href="sitemap.xml">Sitemap</a><br />
+                  Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a
+                  ><br />
+                  Theme:
+                  <a href="https://sphinx-book-theme.readthedocs.io/"
+                    >Sphinx Book Theme</a
+                  ><br />
+                  Host:
+                  <a href="https://www.nearlyfreespeech.net/"
+                    >NearlyFreeSpeech.NET</a
+                  ><br />
+
+                  License:
+                  <a
+                    href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/LICENSE"
+                    >BSD-2-Clause</a
+                  ><br />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div id="rtd-footer-container"></div>
+        </div>
+
+        <!-- A tiny helper pixel to detect if we've scrolled -->
+        <div class="sbt-scroll-pixel-helper"></div>
+        <!-- Main content -->
+        <div class="col py-0 content-container">
+          <div class="header-article row sticky-top noprint">
+            <div class="col py-1 d-flex header-article-main">
+              <div class="header-article__left">
+                <label
+                  for="__navigation"
+                  class="headerbtn"
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  title="Toggle navigation"
+                >
+                  <span class="headerbtn__icon-container">
+                    <i class="fas fa-bars"></i>
+                  </span>
+                </label>
+              </div>
+              <div class="header-article__right">
+                <a
+                  href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/wireless_charging_car_dock.rst"
+                  class="headerbtn"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="View page source"
+                >
+                  <span class="headerbtn__icon-container">
+                    <i class="fab fa-github"></i>
+                  </span>
+                </a>
+                <label for="__page-toc" class="headerbtn headerbtn-page-toc">
+                  <span class="headerbtn__icon-container">
+                    <i class="fas fa-list"></i>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Table of contents -->
+            <div class="col-md-3 bd-toc show noprint">
+              <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+              </div>
+              <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+                  <li class="toc-h2 nav-item toc-entry">
+                    <a
+                      class="reference internal nav-link"
+                      href="#previous-implementation"
+                    >
+                      Previous Implementation
+                    </a>
+                  </li>
+                  <li class="toc-h2 nav-item toc-entry">
+                    <a class="reference internal nav-link" href="#comments">
+                      Comments
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="article row">
+            <div class="col pl-md-3 pl-lg-5 content-container">
+              <!-- Table of contents that is only displayed when printing the page -->
+              <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Wireless Charging Car Dock</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                  <div id="jb-print-toc">
+                    <div>
+                      <h2>Contents</h2>
+                    </div>
+                    <nav aria-label="Page">
+                      <ul class="visible nav section-nav flex-column">
+                        <li class="toc-h2 nav-item toc-entry">
+                          <a
+                            class="reference internal nav-link"
+                            href="#previous-implementation"
+                          >
+                            Previous Implementation
+                          </a>
+                        </li>
+                        <li class="toc-h2 nav-item toc-entry">
+                          <a
+                            class="reference internal nav-link"
+                            href="#comments"
+                          >
+                            Comments
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+              <main id="main-content" role="main">
+                <div>
+                  <section id="wireless-charging-car-dock">
+                    <span id="id1"></span>
+                    <h1>
+                      Wireless Charging Car Dock<a
+                        class="headerlink"
+                        href="#wireless-charging-car-dock"
+                        title="Permalink to this headline"
+                        >#</a
+                      >
+                    </h1>
+                    <figure class="align-default">
+                      <a
+                        class="reference external image-reference"
+                        href="https://i.imgur.com/7WTPx0v.gif"
+                        ><img
+                          alt="https://i.imgur.com/7WTPx0v.gif"
+                          src="https://i.imgur.com/7WTPx0v.gif"
+                      /></a>
+                    </figure>
+                    <p>
+                      So I was tired of having to hold my phone while plugging
+                      in a microusb cable after I’ve docked it in my car. I
+                      couldn’t find very many car docks out there with wireless
+                      charging, and I read that Nokia’s wireless charging car
+                      dock didn’t work very well on the Nexus 5.
+                    </p>
+                    <p>
+                      Previously I made my own Qi car dock by taking apart an LG
+                      Qi charger. But now that I have Google’s new charger I
+                      made a new one that’s much better. The magnets in Google’s
+                      charger are stronger and it looks a lot cleaner. I didn’t
+                      need any glue, tape, or additional magnets either. To make
+                      your own all you need is:
+                    </p>
+                    <ol class="arabic simple">
+                      <li>
+                        <p>
+                          <a
+                            class="reference external"
+                            href="https://play.google.com/store/devices/details?id=nexus_wireless_charger"
+                            >Nexus Wireless Charger (Model A010)</a
+                          >
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <a
+                            class="reference external"
+                            href="https://www.amazon.com/dp/B00E9L0HGI"
+                            >Mountek nGroove Snap Magnetic Vehicle Mount</a
+                          >
+                          (or a magnetic flat surface)
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          A 2 amp USB car adapter (I used
+                          <a
+                            class="reference external"
+                            href="https://www.amazon.com/gp/product/B006SU0SX0"
+                            >PowerGen 2.4Amps / 12W Dual USB</a
+                          >)
+                        </p>
+                      </li>
+                    </ol>
+                    <p>
+                      The magnets in the nGroove Snap are just strong enough to
+                      attract the magnets in the wireless charger. The silicon
+                      material on the foot of the charger is also very good at
+                      sticking to certain surfaces like the nGroove Snap.
+                      Because of that I was able to drive around for three hours
+                      with my phone on the charger without any problems.
+                    </p>
+                    <p>
+                      All you need to do is mount the nGroove Snap and then
+                      place the charger on it, and that’s it! I routed the cable
+                      behind my dash to make it look a bit cleaner
+                      <a class="reference internal" href="vw_jsw_2010.html"
+                        ><span class="doc">instructions here</span></a
+                      >.
+                    </p>
+                    <table class="table">
+                      <colgroup>
+                        <col style="width: 33%" />
+                        <col style="width: 33%" />
+                        <col style="width: 33%" />
+                      </colgroup>
+                      <tbody>
+                        <tr class="row-odd">
+                          <td>
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/GJE9zkv.jpg"
+                              ><img
+                                alt="https://i.imgur.com/GJE9zkvh.jpg"
+                                src="https://i.imgur.com/GJE9zkvh.jpg"
+                            /></a>
+                          </td>
+                          <td>
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/55krwnA.jpg"
+                              ><img
+                                alt="https://i.imgur.com/55krwnAh.jpg"
+                                src="https://i.imgur.com/55krwnAh.jpg"
+                            /></a>
+                          </td>
+                          <td>
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/7lHFKUv.jpg"
+                              ><img
+                                alt="https://i.imgur.com/7lHFKUvh.jpg"
+                                src="https://i.imgur.com/7lHFKUvh.jpg"
+                            /></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <section id="previous-implementation">
+                      <h2>
+                        Previous Implementation<a
+                          class="headerlink"
+                          href="#previous-implementation"
+                          title="Permalink to this headline"
+                          >#</a
+                        >
+                      </h2>
+                      <figure class="align-default">
+                        <a
+                          class="reference external image-reference"
+                          href="https://i.imgur.com/X8fbOGl.gif"
+                          ><img
+                            alt="https://i.imgur.com/X8fbOGl.gif"
+                            src="https://i.imgur.com/X8fbOGl.gif"
+                        /></a>
+                      </figure>
+                      <p>
+                        So I built my own. I originally posted everything
+                        <a
+                          class="reference external"
+                          href="https://forum.xda-developers.com/showthread.php?p=47509705#post47509705"
+                          >on the XDA forums</a
+                        >. Since the Nexus 5 has
+                        <a
+                          class="reference external"
+                          href="https://www.ifixit.com/Teardown/Nexus+5+Teardown/19016#s53717"
+                          >four metal discs</a
+                        >
+                        inside it, it self-aligns when placed on the dock and
+                        stays put in that position. You can see it self-align in
+                        the gif below. I drove 45mins from San Francisco to San
+                        Jose and it never fell off. I was using GPS (Google
+                        Maps) and it looks like the magnets don’t add too much
+                        distance between the phone and the transmitting coil, my
+                        battery meter went up a little bit.
+                      </p>
+                      <blockquote
+                        class="imgur-embed-pub"
+                        data-context="false"
+                        data-id="a/dhFnO"
+                        lang="en"
+                      >
+                        <a
+                          class="reference external"
+                          href="https://imgur.com/a/dhFnO"
+                          >Loading...</a
+                        >
+                      </blockquote>
+                      <script
+                        async=""
+                        charset="utf-8"
+                        src="//s.imgur.com/min/embed.js"
+                      ></script>
+                      <p>I used the following items:</p>
+                      <ul class="simple">
+                        <li>
+                          <p>30 Neodymium Magnets 5/16 x 1/8 inch Disc N48</p>
+                        </li>
+                        <li>
+                          <p>
+                            <a
+                              class="reference external"
+                              href="https://www.amazon.com/gp/product/B00C6VP03I/"
+                              >LG Electronics WCP-300 Wireless Charging Pad</a
+                            >
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <a
+                              class="reference external"
+                              href="https://www.amazon.com/dp/B00E9L0HGI"
+                              >Mountek nGroove Snap Magnetic Vehicle Mount</a
+                            >
+                          </p>
+                        </li>
+                      </ul>
+                      <p>
+                        For the final iteration, I reassembled the charging pad
+                        and everything holds together with just the magnetic
+                        force. This is what I did:
+                      </p>
+                      <ol class="arabic simple">
+                        <li>
+                          <p>
+                            Remove the feet of the charging pad and remove the
+                            four screws underneath. The charging pad’s top
+                            should easily come off.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set aside the coil/ferrite plate/circuit board
+                            assembly for now.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            The top half of the casing, with the LG logo, can
+                            disassemble further. The soft material (which you
+                            place your phone on) should effortlessly pop off.
+                            Dispose of the remaining plastic ring.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            The nGroove mount comes with two metal plates with
+                            adhesive. Apply one of the plates onto the soft
+                            material top, covering up the LG logo.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Now place the soft material top onto the nGroove
+                            mount. It should magnetically stick together.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Get three magnets and place them on top of the
+                            underside of the soft material top. Make sure the
+                            polarity of the magnets all face the same direction
+                            (the magnets will repel one another when placed next
+                            to each other). Place them in the correct
+                            orientation as to get the most magnetic force
+                            between them and the nGroove magnet. This will hold
+                            the soft material top firmly against the nGroove
+                            mount.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Now place the coil/plate/board with the four screws
+                            already inserted on top, having the coil face you.
+                            The magnets will pull it so make sure you grab on to
+                            everything well while you try to align the screws
+                            with the holes. You’ll probably want to get some
+                            rubber washers between the plastic holes and the
+                            circuit board to give the three magnets some room. I
+                            had a large piece of ~2mm thick rubber I cut up and
+                            pierced.
+                          </p>
+                        </li>
+                        <li><p>Screw everything together.</p></li>
+                        <li>
+                          <p>
+                            Place four additional magnets on top of the ferrite
+                            plate, next to each screw. Again make sure the
+                            polarity is the same on all four, so they all repel
+                            each other.
+                          </p>
+                        </li>
+                      </ol>
+                      <p>
+                        Ok and that’s it. The part about the three magnets and
+                        the plastic washers was done after I took these
+                        pictures. I initially didn’t do that and found after a
+                        few hours that the nGroove metal plate’s adhesive has
+                        come off the soft material top and the
+                        coil/ferrite/board fell off.
+                      </p>
+                      <p>
+                        While this works great with my black Nexus 5, the white
+                        Nexus 5’s back is less grippy, so you might have to
+                        plastidip the magnets or add some kind of grippy
+                        material between them and the phone. I also tried this
+                        on the 2013 Nexus 7 but that requires more magnets since
+                        it is heavier. Also on my Nexus 4, since it has less
+                        metal inside, has a smooth glass back, and is heavier
+                        than the Nexus 5, it doesn’t work very well on this
+                        dock. You’ll probably need to get a grippy case for it
+                        and add more magnets.
+                      </p>
+                      <p>
+                        Here are some pictures of the final version, sans
+                        washers.
+                      </p>
+                      <table class="table">
+                        <colgroup>
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                        </colgroup>
+                        <tbody>
+                          <tr class="row-odd">
+                            <td>
+                              <a
+                                class="reference external image-reference"
+                                href="https://i.imgur.com/COavxfY.jpg"
+                                ><img
+                                  alt="https://i.imgur.com/COavxfYh.jpg"
+                                  src="https://i.imgur.com/COavxfYh.jpg"
+                              /></a>
+                            </td>
+                            <td>
+                              <a
+                                class="reference external image-reference"
+                                href="https://i.imgur.com/qJONaXG.jpg"
+                                ><img
+                                  alt="https://i.imgur.com/qJONaXGh.jpg"
+                                  src="https://i.imgur.com/qJONaXGh.jpg"
+                              /></a>
+                            </td>
+                            <td>
+                              <a
+                                class="reference external image-reference"
+                                href="https://i.imgur.com/GhOvZg9.jpg"
+                                ><img
+                                  alt="https://i.imgur.com/GhOvZg9h.jpg"
+                                  src="https://i.imgur.com/GhOvZg9h.jpg"
+                              /></a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table class="table">
+                        <colgroup>
+                          <col style="width: 50%" />
+                          <col style="width: 50%" />
+                        </colgroup>
+                        <tbody>
+                          <tr class="row-odd">
+                            <td>
+                              <a
+                                class="reference external image-reference"
+                                href="https://i.imgur.com/OvXMV5w.jpg"
+                                ><img
+                                  alt="https://i.imgur.com/OvXMV5wh.jpg"
+                                  src="https://i.imgur.com/OvXMV5wh.jpg"
+                              /></a>
+                            </td>
+                            <td>
+                              <a
+                                class="reference external image-reference"
+                                href="https://i.imgur.com/dRQ4q77.jpg"
+                                ><img
+                                  alt="https://i.imgur.com/dRQ4q77h.jpg"
+                                  src="https://i.imgur.com/dRQ4q77h.jpg"
+                              /></a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p>
+                        And here are some pictures after I routed the
+                        <a
+                          class="reference external"
+                          href="https://www.amazon.com/gp/product/B003YKX6WW/"
+                          >wire inside the</a
+                        >
+                        center console. After you take out the shifter boot,
+                        little cubby, head unit, and air vents there is a ton of
+                        room inside to route the wire. The front plate of the AC
+                        vents snaps on so I was able to pry it open just enough
+                        to squeeze the thin wire in. I cut out a small notch of
+                        plastic to give the wire some room without blocking any
+                        of the vents’ moving parts. The only downside is I can’t
+                        close the little cubby anymore. Oh well.
+                      </p>
+                      <table class="table">
+                        <colgroup>
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                        </colgroup>
+                        <tbody>
+                          <tr class="row-odd">
+                            <td>
+                              <a
+                                class="reference external image-reference"
+                                href="https://i.imgur.com/sRKNN6F.jpg"
+                                ><img
+                                  alt="https://i.imgur.com/sRKNN6Fh.jpg"
+                                  src="https://i.imgur.com/sRKNN6Fh.jpg"
+                              /></a>
+                            </td>
+                            <td>
+                              <a
+                                class="reference external image-reference"
+                                href="https://i.imgur.com/8R5ROC4.jpg"
+                                ><img
+                                  alt="https://i.imgur.com/8R5ROC4h.jpg"
+                                  src="https://i.imgur.com/8R5ROC4h.jpg"
+                              /></a>
+                            </td>
+                            <td>
+                              <a
+                                class="reference external image-reference"
+                                href="https://i.imgur.com/7jA3c1J.jpg"
+                                ><img
+                                  alt="https://i.imgur.com/7jA3c1Jh.jpg"
+                                  src="https://i.imgur.com/7jA3c1Jh.jpg"
+                              /></a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                    <section id="comments">
+                      <h2>
+                        Comments<a
+                          class="headerlink"
+                          href="#comments"
+                          title="Permalink to this headline"
+                          >#</a
+                        >
+                      </h2>
+                      <div
+                        data-disqus-identifier="Wireless Charging Car Dock"
+                        data-disqus-shortname="rob86wiki"
+                        id="disqus_thread"
+                      ></div>
+                    </section>
+                  </section>
+                </div>
+              </main>
+              <footer class="footer-article noprint">
+                <!-- Previous / next buttons -->
+                <div class="prev-next-area">
+                  <a
+                    class="left-prev"
+                    id="prev-link"
+                    href="imagecfg.html"
+                    title="previous page"
+                  >
+                    <i class="fas fa-angle-left"></i>
+                    <div class="prev-next-info">
+                      <p class="prev-next-subtitle">previous</p>
+                      <p class="prev-next-title">ImageCFG</p>
+                    </div>
+                  </a>
+                  <a
+                    class="right-next"
+                    id="next-link"
+                    href="atrix_lapdock.html"
+                    title="next page"
+                  >
+                    <div class="prev-next-info">
+                      <p class="prev-next-subtitle">next</p>
+                      <p class="prev-next-title">Atrix Lapdock Other Uses</p>
+                    </div>
+                    <i class="fas fa-angle-right"></i>
+                  </a>
+                </div>
+              </footer>
+            </div>
+          </div>
+          <div class="footer-content row">
+            <footer class="col footer">
+              <p>
+                &copy; Copyright 2023, Robpol86.<br />
+                Last updated on May 24, 2022, 12:34:17 AM UTC.<br />
+              </p>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts loaded after <body> so the DOM is not blocked -->
+    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  </body>
+</html>

@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="generator"
+      content="Docutils 0.17.1: http://docutils.sourceforge.net/"
+    />
+
+    <meta
+      property="article:modified_time"
+      content="2022-10-30T15:03:53+00:00"
+    />
+    <meta property="og:title" content="Snapmaker Enclosure Door Reversal" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="http://localhost:8000/posts/2022/2022-10-24-snapmaker-reverse-door.html"
+    />
+    <meta property="og:site_name" content="Robpol86.com" />
+    <meta
+      property="og:description"
+      content="Tags: 3d-printing I recently moved my Snapmaker 2.0 A350T printer to another part of my home. The official enclosure has a solid panel on the left side, a large door on the right, and a smaller door on the front. These panels are only designed to be installed in one specific order and orientation..."
+    />
+    <meta property="og:image" content="https://i.imgur.com/J09tdcyh.jpg" />
+    <meta property="og:image:alt" content="Robpol86.com" />
+    <meta
+      name="description"
+      content="Tags: 3d-printing I recently moved my Snapmaker 2.0 A350T printer to another part of my home. The official enclosure has a solid panel on the left side, a large door on the right, and a smaller door on the front. These panels are only designed to be installed in one specific order and orientation..."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="localhost:8000" />
+
+    <title>Snapmaker Enclosure Door Reversal &#8212; Robpol86.com</title>
+
+    <!-- Loaded before other Sphinx assets -->
+    <link
+      href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf"
+      rel="stylesheet"
+    />
+    <link
+      href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2"
+    />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link
+      rel="stylesheet"
+      href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../_static/copybutton.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../_static/aside_margin.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../_static/background_image.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../_static/bootstrap-carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../_static/carousel-custom.css"
+    />
+
+    <!-- Pre-loaded scripts that we'll load fully later -->
+    <link
+      rel="preload"
+      as="script"
+      href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"
+    />
+
+    <script
+      data-url_root="../../"
+      id="documentation_options"
+      src="../../_static/documentation_options.js"
+    ></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/bootstrap-carousel.min.js"></script>
+    <script src="../../_static/disqus.js"></script>
+    <link
+      rel="canonical"
+      href="http://localhost:8000/posts/2022/2022-10-24-snapmaker-reverse-door.html"
+    />
+
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link
+      rel="next"
+      title="OEMTools 24938 Gauge Mod"
+      href="2022-08-23-oemtools-gauge.html"
+    />
+    <link
+      rel="prev"
+      title="Clutch Bleeder Block Replacement"
+      href="2022-12-11-alltrack-clutch-bleeder-block.html"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v=210604"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png?v=210604"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png?v=210604"
+    />
+    <link rel="manifest" href="/site.webmanifest?v=210604" />
+    <link
+      rel="mask-icon"
+      href="/safari-pinned-tab.svg?v=210604"
+      color="#7c7c7c"
+    />
+    <link rel="shortcut icon" href="/favicon.ico?v=210604" />
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com" />
+    <meta name="application-name" content="Robpol86.com" />
+    <meta name="msapplication-TileColor" content="#00a300" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+    <!-- Google Analytics -->
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    <!-- Checkboxes to toggle the left sidebar -->
+    <input
+      type="checkbox"
+      class="sidebar-toggle"
+      name="__navigation"
+      id="__navigation"
+      aria-label="Toggle navigation sidebar"
+    />
+    <label class="overlay overlay-navbar" for="__navigation">
+      <div class="visually-hidden">Toggle navigation sidebar</div>
+    </label>
+    <!-- Checkboxes to toggle the in-page toc -->
+    <input
+      type="checkbox"
+      class="sidebar-toggle"
+      name="__page-toc"
+      id="__page-toc"
+      aria-label="Toggle in-page Table of Contents"
+    />
+    <label class="overlay overlay-pagetoc" for="__page-toc">
+      <div class="visually-hidden">Toggle in-page Table of Contents</div>
+    </label>
+    <!-- Headers at the top -->
+    <div class="announcement header-item noprint"></div>
+    <div class="header header-item noprint"></div>
+
+    <div class="container-fluid" id="banner"></div>
+
+    <div class="container-xl">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="bd-sidebar noprint" id="site-navigation">
+          <div class="bd-sidebar__content">
+            <div class="bd-sidebar__top">
+              <div class="navbar-brand-box">
+                <a class="navbar-brand text-wrap" href="../../index.html">
+                  <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+
+                  <img src="../../_static/logo.svg" class="logo" alt="logo" />
+                </a>
+              </div>
+              <form
+                class="bd-search d-flex align-items-center"
+                action="../../search.html"
+                method="get"
+              >
+                <i class="icon fas fa-search"></i>
+                <input
+                  type="search"
+                  class="form-control"
+                  name="q"
+                  id="search-input"
+                  placeholder="Search the docs ..."
+                  aria-label="Search the docs ..."
+                  autocomplete="off"
+                />
+              </form>
+              <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+                <div class="bd-toc-item active">
+                  <p aria-level="2" class="caption" role="heading">
+                    <span class="caption-text"> Posts </span>
+                  </p>
+                  <ul class="current nav bd-sidenav">
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="2022-12-11-alltrack-clutch-bleeder-block.html"
+                      >
+                        Clutch Bleeder Block Replacement
+                      </a>
+                    </li>
+                    <li class="toctree-l1 current active">
+                      <a class="current reference internal" href="#">
+                        Snapmaker Enclosure Door Reversal
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="2022-08-23-oemtools-gauge.html"
+                      >
+                        OEMTools 24938 Gauge Mod
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="2022-07-15-snapmaker.html"
+                      >
+                        Snapmaker 2.0 A350T Teflon Tube
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="2022-06-30-server-cabinet.html"
+                      >
+                        Server Cabinet June 2022
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="2022-06-05-alltrack-homelink-mirror.html"
+                      >
+                        HomeLink Rearview Mirror
+                      </a>
+                    </li>
+                  </ul>
+                  <p aria-level="2" class="caption" role="heading">
+                    <span class="caption-text"> Projects </span>
+                  </p>
+                  <ul class="nav bd-sidenav">
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../vw_alltrack_2019.html"
+                      >
+                        Golf Alltrack SE
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../mib2_comp_media.html"
+                      >
+                        MIB2 Composition Media Hacking
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../3d_printer_mpms2.html"
+                      >
+                        Monoprice Maker Select v2
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../franklin_t9.html"
+                      >
+                        T-Mobile Franklin T9 Hacking
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../photo_albums.html"
+                      >
+                        Photo Albums
+                      </a>
+                    </li>
+                  </ul>
+                  <p aria-level="2" class="caption" role="heading">
+                    <span class="caption-text"> Tutorials </span>
+                  </p>
+                  <ul class="nav bd-sidenav">
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../windows_11_mac.html"
+                      >
+                        Install Windows 11 on an Intel Mac
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../raspberry_pi_luks.html"
+                      >
+                        Raspberry Pi LUKS Root Encryption
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../root_certificate_authority.html"
+                      >
+                        Setting Up a Home Root CA
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../raspberry_pi_project_fi.html"
+                      >
+                        Raspberry Pi on Project Fi
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../postfix_gmail_forwarding.html"
+                      >
+                        Postfix and Gmail Forwarding
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../bareos_tape_backup.html"
+                      >
+                        Bareos Tape Backup on a 124T
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../flash_droid_cricket.html"
+                      >
+                        Flashing Motorola Droid to Cricket
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../rns_510_vim.html"
+                      >
+                        US RNS-510 Video In Motion
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a class="reference internal" href="../../imagecfg.html">
+                        ImageCFG
+                      </a>
+                    </li>
+                  </ul>
+                  <p aria-level="2" class="caption" role="heading">
+                    <span class="caption-text"> Archived Projects </span>
+                  </p>
+                  <ul class="nav bd-sidenav">
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../wireless_charging_car_dock.html"
+                      >
+                        Wireless Charging Car Dock
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../atrix_lapdock.html"
+                      >
+                        Atrix Lapdock Other Uses
+                      </a>
+                    </li>
+                    <li class="toctree-l1">
+                      <a
+                        class="reference internal"
+                        href="../../vw_jsw_2010.html"
+                      >
+                        Jetta SportWagen TDI
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+            <div class="bd-sidebar__bottom">
+              <!-- To handle the deprecated key -->
+
+              <div class="navbar_extra_footer">
+                <p>
+                  <a href="../../genindex.html">Tags</a> |
+                  <a href="../../sitemap.xml">Sitemap</a><br />
+                  Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a
+                  ><br />
+                  Theme:
+                  <a href="https://sphinx-book-theme.readthedocs.io/"
+                    >Sphinx Book Theme</a
+                  ><br />
+                  Host:
+                  <a href="https://www.nearlyfreespeech.net/"
+                    >NearlyFreeSpeech.NET</a
+                  ><br />
+
+                  License:
+                  <a
+                    href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/LICENSE"
+                    >BSD-2-Clause</a
+                  ><br />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div id="rtd-footer-container"></div>
+        </div>
+
+        <!-- A tiny helper pixel to detect if we've scrolled -->
+        <div class="sbt-scroll-pixel-helper"></div>
+        <!-- Main content -->
+        <div class="col py-0 content-container">
+          <div class="header-article row sticky-top noprint">
+            <div class="col py-1 d-flex header-article-main">
+              <div class="header-article__left">
+                <label
+                  for="__navigation"
+                  class="headerbtn"
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  title="Toggle navigation"
+                >
+                  <span class="headerbtn__icon-container">
+                    <i class="fas fa-bars"></i>
+                  </span>
+                </label>
+              </div>
+              <div class="header-article__right">
+                <a
+                  href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/posts/2022/2022-10-24-snapmaker-reverse-door.md"
+                  class="headerbtn"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="View page source"
+                >
+                  <span class="headerbtn__icon-container">
+                    <i class="fab fa-github"></i>
+                  </span>
+                </a>
+                <label for="__page-toc" class="headerbtn headerbtn-page-toc">
+                  <span class="headerbtn__icon-container">
+                    <i class="fas fa-list"></i>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Table of contents -->
+            <div class="col-md-3 bd-toc show noprint">
+              <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+              </div>
+              <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+                  <li class="toc-h2 nav-item toc-entry">
+                    <a class="reference internal nav-link" href="#drawbacks">
+                      Drawbacks
+                    </a>
+                  </li>
+                  <li class="toc-h2 nav-item toc-entry">
+                    <a class="reference internal nav-link" href="#steps">
+                      Steps
+                    </a>
+                  </li>
+                  <li class="toc-h2 nav-item toc-entry">
+                    <a class="reference internal nav-link" href="#pictures">
+                      Pictures
+                    </a>
+                  </li>
+                  <li class="toc-h2 nav-item toc-entry">
+                    <a class="reference internal nav-link" href="#comments">
+                      Comments
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="article row">
+            <div class="col pl-md-3 pl-lg-5 content-container">
+              <!-- Table of contents that is only displayed when printing the page -->
+              <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Snapmaker Enclosure Door Reversal</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                  <div id="jb-print-toc">
+                    <div>
+                      <h2>Contents</h2>
+                    </div>
+                    <nav aria-label="Page">
+                      <ul class="visible nav section-nav flex-column">
+                        <li class="toc-h2 nav-item toc-entry">
+                          <a
+                            class="reference internal nav-link"
+                            href="#drawbacks"
+                          >
+                            Drawbacks
+                          </a>
+                        </li>
+                        <li class="toc-h2 nav-item toc-entry">
+                          <a class="reference internal nav-link" href="#steps">
+                            Steps
+                          </a>
+                        </li>
+                        <li class="toc-h2 nav-item toc-entry">
+                          <a
+                            class="reference internal nav-link"
+                            href="#pictures"
+                          >
+                            Pictures
+                          </a>
+                        </li>
+                        <li class="toc-h2 nav-item toc-entry">
+                          <a
+                            class="reference internal nav-link"
+                            href="#comments"
+                          >
+                            Comments
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+              <main id="main-content" role="main">
+                <div>
+                  <section id="snapmaker-enclosure-door-reversal">
+                    <h1>
+                      Snapmaker Enclosure Door Reversal<a
+                        class="headerlink"
+                        href="#snapmaker-enclosure-door-reversal"
+                        title="Permalink to this headline"
+                        >#</a
+                      >
+                    </h1>
+                    <p id="index-0">
+                      <em
+                        >Tags:
+                        <a
+                          class="reference internal"
+                          href="../../genindex.html#3"
+                          ><span class="guilabel">3d-printing</span></a
+                        ></em
+                      >
+                    </p>
+                    <p>
+                      I recently moved my Snapmaker 2.0 A350T printer to another
+                      part of my home. The
+                      <a
+                        class="reference external"
+                        href="https://us.snapmaker.com/products/enclosure-for-snapmaker-2-0"
+                        >official enclosure</a
+                      >
+                      has a solid panel on the left side, a large door on the
+                      right, and a smaller door on the front. These panels are
+                      only designed to be installed in one specific order and
+                      orientation.
+                    </p>
+                    <p>
+                      In this post I describe the steps I took to swap the solid
+                      panel and large door as well as “flip” the front panel so
+                      it opens on the opposite side. There are a few minor
+                      drawbacks to this modification but the solutions I came up
+                      with neutralizes them. These workarounds are also
+                      non-desctructive so I can restore my enclosure back to its
+                      original design.
+                    </p>
+                    <div class="admonition seealso">
+                      <p class="admonition-title">See also</p>
+                      <p>
+                        <a
+                          class="reference external"
+                          href="https://forum.snapmaker.com/t/enclosure-door-sides/9503/9"
+                          >https://forum.snapmaker.com/t/enclosure-door-sides/9503/9</a
+                        >
+                      </p>
+                    </div>
+                    <section id="drawbacks">
+                      <h2>
+                        Drawbacks<a
+                          class="headerlink"
+                          href="#drawbacks"
+                          title="Permalink to this headline"
+                          >#</a
+                        >
+                      </h2>
+                      <ul class="simple">
+                        <li>
+                          <p>
+                            <strong>Foot fixtures</strong>: The bottom rails
+                            have extra screw holes and indentations so that the
+                            foot fixtures can be installed precisely. The top
+                            rails lack these indentations and screw holes.
+                          </p>
+                          <ul>
+                            <li>
+                              <p>
+                                Solution: If you have bought the emergency stop
+                                button you may have four spare T-nuts and M4x8
+                                screws you can use (if not you can buy extra
+                                <a
+                                  class="reference external"
+                                  href="https://www.amazon.com/Socell-180Pcs-Hammer-Fastener-Assortment/dp/B07Z4YH6NP"
+                                  >M4 2020 T-nuts</a
+                                >
+                                or you can just drill and tap new threaded holes
+                                in the rails). You should also measure the
+                                distance between the indentation and the end of
+                                the bottom rails and mark them on the top rails
+                                with a marker.
+                              </p>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <p>
+                            <strong>Touchscreen</strong>: Since we’re rotating
+                            everything 180 degrees the touchscreen cutout on the
+                            front door will be at the top instead of the bottom.
+                            We’ll be fixing this by flipping the panel but this
+                            will place the foam strips facing out instead of in.
+                          </p>
+                          <ul>
+                            <li>
+                              <p>
+                                Solution: Buy some 10 mm wide by 3 mm thick
+                                self-adhesive
+                                <a
+                                  class="reference external"
+                                  href="https://www.amazon.com/uxcell-Thick-Adhesive-Weather-Strip/dp/B07L6LB49S"
+                                  >weather stripping</a
+                                >
+                                (or cut yours to size).
+                              </p>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <p>
+                            <strong>Top panel</strong>: The bottom side of the
+                            enclosure doesn’t have as many screw holes as the
+                            top. Only the two narrow sides of the top panel will
+                            have holes that align.
+                          </p>
+                          <ul>
+                            <li>
+                              <p>
+                                Solution: You can drill additional holes on the
+                                plexiglass top panel or using more T-nuts but I
+                                ended up just relying on the four screws to hold
+                                the top panel in place, so this was a non-issue
+                                for me.
+                              </p>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </section>
+                    <section id="steps">
+                      <h2>
+                        Steps<a
+                          class="headerlink"
+                          href="#steps"
+                          title="Permalink to this headline"
+                          >#</a
+                        >
+                      </h2>
+                      <ol class="arabic simple">
+                        <li><p>Remove all plexiglass panels and doors.</p></li>
+                        <li>
+                          <p>
+                            Remove the rear top (with the converter hub) and
+                            rear bottom 24 BEAM A350-4 rails.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Measure the offsets of the
+                            <strong>foot fixture</strong> indentations on the
+                            bottom rails (my enclosure measured 123 mm offset).
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Facing front to back flip the entire enclosure 180
+                            degrees (e.g. top is now on the bottom).
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Relocate the LED strips from the bottom to the top
+                            rails (the tiny screws aren’t necessary).
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Flip the hall sensor (little black box on a vertical
+                            rail) 180 degrees so you can run the cable along the
+                            top.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            For the <strong>foot fixtures</strong> insert two M4
+                            2020 T-nuts into each bottom rail.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Mark on the now-bottom rails the
+                            <strong>foot fixture</strong> offsets.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Reinstall the rear rails, keeping the one with the
+                            converter hub at the top.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Install the doors. Flip the small-door panel with
+                            the <strong>touchscreen</strong> cutout and apply
+                            the self-adhesive weather stripping on the flipped
+                            panel.
+                          </p>
+                        </li>
+                      </ol>
+                    </section>
+                    <section id="pictures">
+                      <h2>
+                        Pictures<a
+                          class="headerlink"
+                          href="#pictures"
+                          title="Permalink to this headline"
+                          >#</a
+                        >
+                      </h2>
+                      <div
+                        class="scbs-carousel scbs-slide"
+                        data-bs-interval="false"
+                        id="carousel-0"
+                      >
+                        <div
+                          class="scbs-carousel-indicators scbs-my-4 scc-top-indicator"
+                        >
+                          <button
+                            aria-current="true"
+                            aria-label="Slide 1"
+                            class="scbs-active scc-shadow-indicator"
+                            data-bs-slide-to="0"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 2"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="1"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 3"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="2"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 4"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="3"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 5"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="4"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 6"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="5"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 7"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="6"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 8"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="7"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 9"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="8"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 10"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="9"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 11"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="10"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 12"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="11"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                          <button
+                            aria-label="Slide 13"
+                            class="scc-shadow-indicator"
+                            data-bs-slide-to="12"
+                            data-bs-target="#carousel-0"
+                            type="button"
+                          ></button>
+                        </div>
+                        <div class="scbs-carousel-inner">
+                          <div class="scbs-carousel-item scbs-active">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/J09tdcy.jpg"
+                              ><img
+                                alt="https://i.imgur.com/J09tdcyh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/J09tdcyh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>Finished project.</p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/D1sV4X8.jpg"
+                              ><img
+                                alt="https://i.imgur.com/D1sV4X8h.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/D1sV4X8h.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>
+                                Removed the LED strips from the now-bottom rails
+                                to relocate them back to the top of the
+                                enclosure.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/5cDGBUU.jpg"
+                              ><img
+                                alt="https://i.imgur.com/5cDGBUUh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/5cDGBUUh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>
+                                Flip the hall/door sensor. I used a zip tie to
+                                help keep the plastic washers in place. The
+                                sensor actually has bright white LEDs that light
+                                up when it detects when the two doors are
+                                closed.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/yJP9vVH.jpg"
+                              ><img
+                                alt="https://i.imgur.com/yJP9vVHh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/yJP9vVHh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>
+                                Half way through I put the doors on to verify
+                                they fit and close properly. The magnets are
+                                aligned just fine.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/wGu1uNO.jpg"
+                              ><img
+                                alt="https://i.imgur.com/wGu1uNOh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/wGu1uNOh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>
+                                Mark where the foot fixtures will go and use
+                                T-nuts to fasten them in place.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/J03jTjo.jpg"
+                              ><img
+                                alt="https://i.imgur.com/J03jTjoh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/J03jTjoh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>
+                                The touchscreen cord is long enough to reach its
+                                new location. I used a spare screw to ensure it
+                                won't ride up and touch the hot platform or get
+                                pinched by the moving platform.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/osjlmEC.jpg"
+                              ><img
+                                alt="https://i.imgur.com/osjlmECh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/osjlmECh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>
+                                Installed some additional weather stripping
+                                after flipping this enclosure panel with the
+                                touchscreen cutout.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/Rbld72t.jpg"
+                              ><img
+                                alt="https://i.imgur.com/Rbld72th.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/Rbld72th.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>
+                                Unrelated: for my new coffee table setup I'm
+                                moving the power supply to be on top of the UPS
+                                and not take up table space.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/iFNKJxn.jpg"
+                              ><img
+                                alt="https://i.imgur.com/iFNKJxnh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/iFNKJxnh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>
+                                I bought a filament dry box from Amazon instead
+                                of relocating the spool holder which would have
+                                required cutting or drilling into the enclosure
+                                panels. This works for me because I already use
+                                a PTFE/Teflon tube with my printer.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/bNa6Ul4.jpg"
+                              ><img
+                                alt="https://i.imgur.com/bNa6Ul4h.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/bNa6Ul4h.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>Done!</p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/B6j9Ws3.jpg"
+                              ><img
+                                alt="https://i.imgur.com/B6j9Ws3h.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/B6j9Ws3h.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>Teflon tube routing: dry box</p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/XJZNBUH.jpg"
+                              ><img
+                                alt="https://i.imgur.com/XJZNBUHh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/XJZNBUHh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>Teflon tube routing: enclosure through-hole</p>
+                            </div>
+                          </div>
+                          <div class="scbs-carousel-item">
+                            <a
+                              class="reference external image-reference"
+                              href="https://i.imgur.com/aDOjJnX.jpg"
+                              ><img
+                                alt="https://i.imgur.com/aDOjJnXh.jpg"
+                                class="scbs-d-block scbs-w-100"
+                                src="https://i.imgur.com/aDOjJnXh.jpg"
+                            /></a>
+                            <div
+                              class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control"
+                            >
+                              <p>Teflon tube routing: print head</p>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          class="scbs-carousel-control-prev scbs-my-4 scc-top-control scc-shadow-control"
+                          data-bs-slide="prev"
+                          data-bs-target="#carousel-0"
+                          type="button"
+                        >
+                          <span
+                            aria-hidden="true"
+                            class="scbs-carousel-control-prev-icon"
+                          ></span>
+                          <span class="scbs-visually-hidden">Previous</span>
+                        </button>
+                        <button
+                          class="scbs-carousel-control-next scbs-my-4 scc-top-control scc-shadow-control"
+                          data-bs-slide="next"
+                          data-bs-target="#carousel-0"
+                          type="button"
+                        >
+                          <span
+                            aria-hidden="true"
+                            class="scbs-carousel-control-next-icon"
+                          ></span>
+                          <span class="scbs-visually-hidden">Next</span>
+                        </button>
+                      </div>
+                    </section>
+                    <section id="comments">
+                      <h2>
+                        Comments<a
+                          class="headerlink"
+                          href="#comments"
+                          title="Permalink to this headline"
+                          >#</a
+                        >
+                      </h2>
+                      <div
+                        data-disqus-identifier="Snapmaker Enclosure Door Reversal"
+                        data-disqus-shortname="rob86wiki"
+                        id="disqus_thread"
+                      ></div>
+                    </section>
+                  </section>
+                </div>
+              </main>
+              <footer class="footer-article noprint">
+                <!-- Previous / next buttons -->
+                <div class="prev-next-area">
+                  <a
+                    class="left-prev"
+                    id="prev-link"
+                    href="2022-12-11-alltrack-clutch-bleeder-block.html"
+                    title="previous page"
+                  >
+                    <i class="fas fa-angle-left"></i>
+                    <div class="prev-next-info">
+                      <p class="prev-next-subtitle">previous</p>
+                      <p class="prev-next-title">
+                        Clutch Bleeder Block Replacement
+                      </p>
+                    </div>
+                  </a>
+                  <a
+                    class="right-next"
+                    id="next-link"
+                    href="2022-08-23-oemtools-gauge.html"
+                    title="next page"
+                  >
+                    <div class="prev-next-info">
+                      <p class="prev-next-subtitle">next</p>
+                      <p class="prev-next-title">OEMTools 24938 Gauge Mod</p>
+                    </div>
+                    <i class="fas fa-angle-right"></i>
+                  </a>
+                </div>
+              </footer>
+            </div>
+          </div>
+          <div class="footer-content row">
+            <footer class="col footer">
+              <p>
+                &copy; Copyright 2023, Robpol86.<br />
+                Last updated on Oct 30, 2022, 3:03:53 PM UTC.<br />
+              </p>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts loaded after <body> so the DOM is not blocked -->
+    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  </body>
+</html>
