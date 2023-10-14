@@ -22,5 +22,13 @@ Google Analytics is enabled on my website via a [CloudFlare app](https://www.clo
 
 ## Releases
 
-Deployments to production are done by GitHub Actions when a new tag matching the format YYYY-MM-DD is manually pushed. All
-branch and tag pushes trigger a deployment to staging, whilst pull requests only trigger CI linting and testing.
+Releasing to stage is done automatically on every branch push.
+
+To release to production:
+
+1. https://github.com/Robpol86/robpol86.com/actions/workflows/release.yml
+1. Run workflow > Fill out the release title
+    1. This will also be the section title in the [CHANGELOG.md](CHANGELOG.md) entry
+1. Run workflow
+1. When it completes a new git tag, GitHub release, and CHANGELOG.md entry will be created
+1. The workflow will also deploy the HTML to production
