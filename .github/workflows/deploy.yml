@@ -11,6 +11,9 @@ on:
       environment:
         required: false
         type: string
+      sphinx_github_branch:
+        required: false
+        type: string
 
 
 jobs:
@@ -21,6 +24,7 @@ jobs:
       commit: "${{ inputs.commit }}"
       environment: "${{ inputs.environment || 'staging' }}"
       skip_lints_tests: true
+      sphinx_github_branch: "${{ inputs.sphinx_github_branch }}"
 
   Deploy:
     runs-on: ubuntu-latest

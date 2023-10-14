@@ -103,6 +103,7 @@ jobs:
     with:
       commit: "${{ needs.Bump.outputs.NEW_COMMIT }}"
       environment: production
+      sphinx_github_branch: "${{ needs.Bump.outputs.NEW_TAG }}"
     secrets: inherit
 
   Release:

@@ -17,7 +17,7 @@ on:
       skip_lints_tests:
         required: false
         type: boolean
-      sphinx_github_branch:  # For HTML diff
+      sphinx_github_branch:  # For HTML diff and production (tag vs branch)
         required: false
         type: string
 
