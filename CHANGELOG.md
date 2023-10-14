@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2023.10.14]
+
+Refactored GitHub Actions
+
+* a7d9f5f Revert
+* 5f0becc 2023.10.14: TODO
+* e200ca5 sphinx_github_branch NEW_TAG (#227)
+* 5b9f180 Ignore parts.vw.com again. (#226)
+* 1521221 Document release process. (#225)
+* 0d610c6 Production release workflow dispatch. (#223)
+* 4c9e71e Deploy must be push: not PR (#224)
+* 1bf3a25 Refactoring Deploy (Staging Only) (#221)
+* 804be03 Refactor linkcheck (#222)
+* f44cef3 Reducing complexity (#220)
+* 65c218e Reusable Workflows: build and diff (#219)
+* aaf635b Fix deploy and HTML diff false positive (#218)
+* 3542d8d Revisit GitHub Action Workflows (#215)
+* 2d7c64d Pinning dependencies for now. (#214)
+* 1dc0ef7 Updating transitive dependencies. (#213)
+* 8899f56 Update Dependencies (#212)
+* 73c17a3 Fix the build. (#211)
+* 5a13dc9 Update dependencies. (#209)
+* 3c77bcd Update dependencies. (#208)
+* c0202e4 Fix missing backslash. (#207)
+
 ## [2022.12.11]
 
 New post: Clutch Bleeder Block Replacement
