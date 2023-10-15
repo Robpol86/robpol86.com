@@ -6,25 +6,9 @@ runs:
   using: composite
   steps:
 
-    - name: Install Poetry
+    - name: TODO
       shell: bash
-      run: pipx install poetry
-
-    - name: Configure Poetry
-      shell: bash
-      run: poetry config virtualenvs.in-project true
-
-    - name: Install Python
-      id: python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
-        cache: poetry
-
-    - name: Install Dependencies
-      shell: bash
-      if: steps.python.outputs.cache-hit != 'true'
-      run: poetry install
+      run: echo TODO
 
 
 outputs:

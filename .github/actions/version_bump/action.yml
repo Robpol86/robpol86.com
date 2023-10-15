@@ -18,4 +18,4 @@ runs:
         NEW_VERSION: "${{ inputs.new_version }}"
         PATTERN: '[0-9]\{4\}[.][0-9]\{1,2\}[.][0-9]\{1,2\}'
         VERSION_FILE: pyproject.toml
-      run: sed -i "0,/^version = /s/\"$PATTERN\"/\"$NEW_VERSION\"/" "$VERSION_FILE"
+      run: echo TODO
