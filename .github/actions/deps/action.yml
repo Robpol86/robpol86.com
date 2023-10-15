@@ -6,9 +6,15 @@ runs:
   using: composite
   steps:
 
-    - name: TODO
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        cache: npm
+        node-version: "20.6.1"
+
+    - name: Install Dependencies
       shell: bash
-      run: echo TODO
+      run: npm i
 
 
 outputs:
