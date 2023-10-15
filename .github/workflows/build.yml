@@ -38,12 +38,12 @@ jobs:
       - name: Setup Dependencies
         uses: ./.github/actions/deps
 
-      - name: TODO
-        run: mkdir -p docs/_build/html && touch docs/_build/html/todo.txt
+      - name: Build
+        run: ./node_modules/.bin/next build  # TODO just next if .bin is in PATH?
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: html
-          path: docs/_build/html
+          path: .next/server/pages
           if-no-files-found: error
