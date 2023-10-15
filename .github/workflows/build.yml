@@ -39,12 +39,11 @@ jobs:
         uses: ./.github/actions/deps
 
       - name: Build
-        run: |
-          npx next build && cp -v .gitignore .next/server/pages/
+        run: npx next build && cp -v .gitignore out/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: html
-          path: .next/server/pages
+          path: out
           if-no-files-found: error
