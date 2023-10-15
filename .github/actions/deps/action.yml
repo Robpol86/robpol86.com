@@ -9,12 +9,14 @@ runs:
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
-        cache: npm
         node-version: "20.6.1"
+        cache: npm
 
     - name: Install Dependencies
       shell: bash
       run: npm i
+
+    # TODO cache Nextra build.
 
 
 outputs:

@@ -39,7 +39,8 @@ jobs:
         uses: ./.github/actions/deps
 
       - name: Build
-        run: ./node_modules/.bin/next build  # TODO just next if .bin is in PATH?
+        run: |
+          next build && cp -v .gitignore .next/server/pages/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
