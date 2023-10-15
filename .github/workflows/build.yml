@@ -40,7 +40,7 @@ jobs:
 
       - name: Build
         run: |
-          next build && cp -v .gitignore .next/server/pages/
+          npm run next build && cp -v .gitignore .next/server/pages/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
