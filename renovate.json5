@@ -1,0 +1,5 @@
+{
+  extends: ['github>the-guild-org/shared-config:renovate'],
+  // ignore Nextra to avoid conflicts with @theguild/components
+  ignoreDeps: ['nextra'],
+}
