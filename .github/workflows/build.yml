@@ -47,3 +47,10 @@ jobs:
           name: html
           path: out
           if-no-files-found: error
+
+      - name: Upload package-lock.json
+        uses: actions/upload-artifact@v3
+        with:
+          name: package_lock
+          path: package-lock.json
+          if-no-files-found: error
