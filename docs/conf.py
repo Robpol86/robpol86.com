@@ -36,7 +36,6 @@ project = "Robpol86.com"
 pygments_style = "vs"
 release = version
 suppress_warnings = ["myst.strikethrough"]
-templates_path = ["_templates"]
 
 
 # Options for HTML output.
