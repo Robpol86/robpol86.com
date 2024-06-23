@@ -1,4 +1,5 @@
 """pytest conftest."""
+
 import pytest
 from sphinx import __display_version__
 
