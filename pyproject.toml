@@ -20,7 +20,6 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.9"
 # Project dependencies.
-babel = "2.11.0"  # TODO: remove after validating changes
 myst-parser = {version = "*", extras = ["linkify"]}
 pygments = "2.13.0"  # TODO: remove after validating code block changes
 Sphinx = "4.5.0"  # TODO: validate sphinx-carousel on Sphinx==5.3.x
