@@ -1207,17 +1207,20 @@ test = ["tox"]
 
 [[package]]
 name = "sphinx-sitemap"
-version = "2.3.0"
+version = "2.6.0"
 description = "Sitemap generator for Sphinx"
 optional = false
 python-versions = "*"
 files = [
-    {file = "sphinx-sitemap-2.3.0.tar.gz", hash = "sha256:7b27b5d9f6ebf75597da7d48c64dcb9271fa269925673d900ee27d6b2c484915"},
-    {file = "sphinx_sitemap-2.3.0-py3-none-any.whl", hash = "sha256:8211ae28413ee529814bd56762873a5e1878fff0f254a7488da762984bdf658c"},
+    {file = "sphinx_sitemap-2.6.0-py3-none-any.whl", hash = "sha256:7478e417d141f99c9af27ccd635f44c03a471a08b20e778a0f9daef7ace1d30b"},
+    {file = "sphinx_sitemap-2.6.0.tar.gz", hash = "sha256:5e0c66b9f2e371ede80c659866a9eaad337d46ab02802f9c7e5f7bc5893c28d2"},
 ]
 
 [package.dependencies]
 sphinx = ">=1.2"
+
+[package.extras]
+dev = ["build", "flake8", "pre-commit", "pytest", "sphinx", "tox"]
 
 [[package]]
 name = "sphinxcontrib-applehelp"
@@ -1629,4 +1632,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "96c6781b3439c0188308e667759baed19374fd457d79ad44510259a20ac315c0"
+content-hash = "2dcdf4515bb787922094d73032122d6c5e12dc8810bc6aac1b0f6b4cd13152f4"
