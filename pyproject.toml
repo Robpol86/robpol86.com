@@ -18,7 +18,7 @@ classifiers = [
 repository = "https://github.com/Robpol86/robpol86.com"
 
 [tool.poetry.dependencies]
-python = "^3.8"  # TODO ^3.10
+python = "^3.9"
 # Project dependencies.
 babel = "2.11.0"  # TODO: remove after validating changes
 myst-parser = {version = "*", extras = ["linkify"]}
@@ -33,6 +33,11 @@ sphinx-imgur = "*"
 sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"
 sphinx-sitemap = "2.3.0"  # TODO: fix sphinx-sitemap: No pages generated for sitemap.xml
+sphinxcontrib-applehelp = "1.0.4"  # TODO: remove after validating changes
+sphinxcontrib-devhelp = "1.0.2"  # TODO: remove after validating changes
+sphinxcontrib-htmlhelp = "2.0.1"  # TODO: remove after validating changes
+sphinxcontrib-qthelp = "1.0.3"  # TODO: remove after validating changes
+sphinxcontrib-serializinghtml = "1.1.5"  # TODO: remove after validating changes
 sphinxcontrib-youtube = "1.1.0"  # TODO: 1.2.0 duplicates video thumbnails
 sphinxext-opengraph = "*"
 

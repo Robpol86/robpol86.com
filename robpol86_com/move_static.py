@@ -1,4 +1,5 @@
 """Move static files at the end of the build."""
+
 from pathlib import Path
 from typing import Optional
 
