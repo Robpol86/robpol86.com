@@ -18,7 +18,7 @@ classifiers = [
 repository = "https://github.com/Robpol86/robpol86.com"
 
 [tool.poetry.dependencies]
-python = "^3.8"  # TODO ^3.10
+python = "^3.9"
 # Project dependencies.
 babel = "2.11.0"  # TODO: remove after validating changes
 myst-parser = {version = "*", extras = ["linkify"]}
