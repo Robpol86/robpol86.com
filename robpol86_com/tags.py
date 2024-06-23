@@ -1,4 +1,5 @@
 """Blog-style tagging."""
+
 from typing import List
 
 from docutils import nodes

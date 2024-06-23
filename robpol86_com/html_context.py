@@ -1,4 +1,5 @@
 """Modify HTML context."""
+
 from typing import Dict, List
 
 from sphinx.application import Sphinx
