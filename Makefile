@@ -88,7 +88,7 @@ linkcheck: docs/_build/html/index.html
 		{ jq -s . $(<D)/output.json > $(<D)/output2.json && mv $(<D)/output2.json $(<D)/output.json; \
 			jq -r '.[] |select(.status == "broken") |.uri' $(<D)/output.json > $(<D)/broken.txt; echo; echo; \
 			echo "======================= output.txt ======================="; sort $(<D)/output.txt; \
-			echo "=========================================================="; exit $$ret; }
+			echo "=========================================================="; echo; echo; exit $$ret; }
 
 ## Misc
 

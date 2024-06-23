@@ -89,7 +89,7 @@ html_use_index = True
 
 
 # Linkcheck settings.
-user_agent = "Mozilla 5.0"
+user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 linkcheck_allowed_redirects = {
     r"https://www.amazon.com/": "https://www.amazon.com/[^/]+/dp/",
     r"https://www.apc.com/us/en/product/\w+$": "https://www.apc.com/us/en/product/",
@@ -110,10 +110,11 @@ linkcheck_exclude_documents = [
 ]
 linkcheck_ignore = [
     r"[/.]*genindex.html",  # TODO remove this
-    r"https://[\w.]*mibsolution.one/#",
+    r"https://[\w.]*mibsolution.one/",
     r"https://media.vw.com/",  # All curls result in 403
     r"https://mega.nz/(file|folder)/\w+#",
     r"https://parts.vw.com/",  # Nondeterministic rate limiting in GitHub runner
+    r"https://www.apc.com/",
     r"https://www.ecstuning.com/",  # All curls result in 403
     r"https://www.qnx.com/developers/docs/[\w.]+/#",
     r"https?://192.168.\d+.\d+/",
