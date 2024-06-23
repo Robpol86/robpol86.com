@@ -22,7 +22,7 @@ python = "^3.9"
 # Project dependencies.
 myst-parser = {version = "*", extras = ["linkify"]}
 Sphinx = "4.5.0"  # TODO: validate sphinx-carousel on Sphinx==5.3.x
-sphinx-book-theme = "0.3.3"  # TODO: validate sphinx-carousel
+sphinx-book-theme = "*"
 sphinx-carousel = "*"
 sphinx-copybutton = "*"
 sphinx-disqus = "*"
