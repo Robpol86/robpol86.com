@@ -1,4 +1,5 @@
 """Sphinx configuration file."""
+
 # pylint: disable=invalid-name
 import os
 import time
