@@ -89,6 +89,7 @@ html_use_index = True
 
 
 # Linkcheck settings.
+user_agent = "Mozilla 5.0"
 linkcheck_allowed_redirects = {
     r"https://www.amazon.com/": "https://www.amazon.com/[^/]+/dp/",
     r"https://www.apc.com/us/en/product/\w+$": "https://www.apc.com/us/en/product/",

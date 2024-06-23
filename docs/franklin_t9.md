@@ -63,7 +63,7 @@ the issue and still has the hidden pages. Download `R717F21.FR.2000_ota_update_a
 https://mega.nz/folder/FJ8wWYAJ#Q1oUEtIUJrtjB1atkOAXrA
 
 (Got that link from:
-https://www.howardforums.com/showthread.php/1921612-Franklin-T9-Test-Drive-stuck-on-Welcome-This-is-the-fix)
+https://www.howardforums.com/threads/franklin-t9-test-drive-stuck-on-welcome-this-is-the-fix.1921612/)
 
 ## SSH and Root
 

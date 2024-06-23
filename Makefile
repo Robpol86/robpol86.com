@@ -82,6 +82,7 @@ autodocs: docs/_build/html/index.html
 	poetry run sphinx-autobuild --open-browser --delay=1 --host localhost -n -W docs $(<D)
 
 .PHONY: linkcheck
+linkcheck: _HELP = Check for broken links in documents
 linkcheck: docs/_build/html/index.html
 	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D) && ret=0 || ret=$$? && \
 		{ jq -s . $(<D)/output.json > $(<D)/output2.json && mv $(<D)/output2.json $(<D)/output.json; \
