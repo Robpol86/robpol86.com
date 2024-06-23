@@ -121,7 +121,7 @@ Before starting I had to prepare my MacBook and grab a few things:
        yet.
 3. Download and extract [unetbootin](https://unetbootin.github.io/) somewhere on your Mac
     1. Or if you use [Homebrew](https://brew.sh/): `brew install unetbootin`
-4. [Allow booting from a external or removable media](https://support.apple.com/en-us/HT208198)
+4. [Allow booting from a external or removable media](https://support.apple.com/en-us/102522)
 
 You'll also need to obtain the Windows Support Software from the Boot Camp Assistant:
 
