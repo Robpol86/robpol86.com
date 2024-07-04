@@ -22,7 +22,7 @@ vibration of my spinning hard drives. It's not too bad though.
 * [NETGEAR XS716T 16-Port 10-Gigabit Ethernet Switch](https://www.netgear.com/support/product/xs716t/)
 * [Tripp Lite PDUMH15-6 Metered PDU](https://tripplite.eaton.com/1-4kw-single-phase-metered-pdu-120v~pdumh156)
 * [APC Smart-UPS SMT1500RM2U](https://www.apc.com/us/en/product/SMT1500RM2U)
-* [Travla T2241 2U Dual Mini-ITX Case](http://www.casetronic.com/corporates/49-t2241.html)
+* Travla T2241 2U Dual Mini-ITX Case
 * [P-Link IPC-Rail18 Universal 18-inch Slide Rails](http://www.plinkusa.net/webrail18.htm)
 
 ## Pictures

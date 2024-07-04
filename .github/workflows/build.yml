@@ -30,7 +30,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: "${{ inputs.commit }}"
@@ -64,11 +64,11 @@ jobs:
         run: |
           PS4="\n\033[1;33m$PS4\033[0m"
           set -euxo pipefail
-          npm install -g prettier@2.8.8 @prettier/plugin-xml@2.2.0
+          npm install -g prettier@3.3.2 @prettier/plugin-xml@3.4.1
           prettier --write "docs/_build/html/**/*.{js,css,html,xml}"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: html
           path: docs/_build/html
