@@ -56,8 +56,10 @@ jobs:
         env:  # Note: these can be empty
           SPHINX_GITHUB_BRANCH: "${{ inputs.sphinx_github_branch }}"
           SPHINX_HTML_BASEURL: "${{ vars.SPHINX_HTML_BASEURL }}"
-        run: |
-          make docs && cp -v .gitignore docs/_build/html/
+        run: make docs
+
+      - name: Copy .gitignore into html output directory  # For diff storage branch
+        run: cp --no-clobber --verbose .gitignore docs/_build/html/
 
       - name: Prettify
         if: inputs.prettyfy

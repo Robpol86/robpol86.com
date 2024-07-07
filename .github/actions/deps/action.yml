@@ -7,20 +7,17 @@ runs:
   steps:
 
     - name: Install Poetry
-      shell: bash
-      run: pipx install poetry
+      uses: abatilo/actions-poetry@v3
 
     - name: Install Python
-      id: python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.11"
+        python-version: "3.12"
         cache: poetry
 
     - name: Install Dependencies
       shell: bash
-      if: steps.python.outputs.cache-hit != 'true'
-      run: poetry install
+      run: make deps
 
 
 outputs:
