@@ -1,18 +1,7 @@
 .DEFAULT_GOAL = help
 PROJECT_NAME = robpol86_com
-export POETRY_VIRTUALENVS_IN_PROJECT = true
 
 ## Dependencies
-
-init: _HELP = Initialize Python VirtualEnv via Poetry (optional PROJECT_PY_PATH or PROJECT_PY_VERSION env vars)
-init: PROJECT_PY_VERSION ?= 3
-init:
-ifdef PROJECT_PY_PATH
-	poetry env use $(PROJECT_PY_PATH)
-else
-	command -V python$(PROJECT_PY_VERSION) < /dev/null
-	poetry env use $(shell command -v python$(PROJECT_PY_VERSION) < /dev/null)
-endif
 
 poetry.lock: _HELP = Lock dependency versions to file
 poetry.lock:

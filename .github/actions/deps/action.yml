@@ -10,10 +10,6 @@ runs:
       shell: bash
       run: pipx install poetry
 
-    - name: Configure Poetry
-      shell: bash
-      run: poetry config virtualenvs.in-project true
-
     - name: Install Python
       id: python
       uses: actions/setup-python@v5
