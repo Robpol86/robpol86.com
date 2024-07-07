@@ -20,6 +20,7 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.9"
 # Project dependencies.
+ablog = "*"
 myst-parser = {version = "*", extras = ["linkify"]}
 sphinx = "4.5.0"  # TODO: validate sphinx-carousel on Sphinx==5.3.x
 sphinx-book-theme = "0.3.3"  # TODO: validate sphinx-carousel
