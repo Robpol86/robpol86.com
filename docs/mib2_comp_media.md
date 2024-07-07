@@ -95,8 +95,8 @@ My unit exposed three services over the network:
 * 23/tcp (Telnet, user is *root* with no password)
 * 513/tcp (Rlogin, haven't used it yet)
 
-[FTP](https://filezilla-project.org/) and [telnet](https://www.putty.org/) both grant you full access to the running OS and
-filesystems. Some notes:
+[FTP](https://filezilla-project.org/) and [telnet](https://www.chiark.greenend.org.uk/~sgtatham/putty/) both grant you full
+access to the running OS and filesystems. Some notes:
 
 * SD card is mounted as read/write on `/sdc1`
 * You can keep Ethernet enabled, CarPlay still worked for me
