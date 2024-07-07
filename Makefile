@@ -12,10 +12,11 @@ relock: _HELP = Delete and recreate poetry lock file
 relock:
 	rm -f poetry.lock && $(MAKE) poetry.lock
 
+# Reduce repo/GHA/Makefile complexity by always installing dev deps
 .PHONY: deps
 deps: _HELP = Install project dependencies
 deps:
-	poetry install
+	poetry install --with dev
 
 ## Testing
 

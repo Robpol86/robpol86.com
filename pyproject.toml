@@ -21,7 +21,7 @@ repository = "https://github.com/Robpol86/robpol86.com"
 python = "^3.9"
 # Project dependencies.
 myst-parser = {version = "*", extras = ["linkify"]}
-Sphinx = "4.5.0"  # TODO: validate sphinx-carousel on Sphinx==5.3.x
+sphinx = "4.5.0"  # TODO: validate sphinx-carousel on Sphinx==5.3.x
 sphinx-book-theme = "0.3.3"  # TODO: validate sphinx-carousel
 sphinx-carousel = "*"
 sphinx-copybutton = "*"
@@ -39,7 +39,12 @@ sphinxcontrib-serializinghtml = "1.1.5"  # TODO: remove after validating changes
 sphinxcontrib-youtube = "*"
 sphinxext-opengraph = "*"
 
+[tool.poetry.group.dev]
+optional = true
+
 [tool.poetry.group.dev.dependencies]
+# Docs.
+sphinx-autobuild = "*"
 # Linters.
 black = "*"
 flake8 = "*"
@@ -50,12 +55,10 @@ pylint = "*"
 # Tests.
 pytest = "*"
 pytest-icdiff = "*"
-# Docs.
-sphinx-autobuild = "*"
 
 [tool.black]
 line-length = 125
-target-version = ["py310", "py311"]
+target-version = ["py39", "py310", "py311", "py312"]
 
 [tool.pylint.FORMAT]
 good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
