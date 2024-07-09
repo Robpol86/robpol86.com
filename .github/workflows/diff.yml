@@ -90,14 +90,13 @@ jobs:
       - name: Truncate
         if: hashFiles('git_diff.patch')
         run: |
-          cp git_diff.patch git_diff.patch.orig
           truncate_to=$(( DIFF_TRUNCATE_TO_BYTES - $(wc -c < git_status.txt) ))
-          head --bytes="$truncate_to" git_diff.patch.orig > git_diff.patch
-          if ! cmp -s git_diff.patch git_diff.patch.orig; then
-            echo -e "\n\nTruncated" |tee -a git_diff.patch
-            tail --bytes=+"$(( truncate_to + 1 ))" git_diff.patch.orig > git_diff.patch.truncated
+          head --bytes="$truncate_to" git_diff.patch > git_diff.patch.truncated
+          if ! cmp -s git_diff.patch git_diff.patch.truncated; then
+            echo -e "\n\nTruncated" |tee -a git_diff.patch.truncated
+          else
+            rm -v git_diff.patch.truncated
           fi
-          rm -v git_diff.patch.orig
       - name: Store Metafiles as Temporary Artifacts
         if: hashFiles('git_status.txt')
         uses: actions/upload-artifact@v4
