@@ -1,7 +1,8 @@
-# Clutch Bleeder Block Replacement
+---
+:tags: alltrack, vehicle
+---
 
-```{tags} alltrack, vehicle
-```
+# Clutch Bleeder Block Replacement
 
 [discussion]: https://www.vwvortex.com/threads/6-mt-owners-do-the-clutch-spring-mod.9119337/
 
@@ -103,5 +104,4 @@ From page 18 of the service manual D4B80989C93 6-Speed_Manual_Transmission_02S.
 
 ## Comments
 
-```{disqus}
-```
+TODO

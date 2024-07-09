@@ -1175,13 +1175,13 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "setuptools"
-version = "70.2.0"
+version = "70.3.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "setuptools-70.2.0-py3-none-any.whl", hash = "sha256:b8b8060bb426838fbe942479c90296ce976249451118ef566a5a0b7d8b78fb05"},
-    {file = "setuptools-70.2.0.tar.gz", hash = "sha256:bd63e505105011b25c3c11f753f7e3b8465ea739efddaccef8f0efac2137bac1"},
+    {file = "setuptools-70.3.0-py3-none-any.whl", hash = "sha256:fe384da74336c398e0d956d1cae0669bc02eed936cdb1d49b57de1990dc11ffc"},
+    {file = "setuptools-70.3.0.tar.gz", hash = "sha256:f171bab1dfbc86b132997f26a119f6056a57950d058587841a0082e8830f9dc5"},
 ]
 
 [package.extras]
@@ -1341,41 +1341,6 @@ sphinx = ">=1.8"
 [package.extras]
 code-style = ["pre-commit (==2.12.1)"]
 rtd = ["ipython", "myst-nb", "sphinx", "sphinx-book-theme", "sphinx-examples"]
-
-[[package]]
-name = "sphinx-disqus"
-version = "1.3.0"
-description = "Embed Disqus comments in Sphinx documents/pages."
-optional = false
-python-versions = "<4.0,>=3.9"
-files = [
-    {file = "sphinx_disqus-1.3.0-py3-none-any.whl", hash = "sha256:8608fc4b3148055c41a390dd250883ebee7f28c5bfac00997a3fbe1ec8985466"},
-    {file = "sphinx_disqus-1.3.0.tar.gz", hash = "sha256:80590a486c817acddcf0a1fbc07a750fd17694272c959364e4e3c0b43bb6d6d3"},
-]
-
-[package.dependencies]
-sphinx = "*"
-
-[[package]]
-name = "sphinx-external-toc"
-version = "0.3.1"
-description = "A sphinx extension that allows the site-map to be defined in a single YAML file."
-optional = false
-python-versions = "~=3.7"
-files = [
-    {file = "sphinx_external_toc-0.3.1-py3-none-any.whl", hash = "sha256:cd93c1e7599327b2a728db12d9819068ce719c4b037ffc62e47f20ffb6310fb3"},
-    {file = "sphinx_external_toc-0.3.1.tar.gz", hash = "sha256:9c8ea9980ea0e57bf3ce98f6a400f9b69eb1df808f7dd796c9c8cc1873d8b355"},
-]
-
-[package.dependencies]
-click = ">=7.1,<9"
-pyyaml = "*"
-sphinx = ">=4,<6"
-
-[package.extras]
-code-style = ["pre-commit (>=2.12,<3.0)"]
-rtd = ["myst-parser (>=0.17.0,<0.18.0)", "sphinx-book-theme (>=0.0.36)"]
-testing = ["coverage", "pytest (>=7.1,<8.0)", "pytest-cov", "pytest-regressions"]
 
 [[package]]
 name = "sphinx-imgur"
@@ -1897,4 +1862,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "5aa21a3b731870a97d7bfcb3a973d595cef6fd719972f5dd18fbc64df08129a2"
+content-hash = "0997928acae74d45b981d561280321ff9202f0a252718ee8c0734e0e805dda44"

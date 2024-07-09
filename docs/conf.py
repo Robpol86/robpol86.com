@@ -5,8 +5,6 @@ import os
 import time
 from urllib.parse import urlparse
 
-from docutils.parsers.rst import Directive  # TODO remove
-
 from robpol86_com import __license__, __version__ as version
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
@@ -23,12 +21,10 @@ extensions = [
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "robpol86_com.html_context",
     "robpol86_com.move_static",
-    "robpol86_com.tags",
     "sphinx.ext.intersphinx",  # Needed by ablog; TODO remove?
     "sphinx_carousel.carousel",  # https://sphinx-carousel.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     # TODO "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
-    "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
     "sphinx_sitemap",  # https://github.com/jdillard/sphinx-sitemap
@@ -163,19 +159,3 @@ robpol86_com_move_static_to_root = [
     "robots.txt",
 ]
 sitemap_url_scheme = "{link}"
-
-
-# TODO remove below
-class NoopDisqusDirective(Directive):
-    """TODO remove."""
-
-    has_content = True
-
-    def run(self):
-        """TODO remove."""
-        return []
-
-
-def setup(app):
-    """TODO remove."""
-    app.add_directive("disqus", NoopDisqusDirective)

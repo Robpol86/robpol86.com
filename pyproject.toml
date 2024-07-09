@@ -26,8 +26,6 @@ sphinx = "4.5.0"  # TODO: validate sphinx-carousel on Sphinx==5.3.x
 sphinx-book-theme = "0.3.3"  # TODO: validate sphinx-carousel
 sphinx-carousel = "*"
 sphinx-copybutton = "*"
-sphinx-disqus = "*"
-sphinx-external-toc = "*"
 sphinx-imgur = "*"
 sphinx-last-updated-by-git = "*"
 sphinx-notfound-page = "*"

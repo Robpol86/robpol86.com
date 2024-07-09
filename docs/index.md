@@ -24,5 +24,8 @@ enough to get a contracting position shortly after at Symantec and eventually go
 
 ## Site Contents
 
-```{tableofcontents}
+```{toctree}
+:glob:
+
+posts/*/*
 ```
