@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <meta property="article:modified_time" content="2022-02-28T19:27:57+00:00" /><meta property="og:title" content="Monoprice Maker Select v2" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/3d_printer_mpms2.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content="Tags: 3d-printing I bought my first 3D printer from Amazon in 2018 for $300. It’s on the cheaper end but there’s a large community behind it. Oct ‘21 Upgrading Parts: First set up parts being upgraded with: Micro Swiss All Metal Hotend with Slotted Cooling Block, DIYE Y Carriage Plate Upgrade, No..." />
+<meta property="og:image" content="https://i.imgur.com/YJWyMhih.jpg" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content="Tags: 3d-printing I bought my first 3D printer from Amazon in 2018 for $300. It’s on the cheaper end but there’s a large community behind it. Oct ‘21 Upgrading Parts: First set up parts being upgraded with: Micro Swiss All Metal Hotend with Slotted Cooling Block, DIYE Y Carriage Plate Upgrade, No..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>Monoprice Maker Select v2 &#8212; Robpol86.com</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/aside_margin.css" />
+    <link rel="stylesheet" type="text/css" href="_static/background_image.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/disqus.js"></script>
+    <link rel="canonical" href="http://localhost:8000/3d_printer_mpms2.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="T-Mobile Franklin T9 Hacking" href="franklin_t9.html" />
+    <link rel="prev" title="MIB2 Composition Media Hacking" href="mib2_comp_media.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Posts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="posts/2022/2022-12-11-alltrack-clutch-bleeder-block.html">
+   Clutch Bleeder Block Replacement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="posts/2022/2022-10-24-snapmaker-reverse-door.html">
+   Snapmaker Enclosure Door Reversal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="posts/2022/2022-08-23-oemtools-gauge.html">
+   OEMTools 24938 Gauge Mod
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="posts/2022/2022-07-15-snapmaker.html">
+   Snapmaker 2.0 A350T Teflon Tube
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="posts/2022/2022-06-30-server-cabinet.html">
+   Server Cabinet June 2022
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="posts/2022/2022-06-05-alltrack-homelink-mirror.html">
+   HomeLink Rearview Mirror
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="vw_alltrack_2019.html">
+   Golf Alltrack SE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mib2_comp_media.html">
+   MIB2 Composition Media Hacking
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Monoprice Maker Select v2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="franklin_t9.html">
+   T-Mobile Franklin T9 Hacking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="photo_albums.html">
+   Photo Albums
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="windows_11_mac.html">
+   Install Windows 11 on an Intel Mac
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="raspberry_pi_luks.html">
+   Raspberry Pi LUKS Root Encryption
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="root_certificate_authority.html">
+   Setting Up a Home Root CA
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="raspberry_pi_project_fi.html">
+   Raspberry Pi on Project Fi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="postfix_gmail_forwarding.html">
+   Postfix and Gmail Forwarding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bareos_tape_backup.html">
+   Bareos Tape Backup on a 124T
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="flash_droid_cricket.html">
+   Flashing Motorola Droid to Cricket
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rns_510_vim.html">
+   US RNS-510 Video In Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="imagecfg.html">
+   ImageCFG
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Archived Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="wireless_charging_car_dock.html">
+   Wireless Charging Car Dock
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="atrix_lapdock.html">
+   Atrix Lapdock Other Uses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vw_jsw_2010.html">
+   Jetta SportWagen TDI
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>
+    <a href="genindex.html">Tags</a> | <a href="sitemap.xml">Sitemap</a><br>
+    Generator: <a href="https://www.sphinx-doc.org/">Sphinx</a><br>
+    Theme: <a href="https://sphinx-book-theme.readthedocs.io/">Sphinx Book Theme</a><br>
+    Host: <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a><br>
+    
+        License: <a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/LICENSE">BSD-2-Clause</a><br>
+    
+</p>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right"><a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/3d_printer_mpms2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="View page source"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oct-21-upgrading-parts">
+   Oct ‘21 Upgrading Parts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oct-21-magnetic-build-plate">
+   Oct ‘21 Magnetic Build Plate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comments">
+   Comments
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Monoprice Maker Select v2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oct-21-upgrading-parts">
+   Oct ‘21 Upgrading Parts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oct-21-magnetic-build-plate">
+   Oct ‘21 Magnetic Build Plate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comments">
+   Comments
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="monoprice-maker-select-v2">
+<h1>Monoprice Maker Select v2<a class="headerlink" href="#monoprice-maker-select-v2" title="Permalink to this headline">#</a></h1>
+<p id="index-0"><em>Tags: <a class="reference internal" href="genindex.html#3"><span class="guilabel">3d-printing</span></a></em></p>
+<p>I bought my first 3D printer from <a class="reference external" href="https://www.amazon.com/gp/product/B018GZBC3Y">Amazon</a> in 2018 for $300. It’s on the
+cheaper end but there’s a large community behind it.</p>
+<section id="oct-21-upgrading-parts">
+<h2>Oct ‘21 Upgrading Parts<a class="headerlink" href="#oct-21-upgrading-parts" title="Permalink to this headline">#</a></h2>
+<p>First set up parts being upgraded with:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://www.amazon.com/dp/B01E1HANLS">Micro Swiss All Metal Hotend with Slotted Cooling Block</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/dp/B07PTD7DHW">DIYE Y Carriage Plate Upgrade</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/dp/B009NQLT0M">Noctua NF-A4x10 FLX 3-Pin 40x10mm Fan</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/dp/B086CCPHPP">ARCTIC Thermal Pad 120x20x0.5mm</a></p></li>
+</ol>
+<p>I started to get filament jams in the middle of prints. Since I started to take the printer apart I thought it would be a
+good idea to get some upgrades in.</p>
+<p>I replaced the nozzle and hot end (except for the heat block) with an all-metal version (the original had a small teflon
+tube inside the heat break), replaced the carriage plate underneath the bed with a thicker one that better resists warping,
+replaced the cheap noisy fans with Noctuas with custom shortened and crimped wires, and added a thermal pad between the
+heat sink and the cooling block (there was nothing there before, just metal-on-metal contact).</p>
+<p>For crimping the wires I used the following:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amazon.com/dp/B078WPT5M1">IWISS IWS-3220M Micro Connector Pin Crimping Tool 0.03-0.52mm² 32-20AWG Ratcheting Crimper</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B07CTH46S7">Glarks 1180 Pieces 2.54mm 2/3/4/5/6/7/8/9 Pin Housing Male and Female Compatible with JST-XHP Connector Kit</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/dp/B08XXL3B7K">Wire Stripper Automatic 3 in 1 Multi-Function Wire Pliers (22AWG-8AWG)</a></p></li>
+</ul>
+<blockquote class="imgur-embed-pub" data-id="a/X5GBxkk" lang="en"><a class="reference external" href="https://imgur.com/a/X5GBxkk">Loading...</a></blockquote><script async="" charset="utf-8" src="//s.imgur.com/min/embed.js"></script></section>
+<section id="oct-21-magnetic-build-plate">
+<h2>Oct ‘21 Magnetic Build Plate<a class="headerlink" href="#oct-21-magnetic-build-plate" title="Permalink to this headline">#</a></h2>
+<p>I’ve been using a <a class="reference external" href="https://www.amazon.com/gp/product/B07BHG5HCV">220x220mm Borosilicate Glass Bed</a> placed on top of the
+BuildTak sheet that came with my printer along with glue stick with some success. This upgrade replaces all that with a
+magnetic steel sheet which has a layer of PEI on it.</p>
+<p>Items needed:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amazon.com/dp/B082WTTD1D">FYSETC 3D Printing Buildplate Steel Spring Sheet Bed w/Corner Cut 220x220mm with PEI B Magnetic Mounting Base</a></p></li>
+<li><p>Isopropyl alcohol (I used 91%) to remove adhesive residue</p></li>
+<li><p>Gloves (I used nitrile gloves) to prevent adhesive from reconstituting on your fingers</p></li>
+</ul>
+<blockquote class="imgur-embed-pub" data-id="a/9dOZSm7" lang="en"><a class="reference external" href="https://imgur.com/a/9dOZSm7">Loading...</a></blockquote><script async="" charset="utf-8" src="//s.imgur.com/min/embed.js"></script><p><a class="reference external" href="https://www.reddit.com/r/3Dprinting/comments/qcfqpk/first_mod_since_buying_my_printer_in_2018/">https://www.reddit.com/r/3Dprinting/comments/qcfqpk/first_mod_since_buying_my_printer_in_2018/</a></p>
+</section>
+<section id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">#</a></h2>
+<div data-disqus-identifier="Monoprice Maker Select v2" data-disqus-shortname="rob86wiki" id="disqus_thread"></div></section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="mib2_comp_media.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">MIB2 Composition Media Hacking</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="franklin_t9.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">T-Mobile Franklin T9 Hacking</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+      &copy; Copyright 2024, Robpol86.<br/>
+    Last updated on Feb 28, 2022, 7:27:57 PM UTC.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
