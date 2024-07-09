@@ -19,13 +19,9 @@ extensions = [
     "ablog",  # https://ablog.readthedocs.io
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
-    "robpol86_com.html_context",
-    "robpol86_com.move_static",
     "sphinx.ext.intersphinx",  # Needed by ablog; TODO remove?
     "sphinx_carousel.carousel",  # https://sphinx-carousel.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
-    # TODO "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
-    "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
     "sphinx_sitemap",  # https://github.com/jdillard/sphinx-sitemap
     "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
@@ -36,7 +32,6 @@ project = "Robpol86.com"
 pygments_style = "vs"
 release = version
 suppress_warnings = ["myst.strikethrough"]
-templates_path = ["_templates"]
 
 
 # Options for HTML output.
@@ -74,10 +69,18 @@ html_extra_path = [
     "_static/site.webmanifest",
 ]
 html_logo = "_static/logo.svg"
+html_sidebars = {
+    "**": [
+        "ablog/postcard.html",
+        "ablog/recentposts.html",
+        "ablog/tagcloud.html",
+        "ablog/categories.html",
+        "ablog/archives.html",
+    ],
+}
 html_static_path = ["_static"]
 html_theme = "sphinx_book_theme"
 html_theme_options = {
-    "logo_only": True,
     "path_to_docs": "docs",
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
@@ -128,6 +131,8 @@ linkcheck_timeout = 5
 
 
 # Extension settings.
+blog_baseurl = html_baseurl
+blog_post_pattern = ["posts/????/*.rst", "posts/????/*.md"]
 carousel_show_buttons_on_top = True
 carousel_show_captions_below = True
 carousel_show_controls = True
