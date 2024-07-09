@@ -15,7 +15,6 @@ on:
 env:
   BRANCH_NAME_HTML_OLD: __diff__html_old
   DIFF_CONTEXT: 5
-  DIFF_TRUNCATE_CHARS: 65536  # TODO implement
   DIFF_TRUNCATE_TO_BYTES: 252000
   POST_COLLAPSE_GT_LINES: 10
 
@@ -92,10 +91,11 @@ jobs:
         if: hashFiles('git_diff.patch')
         run: |
           cp git_diff.patch git_diff.patch.orig
-          head --bytes="$DIFF_TRUNCATE_TO_BYTES" git_diff.patch.orig > git_diff.patch
+          truncate_to=$(( DIFF_TRUNCATE_TO_BYTES - $(wc -c < git_status.txt) ))
+          head --bytes="$truncate_to" git_diff.patch.orig > git_diff.patch
           if ! cmp -s git_diff.patch git_diff.patch.orig; then
             echo -e "\n\nTruncated" |tee -a git_diff.patch
-            tail --bytes=+"$(( DIFF_TRUNCATE_TO_BYTES + 1 ))" git_diff.patch.orig > git_diff.patch.truncated
+            tail --bytes=+"$(( truncate_to + 1 ))" git_diff.patch.orig > git_diff.patch.truncated
           fi
           rm -v git_diff.patch.orig
       - name: Store Metafiles as Temporary Artifacts
