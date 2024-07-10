@@ -20,24 +20,11 @@ repository = "https://github.com/Robpol86/robpol86.com"
 [tool.poetry.dependencies]
 python = "^3.9"
 # Project dependencies.
+ablog = "*"
 myst-parser = {version = "*", extras = ["linkify"]}
-sphinx = "4.5.0"  # TODO: validate sphinx-carousel on Sphinx==5.3.x
-sphinx-book-theme = "0.3.3"  # TODO: validate sphinx-carousel
-sphinx-carousel = "*"
+sphinx = "*"
+sphinx-book-theme = "*"
 sphinx-copybutton = "*"
-sphinx-disqus = "*"
-sphinx-external-toc = "*"
-sphinx-imgur = "*"
-sphinx-last-updated-by-git = "*"
-sphinx-notfound-page = "*"
-sphinx-sitemap = "*"
-sphinxcontrib-applehelp = "1.0.4"  # TODO: remove after validating changes
-sphinxcontrib-devhelp = "1.0.2"  # TODO: remove after validating changes
-sphinxcontrib-htmlhelp = "2.0.1"  # TODO: remove after validating changes
-sphinxcontrib-qthelp = "1.0.3"  # TODO: remove after validating changes
-sphinxcontrib-serializinghtml = "1.1.5"  # TODO: remove after validating changes
-sphinxcontrib-youtube = "*"
-sphinxext-opengraph = "*"
 
 [tool.poetry.group.dev]
 optional = true
