@@ -526,26 +526,6 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
-name = "linkify-it-py"
-version = "2.0.3"
-description = "Links recognition library with FULL unicode support."
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "linkify-it-py-2.0.3.tar.gz", hash = "sha256:68cda27e162e9215c17d786649d1da0021a451bdc436ef9e0fa0ba5234b9b048"},
-    {file = "linkify_it_py-2.0.3-py3-none-any.whl", hash = "sha256:6bcbc417b0ac14323382aef5c5192c0075bf8a9d6b41820a2b66371eac6b6d79"},
-]
-
-[package.dependencies]
-uc-micro-py = "*"
-
-[package.extras]
-benchmark = ["pytest", "pytest-benchmark"]
-dev = ["black", "flake8", "isort", "pre-commit", "pyproject-flake8"]
-doc = ["myst-parser", "sphinx", "sphinx-book-theme"]
-test = ["coverage", "pytest", "pytest-cov"]
-
-[[package]]
 name = "lxml"
 version = "5.2.2"
 description = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
@@ -862,7 +842,6 @@ files = [
 [package.dependencies]
 docutils = ">=0.18,<0.22"
 jinja2 = "*"
-linkify-it-py = {version = ">=2.0,<3.0", optional = true, markers = "extra == \"linkify\""}
 markdown-it-py = ">=3.0,<4.0"
 mdit-py-plugins = ">=0.4,<1.0"
 pyyaml = "*"
@@ -1465,6 +1444,24 @@ typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
 
 [[package]]
+name = "sunpy-sphinx-theme"
+version = "2.0.13"
+description = "The sphinx theme for the SunPy website and documentation."
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "sunpy_sphinx_theme-2.0.13-py3-none-any.whl", hash = "sha256:34e400fdf85d9eba1476ac21f0cc05d952bee41eceb251fc3ce9263c8d671a7f"},
+    {file = "sunpy_sphinx_theme-2.0.13.tar.gz", hash = "sha256:95a1dae20055e684c832bd736c4fa917e8d67e7aa9f60a3df1d00a330580a6a6"},
+]
+
+[package.dependencies]
+pydata-sphinx-theme = ">=0.15.0,<0.16.0"
+sphinx = "*"
+
+[package.extras]
+docs = ["matplotlib", "sphinx-automodapi", "sphinx-copybutton", "sphinx-design", "sphinx-gallery", "sphinx-hoverxref", "sphinx-togglebutton", "sunpy"]
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -1496,20 +1493,6 @@ files = [
     {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
     {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
 ]
-
-[[package]]
-name = "uc-micro-py"
-version = "1.0.3"
-description = "Micro subset of unicode data files for linkify-it-py projects."
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "uc-micro-py-1.0.3.tar.gz", hash = "sha256:d321b92cff673ec58027c04015fcaa8bb1e005478643ff4a500882eaab88c48a"},
-    {file = "uc_micro_py-1.0.3-py3-none-any.whl", hash = "sha256:db1dffff340817673d7b466ec86114a9dc0e9d4d9b5ba229d9d60e5c12600cd5"},
-]
-
-[package.extras]
-test = ["coverage", "pytest", "pytest-cov"]
 
 [[package]]
 name = "urllib3"
@@ -1777,4 +1760,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "27b2abeedb921ed54cba4efbd2c1d203d0da49db6e0e2498525485c32139a1a9"
+content-hash = "18e011bd7e6fe2b0ce2dfe1b5ef7c9c8b6a76f8988fc58bb19daaaacaa3db138"

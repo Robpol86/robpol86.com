@@ -21,10 +21,11 @@ repository = "https://github.com/Robpol86/robpol86.com"
 python = "^3.9"
 # Project dependencies.
 ablog = "*"
-myst-parser = {version = "*", extras = ["linkify"]}
+myst-parser = "*"
 sphinx = "*"
 sphinx-book-theme = "*"
 sphinx-copybutton = "*"
+sunpy-sphinx-theme = "*"
 
 [tool.poetry.group.dev]
 optional = true
