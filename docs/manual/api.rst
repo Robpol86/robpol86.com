@@ -9,12 +9,4 @@ ABlog API
    :category: Manual
    :location: World
 
-.. automodapi:: ablog
-
-.. automodapi:: ablog.blog
-
-.. automodapi:: ablog.commands
-
-.. automodapi:: ablog.post
-
-.. automodapi:: ablog.start
+API
