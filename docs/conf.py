@@ -28,7 +28,7 @@ source_suffix = {
 }
 exclude_patterns = ["_build", "docs/manual/.ipynb_checkpoints"]
 html_static_path = ["_static"]
-html_css_files = ["_static/ablog_book_theme_fix.css"]
+html_css_files = ["ablog_book_theme_fix.css"]
 html_title = "ABlog"
 html_use_index = True
 html_domain_indices = False
