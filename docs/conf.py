@@ -35,6 +35,7 @@ html_domain_indices = False
 html_show_sourcelink = True
 html_favicon = "_static/ablog.ico"
 html_logo = "_static/ablog.png"
+templates_path = ["_templates"]
 blog_title = "ABlog"
 blog_baseurl = "https://ablog.readthedocs.io/"
 blog_locations = {
@@ -70,14 +71,14 @@ fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.
 html_theme = "sphinx_book_theme"
 html_sidebars = {
     "**": [
-        "ablog/postcard.html",
-        "ablog/recentposts.html",
-        "ablog/tagcloud.html",
-        "ablog/categories.html",
-        "ablog/archives.html",
-        "ablog/authors.html",
-        "ablog/languages.html",
-        "ablog/locations.html",
+        "ablog_postcard.html",
+        "ablog_recentposts.html",
+        "ablog_tagcloud.html",
+        "ablog_categories.html",
+        "ablog_archives.html",
+        "ablog_authors.html",
+        "ablog_languages.html",
+        "ablog_locations.html",
     ],
 }
 intersphinx_mapping = {
