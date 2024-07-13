@@ -76,9 +76,6 @@ html_sidebars = {
         "ablog_tagcloud.html",
         "ablog_categories.html",
         "ablog_archives.html",
-        "ablog_authors.html",
-        "ablog_languages.html",
-        "ablog_locations.html",
     ],
 }
 intersphinx_mapping = {
