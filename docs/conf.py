@@ -75,8 +75,6 @@ html_sidebars = {
         "ablog_sbt_tagcloud.html",
         "ablog_sbt_categories.html",
         "ablog_sbt_archives.html",
-        "ablog_sbt_authors.html",
-        "ablog_sbt_languages.html",
         "ablog_sbt_locations.html",
     ],
 }
