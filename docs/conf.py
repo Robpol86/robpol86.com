@@ -28,7 +28,6 @@ source_suffix = {
 }
 exclude_patterns = ["_build", "docs/manual/.ipynb_checkpoints"]
 html_static_path = ["_static"]
-html_css_files = ["ablog_book_theme_fix.css"]
 html_title = "ABlog"
 html_use_index = True
 html_domain_indices = False
@@ -71,14 +70,14 @@ fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.
 html_theme = "sphinx_book_theme"
 html_sidebars = {
     "**": [
-        "ablog_postcard.html",
-        "ablog_recentposts.html",
-        "ablog_tagcloud.html",
-        "ablog_categories.html",
-        "ablog_archives.html",
-        "ablog_authors.html",
-        "ablog_languages.html",
-        "ablog_locations.html",
+        "ablog_sbt_postcard.html",
+        "ablog_sbt_recentposts.html",
+        "ablog_sbt_tagcloud.html",
+        "ablog_sbt_categories.html",
+        "ablog_sbt_archives.html",
+        "ablog_sbt_authors.html",
+        "ablog_sbt_languages.html",
+        "ablog_sbt_locations.html",
     ],
 }
 intersphinx_mapping = {
