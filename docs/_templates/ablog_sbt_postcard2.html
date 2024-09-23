@@ -11,30 +11,6 @@
   {{ post.update.strftime(ablog.post_date_format) }}
 </li>
 {% endif %}
-{% if post.author %}
-<li id="ablog-sidebar-item author ablog__author">
-  <span>
-    {% if fa %}
-    <i class="fa-fw fa fa-user"></i>
-    {% else %}
-    {{ gettext('Author') }}:
-    {% endif %}
-    </span>
-  {% for coll in post.author %}
-  {% if coll|length %}
-  <a href="{{ pathto(coll.docname) }}">{{ coll }}</a>
-  {% if loop.index < post.author|length %}
-  ,
-  {% endif %}
-  {% else %}
-  {{ coll }}
-  {% if loop.index < post.author|length %}
-  ,
-  {% endif %}
-  {% endif %}
-  {% endfor %}
-</li>
-{% endif %}
 {% if post.location %}
 <li id="ablog-sidebar-item location ablog__location">
   <span>
@@ -53,30 +29,6 @@
   {% else %}
   {{ coll }}
   {% if loop.index < post.location|length %}
-  ,
-  {% endif %}
-  {% endif %}
-  {% endfor %}
-</li>
-{% endif %}
-{% if post.language %}
-<li id="ablog-sidebar-item language ablog__language">
-  <span>
-    {% if fa %}
-    <i class="fa-fw fa fa-language"></i>
-    {% else %}
-    {{ gettext('Language') }}:
-    {% endif %}
-    </span>
-  {% for coll in post.language %}
-  {% if coll|length %}
-  <a href="{{ pathto(coll.docname) }}">{{ coll }}</a>
-  {% if loop.index < post.language|length %}
-  ,
-  {% endif %}
-  {% else %}
-  {{ coll }}
-  {% if loop.index < post.language|length %}
   ,
   {% endif %}
   {% endif %}
