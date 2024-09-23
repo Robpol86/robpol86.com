@@ -1,16 +1,18 @@
 {% if ablog.archive %}
-<div class="ablog-sidebar-item ablog__archive">
-<h3>
-  <a href="{{ pathto(ablog.archive.docname) }}">{{ gettext('Archives') }}</a>
-</h3>
-<ul>
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="{{ pathto(ablog.archive.docname) }}"><span class="caption-text">{{ gettext('Archives') }}</span></a>
+</p>
+<ul class="nav bd-sidenav">
   {% for coll in ablog.archive %}
   {% if coll %}
-  <li>
-    <a href="{{ pathto(coll.docname) }}">{{ coll }} ({{ coll|length }})</a>
+  <li class="toctree-l1{% if pagename == coll.docname %} current active{% endif %}">
+    <a class="reference internal" href="{{ pathto(coll.docname) }}">{{ coll }} ({{ coll|length }})</a>
   </li>
   {% endif %}
   {% endfor %}
 </ul>
 </div>
+</nav>
 {% endif %}
