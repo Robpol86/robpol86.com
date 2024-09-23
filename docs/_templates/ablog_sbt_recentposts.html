@@ -1,17 +1,19 @@
 {% if ablog %}
+<nav class="bd-links bd-docs-nav" aria-label="Main">
 <div class="ablog-sidebar-item ablog__recentposts">
-<h3>
-  <a href="{{ pathto(ablog.blog_path) }}">{{ gettext('Recent Posts') }}</a>
-</h3>
-<ul>
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="{{ pathto(ablog.blog_path) }}"><span class="caption-text">{{ gettext('Recent Posts') }}</span></a>
+</p>
+<ul class="nav bd-sidenav">
   {% set pcount = 1 %}
   {% for recent in ablog.recent(5, pagename) %}
-  <li>
-    <a href="{{ pathto(recent.docname) }}{{ anchor(recent) }}">
+  <li class="toctree-l1{% if pagename == recent.docname %} current active{% endif %}">
+    <a class="reference internal" href="{{ pathto(recent.docname) }}{{ anchor(recent) }}">
       {{ recent.date.strftime(ablog.post_date_format_short) + " - " + recent.title }}
     </a>
   </li>
   {% endfor %}
 </ul>
 </div>
+</nav>
 {% endif %}
