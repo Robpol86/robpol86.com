@@ -1,7 +1,7 @@
 {% if ablog.tags %}
+<link rel="stylesheet" href="{{ pathto('_static/ablog/tagcloud.css', 1) }}" type="text/css" />
 <nav class="bd-links bd-docs-nav" aria-label="Main">
 <div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
-<link rel="stylesheet" href="{{ pathto('_static/ablog/tagcloud.css', 1) }}" type="text/css" />
 <p aria-level="2" class="caption" role="heading">
   <a class="reference internal" href="{{ pathto(ablog.tags.path) }}"><span class="caption-text">{{ gettext('Tags') }}</span></a>
 </p>
