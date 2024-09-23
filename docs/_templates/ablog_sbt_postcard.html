@@ -1,5 +1,6 @@
 {% if pagename in ablog %}
-<div class="ablog-sidebar-item ablog__postcard">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
 {% set fa = ablog.fontawesome %}
 {% set post = ablog[pagename] %}
 <h2>
@@ -19,8 +20,9 @@
   {% endif %}
   {% endif %}
 </h2>
-<ul>
+<ul class="nav bd-sidenav">
   {% include "ablog_sbt_postcard2.html" %}
 </ul>
 </div>
+</nav>
 {% endif %}

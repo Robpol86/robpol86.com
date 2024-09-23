@@ -22,7 +22,7 @@
     </span>
   {% for coll in post.location %}
   {% if coll|length %}
-  <a href="{{ pathto(coll.docname) }}">{{ coll }}</a>
+  <a href="{{ pathto(coll.docname) }}" style="display:inline">{{ coll }}</a>
   {% if loop.index < post.location|length %}
   ,
   {% endif %}
@@ -46,7 +46,7 @@
     </span>
   {% for coll in post.category %}
   {% if coll|length %}
-  <a href="{{ pathto(coll.docname) }}">{{ coll }}</a>
+  <a href="{{ pathto(coll.docname) }}" style="display:inline">{{ coll }}</a>
   {% if loop.index < post.category|length %}
   ,
   {% endif %}
@@ -77,7 +77,7 @@
     </span>
   {% for coll in post.tags %}
   {% if coll|length %}
-  <a href="{{ pathto(coll.docname) }}">{{ coll }}</a>
+  <a href="{{ pathto(coll.docname) }}" style="display:inline">{{ coll }}</a>
   {% if loop.index < post.tags|length %}
   {% endif %}
   {% else %}
@@ -107,7 +107,7 @@
   {% if fa %}
   <i class="fa-fw fa fa-comments"></i>
   {% endif %}
-  <a href="{%- if pagename != post.docname -%} {{ pathto(post.docname) }} {%- endif -%} #disqus_thread" data-disqus-identifier="/{{ post.docname }}/" >
+  <a href="{%- if pagename != post.docname -%} {{ pathto(post.docname) }} {%- endif -%} #disqus_thread" data-disqus-identifier="/{{ post.docname }}/" style="display:inline">
     {% if not fa %}
     Comments
     {% endif %}
