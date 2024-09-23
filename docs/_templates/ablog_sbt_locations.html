@@ -1,16 +1,19 @@
 {% if ablog.location %}
-<div class="ablog-sidebar-item ablog__locations">
-<h3>
-  <a href="{{ pathto(ablog.location.path) }}">{{ gettext('Locations') }}</a>
-</h3>
-<ul>
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  {# TODO <a class="caption-text reference internal" href="{{ pathto(ablog.location.path) }}">{{ gettext('Locations') }}</a> #}
+  <span class="caption-text">{{ gettext('Locations') }}</span>
+</p>
+<ul class="nav bd-sidenav">
   {% for coll in ablog.location %}
   {% if coll %}
-  <li>
-    <a href="{{ pathto(coll.docname) }}">{{ coll }} ({{ coll|length }})</a>
+  <li class="toctree-l1{% if pagename == coll.docname %} current active{% endif %}">
+    <a class="reference internal" href="{{ pathto(coll.docname) }}">{{ coll }} ({{ coll|length }})</a>
   </li>
   {% endif %}
   {% endfor %}
 </ul>
 </div>
+</nav>
 {% endif %}
