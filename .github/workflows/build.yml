@@ -38,6 +38,20 @@ jobs:
       - name: Setup Dependencies
         uses: ./.github/actions/deps
 
+      - name: Run Tests
+        if: '! inputs.skip_lints_tests'
+        env:
+          PY_COLORS: 1
+        run: echo TODO
+
+      - name: Run Lints
+        if: '! inputs.skip_lints_tests'
+        run: echo TODO
+
+      - name: Run Integration Tests
+        if: '! inputs.skip_lints_tests'
+        run: echo TODO
+
       - name: Build
         env:  # Note: these can be empty
           SPHINX_GITHUB_BRANCH: "${{ inputs.sphinx_github_branch }}"
