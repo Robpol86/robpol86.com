@@ -4,8 +4,6 @@ import re
 import time
 from pathlib import Path
 
-import ablog
-from packaging.version import parse as _parse
 from sphinx import addnodes
 
 from robpol86_com import __license__, __version__ as version
@@ -13,20 +11,15 @@ from robpol86_com import __license__, __version__ as version
 
 # General configuration.
 copyright = f'{time.strftime("%Y")}, Robpol86'  # pylint: disable=redefined-builtin  # noqa
-exclude_patterns = ["_build", "docs/manual/.ipynb_checkpoints"]  # TODO remove -1
+exclude_patterns = ["_build"]
 extensions = [
+    "myst_parser",  # https://myst-parser.readthedocs.io
     "sphinx.ext.autodoc",
-    "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
-    "sphinx.ext.todo",
-    "sphinx.ext.ifconfig",
     "sphinx.ext.extlinks",
-    "ablog",
-    "myst_parser",
+    "ablog",  # https://ablog.readthedocs.io/
 ]
 language = "en"
-locale_dirs = [str(Path(ablog.__file__).parent / Path("locales"))]
-master_doc = "index"
 project = "Robpol86.com"
 source_suffix = {
     ".rst": "restructuredtext",
