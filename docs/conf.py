@@ -43,7 +43,7 @@ html_show_sourcelink = True
 html_sidebars = {
     "**": [
         "navbar-logo.html",
-        "search-field.html",  # TODO fix style
+        "search-button-field.html",
         "ablog_sbt_postcard.html",
         "ablog_sbt_recentposts.html",
         "ablog_sbt_tagcloud.html",
