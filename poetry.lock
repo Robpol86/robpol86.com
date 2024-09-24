@@ -1454,24 +1454,6 @@ typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
 
 [[package]]
-name = "sunpy-sphinx-theme"
-version = "2.0.16"
-description = "The sphinx theme for the SunPy website and documentation."
-optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "sunpy_sphinx_theme-2.0.16-py3-none-any.whl", hash = "sha256:17b2d6fb6468ec8a8671c14f512b5c97238b4cfafe850d992840295deedcc7a0"},
-    {file = "sunpy_sphinx_theme-2.0.16.tar.gz", hash = "sha256:84e63b8c9e72ffc4bd02f4cd3c8b1d4d1a33711ae7b7a18392cc7bb933a958f9"},
-]
-
-[package.dependencies]
-pydata-sphinx-theme = ">=0.15.0,<0.16.0"
-sphinx = "*"
-
-[package.extras]
-docs = ["matplotlib", "sphinx-automodapi", "sphinx-copybutton", "sphinx-design", "sphinx-gallery", "sphinx-hoverxref", "sphinx-togglebutton", "sunpy"]
-
-[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -1794,4 +1776,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "18e011bd7e6fe2b0ce2dfe1b5ef7c9c8b6a76f8988fc58bb19daaaacaa3db138"
+content-hash = "9b2afac0dcb5b979752f55e7cec20aa8eb75bc6ea04b8892c467d593959cf0a1"

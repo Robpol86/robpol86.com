@@ -25,7 +25,6 @@ myst-parser = "*"
 sphinx = "*"
 sphinx-book-theme = "*"
 sphinx-copybutton = "*"
-sunpy-sphinx-theme = "*"
 
 [tool.poetry.group.dev]
 optional = true
