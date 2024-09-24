@@ -30,8 +30,8 @@ templates_path = ["_templates"]
 
 # Options for HTML output.
 html_domain_indices = False
-html_favicon = "_static/ablog.ico"
-html_logo = "_static/ablog.png"
+html_favicon = "_static/favicon.ico"
+html_logo = "_static/logo.png"
 html_show_sourcelink = True
 html_sidebars = {
     "**": [
