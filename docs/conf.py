@@ -25,8 +25,13 @@ extensions = [
     "myst_parser",
 ]
 language = "en"
+locale_dirs = [str(Path(ablog.__file__).parent / Path("locales"))]
 master_doc = "index"
 project = "Robpol86.com"
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".md": "markdown",
+}
 templates_path = ["_templates"]
 
 
@@ -37,6 +42,8 @@ html_logo = "_static/ablog.png"
 html_show_sourcelink = True
 html_sidebars = {
     "**": [
+        "navbar-logo.html",
+        "search-field.html",  # TODO fix style
         "ablog_sbt_postcard.html",
         "ablog_sbt_recentposts.html",
         "ablog_sbt_tagcloud.html",
@@ -51,14 +58,47 @@ html_title = project
 html_use_index = True
 
 
+# Linkcheck settings.
+user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0"
+linkcheck_allowed_redirects = {
+    r"https://www.amazon.com/": "https://www.amazon.com/[^/]+/dp/",
+    r"https://www.apc.com/us/en/product/\w+$": "https://www.apc.com/us/en/product/",
+    r"https://www.mcmaster.com/": "https://www.mcmaster.com/ShellHomepageRefresh[.]aspx[?]searchTerm=",
+    r"https://www.reddit.com/r/": r"https://www.reddit.com/r/.*?rdt=[\d]+",
+    r"https://youtu.be/\w+$": "https://www.youtube.com/watch[?]",
+}
+linkcheck_exclude_documents = [
+    # TODO remove all
+    "atrix_lapdock",
+    "bareos_tape_backup",
+    "flash_droid_cricket",
+    "raspberry_pi_luks",
+    "raspberry_pi_project_fi",
+    "rns_510_vim",
+    "root_certificate_authority",
+    "wireless_charging_car_dock",
+]
+linkcheck_ignore = [
+    r"[/.]*genindex.html",  # TODO remove this
+    r"https://[\w.]*mibsolution.one/",
+    r"https://media.vw.com/",  # All curls result in 403
+    r"https://mega.nz/(file|folder)/\w+#",
+    r"https://parts.vw.com/",  # Nondeterministic rate limiting in GitHub runner
+    r"https://torkliftcentral.com/",
+    r"https://www.apc.com/",
+    r"https://www.ecstuning.com/",  # All curls result in 403
+    r"https://www.howardforums.com/",
+    r"https://www.qnx.com/developers/docs/[\w.]+/#",
+    r"https://www.reddit.com/",
+    r"https?://192.168.\d+.\d+/",
+]
+linkcheck_retries = 3
+linkcheck_timeout = 5
 
 
+# Ablog settings.
 ablog_builder = "dirhtml"
 ablog_website = "_website"
-source_suffix = {
-    ".rst": "restructuredtext",
-    ".md": "markdown",
-}
 blog_title = "ABlog"
 blog_baseurl = "https://ablog.readthedocs.io/"
 blog_locations = {
@@ -90,7 +130,10 @@ blog_feed_templates = {
 disqus_shortname = "https-ablog-readthedocs-io"
 disqus_pages = True
 fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-intersphinx_mapping = {
+
+
+# Extension settings.
+intersphinx_mapping = {  # TODO remove
     "python": ("https://docs.python.org/", None),
     "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
 }
@@ -108,7 +151,6 @@ rst_epilog = """
 .. _Read The Docs: https://readthedocs.org/
 .. _Alabaster: https://github.com/bitprophet/alabaster
 """
-locale_dirs = [str(Path(ablog.__file__).parent / Path("locales"))]
 
 
 def parse_event(env, sig, signode):
