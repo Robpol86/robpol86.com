@@ -1,12 +1,19 @@
+"""Sphinx configuration file."""
+
 import re
+import time
 from pathlib import Path
 
 import ablog
 from packaging.version import parse as _parse
 from sphinx import addnodes
 
-ablog_builder = "dirhtml"
-ablog_website = "_website"
+from robpol86_com import __license__, __version__ as version
+
+
+# General configuration.
+copyright = f'{time.strftime("%Y")}, Robpol86'  # pylint: disable=redefined-builtin  # noqa
+exclude_patterns = ["_build", "docs/manual/.ipynb_checkpoints"]  # TODO remove -1
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.doctest",
@@ -17,24 +24,41 @@ extensions = [
     "ablog",
     "myst_parser",
 ]
-
-version = str(_parse(ablog.__version__))
-project = "ABlog"
-copyright = "2014-2022, ABlog Team"  # NOQA: A001
+language = "en"
 master_doc = "index"
+project = "Robpol86.com"
+templates_path = ["_templates"]
+
+
+# Options for HTML output.
+html_domain_indices = False
+html_favicon = "_static/ablog.ico"
+html_logo = "_static/ablog.png"
+html_show_sourcelink = True
+html_sidebars = {
+    "**": [
+        "ablog_sbt_postcard.html",
+        "ablog_sbt_recentposts.html",
+        "ablog_sbt_tagcloud.html",
+        "ablog_sbt_categories.html",
+        "ablog_sbt_archives.html",
+        "ablog_sbt_locations.html",
+    ],
+}
+html_static_path = ["_static"]
+html_theme = "sphinx_book_theme"
+html_title = project
+html_use_index = True
+
+
+
+
+ablog_builder = "dirhtml"
+ablog_website = "_website"
 source_suffix = {
     ".rst": "restructuredtext",
     ".md": "markdown",
 }
-exclude_patterns = ["_build", "docs/manual/.ipynb_checkpoints"]
-html_static_path = ["_static"]
-html_title = "ABlog"
-html_use_index = True
-html_domain_indices = False
-html_show_sourcelink = True
-html_favicon = "_static/ablog.ico"
-html_logo = "_static/ablog.png"
-templates_path = ["_templates"]
 blog_title = "ABlog"
 blog_baseurl = "https://ablog.readthedocs.io/"
 blog_locations = {
@@ -48,7 +72,6 @@ blog_languages = {
     "zh_CN": ("Chinese", None),
 }
 blog_default_language = "en"
-language = "en"
 blog_authors = {
     "Ahmet": ("Ahmet Bakan", "https://ahmetbakan.com"),
     "Luc": ("Luc Saffre", "https://saffre-rumma.net/luc/"),
@@ -67,17 +90,6 @@ blog_feed_templates = {
 disqus_shortname = "https-ablog-readthedocs-io"
 disqus_pages = True
 fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-html_theme = "sphinx_book_theme"
-html_sidebars = {
-    "**": [
-        "ablog_sbt_postcard.html",
-        "ablog_sbt_recentposts.html",
-        "ablog_sbt_tagcloud.html",
-        "ablog_sbt_categories.html",
-        "ablog_sbt_archives.html",
-        "ablog_sbt_locations.html",
-    ],
-}
 intersphinx_mapping = {
     "python": ("https://docs.python.org/", None),
     "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
