@@ -10,7 +10,8 @@ from robpol86_com import __license__, __version__ as version
 
 
 # General configuration.
-copyright = f'{time.strftime("%Y")}, Robpol86'  # pylint: disable=redefined-builtin  # noqa
+author = "Robpol86"
+copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-builtin  # noqa
 exclude_patterns = ["_build"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
