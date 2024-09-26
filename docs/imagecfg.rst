@@ -1,8 +1,8 @@
 :blogpost: true
 :date: 2009-11-21
 :author: Robpol86
-:location: Internet
-:category: Guides
+:location: TODO
+:category: TODO
 
 ========
 ImageCFG

@@ -1,8 +1,8 @@
 :blogpost: true
-:date: Aug 9, 2015
+:date: 2011-08-11
 :author: Robpol86
-:location: Internet
-:category: Guides, Vehicles
+:location: TODO
+:category: TODO
 
 ==========================
 US RNS-510 Video In Motion
