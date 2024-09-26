@@ -177,3 +177,20 @@ def setup(app):
     )
     fdesc = GroupedField("parameter", label="Parameters", names=["param"], can_collapse=True)
     app.add_object_type("event", "event", "pair: %s; event", parse_event, doc_field_types=[fdesc])
+
+
+"""
+TODOs:
+* Migrate all pages unreviewed
+* Ensure post dates are accurrate
+* Decide upon tags, categories, and locations for all my pages
+* Remove placeholder pages
+* Disqus
+* Confirm all pages keep the same URLs as main branch
+* Revisit conf.py
+* Revisit pyproject.toml
+* Revisit GitHub Actions
+* robots.txt and .htaccess
+* sitemap.xml
+* 404 page
+"""
