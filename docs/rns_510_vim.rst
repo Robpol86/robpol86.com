@@ -13,6 +13,9 @@ head unit to play DVD video while driving so that my passengers can watch their 
 I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
 All you need is a CD-R and a CD burner.
 
+Files
+=====
+
 .. warning::
 
     Obviously playing DVDs while driving is dangerous and in the USA you'll probably get pulled over for it if a cop
