@@ -16,8 +16,9 @@ exclude_patterns = ["_build"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "sphinx.ext.autodoc",
-    "sphinx.ext.intersphinx",
     "sphinx.ext.extlinks",
+    "sphinx.ext.intersphinx",
+    "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "ablog",  # https://ablog.readthedocs.io/
 ]
 language = "en"
