@@ -183,9 +183,11 @@ def setup(app):
 TODOs:
 * Migrate all pages unreviewed
 * Ensure post dates are accurrate
+* verify summaries in /blog/category/todo.html
 * Decide upon tags, categories, and locations for all my pages
 * Remove placeholder pages
 * Disqus
+* closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
 * Revisit conf.py
 * Revisit pyproject.toml
@@ -193,4 +195,5 @@ TODOs:
 * robots.txt and .htaccess
 * sitemap.xml
 * 404 page
+* log 404s and confirm me visiting bad pages logs correctly
 """
