@@ -1,0 +1,242 @@
+Computing times...87 processes; 404 threads;
+CPU states: 90.4% idle, 7.8% user, 1.6% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:06   1.67% SensorHandler
+        1    11  12 Run       0:00:00   1.67% kernel
+   389151     4  57 Sem       0:00:02   1.27% ECD
+  1015892     1  12 Rply      0:00:00   0.78% top
+   389151     3  52 Rcv       0:00:01   0.58% ECD
+   442414     2  12 Sem       0:00:00   0.39% CarServices
+   413737     2  15 Sem       0:00:00   0.39% MostCanRouter
+    49163     3  20 Intr      0:00:00   0.29% EasyLinkMgr
+   430124     5  10 CdV       0:00:00   0.19% j9
+   495680    14  14 CdV       0:00:00   0.19% TunerManager_SDARS
+
+             Min        Max       Average
+CPU idle:     90%        90%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+# top -i 10 -d
+Computing times...87 processes; 404 threads;
+CPU states: 90.0% idle, 8.4% user, 1.4% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:06   2.35% SensorHandler
+        1    10  12 Run       0:00:00   1.47% kernel
+   389151     4  57 Sem       0:00:03   1.07% ECD
+  1024084     1  12 Rply      0:00:00   0.78% top
+   442414     2  12 Sem       0:00:00   0.49% CarServices
+   430124    19  13 CdV       0:00:05   0.39% j9
+   495680    16  10 CdV       0:00:01   0.39% TunerManager_SDARS
+   413737     2  15 Sem       0:00:00   0.29% MostCanRouter
+   389151     3  52 Rcv       0:00:01   0.19% ECD
+    49163     3  20 Intr      0:00:00   0.19% EasyLinkMgr
+
+             Min        Max       Average
+CPU idle:     90%        90%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 91.6% idle, 7.6% user, 0.6% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:06   2.25% SensorHandler
+   430124     4  13 CdV       0:00:03   0.69% j9
+        1    10  12 Run       0:00:00   0.65% kernel
+   389151     4  57 Sem       0:00:03   0.59% ECD
+   389151     3  52 Rcv       0:00:01   0.41% ECD
+   430124    19  13 CdV       0:00:05   0.31% j9
+    49163     3  20 Intr      0:00:00   0.29% EasyLinkMgr
+   655437     2  10 Rdy       0:00:00   0.23% AndroidAuto
+   495680    16  10 CdV       0:00:01   0.21% TunerManager_SDARS
+   430124    12  12 CdV       0:00:00   0.13% j9
+
+             Min        Max       Average
+CPU idle:     90%        91%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 92.6% idle, 6.6% user, 0.7% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.70% SensorHandler
+        1    10  12 Run       0:00:00   0.70% kernel
+   389151     4  57 Sem       0:00:03   0.60% ECD
+    49163     3  20 Intr      0:00:01   0.40% EasyLinkMgr
+   430124     4  13 CdV       0:00:03   0.28% j9
+   389151     3  52 Rcv       0:00:01   0.28% ECD
+   430124    19  13 CdV       0:00:05   0.22% j9
+   495680    16  10 CdV       0:00:01   0.20% TunerManager_SDARS
+   430124    10  16 Sem       0:00:00   0.20% j9
+  1024084     1  12 Rply      0:00:00   0.20% top
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 90.3% idle, 9.1% user, 0.4% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.88% SensorHandler
+   430124    19  13 CdV       0:00:05   1.36% j9
+   389151     4  57 Sem       0:00:03   1.00% ECD
+   389151     3  52 Rcv       0:00:01   0.60% ECD
+        1    10  12 Run       0:00:00   0.40% kernel
+   430124     4  13 CdV       0:00:03   0.38% j9
+   495680    16  10 CdV       0:00:01   0.22% TunerManager_SDARS
+    49163     3  20 Intr      0:00:01   0.22% EasyLinkMgr
+   442414     2  12 Sem       0:00:00   0.20% CarServices
+   487489     3  10 Sem       0:00:00   0.20% TunerManager
+
+             Min        Max       Average
+CPU idle:     90%        92%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 91.9% idle, 7.5% user, 0.5% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   2.12% SensorHandler
+   389151     4  57 Sem       0:00:03   0.84% ECD
+        1    10  12 Run       0:00:00   0.52% kernel
+   430124    19  13 CdV       0:00:05   0.46% j9
+   389151     3  52 Rcv       0:00:01   0.46% ECD
+   430124     4  13 CdV       0:00:03   0.42% j9
+    49163     3  20 Intr      0:00:01   0.30% EasyLinkMgr
+   495680    16  10 CdV       0:00:01   0.24% TunerManager_SDARS
+   413737     2  15 Sem       0:00:00   0.20% MostCanRouter
+   655437     2  10 Sem       0:00:00   0.18% AndroidAuto
+
+             Min        Max       Average
+CPU idle:     90%        92%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 92.8% idle, 6.4% user, 0.6% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.96% SensorHandler
+   389151     4  57 Sem       0:00:03   0.78% ECD
+        1    10  12 Run       0:00:00   0.68% kernel
+   389151     3  52 Rcv       0:00:01   0.46% ECD
+   430124     4  13 CdV       0:00:03   0.24% j9
+   430124    19  13 CdV       0:00:05   0.20% j9
+   430124    13  12 CdV       0:00:00   0.18% j9
+   413737     2  15 Sem       0:00:00   0.18% MostCanRouter
+   671823     2  10 Sem       0:00:00   0.18% CarPlay
+    49163     3  20 Intr      0:00:01   0.16% EasyLinkMgr
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 90.3% idle, 8.8% user, 0.7% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.79% SensorHandler
+   430124    19  13 CdV       0:00:05   1.37% j9
+   389151     4  57 Sem       0:00:03   0.99% ECD
+        1    10  12 Run       0:00:00   0.73% kernel
+   430124     4  13 CdV       0:00:03   0.47% j9
+   389151     3  52 Rcv       0:00:01   0.39% ECD
+    49163     3  20 Intr      0:00:01   0.37% EasyLinkMgr
+   495680    16  10 CdV       0:00:01   0.19% TunerManager_SDARS
+   430124     5  10 CdV       0:00:00   0.19% j9
+  1024084     1  12 Rply      0:00:00   0.19% top
+
+             Min        Max       Average
+CPU idle:     90%        92%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 92.0% idle, 7.3% user, 0.5% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   2.07% SensorHandler
+   389151     4  57 Sem       0:00:03   0.79% ECD
+        1    10  12 Run       0:00:00   0.57% kernel
+   430124     4  13 CdV       0:00:03   0.47% j9
+   430124    19  13 CdV       0:00:05   0.41% j9
+   389151     3  52 Rcv       0:00:01   0.35% ECD
+  1024084     1  12 Rply      0:00:00   0.25% top
+    49163     3  20 Intr      0:00:01   0.23% EasyLinkMgr
+   655437     2  10 Rdy       0:00:00   0.23% AndroidAuto
+   413737     2  15 Sem       0:00:00   0.19% MostCanRouter
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 91.8% idle, 7.6% user, 0.5% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   2.09% SensorHandler
+   389151     4  57 Sem       0:00:03   0.97% ECD
+        1    10  12 Run       0:00:00   0.51% kernel
+   389151     3  52 Rcv       0:00:01   0.41% ECD
+   430124     4  13 CdV       0:00:03   0.37% j9
+   495680    16  10 CdV       0:00:01   0.29% TunerManager_SDARS
+    49163     3  20 Intr      0:00:01   0.27% EasyLinkMgr
+   430124    19  13 CdV       0:00:05   0.25% j9
+   442414     2  12 Sem       0:00:00   0.15% CarServices
+   430124    13  12 CdV       0:00:00   0.15% j9
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 91.4% idle, 8.0% user, 0.5% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.97% SensorHandler
+   430124    19  13 CdV       0:00:05   1.19% j9
+   389151     4  57 Sem       0:00:03   0.95% ECD
+   389151     3  52 Rcv       0:00:01   0.45% ECD
+        1    10  15 Rcv       0:00:00   0.35% kernel
+   430124     4  13 CdV       0:00:03   0.25% j9
+    49163     3  20 Intr      0:00:01   0.21% EasyLinkMgr
+        1    11  12 Run       0:00:00   0.19% kernel
+   413737     2  15 Sem       0:00:00   0.17% MostCanRouter
+   442413     6  52 Rcv       0:00:00   0.17% SensorHandler
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
