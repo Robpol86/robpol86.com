@@ -202,5 +202,6 @@ TODOs:
 * log 404s and confirm me visiting bad pages logs correctly
 * apple favicons
 * revisit all extension settings here
+* fix imgur-embed in latest sphinx
 * convert imgur-embed into list-table of figures
 """
