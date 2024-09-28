@@ -1,8 +1,9 @@
 :blogpost: true
 :date: 2015-08-23
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: San Francisco
+:category: Guides, TODO
+:tags: TODO
 
 ============================
 Bareos Tape Backup on a 124T

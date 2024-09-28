@@ -1,8 +1,9 @@
 :blogpost: true
 :date: 2010-07-03
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: Austin, San Francisco
+:category: Projects, TODO
+:tags: TODO
 
 ====================
 Jetta SportWagen TDI

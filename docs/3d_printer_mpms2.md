@@ -2,9 +2,9 @@
 blogpost: true
 date: 2021-10-21
 author: Robpol86
-location: TODO
-category: TODO
-tags: 3d-printing
+location: San Francisco
+category: Projects, TODO
+tags: 3d-printing, TODO
 ---
 
 # Monoprice Maker Select v2

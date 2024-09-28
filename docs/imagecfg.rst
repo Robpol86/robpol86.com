@@ -1,8 +1,9 @@
 :blogpost: true
-:date: 2009-11-21
+:date: 2003-12-03
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: Victoria
+:category: Guides, TODO
+:tags: TODO
 
 ========
 ImageCFG

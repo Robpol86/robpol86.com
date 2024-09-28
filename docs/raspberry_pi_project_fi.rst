@@ -1,8 +1,9 @@
 :blogpost: true
 :date: 2016-12-03
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: San Francisco
+:category: Guides, TODO
+:tags: TODO
 
 ==========================
 Raspberry Pi on Project Fi

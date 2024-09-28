@@ -2,9 +2,9 @@
 blogpost: true
 date: 2022-06-30
 author: Robpol86
-location: TODO
-category: TODO
-tags: homelab
+location: Austin
+category: Projects, TODO
+tags: homelab, TODO
 ---
 
 # Server Cabinet June 2022

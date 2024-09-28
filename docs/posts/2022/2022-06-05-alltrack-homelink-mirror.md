@@ -2,9 +2,9 @@
 blogpost: true
 date: 2022-06-05
 author: Robpol86
-location: TODO
-category: TODO
-tags: alltrack, vehicle
+location: Austin
+category: Guides, TODO
+tags: alltrack, vehicle, TODO
 ---
 
 # HomeLink Rearview Mirror

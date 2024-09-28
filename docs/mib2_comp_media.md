@@ -2,9 +2,9 @@
 blogpost: true
 date: 2022-01-04
 author: Robpol86
-location: TODO
-category: TODO
-tags: hacking, vehicle
+location: San Francisco
+category: Guides, TODO
+tags: hacking, vehicle, TODO
 ---
 
 # MIB2 Composition Media Hacking

@@ -1,8 +1,9 @@
 :blogpost: true
 :date: 2011-04-08
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: Austin
+:category: Guides, TODO
+:tags: TODO
 
 ==================================
 Flashing Motorola Droid to Cricket

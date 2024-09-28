@@ -1,8 +1,9 @@
 :blogpost: true
 :date: 2011-08-11
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: Austin
+:category: Guides, TODO
+:tags: TODO
 
 ==========================
 US RNS-510 Video In Motion

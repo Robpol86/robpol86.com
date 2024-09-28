@@ -1,8 +1,9 @@
 :blogpost: true
 :date: 2017-02-12
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: San Francisco
+:category: Guides, TODO
+:tags: TODO
 
 =================================
 Raspberry Pi LUKS Root Encryption

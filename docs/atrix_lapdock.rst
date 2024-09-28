@@ -1,8 +1,9 @@
 :blogpost: true
 :date: 2012-06-30
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: Austin
+:category: Projects, TODO
+:tags: TODO
 
 ========================
 Atrix Lapdock Other Uses

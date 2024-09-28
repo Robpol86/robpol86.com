@@ -2,9 +2,9 @@
 blogpost: true
 date: 2021-08-27
 author: Robpol86
-location: TODO
-category: TODO
-tags: alltrack, vehicle
+location: San Francisco, Austin
+category: Projects, TODO
+tags: alltrack, vehicle, TODO
 ---
 
 # Golf Alltrack SE

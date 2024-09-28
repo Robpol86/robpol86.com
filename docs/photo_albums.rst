@@ -1,9 +1,9 @@
 :blogpost: true
 :date: 2013-07-14
 :author: Robpol86
-:location: TODO
-:category: TODO
-:tags: photos, desk, homelab
+:location: Austin, San Francisco
+:category: Photos, TODO
+:tags: photos, desk, homelab, TODO
 
 ============
 Photo Albums

@@ -1,10 +1,10 @@
 ---
 blogpost: true
-date: 2022-10-24
+date: 2021-11-11
 author: Robpol86
-location: TODO
-category: TODO
-tags: hacking, hotspot
+location: San Francisco
+category: Guides, TODO
+tags: hacking, hotspot, TODO
 ---
 
 # T-Mobile Franklin T9 Hacking

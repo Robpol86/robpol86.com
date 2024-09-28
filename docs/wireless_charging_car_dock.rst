@@ -1,8 +1,9 @@
 :blogpost: true
 :date: 2013-11-16
 :author: Robpol86
-:location: TODO
-:category: TODO
+:location: San Francisco
+:category: Projects, TODO
+:tags: TODO
 
 ==========================
 Wireless Charging Car Dock

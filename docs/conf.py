@@ -197,7 +197,7 @@ def setup(app):
 
 """
 TODOs:
-* Decide upon tags, categories, and locations for all my pages
+* Decide upon tags and categories for all my pages
 * Remove placeholder pages
 * Ensure post dates are accurrate
 * Disqus
@@ -216,4 +216,5 @@ TODOs:
 * revisit all extension settings here
 * fix imgur-embed in latest sphinx
 * validate rss
+* fix tags having too much whitespace with commas
 """
