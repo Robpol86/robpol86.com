@@ -55,12 +55,13 @@ html_sidebars = {
 html_static_path = ["_static"]
 html_theme = "sphinx_book_theme"
 html_theme_options = {
+    "default_mode": "dark",
     "path_to_docs": "docs",
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
     "use_download_button": False,
-    "use_source_button": not not GIT_URL,  # pylint: disable=unneeded-not
     "use_fullscreen_button": False,
+    "use_source_button": not not GIT_URL,  # pylint: disable=unneeded-not
 }
 html_title = project
 html_use_index = True
@@ -135,7 +136,7 @@ blog_feed_templates = {
         "content": "{{ title }}{% for tag in post.tags %} #{{ tag.name|trim()|replace(' ', '') }} {% endfor %}",
     },
 }
-disqus_shortname = "https-ablog-readthedocs-io"
+disqus_shortname = "rob86wiki"
 disqus_pages = True
 fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 
