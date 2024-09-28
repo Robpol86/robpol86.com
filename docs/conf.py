@@ -196,4 +196,5 @@ TODOs:
 * sitemap.xml
 * 404 page
 * log 404s and confirm me visiting bad pages logs correctly
+* apple favicons
 """
