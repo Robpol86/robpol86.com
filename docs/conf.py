@@ -1,5 +1,6 @@
 """Sphinx configuration file."""
 
+import os
 import re
 import time
 from pathlib import Path
@@ -7,6 +8,9 @@ from pathlib import Path
 from sphinx import addnodes
 
 from robpol86_com import __license__, __version__ as version
+
+GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
+GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.get("GITHUB_REPOSITORY", "") else None
 
 
 # General configuration.
@@ -24,17 +28,17 @@ extensions = [
 ]
 language = "en"
 project = "Robpol86.com"
-source_suffix = {
-    ".rst": "restructuredtext",
-    ".md": "markdown",
-}
+pygments_style = "vs"
+release = version
 templates_path = ["_templates"]
 
 
 # Options for HTML output.
+html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "") or "http://localhost:8000/"
+html_copy_source = False
 html_domain_indices = False
 html_favicon = "_static/favicon.ico"
-html_logo = "_static/logo.png"
+html_logo = "_static/logo.svg"
 html_show_sourcelink = True
 html_sidebars = {
     "**": [
@@ -50,6 +54,14 @@ html_sidebars = {
 }
 html_static_path = ["_static"]
 html_theme = "sphinx_book_theme"
+html_theme_options = {
+    "path_to_docs": "docs",
+    "repository_branch": GIT_BRANCH,
+    "repository_url": GIT_URL,
+    "use_download_button": False,
+    "use_edit_page_button": not not GIT_URL,  # pylint: disable=unneeded-not
+    "use_fullscreen_button": False,
+}
 html_title = project
 html_use_index = True
 
@@ -96,7 +108,7 @@ linkcheck_timeout = 5
 ablog_builder = "dirhtml"
 ablog_website = "_website"
 blog_title = "ABlog"
-blog_baseurl = "https://ablog.readthedocs.io/"
+blog_baseurl = html_baseurl
 blog_locations = {
     "Pittsburgh": ("Pittsburgh, PA", "https://en.wikipedia.org/wiki/Pittsburgh"),
     "San Fran": ("San Francisco, CA", "https://en.wikipedia.org/wiki/San_Francisco"),
@@ -185,7 +197,6 @@ def setup(app):
 
 """
 TODOs:
-* verify summaries in /blog/category/todo.html
 * Decide upon tags, categories, and locations for all my pages
 * Remove placeholder pages
 * Ensure post dates are accurrate
