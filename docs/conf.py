@@ -19,6 +19,7 @@ extensions = [
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
+    "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
     "ablog",  # https://ablog.readthedocs.io/
 ]
 language = "en"
