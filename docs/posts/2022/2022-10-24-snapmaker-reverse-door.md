@@ -123,4 +123,11 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
     %
     Teflon tube routing: enclosure through-hole
     :::
+
+* - :::{imgur-figure} aDOjJnX
+    %
+    Teflon tube routing: print head
+    :::
+  -
+  -
 ```
