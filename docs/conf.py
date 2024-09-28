@@ -204,4 +204,5 @@ TODOs:
 * revisit all extension settings here
 * fix imgur-embed in latest sphinx
 * convert imgur-embed into list-table of figures
+* split up photo albums into independent posts, link to them in the original page
 """
