@@ -137,6 +137,8 @@ extlinks = {
     "issue": ("https://github.com/sunpy/ablog/issues/%s", "issue %s"),
     "pull": ("https://github.com/sunpy/ablog/pull/%s", "pull request %s"),
 }
+myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
+myst_url_schemes = ("http", "https", "mailto")
 rst_epilog = """
 .. _Sphinx: http://sphinx-doc.org/
 .. _Python: https://python.org
@@ -197,4 +199,5 @@ TODOs:
 * 404 page
 * log 404s and confirm me visiting bad pages logs correctly
 * apple favicons
+* revisit all extension settings here
 """
