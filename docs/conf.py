@@ -59,7 +59,7 @@ html_theme_options = {
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
     "use_download_button": False,
-    "use_edit_page_button": not not GIT_URL,  # pylint: disable=unneeded-not
+    "use_source_button": not not GIT_URL,  # pylint: disable=unneeded-not
     "use_fullscreen_button": False,
 }
 html_title = project
@@ -215,4 +215,5 @@ TODOs:
 * apple favicons
 * revisit all extension settings here
 * fix imgur-embed in latest sphinx
+* validate rss
 """
