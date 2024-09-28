@@ -185,7 +185,6 @@ def setup(app):
 
 """
 TODOs:
-* index.md
 * verify summaries in /blog/category/todo.html
 * Decide upon tags, categories, and locations for all my pages
 * Remove placeholder pages
