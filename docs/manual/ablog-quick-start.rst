@@ -10,7 +10,7 @@ ABlog Quick Start
    :category: Manual
    :location: SF
 
-This short walk through of blogging work flow assumes that you have already installed ABlog. If not, see :ref:`installation` guide.
+This short walk through of blogging work flow assumes that you have already installed ABlog. If not, see installation guide.
 
 *Note that this post is a working draft. Feel free to revise it on GitHub.*
 
