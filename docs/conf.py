@@ -185,14 +185,16 @@ def setup(app):
 
 """
 TODOs:
-* Migrate all pages unreviewed
-* Ensure post dates are accurrate
+* index.md
 * verify summaries in /blog/category/todo.html
 * Decide upon tags, categories, and locations for all my pages
 * Remove placeholder pages
+* Ensure post dates are accurrate
 * Disqus
+* convert imgur-embed into list-table of figures
 * closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
+* split up photo albums into independent posts, link to them in the original page
 * Revisit conf.py
 * Revisit pyproject.toml
 * Revisit GitHub Actions
@@ -203,6 +205,4 @@ TODOs:
 * apple favicons
 * revisit all extension settings here
 * fix imgur-embed in latest sphinx
-* convert imgur-embed into list-table of figures
-* split up photo albums into independent posts, link to them in the original page
 """
