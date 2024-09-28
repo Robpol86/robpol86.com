@@ -26,5 +26,5 @@ enough to get a contracting position shortly after at Symantec and eventually go
 :hidden:
 :glob:
 
-*/*
+**
 ```

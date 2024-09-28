@@ -197,8 +197,8 @@ def setup(app):
 
 """
 TODOs:
+* Remove parse_event and sphinx.ext extensions
 * Decide upon tags and categories for all my pages
-* Remove placeholder pages
 * Ensure post dates are accurrate
 * Disqus
 * convert imgur-embed into list-table of figures
