@@ -1,11 +1,8 @@
 """Sphinx configuration file."""
 
+# pylint: disable=invalid-name
 import os
-import re
 import time
-from pathlib import Path
-
-from sphinx import addnodes
 
 from robpol86_com import __license__, __version__ as version
 
