@@ -26,6 +26,7 @@ sphinx = "*"
 sphinx-book-theme = "*"
 sphinx-copybutton = "*"
 sphinx-imgur = "*"
+sphinx-sitemap = "*"
 sphinxcontrib-youtube = "*"
 
 [tool.poetry.group.dev]

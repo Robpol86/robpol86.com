@@ -23,6 +23,7 @@ extensions = [
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
+    "sphinx_sitemap",  # https://github.com/jdillard/sphinx-sitemap
     "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
     "ablog",  # https://ablog.readthedocs.io/
 ]
@@ -165,6 +166,7 @@ rst_epilog = """
 .. _Read The Docs: https://readthedocs.org/
 .. _Alabaster: https://github.com/bitprophet/alabaster
 """
+sitemap_url_scheme = "{link}"
 
 
 def parse_event(env, sig, signode):
@@ -217,7 +219,6 @@ TODOs:
 * Revisit pyproject.toml
 * Revisit GitHub Actions
 * robots.txt and .htaccess
-* sitemap.xml
 * 404 page
 * log 404s and confirm me visiting bad pages logs correctly
 * apple favicons
