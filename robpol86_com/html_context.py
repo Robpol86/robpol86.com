@@ -26,8 +26,8 @@ def override_disqus_identifier(app: Sphinx, pagename: str, templatename: str, co
     if not title_node:
         return
     page_title = title_node.astext()
-    ablog_instance: Blog = context["ablog"]
-    ablog_instance.page_id = lambda *_: page_title
+    ablog: Blog = context["ablog"]
+    ablog.page_id = lambda *_: page_title
 
 
 def setup(app: Sphinx):
