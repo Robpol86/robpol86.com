@@ -164,7 +164,6 @@ blog_default_language = language
 blog_authors = {"Robpol86": ("Robert Pooley", "https://robpol86.com")}
 disqus_shortname = "rob86wiki"
 disqus_pages = False
-fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 
 
 """
@@ -184,7 +183,6 @@ TODOs:
 * validate rss
 * fix tags having too much whitespace with commas
 * html validator, ogp validator
-* fontawsome conflict? ablog and maybe sbt both use it
 * ablog feeds (rss?)
 * refactor htaccess and enablg logging to confirm rules work as expected
 """
