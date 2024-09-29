@@ -19,11 +19,11 @@ copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-buil
 exclude_patterns = ["_build"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
-    "robpol86_com.html_context",
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
     "ablog",  # https://ablog.readthedocs.io/
+    "robpol86_com.html_context",
 ]
 language = "en"
 project = "Robpol86.com"
@@ -142,7 +142,7 @@ blog_feed_templates = {
     },
 }
 disqus_shortname = "rob86wiki"
-disqus_pages = True
+disqus_pages = False
 fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 
 

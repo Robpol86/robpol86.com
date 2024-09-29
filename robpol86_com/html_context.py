@@ -35,4 +35,4 @@ def setup(app: Sphinx):
 
     :param app: Sphinx application object.
     """
-    app.connect("html-page-context", override_disqus_identifier, priority=999)
+    app.connect("html-page-context", override_disqus_identifier)
