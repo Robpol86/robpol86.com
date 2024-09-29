@@ -37,7 +37,6 @@ html_context = {
     "html_baseurl": html_baseurl,
 }
 html_copy_source = False
-html_domain_indices = False
 html_extra_path = [
     ".htaccess",
 ]
@@ -108,10 +107,24 @@ linkcheck_retries = 3
 linkcheck_timeout = 5
 
 
+# Extension settings.
+imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
+myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
+myst_url_schemes = ("http", "https", "mailto")
+notfound_context = dict(  # pylint: disable=use-dict-literal
+    title="404 Not Found",
+    body="<h1>404 Not Found</h1>\n\n"
+    '<iframe src="https://funhtml5games.com?embed=lemmings" style="width:742px;height:401px;border:none;" '
+    'frameborder="0" scrolling="no"></iframe>',
+)
+notfound_urls_prefix = ""
+sitemap_url_scheme = "{link}"
+
+
 # Ablog settings.
 ablog_builder = "dirhtml"
 ablog_website = "_website"
-blog_title = "ABlog"
+blog_title = project
 blog_baseurl = html_baseurl
 blog_locations = {
     "Pittsburgh": ("Pittsburgh, PA", "https://en.wikipedia.org/wiki/Pittsburgh"),
@@ -120,10 +133,8 @@ blog_locations = {
 }
 blog_languages = {
     "en": ("English", None),
-    "nl": ("Nederlands", None),
-    "zh_CN": ("Chinese", None),
 }
-blog_default_language = "en"
+blog_default_language = language
 blog_authors = {
     "Ahmet": ("Ahmet Bakan", "https://ahmetbakan.com"),
     "Luc": ("Luc Saffre", "https://saffre-rumma.net/luc/"),
@@ -144,20 +155,6 @@ disqus_pages = False
 fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 
 
-# Extension settings.
-imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
-myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
-myst_url_schemes = ("http", "https", "mailto")
-notfound_context = dict(  # pylint: disable=use-dict-literal
-    title="404 Not Found",
-    body="<h1>404 Not Found</h1>\n\n"
-    '<iframe src="https://funhtml5games.com?embed=lemmings" style="width:742px;height:401px;border:none;" '
-    'frameborder="0" scrolling="no"></iframe>',
-)
-notfound_urls_prefix = ""
-sitemap_url_scheme = "{link}"
-
-
 """
 TODOs:
 * Decide upon tags and categories for all my pages
@@ -176,4 +173,6 @@ TODOs:
 * fix imgur-embed in latest sphinx
 * validate rss
 * fix tags having too much whitespace with commas
+* html validator, ogp validator
+* fontawsome conflict? ablog and maybe sbt both use it
 """
