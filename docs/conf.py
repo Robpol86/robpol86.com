@@ -19,6 +19,7 @@ copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-buil
 exclude_patterns = ["_build"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
+    "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
@@ -147,27 +148,16 @@ fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.
 
 
 # Extension settings.
-intersphinx_mapping = {  # TODO remove
-    "python": ("https://docs.python.org/", None),
-    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
-}
-extlinks = {
-    "wiki": ("https://en.wikipedia.org/wiki/%s", "%s"),
-    "issue": ("https://github.com/sunpy/ablog/issues/%s", "issue %s"),
-    "pull": ("https://github.com/sunpy/ablog/pull/%s", "pull request %s"),
-}
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
 myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
 myst_url_schemes = ("http", "https", "mailto")
-rst_epilog = """
-.. _Sphinx: http://sphinx-doc.org/
-.. _Python: https://python.org
-.. _Disqus: https://disqus.com/
-.. _GitHub: https://github.com/sunpy/ablog
-.. _PyPI: https://pypi.python.org/pypi/ablog
-.. _Read The Docs: https://readthedocs.org/
-.. _Alabaster: https://github.com/bitprophet/alabaster
-"""
+notfound_context = dict(  # pylint: disable=use-dict-literal
+    title="404 Not Found",
+    body="<h1>404 Not Found</h1>\n\n"
+    '<iframe src="https://funhtml5games.com?embed=lemmings" style="width:742px;height:401px;border:none;" '
+    'frameborder="0" scrolling="no"></iframe>',
+)
+notfound_urls_prefix = ""
 sitemap_url_scheme = "{link}"
 
 
@@ -182,7 +172,6 @@ TODOs:
 * Revisit conf.py
 * Revisit pyproject.toml
 * Revisit GitHub Actions
-* 404 page
 * log 404s and confirm me visiting bad pages logs correctly
 * robots.txt
 * apple favicons
