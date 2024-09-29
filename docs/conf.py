@@ -121,8 +121,6 @@ sitemap_url_scheme = "{link}"
 
 
 # Ablog settings.
-ablog_builder = "dirhtml"
-ablog_website = "_website"
 blog_title = project
 blog_baseurl = html_baseurl
 blog_locations = {
@@ -150,7 +148,6 @@ TODOs:
 * Revisit pyproject.toml
 * Revisit GitHub Actions
 * log 404s and confirm me visiting bad pages logs correctly
-* robots.txt
 * apple favicons
 * revisit all extension settings here
 * fix imgur-embed in latest sphinx
@@ -159,4 +156,5 @@ TODOs:
 * html validator, ogp validator
 * fontawsome conflict? ablog and maybe sbt both use it
 * ablog feeds (rss?)
+* refactor htaccess and enablg logging to confirm rules work as expected
 """
