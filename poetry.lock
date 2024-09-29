@@ -1529,6 +1529,20 @@ doc = ["pydata-sphinx-theme", "sphinx-copybutton", "sphinx-design"]
 test = ["beautifulsoup4", "pytest", "pytest-cov", "pytest-regressions"]
 
 [[package]]
+name = "sphinxext-opengraph"
+version = "0.9.1"
+description = "Sphinx Extension to enable OGP support"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "sphinxext-opengraph-0.9.1.tar.gz", hash = "sha256:dd2868a1e7c9497977fbbf44cc0844a42af39ca65fe1bb0272518af225d06fc5"},
+    {file = "sphinxext_opengraph-0.9.1-py3-none-any.whl", hash = "sha256:b3b230cc6a5b5189139df937f0d9c7b23c7c204493b22646273687969dcb760e"},
+]
+
+[package.dependencies]
+sphinx = ">=4.0"
+
+[[package]]
 name = "starlette"
 version = "0.39.2"
 description = "The little ASGI library that shines."
@@ -1883,4 +1897,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "f9b501f0a3e03206f3039b17417e9f2524dbb939686254d68d363b077033a6b6"
+content-hash = "3b760ae25c8c32b5eb5698e064bc9d9a37033c21582df0e422fb0b6bf2c56b26"

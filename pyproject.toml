@@ -29,6 +29,7 @@ sphinx-imgur = "*"
 sphinx-notfound-page = "*"
 sphinx-sitemap = "*"
 sphinxcontrib-youtube = "*"
+sphinxext-opengraph = "*"
 
 [tool.poetry.group.dev]
 optional = true

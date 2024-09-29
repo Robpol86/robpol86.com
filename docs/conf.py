@@ -3,6 +3,7 @@
 # pylint: disable=invalid-name
 import os
 import time
+from urllib.parse import urlparse
 
 from robpol86_com import __license__, __version__ as version
 
@@ -20,6 +21,7 @@ extensions = [
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
+    "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
     "ablog",  # https://ablog.readthedocs.io/
     "robpol86_com.html_context",
 ]
@@ -117,6 +119,16 @@ notfound_context = dict(  # pylint: disable=use-dict-literal
     'frameborder="0" scrolling="no"></iframe>',
 )
 notfound_urls_prefix = ""
+ogp_custom_meta_tags = [
+    '<meta name="twitter:card" content="summary_large_image">',
+    f'<meta property="twitter:domain" content="{urlparse(html_baseurl).netloc}">',
+]
+ogp_description_length = 300
+ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo.rsplit('.', 1)[0]}.png"
+ogp_site_name = html_title
+ogp_site_url = html_baseurl
+ogp_type = "website"
+ogp_use_first_image = True
 sitemap_url_scheme = "{link}"
 
 
@@ -157,4 +169,5 @@ TODOs:
 * fontawsome conflict? ablog and maybe sbt both use it
 * ablog feeds (rss?)
 * refactor htaccess and enablg logging to confirm rules work as expected
+* confirm discord embeds
 """
