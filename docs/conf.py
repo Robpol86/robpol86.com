@@ -127,29 +127,13 @@ ablog_website = "_website"
 blog_title = project
 blog_baseurl = html_baseurl
 blog_locations = {
-    "Pittsburgh": ("Pittsburgh, PA", "https://en.wikipedia.org/wiki/Pittsburgh"),
-    "San Fran": ("San Francisco, CA", "https://en.wikipedia.org/wiki/San_Francisco"),
-    "Denizli": ("Denizli, Turkey", "https://en.wikipedia.org/wiki/Denizli"),
+    "Austin": ("Austin, TX", "https://en.wikipedia.org/wiki/Austin,_Texas"),
+    "San Francisco": ("San Francisco, CA", "https://en.wikipedia.org/wiki/San_Francisco"),
+    "Victoria": ("Victoria, TX", "https://en.wikipedia.org/wiki/Victoria,_Texas"),
 }
-blog_languages = {
-    "en": ("English", None),
-}
+blog_languages = {"en": ("English", None)}
 blog_default_language = language
-blog_authors = {
-    "Ahmet": ("Ahmet Bakan", "https://ahmetbakan.com"),
-    "Luc": ("Luc Saffre", "https://saffre-rumma.net/luc/"),
-    "Mehmet": ("Mehmet Gerçeker", "https://github.com/mehmetg"),
-}
-blog_feed_archives = True
-blog_feed_fulltext = True
-blog_feed_templates = {
-    "atom": {
-        "content": "{{ title }}{% for tag in post.tags %} #{{ tag.name|trim()|replace(' ', '') }} {% endfor %}",
-    },
-    "social": {
-        "content": "{{ title }}{% for tag in post.tags %} #{{ tag.name|trim()|replace(' ', '') }} {% endfor %}",
-    },
-}
+blog_authors = {"Robpol86": ("Robert Pooley", "https://robpol86.com")}
 disqus_shortname = "rob86wiki"
 disqus_pages = False
 fontawesome_link_cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -175,4 +159,5 @@ TODOs:
 * fix tags having too much whitespace with commas
 * html validator, ogp validator
 * fontawsome conflict? ablog and maybe sbt both use it
+* ablog feeds (rss?)
 """
