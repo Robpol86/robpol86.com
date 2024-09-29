@@ -35,9 +35,13 @@ templates_path = ["_templates"]
 html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "") or "http://localhost:8000/"
 html_context = {
     "default_mode": "dark",
+    "html_baseurl": html_baseurl,
 }
 html_copy_source = False
 html_domain_indices = False
+html_extra_path = [
+    ".htaccess",
+]
 html_favicon = "_static/favicon.ico"
 html_logo = "_static/logo.svg"
 html_show_sourcelink = True
@@ -168,8 +172,6 @@ sitemap_url_scheme = "{link}"
 
 """
 TODOs:
-* Diff: support multiple branches? Store in git lfs or artifacts? Cleanup after n days?
-* Remove parse_event and sphinx.ext extensions
 * Decide upon tags and categories for all my pages
 * Ensure post dates are accurrate
 * Disqus
@@ -184,7 +186,6 @@ TODOs:
 * Revisit conf.py
 * Revisit pyproject.toml
 * Revisit GitHub Actions
-* robots.txt and .htaccess
 * 404 page
 * log 404s and confirm me visiting bad pages logs correctly
 * apple favicons
