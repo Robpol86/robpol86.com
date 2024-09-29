@@ -41,8 +41,27 @@ html_context = {
 html_copy_source = False
 html_extra_path = [
     ".htaccess",
+    # favicon
+    "_static/android-chrome-192x192.png",
+    "_static/android-chrome-512x512.png",
+    "_static/apple-touch-icon-120x120.png",
+    "_static/apple-touch-icon-152x152.png",
+    "_static/apple-touch-icon-180x180.png",
+    "_static/apple-touch-icon-60x60.png",
+    "_static/apple-touch-icon-76x76.png",
+    "_static/apple-touch-icon.png",
+    "_static/browserconfig.xml",
+    "_static/favicon-16x16.png",
+    "_static/favicon-32x32.png",
+    "_static/favicon.ico",
+    "_static/mstile-144x144.png",
+    "_static/mstile-150x150.png",
+    "_static/mstile-310x150.png",
+    "_static/mstile-310x310.png",
+    "_static/mstile-70x70.png",
+    "_static/safari-pinned-tab.svg",
+    "_static/site.webmanifest",
 ]
-html_favicon = "_static/favicon.ico"
 html_logo = "_static/logo.svg"
 html_sidebars = {
     "**": [
@@ -160,7 +179,6 @@ TODOs:
 * Revisit pyproject.toml
 * Revisit GitHub Actions
 * log 404s and confirm me visiting bad pages logs correctly
-* apple favicons
 * revisit all extension settings here
 * fix imgur-embed in latest sphinx
 * validate rss
@@ -169,5 +187,4 @@ TODOs:
 * fontawsome conflict? ablog and maybe sbt both use it
 * ablog feeds (rss?)
 * refactor htaccess and enablg logging to confirm rules work as expected
-* confirm discord embeds
 """
