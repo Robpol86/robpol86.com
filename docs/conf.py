@@ -200,10 +200,15 @@ def setup(app):
 
 """
 TODOs:
+* Diff: support multiple branches? Store in git lfs or artifacts? Cleanup after n days?
 * Remove parse_event and sphinx.ext extensions
 * Decide upon tags and categories for all my pages
 * Ensure post dates are accurrate
 * Disqus
+    * https://github.com/sunpy/ablog/blob/20d598777cc185b5a687cd7c0c852ed891cc27ad/src/ablog/templates/page.html#L29
+    * https://github.com/sunpy/ablog/blob/20d598777cc185b5a687cd7c0c852ed891cc27ad/src/ablog/blog.py#L269
+    * Override ablog.page_id() to return pageOptions.disqus_identifier
+    * Make a pr in ablog to expose this option in front matter
 * convert imgur-embed into list-table of figures
 * closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
