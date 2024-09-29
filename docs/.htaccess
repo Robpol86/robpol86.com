@@ -25,7 +25,7 @@ RewriteRule lapdock https://robpol86.com/atrix_lapdock.html [R=301,L,NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule berto89 https://robpol86.com/rns_510_vim.html [R=301,L,NC]
 
-# robots.txt alias.
+# robots.txt alias. TODO fix
 RewriteRule ^robots\.txt$ https://robpol86.com/_static/robots.txt [L]
 
 # Catch-alls.
