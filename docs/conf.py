@@ -19,6 +19,7 @@ copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-buil
 exclude_patterns = ["_build"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
+    "robpol86_com.html_context",
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
@@ -174,11 +175,6 @@ sitemap_url_scheme = "{link}"
 TODOs:
 * Decide upon tags and categories for all my pages
 * Ensure post dates are accurrate
-* Disqus
-    * https://github.com/sunpy/ablog/blob/20d598777cc185b5a687cd7c0c852ed891cc27ad/src/ablog/templates/page.html#L29
-    * https://github.com/sunpy/ablog/blob/20d598777cc185b5a687cd7c0c852ed891cc27ad/src/ablog/blog.py#L269
-    * Override ablog.page_id() to return pageOptions.disqus_identifier
-    * Make a pr in ablog to expose this option in front matter
 * convert imgur-embed into list-table of figures
 * closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
@@ -188,6 +184,7 @@ TODOs:
 * Revisit GitHub Actions
 * 404 page
 * log 404s and confirm me visiting bad pages logs correctly
+* robots.txt
 * apple favicons
 * revisit all extension settings here
 * fix imgur-embed in latest sphinx
