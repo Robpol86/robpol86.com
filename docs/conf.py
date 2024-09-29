@@ -42,7 +42,6 @@ html_extra_path = [
 ]
 html_favicon = "_static/favicon.ico"
 html_logo = "_static/logo.svg"
-html_show_sourcelink = True
 html_sidebars = {
     "**": [
         "navbar-logo.html",
