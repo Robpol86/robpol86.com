@@ -2,7 +2,7 @@
 :date: 2016-12-18
 :author: Robpol86
 :location: San Francisco
-:category: Guides, TODO
+:category: Guides
 :tags: TODO
 
 ============================

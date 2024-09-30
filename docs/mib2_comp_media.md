@@ -3,7 +3,7 @@ blogpost: true
 date: 2022-01-04
 author: Robpol86
 location: San Francisco
-category: Guides, TODO
+category: Guides
 tags: hacking, vehicle, TODO
 ---
 

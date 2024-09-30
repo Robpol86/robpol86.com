@@ -3,7 +3,7 @@ blogpost: true
 date: 2022-06-30
 author: Robpol86
 location: Austin
-category: Projects, TODO
+category: Projects
 tags: homelab, TODO
 ---
 

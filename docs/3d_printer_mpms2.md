@@ -3,7 +3,7 @@ blogpost: true
 date: 2021-10-21
 author: Robpol86
 location: San Francisco
-category: Projects, TODO
+category: Projects
 tags: 3d-printing, TODO
 ---
 

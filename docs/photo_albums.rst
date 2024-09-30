@@ -2,7 +2,7 @@
 :date: 2013-07-14
 :author: Robpol86
 :location: Austin, San Francisco
-:category: Photos, TODO
+:category: Photos
 :tags: photos, desk, homelab, TODO
 
 ============

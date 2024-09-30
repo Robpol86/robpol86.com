@@ -2,7 +2,7 @@
 :date: 2011-04-08
 :author: Robpol86
 :location: Austin
-:category: Guides, TODO
+:category: Guides
 :tags: TODO
 
 ==================================

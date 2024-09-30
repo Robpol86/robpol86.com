@@ -3,7 +3,7 @@ blogpost: true
 date: 2021-11-11
 author: Robpol86
 location: San Francisco
-category: Guides, TODO
+category: Guides
 tags: hacking, hotspot, TODO
 ---
 

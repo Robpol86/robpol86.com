@@ -2,7 +2,7 @@
 :date: 2010-07-03
 :author: Robpol86
 :location: Austin, San Francisco
-:category: Projects, TODO
+:category: Projects
 :tags: TODO
 
 ====================

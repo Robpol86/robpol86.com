@@ -168,7 +168,7 @@ disqus_pages = False
 
 """
 TODOs:
-* Decide upon tags and categories for all my pages
+* Decide upon tags for all my pages
 * Ensure post dates are accurrate
 * convert imgur-embed into list-table of figures
 * closely look at diffs of all pages and visually check in pc and mobile browsers

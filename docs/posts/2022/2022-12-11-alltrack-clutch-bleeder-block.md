@@ -3,7 +3,7 @@ blogpost: true
 date: 2022-12-11
 author: Robpol86
 location: Austin
-category: Guides, TODO
+category: Guides
 tags: alltrack, vehicle, TODO
 ---
 

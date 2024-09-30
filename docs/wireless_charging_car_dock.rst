@@ -2,7 +2,7 @@
 :date: 2013-11-16
 :author: Robpol86
 :location: San Francisco
-:category: Projects, TODO
+:category: Projects
 :tags: TODO
 
 ==========================
