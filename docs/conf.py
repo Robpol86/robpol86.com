@@ -168,9 +168,7 @@ disqus_pages = False
 
 """
 TODOs:
-* split up photo albums into independent posts
-    * htaccess redirect to category:Photos
-    * photo post's lead image in OGP and supposed to also be in Category/Tags page
+* photo post's lead image in OGP and supposed to also be in Category/Tags page
 * Ensure post dates are accurrate
 * convert imgur-embed into list-table of figures
 * closely look at diffs of all pages and visually check in pc and mobile browsers
