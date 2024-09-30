@@ -168,11 +168,11 @@ disqus_pages = False
 
 """
 TODOs:
+* split up photo albums into independent posts, htaccess redirect to category:Photos
 * Ensure post dates are accurrate
 * convert imgur-embed into list-table of figures
 * closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
-* split up photo albums into independent posts, link to them in the original page
 * Revisit conf.py
 * Revisit pyproject.toml
 * Revisit GitHub Actions

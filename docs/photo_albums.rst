@@ -77,11 +77,3 @@ After over a whole year since receiving it I have finally made full use of my ra
 equipment to it.
 
 TODO imgur-embed:: a/lBGaa
-
-June 10th, 2011
----------------
-
-Right after I took all of this equipment home. Dell PowerEdge Rack Enclosure 2410, Dell PowerVault 124T LTO3 Autoloader, and
-APC SUA2200RM2U. I put my Linux file server in it on top of a shelf too.
-
-TODO imgur-embed:: a/00mLw
