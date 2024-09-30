@@ -69,11 +69,3 @@ October 25th, 2013
 Taken after finally re-wiring it and setting it up after moving to San Francisco. I only took one photo of it :(
 
 TODO imgur-embed:: a/1ncP4
-
-August 21st, 2012
------------------
-
-After over a whole year since receiving it I have finally made full use of my rack and transferred all of my computers and
-equipment to it.
-
-TODO imgur-embed:: a/lBGaa
