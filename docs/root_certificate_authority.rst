@@ -3,7 +3,7 @@
 :author: Robpol86
 :location: San Francisco
 :category: Guides
-:tags: TODO
+:tags: linux
 
 =========================
 Setting Up a Home Root CA

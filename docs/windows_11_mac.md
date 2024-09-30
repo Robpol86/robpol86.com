@@ -4,7 +4,6 @@ date: 2021-12-11
 author: Robpol86
 location: San Francisco
 category: Guides
-tags: TODO
 ---
 
 # Install Windows 11 on an Intel Mac

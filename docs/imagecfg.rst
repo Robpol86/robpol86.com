@@ -3,7 +3,6 @@
 :author: Robpol86
 :location: Victoria
 :category: Guides
-:tags: TODO
 
 ========
 ImageCFG

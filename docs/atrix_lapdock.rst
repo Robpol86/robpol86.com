@@ -3,7 +3,6 @@
 :author: Robpol86
 :location: Austin
 :category: Projects
-:tags: TODO
 
 ========================
 Atrix Lapdock Other Uses

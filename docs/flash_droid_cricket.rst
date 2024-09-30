@@ -3,7 +3,7 @@
 :author: Robpol86
 :location: Austin
 :category: Guides
-:tags: TODO
+:tags: cellular
 
 ==================================
 Flashing Motorola Droid to Cricket
