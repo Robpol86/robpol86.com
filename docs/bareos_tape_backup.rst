@@ -3,7 +3,7 @@
 :author: Robpol86
 :location: San Francisco
 :category: Guides
-:tags: TODO
+:tags: homelab
 
 ============================
 Bareos Tape Backup on a 124T

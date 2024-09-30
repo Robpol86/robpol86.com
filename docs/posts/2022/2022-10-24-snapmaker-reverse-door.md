@@ -4,7 +4,7 @@ date: 2022-10-24
 author: Robpol86
 location: Austin
 category: Guides
-tags: 3d-printing, TODO
+tags: 3d-printing
 ---
 
 # Snapmaker Enclosure Door Reversal

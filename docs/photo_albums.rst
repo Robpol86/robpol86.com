@@ -3,7 +3,7 @@
 :author: Robpol86
 :location: Austin, San Francisco
 :category: Photos
-:tags: photos, desk, homelab, TODO
+:tags: desk, homelab
 
 ============
 Photo Albums

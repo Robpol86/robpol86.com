@@ -4,7 +4,7 @@ date: 2022-07-15
 author: Robpol86
 location: Austin
 category: Guides
-tags: 3d-printing, TODO
+tags: 3d-printing
 ---
 
 # Snapmaker 2.0 A350T Teflon Tube

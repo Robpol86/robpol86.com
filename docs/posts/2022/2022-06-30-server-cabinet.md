@@ -4,7 +4,7 @@ date: 2022-06-30
 author: Robpol86
 location: Austin
 category: Projects
-tags: homelab, TODO
+tags: homelab
 ---
 
 # Server Cabinet June 2022
