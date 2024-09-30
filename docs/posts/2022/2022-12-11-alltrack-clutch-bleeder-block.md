@@ -4,7 +4,7 @@ date: 2022-12-11
 author: Robpol86
 location: Austin
 category: Guides
-tags: alltrack, vehicle, TODO
+tags: car, alltrack
 ---
 
 # Clutch Bleeder Block Replacement

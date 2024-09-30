@@ -3,7 +3,7 @@
 :author: Robpol86
 :location: Austin, San Francisco
 :category: Projects
-:tags: TODO
+:tags: car, jsw
 
 ====================
 Jetta SportWagen TDI

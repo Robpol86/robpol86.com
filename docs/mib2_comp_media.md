@@ -4,7 +4,7 @@ date: 2022-01-04
 author: Robpol86
 location: San Francisco
 category: Guides
-tags: hacking, vehicle, TODO
+tags: car, alltrack, hacking
 ---
 
 # MIB2 Composition Media Hacking

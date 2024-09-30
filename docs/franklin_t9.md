@@ -4,7 +4,7 @@ date: 2021-11-11
 author: Robpol86
 location: San Francisco
 category: Guides
-tags: hacking, hotspot, TODO
+tags: car, hacking
 ---
 
 # T-Mobile Franklin T9 Hacking

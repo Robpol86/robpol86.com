@@ -3,7 +3,7 @@
 :author: Robpol86
 :location: San Francisco
 :category: Projects
-:tags: TODO
+:tags: car, jsw
 
 ==========================
 Wireless Charging Car Dock
