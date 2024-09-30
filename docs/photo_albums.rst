@@ -62,10 +62,3 @@ July 13th, 2015
 My server rack cabinet at home. Removed everything from it, cleaned and dusted it, and installed only the things I'm using.
 
 TODO imgur-embed:: a/hWyW0
-
-October 25th, 2013
-------------------
-
-Taken after finally re-wiring it and setting it up after moving to San Francisco. I only took one photo of it :(
-
-TODO imgur-embed:: a/1ncP4

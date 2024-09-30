@@ -45,7 +45,7 @@ equipment to it.
     device).
     :::
   - :::{imgur-figure} 3Kfib
-    I tried to make it easy to disconnect my rack and move it out of its corner without having to undo all of my wiring. 
+    I tried to make it easy to disconnect my rack and move it out of its corner without having to undo all of my wiring.
     :::
 * - :::{imgur-figure} vZNoL
     This looked better in my mind before implementing it.

@@ -1,0 +1,25 @@
+---
+blogpost: true
+date: 2013-10-25
+author: Robpol86
+location: San Francisco
+category: Photos
+tags: homelab
+---
+
+# Rack Cabinet 2013-10-25
+
+Taken after finally re-wiring it and setting it up after moving to San Francisco. I only took one photo of it :(
+
+## Pictures
+
+```{list-table}
+* - :::{imgur-figure} k6TK8fp
+    From the top: Patch panel; Gigabit switch; Onkyo TX-SR608 with dual zone (5.1 zone for TV TOSLINK, 2.0 zone for PC
+    analog); i7-3770K 32 GB RAM Windows computer in a rackmount case; Intel i5 server running Windows Server 2012 R2; Dell
+    PV-124T (LTO3 tape autoloader); Athlon X2 BE-2400 1 GB RAM CentOS file server; APC SUA2200RM2U UPS.
+    :::
+  - :::{imgur-figure} YVyMYb3
+    This is how I took the other photo.
+    :::
+```
