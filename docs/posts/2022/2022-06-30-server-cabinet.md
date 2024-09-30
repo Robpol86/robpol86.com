@@ -3,11 +3,11 @@ blogpost: true
 date: 2022-06-30
 author: Robpol86
 location: Austin
-category: Projects
+category: Photos
 tags: homelab
 ---
 
-# Server Cabinet June 2022
+# Custom Fabricated Rack 2022
 
 I got a couple of items that warranted rewiring my TV cabinet rack: StarTech extenders and P-Link server rails. I inverted
 the extenders so I could recess the patch panel and switch, making room for the SFP modules and fiber cables. I can't believe
