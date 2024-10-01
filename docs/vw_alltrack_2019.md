@@ -15,7 +15,7 @@ This page is a log book of all the modifications I've done to my 2019 Alltrack.
 
 I posted the installation steps in a dedicated post here:
 
-* TODO
+* [](posts/2022/2022-12-11-alltrack-clutch-bleeder-block.md)
 
 ## Oct &#39;22 Jack Pads
 
@@ -87,13 +87,13 @@ Pictures:
 
 Another dedicated post loosely related to my Alltrack:
 
-* TODO
+* [](posts/2022/2022-08-23-oemtools-gauge.md)
 
 ## Jun &#39;22 HomeLink Rearview Mirror
 
 I posted the installation steps in a dedicated post here:
 
-* TODO
+* [](posts/2022/2022-06-05-alltrack-homelink-mirror.md)
 
 ## Jan &#39;22 MIB2 Developer Mode
 
