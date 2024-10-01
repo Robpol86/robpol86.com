@@ -476,7 +476,58 @@ I used the following tools:
 * [Plastic trim removal tools](https://www.amazon.com/gp/product/B005NMCE04) and a flat screwdriver
 * [X-ACTO knife](https://www.amazon.com/gp/product/B00JWFIKOC)
 
-TODO imgur-embed
+```{list-table}
+* - :::{imgur-figure} 6anE3Sa
+    Before installing.
+    :::
+  - :::{imgur-figure} 1Vho7Jt
+    Because I don't have a ratchet wrench that will fit I had to remove the rear tires to remove the screws in the wheel wells. I left the OEM mud flaps on to avoid scratch the bottom of my bumper.
+    :::
+  - :::{imgur-figure} BQOEa48
+    My 2019 Alltrack SE came with sensors in the bumpers, so I had to unplug this cable on the passenger side to get the bumper off.
+    :::
+* - :::{imgur-figure} C1Ic2zo
+    Removed the rear bumper.
+    :::
+  - :::{imgur-figure} TxzqnKN
+    Removed the impact bar.
+    :::
+  - :::{imgur-figure} ZiMsEjW
+    Had to remove these sensors to get them out of the way when mounting the hitch.
+    :::
+* - :::{imgur-figure} hPgPDd2
+    The instructions say to place the impact bar on the hitch and install both of them at the same time. The hitch itself is pretty heavy, and both of them together would be too heavy for a solo-install. Mounting them one at a time worked fine.
+    :::
+  - :::{imgur-figure} N6wDiSM
+    Bought stronger bolts to use instead of the ones that came with the hitch: https://www.mcmaster.com/91029A107/ (from https://www.mcmaster.com/bolts/fastener-strength-grade-class~class-12-9/extreme-strength-metric-class-12-9-steel-hex-head-screws/thread-size~m8/).
+    The EcoHitch manual also states to torque these to 18 ft-lbs but the Curt hitch manual says to torque to 23 ft-lbs. I went with the latter.
+    :::
+  - :::{imgur-figure} q3odPX7
+    To make trimming and mounting the bumper easier I removed the bottom piece of trim from the bumper before reinstalling the bumper.
+    :::
+* - :::{imgur-figure} HzpY5UB
+    If you have OEM splash guards I highly recommend removing them now. I spent 30 minutes trying to get the bumper back on before I removed them and saw the plastic pieces not lining up correctly, on both sides!
+    :::
+  - :::{imgur-figure} C9wCPA2
+    Popped off the inner piece of the bottom bumper trim. Will make it easier to trim.
+    :::
+  - :::{imgur-figure} IOmeAxb
+    After iterating several times I ended up with these cuts to the bumper. It's about 9.75 cm wide, flush with the inner side of the preexisting cut out. I did the trimming with an X-Acto knife, which ended up being relatively easy to do and give me cleaner cuts than using snips. It was like cutting cold butter with a cold blunt butter knife.
+    :::
+* - :::{imgur-figure} 8Muv2W7
+    Reassembled before installing.
+    :::
+  - :::{imgur-figure} 0Yt6Rpz
+    Snapped right into place. Done!
+    :::
+  - :::{imgur} 4VyjYuL
+    :::
+* - :::{imgur} rmVWLwl
+    :::
+  - :::{imgur} 9AM0DN5
+    :::
+  -
+```
 
 ## Sept &#39;21 Rear Dashcam Pair
 
@@ -507,7 +558,67 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 
 ### Photos
 
-TODO imgur-embed
+```{list-table}
+* - :::{imgur-figure} e0FQZxI
+    I spliced together the long male cigarette lighter cable that came with the camera with the short female cigarette lighter adapter that came with the battery so that everything will fit underneath my cargo liner.
+    :::
+  - :::{imgur-figure} FPo2JhU
+    I used a coat hanger to help fish the cable.
+    :::
+  - :::{imgur-figure} vVlKfJv
+    This made things way easier to see in my garage.
+    :::
+* - :::{imgur-figure} caIWHsR
+    After fishing the cable under the cargo liner I tucked the rest of the cable towards the battery. There seemed to be some glue half way there that I had to get through by prying the liner wall towards me.
+    :::
+  - :::{imgur-figure} 5CWlXf9
+    Finished running the cable at the battery side.
+    :::
+  - :::{imgur-figure} c1zTKOl
+    Pulled off the trim on the ceiling holding the headliner in place.
+    :::
+* - :::{imgur} 6mvlZLh
+    :::
+  - :::{imgur-figure} 1xf5oIO
+    Then I pulled off the trim covering the C pillar.
+    :::
+  - :::{imgur-figure} pdTih8V
+    Fished the wire up the C pillar.
+    :::
+* - :::{imgur-figure} 0N2BXU2
+    Lightly zip tied the cable to my panoramic roof drain hose.
+    :::
+  - :::{imgur-figure} hsUPB4B
+    I cut off the glued/velcroed strap holding the wiring harnesses in this plastic holder and ran the camera cable through it, then zip tied everything in place.
+    :::
+  - :::{imgur-figure} wempB2n
+    Popped off the inner top trim off the hatch.
+    :::
+* - :::{imgur-figure} j3WV15y
+    I had to unclip the hatch rubber boot to fish the cable through with the help of my coat hanger. BEWARE: the clips are easy to break and it's a pain to fix!
+    :::
+  - :::{imgur-figure} uBQz1es
+    You can see how I broke the clip on the left side of the boot. Anyway I ran the cable towards the other side since it doesn't have any connectors in the way.
+    :::
+  - :::{imgur} 6uwjb7P
+    :::
+* - :::{imgur-figure} cgMYj4I
+    Instead of replacing the boot I did a quick fix with my 3d printer: https://www.thingiverse.com/thing:3246429
+    https://imgur.com/a/0GqFRgX
+    If you'd rather replace the boot you can follow: https://www.youtube.com/watch?v=GhNbGtLDZiU&ab_channel=DeutscheAutoParts
+    :::
+  - :::{imgur-figure} iPbAkTQ
+    Finally I mounted the cameras and anchored the wires with some spare cable tie mounting pads I had lying around. I shoved the excess wires into the body via the square hole.
+    :::
+  - :::{imgur} tyXtaLq
+    :::
+* - :::{imgur} 3ypCZaP
+    :::
+  - :::{imgur} NoJtWRb
+    :::
+  - :::{imgur} xzICRX8
+    :::
+```
 
 ## Sept &#39;21 OBDeleven
 
@@ -646,7 +757,116 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 I first installed just the two cameras in the front and wired them to the batteries in my cargo area. For now I didn't wire
 the batteries to my fuse panel, using the rear 12v outlet instead.
 
-TODO imgur-embed
+```{list-table}
+* - :::{imgur} IDZ0czL
+    :::
+  - :::{imgur} TTJGbTB
+    :::
+  - :::{imgur} AlToxmu
+    :::
+* - :::{imgur} FlbNm6F
+    :::
+  - :::{imgur} eHJGGFM
+    :::
+  - :::{imgur} XweNNXV
+    :::
+* - :::{imgur} xp7Y01M
+    :::
+  - :::{imgur} iMCazjM
+    :::
+  - :::{imgur} GtucHXE
+    :::
+* - :::{imgur} 8Pu19sr
+    :::
+  - :::{imgur} 1sk83Rr
+    :::
+  - :::{imgur} brum0yz
+    :::
+* - :::{imgur} 6CERPeS
+    :::
+  - :::{imgur} byI36OA
+    :::
+  - :::{imgur} tLL235q
+    :::
+* - :::{imgur} coZX62E
+    :::
+  - :::{imgur} mKWecEj
+    :::
+  - :::{imgur} nLWRZTx
+    :::
+* - :::{imgur} pHhZe6h
+    :::
+  - :::{imgur} MUgOLOs
+    :::
+  - :::{imgur} 1QqYfap
+    :::
+* - :::{imgur} BHT5uVb
+    :::
+  - :::{imgur} S74pBCH
+    :::
+  - :::{imgur} LoyuAT1
+    :::
+* - :::{imgur} yh86Ype
+    :::
+  - :::{imgur} aPmtrYC
+    :::
+  - :::{imgur} f80ILAA
+    :::
+* - :::{imgur} W6yWhoK
+    :::
+  - :::{imgur} Q2ud7NR
+    :::
+  - :::{imgur} XF3QmKu
+    :::
+* - :::{imgur} 2Ls04ra
+    :::
+  - :::{imgur} xAGbc8Q
+    :::
+  - :::{imgur} JohJ7k4
+    :::
+* - :::{imgur} HAp6oH1
+    :::
+  - :::{imgur} sVhTgrZ
+    :::
+  - :::{imgur} 2wUn61q
+    :::
+* - :::{imgur} gqDFxtY
+    :::
+  - :::{imgur} mvyRz9i
+    :::
+  - :::{imgur} fQYWtik
+    :::
+* - :::{imgur} eX4DkeH
+    :::
+  - :::{imgur} ia8kAVj
+    :::
+  - :::{imgur} EC8uTGP
+    :::
+* - :::{imgur} f6RsWJt
+    :::
+  - :::{imgur} fUV0GP5
+    :::
+  - :::{imgur} bw2TwLM
+    :::
+* - :::{imgur} 4ItfspT
+    :::
+  - :::{imgur} 9dVe8pY
+    :::
+  - :::{imgur} 6RHv76w
+    :::
+* - :::{imgur} hHDo3C0
+    :::
+  - :::{imgur} g6oiZli
+    :::
+  - :::{imgur} 9ivpRLA
+    :::
+* - :::{imgur} poVGoQu
+    :::
+  - :::{imgur} FjF73ez
+    :::
+  - :::{imgur} cPOqdpY
+    :::
+```
 
 ### Hardwire Batteries
 
@@ -656,7 +876,30 @@ a second tapped fuse since I may add a second pair of cameras in the future. I t
 [fuse 48 and 36](https://fuse-box.info/volkswagen/volkswagen-golf-vii-mk7-2013-2020-fuses). These are switched fuses so when
 the ignition is off they'll lose power and prevent the BlackVue battery from draining my car's battery when parked.
 
-TODO imgur-embed
+```{list-table}
+* - :::{imgur} QVXJfM0
+    :::
+  - :::{imgur} Qo3cCJt
+    :::
+  - :::{imgur} emg1RTQ
+    :::
+* - :::{imgur} vS722GJ
+    :::
+  - :::{imgur} 1bbH2Ix
+    :::
+  - :::{imgur} dT3Kv4T
+    :::
+* - :::{imgur} DfAf2CZ
+    :::
+  - :::{imgur} LvopdKU
+    :::
+  - :::{imgur} 3HQLKt3
+    :::
+* - :::{imgur} YnwDPL7
+    :::
+  -
+  -
+```
 
 ## Feb &#39;20 Under-Seat Drawer
 
@@ -671,7 +914,39 @@ I bought the drawer for $156 on ECS Tuning:
 :width: 100%
 ```
 
-TODO imgur-embed
+```{list-table}
+* - :::{imgur} 2Ru4C2G
+    :::
+  - :::{imgur} njMjiyx
+    :::
+  - :::{imgur} M01ffNs
+    :::
+* - :::{imgur} SuKmYfc
+    :::
+  - :::{imgur} 9OHtucJ
+    :::
+  - :::{imgur} W7T6lmB
+    :::
+* - :::{imgur} 8B9h5Ez
+    :::
+  - :::{imgur} quRwwlP
+    :::
+  - :::{imgur} WdTxCID
+    :::
+* - :::{imgur} RmhF3eu
+    :::
+  - :::{imgur} rvg4OVm
+    :::
+  - :::{imgur} HU7zEKI
+    :::
+* - :::{imgur} LNlLcQS
+    :::
+  - :::{imgur} 1lMS091
+    :::
+  - :::{imgur-figure} 88oVQIw
+    I'm using foil to eventually trace out the curve
+    :::
+```
 
 ## Jan &#39;20 Trashcan
 

@@ -35,7 +35,50 @@ For crimping the wires I used the following:
 * [Glarks 1180 Pieces 2.54mm 2/3/4/5/6/7/8/9 Pin Housing Male and Female Compatible with JST-XHP Connector Kit](https://www.amazon.com/gp/product/B07CTH46S7)
 * [Wire Stripper Automatic 3 in 1 Multi-Function Wire Pliers (22AWG-8AWG)](https://www.amazon.com/dp/B08XXL3B7K)
 
-TODO imgur-embed
+```{list-table}
+* - :::{imgur-figure} ELxxo4Y
+    Old hot end with the stepper motor and brass nozzle already removed.
+    :::
+  - :::{imgur-figure} niwWs5S
+    New cooling block and heat break being assembled.
+    :::
+  - :::{imgur-figure} ZYG9SuA
+    The bottom are the old bits.
+    :::
+* - :::{imgur-figure} otK2hdq
+    Old carriage plate on the left and the new thicker one on the right.
+    :::
+  - :::{imgur} FYdDx79
+    :::
+  - :::{imgur-figure} C00K6Ne
+    Crimped new terminals on the shortened fan cable.
+    :::
+* - :::{imgur-figure} wjOobLN
+    I pushed the terminals into the connector using a paper clip to avoid kinking the thin wires.
+    :::
+  - :::{imgur-figure} cHl9KBe
+    ARCTIC thermal pad about to get chopped up.
+    :::
+  - :::{imgur-figure} nKOBlK1
+    Applied it to the heat sink and cut out holes for the screws before threading the screws in.
+    :::
+* - :::{imgur-figure} d5Qa3UV
+    Didn't want excess thermal pad material to get jammed up in the extruder gearing so I trimmed it some more.
+    :::
+  - :::{imgur-figure} YJWyMhi
+    Extruder re-assembled.
+    :::
+  - :::{imgur-figure} C0yb2eE
+    Original noisy fan.
+    :::
+* - :::{imgur-figure} iM8leWP
+    New quieter fan.
+    :::
+  - :::{imgur-figure} 0Y8Z3Ca
+    Presto!
+    :::
+  -
+```
 
 ## Oct &#39;21 Magnetic Build Plate
 
@@ -49,6 +92,33 @@ Items needed:
 * Isopropyl alcohol (I used 91%) to remove adhesive residue
 * Gloves (I used nitrile gloves) to prevent adhesive from reconstituting on your fingers
 
-TODO imgur-embed
+```{list-table}
+* - :::{imgur-figure} O6toHP4
+    Removed the original BuildTak sheet from my Monoprice Maker Select v2.
+    :::
+  - :::{imgur-figure} BSiu7G3
+    First time I've seen the underside, neat.
+    :::
+  - :::{imgur} AQ4ZU37
+    :::
+* - :::{imgur-figure} fXsf2fm
+    Need to get rid of the adhesive residue.
+    :::
+  - :::{imgur-figure} xnsWJTr
+    Got it off with some 91% isopropyl alcohol, paper towels, and nitrile gloves. Took about an hour.
+    :::
+  - :::{imgur-figure} KfuU1sd
+    Used an old glass bed as a template to cut the corners off the magnetic sheet.
+    :::
+* - :::{imgur-figure} qV4PvZy
+    I thought those were bubbles but it feels flat to the touch.
+    :::
+  - :::{imgur-figure} gQZBOjY
+    Done!
+    :::
+  - :::{imgur-figure} FtYoGQn
+    Nice and flat. The magnet holds the plate very well in place.
+    :::
+```
 
 https://www.reddit.com/r/3Dprinting/comments/qcfqpk/first_mod_since_buying_my_printer_in_2018/

@@ -12,7 +12,14 @@ Setting Up a Home Root CA
 Tired of getting those SSL error pages when accessing your router's admin interface? Sick of having to click three times
 to get to your IPMI web interface? Have I got a guide for you!
 
-TODO imgur-embed:: a/PFrHX
+.. list-table::
+
+    * - .. imgur:: Waa1HJk
+      - .. imgur:: eiUc8Bu
+      - .. imgur:: 4NS0cDs
+    * - .. imgur:: uqRXaeu
+      - .. imgur:: iz4qY7O
+      -
 
 This guide will go over setting up an offline root certificate authority for your home network. It is based on what I've
 learned from https://jamielinux.com/docs/openssl-certificate-authority/index.html with a few differences:
