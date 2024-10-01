@@ -29,54 +29,47 @@ drop when transferring the old oil from the extractor back into the 5 qt oil jug
 
 ## Pictures
 
-```{carousel}
-:data-bs-interval: "false"
+```{list-table}
+* - :::{imgur-figure} ehm4xGw
+    Finished Project
+    :::
+  - :::{imgur-figure} JlCNRDJ
+    Underside of Lid
 
-:::{imgur-figure} ehm4xGw
-Finished Project
-:::
+    Unscrew the lid collar and pop off the lid. This is the underside, held in place with a Bessey vise.
+    :::
+* - :::{imgur-figure} oS6xG9B
+    Remove the Valve
 
-:::{imgur-figure} JlCNRDJ
-Underside of Lid
+    Unscrew the floater valve and remove the metal nut to release the pneumatic valve.
+    :::
+  - :::{imgur-figure} okN52HT
+    Install the Gauge
 
-Unscrew the lid collar and pop off the lid. This is the underside, held in place with a Bessey vise.
-:::
+    Screw together the gauge, the 45 degree elbow, and the bulkhead coupler. Then install the assembly with the nut that came
+    with the coupler. I didn't need to use any teflon tape or sealant for any of the couplings.
+    :::
+* - :::{imgur-figure} BvGrOio
+    First Use
 
-:::{imgur-figure} oS6xG9B
-Remove the Valve
+    I pumped it to -20 inHg to start the oil flowing. It held that vacuum very well, and I only had to pump it back to -20 once
+    more before all the oil was sucked out.
+    :::
+  - :::{imgur-figure} HsYcPca
+    Graduated Cylinder
 
-Unscrew the floater valve and remove the metal nut to release the pneumatic valve.
-:::
+    Before the first use I used water to manually measure and mark the container in quarts. I scored the plastic with a blade
+    so I can re-mark it with a sharpie once the ink wears off over time. And yes, I pulled out 7 quarts of oil from my MK7 VW
+    instead of 6. I overfilled it a bit on my last oil change, oops lol.
+    :::
+* - :::{imgur-figure} IS0lDFc
+    Gas Can Spout
 
-:::{imgur-figure} okN52HT
-Install the Gauge
-
-Screw together the gauge, the 45 degree elbow, and the bulkhead coupler. Then install the assembly with the nut that came
-with the coupler. I didn't need to use any teflon tape or sealant for any of the couplings.
-:::
-
-:::{imgur-figure} BvGrOio
-First Use
-
-I pumped it to -20 inHg to start the oil flowing. It held that vacuum very well, and I only had to pump it back to -20 once
-more before all the oil was sucked out.
-:::
-
-:::{imgur-figure} HsYcPca
-Graduated Cylinder
-
-Before the first use I used water to manually measure and mark the container in quarts. I scored the plastic with a blade
-so I can re-mark it with a sharpie once the ink wears off over time. And yes, I pulled out 7 quarts of oil from my MK7 VW
-instead of 6. I overfilled it a bit on my last oil change, oops lol.
-:::
-
-:::{imgur-figure} IS0lDFc
-Gas Can Spout
-
-Turns out the gas can spout I bought on Amazon is a perfect fit. This made pouring the used oil into the spent containers
-very clean and easy! The ring cap that comes with the extractor is meant only to help push out the hose but it turns out it
-can also hold the spout in place. I flipped the spout up after dispensing some of it to prevent oil from dribbling out.
-:::
+    Turns out the gas can spout I bought on Amazon is a perfect fit. This made pouring the used oil into the spent containers
+    very clean and easy! The ring cap that comes with the extractor is meant only to help push out the hose but it turns out it
+    can also hold the spout in place. I flipped the spout up after dispensing some of it to prevent oil from dribbling out.
+    :::
+  -
 ```
 
 ### Mirrors

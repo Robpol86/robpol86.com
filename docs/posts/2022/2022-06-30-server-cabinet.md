@@ -27,100 +27,87 @@ vibration of my spinning hard drives. It's not too bad though.
 
 ## Pictures
 
-```{carousel}
-:data-bs-interval: "false"
+```{list-table}
+* - :::{imgur-figure} Z6tRbFb
+    Stealth Living Room Rack
 
-:::{imgur-figure} Z6tRbFb
-Stealth Living Room Rack
+    My newly rewired 9U server rack cabinet hidden in my living room.
+    :::
+  - :::{imgur-figure} WbPfod5
+    Drilling Three Holes
 
-My newly rewired 9U server rack cabinet hidden in my living room.
-:::
+    I had to drill additional holes near the bend on my custom designed rack posts to keep them flush against the TV cabinet
+    walls. Easier, faster, and cheaper than updating my design and having new ones fabricated.
+    :::
+* - :::{imgur-figure} yarRE7Z
+    Wiring First
 
-:::{imgur-figure} WbPfod5
-Drilling Three Holes
+    Crimped custom-length CAT6 cables and got lucky with 1 meter long fiber cables. The yellow fiber cable is for my Google Fiber
+    internet service and the blue fiber cable goes to my office on the other side of the wall.
+    :::
+  - :::{imgur-figure} I0y0A9q
+    Installed UPS
 
-I had to drill additional holes near the bend on my custom designed rack posts to keep them flush against the TV cabinet
-walls. Easier, faster, and cheaper than updating my design and having new ones fabricated.
-:::
+    Next I installed my UPS with some right-angle power adapters. The two USB power adapters are for the TV cabinet ventilation
+    fans. Two fans and two power adapters for redundancy in case one is defective. The white USB cable going out of the cabinet
+    is for a Nest camera.
+    :::
+* - :::{imgur-figure} iAaxoC5
+    Installed PDU
 
-:::{imgur-figure} yarRE7Z
-Wiring First
+    Here I installed a PDU at the top of the rear posts with my UniFi PoE injector zipped tied to it. I made some magnetic labels
+    for my patch panel and 3d printed a magnetic door stop, though it's falling apart after a couple of years of adding and
+    removing it lol.
+    :::
+  - :::{imgur-figure} cyOykBp
+    Installed Switch
 
-Crimped custom-length CAT6 cables and got lucky with 1 meter long fiber cables. The yellow fiber cable is for my Google Fiber
-internet service and the blue fiber cable goes to my office on the other side of the wall.
-:::
+    Next I installed my trusty old 10 gig switch. I'm super excited that Google Fiber sent me a router with an SFP module that I
+    could plug directly into my switch, it's basically a "modem" on a stick! For those that are curious this only runs at 1 Gbps
+    speeds so I'm currently just paying for Google's 1 gigabit service instead of their 2 gig offering.
+    :::
+* - :::{imgur-figure} sJ8ooy9
+    Installed Dual Server
 
-:::{imgur-figure} I0y0A9q
-Installed UPS
+    Another thing I'm excited about is that I managed to finally find some slide rails small enough to fit in my shallow-depth
+    rack. I got rid of my old shelf and have now properly racked my dual mini-ITX 2U server chassis. I made sure the network and
+    power cables have enough slack so I can fully extend the server without having to power it down.
+    :::
+  - :::{imgur-figure} qGJPNGQ
+    Rear Panel and Fan Assembly
 
-Next I installed my UPS with some right-angle power adapters. The two USB power adapters are for the TV cabinet ventilation
-fans. Two fans and two power adapters for redundancy in case one is defective. The white USB cable going out of the cabinet
-is for a Nest camera.
-:::
+    Lastly I plugged in the two 5V Noctua fans into those USB power adapters. I don't want anything to overheat and it does
+    indeed get a bit warm in there what with my 6 spinning hard drives.
+    :::
+* - :::{imgur-figure} 6W8LIkj
+    Closed!
 
-:::{imgur-figure} iAaxoC5
-Installed PDU
+    Like a glove.
+    :::
+  - :::{imgur-figure} u23P6Sy
+    In All Its Glory
 
-Here I installed a PDU at the top of the rear posts with my UniFi PoE injector zipped tied to it. I made some magnetic labels
-for my patch panel and 3d printed a magnetic door stop, though it's falling apart after a couple of years of adding and
-removing it lol.
-:::
+    In the future I may add another 2U case.
+    :::
+* - :::{imgur-figure} FtpUBBL
+    Center I/O
 
-:::{imgur-figure} cyOykBp
-Installed Switch
+    I added a keystone surface mount box to make plugging and unplugging wires easy, in case I rearrange my living room or
+    something. The dark blue CAT6 cable goes to the garage for one of my UniFi access points, the light blue LC/UPC fiber cable
+    goes to a switch in my office and the gray CAT5e cable goes up to my Chromecast behind the TV. The power strip is also for my
+    TV and game consoles.
+    :::
+  - :::{imgur-figure} TW0HioA
+    Behind the Cabinet
 
-Next I installed my trusty old 10 gig switch. I'm super excited that Google Fiber sent me a router with an SFP module that I
-could plug directly into my switch, it's basically a "modem" on a stick! For those that are curious this only runs at 1 Gbps
-speeds so I'm currently just paying for Google's 1 gigabit service instead of their 2 gig offering.
-:::
+    Here's what the back looks like. More keystones!
+    :::
+* - :::{imgur-figure} JhRB3DB
+    VLAN Configuration
 
-:::{imgur-figure} sJ8ooy9
-Installed Dual Server
-
-Another thing I'm excited about is that I managed to finally find some slide rails small enough to fit in my shallow-depth
-rack. I got rid of my old shelf and have now properly racked my dual mini-ITX 2U server chassis. I made sure the network and
-power cables have enough slack so I can fully extend the server without having to power it down.
-:::
-
-:::{imgur-figure} qGJPNGQ
-Rear Panel and Fan Assembly
-
-Lastly I plugged in the two 5V Noctua fans into those USB power adapters. I don't want anything to overheat and it does
-indeed get a bit warm in there what with my 6 spinning hard drives.
-:::
-
-:::{imgur-figure} 6W8LIkj
-Closed!
-
-Like a glove.
-:::
-
-:::{imgur-figure} u23P6Sy
-In All Its Glory
-
-In the future I may add another 2U case.
-:::
-
-:::{imgur-figure} FtpUBBL
-Center I/O
-
-I added a keystone surface mount box to make plugging and unplugging wires easy, in case I rearrange my living room or
-something. The dark blue CAT6 cable goes to the garage for one of my UniFi access points, the light blue LC/UPC fiber cable
-goes to a switch in my office and the gray CAT5e cable goes up to my Chromecast behind the TV. The power strip is also for my
-TV and game consoles.
-:::
-
-:::{imgur-figure} TW0HioA
-Behind the Cabinet
-
-Here's what the back looks like. More keystones!
-:::
-
-:::{imgur-figure} JhRB3DB
-VLAN Configuration
-
-This is how I configured the VLANs on my Netgear switch. So glad I took the Cisco CCNA class in high school.
-:::
+    This is how I configured the VLANs on my Netgear switch. So glad I took the Cisco CCNA class in high school.
+    :::
+  -
 ```
 
 Imgur mirror: https://imgur.com/a/gePnvYN
