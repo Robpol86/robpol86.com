@@ -34,21 +34,21 @@ Pictures and Videos
 
             MicroUSB extension (optional); SlimPort HDMI, HDMI male to microHDMI female; HDMI right angle (optional)
 
-      - .. imgur-figure:: yNgacIC
+    * - .. imgur-figure:: yNgacIC
 
             Lapdock with a Nexus 4 (OTG) (USB Hub Test)
 
             If you can see, I ran lsusb on the phone, removed the USB WiFi adapter, and ran lsusb again. Notice the shorter
             "paragraph" on my phone. Definitely working.
 
-    * - .. imgur-figure:: K7glCXN
+      - .. imgur-figure:: K7glCXN
 
             Lapdock with a Nexus 4 (OTG) (USB Hub Test) (Screen Shot)
 
             First group is with the USB WiFi adapter, second group is after I removed it. The phone can detect things on the USB
             hub.
 
-      - .. imgur-figure:: qbs7sWg
+    * - .. imgur-figure:: qbs7sWg
 
             Lapdock with a Nexus 4 (OTG)
 
@@ -75,20 +75,20 @@ Pictures and Videos
             The Lapdock is very handy as a second display for my laptop! At home my laptop is docked with two monitors. Now when
             I travel I can still have two monitors.
 
-      - .. imgur-figure:: KONZZ
+    * - .. imgur-figure:: KONZZ
 
             Lapdock as a Second Display (Adapters Used)
 
             I used a Micro HDMI female to HDMI male adapter and an HDMI female/female coupler.
 
-    * - .. imgur-figure:: qs9ph
+      - .. imgur-figure:: qs9ph
 
             Lapdock with a Galaxy Nexus (VZW LTE)
 
             The Galaxy Nexus works fine with the Lapdock, however only HDMI (video) works. The MHL standard disables USB when
             using HDMI, so the Lapdock's keyboard, touchpad, and USB ports don't work. Charging the phone works though.
 
-      - .. imgur-figure:: VpSTT
+    * - .. imgur-figure:: VpSTT
 
             Lapdock with a Galaxy Nexus (VZW LTE) (Netflix)
 
@@ -114,7 +114,7 @@ Pictures and Videos
             In order for the Micro-HDMI and Micro-USB adapters to fit at the same time, I had to shave off a lot of excess
             plastic.
 
-      - .. imgur-figure:: TXiVx
+    * - .. imgur-figure:: TXiVx
 
             Lapdock with a Wii
 
@@ -122,13 +122,13 @@ Pictures and Videos
             it works just fine. The Lapdock takes care of changing resolution as long as it's at or below 1366x768. Audio works
             too by the way. This should work just fine with the Xbox 360, PS3, or any other HDMI devices.
 
-    * - .. imgur-figure:: UkdYJ
+      - .. imgur-figure:: UkdYJ
 
             Lapdock with a Wii (Adapters Used)
 
             I used a Micro HDMI female to HDMI male adapter and an HDMI female/female coupler.
 
-      - .. imgur-figure:: cc5TK
+    * - .. imgur-figure:: cc5TK
 
             Lapdock with a Wii (Wii HDMI Adapter)
 
@@ -149,7 +149,6 @@ Pictures and Videos
             The Raspberry Pi only supports power from its micro USB port, and the regular USB ports on the RPI won't allow enough
             power through. So I had to splice another USB cable into the micro USB extension and route the USB data cables (green
             and white) to the spliced cable.
-      -
       -
 
 Videos
