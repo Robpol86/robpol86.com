@@ -40,19 +40,19 @@ The compass in the mirror seemed to self-calibrate after I drove around for a bi
     3G0-858-634-82V).
     :::
 
-  - :::{imgur-figure} nmMMbH7
+* - :::{imgur-figure} nmMMbH7
     %
     Original mirror with the trim removed. To remove the mirror you just need to twist it counter-clockwise (towards the driver
     side).
     :::
 
-* - :::{imgur-figure} KmZVCHt
+  - :::{imgur-figure} KmZVCHt
     %
     The new mirror. I run my dashcam wires through the mirror's metal base to avoid having the wires tear up my headliner in case
     somebody tries to steal it by pulling hard on it.
     :::
 
-  - :::{imgur-figure} 9tcWDox
+* - :::{imgur-figure} 9tcWDox
     %
     Zip tying my dashcam wires to the mirror before installing it.
     :::
