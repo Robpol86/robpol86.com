@@ -40,20 +40,20 @@ drop when transferring the old oil from the extractor back into the 5 qt oil jug
     Unscrew the lid collar and pop off the lid. This is the underside, held in place with a Bessey vise.
     :::
 
-  - :::{imgur-figure} oS6xG9B
+* - :::{imgur-figure} oS6xG9B
     Remove the Valve
 
     Unscrew the floater valve and remove the metal nut to release the pneumatic valve.
     :::
 
-* - :::{imgur-figure} okN52HT
+  - :::{imgur-figure} okN52HT
     Install the Gauge
 
     Screw together the gauge, the 45 degree elbow, and the bulkhead coupler. Then install the assembly with the nut that came
     with the coupler. I didn't need to use any teflon tape or sealant for any of the couplings.
     :::
 
-  - :::{imgur-figure} BvGrOio
+* - :::{imgur-figure} BvGrOio
     First Use
 
     I pumped it to -20 inHg to start the oil flowing. It held that vacuum very well, and I only had to pump it back to -20 once
@@ -75,7 +75,6 @@ drop when transferring the old oil from the extractor back into the 5 qt oil jug
     very clean and easy! The ring cap that comes with the extractor is meant only to help push out the hose but it turns out it
     can also hold the spout in place. I flipped the spout up after dispensing some of it to prevent oil from dribbling out.
     :::
-  -
   -
 ```
 

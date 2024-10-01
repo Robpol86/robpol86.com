@@ -46,7 +46,7 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
     Items used (forgot to include the 8mm wrench).
     :::
 
-  - :::{imgur-figure} TJJbTDQ
+* - :::{imgur-figure} TJJbTDQ
     Remove the Air Box
 
     Use a pick or screwdriver to remove the little vacuum hose nearest to the front of the car. Use your fingers to pinch the
@@ -54,14 +54,14 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
     main intake hose.
     :::
 
-* - :::{imgur-figure} j286FE6
+  - :::{imgur-figure} j286FE6
     Air Box After Removal
 
     With all the hoses removed you can just pull up on the air box to remove it. Roll it towards the front of the car and then
     lift it out and set aside.
     :::
 
-  - :::{imgur-figure} Vcpnmgs
+* - :::{imgur-figure} Vcpnmgs
     Prepare to Remove Bleeder Block
 
     This is what my car looked like before replacing the block. I've circled the original plastic block in this picture. To
@@ -92,8 +92,6 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
 
     From page 18 of the service manual D4B80989C93 6-Speed_Manual_Transmission_02S.
     :::
-
-  -
 ```
 
 ### Mirrors

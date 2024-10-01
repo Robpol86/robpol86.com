@@ -44,19 +44,19 @@ Pictures:
     covers.
     :::
 
-  - :::{imgur-figure} 9A0Pzjd
+* - :::{imgur-figure} 9A0Pzjd
     Rear (Passenger Side) Installation
 
     I installed the rear pad by pressing it into the front hole first until it snapped into place. I then rotated the pad and the
     rear side snapped in easily. I didn't need to use any type of grease either.
     :::
 
-* - :::{imgur-figure} wVSirBZ
+  - :::{imgur-figure} wVSirBZ
     %
     Done with both rears.
     :::
 
-  - :::{imgur-figure} dw898De
+* - :::{imgur-figure} dw898De
     Front Before
 
     Remove the Torx screw first. Then push in the two tabs on the other side and slide the trim piece towards the rear.
@@ -73,7 +73,6 @@ Pictures:
     the corners of the trim piece in place as you slide it). It should click into place. Screw in the Torx screw and then install
     the final cover piece (I used my floor jack to press it into the rubber piece). Again I didn't need to use any grease.
     :::
-  -
   -
 ```
 
