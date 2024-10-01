@@ -170,21 +170,22 @@ disqus_pages = False
 TODOs:
 * redo categories to match what main branch currently uses
 * re-column pages from main
-* make pr in main and deprecate imgur-embed and carousel
+* make pr in main and deprecate imgur-embed
 * photo posts' main image in OGP
 * Ensure post dates are accurrate
-* convert imgur-embed into list-table of figures
 * closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
 * Revisit conf.py
+    * revisit all extension settings here
 * Revisit pyproject.toml
 * Revisit GitHub Actions
 * log 404s and confirm me visiting bad pages logs correctly
-* revisit all extension settings here
-* fix imgur-embed in latest sphinx
-* validate rss
 * fix tags having too much whitespace with commas
 * html validator, ogp validator
-* ablog feeds (rss?)
 * refactor htaccess and enablg logging to confirm rules work as expected
+* after release:
+    * ablog feeds (rss?)
+    * new desk photos posts
+    * new homelab photos posts
+    * fix imgur-embed in latest sphinx
 """
