@@ -168,7 +168,10 @@ disqus_pages = False
 
 """
 TODOs:
-* photo post's lead image in OGP and supposed to also be in Category/Tags page
+* restore old pages that use imgur-embed and explode those. rst vs md?
+* also restore carousel pages and programatically explode those
+* make pr in main and deprecate imgur-embed and carousel
+* photo posts' main image in OGP
 * Ensure post dates are accurrate
 * convert imgur-embed into list-table of figures
 * closely look at diffs of all pages and visually check in pc and mobile browsers
