@@ -168,8 +168,6 @@ disqus_pages = False
 
 """
 TODOs:
-* restore old pages that use imgur-embed and explode those. rst vs md?
-* also restore carousel pages and programatically explode those
 * make pr in main and deprecate imgur-embed and carousel
 * photo posts' main image in OGP
 * Ensure post dates are accurrate
