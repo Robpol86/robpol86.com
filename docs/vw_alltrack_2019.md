@@ -36,37 +36,31 @@ Pictures:
     %
     Parts included in the kit I bought from ShopDAP (excluding the pick which I got from Amazon).
     :::
-
   - :::{imgur-figure} c574eG9
     Rear (Driver Side) Before
 
     I started with the rear. This is how it originally looked like. I used the pick tool to stab and yank out the two plastic
     covers.
     :::
-
 * - :::{imgur-figure} 9A0Pzjd
     Rear (Passenger Side) Installation
 
     I installed the rear pad by pressing it into the front hole first until it snapped into place. I then rotated the pad and the
     rear side snapped in easily. I didn't need to use any type of grease either.
     :::
-
   - :::{imgur-figure} wVSirBZ
     %
     Done with both rears.
     :::
-
 * - :::{imgur-figure} dw898De
     Front Before
 
     Remove the Torx screw first. Then push in the two tabs on the other side and slide the trim piece towards the rear.
     :::
-
   - :::{imgur-figure} 4KFUGuV
     %
     This is what it looks like with the trim piece removed.
     :::
-
 * - :::{imgur-figure} TQ6LhyF
     %
     Install the rubber piece first (not visible here). Then slide in the new trim piece (there are three guides that should hold
@@ -186,9 +180,10 @@ at position **0** push in the switch and turn it towards **Auto** then pull it o
   - ```{imgur-figure} JVCZV7i
     Outer harness trimmed
     ```
-  - ```{imgur-figure} 5NiYmRk
+* - ```{imgur-figure} 5NiYmRk
     Inner harness trimmed
     ```
+  -
 ```
 
 Before getting to my car I had to make some modifications to four wiring harness connectors with an

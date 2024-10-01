@@ -27,22 +27,18 @@ need to disconnect them when removing or replacing the enclosure.
 * - :::{imgur-figure} KHWYDpz
     Before and After
     :::
-
   - :::{imgur-figure} CDeC10F
     Bottom Cable Management
 
     I didn't want any of the cables dragging on the table under the printer to avoid any snagging when moving it. I also
     eliminated any slack with the heated platform cable so it no longer touches the platform itself.
     :::
-
 * - :::{imgur-figure} VfdJDt8
     Stop Button
     :::
-
   - :::{imgur-figure} w9NQt2t
     Rear Cable Management
     :::
-
 * - :::{imgur-figure} 6GdAPM7
     Thread Tapping
 
@@ -52,14 +48,12 @@ need to disconnect them when removing or replacing the enclosure.
     the same drill and slowly carved the threads. I was super surprised with the results, the push-in fitting screwed on smoothly
     and stays put very firmly without any play.
     :::
-
   - :::{imgur-figure} joKQgiy
     Head Fitting
 
     The PTFE teflon tubing kit I bought came with two types of push-in fittings. The blue fittings prevent the teflon tube from
     going all the way through.
     :::
-
 * - :::{imgur-figure} f3CX7MR
     Teflon Tube
 
@@ -67,7 +61,6 @@ need to disconnect them when removing or replacing the enclosure.
     It turns out these fittings are the perfect size. It easily screws into the plastic snap-bushing that came with the enclosure
     so I didn't need to drill or tap anything for this one.
     :::
-
   - :::{imgur-figure} UoAtduN
     UPS
 

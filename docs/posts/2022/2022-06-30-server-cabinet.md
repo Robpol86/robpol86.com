@@ -33,21 +33,18 @@ vibration of my spinning hard drives. It's not too bad though.
 
     My newly rewired 9U server rack cabinet hidden in my living room.
     :::
-
   - :::{imgur-figure} WbPfod5
     Drilling Three Holes
 
     I had to drill additional holes near the bend on my custom designed rack posts to keep them flush against the TV cabinet
     walls. Easier, faster, and cheaper than updating my design and having new ones fabricated.
     :::
-
 * - :::{imgur-figure} yarRE7Z
     Wiring First
 
     Crimped custom-length CAT6 cables and got lucky with 1 meter long fiber cables. The yellow fiber cable is for my Google Fiber
     internet service and the blue fiber cable goes to my office on the other side of the wall.
     :::
-
   - :::{imgur-figure} I0y0A9q
     Installed UPS
 
@@ -55,7 +52,6 @@ vibration of my spinning hard drives. It's not too bad though.
     fans. Two fans and two power adapters for redundancy in case one is defective. The white USB cable going out of the cabinet
     is for a Nest camera.
     :::
-
 * - :::{imgur-figure} iAaxoC5
     Installed PDU
 
@@ -63,7 +59,6 @@ vibration of my spinning hard drives. It's not too bad though.
     for my patch panel and 3d printed a magnetic door stop, though it's falling apart after a couple of years of adding and
     removing it lol.
     :::
-
   - :::{imgur-figure} cyOykBp
     Installed Switch
 
@@ -71,7 +66,6 @@ vibration of my spinning hard drives. It's not too bad though.
     could plug directly into my switch, it's basically a "modem" on a stick! For those that are curious this only runs at 1 Gbps
     speeds so I'm currently just paying for Google's 1 gigabit service instead of their 2 gig offering.
     :::
-
 * - :::{imgur-figure} sJ8ooy9
     Installed Dual Server
 
@@ -79,26 +73,22 @@ vibration of my spinning hard drives. It's not too bad though.
     rack. I got rid of my old shelf and have now properly racked my dual mini-ITX 2U server chassis. I made sure the network and
     power cables have enough slack so I can fully extend the server without having to power it down.
     :::
-
   - :::{imgur-figure} qGJPNGQ
     Rear Panel and Fan Assembly
 
     Lastly I plugged in the two 5V Noctua fans into those USB power adapters. I don't want anything to overheat and it does
     indeed get a bit warm in there what with my 6 spinning hard drives.
     :::
-
 * - :::{imgur-figure} 6W8LIkj
     Closed!
 
     Like a glove.
     :::
-
   - :::{imgur-figure} u23P6Sy
     In All Its Glory
 
     In the future I may add another 2U case.
     :::
-
 * - :::{imgur-figure} FtpUBBL
     Center I/O
 
@@ -107,13 +97,11 @@ vibration of my spinning hard drives. It's not too bad though.
     goes to a switch in my office and the gray CAT5e cable goes up to my Chromecast behind the TV. The power strip is also for my
     TV and game consoles.
     :::
-
   - :::{imgur-figure} TW0HioA
     Behind the Cabinet
 
     Here's what the back looks like. More keystones!
     :::
-
 * - :::{imgur-figure} JhRB3DB
     VLAN Configuration
 

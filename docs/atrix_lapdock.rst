@@ -27,93 +27,79 @@ Pictures and Videos
             Lapdock with a Nexus 4
 
             Works fine with SlimPort.
-
       - .. imgur-figure:: MUViVQI
 
             Lapdock with a Nexus 4 (Adapters Used)
 
             MicroUSB extension (optional); SlimPort HDMI, HDMI male to microHDMI female; HDMI right angle (optional)
-
     * - .. imgur-figure:: yNgacIC
 
             Lapdock with a Nexus 4 (OTG) (USB Hub Test)
 
             If you can see, I ran lsusb on the phone, removed the USB WiFi adapter, and ran lsusb again. Notice the shorter
             "paragraph" on my phone. Definitely working.
-
       - .. imgur-figure:: K7glCXN
 
             Lapdock with a Nexus 4 (OTG) (USB Hub Test) (Screen Shot)
 
             First group is with the USB WiFi adapter, second group is after I removed it. The phone can detect things on the USB
             hub.
-
     * - .. imgur-figure:: qbs7sWg
 
             Lapdock with a Nexus 4 (OTG)
 
             Ignore the Raspberry Pi, I'm just using it to trick the Lapdock into powering on. Notice the mouse cursor on my
             phone!
-
       - .. imgur-figure:: 5HAGw
 
             Lapdock IO Plate Off
 
             This is how the Lapdock's phone dock looks like without the plate. More room for HDMI/USB adapters.
-
     * - .. imgur-figure:: WpsmI
 
             Lapdock IO Plate On
 
             This plate is removable. Use the notches (one on each side) to remove the plate with your fingernails. It should
             easily come off.
-
       - .. imgur-figure:: ldQ0c
 
             Lapdock as a Second Display
 
             The Lapdock is very handy as a second display for my laptop! At home my laptop is docked with two monitors. Now when
             I travel I can still have two monitors.
-
     * - .. imgur-figure:: KONZZ
 
             Lapdock as a Second Display (Adapters Used)
 
             I used a Micro HDMI female to HDMI male adapter and an HDMI female/female coupler.
-
       - .. imgur-figure:: qs9ph
 
             Lapdock with a Galaxy Nexus (VZW LTE)
 
             The Galaxy Nexus works fine with the Lapdock, however only HDMI (video) works. The MHL standard disables USB when
             using HDMI, so the Lapdock's keyboard, touchpad, and USB ports don't work. Charging the phone works though.
-
     * - .. imgur-figure:: VpSTT
 
             Lapdock with a Galaxy Nexus (VZW LTE) (Netflix)
 
             Netflix works fine.
-
       - .. imgur-figure:: Ct9Ii
 
             Lapdock with a Galaxy Nexus (VZW LTE) (Adapters Used)
 
             Any MHL capable phone will work with an MHL adapter. I also used a Micro HDMI female to HDMI male adapter, an HDMI
             female/female coupler (my MHL adapter has an HDMI male connector), and a MicroUSB male/female extension cable.
-
     * - .. imgur-figure:: 2SA93
 
             Lapdock Shaved Adapters (Above View)
 
             Another view of the adapters I shaved.
-
       - .. imgur-figure:: vCYfG
 
             Lapdock Shaved Adapters
 
             In order for the Micro-HDMI and Micro-USB adapters to fit at the same time, I had to shave off a lot of excess
             plastic.
-
     * - .. imgur-figure:: TXiVx
 
             Lapdock with a Wii
@@ -121,19 +107,16 @@ Pictures and Videos
             I don't have a 360 or PS3, but I have a Wii and after I found an HDMI adapter I tried it with the Lapdock. Turns out
             it works just fine. The Lapdock takes care of changing resolution as long as it's at or below 1366x768. Audio works
             too by the way. This should work just fine with the Xbox 360, PS3, or any other HDMI devices.
-
       - .. imgur-figure:: UkdYJ
 
             Lapdock with a Wii (Adapters Used)
 
             I used a Micro HDMI female to HDMI male adapter and an HDMI female/female coupler.
-
     * - .. imgur-figure:: cc5TK
 
             Lapdock with a Wii (Wii HDMI Adapter)
 
             Here you ca see the Wii HDMI adapter I used.
-
       - .. imgur-figure:: cZR03
 
             Lapdock with a Raspberry Pi
@@ -141,7 +124,6 @@ Pictures and Videos
             The Lapdock works great with the Raspberry Pi, but with a few problems. Every time the Lapdock's lid is opened or
             closed, power is cut off the RPI for a second, causing it to reboot. Also there's a problem with the RPI's USB hub
             that prevents me from using the Lapdock's keyboard and a USB WiFi adapter.
-
     * - .. imgur-figure:: MrTBN
 
             Lapdock with a Raspberry Pi (Adapters Used)
