@@ -168,6 +168,8 @@ disqus_pages = False
 
 """
 TODOs:
+* redo categories to match what main branch currently uses
+* re-column pages from main
 * make pr in main and deprecate imgur-embed and carousel
 * photo posts' main image in OGP
 * Ensure post dates are accurrate
