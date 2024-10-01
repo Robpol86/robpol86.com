@@ -23,59 +23,58 @@ need to disconnect them when removing or replacing the enclosure.
 
 ## Pictures
 
-```{carousel}
-:data-bs-interval: "false"
+```{list-table}
+* - :::{imgur-figure} KHWYDpz
+    Before and After
+    :::
 
-:::{imgur-figure} KHWYDpz
-Before and After
-:::
+  - :::{imgur-figure} CDeC10F
+    Bottom Cable Management
 
-:::{imgur-figure} CDeC10F
-Bottom Cable Management
+    I didn't want any of the cables dragging on the table under the printer to avoid any snagging when moving it. I also
+    eliminated any slack with the heated platform cable so it no longer touches the platform itself.
+    :::
 
-I didn't want any of the cables dragging on the table under the printer to avoid any snagging when moving it. I also
-eliminated any slack with the heated platform cable so it no longer touches the platform itself.
-:::
+  - :::{imgur-figure} VfdJDt8
+    Stop Button
+    :::
 
-:::{imgur-figure} VfdJDt8
-Stop Button
-:::
+* - :::{imgur-figure} w9NQt2t
+    Rear Cable Management
+    :::
 
-:::{imgur-figure} w9NQt2t
-Rear Cable Management
-:::
+  - :::{imgur-figure} 6GdAPM7
+    Thread Tapping
 
-:::{imgur-figure} 6GdAPM7
-Thread Tapping
+    This was the fun part. Instead of 3D printing a new print head cover with threads for the teflon tube fitting I ended up
+    tapping the original metal cover with M6 threads. I set my power drill to low-speed-high-torque mode (number 1 on the drill's
+    top switch) and used the drill bit that came with the tap and die set to expand the center hole. Then I used the M6 tap with
+    the same drill and slowly carved the threads. I was super surprised with the results, the push-in fitting screwed on smoothly
+    and stays put very firmly without any play.
+    :::
 
-This was the fun part. Instead of 3D printing a new print head cover with threads for the teflon tube fitting I ended up
-tapping the original metal cover with M6 threads. I set my power drill to low-speed-high-torque mode (number 1 on the drill's
-top switch) and used the drill bit that came with the tap and die set to expand the center hole. Then I used the M6 tap with
-the same drill and slowly carved the threads. I was super surprised with the results, the push-in fitting screwed on smoothly
-and stays put very firmly without any play.
-:::
+  - :::{imgur-figure} joKQgiy
+    Head Fitting
 
-:::{imgur-figure} joKQgiy
-Head Fitting
+    The PTFE teflon tubing kit I bought came with two types of push-in fittings. The blue fittings prevent the teflon tube from
+    going all the way through.
+    :::
 
-The PTFE teflon tubing kit I bought came with two types of push-in fittings. The blue fittings prevent the teflon tube from
-going all the way through.
-:::
+* - :::{imgur-figure} f3CX7MR
+    Teflon Tube
 
-:::{imgur-figure} f3CX7MR
-Teflon Tube
+    The black fitting that comes with the kit allows the teflon tube to push through but keeps it in place during normal usage.
+    It turns out these fittings are the perfect size. It easily screws into the plastic snap-bushing that came with the enclosure
+    so I didn't need to drill or tap anything for this one.
+    :::
 
-The black fitting that comes with the kit allows the teflon tube to push through but keeps it in place during normal usage.
-It turns out these fittings are the perfect size. It easily screws into the plastic snap-bushing that came with the enclosure
-so I didn't need to drill or tap anything for this one.
-:::
+  - :::{imgur-figure} UoAtduN
+    UPS
 
-:::{imgur-figure} UoAtduN
-UPS
-
-I have my 3D printer on a UPS since my lights flicker during thunderstorms. However if I would buy a UPS again I would get a
-bigger one to get more run time. This APC Back-UPS Pro 700 shows run times between 30 and 8 minutes during 3D printing.
-:::
+    I have my 3D printer on a UPS since my lights flicker during thunderstorms. However if I would buy a UPS again I would get a
+    bigger one to get more run time. This APC Back-UPS Pro 700 shows run times between 30 and 8 minutes during 3D printing.
+    :::
+  -
 ```
 
 ### Mirrors
