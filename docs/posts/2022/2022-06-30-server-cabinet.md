@@ -41,14 +41,14 @@ vibration of my spinning hard drives. It's not too bad though.
     walls. Easier, faster, and cheaper than updating my design and having new ones fabricated.
     :::
 
-  - :::{imgur-figure} yarRE7Z
+* - :::{imgur-figure} yarRE7Z
     Wiring First
 
     Crimped custom-length CAT6 cables and got lucky with 1 meter long fiber cables. The yellow fiber cable is for my Google Fiber
     internet service and the blue fiber cable goes to my office on the other side of the wall.
     :::
 
-* - :::{imgur-figure} I0y0A9q
+  - :::{imgur-figure} I0y0A9q
     Installed UPS
 
     Next I installed my UPS with some right-angle power adapters. The two USB power adapters are for the TV cabinet ventilation
@@ -56,7 +56,7 @@ vibration of my spinning hard drives. It's not too bad though.
     is for a Nest camera.
     :::
 
-  - :::{imgur-figure} iAaxoC5
+* - :::{imgur-figure} iAaxoC5
     Installed PDU
 
     Here I installed a PDU at the top of the rear posts with my UniFi PoE injector zipped tied to it. I made some magnetic labels
@@ -87,19 +87,19 @@ vibration of my spinning hard drives. It's not too bad though.
     indeed get a bit warm in there what with my 6 spinning hard drives.
     :::
 
-  - :::{imgur-figure} 6W8LIkj
+* - :::{imgur-figure} 6W8LIkj
     Closed!
 
     Like a glove.
     :::
 
-* - :::{imgur-figure} u23P6Sy
+  - :::{imgur-figure} u23P6Sy
     In All Its Glory
 
     In the future I may add another 2U case.
     :::
 
-  - :::{imgur-figure} FtpUBBL
+* - :::{imgur-figure} FtpUBBL
     Center I/O
 
     I added a keystone surface mount box to make plugging and unplugging wires easy, in case I rearrange my living room or
@@ -119,7 +119,6 @@ vibration of my spinning hard drives. It's not too bad though.
 
     This is how I configured the VLANs on my Netgear switch. So glad I took the Cisco CCNA class in high school.
     :::
-  -
   -
 ```
 
