@@ -1090,20 +1090,6 @@ doc = ["ablog (>=0.10.13,<0.11.0)", "folium", "ipywidgets", "matplotlib", "myst-
 test = ["beautifulsoup4 (>=4.6.1,<5)", "coverage", "myst-nb (>=0.13.2,<0.14.0)", "pytest (>=6.0.1,<6.1.0)", "pytest-cov", "pytest-regressions (>=2.0.1,<2.1.0)", "sphinx_thebe"]
 
 [[package]]
-name = "sphinx-carousel"
-version = "1.2.0"
-description = "A Sphinx extension for creating slideshows using Bootstrap Carousels."
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "sphinx-carousel-1.2.0.tar.gz", hash = "sha256:4cb4142c9b4334fee9973dd352f018da7a0729a65a4305079a400f3ec8f49804"},
-    {file = "sphinx_carousel-1.2.0-py3-none-any.whl", hash = "sha256:3e3e5dda44fc99de9d37f15ef1669356a21ce9e536e7e359d29ca39398ef9502"},
-]
-
-[package.dependencies]
-Sphinx = ">=4.0.0"
-
-[[package]]
 name = "sphinx-copybutton"
 version = "0.5.2"
 description = "Add a copy button to each of your code cells."
@@ -1658,4 +1644,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "f8dc69c31733eb1549566afe951f8de94cb5793ab66834b4c4af7b551f457775"
+content-hash = "cbd58c0208c772b9775b01560f44f7aa5d8c1aef2f175aa06d207a45d5331045"

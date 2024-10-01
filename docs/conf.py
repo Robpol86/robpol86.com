@@ -21,7 +21,6 @@ extensions = [
     "robpol86_com.html_context",
     "robpol86_com.move_static",
     "robpol86_com.tags",
-    "sphinx_carousel.carousel",  # https://sphinx-carousel.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
     "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
@@ -128,11 +127,6 @@ linkcheck_timeout = 5
 
 
 # Extension settings.
-carousel_show_buttons_on_top = True
-carousel_show_captions_below = True
-carousel_show_controls = True
-carousel_show_indicators = True
-carousel_show_shadows = True
 disqus_shortname = "rob86wiki"
 external_toc_path = ".toc.yml"
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
