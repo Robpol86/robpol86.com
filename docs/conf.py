@@ -168,7 +168,7 @@ disqus_pages = False
 
 """
 TODOs:
-* alltrack TODOS: re-date, re-title, re-tag
+* alltrack TODOS: re-title, re-tag
 * re-column pages from main
 * photo posts' main image in OGP
 * fix tags having too much whitespace with commas

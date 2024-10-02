@@ -1,6 +1,6 @@
 ---
 blogpost: true
-date: 2022-01-01
+date: 2022-01-02
 author: Robpol86
 location: San Francisco
 category: Projects
@@ -49,7 +49,6 @@ Disabled Codes
   * `00070400` (Electronic Voice Amplifier / ICC)
 
 ```{seealso}
-https://www.youtube.com/watch?v=p5LA7dU4_WI
-https://mst2fecgen.mibsolution.one/
+* https://www.youtube.com/watch?v=p5LA7dU4_WI
+* https://mst2fecgen.mibsolution.one/
 ```
-
