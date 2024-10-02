@@ -2,7 +2,7 @@
 blogpost: true
 date: 2022-10-01
 author: Robpol86
-location: San Francisco
+location: Austin
 category: Projects
 tags: car, alltrack, TODO
 ---
