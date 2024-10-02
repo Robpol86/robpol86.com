@@ -143,7 +143,7 @@ https://mst2fecgen.mibsolution.one/
 
 ## Dec &#39;21 Euro Tail Lights
 
-```{imgur} QlhDVvr
+```{imgur-figure} HMxM8Kv.gif
 ```
 
 I've always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack

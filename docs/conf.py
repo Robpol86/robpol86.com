@@ -168,6 +168,7 @@ disqus_pages = False
 
 """
 TODOs:
+* split up alltrack into multiple posts, keep original page and list posts a la photo_albums
 * make pr in main and deprecate imgur-embed
 * re-column pages from main
 * photo posts' main image in OGP
