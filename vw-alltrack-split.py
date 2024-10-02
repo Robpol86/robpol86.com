@@ -38,7 +38,7 @@ def main():
         out_file_handle = None
         visited = set()
         for line in handle:
-            if (section_title := re.match(r'^## (\w+) &#39;(\d+) ([\w ]+)', line)):
+            if (section_title := re.match(r'^## (\w+) &#39;(\d+) ([\w -]+)', line)):
                 # Build date.
                 date = parse_date(section_title[1], section_title[2], visited)
                 date_ymd = date.strftime("%Y-%m-%d")
