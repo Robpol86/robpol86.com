@@ -25,10 +25,10 @@ def gen_heading(date_ymd: str) -> str:
 
 
 def parse_date(month_abbrev: str, year_short: str, visited: set) -> datetime:
-    month = {"Sept": 9, "Jan": 1, "Feb": 2}[month_abbrev]
+    month = {"Sept": 9, "Jan": 1, "Feb": 2, "Oct": 10, "Dec": 12, "Aug": 8, "June": 6}[month_abbrev]
     year = int(f"20{year_short}")
     visited_key = f"{month} {year}"
-    day = 15 if visited_key in visited else 1
+    day = 2 if visited_key in visited else 1
     visited.add(visited_key)
     return datetime.strptime(f"{day} {month} {year}", "%d %m %Y")
 
@@ -38,10 +38,11 @@ def main():
         out_file_handle = None
         visited = set()
         for line in handle:
-            if (section_title := re.match(r'^## (\w+) &#39;(\d+) (\w+)\\n', line)):
+            if (section_title := re.match(r'^## (\w+) &#39;(\d+) ([\w ]+)', line)):
                 # Build date.
                 date = parse_date(section_title[1], section_title[2], visited)
                 date_ymd = date.strftime("%Y-%m-%d")
+                print(f"{line.rstrip()} {date_ymd}")
                 # Build filepath and open.
                 out_file_path = Path("docs/posts") / str(date.year) / f"{date_ymd}-alltrack.md"
                 if out_file_handle:
@@ -54,8 +55,6 @@ def main():
                 # Next.
                 continue
             if out_file_handle:
-                if line.startswith("## "):
-                    pdb.set_trace()  # BUG
                 if line.startswith("#"):
                     line = line[1:]
                 out_file_handle.write(line)
