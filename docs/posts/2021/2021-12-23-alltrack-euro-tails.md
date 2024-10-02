@@ -4,7 +4,7 @@ date: 2021-12-23
 author: Robpol86
 location: San Francisco
 category: Projects
-tags: car, alltrack, TODO
+tags: car, alltrack
 ---
 
 # Euro Tail Lights

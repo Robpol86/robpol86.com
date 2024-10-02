@@ -4,7 +4,7 @@ date: 2020-02-21
 author: Robpol86
 location: San Francisco
 category: Projects
-tags: car, alltrack, TODO
+tags: car, alltrack
 ---
 
 # Front Dashcam Pair

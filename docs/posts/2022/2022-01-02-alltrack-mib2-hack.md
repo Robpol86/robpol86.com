@@ -4,7 +4,7 @@ date: 2022-01-02
 author: Robpol86
 location: San Francisco
 category: Projects
-tags: car, alltrack, TODO
+tags: car, alltrack
 ---
 
 # MIB2 Developer Mode

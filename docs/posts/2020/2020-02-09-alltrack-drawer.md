@@ -4,7 +4,7 @@ date: 2020-02-09
 author: Robpol86
 location: San Francisco
 category: Projects
-tags: car, alltrack, TODO
+tags: car, alltrack
 ---
 
 # Under-Seat Drawer

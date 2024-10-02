@@ -4,7 +4,7 @@ date: 2021-08-22
 author: Robpol86
 location: San Francisco
 category: Projects
-tags: car, alltrack, TODO
+tags: car, alltrack
 ---
 
 # P3 Vent Gauge

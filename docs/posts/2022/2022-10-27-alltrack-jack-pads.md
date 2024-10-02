@@ -4,7 +4,7 @@ date: 2022-10-27
 author: Robpol86
 location: Austin
 category: Projects
-tags: car, alltrack, TODO
+tags: car, alltrack
 ---
 
 # Jack Pads

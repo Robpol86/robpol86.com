@@ -4,7 +4,7 @@ date: 2021-06-20
 author: Robpol86
 location: San Francisco
 category: Projects
-tags: car, alltrack, TODO
+tags: car, alltrack
 ---
 
 # Fire Extinguisher
