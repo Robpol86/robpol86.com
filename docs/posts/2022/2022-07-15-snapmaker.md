@@ -41,15 +41,15 @@ need to disconnect them when removing or replacing the enclosure.
     eliminated any slack with the heated platform cable so it no longer touches the platform itself.
     :::
 
-  - :::{imgur-figure} VfdJDt8
+* - :::{imgur-figure} VfdJDt8
     Stop Button
     :::
 
-* - :::{imgur-figure} w9NQt2t
+  - :::{imgur-figure} w9NQt2t
     Rear Cable Management
     :::
 
-  - :::{imgur-figure} 6GdAPM7
+* - :::{imgur-figure} 6GdAPM7
     Thread Tapping
 
     This was the fun part. Instead of 3D printing a new print head cover with threads for the teflon tube fitting I ended up
@@ -80,7 +80,6 @@ need to disconnect them when removing or replacing the enclosure.
     I have my 3D printer on a UPS since my lights flicker during thunderstorms. However if I would buy a UPS again I would get a
     bigger one to get more run time. This APC Back-UPS Pro 700 shows run times between 30 and 8 minutes during 3D printing.
     :::
-  -
 ```
 
 ### Mirrors

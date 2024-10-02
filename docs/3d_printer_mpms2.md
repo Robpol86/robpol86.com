@@ -42,13 +42,13 @@ For crimping the wires I used the following:
   - :::{imgur-figure} niwWs5S
     New cooling block and heat break being assembled.
     :::
-  - :::{imgur-figure} ZYG9SuA
+* - :::{imgur-figure} ZYG9SuA
     The bottom are the old bits.
     :::
-* - :::{imgur-figure} otK2hdq
+  - :::{imgur-figure} otK2hdq
     Old carriage plate on the left and the new thicker one on the right.
     :::
-  - :::{imgur} FYdDx79
+* - :::{imgur} FYdDx79
     :::
   - :::{imgur-figure} C00K6Ne
     Crimped new terminals on the shortened fan cable.
@@ -59,13 +59,13 @@ For crimping the wires I used the following:
   - :::{imgur-figure} cHl9KBe
     ARCTIC thermal pad about to get chopped up.
     :::
-  - :::{imgur-figure} nKOBlK1
+* - :::{imgur-figure} nKOBlK1
     Applied it to the heat sink and cut out holes for the screws before threading the screws in.
     :::
-* - :::{imgur-figure} d5Qa3UV
+  - :::{imgur-figure} d5Qa3UV
     Didn't want excess thermal pad material to get jammed up in the extruder gearing so I trimmed it some more.
     :::
-  - :::{imgur-figure} YJWyMhi
+* - :::{imgur-figure} YJWyMhi
     Extruder re-assembled.
     :::
   - :::{imgur-figure} C0yb2eE
@@ -77,7 +77,6 @@ For crimping the wires I used the following:
   - :::{imgur-figure} 0Y8Z3Ca
     Presto!
     :::
-  -
 ```
 
 ## Oct &#39;21 Magnetic Build Plate
