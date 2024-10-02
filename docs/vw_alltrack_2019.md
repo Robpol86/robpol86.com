@@ -4,18 +4,12 @@ date: 2021-08-27
 author: Robpol86
 location: San Francisco, Austin
 category: Projects
-tags: car, alltrack
+tags: car, alltrack, TODO
 ---
 
 # Golf Alltrack SE
 
 This page is a log book of all the modifications I've done to my 2019 Alltrack.
-
-## Dec &#39;22 Clutch Bleeder Block Mod
-
-I posted the installation steps in a dedicated post here:
-
-* [](posts/2022/2022-12-11-alltrack-clutch-bleeder-block.md)
 
 ## Oct &#39;22 Jack Pads
 
@@ -82,18 +76,6 @@ Pictures:
   -
   -
 ```
-
-## Aug &#39;22 OEMTools 24938 Gauge Mod
-
-Another dedicated post loosely related to my Alltrack:
-
-* [](posts/2022/2022-08-23-oemtools-gauge.md)
-
-## Jun &#39;22 HomeLink Rearview Mirror
-
-I posted the installation steps in a dedicated post here:
-
-* [](posts/2022/2022-06-05-alltrack-homelink-mirror.md)
 
 ## Jan &#39;22 MIB2 Developer Mode
 
