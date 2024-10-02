@@ -2,7 +2,7 @@
 :date: 2011-08-11
 :author: Robpol86
 :location: Austin
-:category: Guides
+:category: Tutorials
 :tags: car, jsw, hacking
 
 ==========================

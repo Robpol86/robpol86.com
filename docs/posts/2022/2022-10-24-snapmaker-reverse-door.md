@@ -3,7 +3,7 @@ blogpost: true
 date: 2022-10-24
 author: Robpol86
 location: Austin
-category: Guides
+category: Tutorials
 tags: 3d-printing
 ---
 

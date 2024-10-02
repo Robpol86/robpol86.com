@@ -2,7 +2,7 @@
 :date: 2015-08-23
 :author: Robpol86
 :location: San Francisco
-:category: Guides
+:category: Tutorials
 :tags: homelab
 
 ============================

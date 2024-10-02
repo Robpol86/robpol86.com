@@ -2,7 +2,7 @@
 :date: 2016-12-18
 :author: Robpol86
 :location: San Francisco
-:category: Guides
+:category: Tutorials
 :tags: linux
 
 ============================

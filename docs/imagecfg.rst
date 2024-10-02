@@ -2,7 +2,7 @@
 :date: 2003-12-03
 :author: Robpol86
 :location: Victoria
-:category: Guides
+:category: Tutorials
 
 ========
 ImageCFG
