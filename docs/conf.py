@@ -168,7 +168,7 @@ disqus_pages = False
 
 """
 TODOs:
-* redo categories to match what main branch currently uses
+* fix tags having too much whitespace with commas
 * re-column pages from main
 * make pr in main and deprecate imgur-embed
 * photo posts' main image in OGP
@@ -180,7 +180,6 @@ TODOs:
 * Revisit pyproject.toml
 * Revisit GitHub Actions
 * log 404s and confirm me visiting bad pages logs correctly
-* fix tags having too much whitespace with commas
 * html validator, ogp validator
 * refactor htaccess and enablg logging to confirm rules work as expected
 * after release:
