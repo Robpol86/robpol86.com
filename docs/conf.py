@@ -168,10 +168,10 @@ disqus_pages = False
 
 """
 TODOs:
-* fix tags having too much whitespace with commas
-* re-column pages from main
 * make pr in main and deprecate imgur-embed
+* re-column pages from main
 * photo posts' main image in OGP
+* fix tags having too much whitespace with commas
 * Ensure post dates are accurrate
 * closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
@@ -179,10 +179,11 @@ TODOs:
     * revisit all extension settings here
 * Revisit pyproject.toml
 * Revisit GitHub Actions
-* log 404s and confirm me visiting bad pages logs correctly
 * html validator, ogp validator
-* refactor htaccess and enablg logging to confirm rules work as expected
+* google search validator (also validates sitemap)
 * after release:
+    * refactor htaccess and enablg logging to confirm rules work as expected
+    * log 404s and confirm me visiting bad pages logs correctly
     * ablog feeds (rss?)
     * new desk photos posts
     * new homelab photos posts
