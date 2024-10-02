@@ -71,18 +71,18 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
     Removed the LED strips from the now-bottom rails to relocate them back to the top of the enclosure.
     :::
 
-  - :::{imgur-figure} 5cDGBUU
+* - :::{imgur-figure} 5cDGBUU
     %
     Flip the hall/door sensor. I used a zip tie to help keep the plastic washers in place. The sensor actually has bright white
     LEDs that light up when it detects when the two doors are closed.
     :::
 
-* - :::{imgur-figure} yJP9vVH
+  - :::{imgur-figure} yJP9vVH
     %
     Half way through I put the doors on to verify they fit and close properly. The magnets are aligned just fine.
     :::
 
-  - :::{imgur-figure} wGu1uNO
+* - :::{imgur-figure} wGu1uNO
     %
     Mark where the foot fixtures will go and use T-nuts to fasten them in place.
     :::
@@ -103,18 +103,18 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
     Unrelated: for my new coffee table setup I'm moving the power supply to be on top of the UPS and not take up table space.
     :::
 
-  - :::{imgur-figure} iFNKJxn
+* - :::{imgur-figure} iFNKJxn
     %
     I bought a filament dry box from Amazon instead of relocating the spool holder which would have required cutting or drilling
     into the enclosure panels. This works for me because I already use a PTFE/Teflon tube with my printer.
     :::
 
-* - :::{imgur-figure} bNa6Ul4
+  - :::{imgur-figure} bNa6Ul4
     %
     Done!
     :::
 
-  - :::{imgur-figure} B6j9Ws3
+* - :::{imgur-figure} B6j9Ws3
     %
     Teflon tube routing: dry box
     :::
@@ -128,6 +128,5 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
     %
     Teflon tube routing: print head
     :::
-  -
   -
 ```
