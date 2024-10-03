@@ -169,15 +169,18 @@ disqus_pages = False
 
 """
 TODOs:
-* Ensure post dates are accurrate
-* closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
+* closely look at diffs of all pages and visually check in pc and mobile browsers
 * Revisit conf.py
     * revisit all extension settings here
 * Revisit pyproject.toml
 * Revisit GitHub Actions
 * html validator, ogp validator
 * google search validator (also validates sitemap)
+* Ensure post dates are accurrate
+* reduce diff:
+    * conf.py
+    * pyproject
 * after release:
     * refactor htaccess and enablg logging to confirm rules work as expected
     * log 404s and confirm me visiting bad pages logs correctly

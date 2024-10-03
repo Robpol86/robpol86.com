@@ -25,9 +25,9 @@ RewriteRule lapdock https://robpol86.com/atrix_lapdock.html [R=301,L,NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule berto89 https://robpol86.com/rns_510_vim.html [R=301,L,NC]
 
-# Aliases.
+# Ablog migration.
+RewriteRule ^posts/2022/2022-06-30-server-cabinet\.html$ /posts/2022/2022-06-30-rack.html [R=301,L]
 RewriteRule ^robots\.txt$ /_static/robots.txt [L]
-RewriteRule ^posts/2022/2022-06-30-server-cabinet\.html$ /posts/2022/2022-06-30-rack.html [L]
 
 # Catch-alls.
 RewriteRule index\.php https://robpol86.com/ [R=301,L]
