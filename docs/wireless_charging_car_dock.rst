@@ -28,8 +28,15 @@ my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 .. list-table::
 
     * - .. imgur:: GJE9zkv
-      - .. imgur:: 55krwnA
+      - .. imgur:: zIgncli
+      - .. imgur:: 7zHnpLJ
+    * - .. imgur:: 55krwnA
       - .. imgur:: 7lHFKUv
+      - .. imgur:: N3ZRXRI
+    * - .. imgur:: 5KjUkO5
+      -
+      -
+
 
 Previous Implementation
 =======================
@@ -42,9 +49,6 @@ So I built my own. I originally posted everything
 placed on the dock and stays put in that position. You can see it self-align in the gif below. I drove 45mins from San
 Francisco to San Jose and it never fell off. I was using GPS (Google Maps) and it looks like the magnets don't add too
 much distance between the phone and the transmitting coil, my battery meter went up a little bit.
-
-.. imgur-embed:: a/dhFnO
-    :hide_post_details:
 
 I used the following items:
 
