@@ -39,6 +39,7 @@ html_context = {
     "html_baseurl": html_baseurl,
 }
 html_copy_source = False
+html_css_files = ["aside_margin.css"]
 html_extra_path = [
     ".htaccess",
     # favicon
@@ -168,9 +169,7 @@ disqus_pages = False
 
 """
 TODOs:
-* re-column pages from main
 * Ensure post dates are accurrate
-* photo posts' main image in OGP
 * closely look at diffs of all pages and visually check in pc and mobile browsers
 * Confirm all pages keep the same URLs as main branch
 * Revisit conf.py
