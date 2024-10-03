@@ -16,9 +16,9 @@ to get to your IPMI web interface? Have I got a guide for you!
 
     * - .. imgur:: Waa1HJk
       - .. imgur:: eiUc8Bu
-      - .. imgur:: 4NS0cDs
-    * - .. imgur:: uqRXaeu
-      - .. imgur:: iz4qY7O
+    * - .. imgur:: 4NS0cDs
+      - .. imgur:: uqRXaeu
+    * - .. imgur:: iz4qY7O
       -
 
 This guide will go over setting up an offline root certificate authority for your home network. It is based on what I've
