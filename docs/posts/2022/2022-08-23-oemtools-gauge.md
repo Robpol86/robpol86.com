@@ -39,33 +39,28 @@ drop when transferring the old oil from the extractor back into the 5 qt oil jug
 * - :::{imgur-figure} ehm4xGw
     Finished Project
     :::
-
   - :::{imgur-figure} JlCNRDJ
     Underside of Lid
 
     Unscrew the lid collar and pop off the lid. This is the underside, held in place with a Bessey vise.
     :::
-
 * - :::{imgur-figure} oS6xG9B
     Remove the Valve
 
     Unscrew the floater valve and remove the metal nut to release the pneumatic valve.
     :::
-
   - :::{imgur-figure} okN52HT
     Install the Gauge
 
     Screw together the gauge, the 45 degree elbow, and the bulkhead coupler. Then install the assembly with the nut that came
     with the coupler. I didn't need to use any teflon tape or sealant for any of the couplings.
     :::
-
 * - :::{imgur-figure} BvGrOio
     First Use
 
     I pumped it to -20 inHg to start the oil flowing. It held that vacuum very well, and I only had to pump it back to -20 once
     more before all the oil was sucked out.
     :::
-
   - :::{imgur-figure} HsYcPca
     Graduated Cylinder
 
@@ -73,7 +68,6 @@ drop when transferring the old oil from the extractor back into the 5 qt oil jug
     so I can re-mark it with a sharpie once the ink wears off over time. And yes, I pulled out 7 quarts of oil from my MK7 VW
     instead of 6. I overfilled it a bit on my last oil change, oops lol.
     :::
-
 * - :::{imgur-figure} IS0lDFc
     Gas Can Spout
 
