@@ -169,13 +169,12 @@ disqus_pages = False
 
 """
 TODOs:
-* Confirm all pages keep the same URLs as main branch
-* closely look at diffs of all pages and visually check in pc and mobile browsers
 * Revisit conf.py
     * revisit all extension settings here
 * Revisit pyproject.toml
 * Revisit GitHub Actions
 * html validator, ogp validator
+* closely look at diffs of all pages and visually check in pc and mobile browsers
 * google search validator (also validates sitemap)
 * Ensure post dates are accurrate
 * reduce diff:
