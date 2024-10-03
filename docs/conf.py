@@ -12,13 +12,13 @@ GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.
 
 
 # General configuration.
-copyright = f'{time.strftime("%Y")}, Robpol86'  # pylint: disable=redefined-builtin  # noqa
+author = "Robpol86"
+copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-builtin  # noqa
 html_last_updated_fmt = f"%c {time.tzname[time.localtime().tm_isdst]}"
-exclude_patterns = []
+exclude_patterns = ["_build"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
-    "robpol86_com.html_context",
     "robpol86_com.move_static",
     "robpol86_com.tags",
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
@@ -26,9 +26,10 @@ extensions = [
     "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
-    "sphinx_sitemap",  # https://github.com/jdillard/sphinx-sitemap
-    "sphinxcontrib.youtube",  # https://github.com/sphinx-contrib/youtube
+    "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
+    "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
+    "robpol86_com.html_context",
 ]
 language = "en"
 project = "Robpol86.com"
