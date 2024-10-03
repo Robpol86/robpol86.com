@@ -374,7 +374,7 @@ Lapdock 500 Teardown
     * - .. imgur-figure:: uW0oK
 
             Lapdock 500 Controller Board (Rear Bottom)
-      -
+
       -
 
 Comments
