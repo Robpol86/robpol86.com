@@ -16,10 +16,10 @@ It's a good idea to remove the plate on the docking area (underneath where the p
 plug in the adapters or have to sand/shave them less. You can easily pull it off with your finger nails (the plate
 actually has a couple of magnets to keep it in place, and two small plastic clips).
 
-.. imgur-image:: WpsmI
-    :width: 49%
-.. imgur-image:: 5HAGw
-    :width: 49%
+.. list-table::
+
+   * - .. imgur:: WpsmI
+     - .. imgur:: 5HAGw
 
 Pictures and Videos
 ===================
@@ -180,10 +180,10 @@ Works with the Nexus 4 just fine, appears to maintain aspect ratio. Adapters use
 * `SlimPort SP1002 (HDMI) <https://www.amazon.com/dp/B009UZBLSG/>`_
 * `HDMI Port Saver (Male to Female) 90 Degree <https://www.monoprice.com/products/product.asp?p_id=3733>`_
 
-.. imgur-image:: MJs3n49
-    :width: 49%
-.. imgur-image:: MUViVQI
-    :width: 49%
+.. list-table::
+
+   * - .. imgur:: MJs3n49
+     - .. imgur:: MUViVQI
 
 Using USB OTG
 -------------
@@ -217,12 +217,12 @@ Steps taken to accomplish:
     If you can see, I ran ``lsusb`` on the phone, removed the USB WiFi adapter, and ran ``lsusb`` again. Notice the
     shorter "paragraph" on my phone. Definitely working.
 
-.. imgur-image:: qbs7sWg
-    :width: 33%
-.. imgur-image:: yNgacIC
-    :width: 33%
-.. imgur-image:: K7glCXN
-    :width: 33%
+.. list-table::
+
+   * - .. imgur:: qbs7sWg
+     - .. imgur:: yNgacIC
+   * - .. imgur:: K7glCXN
+     -
 
 Using USB OTG and Miracast
 --------------------------
@@ -249,12 +249,12 @@ Adapters used:
     enough power through. So I had to splice another USB cable into the micro USB extension and route the USB data
     cables (green and white) to the spliced cable.
 
-.. imgur-image:: cZR03
-    :width: 33%
-.. imgur-image:: MrTBN
-    :width: 33%
-.. imgur-image:: vCYfG
-    :width: 33%
+.. list-table::
+
+   * - .. imgur:: cZR03
+     - .. imgur:: MrTBN
+   * - .. imgur:: vCYfG
+     -
 
 With a Laptop
 =============
@@ -265,10 +265,10 @@ time I traveled I had to deal with a single monitor. Not anymore! Adapters used:
 * `HDMI Male to Micro HDMI Female <https://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079>`_
 * HDMI Female/Female Coupler
 
-.. imgur-image:: ldQ0c
-    :width: 49%
-.. imgur-image:: KONZZ
-    :width: 49%
+.. list-table::
+
+   * - .. imgur:: ldQ0c
+     - .. imgur:: KONZZ
 
 With a Wii
 ==========
@@ -281,12 +281,12 @@ the way. This should work just fine with the Xbox 360, PS3, or any other HDMI de
 * HDMI Female/Female Coupler
 * `Wii HDMI Adapter <https://www.amazon.com/gp/product/B0057UNPQO/>`_
 
-.. imgur-image:: TXiVx
-    :width: 33%
-.. imgur-image:: UkdYJ
-    :width: 33%
-.. imgur-image:: cc5TK
-    :width: 33%
+.. list-table::
+
+   * - .. imgur:: TXiVx
+     - .. imgur:: UkdYJ
+   * - .. imgur:: cc5TK
+     -
 
 Lapdock 500 Teardown
 ====================
