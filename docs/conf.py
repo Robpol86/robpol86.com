@@ -170,9 +170,6 @@ disqus_pages = False
 
 """
 TODOs:
-* reduce diff:
-    * conf.py
-    * pyproject
 * after release:
     * google search validator
     * refactor htaccess and enablg logging to confirm rules work as expected
