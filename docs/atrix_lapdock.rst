@@ -12,10 +12,10 @@ It's a good idea to remove the plate on the docking area (underneath where the p
 plug in the adapters or have to sand/shave them less. You can easily pull it off with your finger nails (the plate
 actually has a couple of magnets to keep it in place, and two small plastic clips).
 
-.. imgur-image:: WpsmI
-    :width: 49%
-.. imgur-image:: 5HAGw
-    :width: 49%
+.. list-table::
+
+   * - .. imgur:: WpsmI
+     - .. imgur:: 5HAGw
 
 Pictures and Videos
 ===================
@@ -158,10 +158,10 @@ Works with the Nexus 4 just fine, appears to maintain aspect ratio. Adapters use
 * `SlimPort SP1002 (HDMI) <https://www.amazon.com/dp/B009UZBLSG/>`_
 * `HDMI Port Saver (Male to Female) 90 Degree <https://www.monoprice.com/products/product.asp?p_id=3733>`_
 
-.. imgur-image:: MJs3n49
-    :width: 49%
-.. imgur-image:: MUViVQI
-    :width: 49%
+.. list-table::
+
+   * - .. imgur:: MJs3n49
+     - .. imgur:: MUViVQI
 
 Using USB OTG
 -------------
@@ -195,12 +195,12 @@ Steps taken to accomplish:
     If you can see, I ran ``lsusb`` on the phone, removed the USB WiFi adapter, and ran ``lsusb`` again. Notice the
     shorter "paragraph" on my phone. Definitely working.
 
-.. imgur-image:: qbs7sWg
-    :width: 33%
-.. imgur-image:: yNgacIC
-    :width: 33%
-.. imgur-image:: K7glCXN
-    :width: 33%
+.. list-table::
+
+   * - .. imgur:: qbs7sWg
+     - .. imgur:: yNgacIC
+   * - .. imgur:: K7glCXN
+     -
 
 Using USB OTG and Miracast
 --------------------------
@@ -227,12 +227,12 @@ Adapters used:
     enough power through. So I had to splice another USB cable into the micro USB extension and route the USB data
     cables (green and white) to the spliced cable.
 
-.. imgur-image:: cZR03
-    :width: 33%
-.. imgur-image:: MrTBN
-    :width: 33%
-.. imgur-image:: vCYfG
-    :width: 33%
+.. list-table::
+
+   * - .. imgur:: cZR03
+     - .. imgur:: MrTBN
+   * - .. imgur:: vCYfG
+     -
 
 With a Laptop
 =============
@@ -243,10 +243,10 @@ time I traveled I had to deal with a single monitor. Not anymore! Adapters used:
 * `HDMI Male to Micro HDMI Female <https://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079>`_
 * HDMI Female/Female Coupler
 
-.. imgur-image:: ldQ0c
-    :width: 49%
-.. imgur-image:: KONZZ
-    :width: 49%
+.. list-table::
+
+   * - .. imgur:: ldQ0c
+     - .. imgur:: KONZZ
 
 With a Wii
 ==========
@@ -259,12 +259,12 @@ the way. This should work just fine with the Xbox 360, PS3, or any other HDMI de
 * HDMI Female/Female Coupler
 * `Wii HDMI Adapter <https://www.amazon.com/gp/product/B0057UNPQO/>`_
 
-.. imgur-image:: TXiVx
-    :width: 33%
-.. imgur-image:: UkdYJ
-    :width: 33%
-.. imgur-image:: cc5TK
-    :width: 33%
+.. list-table::
+
+   * - .. imgur:: TXiVx
+     - .. imgur:: UkdYJ
+   * - .. imgur:: cc5TK
+     -
 
 Lapdock 500 Teardown
 ====================
@@ -287,14 +287,14 @@ Lapdock 500 Teardown
             off once all the tabs are pushed in. With the keyboard out, lightly tug on its ribbon cable to disconnect it from the
             Lapdock's controller board. Do the same with the touchpad's cable while you're at it.
 
-      - .. imgur-figure:: nH3Vw
+    * - .. imgur-figure:: nH3Vw
 
             Step 3: Removing the Plastic Cover
 
             Gently tug up on the black plastic panel covering the IO ports. I pulled out the phone drawer and started pulling up
             from there.
 
-    * - .. imgur-figure:: qVXHC
+      - .. imgur-figure:: qVXHC
 
             Step 4: Removing the Palm Rest
 
@@ -303,7 +303,7 @@ Lapdock 500 Teardown
             holes (using a Phillips) and using a flathead to pry the bottom part of the Lapdock (which curves up) from the palm
             rest. Be very gentle, the clips are fragile and I broke one during this step.
 
-      - .. imgur-figure:: VxcB7
+    * - .. imgur-figure:: VxcB7
 
             Step 5: Removing the Monitor
 
@@ -331,15 +331,15 @@ Lapdock 500 Teardown
             If someone can help me hack this stupid Lapdock 500 to work with any HDMI input, this would be possible! I would
             probably have to remove a few components from the Pi though.
 
-      - .. imgur-figure:: UOARn
+    * - .. imgur-figure:: UOARn
 
             Lapdock 500 Controller Board (Upper Left)
 
-    * - .. imgur-figure:: 9AxyU
+      - .. imgur-figure:: 9AxyU
 
             Lapdock 500 Controller Board (Upper Center)
 
-      - .. imgur-figure:: knTzK
+    * - .. imgur-figure:: knTzK
 
             Lapdock 500 Controller Board (Upper Right)
 
@@ -355,15 +355,15 @@ Lapdock 500 Teardown
 
             Lapdock 500 Controller Board (Lower Right)
 
-      - .. imgur-figure:: WNuEX
+    * - .. imgur-figure:: WNuEX
 
             Lapdock 500 Controller Board (Second Shot)
 
-    * - .. imgur-figure:: HD108
+      - .. imgur-figure:: HD108
 
             Lapdock 500 Controller Board (Input Cable Removed)
 
-      - .. imgur-figure:: R5mq1
+    * - .. imgur-figure:: R5mq1
 
             Lapdock 500 Controller Board (Rear)
 
