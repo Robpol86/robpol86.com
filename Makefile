@@ -69,7 +69,7 @@ docs: docs/_build/html/index.html
 
 autodocs: _HELP = Start a web server, open browser, and auto-rebuild HTML on file changes
 autodocs: docs/_build/html/index.html
-	poetry run sphinx-autobuild --open-browser --delay=1 --host localhost -n -W docs $(<D)
+	poetry run sphinx-autobuild --open-browser --show-traceback --delay=1 --host localhost -n -W docs $(<D)
 
 .PHONY: linkcheck
 linkcheck: _HELP = Check for broken links in documents
