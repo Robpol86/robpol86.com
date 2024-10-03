@@ -11,7 +11,7 @@
 </li>
 {% endif %}
 {% if post.location %}
-<li id="ablog-sidebar-item location ablog__location">
+<li class="ablog-sidebar-item location ablog__location">
   <span>
     {% if fa %}
     <i class="fa-fw fa fa-location-arrow"></i>
@@ -35,7 +35,7 @@
 </li>
 {% endif %}
 {% if post.category %}
-<li id="ablog-sidebar-item category ablog__category">
+<li class="ablog-sidebar-item category ablog__category">
   <span>
     {% if fa %}
     <i class="fa-fw fa fa-folder-open"></i>
@@ -59,7 +59,7 @@
 </li>
 {% endif %}
 {% if post.tags %}
-<li id="ablog-sidebar-item tags ablog__tags">
+<li class="ablog-sidebar-item tags ablog__tags">
   <span>
     {% if post.tags|length > 1 %}
     {% if fa %}
@@ -88,7 +88,7 @@
 </li>
 {% endif %}
 {% if ablog.disqus_shortname and (ablog[pagename].published or ablog.disqus_drafts) %}
-<li id="ablog-sidebar-item comments ablog__comments">
+<li class="ablog-sidebar-item comments ablog__comments">
   <script type="text/javascript">
     var disqus_shortname = "{{ ablog.disqus_shortname }}";
 
