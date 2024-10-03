@@ -7,6 +7,7 @@ from docutils.nodes import document, title
 from sphinx.application import Sphinx
 
 
+# pylint: disable=unused-argument
 def override_disqus_identifier(app: Sphinx, pagename: str, templatename: str, context: dict[str, Any], doctree: document):
     """Patch ablog's page_id method to return the page title instead of its URL path.
 
