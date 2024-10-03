@@ -166,16 +166,3 @@ blog_default_language = language
 blog_authors = {"Robpol86": ("Robert Pooley", "https://robpol86.com")}
 disqus_shortname = "rob86wiki"
 disqus_pages = False
-
-
-"""
-TODOs:
-* after release:
-    * google search validator
-    * refactor htaccess and enablg logging to confirm rules work as expected
-    * log 404s and confirm me visiting bad pages logs correctly
-    * ablog feeds (rss?)
-    * new desk photos posts
-    * new homelab photos posts
-    * fix imgur-embed in latest sphinx
-"""
