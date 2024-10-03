@@ -100,19 +100,8 @@ linkcheck_allowed_redirects = {
     r"https://www.reddit.com/r/": r"https://www.reddit.com/r/.*?rdt=[\d]+",
     r"https://youtu.be/\w+$": "https://www.youtube.com/watch[?]",
 }
-linkcheck_exclude_documents = [
-    # TODO remove all
-    "atrix_lapdock",
-    "bareos_tape_backup",
-    "flash_droid_cricket",
-    "raspberry_pi_luks",
-    "raspberry_pi_project_fi",
-    "rns_510_vim",
-    "root_certificate_authority",
-    "wireless_charging_car_dock",
-]
+linkcheck_exclude_documents = []
 linkcheck_ignore = [
-    r"[/.]*genindex.html",  # TODO remove this
     r"https://[\w.]*mibsolution.one/",
     r"https://media.vw.com/",  # All curls result in 403
     r"https://mega.nz/(file|folder)/\w+#",
