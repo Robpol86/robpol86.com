@@ -170,14 +170,13 @@ disqus_pages = False
 
 """
 TODOs:
-* html validator, ogp validator
 * closely look at diffs of all pages and visually check in pc and mobile browsers
-* google search validator (also validates sitemap)
 * Ensure post dates are accurrate
 * reduce diff:
     * conf.py
     * pyproject
 * after release:
+    * google search validator
     * refactor htaccess and enablg logging to confirm rules work as expected
     * log 404s and confirm me visiting bad pages logs correctly
     * ablog feeds (rss?)
