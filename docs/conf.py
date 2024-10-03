@@ -5,7 +5,7 @@ import os
 import time
 from urllib.parse import urlparse
 
-from robpol86_com import __license__, __version__ as version
+from robpol86_com import __version__ as version
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
 GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.get("GITHUB_REPOSITORY", "") else None
@@ -18,6 +18,7 @@ exclude_patterns = ["_build"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
+    "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
@@ -169,10 +170,6 @@ disqus_pages = False
 
 """
 TODOs:
-* Revisit conf.py
-    * revisit all extension settings here
-* Revisit pyproject.toml
-* Revisit GitHub Actions
 * html validator, ogp validator
 * closely look at diffs of all pages and visually check in pc and mobile browsers
 * google search validator (also validates sitemap)

@@ -42,15 +42,15 @@ jobs:
         if: '! inputs.skip_lints_tests'
         env:
           PY_COLORS: 1
-        run: echo TODO
+        run: make test
 
       - name: Run Lints
         if: '! inputs.skip_lints_tests'
-        run: echo TODO
+        run: make lint
 
       - name: Run Integration Tests
         if: '! inputs.skip_lints_tests'
-        run: echo TODO
+        run: make it
 
       - name: Build
         env:  # Note: these can be empty
