@@ -170,8 +170,6 @@ disqus_pages = False
 
 """
 TODOs:
-* closely look at diffs of all pages and visually check in pc and mobile browsers
-* Ensure post dates are accurrate
 * reduce diff:
     * conf.py
     * pyproject
