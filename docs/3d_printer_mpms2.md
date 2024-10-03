@@ -98,12 +98,12 @@ Items needed:
   - :::{imgur-figure} BSiu7G3
     First time I've seen the underside, neat.
     :::
-  - :::{imgur} AQ4ZU37
+* - :::{imgur} AQ4ZU37
     :::
-* - :::{imgur-figure} fXsf2fm
+  - :::{imgur-figure} fXsf2fm
     Need to get rid of the adhesive residue.
     :::
-  - :::{imgur-figure} xnsWJTr
+* - :::{imgur-figure} xnsWJTr
     Got it off with some 91% isopropyl alcohol, paper towels, and nitrile gloves. Took about an hour.
     :::
   - :::{imgur-figure} KfuU1sd
@@ -115,9 +115,10 @@ Items needed:
   - :::{imgur-figure} gQZBOjY
     Done!
     :::
-  - :::{imgur-figure} FtYoGQn
+* - :::{imgur-figure} FtYoGQn
     Nice and flat. The magnet holds the plate very well in place.
     :::
+  -
 ```
 
 https://www.reddit.com/r/3Dprinting/comments/qcfqpk/first_mod_since_buying_my_printer_in_2018/

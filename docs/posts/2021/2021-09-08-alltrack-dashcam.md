@@ -43,13 +43,13 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
   - :::{imgur-figure} FPo2JhU
     I used a coat hanger to help fish the cable.
     :::
-  - :::{imgur-figure} vVlKfJv
+* - :::{imgur-figure} vVlKfJv
     This made things way easier to see in my garage.
     :::
-* - :::{imgur-figure} caIWHsR
+  - :::{imgur-figure} caIWHsR
     After fishing the cable under the cargo liner I tucked the rest of the cable towards the battery. There seemed to be some glue half way there that I had to get through by prying the liner wall towards me.
     :::
-  - :::{imgur-figure} 5CWlXf9
+* - :::{imgur-figure} 5CWlXf9
     Finished running the cable at the battery side.
     :::
   - :::{imgur-figure} c1zTKOl
@@ -60,13 +60,13 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
   - :::{imgur-figure} 1xf5oIO
     Then I pulled off the trim covering the C pillar.
     :::
-  - :::{imgur-figure} pdTih8V
+* - :::{imgur-figure} pdTih8V
     Fished the wire up the C pillar.
     :::
-* - :::{imgur-figure} 0N2BXU2
+  - :::{imgur-figure} 0N2BXU2
     Lightly zip tied the cable to my panoramic roof drain hose.
     :::
-  - :::{imgur-figure} hsUPB4B
+* - :::{imgur-figure} hsUPB4B
     I cut off the glued/velcroed strap holding the wiring harnesses in this plastic holder and ran the camera cable through it, then zip tied everything in place.
     :::
   - :::{imgur-figure} wempB2n
@@ -78,14 +78,14 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
   - :::{imgur-figure} uBQz1es
     You can see how I broke the clip on the left side of the boot. Anyway I ran the cable towards the other side since it doesn't have any connectors in the way.
     :::
-  - :::{imgur} 6uwjb7P
+* - :::{imgur} 6uwjb7P
     :::
-* - :::{imgur-figure} cgMYj4I
+  - :::{imgur-figure} cgMYj4I
     Instead of replacing the boot I did a quick fix with my 3d printer: https://www.thingiverse.com/thing:3246429
     https://imgur.com/a/0GqFRgX
     If you'd rather replace the boot you can follow: https://www.youtube.com/watch?v=GhNbGtLDZiU&ab_channel=DeutscheAutoParts
     :::
-  - :::{imgur-figure} iPbAkTQ
+* - :::{imgur-figure} iPbAkTQ
     Finally I mounted the cameras and anchored the wires with some spare cable tie mounting pads I had lying around. I shoved the excess wires into the body via the square hole.
     :::
   - :::{imgur} tyXtaLq
@@ -94,7 +94,8 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
     :::
   - :::{imgur} NoJtWRb
     :::
-  - :::{imgur} xzICRX8
+* - :::{imgur} xzICRX8
     :::
+  -
 ```
 

@@ -40,13 +40,13 @@ I used the following tools:
   - :::{imgur-figure} 1Vho7Jt
     Because I don't have a ratchet wrench that will fit I had to remove the rear tires to remove the screws in the wheel wells. I left the OEM mud flaps on to avoid scratch the bottom of my bumper.
     :::
-  - :::{imgur-figure} BQOEa48
+* - :::{imgur-figure} BQOEa48
     My 2019 Alltrack SE came with sensors in the bumpers, so I had to unplug this cable on the passenger side to get the bumper off.
     :::
-* - :::{imgur-figure} C1Ic2zo
+  - :::{imgur-figure} C1Ic2zo
     Removed the rear bumper.
     :::
-  - :::{imgur-figure} TxzqnKN
+* - :::{imgur-figure} TxzqnKN
     Removed the impact bar.
     :::
   - :::{imgur-figure} ZiMsEjW
@@ -59,13 +59,13 @@ I used the following tools:
     Bought stronger bolts to use instead of the ones that came with the hitch: https://www.mcmaster.com/91029A107/ (from https://www.mcmaster.com/bolts/fastener-strength-grade-class~class-12-9/extreme-strength-metric-class-12-9-steel-hex-head-screws/thread-size~m8/).
     The EcoHitch manual also states to torque these to 18 ft-lbs but the Curt hitch manual says to torque to 23 ft-lbs. I went with the latter.
     :::
-  - :::{imgur-figure} q3odPX7
+* - :::{imgur-figure} q3odPX7
     To make trimming and mounting the bumper easier I removed the bottom piece of trim from the bumper before reinstalling the bumper.
     :::
-* - :::{imgur-figure} HzpY5UB
+  - :::{imgur-figure} HzpY5UB
     If you have OEM splash guards I highly recommend removing them now. I spent 30 minutes trying to get the bumper back on before I removed them and saw the plastic pieces not lining up correctly, on both sides!
     :::
-  - :::{imgur-figure} C9wCPA2
+* - :::{imgur-figure} C9wCPA2
     Popped off the inner piece of the bottom bumper trim. Will make it easier to trim.
     :::
   - :::{imgur-figure} IOmeAxb
@@ -77,11 +77,11 @@ I used the following tools:
   - :::{imgur-figure} 0Yt6Rpz
     Snapped right into place. Done!
     :::
-  - :::{imgur} 4VyjYuL
+* - :::{imgur} 4VyjYuL
     :::
-* - :::{imgur} rmVWLwl
+  - :::{imgur} rmVWLwl
     :::
-  - :::{imgur} 9AM0DN5
+* - :::{imgur} 9AM0DN5
     :::
   -
 ```

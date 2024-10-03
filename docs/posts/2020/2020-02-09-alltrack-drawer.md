@@ -11,7 +11,7 @@ tags: car, alltrack
 
 Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
 seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
-with felt so things wouldn't rattle.
+with felt so things wouldn't rattle. I'm using foil to eventually trace out the curve
 
 I bought the drawer for $156 on ECS Tuning:
 [Driver's Seat Tray Kit Titanium Black 5GM 882 599 KT](https://www.ecstuning.com/b-genuine-volkswagen-audi-parts/drivers-seat-tray-kit-titanium-black/5gm882599kt/)
@@ -49,8 +49,6 @@ I bought the drawer for $156 on ECS Tuning:
     :::
   - :::{imgur} 1lMS091
     :::
-  - :::{imgur-figure} 88oVQIw
-    I'm using foil to eventually trace out the curve
+  - :::{imgur} 88oVQIw
     :::
 ```
-
