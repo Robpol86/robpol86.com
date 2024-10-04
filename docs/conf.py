@@ -36,7 +36,7 @@ templates_path = ["_templates"]
 # Options for HTML output.
 html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "") or "http://localhost:8000/"
 html_context = {
-    "default_mode": "dark",
+    "default_mode": "light",
     "html_baseurl": html_baseurl,
 }
 html_copy_source = False
@@ -80,6 +80,7 @@ html_sidebars = {
 html_static_path = ["_static"]
 html_theme = "sphinx_book_theme"
 html_theme_options = {
+    "navbar_end": ["navbar-icon-links"],
     "path_to_docs": "docs",
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
