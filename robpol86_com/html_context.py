@@ -1,38 +1,34 @@
 """Modify HTML context."""
 
-from typing import Dict, List
+from typing import Any
 
+from ablog.blog import Blog
+from docutils.nodes import document, title
 from sphinx.application import Sphinx
 
 
-def change_icon_tooltip(_, __, ___, context: Dict, ____):
-    """Change edit button icon and tooltip.
+# pylint: disable=unused-argument
+def override_disqus_identifier(app: Sphinx, pagename: str, templatename: str, context: dict[str, Any], doctree: document):
+    """Patch ablog's page_id method to return the page title instead of its URL path.
 
-    https://github.com/executablebooks/sphinx-book-theme/blob/v0.3.2/src/sphinx_book_theme/header_buttons/__init__.py
+    Allows restoring old comments after migration to ablog.
 
-    :param _: Unused.
-    :param __: Unused.
-    :param ___: Unused.
-    :param context: HTML context.
-    :param ____: Unused.
-    """
-    header_buttons: List[Dict[str, str]] = context.get("header_buttons", [])
-    for button in header_buttons:
-        if button["tooltip"] == "Edit this page":
-            button["icon"] = "fab fa-github"
-            button["tooltip"] = "View page source"
-
-
-def set_extra_navbar(app: Sphinx, __, ___, context: Dict, ____):
-    """Set extra_navbar theme option.
+    TODO: make a pull request to ablog allowing user to override page_id via :disqus_identifier: front matter.
 
     :param app: Sphinx application object.
-    :param __: Unused.
-    :param ___: Unused.
-    :param context: HTML context.
-    :param ____: Unused.
+    :param pagename: Name of the page being rendered (without .html or any file extension).
+    :param templatename: Page name with .html.
+    :param context: Jinja2 HTML context.
+    :param doctree: Tree of docutils nodes.
     """
-    context["theme_extra_navbar"] = app.builder.templates.render("extra_navbar.html", context)
+    if not doctree:
+        return
+    title_node = next(iter(doctree.traverse(title)), None)
+    if not title_node:
+        return
+    page_title = title_node.astext()
+    ablog: Blog = context["ablog"]
+    ablog.page_id = lambda *_: page_title
 
 
 def setup(app: Sphinx):
@@ -40,5 +36,4 @@ def setup(app: Sphinx):
 
     :param app: Sphinx application object.
     """
-    app.connect("html-page-context", change_icon_tooltip, priority=999)
-    app.connect("html-page-context", set_extra_navbar)
+    app.connect("html-page-context", override_disqus_identifier)

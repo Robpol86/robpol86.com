@@ -1,4 +1,9 @@
-.. _raspberry_pi_project_fi:
+:blogpost: true
+:date: 2016-12-03
+:author: Robpol86
+:location: San Francisco
+:category: Tutorials
+:tags: linux, cellular
 
 ==========================
 Raspberry Pi on Project Fi
@@ -416,8 +421,3 @@ References
 * https://askubuntu.com/questions/853615/files-in-etc-network-interfaces-d-ignored-but-not-etc-network-interfaces-itse
 * https://www.linuxquestions.org/questions/linux-wireless-networking-41/help-using-3g-usb-dongle-4175537653/#post5337637
 * https://lists.freedesktop.org/archives/modemmanager-devel/2014-December/001706.html
-
-Comments
-========
-
-.. disqus::

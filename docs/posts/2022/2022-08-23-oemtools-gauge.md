@@ -1,7 +1,13 @@
-# OEMTools 24938 Gauge Mod
+---
+blogpost: true
+date: 2022-08-23
+author: Robpol86
+location: Austin
+category: Tutorials
+tags: car
+---
 
-```{tags} alltrack, vehicle
-```
+# OEMTools 24938 Gauge Mod
 
 ```{youtube} njWYDQdS6d0
 :width: 100%
@@ -76,8 +82,3 @@ drop when transferring the old oil from the extractor back into the 5 qt oil jug
 
 * Imgur: <https://imgur.com/a/qBYsh2k>
 * VW Vortex: <https://www.vwvortex.com/threads/what-did-i-do-to-my-alltrack-today.8372241/page-240#post-115655242>
-
-## Comments
-
-```{disqus}
-```

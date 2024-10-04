@@ -1,7 +1,13 @@
-# MIB2 Composition Media Hacking
+---
+blogpost: true
+date: 2022-01-04
+author: Robpol86
+location: San Francisco
+category: Projects
+tags: car, alltrack, hacking
+---
 
-```{tags} hacking, vehicle
-```
+# MIB2 Composition Media Hacking
 
 My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
 [QNX 6.5.0](https://www.qnx.com/developers/docs/6.5.0SP1.update/#./com.qnx.doc.momentics_quickstart/about.html) (with firmware
@@ -189,9 +195,4 @@ https://www.qnx.com/developers/docs/6.5.0SP1.update/com.qnx.doc.neutrino_utiliti
 
 ```{literalinclude} _static/mib2_pidin_env.txt
 :language: text
-```
-
-## Comments
-
-```{disqus}
 ```

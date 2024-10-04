@@ -1,4 +1,9 @@
-.. _postfix_gmail_forwarding:
+:blogpost: true
+:date: 2016-12-18
+:author: Robpol86
+:location: San Francisco
+:category: Tutorials
+:tags: linux
 
 ============================
 Postfix and Gmail Forwarding
@@ -126,10 +131,5 @@ Then run ``newaliases`` to apply changes and run the mail command to test.
     mail -s "Test Email for Root $(date)" root <<< "This is a test email."
 
 Within a couple of minutes you should have received an email.
-
-Comments
-========
-
-.. disqus::
 
 .. _local mail spool: https://superuser.com/questions/306163/what-is-the-you-have-new-mail-message-in-linux-unix

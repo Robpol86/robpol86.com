@@ -1,7 +1,13 @@
-# T-Mobile Franklin T9 Hacking
+---
+blogpost: true
+date: 2021-11-11
+author: Robpol86
+location: San Francisco
+category: Projects
+tags: car, hacking
+---
 
-```{tags} hacking, hotspot
-```
+# T-Mobile Franklin T9 Hacking
 
 My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
 data. I'm using it with [Google Fi](https://fi.google.com/about).
@@ -544,9 +550,4 @@ Finished. Total time: 0.007s
 
 ```{literalinclude} _static/t9_kernel_config.txt
 :language: text
-```
-
-## Comments
-
-```{disqus}
 ```

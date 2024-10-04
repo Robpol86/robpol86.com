@@ -1,7 +1,13 @@
-# Clutch Bleeder Block Replacement
+---
+blogpost: true
+date: 2022-12-11
+author: Robpol86
+location: Austin
+category: Tutorials
+tags: car, alltrack
+---
 
-```{tags} alltrack, vehicle
-```
+# Clutch Bleeder Block Replacement
 
 [discussion]: https://www.vwvortex.com/threads/6-mt-owners-do-the-clutch-spring-mod.9119337/
 
@@ -91,8 +97,3 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
 
 * Imgur: https://imgur.com/a/kPg66Ks
 * VW Vortex: https://www.vwvortex.com/threads/what-did-i-do-to-my-alltrack-today.8372241/page-253#post-115776976
-
-## Comments
-
-```{disqus}
-```

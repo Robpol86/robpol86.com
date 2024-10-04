@@ -1,0 +1,28 @@
+{% if pagename in ablog %}
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+{% set fa = ablog.fontawesome %}
+{% set post = ablog[pagename] %}
+<h2>
+  {% if post.published %}
+  {% if fa %}
+  <i class="fa fa-calendar"></i>
+  {% endif %}
+  <span>{{ post.date.strftime(ablog.post_date_format) }}</span>
+  {% else %}
+  {% if fa %}
+  <i class="fa fa-pencil"></i>
+  {% endif %}
+  {% if post.date %}
+  <span>{{ post.date.strftime(ablog.post_date_format) }}</span>
+  {% else %}
+  <span>Draft</span>
+  {% endif %}
+  {% endif %}
+</h2>
+<ul class="nav bd-sidenav">
+  {% include "ablog_sbt_postcard2.html" %}
+</ul>
+</div>
+</nav>
+{% endif %}

@@ -22,7 +22,9 @@ command line tool to quickly check if a customer's phone number was eligible for
 I left the tech support industry after the company I was working for at the time moved me to the 5 AM shift. I was fortunate
 enough to get a contracting position shortly after at Symantec and eventually got into a software engineering career path.
 
-## Site Contents
+```{toctree}
+:hidden:
+:glob:
 
-```{tableofcontents}
+**
 ```

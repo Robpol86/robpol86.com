@@ -1,0 +1,18 @@
+{% if ablog.category %}
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="{{ pathto(ablog.category.path) }}"><span class="caption-text">{{ gettext('Categories') }}</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  {% for coll in ablog.category %}
+  {% if coll %}
+  <li class="toctree-l1{% if pagename == coll.docname %} current active{% endif %}">
+    <a class="reference internal" href="{{ pathto(coll.docname) }}">{{ coll }} ({{ coll|length }})</a>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+</div>
+</nav>
+{% endif %}

@@ -1,4 +1,8 @@
-.. _atrix_lapdock:
+:blogpost: true
+:date: 2012-06-30
+:author: Robpol86
+:location: Austin
+:category: Projects
 
 ========================
 Atrix Lapdock Other Uses
@@ -376,8 +380,3 @@ Lapdock 500 Teardown
             Lapdock 500 Controller Board (Rear Bottom)
 
       -
-
-Comments
-========
-
-.. disqus::

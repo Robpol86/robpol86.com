@@ -1,3 +1,11 @@
+---
+blogpost: true
+date: 2021-12-11
+author: Robpol86
+location: San Francisco
+category: Tutorials
+---
+
 # Install Windows 11 on an Intel Mac
 
 This guide lays out the steps I take to install Windows 11 on my Intel-based Apple computers using a custom ISO. This allows
@@ -426,9 +434,4 @@ ssh-add -l
 #           EXEC:/mnt/c/Users/Public/Libraries/npiperelay.exe -ei \
 #           -s //./pipe/openssh-ssh-agent,nofork
 ps aux |grep -v grep |grep ssh-agent
-```
-
-## Comments
-
-```{disqus}
 ```

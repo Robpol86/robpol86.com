@@ -1,4 +1,9 @@
-.. _bareos_tape_backup:
+:blogpost: true
+:date: 2015-08-23
+:author: Robpol86
+:location: San Francisco
+:category: Tutorials
+:tags: homelab
 
 ============================
 Bareos Tape Backup on a 124T
@@ -513,8 +518,3 @@ stop all services since I don't leave my autoloader running all the time (it's t
     for s in dir sd fd; do sudo systemctl stop bareos-$s.service; done
     sudo systemctl stop mariadb.service
     ./tape_bulk_eject.py "000039L3|000031L3" "000031L3|000021L3|000032L3|000033L3|000030L3"
-
-Comments
-========
-
-.. disqus::

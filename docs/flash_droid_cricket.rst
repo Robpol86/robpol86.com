@@ -1,4 +1,9 @@
-.. _flash_droid_cricket:
+:blogpost: true
+:date: 2011-04-08
+:author: Robpol86
+:location: Austin
+:category: Tutorials
+:tags: cellular
 
 ==================================
 Flashing Motorola Droid to Cricket
@@ -176,8 +181,3 @@ Configuring APNs
     13. Authentication type: PAP or CHAP
     14. APN type: (blank the field)
 3. Reboot your phone and you are done.
-
-Comments
-========
-
-.. disqus::

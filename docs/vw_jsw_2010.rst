@@ -1,4 +1,9 @@
-.. _vw_jsw_2010:
+:blogpost: true
+:date: 2010-07-03
+:author: Robpol86
+:location: Austin, San Francisco
+:category: Projects
+:tags: car, jsw
 
 ====================
 Jetta SportWagen TDI
@@ -175,8 +180,3 @@ Images I took shortly after receiving my brand new car.
     * - .. imgur:: YQhWF
       -
       -
-
-Comments
-========
-
-.. disqus::

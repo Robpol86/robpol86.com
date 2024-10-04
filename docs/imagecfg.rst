@@ -1,15 +1,12 @@
-.. _imagecfg:
+:blogpost: true
+:date: 2002-11-30
+:author: Robpol86
+:location: Victoria
+:category: Tutorials
 
 ========
 ImageCFG
 ========
-
-.. note::
-
-    I've been hosting this file
-    `since before 2003 <https://web.archive.org/web/20031203173758fw_/http://www.robpol86.com/tutorials/imagecfg.php>`_.
-    Too bad I don't have a copy of an older version of this page.
-
 
 ImageCFG is a utility that probably does a lot of things (I cannot find any official documentation), but the only reason
 I use it is to fix old games (UT99 for example) which have problems on multicore/multicpu systems. It does so by
@@ -79,8 +76,3 @@ Download
 ========
 
 :download:`Imagecfg.zip <_static/Imagecfg.zip>`
-
-Comments
-========
-
-.. disqus::

@@ -1,7 +1,13 @@
-# HomeLink Rearview Mirror
+---
+blogpost: true
+date: 2022-06-05
+author: Robpol86
+location: Austin
+category: Tutorials
+tags: car, alltrack
+---
 
-```{tags} alltrack, vehicle
-```
+# HomeLink Rearview Mirror
 
 ```{imgur-figure} Cvf4Nmp.gif
 ```
@@ -53,9 +59,4 @@ The compass in the mirror seemed to self-calibrate after I drove around for a bi
     Zip tying my dashcam wires to the mirror before installing it.
     :::
   -
-```
-
-## Comments
-
-```{disqus}
 ```

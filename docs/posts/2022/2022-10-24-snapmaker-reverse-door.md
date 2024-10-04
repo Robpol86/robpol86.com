@@ -1,7 +1,13 @@
-# Snapmaker Enclosure Door Reversal
+---
+blogpost: true
+date: 2022-10-24
+author: Robpol86
+location: Austin
+category: Tutorials
+tags: 3d-printing
+---
 
-```{tags} 3d-printing
-```
+# Snapmaker Enclosure Door Reversal
 
 [enclosure]: https://us.snapmaker.com/products/enclosure-for-snapmaker-2-0
 
@@ -111,9 +117,4 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
     Teflon tube routing: print head
     :::
   -
-```
-
-## Comments
-
-```{disqus}
 ```

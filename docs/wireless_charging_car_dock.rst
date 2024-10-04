@@ -1,4 +1,9 @@
-.. _wireless_charging_car_dock:
+:blogpost: true
+:date: 2013-11-16
+:author: Robpol86
+:location: San Francisco
+:category: Projects
+:tags: car, jsw
 
 ==========================
 Wireless Charging Car Dock
@@ -113,10 +118,5 @@ The only downside is I can't close the little cubby anymore. Oh well.
     * - .. imgur:: sRKNN6F
       - .. imgur:: 8R5ROC4
       - .. imgur:: 7jA3c1J
-
-Comments
-========
-
-.. disqus::
 
 .. _Mountek nGroove Snap Magnetic Vehicle Mount: https://www.amazon.com/dp/B00E9L0HGI

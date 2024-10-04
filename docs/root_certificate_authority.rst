@@ -1,4 +1,9 @@
-.. _root_certificate_authority:
+:blogpost: true
+:date: 2015-08-11
+:author: Robpol86
+:location: San Francisco
+:category: Tutorials
+:tags: linux
 
 =========================
 Setting Up a Home Root CA
@@ -312,8 +317,3 @@ To fix this you'll need to add the host's (not root) certificate to Java's certi
 3. Set certificate type to **Secure Site CA**.
 4. Click Import, set File Format to **All Files**, and import ``router.myhome.net.cert.pem``.
 5. Click Close and OK.
-
-Comments
-========
-
-.. disqus::

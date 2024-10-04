@@ -1,4 +1,9 @@
-.. _raspberry_pi_luks:
+:blogpost: true
+:date: 2017-02-12
+:author: Robpol86
+:location: San Francisco
+:category: Tutorials
+:tags: linux
 
 =================================
 Raspberry Pi LUKS Root Encryption
@@ -196,8 +201,3 @@ References
 
 * http://paxswill.com/blog/2013/11/04/encrypted-raspberry-pi/
 * https://github.com/NicoHood/NicoHood.github.io/wiki/Raspberry-Pi-Encrypt-Root-Partition-Tutorial
-
-Comments
-========
-
-.. disqus::

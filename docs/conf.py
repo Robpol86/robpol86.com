@@ -5,7 +5,7 @@ import os
 import time
 from urllib.parse import urlparse
 
-from robpol86_com import __license__, __version__ as version
+from robpol86_com import __version__ as version
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
 GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.get("GITHUB_REPOSITORY", "") else None
@@ -14,42 +14,33 @@ GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.
 # General configuration.
 author = "Robpol86"
 copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-builtin  # noqa
-html_last_updated_fmt = f"%c {time.tzname[time.localtime().tm_isdst]}"
 exclude_patterns = ["_build"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
-    "robpol86_com.move_static",
-    "robpol86_com.tags",
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
-    "sphinx_disqus.disqus",  # https://sphinx-disqus.readthedocs.io
-    "sphinx_external_toc",  # https://sphinx-external-toc.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
-    "sphinx_last_updated_by_git",  # https://github.com/mgeier/sphinx-last-updated-by-git
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
+    "ablog",  # https://ablog.readthedocs.io/
     "robpol86_com.html_context",
 ]
 language = "en"
 project = "Robpol86.com"
 pygments_style = "vs"
 release = version
-suppress_warnings = ["myst.strikethrough"]
 templates_path = ["_templates"]
 
 
 # Options for HTML output.
 html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "") or "http://localhost:8000/"
 html_context = {
-    "edit_page_url_template": (
-        "{{ github_url }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}"
-    ),
+    "default_mode": "dark",
     "html_baseurl": html_baseurl,
-    "license": __license__,
 }
 html_copy_source = False
-html_css_files = ["aside_margin.css", "background_image.css"]
+html_css_files = ["aside_margin.css"]
 html_extra_path = [
     ".htaccess",
     # favicon
@@ -74,16 +65,27 @@ html_extra_path = [
     "_static/site.webmanifest",
 ]
 html_logo = "_static/logo.svg"
+html_sidebars = {
+    "**": [
+        "navbar-logo.html",
+        "search-button-field.html",
+        "ablog_sbt_postcard.html",
+        "ablog_sbt_recentposts.html",
+        "ablog_sbt_tagcloud.html",
+        "ablog_sbt_categories.html",
+        "ablog_sbt_archives.html",
+        "ablog_sbt_locations.html",
+    ],
+}
 html_static_path = ["_static"]
 html_theme = "sphinx_book_theme"
 html_theme_options = {
-    "logo_only": True,
     "path_to_docs": "docs",
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
     "use_download_button": False,
-    "use_edit_page_button": not not GIT_URL,  # pylint: disable=unneeded-not
     "use_fullscreen_button": False,
+    "use_source_button": not not GIT_URL,  # pylint: disable=unneeded-not
 }
 html_title = project
 html_use_index = True
@@ -98,19 +100,8 @@ linkcheck_allowed_redirects = {
     r"https://www.reddit.com/r/": r"https://www.reddit.com/r/.*?rdt=[\d]+",
     r"https://youtu.be/\w+$": "https://www.youtube.com/watch[?]",
 }
-linkcheck_exclude_documents = [
-    # TODO remove all
-    "atrix_lapdock",
-    "bareos_tape_backup",
-    "flash_droid_cricket",
-    "raspberry_pi_luks",
-    "raspberry_pi_project_fi",
-    "rns_510_vim",
-    "root_certificate_authority",
-    "wireless_charging_car_dock",
-]
+linkcheck_exclude_documents = []
 linkcheck_ignore = [
-    r"[/.]*genindex.html",  # TODO remove this
     r"https://[\w.]*mibsolution.one/",
     r"https://media.vw.com/",  # All curls result in 403
     r"https://mega.nz/(file|folder)/\w+#",
@@ -128,8 +119,6 @@ linkcheck_timeout = 5
 
 
 # Extension settings.
-disqus_shortname = "rob86wiki"
-external_toc_path = ".toc.yml"
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
 myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
 myst_url_schemes = ("http", "https", "mailto")
@@ -150,7 +139,19 @@ ogp_site_name = html_title
 ogp_site_url = html_baseurl
 ogp_type = "website"
 ogp_use_first_image = True
-robpol86_com_move_static_to_root = [
-    "robots.txt",
-]
 sitemap_url_scheme = "{link}"
+
+
+# Ablog settings.
+blog_title = project
+blog_baseurl = html_baseurl
+blog_locations = {
+    "Austin": ("Austin, TX", "https://en.wikipedia.org/wiki/Austin,_Texas"),
+    "San Francisco": ("San Francisco, CA", "https://en.wikipedia.org/wiki/San_Francisco"),
+    "Victoria": ("Victoria, TX", "https://en.wikipedia.org/wiki/Victoria,_Texas"),
+}
+blog_languages = {"en": ("English", None)}
+blog_default_language = language
+blog_authors = {"Robpol86": ("Robert Pooley", "https://robpol86.com")}
+disqus_shortname = "rob86wiki"
+disqus_pages = False

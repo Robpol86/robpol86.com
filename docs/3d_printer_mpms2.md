@@ -1,7 +1,13 @@
-# Monoprice Maker Select v2
+---
+blogpost: true
+date: 2021-10-21
+author: Robpol86
+location: San Francisco
+category: Projects
+tags: 3d-printing
+---
 
-```{tags} 3d-printing
-```
+# Monoprice Maker Select v2
 
 I bought my first 3D printer from [Amazon](https://www.amazon.com/gp/product/B018GZBC3Y) in 2018 for $300. It's on the
 cheaper end but there's a large community behind it.
@@ -116,8 +122,3 @@ Items needed:
 ```
 
 https://www.reddit.com/r/3Dprinting/comments/qcfqpk/first_mod_since_buying_my_printer_in_2018/
-
-## Comments
-
-```{disqus}
-```

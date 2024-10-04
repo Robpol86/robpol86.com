@@ -1,22 +1,27 @@
-.. _rns_510_vim:
+:blogpost: true
+:date: 2011-08-11
+:author: Robpol86
+:location: Austin
+:category: Tutorials
+:tags: car, jsw, hacking
 
 ==========================
 US RNS-510 Video In Motion
 ==========================
+
+After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I've been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.
+
+Files
+=====
 
 .. warning::
 
     Obviously playing DVDs while driving is dangerous and in the USA you'll probably get pulled over for it if a cop
     sees it depending if your state has made it illegal. Making any changes to your RNS-510 head unit always has the
     possibility of bricking the device and you'll be left with a $2000 paper weight. Proceed at your own risk.
-
-Background
-==========
-
-After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I've been searching for a way to get the
-head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
-I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
-All you need is a CD-R and a CD burner.
 
 The original thread on vwnavi.com was deleted so I will be mirroring my steps and the files here. I'm assuming these
 files were created by Berto89 from VWItalia.it [1]_, thanks to him I was able to get VIM working on my US unit. In the
@@ -87,8 +92,3 @@ References
 .. [3] http://www.golfmk6.com/forums/showthread.php?t=22712
 .. [4] http://forums.vwvortex.com/showthread.php?5395639-RNS-510-Video-In-Motion-via-firmware-change-5-min-job-and-free
 .. [5] http://myturbodiesel.com/forum/f9/how-unlock-rns510-vim-tv-free-free-video-motion-play-dvd-while-driving-9150/
-
-Comments
-========
-
-.. disqus::

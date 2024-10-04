@@ -1,7 +1,13 @@
-# Snapmaker 2.0 A350T Teflon Tube
+---
+blogpost: true
+date: 2022-07-15
+author: Robpol86
+location: Austin
+category: Tutorials
+tags: 3d-printing
+---
 
-```{tags} 3d-printing
-```
+# Snapmaker 2.0 A350T Teflon Tube
 
 I recently upgraded from my cheap and finicky [Monoprice 3D printer](../../3d_printer_mpms2.md) to an expensive and versatile
 one (it WAS the latest and greatest [for a few weeks 😭](https://snapmaker.com/snapmaker-artisan)). After using it a few
@@ -73,8 +79,3 @@ need to disconnect them when removing or replacing the enclosure.
 
 * Imgur: https://imgur.com/a/kcDW72p
 * Reddit: https://www.reddit.com/r/3Dprinting/comments/w012e5/snapmaker_20_a350t_teflon_tube
-
-## Comments
-
-```{disqus}
-```

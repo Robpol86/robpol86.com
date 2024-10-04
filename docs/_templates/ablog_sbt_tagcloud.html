@@ -1,0 +1,19 @@
+{% if ablog.tags %}
+<link rel="stylesheet" href="{{ pathto('_static/ablog/tagcloud.css', 1) }}" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="{{ pathto(ablog.tags.path) }}"><span class="caption-text">{{ gettext('Tags') }}</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  {% for coll in ablog.tags %}
+  {% if coll %}
+  <li class="ablog-cloud ablog-cloud-{{ coll.relsize(5, 1) }} toctree-l1{% if pagename == coll.docname %} current active{% endif %}" style="height: 24pt;">
+    <a class="reference internal" href="{{ pathto(coll.docname) }}">{{ coll }}</a>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+</div>
+</nav>
+{% endif %}
