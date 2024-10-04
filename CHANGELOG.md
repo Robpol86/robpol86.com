@@ -4,14 +4,6 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [2024.10.03]
-
-Migrating to ABlog
-
-- Removed sphinx-carousel
-- Removed imgur-embed
-- Split up photo_albums.rst and vw_alltrack_2019.md
-
 ## [2023.10.14]
 
 Refactored GitHub Actions
