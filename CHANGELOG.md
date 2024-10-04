@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2024.10.4]
+
+Migrated to ABlog
+
+* ffe8923 Migrating to ABlog (#245)
+* 83f939c Switching from :width: to list-table (#244)
+* d2d1641 Remove some imgur-embed (#243)
+* 1134a6d Reduce diff of rewrite. (#242)
+* f2abe62 Removing sphinx-carousel (#241)
+* 5277c56 Update dependencies (#240)
+* 7ba4bf8 Taking git_status.txt into account (#239)
+* b5ce1c7 Update deps/bp (#237)
+* be527d2 Update CI dependencies (#234)
+* f870d58 Unpin pygments (#232)
+* f284684 Update additional dependencies (#231)
+* 91bc624 Update sphinxcontrib-youtube (#230)
+* 6a3fbe9 Updating some dependencies (#229)
+* 6a0cced Fix linkcheck (#228)
+
 ## [2023.10.14]
 
 Refactored GitHub Actions
