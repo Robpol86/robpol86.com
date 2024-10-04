@@ -36,7 +36,7 @@ templates_path = ["_templates"]
 # Options for HTML output.
 html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "") or "http://localhost:8000/"
 html_context = {
-    "default_mode": "dark",
+    "default_mode": "light",
     "html_baseurl": html_baseurl,
 }
 html_copy_source = False
