@@ -4,13 +4,6 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [2024.10.4.183649]
-
-Disable dark mode for Disqus
-
-* 7fd0b43 Extended version/tag for more releases per day. (#250)
-* 6c511bd Disable dark mode for Disqus (#249)
-
 ## [2024.10.4]
 
 Migrated to ABlog
