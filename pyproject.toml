@@ -1,10 +1,10 @@
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["2024.10.4.183649"]
+build-backend = "2024.10.4.183649"
 
 [tool.poetry]
-name = "Robpol86.com"
-version = "2024.10.4"
+name = "2024.10.4.183649"
+version = "2024.10.4.183649"
 description = "My personal website."
 readme = "README.md"
 authors = ["Robpol86 <robpol86@gmail.com>"]
