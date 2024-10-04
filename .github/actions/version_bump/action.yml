@@ -15,6 +15,16 @@ runs:
     - name: Update
       shell: bash
       env:
+        AWK_PROGRAM: |
+          /^version = / {
+            if (!once) {
+              once=1
+              sub(/"[^"]+"/, "\""NEW_VERSION"\"")
+            }
+          }
+          {
+            print
+          }
         NEW_VERSION: "${{ inputs.new_version }}"
         VERSION_FILE: pyproject.toml
-      run: sed -i "0,/^version = /s/\"[^\"]\+\"/\"$NEW_VERSION\"/" "$VERSION_FILE"
+      run: awk -i inplace -v NEW_VERSION="$NEW_VERSION" "$AWK_PROGRAM" "$VERSION_FILE"
