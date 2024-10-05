@@ -80,6 +80,7 @@ html_sidebars = {
 html_static_path = ["_static"]
 html_theme = "sphinx_book_theme"
 html_theme_options = {
+    "analytics": {"google_analytics_id": "G-EJSD449CRH"},
     "path_to_docs": "docs",
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
