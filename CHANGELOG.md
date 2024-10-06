@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2024.10.6.221935]
+
+New posts: desk photos
+
+* 4b815ca New posts: desk photos (#261)
+* f7d7146 Update README with latest project changes. (#259)
+* c3782dd Enable Google Analytics (#258)
+
 ## [2024.10.4.210258]
 
 Disable dark mode for Disqus
