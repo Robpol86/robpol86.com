@@ -148,6 +148,7 @@ blog_title = project
 blog_baseurl = html_baseurl
 blog_locations = {
     "Austin": ("Austin, TX", "https://en.wikipedia.org/wiki/Austin,_Texas"),
+    "Manhattan": ("Manhattan", "https://en.wikipedia.org/wiki/Manhattan"),
     "San Francisco": ("San Francisco, CA", "https://en.wikipedia.org/wiki/San_Francisco"),
     "Victoria": ("Victoria, TX", "https://en.wikipedia.org/wiki/Victoria,_Texas"),
 }
