@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2024.10.7.32500]
+
+New post: Travel NAS
+
+* e0502b0 New post: Travel NAS (#264)
+
 ## [2024.10.6.221935]
 
 New posts: desk photos
