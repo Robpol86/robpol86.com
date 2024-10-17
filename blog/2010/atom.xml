@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2010</title>
+  <updated>2024-10-17T18:44:36.856547+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2010/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2010/2010-08-05-desk.html</id>
+    <title>Desk Photo 2010: Work @ Symantec</title>
+    <updated>2010-08-05T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After the office consolidated into one floor (instead of two), this was my new cubicle.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2010/2010-08-05-desk.html"/>
+    <summary>After the office consolidated into one floor (instead of two), this was my new cubicle.</summary>
+    <category term="desk" label="desk"/>
+    <published>2010-08-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/vw_jsw_2010.html</id>
+    <title>Jetta SportWagen TDI</title>
+    <updated>2010-07-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next car (I was then driving a 2000 F-150).
+On April 30th 2010 I finally committed to the vehicle and put down a deposit. On June 30th, I received my new car,
+special ordered the way I wanted it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/vw_jsw_2010.html"/>
+    <summary>Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next car (I was then driving a 2000 F-150).
+On April 30th 2010 I finally committed to the vehicle and put down a deposit. On June 30th, I received my new car,
+special ordered the way I wanted it.</summary>
+    <category term="car" label="car"/>
+    <category term="jsw" label="jsw"/>
+    <published>2010-07-03T00:00:00+00:00</published>
+  </entry>
+</feed>

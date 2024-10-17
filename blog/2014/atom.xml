@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2014</title>
+  <updated>2024-10-17T18:44:36.839576+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2014/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2014/2014-04-25-desk.html</id>
+    <title>Desk Photos 2014</title>
+    <updated>2014-04-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Got back to having a standing desk. I stole this rolling desk since they moved us to a really cramped area and damned if I’m giving up one of my monitors.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2014/2014-04-25-desk.html"/>
+    <summary>Got back to having a standing desk. I stole this rolling desk since they moved us to a really cramped area and damned if I’m giving up one of my monitors.</summary>
+    <category term="desk" label="desk"/>
+    <published>2014-04-25T00:00:00+00:00</published>
+  </entry>
+</feed>

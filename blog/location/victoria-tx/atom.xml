@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posts from Victoria, TX</title>
+  <updated>2024-10-17T18:44:36.623428+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/location/victoria-tx/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2004/2004-01-16-desk.html</id>
+    <title>Desk Photo 2004</title>
+    <updated>2004-01-16T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Got my kickass APC SUA1500 UPS! Weeks after getting it the house had a serious electrical problem and caused a brownout on my computer’s circuit. It would have been destroyed if it weren’t for my UPS. I also dabbled in the world of iptables and IP masquerading with my Linux router on a floppy.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2004/2004-01-16-desk.html"/>
+    <summary>Got my kickass APC SUA1500 UPS! Weeks after getting it the house had a serious electrical problem and caused a brownout on my computer’s circuit. It would have been destroyed if it weren’t for my UPS. I also dabbled in the world of iptables and IP masquerading with my Linux router on a floppy.</summary>
+    <category term="desk" label="desk"/>
+    <published>2004-01-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2003/2003-03-15-desk.html</id>
+    <title>Desk Photos 2003</title>
+    <updated>2003-03-15T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Started by a thread called “Where You Rock” on Big-O-Software Forums in early 2003, I began to take pictures of my desk to
+show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2003/2003-03-15-desk.html"/>
+    <summary>Started by a thread called “Where You Rock” on Big-O-Software Forums in early 2003, I began to take pictures of my desk to
+show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.</summary>
+    <category term="desk" label="desk"/>
+    <published>2003-03-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/imagecfg.html</id>
+    <title>ImageCFG</title>
+    <updated>2002-11-30T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;ImageCFG is a utility that probably does a lot of things (I cannot find any official documentation), but the only reason
+I use it is to fix old games (UT99 for example) which have problems on multicore/multicpu systems. It does so by
+assigning an executable to specific logical CPUs permanently (by modifying the .exe file, so backup the original in case
+you want to restore it).&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/imagecfg.html"/>
+    <summary>ImageCFG is a utility that probably does a lot of things (I cannot find any official documentation), but the only reason
+I use it is to fix old games (UT99 for example) which have problems on multicore/multicpu systems. It does so by
+assigning an executable to specific logical CPUs permanently (by modifying the .exe file, so backup the original in case
+you want to restore it).</summary>
+    <published>2002-11-30T00:00:00+00:00</published>
+  </entry>
+</feed>

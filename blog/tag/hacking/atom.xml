@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posts tagged hacking</title>
+  <updated>2024-10-17T18:44:36.945858+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/tag/hacking/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/mib2_comp_media.html</id>
+    <title>MIB2 Composition Media Hacking</title>
+    <updated>2022-01-04T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
+&lt;a class="reference external" href="https://www.qnx.com/developers/docs/6.5.0SP1.update/#./com.qnx.doc.momentics_quickstart/about.html"&gt;QNX 6.5.0&lt;/a&gt; (with firmware
+MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has
+GPS). Lucky for me, it’s possible to gain root access to the unit.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/mib2_comp_media.html"/>
+    <summary>My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
+QNX 6.5.0 (with firmware
+MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has
+GPS). Lucky for me, it’s possible to gain root access to the unit.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <published>2022-01-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/franklin_t9.html</id>
+    <title>T-Mobile Franklin T9 Hacking</title>
+    <updated>2021-11-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
+data. I’m using it with &lt;a class="reference external" href="https://fi.google.com/about"&gt;Google Fi&lt;/a&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/franklin_t9.html"/>
+    <summary>My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
+data. I’m using it with Google Fi.</summary>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <published>2021-11-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/rns_510_vim.html</id>
+    <title>US RNS-510 Video In Motion</title>
+    <updated>2011-08-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I’ve been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/rns_510_vim.html"/>
+    <summary>After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I’ve been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.</summary>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <category term="jsw" label="jsw"/>
+    <published>2011-08-11T00:00:00+00:00</published>
+  </entry>
+</feed>

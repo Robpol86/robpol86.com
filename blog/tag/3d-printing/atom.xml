@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posts tagged 3d-printing</title>
+  <updated>2024-10-17T18:44:36.868989+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/tag/3d-printing/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-10-24-snapmaker-reverse-door.html</id>
+    <title>Snapmaker Enclosure Door Reversal</title>
+    <updated>2022-10-24T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I recently moved my Snapmaker 2.0 A350T printer to another part of my home. The &lt;a class="reference external" href="https://us.snapmaker.com/products/enclosure-for-snapmaker-2-0"&gt;official enclosure&lt;/a&gt; has a solid
+panel on the left side, a large door on the right, and a smaller door on the front. These panels are only designed to be
+installed in one specific order and orientation.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-10-24-snapmaker-reverse-door.html"/>
+    <summary>I recently moved my Snapmaker 2.0 A350T printer to another part of my home. The official enclosure has a solid
+panel on the left side, a large door on the right, and a smaller door on the front. These panels are only designed to be
+installed in one specific order and orientation.</summary>
+    <category term="3d-printing" label="3d-printing"/>
+    <published>2022-10-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-07-15-snapmaker.html</id>
+    <title>Snapmaker 2.0 A350T Teflon Tube</title>
+    <updated>2022-07-15T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I recently upgraded from my cheap and finicky &lt;a class="reference internal" href="../../3d_printer_mpms2.html"&gt;&lt;span class="std std-doc"&gt;Monoprice 3D printer&lt;/span&gt;&lt;/a&gt; to an expensive and versatile
+one (it WAS the latest and greatest &lt;a class="reference external" href="https://snapmaker.com/snapmaker-artisan"&gt;for a few weeks 😭&lt;/a&gt;). After using it a few
+times I already got the modding itch.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-07-15-snapmaker.html"/>
+    <summary>I recently upgraded from my cheap and finicky Monoprice 3D printer to an expensive and versatile
+one (it WAS the latest and greatest for a few weeks 😭). After using it a few
+times I already got the modding itch.</summary>
+    <category term="3d-printing" label="3d-printing"/>
+    <published>2022-07-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/3d_printer_mpms2.html</id>
+    <title>Monoprice Maker Select v2</title>
+    <updated>2021-10-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I bought my first 3D printer from &lt;a class="reference external" href="https://www.amazon.com/gp/product/B018GZBC3Y"&gt;Amazon&lt;/a&gt; in 2018 for $300. It’s on the
+cheaper end but there’s a large community behind it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/3d_printer_mpms2.html"/>
+    <summary>I bought my first 3D printer from Amazon in 2018 for $300. It’s on the
+cheaper end but there’s a large community behind it.</summary>
+    <category term="3d-printing" label="3d-printing"/>
+    <published>2021-10-21T00:00:00+00:00</published>
+  </entry>
+</feed>

@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2021</title>
+  <updated>2024-10-17T18:44:36.802044+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2021/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-12-23-alltrack-euro-tails.html</id>
+    <title>Euro Tail Lights</title>
+    <updated>2021-12-23T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I’ve always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack
+lacked the amber turn signals.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-12-23-alltrack-euro-tails.html"/>
+    <summary>I’ve always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack
+lacked the amber turn signals.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-12-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/windows_11_mac.html</id>
+    <title>Install Windows 11 on an Intel Mac</title>
+    <updated>2021-12-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide lays out the steps I take to install Windows 11 on my Intel-based Apple computers using a custom ISO. This allows
+me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does not provide TPM 2.0 to Windows.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/windows_11_mac.html"/>
+    <summary>This guide lays out the steps I take to install Windows 11 on my Intel-based Apple computers using a custom ISO. This allows
+me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does not provide TPM 2.0 to Windows.</summary>
+    <published>2021-12-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/franklin_t9.html</id>
+    <title>T-Mobile Franklin T9 Hacking</title>
+    <updated>2021-11-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
+data. I’m using it with &lt;a class="reference external" href="https://fi.google.com/about"&gt;Google Fi&lt;/a&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/franklin_t9.html"/>
+    <summary>My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
+data. I’m using it with Google Fi.</summary>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <published>2021-11-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-10-25-alltrack-ecohitch.html</id>
+    <title>EcoHitch Install</title>
+    <updated>2021-10-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I decided to go with the &lt;a class="reference external" href="https://torkliftcentral.com/2015-2017-volkswagen-golf-sportwagen-alltrack-tsi-ecohitch"&gt;EcoHitch x7315&lt;/a&gt;.
+Installing was straight forward, but it ended up taking my entire Sunday to complete. Overall I’m very happy with how it
+turned out.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-10-25-alltrack-ecohitch.html"/>
+    <summary>I decided to go with the EcoHitch x7315.
+Installing was straight forward, but it ended up taking my entire Sunday to complete. Overall I’m very happy with how it
+turned out.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-10-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/3d_printer_mpms2.html</id>
+    <title>Monoprice Maker Select v2</title>
+    <updated>2021-10-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I bought my first 3D printer from &lt;a class="reference external" href="https://www.amazon.com/gp/product/B018GZBC3Y"&gt;Amazon&lt;/a&gt; in 2018 for $300. It’s on the
+cheaper end but there’s a large community behind it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/3d_printer_mpms2.html"/>
+    <summary>I bought my first 3D printer from Amazon in 2018 for $300. It’s on the
+cheaper end but there’s a large community behind it.</summary>
+    <category term="3d-printing" label="3d-printing"/>
+    <published>2021-10-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-09-08-alltrack-dashcam.html</id>
+    <title>Rear Dashcam Pair</title>
+    <updated>2021-09-08T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Installed a second pair of cameras to get a better view out of the rear of my car for read-end crashes as well as another IR
+camera pointed towards the front of the car. This way I have a sort of 360 view from both inside-pointing cameras. Like the
+front camera I also bought a tamper-proof case for the rear one. Similarly I also use BlackVue batteries to keep the camera
+powered overnight.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-09-08-alltrack-dashcam.html"/>
+    <summary>Installed a second pair of cameras to get a better view out of the rear of my car for read-end crashes as well as another IR
+camera pointed towards the front of the car. This way I have a sort of 360 view from both inside-pointing cameras. Like the
+front camera I also bought a tamper-proof case for the rear one. Similarly I also use BlackVue batteries to keep the camera
+powered overnight.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-09-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-31-alltrack-obd11.html</id>
+    <title>OBDeleven</title>
+    <updated>2021-08-31T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;These modifications are done with an &lt;a class="reference external" href="https://obdeleven.com"&gt;OBDeleven&lt;/a&gt; device.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-31-alltrack-obd11.html"/>
+    <summary>These modifications are done with an OBDeleven device.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-31T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/vw_alltrack_2019.html</id>
+    <title>Golf Alltrack SE</title>
+    <updated>2021-08-27T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This page lists all the modifications I’ve done to my 2019 Alltrack.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/vw_alltrack_2019.html"/>
+    <summary>This page lists all the modifications I’ve done to my 2019 Alltrack.</summary>
+    <published>2021-08-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-25-alltrack-drag-race.html</id>
+    <title>Drag Race</title>
+    <updated>2021-08-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Taken off of Shoreline Hwy in Stinson Beach CA.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-25-alltrack-drag-race.html"/>
+    <summary>Taken off of Shoreline Hwy in Stinson Beach CA.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-22-alltrack-vent-gauge.html</id>
+    <title>P3 Vent Gauge</title>
+    <updated>2021-08-22T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Installed this to have a boost gauge in my air vent:
+&lt;a class="reference external" href="https://www.p3cars.com/volkswagen/p3-v3-obd2-vw-mk7-mk7-5-gauge-2014-2019/"&gt;P3 V3 OBD2 - VW Mk7 / Mk7.5 Gauge (2014-2020)&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-22-alltrack-vent-gauge.html"/>
+    <summary>Installed this to have a boost gauge in my air vent:
+P3 V3 OBD2 - VW Mk7 / Mk7.5 Gauge (2014-2020)</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-06-20-alltrack-fire-ext.html</id>
+    <title>Fire Extinguisher</title>
+    <updated>2021-06-20T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
+&lt;a class="reference external" href="https://www.amazon.com/gp/product/B001VXRYCM"&gt;Amerex Dry Chemical Fire Extinguisher B417T&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-06-20-alltrack-fire-ext.html"/>
+    <summary>Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
+Amerex Dry Chemical Fire Extinguisher B417T</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-06-20T00:00:00+00:00</published>
+  </entry>
+</feed>

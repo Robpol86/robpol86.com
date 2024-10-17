@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2007</title>
+  <updated>2024-10-17T18:44:36.860530+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2007/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2007/2007-02-21-desk.html</id>
+    <title>Desk Photos 2007</title>
+    <updated>2007-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I shared this office with my coworker while I was a contractor at Symantec.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2007/2007-02-21-desk.html"/>
+    <summary>I shared this office with my coworker while I was a contractor at Symantec.</summary>
+    <category term="desk" label="desk"/>
+    <published>2007-02-21T00:00:00+00:00</published>
+  </entry>
+</feed>

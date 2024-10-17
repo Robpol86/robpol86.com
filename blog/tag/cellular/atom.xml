@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posts tagged cellular</title>
+  <updated>2024-10-17T18:44:36.919974+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/tag/cellular/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/raspberry_pi_project_fi.html</id>
+    <title>Raspberry Pi on Project Fi</title>
+    <updated>2016-12-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+&lt;a class="reference external" href="https://fi.google.com"&gt;Project Fi&lt;/a&gt; cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their &lt;a class="reference external" href="https://support.google.com/fi?p=data_only_SIM"&gt;data only SIM cards&lt;/a&gt; to get your
+Raspberry Pi online for relatively cheap depending on your use case.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/raspberry_pi_project_fi.html"/>
+    <summary>This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+Project Fi cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their data only SIM cards to get your
+Raspberry Pi online for relatively cheap depending on your use case.</summary>
+    <category term="cellular" label="cellular"/>
+    <category term="linux" label="linux"/>
+    <published>2016-12-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/flash_droid_cricket.html</id>
+    <title>Flashing Motorola Droid to Cricket</title>
+    <updated>2011-04-08T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide will explain how to flash a Motorola Droid from Verizon to Cricket based on my experiences. The two
+(similar) guides I followed had some inconsistencies and confused me until I pieced together clues from other sources.
+My guide will explain the exact steps I took to get my Droid working on &lt;strong&gt;Cricket’s $55 Android plan&lt;/strong&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/flash_droid_cricket.html"/>
+    <summary>This guide will explain how to flash a Motorola Droid from Verizon to Cricket based on my experiences. The two
+(similar) guides I followed had some inconsistencies and confused me until I pieced together clues from other sources.
+My guide will explain the exact steps I took to get my Droid working on Cricket’s $55 Android plan.</summary>
+    <category term="cellular" label="cellular"/>
+    <published>2011-04-08T00:00:00+00:00</published>
+  </entry>
+</feed>

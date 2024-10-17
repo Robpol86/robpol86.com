@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2003</title>
+  <updated>2024-10-17T18:44:36.866112+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2003/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2003/2003-03-15-desk.html</id>
+    <title>Desk Photos 2003</title>
+    <updated>2003-03-15T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Started by a thread called “Where You Rock” on Big-O-Software Forums in early 2003, I began to take pictures of my desk to
+show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2003/2003-03-15-desk.html"/>
+    <summary>Started by a thread called “Where You Rock” on Big-O-Software Forums in early 2003, I began to take pictures of my desk to
+show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.</summary>
+    <category term="desk" label="desk"/>
+    <published>2003-03-15T00:00:00+00:00</published>
+  </entry>
+</feed>

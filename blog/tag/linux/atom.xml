@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posts tagged linux</title>
+  <updated>2024-10-17T18:44:36.967726+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/tag/linux/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/raspberry_pi_luks.html</id>
+    <title>Raspberry Pi LUKS Root Encryption</title>
+    <updated>2017-02-12T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system
+&lt;strong&gt;without needing a second Linux computer&lt;/strong&gt; to run commands on. All you need is your Raspberry Pi running Raspbian and a
+USB flash drive.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/raspberry_pi_luks.html"/>
+    <summary>In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system
+without needing a second Linux computer to run commands on. All you need is your Raspberry Pi running Raspbian and a
+USB flash drive.</summary>
+    <category term="linux" label="linux"/>
+    <published>2017-02-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/postfix_gmail_forwarding.html</id>
+    <title>Postfix and Gmail Forwarding</title>
+    <updated>2016-12-18T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;You may be familiar with the &lt;a class="reference external" href="https://superuser.com/questions/306163/what-is-the-you-have-new-mail-message-in-linux-unix"&gt;local mail spool&lt;/a&gt; on your Linux system. Often error messages from failed cron jobs are
+sent there. However this isn’t much use if the server goes down or loses network connectivity. It would be nice to have
+it send those emails out to an external email inbox instead. That way you can be notified when disks fail in a RAID
+array or when applications/services fail or produce errors.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/postfix_gmail_forwarding.html"/>
+    <summary>You may be familiar with the local mail spool on your Linux system. Often error messages from failed cron jobs are
+sent there. However this isn’t much use if the server goes down or loses network connectivity. It would be nice to have
+it send those emails out to an external email inbox instead. That way you can be notified when disks fail in a RAID
+array or when applications/services fail or produce errors.</summary>
+    <category term="linux" label="linux"/>
+    <published>2016-12-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/raspberry_pi_project_fi.html</id>
+    <title>Raspberry Pi on Project Fi</title>
+    <updated>2016-12-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+&lt;a class="reference external" href="https://fi.google.com"&gt;Project Fi&lt;/a&gt; cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their &lt;a class="reference external" href="https://support.google.com/fi?p=data_only_SIM"&gt;data only SIM cards&lt;/a&gt; to get your
+Raspberry Pi online for relatively cheap depending on your use case.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/raspberry_pi_project_fi.html"/>
+    <summary>This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+Project Fi cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their data only SIM cards to get your
+Raspberry Pi online for relatively cheap depending on your use case.</summary>
+    <category term="cellular" label="cellular"/>
+    <category term="linux" label="linux"/>
+    <published>2016-12-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/root_certificate_authority.html</id>
+    <title>Setting Up a Home Root CA</title>
+    <updated>2015-08-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Tired of getting those SSL error pages when accessing your router’s admin interface? Sick of having to click three times
+to get to your IPMI web interface? Have I got a guide for you!&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/root_certificate_authority.html"/>
+    <summary>Tired of getting those SSL error pages when accessing your router’s admin interface? Sick of having to click three times
+to get to your IPMI web interface? Have I got a guide for you!</summary>
+    <category term="linux" label="linux"/>
+    <published>2015-08-11T00:00:00+00:00</published>
+  </entry>
+</feed>

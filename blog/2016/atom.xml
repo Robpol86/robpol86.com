@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2016</title>
+  <updated>2024-10-17T18:44:36.828648+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2016/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/postfix_gmail_forwarding.html</id>
+    <title>Postfix and Gmail Forwarding</title>
+    <updated>2016-12-18T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;You may be familiar with the &lt;a class="reference external" href="https://superuser.com/questions/306163/what-is-the-you-have-new-mail-message-in-linux-unix"&gt;local mail spool&lt;/a&gt; on your Linux system. Often error messages from failed cron jobs are
+sent there. However this isn’t much use if the server goes down or loses network connectivity. It would be nice to have
+it send those emails out to an external email inbox instead. That way you can be notified when disks fail in a RAID
+array or when applications/services fail or produce errors.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/postfix_gmail_forwarding.html"/>
+    <summary>You may be familiar with the local mail spool on your Linux system. Often error messages from failed cron jobs are
+sent there. However this isn’t much use if the server goes down or loses network connectivity. It would be nice to have
+it send those emails out to an external email inbox instead. That way you can be notified when disks fail in a RAID
+array or when applications/services fail or produce errors.</summary>
+    <category term="linux" label="linux"/>
+    <published>2016-12-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/raspberry_pi_project_fi.html</id>
+    <title>Raspberry Pi on Project Fi</title>
+    <updated>2016-12-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+&lt;a class="reference external" href="https://fi.google.com"&gt;Project Fi&lt;/a&gt; cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their &lt;a class="reference external" href="https://support.google.com/fi?p=data_only_SIM"&gt;data only SIM cards&lt;/a&gt; to get your
+Raspberry Pi online for relatively cheap depending on your use case.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/raspberry_pi_project_fi.html"/>
+    <summary>This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+Project Fi cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their data only SIM cards to get your
+Raspberry Pi online for relatively cheap depending on your use case.</summary>
+    <category term="cellular" label="cellular"/>
+    <category term="linux" label="linux"/>
+    <published>2016-12-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2016/2016-09-17-rack.html</id>
+    <title>Dell Rack 2016</title>
+    <updated>2016-09-17T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My server rack cabinet at home. Built my own router and zip tied a keystone panel so pulling out my rack doesn’t involve disconnecting my speaker wire. Listen to &lt;a class="reference external" href="https://youtu.be/WPDZoOKX8ag"&gt;https://youtu.be/WPDZoOKX8ag&lt;/a&gt; to hear how much noise this puts out (not really that much). For pix of the underside look at &lt;a class="reference internal" href="../posts/2015/2015-07-13-rack.html"&gt;&lt;span class="std std-doc"&gt;last year’s gallery&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2016/2016-09-17-rack.html"/>
+    <summary>My server rack cabinet at home. Built my own router and zip tied a keystone panel so pulling out my rack doesn’t involve disconnecting my speaker wire. Listen to https://youtu.be/WPDZoOKX8ag to hear how much noise this puts out (not really that much). For pix of the underside look at last year’s gallery.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2016-09-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2016/2016-06-01-desk.html</id>
+    <title>Desk Photos 2016</title>
+    <updated>2016-06-01T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Right before I moved desks for the 6th time in 1.5 years. I lost my nice window desk, oh well.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2016/2016-06-01-desk.html"/>
+    <summary>Right before I moved desks for the 6th time in 1.5 years. I lost my nice window desk, oh well.</summary>
+    <category term="desk" label="desk"/>
+    <published>2016-06-01T00:00:00+00:00</published>
+  </entry>
+</feed>
