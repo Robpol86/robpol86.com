@@ -144,16 +144,16 @@ sitemap_url_scheme = "{link}"
 
 
 # Ablog settings.
-blog_title = project
+blog_authors = {"Robpol86": ("Robert Pooley", "https://robpol86.com")}
 blog_baseurl = html_baseurl
+blog_default_language = language
+blog_languages = {"en": ("English", None)}
 blog_locations = {
     "Austin": ("Austin, TX", "https://en.wikipedia.org/wiki/Austin,_Texas"),
     "Manhattan": ("Manhattan", "https://en.wikipedia.org/wiki/Manhattan"),
     "San Francisco": ("San Francisco, CA", "https://en.wikipedia.org/wiki/San_Francisco"),
     "Victoria": ("Victoria, TX", "https://en.wikipedia.org/wiki/Victoria,_Texas"),
 }
-blog_languages = {"en": ("English", None)}
-blog_default_language = language
-blog_authors = {"Robpol86": ("Robert Pooley", "https://robpol86.com")}
-disqus_shortname = "rob86wiki"
+blog_title = project
 disqus_pages = False
+disqus_shortname = "rob86wiki"
