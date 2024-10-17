@@ -147,6 +147,7 @@ sitemap_url_scheme = "{link}"
 blog_authors = {"Robpol86": ("Robert Pooley", "https://robpol86.com")}
 blog_baseurl = html_baseurl
 blog_default_language = language
+blog_feed_archives = True
 blog_languages = {"en": ("English", None)}
 blog_locations = {
     "Austin": ("Austin, TX", "https://en.wikipedia.org/wiki/Austin,_Texas"),
