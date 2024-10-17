@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2024.10.17.234534]
+
+Enable RSS feeds
+
+* 25b0006 Enable RSS feeds (#267)
+* d1f8e9f Update dependencies (#266)
+* 18417fb Add city to Travel NAS page (#265)
+
 ## [2024.10.7.32500]
 
 New post: Travel NAS
