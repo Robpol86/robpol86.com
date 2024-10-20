@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2019</title>
+  <updated>2024-10-20T18:04:53.437740+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2019/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2019/2019-05-29-desk.html</id>
+    <title>Desk Photos 2019</title>
+    <updated>2019-05-29T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Changed teams and finally got a corner cubicle.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2019/2019-05-29-desk.html"/>
+    <summary>Changed teams and finally got a corner cubicle.</summary>
+    <category term="desk" label="desk"/>
+    <published>2019-05-29T00:00:00+00:00</published>
+  </entry>
+</feed>

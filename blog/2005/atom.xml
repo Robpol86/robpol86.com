@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2005</title>
+  <updated>2024-10-20T18:04:53.478473+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2005/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2005/2005-08-19-desk.html</id>
+    <title>Desk Photo 2005: Work @ TISD</title>
+    <updated>2005-08-19T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This was right before I left my first job for Austin. I loved that Dell Latitude C400 laptop (my first laptop) that I bought on eBay. I think it was a Pentium 3 866 MHz. And that’s a brownie.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2005/2005-08-19-desk.html"/>
+    <summary>This was right before I left my first job for Austin. I loved that Dell Latitude C400 laptop (my first laptop) that I bought on eBay. I think it was a Pentium 3 866 MHz. And that’s a brownie.</summary>
+    <category term="desk" label="desk"/>
+    <published>2005-08-19T00:00:00+00:00</published>
+  </entry>
+</feed>

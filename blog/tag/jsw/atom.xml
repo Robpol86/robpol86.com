@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posts tagged jsw</title>
+  <updated>2024-10-20T18:04:53.580360+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/tag/jsw/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/wireless_charging_car_dock.html</id>
+    <title>Wireless Charging Car Dock</title>
+    <updated>2013-11-16T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;So I was tired of having to hold my phone while plugging in a microusb cable after I’ve docked it in my car. I couldn’t
+find very many car docks out there with wireless charging, and I read that Nokia’s wireless charging car dock didn’t
+work very well on the Nexus 5.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/wireless_charging_car_dock.html"/>
+    <summary>So I was tired of having to hold my phone while plugging in a microusb cable after I’ve docked it in my car. I couldn’t
+find very many car docks out there with wireless charging, and I read that Nokia’s wireless charging car dock didn’t
+work very well on the Nexus 5.</summary>
+    <category term="car" label="car"/>
+    <category term="jsw" label="jsw"/>
+    <published>2013-11-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/rns_510_vim.html</id>
+    <title>US RNS-510 Video In Motion</title>
+    <updated>2011-08-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I’ve been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/rns_510_vim.html"/>
+    <summary>After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I’ve been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.</summary>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <category term="jsw" label="jsw"/>
+    <published>2011-08-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/vw_jsw_2010.html</id>
+    <title>Jetta SportWagen TDI</title>
+    <updated>2010-07-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next car (I was then driving a 2000 F-150).
+On April 30th 2010 I finally committed to the vehicle and put down a deposit. On June 30th, I received my new car,
+special ordered the way I wanted it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/vw_jsw_2010.html"/>
+    <summary>Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next car (I was then driving a 2000 F-150).
+On April 30th 2010 I finally committed to the vehicle and put down a deposit. On June 30th, I received my new car,
+special ordered the way I wanted it.</summary>
+    <category term="car" label="car"/>
+    <category term="jsw" label="jsw"/>
+    <published>2010-07-03T00:00:00+00:00</published>
+  </entry>
+</feed>

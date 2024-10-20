@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2024</title>
+  <updated>2024-10-20T18:04:53.398907+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2024/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2024/2024-07-24-desk.html</id>
+    <title>Desk Photos 2024</title>
+    <updated>2024-07-24T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Repurposed my laundry room table as my desk after selling everything I own. You can see my &lt;a class="reference internal" href="../posts/2024/2024-05-04-nas.html"&gt;&lt;span class="std std-doc"&gt;travel NAS&lt;/span&gt;&lt;/a&gt;
+on top of my UPS in the corner on the floor.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2024/2024-07-24-desk.html"/>
+    <summary>Repurposed my laundry room table as my desk after selling everything I own. You can see my travel NAS
+on top of my UPS in the corner on the floor.</summary>
+    <category term="desk" label="desk"/>
+    <published>2024-07-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2024/2024-05-04-nas.html</id>
+    <title>Travel NAS 2024</title>
+    <updated>2024-05-04T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This
+included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard
+drive. I wanted a portable NAS for resilliency and I’ve grown to like TrueNAS.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2024/2024-05-04-nas.html"/>
+    <summary>Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This
+included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard
+drive. I wanted a portable NAS for resilliency and I’ve grown to like TrueNAS.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2024-05-04T00:00:00+00:00</published>
+  </entry>
+</feed>

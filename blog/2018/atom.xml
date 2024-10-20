@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2018</title>
+  <updated>2024-10-20T18:04:53.439080+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2018/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2018/2018-01-14-desk.html</id>
+    <title>Desk Photo 2018</title>
+    <updated>2018-01-14T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;New apartment to cut down on my commute and new computer to take advantage of my 10 GbE home network and server. Upgraded from a Mac Pro to the new iMac Pro! 10 core Xeon + 4 TiB SSD + 128 GiB RAM - $3,000 employee discount = still a lot of money.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2018/2018-01-14-desk.html"/>
+    <summary>New apartment to cut down on my commute and new computer to take advantage of my 10 GbE home network and server. Upgraded from a Mac Pro to the new iMac Pro! 10 core Xeon + 4 TiB SSD + 128 GiB RAM - $3,000 employee discount = still a lot of money.</summary>
+    <category term="desk" label="desk"/>
+    <published>2018-01-14T00:00:00+00:00</published>
+  </entry>
+</feed>

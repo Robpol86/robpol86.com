@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posts tagged homelab</title>
+  <updated>2024-10-20T18:04:53.567030+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/tag/homelab/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2024/2024-05-04-nas.html</id>
+    <title>Travel NAS 2024</title>
+    <updated>2024-05-04T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This
+included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard
+drive. I wanted a portable NAS for resilliency and I’ve grown to like TrueNAS.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2024/2024-05-04-nas.html"/>
+    <summary>Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This
+included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard
+drive. I wanted a portable NAS for resilliency and I’ve grown to like TrueNAS.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2024-05-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-06-30-rack.html</id>
+    <title>Custom Fabricated Rack 2022</title>
+    <updated>2022-06-30T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I got a couple of items that warranted rewiring my TV cabinet rack: StarTech extenders and P-Link server rails. I inverted
+the extenders so I could recess the patch panel and switch, making room for the SFP modules and fiber cables. I can’t believe
+I can’t find any right angle adapters for the LC/UPC fiber patch cables!&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-06-30-rack.html"/>
+    <summary>I got a couple of items that warranted rewiring my TV cabinet rack: StarTech extenders and P-Link server rails. I inverted
+the extenders so I could recess the patch panel and switch, making room for the SFP modules and fiber cables. I can’t believe
+I can’t find any right angle adapters for the LC/UPC fiber patch cables!</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2022-06-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-06-06-rack.html</id>
+    <title>Custom Fabricated Rack 2020</title>
+    <updated>2020-06-06T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Having my equipment hidden in a TV cabinet was all fine and well but after a while I got the server rack itch. So during the pandemic I learned Fusion 360 and made my own custom 10u rack posts. It turned out nicer than I expected! 3D models are available here: &lt;a class="github reference external" href="https://github.com/Robpol86/TV-Cabinet-Rack-Posts"&gt;Robpol86/TV-Cabinet-Rack-Posts&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-06-06-rack.html"/>
+    <summary>Having my equipment hidden in a TV cabinet was all fine and well but after a while I got the server rack itch. So during the pandemic I learned Fusion 360 and made my own custom 10u rack posts. It turned out nicer than I expected! 3D models are available here: https://github.com/Robpol86/TV-Cabinet-Rack-Posts</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2020-06-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2017/2017-07-12-rack.html</id>
+    <title>TV Cabinet Rack 2017</title>
+    <updated>2017-07-12T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I replaced my super cool Dell rack recently with a more normal-looking setup in my living room. After countless weeks looking for the right TV cabinet I finally found one deep enough to house a couple of 2U rackmount cases and a rackmount switch. It turned out nicer than I had expected! Don’t ask me how much all this cost.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2017/2017-07-12-rack.html"/>
+    <summary>I replaced my super cool Dell rack recently with a more normal-looking setup in my living room. After countless weeks looking for the right TV cabinet I finally found one deep enough to house a couple of 2U rackmount cases and a rackmount switch. It turned out nicer than I had expected! Don’t ask me how much all this cost.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2017-07-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2016/2016-09-17-rack.html</id>
+    <title>Dell Rack 2016</title>
+    <updated>2016-09-17T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My server rack cabinet at home. Built my own router and zip tied a keystone panel so pulling out my rack doesn’t involve disconnecting my speaker wire. Listen to &lt;a class="reference external" href="https://youtu.be/WPDZoOKX8ag"&gt;https://youtu.be/WPDZoOKX8ag&lt;/a&gt; to hear how much noise this puts out (not really that much). For pix of the underside look at &lt;a class="reference internal" href="../../posts/2015/2015-07-13-rack.html"&gt;&lt;span class="std std-doc"&gt;last year’s gallery&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2016/2016-09-17-rack.html"/>
+    <summary>My server rack cabinet at home. Built my own router and zip tied a keystone panel so pulling out my rack doesn’t involve disconnecting my speaker wire. Listen to https://youtu.be/WPDZoOKX8ag to hear how much noise this puts out (not really that much). For pix of the underside look at last year’s gallery.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2016-09-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/bareos_tape_backup.html</id>
+    <title>Bareos Tape Backup on a 124T</title>
+    <updated>2015-08-23T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I use &lt;a class="reference external" href="https://www.bareos.org/en/"&gt;Bareos&lt;/a&gt; (a fork of &lt;a class="reference external" href="http://bacula.org/"&gt;Bacula&lt;/a&gt;) to backup my data at home from a
+Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it’s probably
+debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool!&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/bareos_tape_backup.html"/>
+    <summary>I use Bareos (a fork of Bacula) to backup my data at home from a
+Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it’s probably
+debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool!</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2015-08-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2015/2015-07-13-rack.html</id>
+    <title>Dell Rack 2015</title>
+    <updated>2015-07-13T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My server rack cabinet at home. Removed everything from it, cleaned and dusted it, and installed only the things I’m using.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2015/2015-07-13-rack.html"/>
+    <summary>My server rack cabinet at home. Removed everything from it, cleaned and dusted it, and installed only the things I’m using.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2015-07-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2013/2013-10-25-rack.html</id>
+    <title>Dell Rack 2013</title>
+    <updated>2013-10-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Taken after finally re-wiring it and setting it up after moving to San Francisco. I only took one photo of it :(&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2013/2013-10-25-rack.html"/>
+    <summary>Taken after finally re-wiring it and setting it up after moving to San Francisco. I only took one photo of it :(</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2013-10-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2012/2012-08-21-rack.html</id>
+    <title>Dell Rack 2012</title>
+    <updated>2012-08-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After over a whole year since receiving it I have finally made full use of my rack and transferred all of my computers and equipment to it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2012/2012-08-21-rack.html"/>
+    <summary>After over a whole year since receiving it I have finally made full use of my rack and transferred all of my computers and equipment to it.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2012-08-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2011/2011-06-10-rack.html</id>
+    <title>Dell Rack 2011</title>
+    <updated>2011-06-10T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Ever since I took a Cisco CCNA class back in high school in 2002 I’ve always wanted a rack at home. I even bought one on
+Craigslist in 2007 for $100 but it had round holes and it was very shallow. Turns out it was meant for music equipment.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2011/2011-06-10-rack.html"/>
+    <summary>Ever since I took a Cisco CCNA class back in high school in 2002 I’ve always wanted a rack at home. I even bought one on
+Craigslist in 2007 for $100 but it had round holes and it was very shallow. Turns out it was meant for music equipment.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2011-06-10T00:00:00+00:00</published>
+  </entry>
+</feed>

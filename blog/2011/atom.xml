@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2011</title>
+  <updated>2024-10-20T18:04:53.466478+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2011/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/rns_510_vim.html</id>
+    <title>US RNS-510 Video In Motion</title>
+    <updated>2011-08-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I’ve been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/rns_510_vim.html"/>
+    <summary>After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I’ve been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.</summary>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <category term="jsw" label="jsw"/>
+    <published>2011-08-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2011/2011-06-10-rack.html</id>
+    <title>Dell Rack 2011</title>
+    <updated>2011-06-10T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Ever since I took a Cisco CCNA class back in high school in 2002 I’ve always wanted a rack at home. I even bought one on
+Craigslist in 2007 for $100 but it had round holes and it was very shallow. Turns out it was meant for music equipment.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2011/2011-06-10-rack.html"/>
+    <summary>Ever since I took a Cisco CCNA class back in high school in 2002 I’ve always wanted a rack at home. I even bought one on
+Craigslist in 2007 for $100 but it had round holes and it was very shallow. Turns out it was meant for music equipment.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2011-06-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2011/2011-05-13-desk.html</id>
+    <title>Desk Photos 2011</title>
+    <updated>2011-05-13T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;The same cubicle shortly before another office downsize.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2011/2011-05-13-desk.html"/>
+    <summary>The same cubicle shortly before another office downsize.</summary>
+    <category term="desk" label="desk"/>
+    <published>2011-05-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/flash_droid_cricket.html</id>
+    <title>Flashing Motorola Droid to Cricket</title>
+    <updated>2011-04-08T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide will explain how to flash a Motorola Droid from Verizon to Cricket based on my experiences. The two
+(similar) guides I followed had some inconsistencies and confused me until I pieced together clues from other sources.
+My guide will explain the exact steps I took to get my Droid working on &lt;strong&gt;Cricket’s $55 Android plan&lt;/strong&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/flash_droid_cricket.html"/>
+    <summary>This guide will explain how to flash a Motorola Droid from Verizon to Cricket based on my experiences. The two
+(similar) guides I followed had some inconsistencies and confused me until I pieced together clues from other sources.
+My guide will explain the exact steps I took to get my Droid working on Cricket’s $55 Android plan.</summary>
+    <category term="cellular" label="cellular"/>
+    <published>2011-04-08T00:00:00+00:00</published>
+  </entry>
+</feed>
