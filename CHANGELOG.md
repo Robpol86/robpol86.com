@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2024.10.20.180601]
+
+Update resume
+
+* 5f82558 Update resume (#268)
+
 ## [2024.10.17.234534]
 
 Enable RSS feeds
