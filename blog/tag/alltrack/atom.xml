@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posts tagged alltrack</title>
+  <updated>2024-12-12T05:38:43.744533+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/tag/alltrack/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-12-11-alltrack-clutch-bleeder-block.html</id>
+    <title>Clutch Bleeder Block Replacement</title>
+    <updated>2022-12-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I opted to replace the stock plastic block with an all-metal block from ECS Tuning to get rid of the
+&lt;a class="reference external" href="https://www.vwvortex.com/threads/6-mt-owners-do-the-clutch-spring-mod.9119337/"&gt;clutch delay valve&lt;/a&gt;. After doing this mod I definitely felt a difference when pressing the clutch pedal. It
+feels lighter and now I understand what people meant when they say the stock clutch feels mushy.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-12-11-alltrack-clutch-bleeder-block.html"/>
+    <summary>I opted to replace the stock plastic block with an all-metal block from ECS Tuning to get rid of the
+clutch delay valve. After doing this mod I definitely felt a difference when pressing the clutch pedal. It
+feels lighter and now I understand what people meant when they say the stock clutch feels mushy.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2022-12-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-10-27-alltrack-jack-pads.html</id>
+    <title>Jack Pads</title>
+    <updated>2022-10-27T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This modification makes it easier to put my car on jack stands in my garage. It adds a second set of jacking points to the
+car so I don’t have to jack up the car from the opposite side when rotating my tires. It was really easy to install too. In
+fact I installed this kit without needing to jack up the car at all and removing the old trim pieces was really effortless.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-10-27-alltrack-jack-pads.html"/>
+    <summary>This modification makes it easier to put my car on jack stands in my garage. It adds a second set of jacking points to the
+car so I don’t have to jack up the car from the opposite side when rotating my tires. It was really easy to install too. In
+fact I installed this kit without needing to jack up the car at all and removing the old trim pieces was really effortless.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2022-10-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-06-05-alltrack-homelink-mirror.html</id>
+    <title>HomeLink Rearview Mirror</title>
+    <updated>2022-06-05T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My 2019 Golf Alltrack SE came with an auto-dimming mirror, but I wanted the one with garage door buttons integrated in it.
+Since my car had the rain sensor option installed I already had power available to my mirror, so this upgrade was super easy
+to do. No coding was required.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-06-05-alltrack-homelink-mirror.html"/>
+    <summary>My 2019 Golf Alltrack SE came with an auto-dimming mirror, but I wanted the one with garage door buttons integrated in it.
+Since my car had the rain sensor option installed I already had power available to my mirror, so this upgrade was super easy
+to do. No coding was required.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2022-06-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/mib2_comp_media.html</id>
+    <title>MIB2 Composition Media Hacking</title>
+    <updated>2022-01-04T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
+&lt;a class="reference external" href="https://www.qnx.com/developers/docs/6.5.0SP1.update/#./com.qnx.doc.momentics_quickstart/about.html"&gt;QNX 6.5.0&lt;/a&gt; (with firmware
+MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has
+GPS). Lucky for me, it’s possible to gain root access to the unit.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/mib2_comp_media.html"/>
+    <summary>My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
+QNX 6.5.0 (with firmware
+MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has
+GPS). Lucky for me, it’s possible to gain root access to the unit.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <published>2022-01-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-01-02-alltrack-mib2-hack.html</id>
+    <title>MIB2 Developer Mode</title>
+    <updated>2022-01-02T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My Alltrack came with an MIB2 Composition Media infotainment system. These are the steps I took to enable development mode
+and get some information about it. Enabling development mode also lets me take screenshots by holding down the &lt;strong&gt;Media&lt;/strong&gt;
+button for 3 seconds and have them saved to the SD card. You’ll need an &lt;a class="reference external" href="https://obdeleven.com/en/"&gt;OBD11/OBDeleven&lt;/a&gt; or VCDS.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-01-02-alltrack-mib2-hack.html"/>
+    <summary>My Alltrack came with an MIB2 Composition Media infotainment system. These are the steps I took to enable development mode
+and get some information about it. Enabling development mode also lets me take screenshots by holding down the Media
+button for 3 seconds and have them saved to the SD card. You’ll need an OBD11/OBDeleven or VCDS.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2022-01-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-12-23-alltrack-euro-tails.html</id>
+    <title>Euro Tail Lights</title>
+    <updated>2021-12-23T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I’ve always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack
+lacked the amber turn signals.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-12-23-alltrack-euro-tails.html"/>
+    <summary>I’ve always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack
+lacked the amber turn signals.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-12-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-10-25-alltrack-ecohitch.html</id>
+    <title>EcoHitch Install</title>
+    <updated>2021-10-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I decided to go with the &lt;a class="reference external" href="https://torkliftcentral.com/2015-2017-volkswagen-golf-sportwagen-alltrack-tsi-ecohitch"&gt;EcoHitch x7315&lt;/a&gt;.
+Installing was straight forward, but it ended up taking my entire Sunday to complete. Overall I’m very happy with how it
+turned out.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-10-25-alltrack-ecohitch.html"/>
+    <summary>I decided to go with the EcoHitch x7315.
+Installing was straight forward, but it ended up taking my entire Sunday to complete. Overall I’m very happy with how it
+turned out.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-10-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-09-08-alltrack-dashcam.html</id>
+    <title>Rear Dashcam Pair</title>
+    <updated>2021-09-08T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Installed a second pair of cameras to get a better view out of the rear of my car for read-end crashes as well as another IR
+camera pointed towards the front of the car. This way I have a sort of 360 view from both inside-pointing cameras. Like the
+front camera I also bought a tamper-proof case for the rear one. Similarly I also use BlackVue batteries to keep the camera
+powered overnight.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-09-08-alltrack-dashcam.html"/>
+    <summary>Installed a second pair of cameras to get a better view out of the rear of my car for read-end crashes as well as another IR
+camera pointed towards the front of the car. This way I have a sort of 360 view from both inside-pointing cameras. Like the
+front camera I also bought a tamper-proof case for the rear one. Similarly I also use BlackVue batteries to keep the camera
+powered overnight.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-09-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-31-alltrack-obd11.html</id>
+    <title>OBDeleven</title>
+    <updated>2021-08-31T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;These modifications are done with an &lt;a class="reference external" href="https://obdeleven.com"&gt;OBDeleven&lt;/a&gt; device.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-31-alltrack-obd11.html"/>
+    <summary>These modifications are done with an OBDeleven device.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-31T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-25-alltrack-drag-race.html</id>
+    <title>Drag Race</title>
+    <updated>2021-08-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Taken off of Shoreline Hwy in Stinson Beach CA.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-25-alltrack-drag-race.html"/>
+    <summary>Taken off of Shoreline Hwy in Stinson Beach CA.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-22-alltrack-vent-gauge.html</id>
+    <title>P3 Vent Gauge</title>
+    <updated>2021-08-22T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Installed this to have a boost gauge in my air vent:
+&lt;a class="reference external" href="https://www.p3cars.com/volkswagen/p3-v3-obd2-vw-mk7-mk7-5-gauge-2014-2019/"&gt;P3 V3 OBD2 - VW Mk7 / Mk7.5 Gauge (2014-2020)&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-22-alltrack-vent-gauge.html"/>
+    <summary>Installed this to have a boost gauge in my air vent:
+P3 V3 OBD2 - VW Mk7 / Mk7.5 Gauge (2014-2020)</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-06-20-alltrack-fire-ext.html</id>
+    <title>Fire Extinguisher</title>
+    <updated>2021-06-20T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
+&lt;a class="reference external" href="https://www.amazon.com/gp/product/B001VXRYCM"&gt;Amerex Dry Chemical Fire Extinguisher B417T&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-06-20-alltrack-fire-ext.html"/>
+    <summary>Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
+Amerex Dry Chemical Fire Extinguisher B417T</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-06-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-02-21-alltrack-dashcam.html</id>
+    <title>Front Dashcam Pair</title>
+    <updated>2020-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
+parked. I live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street
+and after a year nobody has broken in to steal the camera.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-02-21-alltrack-dashcam.html"/>
+    <summary>I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
+parked. I live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street
+and after a year nobody has broken in to steal the camera.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-02-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-02-09-alltrack-drawer.html</id>
+    <title>Under-Seat Drawer</title>
+    <updated>2020-02-09T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
+seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
+with felt so things wouldn’t rattle. I’m using foil to eventually trace out the curve&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-02-09-alltrack-drawer.html"/>
+    <summary>Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
+seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
+with felt so things wouldn’t rattle. I’m using foil to eventually trace out the curve</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-02-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-01-27-alltrack-trashcan.html</id>
+    <title>Trashcan</title>
+    <updated>2020-01-27T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Bought this from Amazon:
+&lt;a class="reference external" href="https://www.amazon.com/gp/product/B07TCT96SH"&gt;display4top Auto Car Trash Can Bin Waste Container&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-01-27-alltrack-trashcan.html"/>
+    <summary>Bought this from Amazon:
+display4top Auto Car Trash Can Bin Waste Container</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-01-27T00:00:00+00:00</published>
+  </entry>
+</feed>

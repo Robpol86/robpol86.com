@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2017</title>
+  <updated>2024-12-12T05:38:43.696770+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2017/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2017/2017-07-12-rack.html</id>
+    <title>TV Cabinet Rack 2017</title>
+    <updated>2017-07-12T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I replaced my super cool Dell rack recently with a more normal-looking setup in my living room. After countless weeks looking for the right TV cabinet I finally found one deep enough to house a couple of 2U rackmount cases and a rackmount switch. It turned out nicer than I had expected! Don’t ask me how much all this cost.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2017/2017-07-12-rack.html"/>
+    <summary>I replaced my super cool Dell rack recently with a more normal-looking setup in my living room. After countless weeks looking for the right TV cabinet I finally found one deep enough to house a couple of 2U rackmount cases and a rackmount switch. It turned out nicer than I had expected! Don’t ask me how much all this cost.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2017-07-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/raspberry_pi_luks.html</id>
+    <title>Raspberry Pi LUKS Root Encryption</title>
+    <updated>2017-02-12T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system
+&lt;strong&gt;without needing a second Linux computer&lt;/strong&gt; to run commands on. All you need is your Raspberry Pi running Raspbian and a
+USB flash drive.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/raspberry_pi_luks.html"/>
+    <summary>In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system
+without needing a second Linux computer to run commands on. All you need is your Raspberry Pi running Raspbian and a
+USB flash drive.</summary>
+    <category term="linux" label="linux"/>
+    <published>2017-02-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2017/2017-01-14-desk.html</id>
+    <title>Desk Photos 2017</title>
+    <updated>2017-01-14T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I’ve decided to get rid of my rack cabinet in my living room, so I started by moving my Mac Pro onto my desk and running ethernet cables through the wall. Also with my larger IKEA bed I had to rotate my desk 90 degrees to make everything fit.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2017/2017-01-14-desk.html"/>
+    <summary>I’ve decided to get rid of my rack cabinet in my living room, so I started by moving my Mac Pro onto my desk and running ethernet cables through the wall. Also with my larger IKEA bed I had to rotate my desk 90 degrees to make everything fit.</summary>
+    <category term="desk" label="desk"/>
+    <published>2017-01-14T00:00:00+00:00</published>
+  </entry>
+</feed>

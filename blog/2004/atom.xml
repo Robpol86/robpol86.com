@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2004</title>
+  <updated>2024-12-12T05:38:43.735843+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2004/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2004/2004-01-16-desk.html</id>
+    <title>Desk Photo 2004</title>
+    <updated>2004-01-16T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Got my kickass APC SUA1500 UPS! Weeks after getting it the house had a serious electrical problem and caused a brownout on my computer’s circuit. It would have been destroyed if it weren’t for my UPS. I also dabbled in the world of iptables and IP masquerading with my Linux router on a floppy.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2004/2004-01-16-desk.html"/>
+    <summary>Got my kickass APC SUA1500 UPS! Weeks after getting it the house had a serious electrical problem and caused a brownout on my computer’s circuit. It would have been destroyed if it weren’t for my UPS. I also dabbled in the world of iptables and IP masquerading with my Linux router on a floppy.</summary>
+    <category term="desk" label="desk"/>
+    <published>2004-01-16T00:00:00+00:00</published>
+  </entry>
+</feed>

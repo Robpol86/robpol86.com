@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2020</title>
+  <updated>2024-12-12T05:38:43.688520+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2020/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-06-06-rack.html</id>
+    <title>Custom Fabricated Rack 2020</title>
+    <updated>2020-06-06T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Having my equipment hidden in a TV cabinet was all fine and well but after a while I got the server rack itch. So during the pandemic I learned Fusion 360 and made my own custom 10u rack posts. It turned out nicer than I expected! 3D models are available here: &lt;a class="github reference external" href="https://github.com/Robpol86/TV-Cabinet-Rack-Posts"&gt;Robpol86/TV-Cabinet-Rack-Posts&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-06-06-rack.html"/>
+    <summary>Having my equipment hidden in a TV cabinet was all fine and well but after a while I got the server rack itch. So during the pandemic I learned Fusion 360 and made my own custom 10u rack posts. It turned out nicer than I expected! 3D models are available here: https://github.com/Robpol86/TV-Cabinet-Rack-Posts</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2020-06-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-02-21-alltrack-dashcam.html</id>
+    <title>Front Dashcam Pair</title>
+    <updated>2020-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
+parked. I live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street
+and after a year nobody has broken in to steal the camera.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-02-21-alltrack-dashcam.html"/>
+    <summary>I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
+parked. I live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street
+and after a year nobody has broken in to steal the camera.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-02-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-02-09-alltrack-drawer.html</id>
+    <title>Under-Seat Drawer</title>
+    <updated>2020-02-09T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
+seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
+with felt so things wouldn’t rattle. I’m using foil to eventually trace out the curve&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-02-09-alltrack-drawer.html"/>
+    <summary>Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
+seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
+with felt so things wouldn’t rattle. I’m using foil to eventually trace out the curve</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-02-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-01-27-alltrack-trashcan.html</id>
+    <title>Trashcan</title>
+    <updated>2020-01-27T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Bought this from Amazon:
+&lt;a class="reference external" href="https://www.amazon.com/gp/product/B07TCT96SH"&gt;display4top Auto Car Trash Can Bin Waste Container&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-01-27-alltrack-trashcan.html"/>
+    <summary>Bought this from Amazon:
+display4top Auto Car Trash Can Bin Waste Container</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-01-27T00:00:00+00:00</published>
+  </entry>
+</feed>

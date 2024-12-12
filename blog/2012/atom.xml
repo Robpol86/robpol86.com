@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com - Posted in 2012</title>
+  <updated>2024-12-12T05:38:43.718566+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/2012/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.10">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2012/2012-08-21-rack.html</id>
+    <title>Dell Rack 2012</title>
+    <updated>2012-08-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After over a whole year since receiving it I have finally made full use of my rack and transferred all of my computers and equipment to it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2012/2012-08-21-rack.html"/>
+    <summary>After over a whole year since receiving it I have finally made full use of my rack and transferred all of my computers and equipment to it.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2012-08-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/atrix_lapdock.html</id>
+    <title>Atrix Lapdock Other Uses</title>
+    <updated>2012-06-30T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I bought the Atrix Lapdock since I couldn’t find any sub $100 portable HDMI displays. The only affordable displays I
+could find were USB only. With the Atrix Lapdock and some adapters, I was able to use it as a portable display for
+several devices, which is great for traveling.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/atrix_lapdock.html"/>
+    <summary>I bought the Atrix Lapdock since I couldn’t find any sub $100 portable HDMI displays. The only affordable displays I
+could find were USB only. With the Atrix Lapdock and some adapters, I was able to use it as a portable display for
+several devices, which is great for traveling.</summary>
+    <published>2012-06-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2012/2012-01-03-desk.html</id>
+    <title>Desk Photos 2012</title>
+    <updated>2012-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I shamefully upgraded from my custom built dual core AMD FX-60 computer to a quad core Intel Core2 Dell computer I borrowed from work. I’ve had that FX-60 for too long and it was showing its age. Also that KVM was so horrible.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2012/2012-01-03-desk.html"/>
+    <summary>I shamefully upgraded from my custom built dual core AMD FX-60 computer to a quad core Intel Core2 Dell computer I borrowed from work. I’ve had that FX-60 for too long and it was showing its age. Also that KVM was so horrible.</summary>
+    <category term="desk" label="desk"/>
+    <published>2012-01-03T00:00:00+00:00</published>
+  </entry>
+</feed>
