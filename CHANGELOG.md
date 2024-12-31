@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2024.12.31.212938]
+
+Adding more GMKtec NAS photos
+
+* 748e583 Adding more GMKtec NAS photos (#271)
+* d0fa06d Update dependencies (#270)
+* 52695da Update dependencies (#269)
+
 ## [2024.10.20.180601]
 
 Update resume
