@@ -150,11 +150,11 @@ blog_default_language = language
 blog_feed_archives = False
 blog_languages = {"en": ("English", None)}
 blog_locations = {
-    "Austin": ("Austin, TX", "https://en.wikipedia.org/wiki/Austin,_Texas"),
+    "Austin": ("Austin", "https://en.wikipedia.org/wiki/Austin,_Texas"),
     "Manhattan": ("Manhattan", "https://en.wikipedia.org/wiki/Manhattan"),
-    "San Francisco": ("San Francisco, CA", "https://en.wikipedia.org/wiki/San_Francisco"),
-    "Victoria": ("Victoria, TX", "https://en.wikipedia.org/wiki/Victoria,_Texas"),
-    "Tokyo": ("Tokyo, Japan", "https://en.wikipedia.org/wiki/Tokyo"),
+    "San Francisco": ("San Francisco", "https://en.wikipedia.org/wiki/San_Francisco"),
+    "Victoria": ("Victoria", "https://en.wikipedia.org/wiki/Victoria,_Texas"),
+    "Tokyo": ("Tokyo", "https://en.wikipedia.org/wiki/Tokyo"),
     "Hong Kong": ("Hong Kong", "https://en.wikipedia.org/wiki/Hong_Kong"),
 }
 blog_title = project
