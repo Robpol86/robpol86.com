@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.1.1.185651]
+
+Fix cities in updated NAS post
+
+* 228751c Updating cities in NAS post (#273)
+* f274a08 Disable Atom feeds (#272)
+
 ## [2024.12.31.212938]
 
 Adding more GMKtec NAS photos
