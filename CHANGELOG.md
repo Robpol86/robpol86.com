@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.1.15.43719]
+
+Add desk photo in Mexico City
+
+* bbfb5b1 Update deps (#275)
+* 3258e50 Add desk photo in Mexico City (#274)
+
 ## [2025.1.1.185651]
 
 Fix cities in updated NAS post
