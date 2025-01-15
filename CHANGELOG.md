@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.1.15.191447]
+
+Revised desk image
+
+* db23f5c Revised desk image (#276)
+
 ## [2025.1.15.43719]
 
 Add desk photo in Mexico City
