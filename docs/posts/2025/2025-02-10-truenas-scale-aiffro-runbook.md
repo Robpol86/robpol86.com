@@ -10,7 +10,8 @@ tags: homelab, runbook
 # TrueNAS SCALE Aiffro Runbook
 
 This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my
-[Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100) portable NAS.
+[Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100) portable NAS. Its network is always directly connected to my
+laptop and never on the internet. It's configured with a static IP and so is the network adapter on my laptop.
 
 ---
 
@@ -50,21 +51,27 @@ Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speed
 
 ### 1.3.0 Configure BIOS
 
-TODO power on automatically when plugged in, screenshot?
-TODO move AURGA into own subsection before BIOS
-
-### 1.4.0 Boot to Installer
-
 ```{note}
 AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive capital letters.
 ```
 
+1. **Setup AURGA:**
+    - Plug in AURGA and power on the Aiffro
+        - Wait for AURGA LED to turn from red to amber
+    - Connect to AURGA via WiFi and open the viewer app
+        - On the viewer Welcome screen click "Skip Sign In"
+    - Click on the auto-detected AURGA-XXXXXX device, you should now see the HDMI output (LED should turn solid green)
+    - The BIOS should be displayed
+        - If not sent Ctrl+Alt+Del via the AURGA right click menu, then choose Input -> Absolute Mouse, then press ESC until you're in the BIOS
+2. **BIOS Settings:**
+    - **Insert Adapter Auto Power On**: Enabled
+
+### 1.4.0 Boot to Installer
+
+1. Power off the Aiffro
 1. Do not plug in the **OS drive** yet
 1. Plug in AURGA, the **USB installer drive**, and power cable
-    1. Wait for AURGA LED to turn from red to amber
-1. Connect to AURGA via WiFi and open the viewer app
-    1. On the viewer Welcome screen click "Skip for now"
-1. Click "Search Now" and then click "Connect" under "Devices", you should now see the HDMI output (LED should turn solid green)
+1. Connect to AURGA
 1. Installer should have booted up
 1. Plug in the **OS drive**
 
@@ -76,15 +83,7 @@ Once the installer has booted up the following should be true:
 - `/dev/sdb` is the **OS drive**
 - `/dev/nvme?n1` are the four storage NVMe devices
 
-:::{note}
-If you're re-installing TrueNAS SCALE you can erase the drives by entering the **Shell** from the installer main menu and
-running these commands:
-
-```bash
-wipefs -a /dev/sdb /dev/nvme?n1
-# Note: run this multiple times until there's no output
-```
-:::
+Install TrueNAS SCALE with the following options:
 
 - **Console setup**: Install/Upgrade
 - **Destination media**: sdb
@@ -98,6 +97,14 @@ After installation is complete select **Shutdown System** and unplug the **USB i
 ## 2.0.0 Configure TrueNAS SCALE
 
 TODO
+
+Power on the Aiffro and wait for the TrueNAS console setup menu to appear:
+
+1. **Configure network interfaces:**
+    - enp2s0 > Edit
+        - **ipv4_dhcp**: No
+        - **ipv6_auto**: No
+        - **aliases**: 192.168.27.0/24
 
 ---
 
