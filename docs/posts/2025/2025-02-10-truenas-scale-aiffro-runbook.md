@@ -17,17 +17,18 @@ This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.tr
 ## 1.0.0 Installation Procedure
 
 This section will go over listing the prerequisites, preparing the installation media, and installing the OS onto the Aiffro.
+I avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speeds.
 
 ### 1.1.0 Prerequisites
 
 - Aiffro K100
 - **Two** USB drives:
     - One for the TrueNAS installer at least 2 GiB in capacity
-    - Another as the USB boot pool at least 16 GiB in capacity
+    - Another as the USB boot pool at least 16 GiB in capacity (I use a 2230 M.2 NVMe to USB-C adapter with an SSD)
 - Four NVMe SSDs for storage
-- Either:
-    - A USB keyboard and HDMI display
-    - An [AURGA Viewer](https://www.aurga.com/products/aurga-viewer)
+- An [AURGA Viewer](https://www.aurga.com/products/aurga-viewer)
+    - You can also use a regular USB keyboard and HDMI display, however this runbook is written with the AURGA in mind since
+      that's what I bring with me whilst traveling.
 
 ### 1.2.0 Prepare USB Installer
 
@@ -39,21 +40,21 @@ This section will go over listing the prerequisites, preparing the installation 
         - Use [Rufus](https://rufus.ie/en/) in `dd` mode (it will prompt you when you click START)
     - If you're using macOS or Linux:
         - Find the device name of the USB drive (using Disk Utility on macOS or looking in `/dev` on Linux) e.g. `disk6` or `sdb`.
-        - Run in Terminal: `sudo dd if=$HOME/Downloads/TrueNAS-SCALE-24.10.1.iso of=/dev/disk6 status=progress`
+        - Run in Terminal: `sudo dd if=TrueNAS-SCALE-24.10.1.iso of=/dev/disk6`
 
 ### 1.3.0 Boot to Installer
 
-1. **Boot From USB:**
-    - Enter BIOS and set USB as the primary boot device.
-    - Select "Install TrueNAS SCALE."
-2. **Installation Steps:**
-    - Choose the boot device.
-    - Configure network settings if needed.
-    - Set root password.
-    - Reboot and remove installation media.
-3. **Initial Configuration:**
-    - Access TrueNAS Web UI at `http://<your-ip>`.
-    - Complete initial setup (storage pools, network, users, etc.).
+TODO
+
+1. Do not plug in USB-C SSD yet
+1. Plug in AURGA, USB-C installer, and power
+    1. Wait for AURGA LED to turn from red to amber
+1. Connect to AURGA via WiFi and open viewer
+    1. On the viewer Welcome screen click **Skip for now**
+1. Click **Search Now** and then click **Connect** under "Devices", you should now see the HDMI output (LED should turn solid green)
+1. Installer should have booted up
+1. Plug in USB-C SSD
+1. NOTE: AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive caps
 
 ---
 
