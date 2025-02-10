@@ -9,9 +9,11 @@ tags: homelab, runbook
 
 # TrueNAS SCALE Aiffro Runbook
 
-TODO photo
+```{imgur-image} a9XxG0G
+```
 
-This is my runbook for setting up and maintaining TrueNAS Scale on my Aiffro K100 portable NAS.
+This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my
+[Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100) portable NAS.
 
 ## 1. Installation Procedure
 
