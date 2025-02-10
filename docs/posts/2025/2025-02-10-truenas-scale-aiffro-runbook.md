@@ -97,6 +97,8 @@ After installation is complete select **Shutdown System** and unplug the **USB i
 
 ## 2.0.0 Configure TrueNAS SCALE
 
+TODO
+
 ---
 
 ## 3.0.0 Backup Procedure
