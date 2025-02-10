@@ -12,11 +12,11 @@ tags: homelab, runbook
 This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my
 [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100) portable NAS.
 
-## 1. Installation Procedure
+## 1.0.0 Installation Procedure
 
 This section will go over listing the prerequisites, preparing the installation media, and installing the OS onto the Aiffro.
 
-### Prerequisites
+### 1.0.1 Prerequisites
 
 - Aiffro K100
 - **Two** USB drives:
@@ -27,7 +27,7 @@ This section will go over listing the prerequisites, preparing the installation 
     - A USB keyboard and HDMI display
     - An [AURGA Viewer](https://www.aurga.com/products/aurga-viewer)
 
-### Steps
+### 1.0.2  Steps
 
 1. **Download TrueNAS SCALE ISO:**
    - Get the latest ISO from [truenas.com](https://www.truenas.com/)
@@ -48,9 +48,9 @@ This section will go over listing the prerequisites, preparing the installation 
 
 ---
 
-## 2. Backup Procedure
+## 2.0.0 Backup Procedure
 
-### Recommended Backup Strategy:
+### 2.0.1 Recommended Backup Strategy
 
 - **System Configuration Backup:**
   - Go to System Settings → General → Save Config.
@@ -65,14 +65,15 @@ This section will go over listing the prerequisites, preparing the installation 
 
 ---
 
-## 3. Replacing a Failed Drive
+## 3.0.0 Replacing a Failed Drive
 
-### Identifying a Failed Drive:
+### 3.0.1 Identifying a Failed Drive
 
 - Check alerts in the Web UI.
 - Run `zpool status` via SSH to see degraded pools.
 
-### Replacement Procedure:
+### 3.0.2 Replacement Procedure
+
 1. **Offline the Failed Drive:**
    - `zpool offline <poolname> <device>`
 2. **Physically Replace the Drive:**
@@ -86,6 +87,6 @@ This section will go over listing the prerequisites, preparing the installation 
 
 ---
 
-## 4. Troubleshooting (Placeholder)
+## 4.0.0 Troubleshooting (Placeholder)
 
 _This section is under development. Common issues and solutions will be documented here._
