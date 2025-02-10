@@ -22,13 +22,19 @@ I avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 spe
 ### 1.1.0 Prerequisites
 
 - Aiffro K100
-- **Two** USB drives:
-    - One for the TrueNAS installer at least 2 GiB in capacity
-    - Another as the USB boot pool at least 16 GiB in capacity (I use a 2230 M.2 NVMe to USB-C adapter with an SSD)
+- One **16 GiB** or greater SSD on a [USB-C to M.2 adapter](https://www.amazon.com/ORICO-Enclosure-10Gbps-Adapter-Supports/dp/B0CQ4NXK7Q)
+    - This will be called the **OS drive** in this runbook
+    - This will be the OS drive/boot pool
+    - TrueNAS [recommends against](https://www.reddit.com/r/truenas/comments/16yg23m/truenas_recommends_against_using_a_usb_key_for/)
+      using regular USB flash drives as the boot pool
+- One **2 GiB** or greater USB-C flash drive
+    - This will be called the **USB installer drive** in this runbook
+    - This will be the installation media with the ISO "burned" onto it
 - Four NVMe SSDs for storage
 - An [AURGA Viewer](https://www.aurga.com/products/aurga-viewer)
     - You can also use a regular USB keyboard and HDMI display, however this runbook is written with the AURGA in mind since
-      that's what I bring with me whilst traveling.
+      that's what I bring with me whilst traveling
+- The AURGA Viewer app on your laptop/workstation
 
 ### 1.2.0 Prepare USB Installer
 
@@ -44,17 +50,19 @@ I avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 spe
 
 ### 1.3.0 Boot to Installer
 
-TODO
-
-1. Do not plug in USB-C SSD yet
-1. Plug in AURGA, USB-C installer, and power
+1. Do not plug in the **OS drive** yet
+1. Plug in AURGA, the **USB installer drive**, and power cable
     1. Wait for AURGA LED to turn from red to amber
-1. Connect to AURGA via WiFi and open viewer
-    1. On the viewer Welcome screen click **Skip for now**
-1. Click **Search Now** and then click **Connect** under "Devices", you should now see the HDMI output (LED should turn solid green)
+1. Connect to AURGA via WiFi and open the viewer app
+    1. On the viewer Welcome screen click "Skip for now"
+1. Click "Search Now" and then click "Connect" under "Devices", you should now see the HDMI output (LED should turn solid green)
 1. Installer should have booted up
-1. Plug in USB-C SSD
-1. NOTE: AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive caps
+1. Plug in the **OS drive**
+1. NOTE: AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive capital letters
+
+### 1.4.0 Install TrueNAS Scale
+
+TODO
 
 ---
 
