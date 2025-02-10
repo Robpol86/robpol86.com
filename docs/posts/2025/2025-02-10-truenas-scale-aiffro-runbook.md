@@ -96,7 +96,9 @@ After installation is complete select **Shutdown System** and unplug the **USB i
 
 ## 2.0.0 Configure TrueNAS SCALE
 
-TODO
+This section will cover all relevant TrueNAS settings and Samba shares.
+
+### 2.1.0 Console Setup
 
 Power on the Aiffro and wait for the TrueNAS console setup menu to appear:
 
@@ -104,7 +106,58 @@ Power on the Aiffro and wait for the TrueNAS console setup menu to appear:
     - enp2s0 > Edit
         - **ipv4_dhcp**: No
         - **ipv6_auto**: No
-        - **aliases**: 192.168.27.0/24
+        - **aliases**: 192.168.27.1/24
+
+```{note}
+When password console is enabled run `sudo cli_console` to get to this menu. To exit you have to start a Linux shell and then
+`killall`.
+```
+
+### 2.2.0 Web UI General Config
+
+Remember to set your laptop/workstation to a static IP address within the same subnet as the NAS.
+
+1. Network > Global Configuration > Settings
+    1. **Hostname**: anas
+1. Credentials > Users > truenas_admin > Edit
+    1. *Change password*
+1. System > General Settings > Localization > Settings
+    1. **Timezone**: *current time zone*
+    1. **Time Format**: dd:dd:dd AM
+1. System > Advanced Settings > Console > Configure
+    1. **Show Text Console without Password Prompt**: Uncheck
+1. System > Services > SMB > Edit
+    1. **NetBIOS Name**: anas
+    1. **Description**: AiffroNAS
+    1. Advanced Options
+        1. **Enable Apple SMB2/3 Protocol Extensions**: Check
+    1. Save
+    1. Start the service and enable on boot
+1. System > Services > SSH > Edit
+    1. **Password Login Groups**: truenas_admin
+    1. **Allow TCP Port Forwarding**: Check
+    1. Save
+    1. Start the service
+
+### 2.3.0 Synchronizing Time
+
+Because the NAS is permanently offline, NTP services do nothing and the clock will inevitably drift. This is a workaround
+solution using Google as the time source over an SSH reverse proxy.
+
+```bash
+# On your laptop/workstation:
+ssh -R 8443:google.com:443 truenas_admin@192.168.27.1
+
+# Run three times for sudo password prompt time overhead:
+curl -sI --connect-to google.com:443:localhost:8443 https://google.com |grep -Pom1 "^date: \K.*" |xargs -I{} sudo date -s "{}"
+
+# Finally update the hardware clock
+sudo /sbin/hwclock -w
+```
+
+### 2.4.0 Setup Pool
+
+TODO
 
 ---
 
