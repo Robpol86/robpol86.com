@@ -156,6 +156,7 @@ blog_locations = {
     "Tokyo": ("Tokyo", "https://en.wikipedia.org/wiki/Tokyo"),
     "Hong Kong": ("Hong Kong", "https://en.wikipedia.org/wiki/Hong_Kong"),
     "Mexico City": ("Mexico City", "https://en.wikipedia.org/wiki/Mexico_City"),
+    "Santiago": ("Santiago", "https://en.wikipedia.org/wiki/Santiago"),
 }
 blog_title = project
 disqus_pages = False
