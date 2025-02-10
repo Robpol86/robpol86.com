@@ -41,7 +41,7 @@ I avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 spe
 1. **Download TrueNAS SCALE ISO:**
     - Get the latest **stable** ISO from https://www.truenas.com/download-truenas-scale/
 2. **Create Bootable USB:**
-    - Plug installer USB drive into your laptop/workstation
+    - Plug the **USB installer drive** into your laptop/workstation
     - If you're using Windows:
         - Use [Rufus](https://rufus.ie/en/) in `dd` mode (it will prompt you when you click START)
     - If you're using macOS or Linux:
