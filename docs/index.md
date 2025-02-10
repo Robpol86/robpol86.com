@@ -23,6 +23,14 @@ I left the tech support industry after the company I was working for at the time
 enough to get a contracting position shortly after at Symantec and eventually got into a software engineering career path.
 
 ```{toctree}
+:reversed:
+:hidden:
+:glob:
+
+posts/**
+```
+
+```{toctree}
 :hidden:
 :glob:
 
