@@ -140,4 +140,68 @@ After installation is complete select **Shutdown System** and unplug the **USB i
 
 ## 5.0.0 Troubleshooting Playbook
 
-_This section is under development. Common issues and solutions will be documented here._
+### 5.1.0 Common Issues and Resolutions
+
+#### 5.1.1 Issue: TrueNAS Web UI is Not Accessible
+
+**Symptoms:** Unable to access the TrueNAS web UI at the expected IP address.
+
+**Troubleshooting Steps:**
+1. Verify the server is powered on.
+2. Check network connectivity:
+   - Run `ping <truenas-ip>` from another device.
+   - Ensure the correct IP address is being used.
+3. Restart the TrueNAS networking service:
+   - Run `systemctl restart networking` via SSH.
+4. If using a static IP, confirm correct settings:
+   - `ifconfig` or `ip a` to verify assigned IP.
+   - Update settings in `System Settings → Network`.
+5. Reboot the system as a last resort.
+
+#### 5.1.2 Issue: Pool is Degraded
+
+**Symptoms:** Alerts indicate a degraded pool, possible disk failure.
+
+**Troubleshooting Steps:**
+1. Check `zpool status` for the failed drive.
+2. Attempt a manual `zpool scrub <poolname>`.
+3. If drive failure is confirmed, follow Section 3.0.0 for drive replacement.
+4. If issue persists, consult logs with `dmesg | grep ZFS`.
+
+#### 5.1.3 Issue: SMB/CIFS Shares Not Working
+
+**Symptoms:** Network shares are inaccessible.
+
+**Troubleshooting Steps:**
+1. Verify `smbd` and `nmbd` services are running:
+   - `systemctl status smbd nmbd`
+   - Restart if needed: `systemctl restart smbd nmbd`
+2. Check share permissions in `Sharing → SMB`.
+3. Ensure user permissions match configured share access.
+4. Reboot the NAS if necessary.
+
+#### 5.1.4 Issue: High CPU or Memory Usage
+
+**Symptoms:** TrueNAS is slow or unresponsive.
+
+**Troubleshooting Steps:**
+1. Check system load:
+   - `top` or `htop` to view resource usage.
+2. Identify high-resource services:
+   - `ps aux --sort=-%cpu` or `ps aux --sort=-%mem`
+3. Restart problematic services if necessary.
+4. Review logs in `/var/log/` for anomalies.
+
+#### 5.1.5 Issue: No Internet Access from TrueNAS
+
+**Symptoms:** Unable to update or access remote repositories.
+
+**Troubleshooting Steps:**
+1. Verify network settings:
+   - `ip a` and `ip route`
+2. Check DNS configuration:
+   - Ensure `/etc/resolv.conf` contains valid nameservers.
+3. Test external connectivity:
+   - `ping 8.8.8.8`
+   - `curl -I https://www.google.com`
+4. Restart networking service: `systemctl restart networking`
