@@ -9,23 +9,25 @@ tags: homelab, runbook
 
 # TrueNAS SCALE Aiffro Runbook
 
-```{imgur-image} a9XxG0G
-```
-
 This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my
 [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100) portable NAS.
 
 ## 1. Installation Procedure
 
-### Prerequisites:
+This section will go over listing the prerequisites, preparing the installation media, and installing the OS onto the Aiffro.
 
-- A compatible system (64-bit CPU, 8GB+ RAM recommended)
-- At least one dedicated boot drive (SSD preferred)
-- Storage drives for data (ZFS recommended)
-- USB drive (8GB+ for installation media)
-- A backup of any existing data
+### Prerequisites
 
-### Steps:
+- Aiffro K100
+- **Two** USB drives:
+    - One for the TrueNAS installer
+    - Another as the USB boot pool
+- Four NVMe SSDs
+- Either:
+    - A USB keyboard and HDMI display
+    - An [AURGA Viewer](https://www.aurga.com/products/aurga-viewer)
+
+### Steps
 
 1. **Download TrueNAS SCALE ISO:**
    - Get the latest ISO from [truenas.com](https://www.truenas.com/)
