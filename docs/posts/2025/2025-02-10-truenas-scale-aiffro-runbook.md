@@ -48,7 +48,11 @@ I avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 spe
         - Find the device name of the USB drive (using Disk Utility on macOS or looking in `/dev` on Linux) e.g. `disk6` or `sdb`.
         - Run in Terminal: `sudo dd if=TrueNAS-SCALE-24.10.1.iso of=/dev/disk6`
 
-### 1.3.0 Boot to Installer
+### 1.3.0 Configure BIOS
+
+TODO power on automatically when plugged in, screenshot?
+
+### 1.4.0 Boot to Installer
 
 1. Do not plug in the **OS drive** yet
 1. Plug in AURGA, the **USB installer drive**, and power cable
@@ -60,7 +64,7 @@ I avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 spe
 1. Plug in the **OS drive**
 1. NOTE: AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive capital letters
 
-### 1.4.0 Install TrueNAS Scale
+### 1.5.0 Install TrueNAS Scale
 
 TODO
 
