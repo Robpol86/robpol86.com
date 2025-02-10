@@ -160,3 +160,37 @@ blog_locations = {
 blog_title = project
 disqus_pages = False
 disqus_shortname = "rob86wiki"
+
+
+from sphinx.environment.adapters.toctree import TocTree
+from docutils import nodes
+
+def print_toctree_order(app, exception):
+    if exception is None:  # Only print if the build succeeds
+        env = app.env
+        master_doc = env.config.master_doc
+
+        # Get the parsed toctree structure
+        toctree = TocTree(env).get_toctree_for(master_doc, app.builder, collapse=False)
+
+        ordered_docs = []
+
+        def extract_refuris(node):
+            """Recursively extract all reference nodes and their refuri attributes."""
+            if isinstance(node, nodes.reference) and 'refuri' in node:
+                ordered_docs.append(node['refuri'])
+            elif isinstance(node, nodes.Element):
+                for child in node.children:
+                    extract_refuris(child)
+
+        # Extract from toctree root
+        extract_refuris(toctree)
+
+        # Print the ordered document list
+        print("\n=== Toctree Order of Documents ===")
+        for doc in ordered_docs:
+            print(doc)
+        print("=================================\n")
+
+def setup(app):
+    app.connect("build-finished", print_toctree_order)
