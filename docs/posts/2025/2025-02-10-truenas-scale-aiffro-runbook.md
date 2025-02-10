@@ -17,7 +17,7 @@ This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.tr
 ## 1.0.0 Installation Procedure
 
 This section will go over listing the prerequisites, preparing the installation media, and installing the OS onto the Aiffro.
-I avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speeds.
+Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speeds.
 
 ### 1.1.0 Prerequisites
 
@@ -51,8 +51,13 @@ I avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 spe
 ### 1.3.0 Configure BIOS
 
 TODO power on automatically when plugged in, screenshot?
+TODO move AURGA into own subsection before BIOS
 
 ### 1.4.0 Boot to Installer
+
+```{note}
+AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive capital letters.
+```
 
 1. Do not plug in the **OS drive** yet
 1. Plug in AURGA, the **USB installer drive**, and power cable
@@ -62,17 +67,41 @@ TODO power on automatically when plugged in, screenshot?
 1. Click "Search Now" and then click "Connect" under "Devices", you should now see the HDMI output (LED should turn solid green)
 1. Installer should have booted up
 1. Plug in the **OS drive**
-1. NOTE: AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive capital letters
 
-### 1.5.0 Install TrueNAS Scale
+### 1.5.0 Install TrueNAS SCALE
 
-TODO
+Once the installer has booted up the following should be true:
+
+- `/dev/sda` is the **USB installer drive**
+- `/dev/sdb` is the **OS drive**
+- `/dev/nvme?n1` are the four storage NVMe devices
+
+:::{note}
+If you're re-installing TrueNAS SCALE you can erase the drives by entering the **Shell** from the installer main menu and
+running these commands:
+
+```bash
+wipefs -a /dev/sdb /dev/nvme?n1
+# Note: run this multiple times until there's no output
+```
+:::
+
+- **Console setup**: Install/Upgrade
+- **Destination media**: sdb
+- **Authentication method**: Administrative user (truenas_admin)
+- **Password**: *type in a simple password for now, you can choose a stronger password in the web UI after installation*
+
+After installation is complete select **Shutdown System** and unplug the **USB installer drive** after it powered down.
 
 ---
 
-## 2.0.0 Backup Procedure
+## 2.0.0 Configure TrueNAS SCALE
 
-### 2.1.0 Recommended Backup Strategy
+---
+
+## 3.0.0 Backup Procedure
+
+### 3.1.0 Recommended Backup Strategy
 
 - **System Configuration Backup:**
     - Go to System Settings → General → Save Config.
@@ -87,14 +116,14 @@ TODO
 
 ---
 
-## 3.0.0 Replacing a Failed Drive
+## 4.0.0 Disaster Recovery
 
-### 3.1.0 Identifying a Failed Drive
+### 4.1.0 Identifying a Failed Drive
 
 - Check alerts in the Web UI.
 - Run `zpool status` via SSH to see degraded pools.
 
-### 3.2.0 Replacement Procedure
+### 4.2.0 Replacement Procedure
 
 1. **Offline the Failed Drive:**
     - `zpool offline <poolname> <device>`
@@ -109,6 +138,6 @@ TODO
 
 ---
 
-## 4.0.0 Troubleshooting (Placeholder)
+## 5.0.0 Troubleshooting Playbook
 
 _This section is under development. Common issues and solutions will be documented here._
