@@ -345,15 +345,104 @@ Steps to restore the pool from original storage SSDs. In this scenario I lose th
 
 ### 4.2.0 Replace Storage Device
 
-Steps for replacing failed or failing storage SSDs.
+Steps for replacing failed or failing storage SSDs. You'll need another USB-C to NVMe adapter (do not use the adapter used by
+the **OS drive**).
 
-TODO
+#### 4.2.1 Validate New SSD
+
+Power off and move the failed drive to a USB-C NVMe adapter and install the new drive in the now-open M.2 slot. Boot the
+system and then:
+
+```bash
+scp ./f3probe truenas_admin@10.96.96.96:~
+ssh truenas_admin@10.96.96.96
+
+# New drive
+sudo smartctl -a /dev/nvmeXn1
+sudo smartctl -x /dev/nvmeXn1
+sudo fdisk -l /dev/nvmeXn1
+
+cp ~/f3probe /dev/shm/
+sudo /dev/shm/f3probe --destructive --time-ops /dev/nvmeXn1
+```
+
+#### 4.2.2 Replace
+
+Storage > Topology > Manage Devices > RAIDZ1
+
+1. Select the device to be replaced (old drive, e.g. sdb)
+1. **Replace** > Member Disk: *new drive's name* > Replace Disk
+    1. If an error occurs reboot and try again
+1. View the resilvering process in the upper right animated 🔄️ icon
+
+#### 4.2.3 Wipe Old Drive
+
+Storage > Disks
+
+Verify old drive Pool column is **N/A**
+
+```bash
+sudo nvme format -s2 /dev/nvmeXn1  # if it fails try -s1
+sudo blkdiscard /dev/nvmeXn1
+```
+
+Run `sudo smartctl -a /dev/nvmeXn1` on the old drive for RMA purposes
+
+#### 4.2.4 Expand
+
+Storage > Vault > Expand
+
+1. After replacing smaller drives with larger ones click this to enable the new free space
 
 ### 4.3.0 Restore from Backup
 
 Steps to restore the pool from a backup. In this scenario I lose my NAS but I still have access to a backup HDD.
 
-TODO
+#### 4.3.1 Prepare System
+
+1. Reinstall TrueNAS
+    1. Stop before the "General Configuration" section
+1. System > General Settings > Manage Configuration > Upload File
+    1. Wait for automatic reboot
+1. Ensure SSDs are all wiped
+1. Storage > Vault > Export/Disconnect
+    1. **Delete saved configurations from TrueNAS**: Uncheck
+1. Create pool but no datasets
+
+#### 4.3.2 Restore
+
+1. Insert backup HDD
+1. Storage > Import Pool > "Backup-XXXX"
+1. Data Protection > Replication Tasks > Add
+    1. **Source/Destination Location**: On this System
+    1. **Source**: check `Lockbox` only
+    1. **Destination**: Vault/Lockbox (manually type `/Lockbox`)
+    1. **Encryption**: *leave unchecked*
+    1. **Recursive**: Check
+    1. **Replicate Custom Snapshots**: Check
+    1. **Snapshot Name Regular Expression**: `.*`
+    1. Next
+    1. **Replication Schedule**: Run Once
+    1. **Make Destination Dataset Read-only**: Uncheck
+    1. **Destination Snapshot Lifetime** Same as Source
+    1. Save (replication will start immediately)
+1. Export and remove backup HDD
+
+#### 4.3.3 Final Steps
+
+1. Unlock Lockbox and all child datasets
+1. Datasets > Vault/Lockbox/Robpol86 > ZFS Encryption > Edit
+    1. **Inherit encryption properties from parent**: Check
+    1. *Repeat for all other child datasets*
+1. Datasets > Vault/Lockbox > Dataset Details > Edit > Advanced Options
+    1. **Read-only**: Inherit
+    1. *Repeat for all other child datasets*
+    1. NOTE: If you get user/group quota errors try rebooting
+1. System > Shell > `rmdir -v /mnt/Vault/Lockbox/*/Temporary*`
+1. Create `Temporary*` datasets
+1. Reapply SMB ACLs
+1. Reboot
+1. Run through runbooks again to confirm settings
 
 ---
 
@@ -392,3 +481,5 @@ error was gone and everything was healthy with no manual intervention.
 #### 5.2.1 Solution
 
 Solution was to power cycle multiple times.
+
+---
