@@ -4,7 +4,7 @@ date: 2025-02-10
 author: Robpol86
 location: Santiago
 category: Tutorials
-tags: homelab, runbook
+tags: homelab, runbook, aiffro
 ---
 
 # TrueNAS SCALE Aiffro Runbook
