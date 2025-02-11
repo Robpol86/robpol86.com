@@ -274,46 +274,92 @@ Shares > SMB > *Name* > Edit
 
 ## 3.0.0 Backup Procedure
 
-TODO
+This section will cover backing up non-temporary datasets to a USB hard drive.
 
-### 3.1.0 Recommended Backup Strategy
+### 3.1.0 Activate Pool
 
-- **System Configuration Backup:**
-    - Go to System Settings → General → Save Config.
-    - Store it in a safe location (offsite/cloud).
-- **Data Backup Options:**
-    - Use built-in TrueNAS replication tasks for ZFS snapshots.
-    - Set up periodic Rsync jobs to an external storage device.
-    - Cloud sync to AWS, Backblaze, or other providers.
-- **Automate Backups:**
-    - Configure scheduled snapshots (Storage → Snapshots → Add).
-    - Set up automated replication (Storage → Replication Tasks).
+Hot plug the USB backup drive and wait **15 seconds**.
+
+1. If it's a new drive create a new pool
+    1. Storage > Create Pool
+    1. **Name**: Backup-YYYY-MM-DD
+    1. **Encryption**: *leave unchecked*
+    1. **Layout**: Stripe
+    1. Save and Go To Review > Create Pool
+1. If it's an old drive import the pool
+    1. Storage > Import Pool
+    1. **Pool**: *select Backup-YYYY-MM-DD|...*
+
+### 3.2.0 Create and Run Task
+
+Data Protection > Replication Tasks > Add
+
+1. What and Where
+    1. **Source/Destination Location**: On this System
+    1. **Source**: check `Lockbox` and all child datasets except `Temporary*`
+    1. **Destination**: Backup-YYYY-MM-DD/Lockbox (manually type `/Lockbox`)
+    1. **Encryption**: *leave unchecked*
+    1. **Recursive**: *leave unchecked*
+    1. **Replicate Custom Snapshots**: Check
+    1. **Snapshot Name Regular Expression**: `.*`
+    1. Next
+1. When
+    1. **Replication Schedule**: Run Once
+    1. Save (replication will start immediately)
+1. Monitor IO with: `watch -c -d "S_COLORS=always iostat -m -y /dev/sdb 1 1"`
+
+### 3.3.0 Export Backup Pool
+
+When done export the pool and eject the drive. The replication task will be automatically deleted.
+
+1. Visit Jobs History to confirm replication.run task succeeded and confirm elapsed time is sane
+1. Storage > Backup-YYYY-MM-DD
+    1. Note space usage, confirm it's not 0
+    1. Export/Disconnect
+    1. **Delete saved configurations from TrueNAS**: *leave checked*
+    1. If middleware and other processes are using this pool either wait or reboot
+
+### 3.4.0 Save Configuration
+
+Save TrueNAS configuration to 1Password in case of failed boot-pool scenario.
+
+System > General Settings > Manage Configuration > Download File
+
+1. **Export Password Secret Seed**: Check
 
 ---
 
 ## 4.0.0 Disaster Recovery
 
-### 4.1.0 Identifying a Failed Drive
+This section will cover known disaster events and their recovery steps.
 
-- Check alerts in the Web UI.
-- Run `zpool status` via SSH to see degraded pools.
+### 4.1.0 Failed Boot Pool
 
-### 4.2.0 Replacement Procedure
+Steps to restore the pool from original storage SSDs. In this scenario I lose the boot SSD but not my storage SSDs.
 
-1. **Offline the Failed Drive:**
-    - `zpool offline <poolname> <device>`
-2. **Physically Replace the Drive:**
-    - Ensure the new drive has the same or larger capacity.
-    - Insert the new drive and verify it is detected (`lsblk` or `dmesg`).
-3. **Attach the New Drive:**
-    - `zpool replace <poolname> <old_device> <new_device>`
-4. **Verify Resilvering:**
-    - Run `zpool status` to monitor progress.
-    - Once complete, pool should return to "ONLINE" status.
+1. Reinstall TrueNAS
+    1. Stop before the "General Configuration" section
+1. System > General Settings > Manage Configuration > Upload File
+    1. Wait for automatic reboot
+1. Confirm everything looks good
+
+### 4.2.0 Replace Storage Device
+
+Steps for replacing failed or failing storage SSDs.
+
+TODO
+
+### 4.3.0 Restore from Backup
+
+Steps to restore the pool from a backup. In this scenario I lose my NAS but I still have access to a backup HDD.
+
+TODO
 
 ---
 
 ## 5.0.0 Troubleshooting Playbook
+
+TODO
 
 ### 5.1.0 Common Issues and Resolutions
 
