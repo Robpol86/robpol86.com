@@ -359,70 +359,36 @@ TODO
 
 ## 5.0.0 Troubleshooting Playbook
 
-TODO
+Common or occasional issues and their solutions. Includes notes if the issue resolved itself (which is never a good thing
+because the root cause is not fixed and the issue may reoccur).
 
-### 5.1.0 Common Issues and Resolutions
+### 5.1.0 Invalid argument during seek
 
-#### 5.1.1 Issue: TrueNAS Web UI is Not Accessible
+I got this error when creating a pool on a single drive:
 
-**Symptoms:** Unable to access the TrueNAS web UI at the expected IP address.
+```
+Error: Invalid argument during seek for write on /dev/sdh
+```
 
-**Troubleshooting Steps:**
-1. Verify the server is powered on.
-2. Check network connectivity:
-   - Run `ping <truenas-ip>` from another device.
-   - Ensure the correct IP address is being used.
-3. Restart the TrueNAS networking service:
-   - Run `systemctl restart networking` via SSH.
-4. If using a static IP, confirm correct settings:
-   - `ifconfig` or `ip a` to verify assigned IP.
-   - Update settings in `System Settings → Network`.
-5. Reboot the system as a last resort.
+Happened even when I removed one drive and installed another.
 
-#### 5.1.2 Issue: Pool is Degraded
+#### 5.1.1 Solution
 
-**Symptoms:** Alerts indicate a degraded pool, possible disk failure.
+Solution was to reboot.
 
-**Troubleshooting Steps:**
-1. Check `zpool status` for the failed drive.
-2. Attempt a manual `zpool scrub <poolname>`.
-3. If drive failure is confirmed, follow Section 3.0.0 for drive replacement.
-4. If issue persists, consult logs with `dmesg | grep ZFS`.
+### 5.2.0 Checksum Error: 1
 
-#### 5.1.3 Issue: SMB/CIFS Shares Not Working
+This happened when the NVMe SSDs dissappeared on boot. This happened the first time I installed the four WD Black SSDs back
+in late December 2024, all four were missing from `/dev`. A power cycle fixed it that time.
 
-**Symptoms:** Network shares are inaccessible.
+It appeared to have happened again. On February 8th 2025 on boot my main pool was missing. In my haste I didn't check if any
+SSD was in `/dev`. I powercycled (gracefully) the Aiffro and only three SSDs showed up in the UI's Disks section. A second
+powercycle restored the fourth SSD but the TrueNAS UI showwed the ZFS Pool with an error (yet its state was Online).
 
-**Troubleshooting Steps:**
-1. Verify `smbd` and `nmbd` services are running:
-   - `systemctl status smbd nmbd`
-   - Restart if needed: `systemctl restart smbd nmbd`
-2. Check share permissions in `Sharing → SMB`.
-3. Ensure user permissions match configured share access.
-4. Reboot the NAS if necessary.
+In the Dashboard screen it said Disks with Errors: 1. In `/ui/storage/1/devices/` one of the devices showed 1 checksum error.
+I put off fixing the issue for the next day and used the NAS like normal and powered it off at night. The next morning the
+error was gone and everything was healthy with no manual intervention.
 
-#### 5.1.4 Issue: High CPU or Memory Usage
+#### 5.2.1 Solution
 
-**Symptoms:** TrueNAS is slow or unresponsive.
-
-**Troubleshooting Steps:**
-1. Check system load:
-   - `top` or `htop` to view resource usage.
-2. Identify high-resource services:
-   - `ps aux --sort=-%cpu` or `ps aux --sort=-%mem`
-3. Restart problematic services if necessary.
-4. Review logs in `/var/log/` for anomalies.
-
-#### 5.1.5 Issue: No Internet Access from TrueNAS
-
-**Symptoms:** Unable to update or access remote repositories.
-
-**Troubleshooting Steps:**
-1. Verify network settings:
-   - `ip a` and `ip route`
-2. Check DNS configuration:
-   - Ensure `/etc/resolv.conf` contains valid nameservers.
-3. Test external connectivity:
-   - `ping 8.8.8.8`
-   - `curl -I https://www.google.com`
-4. Restart networking service: `systemctl restart networking`
+Solution was to power cycle multiple times.
