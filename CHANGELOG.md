@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.2.11.02744]
+
+Fix toctree order
+
+* fe67d1f Fixing toctree order (#279)
+* aa16d76 Updating dependencies (#277)
+* 74abeed Making docs version static for Sphinx (#278)
+
 ## [2025.1.15.191447]
 
 Revised desk image
