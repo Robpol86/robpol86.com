@@ -19,6 +19,8 @@ and so is the network adapter on my laptop).
 
 TODO: explain no apps, 8 GiB RAM enough, no ecc gamble, no UPS gamble
 
+TODO: confirm mobile view.
+
 ---
 
 ## 1.0.0 Installation Procedure
