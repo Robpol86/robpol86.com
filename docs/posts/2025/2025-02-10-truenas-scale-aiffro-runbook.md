@@ -17,6 +17,8 @@ my NAS is frequently powered down and has no direct access to the internet. This
 uptime when it comes to scheduled tasks, as well as workarounds for the lack of internet (it's configured with a static IP
 and so is the network adapter on my laptop).
 
+TODO: explain no apps, 8 GiB RAM enough, no ecc gamble, no UPS gamble
+
 ---
 
 ## 1.0.0 Installation Procedure
