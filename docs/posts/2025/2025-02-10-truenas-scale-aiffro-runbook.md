@@ -13,7 +13,7 @@ This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.tr
 [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100).
 
 However this isn't any ordinary NAS. At this time I'm traveling around the world and brining my data with me. Because of this
-my NAS frequently is powered down and has no direct access to the internet. This runbook has mitigations for the lack of 24/7
+my NAS is frequently powered down and has no direct access to the internet. This runbook has mitigations for the lack of 24/7
 uptime when it comes to scheduled tasks, as well as workarounds for the lack of internet (it's configured with a static IP
 and so is the network adapter on my laptop).
 
@@ -153,12 +153,14 @@ over WiFi and simultaneously be connected to the NAS over wired ethernet.
 # On your laptop/workstation:
 ssh -R 8443:google.com:443 truenas_admin@192.168.27.1
 
-# Run three times for sudo password prompt time overhead:
+# Run three times for sudo password prompt time delay
 curl -sI --connect-to google.com:443:localhost:8443 https://google.com |grep -Pom1 "^date: \K.*" |xargs -I{} sudo date -s "{}"
 
 # Finally update the hardware clock
 sudo /sbin/hwclock -w
 ```
+
+You'll need to repeat this step periodically, about once a month.
 
 ### 2.4.0 Setup Storage
 
@@ -228,11 +230,51 @@ cli -c 'storage snapshot create dataset="Vault" naming_schema="shutdown-%Y-%m-%d
 
 ### 2.6.0 Samba Shares and Datasets
 
-TODO
+Each user will have a "main" share and a Temporary share, which will be excluded from backups. Below are the steps for the
+user "Robpol86".
+
+#### 2.6.1 Add User Account
+
+Credentials > Users > Add
+
+1. **Full Name**: Robpol86
+
+#### 2.6.2 Add User Dataset
+
+Datasets > Vault/Lockbox > Add Dataset
+
+1. **Name**: Robpol86
+1. **Dataset Preset**: SMB
+1. **Create SMB Share**: Uncheck
+
+#### 2.6.3 Add Leaf Datasets
+
+Datasets > Vault/Lockbox/Robpol86 > Add Dataset
+
+1. **Name**: Robpol86
+1. **Dataset Preset**: SMB
+1. Save > Return to Pool List
+1. *Repeat for Name:TemporaryR*
+
+#### 2.6.4 Update Samba Shares
+
+Shares > SMB > *Name* > Edit
+
+1. **Purpose**: No presets
+1. Advanced Options
+    1. **Access Based Share Enumeration**: Check
+    1. **Export Recycle Bin**: Check
+1. Save
+1. Repeat for all
+1. Edit **Share** ACL for each:
+    1. **Who**: User
+    1. **User**: robpol86
 
 ---
 
 ## 3.0.0 Backup Procedure
+
+TODO
 
 ### 3.1.0 Recommended Backup Strategy
 
