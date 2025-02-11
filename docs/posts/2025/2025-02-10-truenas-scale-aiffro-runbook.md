@@ -10,8 +10,12 @@ tags: homelab, runbook
 # TrueNAS SCALE Aiffro Runbook
 
 This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my
-[Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100) portable NAS. Its network is always directly connected to my
-laptop and never on the internet. It's configured with a static IP and so is the network adapter on my laptop.
+[Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100).
+
+However this isn't any ordinary NAS. At this time I'm traveling around the world and brining my data with me. Because of this
+my NAS frequently is powered down and has no direct access to the internet. This runbook has mitigations for the lack of 24/7
+uptime when it comes to scheduled tasks, as well as workarounds for the lack of internet (it's configured with a static IP
+and so is the network adapter on my laptop).
 
 ---
 
@@ -110,7 +114,7 @@ Power on the Aiffro and wait for the TrueNAS console setup menu to appear:
 
 ```{note}
 When password console is enabled run `sudo cli_console` to get to this menu. To exit you have to start a Linux shell and then
-`killall`.
+`killall cli_console`.
 ```
 
 ### 2.2.0 Web UI General Config
@@ -141,8 +145,9 @@ Remember to set your laptop/workstation to a static IP address within the same s
 
 ### 2.3.0 Synchronizing Time
 
-Because the NAS is permanently offline, NTP services do nothing and the clock will inevitably drift. This is a workaround
-solution using Google as the time source over an SSH reverse proxy.
+Because the NAS is permanently offline, NTP services do nothing and the clock will inevitably drift. Here is a workaround
+solution using Google as the time source over an SSH reverse proxy. Your laptop/workstation must be connected to the internet
+over WiFi and simultaneously be connected to the NAS over wired ethernet.
 
 ```bash
 # On your laptop/workstation:
@@ -155,7 +160,73 @@ curl -sI --connect-to google.com:443:localhost:8443 https://google.com |grep -Po
 sudo /sbin/hwclock -w
 ```
 
-### 2.4.0 Setup Pool
+### 2.4.0 Setup Storage
+
+The NAS will use a regular key-encrypted pool with a passphrase-encrypted "top" dataset under which all other datasets will
+reside with inherited encryption.
+
+Because NVMe SSDs don't fail as often as mechanical hard drives, we'll be using RAIDZ1. The Aiffro only has four NVMe slots
+after all.
+
+#### 2.4.1 Create Pool
+
+Storage > Create Pool
+
+1. **Name**: Vault
+1. **Encryption**: Check
+1. **Layout**: RAIDZ1
+1. Manual Disk Selection
+    1. Add (creates one RAIDZ1)
+    1. Drag all drives from left to RAIDZ1
+    1. Save Selection
+1. Save And Go To Review > Create Pool
+1. Download encryption key and store in 1Password
+
+#### 2.4.2 Create Top Dataset
+
+Datasets > Add Dataset
+
+1. **Name**: Lockbox
+1. **Inherit (encrypted)**: Uncheck
+1. **Encryption Type**: Passphrase
+
+### 2.5.0 Scrubbing and Snapshots
+
+Scrubbing will be done every 60 days and snapshots will be taken every night at 5 AM. Because this is a **portable NAS** it
+may not be powered on at that time. The workaround is to add a shutdown script to create snapshots on poweroff.
+
+#### 2.5.1 Scrub Task
+
+Data Protection > Scrub Tasks > Vault (click to edit)
+
+1. **Threshold Days**: 60
+1. **Schedule**: Hourly
+
+#### 2.5.2 Snapshot Task
+
+Data Protection > Periodic Snapshot Tasks > Add
+
+1. **Dataset**: Vault
+1. **Snapshot Lifetime**: 24 MONTH
+1. **Recursive**: Check
+1. **Schedule**: Custom
+    1. **Presets**: Daily
+    1. **Hours**: 5
+
+#### 2.5.3 Snapshot on Shutdown
+
+System > Advanced Settings > Init/Shutdown Scripts
+
+```bash
+# Description: Snapshot on Shutdown
+
+# Command:
+cli -c 'storage snapshot create dataset="Vault" naming_schema="shutdown-%Y-%m-%d_%H-%M" recursive=true'
+
+# When: Shutdown
+```
+
+### 2.6.0 Samba Shares and Datasets
 
 TODO
 
