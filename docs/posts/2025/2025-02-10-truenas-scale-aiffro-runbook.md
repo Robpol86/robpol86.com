@@ -17,7 +17,7 @@ intenret.
 As of this writing my NAS is an [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100). The machine only has 8 GiB
 of RAM with no ECC so I had to make some consessions. The no ECC part is a gamble but so far I haven't run into any data
 corruption issues, and my use case does not require running apps on TrueNAS so 8 GiB of RAM is sufficient (I still hit
-near-2.5Gbps speeds consistently). This is purely for data storage and access over Samba on my macOS single client.
+near-2.5Gbps speeds consistently). This is purely for data storage and access over Samba with my macOS single client.
 
 TODO: confirm mobile view.
 
