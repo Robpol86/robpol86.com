@@ -9,15 +9,15 @@ tags: homelab, runbook, aiffro
 
 # TrueNAS SCALE Aiffro Runbook
 
-This is my runbook for setting up and maintaining [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my
-[Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100).
+This is the runbook I've been developing since 2022 for setting up and maintaining
+[TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my portable/travel NAS as of this date. Originally developed for a
+more traditional 24/7 server, it's now scoped to a NAS that is frequently powered off and no longer has access to the
+intenret.
 
-However this isn't any ordinary NAS. At this time I'm traveling around the world and brining my data with me. Because of this
-my NAS is frequently powered down and has no direct access to the internet. This runbook has mitigations for the lack of 24/7
-uptime when it comes to scheduled tasks, as well as workarounds for the lack of internet (it's configured with a static IP
-and so is the network adapter on my laptop).
-
-TODO: explain no apps, 8 GiB RAM enough, no ecc gamble, no UPS gamble
+As of this writing my NAS is an [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100). The machine only has 8 GiB
+of RAM with no ECC so I had to make some consessions. The no ECC part is a gamble but so far I haven't run into any data
+corruption issues, and my use case does not require running apps on TrueNAS so 8 GiB of RAM is sufficient (I still hit
+near-2.5Gbps speeds consistently). This is purely for data storage and access over Samba on my macOS single client.
 
 TODO: confirm mobile view.
 
@@ -30,7 +30,7 @@ Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speed
 
 ### 1.1.0 Prerequisites
 
-- Aiffro K100
+- [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100)
 - One **16 GiB** or greater SSD on a [USB-C to M.2 adapter](https://www.amazon.com/ORICO-Enclosure-10Gbps-Adapter-Supports/dp/B0CQ4NXK7Q)
     - This will be called the **OS drive** in this runbook
     - This will be the OS drive/boot pool
