@@ -23,6 +23,8 @@ TODO: verify AURGA Ctrl+Alt+Del instructions.
 
 TODO: verify "Configure network interfaces" console step.
 
+TODO: add box drawing characters to dataset graph.
+
 TODO: confirm mobile view.
 
 ---
@@ -239,10 +241,28 @@ cli -c 'storage snapshot create dataset="Vault" naming_schema="shutdown-%Y-%m-%d
 # When: Shutdown
 ```
 
-### 2.6.0 Samba Shares and Datasets
+### 2.6.0 Datasets and Samba Shares
 
-Each user will have a "main" share and a Temporary share, which will be excluded from backups. Below are the steps for the
-user "Robpol86".
+For each user there will be three datasets, an umbrella dataset and two leaf datasets of which will also be Samba shares.
+Each user will have a "main" Samba share and a "temporary" share, the latter being excluded from backups. The parent dataset
+is the umbrella dataset for the user and is there just to organize the two leaf datasets. Below is a graph of all the
+datasets in a three user example.
+
+```
+Vault (pool)
+    Lockbox
+        Robpol86
+            Robpol86 (Samba share)
+            TemporaryR (Samba share)
+        User2
+            User2 (Samba share)
+            TemporaryU2 (Samba share)
+        User3
+            User3 (Samba share)
+            TemporaryU3 (Samba share)
+```
+
+Below are the steps for the user "Robpol86".
 
 #### 2.6.1 Add User Account
 
