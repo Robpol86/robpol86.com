@@ -357,7 +357,7 @@ When done export the pool and eject the drive. The replication task will be auto
     1. **Delete saved configurations from TrueNAS**: *leave checked*
 
 ```{note}
-If middleware and other processes are using this pool either wait or reboot
+If middleware and other processes are using this pool either wait or reboot.
 ```
 
 #### 3.1.4 Save Configuration
@@ -440,9 +440,9 @@ Storage > Vault > Expand
 
 ### 4.3.0 Restore from Backup
 
-Steps to restore the pool from a backup. In this scenario I lose my NAS but I still have access to a backup HDD.
+In this scenario the entire NAS is lost but we still have access to a backup hard drive.
 
-#### 4.3.1 Prepare System
+#### 4.3.1 Prepare New System
 
 1. Have the saved [TrueNAS configuration file](#backup-procedure) from the secure location handy
 1. Reinstall TrueNAS
@@ -476,6 +476,10 @@ Steps to restore the pool from a backup. In this scenario I lose my NAS but I st
 
 #### 4.3.3 Final Steps
 
+```{note}
+If you get user/group quota errors try rebooting.
+```
+
 1. Unlock Lockbox and all child datasets
 1. Datasets > Vault/Lockbox/Robpol86 > ZFS Encryption > Edit
     1. **Inherit encryption properties from parent**: Check
@@ -483,7 +487,6 @@ Steps to restore the pool from a backup. In this scenario I lose my NAS but I st
 1. Datasets > Vault/Lockbox > Dataset Details > Edit > Advanced Options
     1. **Read-only**: Inherit
     1. *Repeat for all other child datasets*
-    1. NOTE: If you get user/group quota errors try rebooting
 1. System > Shell > `rmdir -v /mnt/Vault/Lockbox/*/Temporary*`
 1. Create `Temporary*` datasets
 1. Reapply SMB ACLs
