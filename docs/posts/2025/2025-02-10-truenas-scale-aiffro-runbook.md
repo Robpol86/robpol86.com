@@ -83,7 +83,7 @@ AURGA will not apply a keypress until the SHIFT key is released, so don't hold i
 1. Installer should have booted up
 1. Plug in the **OS drive**
 
-### 1.5.0 Install TrueNAS SCALE
+### 1.5.0 Install TrueNAS
 
 Once the installer has booted up the following should be true:
 
@@ -102,7 +102,7 @@ After installation is complete select **Shutdown System** and unplug the **USB i
 
 ---
 
-## 2.0.0 Configure TrueNAS SCALE
+## 2.0.0 Configure TrueNAS
 
 This section will cover all relevant TrueNAS settings and Samba shares.
 
