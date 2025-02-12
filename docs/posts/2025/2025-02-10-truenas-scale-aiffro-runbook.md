@@ -25,6 +25,8 @@ TODO: verify "Configure network interfaces" console step.
 
 TODO: add box drawing characters to dataset graph.
 
+TODO: explain how to obtain f3probe
+
 TODO: confirm mobile view.
 
 ---
@@ -395,6 +397,7 @@ Power off and move the failed drive to a USB-C NVMe adapter and install the new 
 system and then:
 
 ```bash
+# On your laptop/workstation:
 scp ./f3probe truenas_admin@192.168.27.1:~
 ssh truenas_admin@192.168.27.1
 
