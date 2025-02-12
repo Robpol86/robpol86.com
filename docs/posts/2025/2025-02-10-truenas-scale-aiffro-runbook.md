@@ -19,13 +19,15 @@ of RAM with no ECC so I had to make some consessions. The no ECC part is a gambl
 corruption issues, and my use case does not require running apps on TrueNAS so 8 GiB of RAM is sufficient (I still hit
 near-2.5Gbps speeds consistently). This is purely for data storage and access over Samba with my macOS single client.
 
+TODO: verify AURGA Ctrl+Alt+Del instructions.
+
 TODO: confirm mobile view.
 
 ---
 
 ## 1.0.0 Installation Procedure
 
-This section will go over listing the prerequisites, preparing the installation media, and installing the OS onto the Aiffro.
+This section will go over listing the prerequisites, preparing the installation media, and installing TrueNAS on the Aiffro.
 Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speeds.
 
 ### 1.1.0 Prerequisites
@@ -33,7 +35,7 @@ Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speed
 - [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100)
 - One **16 GiB** or greater SSD on a [USB-C to M.2 adapter](https://www.amazon.com/ORICO-Enclosure-10Gbps-Adapter-Supports/dp/B0CQ4NXK7Q)
     - This will be called the **OS drive** in this runbook
-    - This will be the OS drive/boot pool
+    - This will be TrueNAS boot pool
     - TrueNAS [recommends against](https://www.reddit.com/r/truenas/comments/16yg23m/truenas_recommends_against_using_a_usb_key_for/)
       using regular USB flash drives as the boot pool
 - One **2 GiB** or greater USB-C flash drive
@@ -59,6 +61,8 @@ Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speed
 
 ### 1.3.0 Configure BIOS
 
+Enable auto power on in the BIOS so the NAS boots up automatically when power is plugged in.
+
 ```{note}
 AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive capital letters.
 ```
@@ -70,7 +74,7 @@ AURGA will not apply a keypress until the SHIFT key is released, so don't hold i
         - On the viewer Welcome screen click "Skip Sign In"
     - Click on the auto-detected AURGA-XXXXXX device, you should now see the HDMI output (LED should turn solid green)
     - The BIOS should be displayed
-        - If not sent Ctrl+Alt+Del via the AURGA right click menu, then choose Input -> Absolute Mouse, then press ESC until you're in the BIOS
+        - If not send Ctrl+Alt+Del via the AURGA right click menu, then choose Input -> Absolute Mouse, then press ESC until you're in the BIOS
 2. **BIOS Settings:**
     - **Insert Adapter Auto Power On**: Enabled
 
@@ -91,14 +95,14 @@ Once the installer has booted up the following should be true:
 - `/dev/sdb` is the **OS drive**
 - `/dev/nvme?n1` are the four storage NVMe devices
 
-Install TrueNAS SCALE with the following options:
+Install TrueNAS with the following options:
 
 - **Console setup**: Install/Upgrade
 - **Destination media**: sdb
 - **Authentication method**: Administrative user (truenas_admin)
 - **Password**: *type in a simple password for now, you can choose a stronger password in the web UI after installation*
 
-After installation is complete select **Shutdown System** and unplug the **USB installer drive** after it powered down.
+After installation is complete select **Shutdown System** and unplug the **USB installer drive** after it powers down.
 
 ---
 
