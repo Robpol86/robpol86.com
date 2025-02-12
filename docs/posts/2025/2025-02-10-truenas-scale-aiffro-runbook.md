@@ -305,8 +305,8 @@ Shares > SMB > *Name* > Edit
 
 ## 3.0.0 Backup Procedure
 
-All non-temporary datasets are included in backups. After every backup the TrueNAS configuration is also saved to a secure
-location such as a password manager.
+All non-temporary datasets are included in backups. After every backup the **TrueNAS configuration file** is also saved to a
+secure location such as a password manager.
 
 ### 3.1.0 External USB Hard Drive
 
@@ -374,12 +374,14 @@ This section will cover known disaster events and their recovery steps.
 
 ### 4.1.0 Failed Boot Pool
 
-Steps to restore the pool from original storage SSDs. In this scenario I lose the boot SSD but not my storage SSDs.
+In this scenario the boot SSD is lost but not the NAS itself or the storage SSDs.
 
+1. Have the saved [TrueNAS configuration file](#backup-procedure) from the secure location handy
 1. Reinstall TrueNAS
-    1. Stop before the "General Configuration" section
+    1. Stop before the [Web UI General Config](#web-ui-general-config) section
 1. System > General Settings > Manage Configuration > Upload File
-    1. Wait for automatic reboot
+    1. Upload the TrueNAS configuration file
+    1. Wait for the automatic reboot
 1. Confirm everything looks good
 
 ### 4.2.0 Replace Storage Device
@@ -439,10 +441,12 @@ Steps to restore the pool from a backup. In this scenario I lose my NAS but I st
 
 #### 4.3.1 Prepare System
 
+1. Have the saved [TrueNAS configuration file](#backup-procedure) from the secure location handy
 1. Reinstall TrueNAS
-    1. Stop before the "General Configuration" section
+    1. Stop before the [Web UI General Config](#web-ui-general-config) section
 1. System > General Settings > Manage Configuration > Upload File
-    1. Wait for automatic reboot
+    1. Upload the TrueNAS configuration file
+    1. Wait for the automatic reboot
 1. Ensure SSDs are all wiped
 1. Storage > Vault > Export/Disconnect
     1. **Delete saved configurations from TrueNAS**: Uncheck
