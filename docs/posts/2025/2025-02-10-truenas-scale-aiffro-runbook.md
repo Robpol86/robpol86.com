@@ -270,7 +270,7 @@ Credentials > Users > Add
 
 1. **Full Name**: Robpol86
 
-#### 2.6.2 Add User Dataset
+#### 2.6.2 Add Umbrella Dataset
 
 Datasets > Vault/Lockbox > Add Dataset
 
@@ -305,9 +305,14 @@ Shares > SMB > *Name* > Edit
 
 ## 3.0.0 Backup Procedure
 
-This section will cover backing up non-temporary datasets to a USB hard drive.
+All non-temporary datasets are included in backups. After every backup the TrueNAS configuration is also saved to a secure
+location such as a password manager.
 
-### 3.1.0 Activate Pool
+### 3.1.0 External USB Hard Drive
+
+This section will cover backing up to an external USB hard drive.
+
+#### 3.1.1 Activate Pool
 
 Hot plug the USB backup drive and wait **15 seconds**.
 
@@ -321,7 +326,7 @@ Hot plug the USB backup drive and wait **15 seconds**.
     1. Storage > Import Pool
     1. **Pool**: *select Backup-YYYY-MM-DD|...*
 
-### 3.2.0 Create and Run Task
+#### 3.1.2 Create and Run Task
 
 Data Protection > Replication Tasks > Add
 
@@ -339,7 +344,7 @@ Data Protection > Replication Tasks > Add
     1. Save (replication will start immediately)
 1. Monitor IO with: `watch -c -d "S_COLORS=always iostat -m -y /dev/sdb 1 1"`
 
-### 3.3.0 Export Backup Pool
+#### 3.1.3 Export Backup Pool
 
 When done export the pool and eject the drive. The replication task will be automatically deleted.
 
@@ -348,9 +353,12 @@ When done export the pool and eject the drive. The replication task will be auto
     1. Note space usage, confirm it's not 0
     1. Export/Disconnect
     1. **Delete saved configurations from TrueNAS**: *leave checked*
-    1. If middleware and other processes are using this pool either wait or reboot
 
-### 3.4.0 Save Configuration
+```{note}
+If middleware and other processes are using this pool either wait or reboot
+```
+
+#### 3.1.4 Save Configuration
 
 Save TrueNAS configuration to a secure location in case of failed boot-pool scenario.
 
