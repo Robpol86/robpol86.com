@@ -170,12 +170,13 @@ curl -sI --connect-to google.com:443:localhost:8443 https://google.com |grep -Po
 sudo /sbin/hwclock -w
 ```
 
-You'll need to repeat this step periodically, about once a month.
+You'll need to repeat this step periodically as the click drifts (about once a month).
 
 ### 2.4.0 Setup Storage
 
 The NAS will use a regular key-encrypted pool with a passphrase-encrypted "top" dataset under which all other datasets will
-reside with inherited encryption.
+reside with inherited encryption. This way the NAS wil boot up without a password, but in order to access the data a password
+will need to be entered through the web UI.
 
 Because NVMe SSDs don't fail as often as mechanical hard drives, we'll be using RAIDZ1. The Aiffro only has four NVMe slots
 after all.
@@ -192,7 +193,7 @@ Storage > Create Pool
     1. Drag all drives from left to RAIDZ1
     1. Save Selection
 1. Save And Go To Review > Create Pool
-1. Download encryption key and store in 1Password
+1. Download encryption key and store in a secure location
 
 #### 2.4.2 Create Top Dataset
 
@@ -204,8 +205,8 @@ Datasets > Add Dataset
 
 ### 2.5.0 Scrubbing and Snapshots
 
-Scrubbing will be done every 60 days and snapshots will be taken every night at 5 AM. Because this is a **portable NAS** it
-may not be powered on at that time. The workaround is to add a shutdown script to create snapshots on poweroff.
+Scrubbing will be done every 60 days and snapshots will be taken every night at 5 AM. Because this is a portable NAS it may
+not be powered on at that time. The workaround is to add a shutdown script to create snapshots on poweroff.
 
 #### 2.5.1 Scrub Task
 
@@ -331,7 +332,7 @@ When done export the pool and eject the drive. The replication task will be auto
 
 ### 3.4.0 Save Configuration
 
-Save TrueNAS configuration to 1Password in case of failed boot-pool scenario.
+Save TrueNAS configuration to a secure location in case of failed boot-pool scenario.
 
 System > General Settings > Manage Configuration > Download File
 
