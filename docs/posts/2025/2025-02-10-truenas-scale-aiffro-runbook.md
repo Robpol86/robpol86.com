@@ -502,13 +502,13 @@ because the root cause is not fixed and the issue may reoccur).
 
 ### 5.1.0 Invalid argument during seek
 
-I got this error when creating a pool on a single drive:
+This error appeared when creating a pool on a single drive:
 
 ```
 Error: Invalid argument during seek for write on /dev/sdh
 ```
 
-Happened even when I removed one drive and installed another.
+Happened even when one drive was removed and another was installed.
 
 #### 5.1.1 Solution
 
@@ -521,7 +521,7 @@ in late December 2024, all four were missing from `/dev`. A power cycle fixed it
 
 It appeared to have happened again. On February 8th 2025 on boot my main pool was missing. In my haste I didn't check if any
 SSD was in `/dev`. I powercycled (gracefully) the Aiffro and only three SSDs showed up in the UI's Disks section. A second
-powercycle restored the fourth SSD but the TrueNAS UI showwed the ZFS Pool with an error (yet its state was Online).
+powercycle restored the fourth SSD but the TrueNAS UI showed the ZFS Pool with an error (yet its state was Online).
 
 In the Dashboard screen it said Disks with Errors: 1. In `/ui/storage/1/devices/` one of the devices showed 1 checksum error.
 I put off fixing the issue for the next day and used the NAS like normal and powered it off at night. The next morning the
