@@ -21,6 +21,8 @@ near-2.5Gbps speeds consistently). This is purely for data storage and access ov
 
 TODO: verify AURGA Ctrl+Alt+Del instructions.
 
+TODO: verify "Configure network interfaces" console step.
+
 TODO: confirm mobile view.
 
 ---
@@ -108,7 +110,7 @@ After installation is complete select **Shutdown System** and unplug the **USB i
 
 ## 2.0.0 Configure TrueNAS
 
-This section will cover all relevant TrueNAS settings and Samba shares.
+This section will cover all relevant TrueNAS settings, creating pools and datasets, and setting up the Samba shares.
 
 ### 2.1.0 Console Setup
 
@@ -362,8 +364,8 @@ Power off and move the failed drive to a USB-C NVMe adapter and install the new 
 system and then:
 
 ```bash
-scp ./f3probe truenas_admin@10.96.96.96:~
-ssh truenas_admin@10.96.96.96
+scp ./f3probe truenas_admin@192.168.27.1:~
+ssh truenas_admin@192.168.27.1
 
 # New drive
 sudo smartctl -a /dev/nvmeXn1
