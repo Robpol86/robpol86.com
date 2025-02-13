@@ -378,9 +378,9 @@ This section will cover known disaster events and their recovery steps.
 
 In this scenario the boot SSD is lost but not the NAS itself or the storage SSDs.
 
-1. Have the saved [TrueNAS configuration file](#backup-procedure) from the secure location handy
+1. Have the saved [TrueNAS configuration file](#300-backup-procedure) from the secure location handy
 1. Reinstall TrueNAS
-    1. Stop before the [Web UI General Config](#web-ui-general-config) section
+    1. Stop before the [Web UI General Config](#220-web-ui-general-config) section
 1. System > General Settings > Manage Configuration > Upload File
     1. Upload the TrueNAS configuration file
     1. Wait for the automatic reboot
@@ -444,9 +444,9 @@ In this scenario the entire NAS is lost but we still have access to a backup har
 
 #### 4.3.1 Prepare New System
 
-1. Have the saved [TrueNAS configuration file](#backup-procedure) from the secure location handy
+1. Have the saved [TrueNAS configuration file](#300-backup-procedure) from the secure location handy
 1. Reinstall TrueNAS
-    1. Stop before the [Web UI General Config](#web-ui-general-config) section
+    1. Stop before the [Web UI General Config](#220-web-ui-general-config) section
 1. System > General Settings > Manage Configuration > Upload File
     1. Upload the TrueNAS configuration file
     1. Wait for the automatic reboot
