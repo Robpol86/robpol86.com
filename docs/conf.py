@@ -121,6 +121,7 @@ linkcheck_timeout = 5
 # Extension settings.
 imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
 myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
+myst_heading_anchors = 3
 myst_url_schemes = ("http", "https", "mailto")
 notfound_context = dict(  # pylint: disable=use-dict-literal
     title="404 Not Found",
