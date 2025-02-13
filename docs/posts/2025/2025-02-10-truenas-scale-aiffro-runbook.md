@@ -14,10 +14,11 @@ This is the runbook I've been developing since 2022 for setting up and maintaini
 more traditional 24/7 server, it's now scoped to a NAS that is frequently powered off and no longer has access to the
 intenret.
 
-As of this writing my NAS is an [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100). The machine only has 8 GiB
-of RAM with no ECC so I had to make some consessions. The no ECC part is a gamble but so far I haven't run into any data
-corruption issues, and my use case does not require running apps on TrueNAS so 8 GiB of RAM is sufficient (I still hit
-near-2.5Gbps speeds consistently). This is purely for data storage and access over Samba with my macOS single client.
+As of this writing my NAS is an [Aiffro K100](https://www.aiffro.com/products/all-ssd-nas-k100) (photos of it are available
+[here](2025-01-14-desk.md)). The machine only has 8 GiB of RAM with no ECC so I had to make some consessions. The no ECC part
+is a gamble but so far I haven't run into any data corruption issues, and my use case does not require running apps on
+TrueNAS so 8 GiB of RAM is sufficient (I still hit near-2.5Gbps speeds consistently). This is purely for data storage and
+access over Samba with my macOS single client.
 
 TODO: verify AURGA Ctrl+Alt+Del instructions.
 
