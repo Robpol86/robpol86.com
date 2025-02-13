@@ -23,8 +23,6 @@ TODO: verify AURGA Ctrl+Alt+Del instructions.
 
 TODO: verify "Configure network interfaces" console step.
 
-TODO: explain how to obtain f3probe
-
 ---
 
 ## 1.0.0 Installation Procedure
@@ -409,7 +407,10 @@ system and then:
 
 ```bash
 # On your laptop/workstation:
-scp ./f3probe truenas_admin@192.168.27.1:~
+wget ftp://ftp.us.debian.org/debian/pool/main/f/f3/f3_8.0-2_amd64.deb
+ar x f3_8.0-2_amd64.deb
+tar -xf data.tar.xz
+scp ./usr/bin/f3probe truenas_admin@192.168.27.1:~
 ssh truenas_admin@192.168.27.1
 
 # New drive
