@@ -20,10 +20,6 @@ is a gamble but so far I haven't run into any data corruption issues, and my use
 TrueNAS so 8 GiB of RAM is sufficient (I still hit near-2.5Gbps speeds consistently). This is purely for data storage and
 access over Samba with my macOS single client.
 
-TODO: verify AURGA Ctrl+Alt+Del instructions.
-
-TODO: verify "Configure network interfaces" console step.
-
 ---
 
 ## 1.0.0 Installation Procedure
@@ -114,7 +110,7 @@ This section will cover all relevant TrueNAS settings, creating pools and datase
 
 ### 2.1.0 Console Setup
 
-Power on the Aiffro and wait for the TrueNAS console setup menu to appear:
+Power on the Aiffro and wait for the TrueNAS console setup menu to appear. We'll be setting the static IP for the NAS.
 
 1. **Configure network interfaces:**
     - enp2s0 > Edit
