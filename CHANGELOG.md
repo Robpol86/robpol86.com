@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.2.13.205758]
+
+Fixing syntax highlighting
+
+* 6a745b6 Fixing syntax highlighting (#284)
+
 ## [2025.2.13.202516]
 
 TrueNAS Runbook and Desk Picture
