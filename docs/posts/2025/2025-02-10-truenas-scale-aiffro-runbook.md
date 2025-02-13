@@ -23,11 +23,7 @@ TODO: verify AURGA Ctrl+Alt+Del instructions.
 
 TODO: verify "Configure network interfaces" console step.
 
-TODO: add box drawing characters to dataset graph.
-
 TODO: explain how to obtain f3probe
-
-TODO: confirm mobile view.
 
 ---
 
@@ -253,16 +249,16 @@ datasets in a three user example.
 
 ```
 Vault (pool)
-    Lockbox
-        Robpol86
-            Robpol86 (Samba share)
-            TemporaryR (Samba share)
-        User2
-            User2 (Samba share)
-            TemporaryU2 (Samba share)
-        User3
-            User3 (Samba share)
-            TemporaryU3 (Samba share)
+└── Lockbox
+    ├── Robpol86
+    │   ├── Robpol86 (Samba share)
+    │   └── TemporaryR (Samba share)
+    ├── User2
+    │   ├── User2 (Samba share)
+    │   └── TemporaryU2 (Samba share)
+    └── User3
+        ├── User3 (Samba share)
+        └── TemporaryU3 (Samba share)
 ```
 
 Below are the steps for the user "Robpol86".
