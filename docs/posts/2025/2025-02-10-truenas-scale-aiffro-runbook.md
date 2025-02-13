@@ -2,7 +2,7 @@
 blogpost: true
 date: 2025-02-10
 author: Robpol86
-location: Santiago
+location: Calafate
 category: Tutorials
 tags: homelab, runbook, aiffro
 ---
@@ -390,6 +390,11 @@ In this scenario the boot SSD is lost but not the NAS itself or the storage SSDs
 
 Steps for replacing failed or failing storage SSDs. You'll need another USB-C to NVMe adapter (do not use the adapter used by
 the **OS drive**).
+
+The steps involve power cycling instead of hot swapping for a couple of reasons:
+
+* The NVMe slots are probably not hot swappable
+* This is a portable NAS that is frequently turned off
 
 #### 4.2.1 Validate New SSD
 
