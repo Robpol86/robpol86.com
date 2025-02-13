@@ -44,6 +44,7 @@ Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speed
     - This will be TrueNAS boot pool
     - TrueNAS [recommends against](https://www.reddit.com/r/truenas/comments/16yg23m/truenas_recommends_against_using_a_usb_key_for/)
       using regular USB flash drives as the boot pool
+    - We're using a USB drive for the OS since the Aiffro only has four NVMe slots
 - One **2 GiB** or greater USB-C flash drive
     - This will be called the **USB installer drive** in this runbook
     - This will be the installation media with the ISO "burned" onto it
@@ -56,7 +57,7 @@ Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speed
 ### 1.2.0 Prepare USB Installer
 
 1. **Download TrueNAS SCALE ISO:**
-    - Get the latest **stable** ISO from https://www.truenas.com/download-truenas-scale/
+    - Get the latest stable ISO from https://www.truenas.com/download-truenas-scale/
 2. **Create Bootable USB:**
     - Plug the **USB installer drive** into your laptop/workstation
     - If you're using Windows:
@@ -68,10 +69,6 @@ Avoid using the USB-A ports on the Aiffro since they're limited to USB 2.0 speed
 ### 1.3.0 Configure BIOS
 
 Enable auto power on in the BIOS so the NAS boots up automatically when power is plugged in.
-
-```{note}
-AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive capital letters.
-```
 
 1. **Setup AURGA:**
     - Plug in AURGA and power on the Aiffro
@@ -94,6 +91,10 @@ AURGA will not apply a keypress until the SHIFT key is released, so don't hold i
 1. Plug in the **OS drive**
 
 ### 1.5.0 Install TrueNAS
+
+```{note}
+AURGA will not apply a keypress until the SHIFT key is released, so don't hold it for consecutive capital letters.
+```
 
 Once the installer has booted up the following should be true:
 
@@ -160,8 +161,8 @@ Remember to set your laptop/workstation to a static IP address within the same s
 ### 2.3.0 Synchronizing Time
 
 Because the NAS is permanently offline, NTP services do nothing and the clock will inevitably drift. Here is a workaround
-solution using Google as the time source over an SSH reverse proxy. Your laptop/workstation must be connected to the internet
-over WiFi and simultaneously be connected to the NAS over wired ethernet.
+using Google as the time source over an SSH reverse proxy. Your laptop/workstation must be connected to the internet over
+WiFi and simultaneously be connected to the NAS over wired ethernet.
 
 ```bash
 # On your laptop/workstation:
@@ -245,7 +246,7 @@ cli -c 'storage snapshot create dataset="Vault" naming_schema="shutdown-%Y-%m-%d
 
 ### 2.6.0 Datasets and Samba Shares
 
-For each user there will be three datasets, an umbrella dataset and two leaf datasets of which will also be Samba shares.
+For each user there will be three datasets: an umbrella dataset and two leaf datasets of which will also be Samba shares.
 Each user will have a "main" Samba share and a "temporary" share, the latter being excluded from backups. The parent dataset
 is the umbrella dataset for the user and is there just to organize the two leaf datasets. Below is a graph of all the
 datasets in a three user example.
@@ -316,7 +317,7 @@ This section will cover backing up to an external USB hard drive.
 
 #### 3.1.1 Activate Pool
 
-Hot plug the USB backup drive and wait **15 seconds**.
+Hot plug the USB backup drive and wait 15 seconds for it to show up.
 
 1. If it's a new drive create a new pool
     1. Storage > Create Pool
@@ -335,7 +336,7 @@ Data Protection > Replication Tasks > Add
 1. What and Where
     1. **Source/Destination Location**: On this System
     1. **Source**: check `Lockbox` and all child datasets except `Temporary*`
-    1. **Destination**: Backup-YYYY-MM-DD/Lockbox (manually type `/Lockbox`)
+    1. **Destination**: Backup-YYYY-MM-DD/Lockbox (manually type `/Lockbox` for new drives)
     1. **Encryption**: *leave unchecked*
     1. **Recursive**: *leave unchecked*
     1. **Replicate Custom Snapshots**: Check
@@ -344,7 +345,14 @@ Data Protection > Replication Tasks > Add
 1. When
     1. **Replication Schedule**: Run Once
     1. Save (replication will start immediately)
-1. Monitor IO with: `watch -c -d "S_COLORS=always iostat -m -y /dev/sdb 1 1"`
+
+:::{tip}
+You can monitor the backup drive's I/O using this command:
+
+```bash
+watch -c -d "S_COLORS=always iostat -m -y /dev/sdb 1 1"
+```
+:::
 
 #### 3.1.3 Export Backup Pool
 
