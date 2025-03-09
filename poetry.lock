@@ -7,6 +7,7 @@ description = "A Sphinx extension that converts any documentation or personal we
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "python_version < \"3.11\""
 files = [
     {file = "ablog-0.11.10-py3-none-any.whl", hash = "sha256:06de6d0ce9aa14c95d47c6050d52b2da7f8a25cc4bdf41f842fbe8a20e92b682"},
     {file = "ablog-0.11.10.tar.gz", hash = "sha256:1845a9a98452cbe31847103a88277eaa37683785fe0e22a9376c7992f72842a4"},
@@ -25,6 +26,36 @@ watchdog = ">=2.1.0"
 all = ["ipython (>=7.30.0)", "myst-parser (>=0.17.0)", "nbsphinx (>=0.8.0)"]
 dev = ["alabaster", "defusedxml (>=0.8.0rc2)", "ipython (>=7.30.0)", "myst-parser (>=0.17.0)", "nbsphinx (>=0.8.0)", "pytest", "sphinx-automodapi"]
 docs = ["alabaster", "sphinx-automodapi"]
+markdown = ["myst-parser (>=0.17.0)"]
+notebook = ["ipython (>=7.30.0)", "nbsphinx (>=0.8.0)"]
+tests = ["defusedxml (>=0.8.0rc2)", "pytest"]
+
+[[package]]
+name = "ablog"
+version = "0.11.12"
+description = "A Sphinx extension that converts any documentation or personal website project into a full-fledged blog."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+markers = "python_version >= \"3.11\""
+files = [
+    {file = "ablog-0.11.12-py3-none-any.whl", hash = "sha256:29228f5126550910b8f7a06a961fb10b6542ed64101c5b4887282555b9582020"},
+    {file = "ablog-0.11.12.tar.gz", hash = "sha256:1e6e1239973382adefc00eacc71125604fbfcb1e768a8a940b25fd078f0cea22"},
+]
+
+[package.dependencies]
+docutils = ">=0.18"
+feedgen = ">=0.9.0"
+invoke = ">=1.6.0"
+packaging = ">=19.0"
+python-dateutil = ">=2.8.2"
+sphinx = ">=6.2.0"
+watchdog = ">=2.1.0"
+
+[package.extras]
+all = ["ipython (>=7.30.0)", "myst-parser (>=0.17.0)", "nbsphinx (>=0.8.0)"]
+dev = ["alabaster (>=1.0.0)", "defusedxml (>=0.8.0rc2)", "ipython (>=7.30.0)", "myst-parser (>=0.17.0)", "nbsphinx (>=0.8.0)", "pytest", "sphinx-automodapi"]
+docs = ["alabaster (>=1.0.0)", "sphinx-automodapi"]
 markdown = ["myst-parser (>=0.17.0)"]
 notebook = ["ipython (>=7.30.0)", "nbsphinx (>=0.8.0)"]
 tests = ["defusedxml (>=0.8.0rc2)", "pytest"]
@@ -1724,14 +1755,14 @@ sphinx = ">=4.0"
 
 [[package]]
 name = "starlette"
-version = "0.46.0"
+version = "0.46.1"
 description = "The little ASGI library that shines."
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "starlette-0.46.0-py3-none-any.whl", hash = "sha256:913f0798bd90ba90a9156383bcf1350a17d6259451d0d8ee27fc0cf2db609038"},
-    {file = "starlette-0.46.0.tar.gz", hash = "sha256:b359e4567456b28d473d0193f34c0de0ed49710d75ef183a74a5ce0499324f50"},
+    {file = "starlette-0.46.1-py3-none-any.whl", hash = "sha256:77c74ed9d2720138b25875133f3a2dae6d854af2ec37dceb56aef370c1d8a227"},
+    {file = "starlette-0.46.1.tar.gz", hash = "sha256:3c88d58ee4bd1bb807c0d1acb381838afc7752f9ddaec81bbe4383611d833230"},
 ]
 
 [package.dependencies]
@@ -2092,4 +2123,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.9"
-content-hash = "6f7eda4530d48d96c8f8625fb3c61be8cb5ff3a1d73be5b6b87364afc5d2b609"
+content-hash = "b099bbaa41aebac33f1e13877dc8a3f2f505520e5083b14a0b0a7963bc6cc880"
