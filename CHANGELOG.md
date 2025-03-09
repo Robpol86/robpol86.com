@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.3.9.172417]
+
+Fix hamburger button
+
+* 9caeb70 Updating Sphinx Book Theme (#289)
+* 092cb91 Update ABlog (#288)
+* 08e1a3d Updating Sphinx (#286)
+* f2d8cdd Update minor dependencies (#285)
+
 ## [2025.2.13.205758]
 
 Fixing syntax highlighting
