@@ -7,9 +7,12 @@ category: Tutorials
 tags: homelab, beelink
 ---
 
-# TrueNAS SCALE Slots Tool Beelink TODO
+# TrueNAS Slots Tool for Me Mini
 
 TODO
+
+```{imgur-image} ILLt9Ur
+```
 
 ➡️ System > Advanced Settings > Init/Shutdown Scripts
 

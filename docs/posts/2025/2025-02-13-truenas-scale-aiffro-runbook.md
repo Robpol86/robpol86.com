@@ -2,7 +2,7 @@
 blogpost: true
 date: 2025-02-13
 author: Robpol86
-location: Calafate
+location: Calafate, Sydney
 category: Tutorials
 tags: homelab, runbook, aiffro, beelink
 ---
