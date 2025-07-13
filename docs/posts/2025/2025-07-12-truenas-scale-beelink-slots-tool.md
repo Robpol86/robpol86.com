@@ -47,26 +47,41 @@ set -e; cd /dev; for d in nvme?n1; do id="$(midclt call disk.query |jq -er ".[]|
 TODO BIOS screenshot
 
 ```bash
+# Immediately exit when a command fails
 set -e
 
 cd /dev
 
+# Loop through all NVMe devices in /dev such as nvme0n1, nvme1n1, etc.
 for d in nvme?n1; do
+    # TrueNAS stores each NVMe device in its internal database using a unique ID
+    # beyond just a serial number. An example: "{serial_lunid}QC5616R_25012616c"
+    # Here we find this unique ID associated with a specific NVMe device and
+    # store it in the variable `id`.
     id="$(midclt call disk.query |jq -er ".[]|select(.name==\"$d\").identifier")"
+    # TODO
     slot="$(awk -F'[. ]' '
         BEGIN {
+            # TODO
             split("RP03 RP04 RP07 RP09 RP11 RP12", list)
+            # TODO
             for(item in list) {
                 mapping[list[item]] = item
             }
         }
         {
+            # TODO
             print mapping[$3] ? mapping[$3] : "?"
+            # TODO
             exit
         }
     ' /sys/block/$d/device/device/firmware_node/path)"
+    # TODO
     address="$(cat "/sys/block/$d/device/address")"
+    # TODO sudo
     lsta="$(lspci -s "$address" -vv |grep -Po 'LnkSta:\s\K.+')"
+    # Finally we'll issue an API call to TrueNAS to update the description for
+    # the NVMe device with its slot number and PCIe link speed and width.
     midclt call disk.update "$id" "{\"description\": \"Slot $slot, $lsta\"}"
 done
 ```
