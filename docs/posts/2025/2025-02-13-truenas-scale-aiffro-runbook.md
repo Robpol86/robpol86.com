@@ -73,7 +73,15 @@ Enable auto power on in the BIOS so the NAS boots up automatically when power is
     - The BIOS should be displayed
         - If not send Ctrl+Alt+Del via the AURGA right click menu, then choose Input -> Absolute Mouse, then press ESC until you're in the BIOS
 2. **BIOS Settings:**
-    - **Insert Adapter Auto Power On**: Enabled
+    - Aiffro
+        - **Insert Adapter Auto Power On**: Enabled
+    - Beelink
+        - Chipset > PCH-IO Configuration > **State After G3**: S0 State
+        - Advanced > Hardware Monitor > Smart Fan Function > **CPU Smart Fan Mode**: Automatic Mode
+            - **Fan off temperature limit**: 25
+            - **Fan start temperature limit**: 28
+            - **Fan full speed temperature limit**: 50
+            - **PWM SLOPE SETTING**: 8
 
 ### 1.4.0 Boot to Installer
 
