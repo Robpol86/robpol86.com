@@ -2,12 +2,12 @@
 blogpost: true
 date: 2025-02-13
 author: Robpol86
-location: Calafate
+location: Calafate, Sydney
 category: Tutorials
-tags: homelab, runbook, aiffro
+tags: homelab, runbook, aiffro, beelink
 ---
 
-# TrueNAS SCALE Aiffro Runbook
+# TrueNAS SCALE Runbook
 
 This is the runbook I've been developing since 2022 for setting up and maintaining
 [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my portable/travel NAS as of this date. Originally developed for a
@@ -19,6 +19,11 @@ As of this writing my NAS is an [Aiffro K100](https://www.aiffro.com/products/al
 is a gamble but so far I haven't run into any data corruption issues, and my use case does not require running apps on
 TrueNAS so 8 GiB of RAM is sufficient (I still hit near-2.5Gbps speeds consistently). This is purely for data storage and
 access over Samba with my macOS single client.
+
+```{note}
+**Update July 2025**: I've since upgraded to the [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150). I
+was able to install the SSDs from the Aiffro to this and everything works without reinstalling or reconfiguring.
+```
 
 ---
 
@@ -70,7 +75,15 @@ Enable auto power on in the BIOS so the NAS boots up automatically when power is
     - The BIOS should be displayed
         - If not send Ctrl+Alt+Del via the AURGA right click menu, then choose Input -> Absolute Mouse, then press ESC until you're in the BIOS
 2. **BIOS Settings:**
-    - **Insert Adapter Auto Power On**: Enabled
+    - Aiffro
+        - **Insert Adapter Auto Power On**: Enabled
+    - Beelink
+        - Chipset > PCH-IO Configuration > **State After G3**: S0 State
+        - Advanced > Hardware Monitor > Smart Fan Function > **CPU Smart Fan Mode**: Automatic Mode
+            - **Fan off temperature limit**: 25
+            - **Fan start temperature limit**: 28
+            - **Fan full speed temperature limit**: 50
+            - **PWM SLOPE SETTING**: 8
 
 ### 1.4.0 Boot to Installer
 
@@ -97,8 +110,7 @@ Install TrueNAS with the following options:
 
 - **Console setup**: Install/Upgrade
 - **Destination media**: sdb
-- **Authentication method**: Administrative user (truenas_admin)
-- **Password**: *type in a simple password for now, you can choose a stronger password in the web UI after installation*
+- **Authentication method**: Configure using Web UI
 
 After installation is complete select **Shutdown System** and unplug the **USB installer drive** after it powers down.
 
@@ -179,7 +191,7 @@ after all.
 
 #### 2.4.1 Create Pool
 
-Storage > Create Pool
+➡️ Storage > Create Pool
 
 1. **Name**: Vault
 1. **Encryption**: Check
@@ -193,7 +205,7 @@ Storage > Create Pool
 
 #### 2.4.2 Create Top Dataset
 
-Datasets > Add Dataset
+➡️ Datasets > Add Dataset
 
 1. **Name**: Lockbox
 1. **Inherit (encrypted)**: Uncheck
@@ -206,14 +218,14 @@ not be powered on at that time. The workaround is to add a shutdown script to cr
 
 #### 2.5.1 Scrub Task
 
-Data Protection > Scrub Tasks > Vault (click to edit)
+➡️ Data Protection > Scrub Tasks > Vault (click to edit)
 
 1. **Threshold Days**: 60
 1. **Schedule**: Hourly
 
 #### 2.5.2 Snapshot Task
 
-Data Protection > Periodic Snapshot Tasks > Add
+➡️ Data Protection > Periodic Snapshot Tasks > Add
 
 1. **Dataset**: Vault
 1. **Snapshot Lifetime**: 24 MONTH
@@ -224,7 +236,7 @@ Data Protection > Periodic Snapshot Tasks > Add
 
 #### 2.5.3 Snapshot on Shutdown
 
-System > Advanced Settings > Init/Shutdown Scripts
+➡️ System > Advanced Settings > Init/Shutdown Scripts
 
 ```bash
 # Description: Snapshot on Shutdown
@@ -260,13 +272,13 @@ Below are the steps for the user "Robpol86".
 
 #### 2.6.1 Add User Account
 
-Credentials > Users > Add
+➡️ Credentials > Users > Add
 
 1. **Full Name**: Robpol86
 
 #### 2.6.2 Add Umbrella Dataset
 
-Datasets > Vault/Lockbox > Add Dataset
+➡️ Datasets > Vault/Lockbox > Add Dataset
 
 1. **Name**: Robpol86
 1. **Dataset Preset**: SMB
@@ -274,7 +286,7 @@ Datasets > Vault/Lockbox > Add Dataset
 
 #### 2.6.3 Add Leaf Datasets
 
-Datasets > Vault/Lockbox/Robpol86 > Add Dataset
+➡️ Datasets > Vault/Lockbox/Robpol86 > Add Dataset
 
 1. **Name**: Robpol86
 1. **Dataset Preset**: SMB
@@ -283,7 +295,7 @@ Datasets > Vault/Lockbox/Robpol86 > Add Dataset
 
 #### 2.6.4 Update Samba Shares
 
-Shares > SMB > *Name* > Edit
+➡️ Shares > SMB > *Name* > Edit
 
 1. **Purpose**: No presets
 1. Advanced Options
@@ -322,7 +334,7 @@ Hot plug the USB backup drive and wait 15 seconds for it to show up.
 
 #### 3.1.2 Create and Run Task
 
-Data Protection > Replication Tasks > Add
+➡️ Data Protection > Replication Tasks > Add
 
 1. What and Where
     1. **Source/Destination Location**: On this System
@@ -363,7 +375,7 @@ If middleware and other processes are using this pool either wait or reboot.
 
 Save TrueNAS configuration to a secure location in case of failed boot-pool scenario.
 
-System > General Settings > Manage Configuration > Download File
+➡️ System > General Settings > Manage Configuration > Download File
 
 1. **Export Password Secret Seed**: Check
 
@@ -421,7 +433,7 @@ sudo /dev/shm/f3probe --destructive --time-ops /dev/nvmeXn1
 
 #### 4.2.2 Replace
 
-Storage > Topology > Manage Devices > RAIDZ1
+➡️ Storage > Topology > Manage Devices > RAIDZ1
 
 1. Select the device to be replaced (old drive, e.g. sdb)
 1. **Replace** > Member Disk: *new drive's name* > Replace Disk
@@ -430,7 +442,7 @@ Storage > Topology > Manage Devices > RAIDZ1
 
 #### 4.2.3 Wipe Old Drive
 
-Storage > Disks
+➡️ Storage > Disks
 
 Verify old drive Pool column is **N/A**
 
@@ -443,7 +455,7 @@ Run `sudo smartctl -a /dev/nvmeXn1` on the old drive for RMA purposes
 
 #### 4.2.4 Expand
 
-Storage > Vault > Expand
+➡️ Storage > Vault > Expand
 
 1. After replacing smaller drives with larger ones click this to enable the new free space
 
