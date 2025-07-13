@@ -65,3 +65,9 @@ for d in nvme?n1; do
     midclt call disk.update "$id" "{\"description\": \"Slot $slot, $lsta\"}"
 done
 ```
+
+## Reddit Post
+
+I also posted this script on Reddit:
+
+* https://www.reddit.com/r/BeelinkOfficial/comments/1lldlb8/script_show_me_mini_slot_numbers_in_truenas_scale/
