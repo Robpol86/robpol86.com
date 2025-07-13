@@ -4,10 +4,10 @@ date: 2025-02-13
 author: Robpol86
 location: Calafate
 category: Tutorials
-tags: homelab, runbook, aiffro
+tags: homelab, runbook, aiffro, beelink
 ---
 
-# TrueNAS SCALE Aiffro Runbook
+# TrueNAS SCALE Runbook
 
 This is the runbook I've been developing since 2022 for setting up and maintaining
 [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) on my portable/travel NAS as of this date. Originally developed for a
@@ -19,6 +19,9 @@ As of this writing my NAS is an [Aiffro K100](https://www.aiffro.com/products/al
 is a gamble but so far I haven't run into any data corruption issues, and my use case does not require running apps on
 TrueNAS so 8 GiB of RAM is sufficient (I still hit near-2.5Gbps speeds consistently). This is purely for data storage and
 access over Samba with my macOS single client.
+
+Update July 2025: I've since upgraded to the [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150). I was
+able to install the SSDs from the Aiffro to this and everything works without reinstalling or reconfiguring.
 
 ---
 
