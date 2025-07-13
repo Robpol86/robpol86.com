@@ -110,8 +110,7 @@ Install TrueNAS with the following options:
 
 - **Console setup**: Install/Upgrade
 - **Destination media**: sdb
-- **Authentication method**: Administrative user (truenas_admin)
-- **Password**: *type in a simple password for now, you can choose a stronger password in the web UI after installation*
+- **Authentication method**: Configure using Web UI
 
 After installation is complete select **Shutdown System** and unplug the **USB installer drive** after it powers down.
 
