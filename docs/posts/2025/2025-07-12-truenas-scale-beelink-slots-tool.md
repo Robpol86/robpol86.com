@@ -9,12 +9,17 @@ tags: homelab, beelink
 
 # TrueNAS Slots Tool for Me Mini
 
-TODO TrueNAS screenshots
+```{list-table}
+* - :::{imgur-image} XObiRqa
+    :::
+* - :::{imgur-image} KjFxyXB
+    :::
+```
 
 I wrote a script to show which slot number each SSD is in in the TrueNAS web UI since all the labels face inward. If an SSD
 needs to be replaced I'd rather not have to pull each one out to see if the serial matches.
 
-```{imgur-figure} AWIy6pV
+```{imgur-figure} OSU97Ou
 Some SSDs have the serial numbers facing the heatsink.
 ```
 
