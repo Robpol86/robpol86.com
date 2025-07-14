@@ -53,8 +53,10 @@ Chipset > PCH-IO Configuration > PCI Express Configuration
 Below is the same script as above but broken down with comments.
 
 ```bash
-# Immediately exit when a command fails
-set -eu
+# Immediately exit when a command fails.
+set -e
+# Immediately exit if a referenced variable is not set.
+set -u
 
 cd /dev
 
@@ -80,9 +82,9 @@ for device in nvme?n1; do
     # filesystem. To get the NVMe serial number run: lsblk -o name,serial
     slot="$(awk -F'[. ]' -v PORTS="RP03 RP04 RP07 RP09 RP11 RP12" '
         BEGIN {
-            # Order the RP numbers by slot number so when the string is split
-            # into the `list` array it maps to list[1]="RP03", list[2]="RP04",
-            # etc. In awk arrays start with 1, not 0.
+            # Order the RP numbers above by slot number so when the string is
+            # split into the `list` array it maps to list[1]="RP03",
+            # list[2]="RP04", etc. In awk arrays start with 1, not 0.
             split(PORTS, list)
             # Invert the `list` array into a `mapping` associative array.
             # So instead of `list[1]="RP03"` we have `mapping["RP03"]=1`.
