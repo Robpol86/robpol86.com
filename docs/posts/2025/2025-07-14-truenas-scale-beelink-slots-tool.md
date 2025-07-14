@@ -1,6 +1,6 @@
 ---
 blogpost: true
-date: 2025-07-12
+date: 2025-07-14
 author: Robpol86
 location: Sydney
 category: Tutorials
@@ -17,7 +17,9 @@ tags: homelab, beelink
 ```
 
 I wrote a script to show which slot number each SSD is in in the TrueNAS web UI since all the labels face inward. If an SSD
-needs to be replaced I'd rather not have to pull each one out to see if the serial matches.
+needs to be replaced I'd rather not have to pull each one out to see if the serial matches. The script also shows the PCIe
+generation (by way of the link speed) and width (how many PCIe lanes the SSD is using). It also shows if the SSD is operating
+below its maximum capability.
 
 ```{imgur-figure} OSU97Ou
 Some SSDs have the serial numbers facing the heatsink.
