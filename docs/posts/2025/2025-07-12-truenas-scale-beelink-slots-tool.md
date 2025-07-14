@@ -83,9 +83,9 @@ for device in nvme?n1; do
             # Order the RP numbers by slot number so when the string is split
             # into the `list` array it maps to list[1]="RP03", list[2]="RP04",
             # etc. In awk arrays start with 1, not 0.
+            split(PORTS, list)
             # Invert the `list` array into a `mapping` associative array.
             # So instead of `list[1]="RP03"` we have `mapping["RP03"]=1`.
-            split(PORTS, list)
             for(item in list) {
                 mapping[list[item]] = item
             }
