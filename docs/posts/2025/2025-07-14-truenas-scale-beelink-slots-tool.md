@@ -4,7 +4,7 @@ date: 2025-07-14
 author: Robpol86
 location: Sydney
 category: Tutorials
-tags: homelab, beelink
+tags: homelab, nas, beelink
 ---
 
 # TrueNAS Slots Tool for Me Mini
