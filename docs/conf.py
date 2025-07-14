@@ -139,6 +139,7 @@ ogp_description_length = 300
 ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo.rsplit('.', 1)[0]}.png"
 ogp_site_name = html_title
 ogp_site_url = html_baseurl
+ogp_social_cards = {"site_url": "rob86stage.robpol86.com"}  # TODO
 ogp_type = "website"
 ogp_use_first_image = True
 sitemap_show_lastmod = False
