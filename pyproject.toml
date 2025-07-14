@@ -21,6 +21,7 @@ repository = "https://github.com/Robpol86/robpol86.com"
 python = "^3.9"
 # Project dependencies.
 ablog = "*"
+matplotlib = "*"  # For opengraph in Google Chat.
 myst-parser = {version = "*", extras = ["linkify"]}
 sphinx = "*"
 sphinx-book-theme = "*"
