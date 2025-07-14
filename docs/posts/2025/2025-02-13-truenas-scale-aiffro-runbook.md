@@ -4,7 +4,7 @@ date: 2025-02-13
 author: Robpol86
 location: Calafate, Sydney
 category: Tutorials
-tags: homelab, runbook, aiffro, beelink
+tags: homelab, nas, runbook, aiffro, beelink
 ---
 
 # TrueNAS SCALE Runbook
