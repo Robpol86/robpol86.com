@@ -39,7 +39,7 @@ To install go to the **Init/Shutdown Scripts** section under *System > Advanced 
 1. **Command**: *paste the below command*
 
 ```bash
-set -e; cd /dev; for d in nvme?n1; do id="$(midclt call disk.query |jq -er ".[]|select(.name==\"$d\").identifier")"; slot="$(awk -F'[. ]' 'BEGIN{split("RP03 RP04 RP07 RP09 RP11 RP12", list); for(item in list) mapping[list[item]] = item} {print mapping[$3] ? mapping[$3] : "?"; exit}' /sys/block/$d/device/device/firmware_node/path)"; lsta="$(lspci -s "$(cat "/sys/block/$d/device/address")" -vv |grep -Po 'LnkSta:\s\K.+')"; midclt call disk.update "$id" "{\"description\": \"Slot $slot, $lsta\"}"; done
+set -eu; cd /dev; for device in nvme?n1; do id="$(midclt call disk.query |jq -er ".[]|select(.name==\"$device\").identifier")"; slot="$(awk -F'[. ]' -v PORTS="RP03 RP04 RP07 RP09 RP11 RP12" 'BEGIN{split(PORTS, list); for(item in list) mapping[list[item]] = item} {print mapping[$3] ? mapping[$3] : "?"; exit}' "/sys/block/$device/device/device/firmware_node/path")"; address="$(head -1 "/sys/block/$device/device/address")"; lsta="$(lspci -s "$address" -vv |grep -Po 'LnkSta:\s\K.+')"; midclt call disk.update "$id" "{\"description\": \"Slot $slot, $lsta\"}"; done
 ```
 
 ## Explanation
