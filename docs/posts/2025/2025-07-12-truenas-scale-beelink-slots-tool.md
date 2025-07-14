@@ -44,7 +44,8 @@ set -eu; cd /dev; for device in nvme?n1; do id="$(midclt call disk.query |jq -er
 
 ## Explanation
 
-TODO summary
+The script reads the PCIe Root Port number for each NVMe drive. It compares them to a known mapping between these port
+numbers and the corresponding slot number on the Beelink Me Mini motherboard.
 
 ```{imgur-figure} khZAZAw
 Chipset > PCH-IO Configuration > PCI Express Configuration
