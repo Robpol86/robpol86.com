@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.7.14.41225]
+
+Beelink runbooks
+
+* 45bd6f8 Adding TrueNAS Slots Tool for Me Mini (#296)
+* cd8b39c Adding the nas tag. (#295)
+* 040d1e5 TrueNAS: prefixes and beelink (#293)
+* 4cfc673 Update dependencies (#292)
+* b24d311 Update dependencies (#290)
+
 ## [2025.3.9.172417]
 
 Fix hamburger button
