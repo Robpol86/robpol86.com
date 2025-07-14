@@ -33,7 +33,8 @@ those, please let me know in the comments whether the script works for you or no
 
 ## Installing the Script
 
-To install go to the **Init/Shutdown Scripts** section under *System > Advanced Settings* and add a new script:
+To install go to the **Init/Shutdown Scripts** section under *System > Advanced Settings* and add a new script. Restart the
+NAS afterwards.
 
 1. **Description**: Slots Tool
 1. **Type**: Command
