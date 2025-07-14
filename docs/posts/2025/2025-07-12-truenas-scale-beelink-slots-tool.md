@@ -105,9 +105,12 @@ for device in nvme?n1; do
             exit
         }
     ' "/sys/block/$device/device/device/firmware_node/path")"
-    # TODO
+    # Besides slot numbers I'm also showing the PCIe generation and width. One
+    # of the NVMe slots on the Me Mini has two lanes instead of one. We can show
+    # this in the TrueNAS UI. The PCIe generation is shown as the link speed.
     address="$(head -1 "/sys/block/$device/device/address")"
-    # TODO sudo
+    # If you're running this script manually you'll need sudo because of this
+    # lspci command.
     lsta="$(lspci -s "$address" -vv |grep -Po 'LnkSta:\s\K.+')"
     # Finally we'll issue an API call to TrueNAS to update the description for
     # the NVMe device with its slot number and PCIe link speed and width.
