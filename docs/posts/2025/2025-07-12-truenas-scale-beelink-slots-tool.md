@@ -44,7 +44,15 @@ set -e; cd /dev; for d in nvme?n1; do id="$(midclt call disk.query |jq -er ".[]|
 
 ## Explanation
 
-TODO BIOS screenshot
+TODO summary
+
+```{imgur-figure} khZAZAw
+Chipset > PCH-IO Configuration > PCI Express Configuration
+```
+
+Below is the same script as above but broken down with comments.
+
+TODO explain how to map root ports to serial numbers.
 
 ```bash
 # Immediately exit when a command fails
