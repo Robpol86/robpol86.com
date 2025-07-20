@@ -9,7 +9,7 @@ tags: homelab, glinet
 
 # GL.iNet USB Network Adapter
 
-TODO
+TODO tethering works in slate, factory reset to confirm
 
 - Slate 7 GL-BE3600
 - Beryl AX GL-MT3000
