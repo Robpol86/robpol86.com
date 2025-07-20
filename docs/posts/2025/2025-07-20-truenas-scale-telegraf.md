@@ -7,9 +7,9 @@ category: Tutorials
 tags: homelab, nas
 ---
 
-# TrueNAS SCALE Telegraf InfluxDB Grafana
+# TrueNAS Telegraf, Influx, Grafana
 
-TODO
+TODO TrueNAS SCALE Telegraf InfluxDB Grafana
 
 ## Prerequisites
 
