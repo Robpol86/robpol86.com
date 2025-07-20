@@ -25,6 +25,7 @@ myst-parser = {version = "*", extras = ["linkify"]}
 sphinx = "*"
 sphinx-book-theme = "*"
 sphinx-copybutton = "*"
+sphinx-design = "*"
 sphinx-imgur = "*"
 sphinx-notfound-page = "*"
 sphinx-sitemap = "*"

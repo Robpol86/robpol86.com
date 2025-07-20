@@ -10,3 +10,19 @@ tags: homelab, nas
 # TrueNAS SCALE Telegraf InfluxDB Grafana
 
 TODO
+
+## Prerequisites
+
+TODO
+
+## InfluxDB
+
+TODO
+
+## Telegraf
+
+TODO
+
+## Grafana
+
+TODO
