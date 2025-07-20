@@ -7,6 +7,6 @@ category: Tutorials
 tags: homelab, nas
 ---
 
-# TrueNAS Slots Telegraf InfluxDB Grafana
+# TrueNAS SCALE Telegraf InfluxDB Grafana
 
 TODO
