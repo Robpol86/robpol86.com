@@ -121,22 +121,37 @@ After you click "Save" you should see something like this.
 
 ### Configuration
 
-TODO
+Now that InfluxDB is running it's time to configure it.
 
-➡️ Apps > influxdb > Workloads > Containers > influxdb > Shell
+1. In the TrueNAS UI go to ➡️ Apps
+1. Click on the running **influxdb** application
+1. Under "Workloads" next to "influxdb - Running" click the command line icon to shell into the container
+1. Run the command `influx` and then execute these queries to create the **admin** user:
+    ```sql
+    CREATE USER admin WITH PASSWORD 'REPLACE_ME' WITH ALL PRIVILEGES
+    AUTH
+    ```
+1. Then run these queries to create the telegraf database and the user which Telegraf will use:
+    ```sql
+    CREATE DATABASE telegraf
+    CREATE USER truenas WITH PASSWORD 'REPLACE_ME'
+    GRANT WRITE ON telegraf TO truenas
+    ```
+1. Finally run these queries to create the user Grafana will use:
+    ```sql
+    CREATE USER grafana WITH PASSWORD 'REPLACE_ME'
+    GRANT READ ON telegraf TO grafana
+    ```
 
-Run `HOME= influx` and then execute these queries:
+:::{tip}
+You can ignore this error:
 
-```sql
-CREATE USER admin WITH PASSWORD 'REPLACE_ME' WITH ALL PRIVILEGES
-AUTH
-
-CREATE DATABASE telegraf
-CREATE USER truenas WITH PASSWORD 'REPLACE_ME'
-GRANT WRITE ON telegraf TO truenas
-CREATE USER grafana WITH PASSWORD 'REPLACE_ME'
-GRANT READ ON telegraf TO grafana
 ```
+There was an error writing history file: open /.influx_history: permission denied
+```
+
+After a while it becomes annoying. You can avoid it by running `HOME= influx` instead of just `influx`.
+:::
 
 ## Telegraf
 
