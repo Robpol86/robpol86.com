@@ -157,13 +157,19 @@ After a while it becomes annoying. You can avoid it by running `HOME= influx` in
 
 TODO [telegraf.conf](/_static/telegraf.conf) unmodified
 
+TODO [telegraf.env](/_static/telegraf.env) replace_me
+
+TODO Download the latest `amd64` Telegraf from https://github.com/influxdata/telegraf/releases, extract, and copy `usr/bin/telegraf` to `/mnt/Vault/Apps/Telegraf/`
+
+Save all three files in `/mnt/Vault/Apps/Telegraf/`
+
+TODO it'll look like this: .
+
 TODO systemd-run
 
 TODO alerts with health endpoint
 
 ```bash
-echo 'INFLUX_PASSWORD_TRUENAS="REPLACE_ME"' > env
-scp ./env ./telegraf.conf truenas_admin@10.192.168.10:/mnt/Vault/Apps/Telegraf/
 ## Download from https://github.com/influxdata/telegraf/releases on macOS, then:
 scp ~/Downloads/telegraf-1.35.1/usr/bin/telegraf truenas_admin@10.192.168.10:/mnt/Vault/Apps/Telegraf/
 ```
@@ -174,7 +180,7 @@ scp ~/Downloads/telegraf-1.35.1/usr/bin/telegraf truenas_admin@10.192.168.10:/mn
 1. **When**: Post Init
 
 ```bash
-/bin/systemd-run --no-block --unit telegraf -p User=root -p Restart=always -p RestartSec=30 -p EnvironmentFile=/mnt/Vault/Apps/Telegraf/env /mnt/Vault/Apps/Telegraf/telegraf --config /mnt/Vault/Apps/Telegraf/telegraf.conf
+/bin/systemd-run --no-block --unit telegraf -p User=root -p Restart=always -p RestartSec=30 -p EnvironmentFile=/mnt/Vault/Apps/Telegraf/telegraf.env /mnt/Vault/Apps/Telegraf/telegraf --config /mnt/Vault/Apps/Telegraf/telegraf.conf
 ```
 
 Then reboot.
