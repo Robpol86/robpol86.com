@@ -17,7 +17,7 @@ tags: homelab, nas
 ```
 
 This guide will explain how to run Telegraf on TrueNAS SCALE, as well as running InfluxDB and Grafana apps to collect metrics
-and show graphs. This is how I run all three apps on my Beelink Me Mini NAS. Af of this writing I'm running TrueNAS SCALE
+and show graphs. This is how I run all three apps on my Beelink Me Mini NAS. As of this writing I'm running TrueNAS SCALE
 25.04.1.
 
 Most guides and posts on the internet show how to run Telegraf from a Docker container with /sys and other filesystems
