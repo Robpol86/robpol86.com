@@ -75,61 +75,53 @@ You should now see something like this.
 
 ## InfluxDB
 
-I use [InfluxDB](https://www.influxdata.com/) as the timeseries database to store all my metrics. Here I'll explain two ways
-you can install it.
-
-::::{tab-set}
-
-:::{tab-item} Simple Install
-TODO
-:::
-
-:::{tab-item} Custom Install
-This is what I use on my NAS. I personally don't want my InfluxDB version to be upgraded unexpectedly and without my
-knoweldge by the catalog maintainer.
+I use [InfluxDB](https://www.influxdata.com/) version 1 as the timeseries database to store all my metrics. Because the
+official InfluxDB TrueNAS app [uses v2](https://apps.truenas.com/catalog/influxdb/) I'm deploying mine as a custom app. If
+you'd rather run the official app feel free to use it instead and skip to the [Telegraf](#telegraf) section of this guide.
 
 ```{note}
-I'm running v1 because:
-
-- The latest version as of this writing is v3 but that has an absurd 3-day data limit for the free license (lol).
-- I started working on my Grafana dashboard way back in 2017 so all of my queries are in
-  [InfluxQL](https://docs.influxdata.com/influxdb/v1/query_language/). v3 uses SQL, v2 uses Flux, TODO
+I'm running v1 because the latest version (as of this writing it's v3) has an absurd 3-day data limit for the free license
+(lol). It also removed Flux (lol). I guess I could have gone with v2 but it looks like enabling InfluxQL requires additional
+steps. I don't want to rewrite all of my Grafana dashboard's queries in a dead language and nothing's wrong with v1 so I've
+decided to stick with that.
 ```
 
-I like having control over the version of InfluxDB I'm running. Here I'm using v1 for a few reasons. Mainly: The latest
-version as of this writing is v3 but that has an absurd 3-day data limit for the free license (lol). I chose v1 over v2 mostly because Flux is now deprecated so it's not worth upgrading all of the queries on my dashboard to it. Even though v2 has an endpoint for my existing InfluxQL dashboard queries
-TODO version 1 2 and 3.
+1. In the TrueNAS UI go to ➡️ Apps
+1. Click on **Discover Apps**
+1. Click on "⋮" menu button then **Install via YAML**
+    1. **Name**: influxdb
+    1. **Custom Config**: *paste the following; change "Vault" to your pool name*
+        ```yaml
+        services:
+          influxdb:
+            hostname: influxdb
+            # 1.11.8 is the latest version of v1
+            image: influxdb:1.11.8
+            pull_policy: always
+            restart: always
+            environment:
+              # Without this you can read/write to InfluxDB without a password
+              INFLUXDB_HTTP_AUTH_ENABLED: "true"
+              # Allows you to use Flux in your Grafana queries
+              INFLUXDB_HTTP_FLUX_ENABLED: "true"
+            ports:
+            - mode: ingress
+              protocol: tcp
+              published: 8086
+              target: 8086
+            # This is the UID for the "apps" user in TrueNAS
+            user: "568:568"
+            # Change "Vault" to your pool name
+            volumes: [/mnt/Vault/Apps/InfluxDB:/var/lib/influxdb]
+        ```
 
-➡️ Apps > Discover Apps > ... > Install via YAML
-
-1. **Name**: influxdb
-1. **Custom Config**: *paste app-influxdb.yaml*
-
-```yaml
-services:
-  influxdb:
-    hostname: influxdb
-    image: influxdb:1.11.8
-    pull_policy: always
-    restart: always
-    environment:
-      INFLUXDB_DATA_QUERY_LOG_ENABLED: "false"
-      INFLUXDB_HTTP_AUTH_ENABLED: "true"
-      INFLUXDB_HTTP_FLUX_ENABLED: "true"
-      INFLUXDB_HTTP_LOG_ENABLED: "false"
-    ports:
-      - mode: ingress
-        protocol: tcp
-        published: 8086
-        target: 8086
-    user: "568:568"
-    volumes: [/mnt/Vault/Apps/InfluxDB:/var/lib/influxdb]
+```{imgur-figure} TODO
+After you click "Save" you should see something like this.
 ```
-:::
-
-::::
 
 ### Configuration
+
+TODO
 
 ➡️ Apps > influxdb > Workloads > Containers > influxdb > Shell
 
