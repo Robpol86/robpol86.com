@@ -85,6 +85,19 @@ TODO
 :::
 
 :::{tab-item} Custom Install
+This is what I use on my NAS. I personally don't want my InfluxDB version to be upgraded unexpectedly and without my
+knoweldge by the catalog maintainer.
+
+```{note}
+I'm running v1 because:
+
+- The latest version as of this writing is v3 but that has an absurd 3-day data limit for the free license (lol).
+- I started working on my Grafana dashboard way back in 2017 so all of my queries are in
+  [InfluxQL](https://docs.influxdata.com/influxdb/v1/query_language/). v3 uses SQL, v2 uses Flux, TODO
+```
+
+I like having control over the version of InfluxDB I'm running. Here I'm using v1 for a few reasons. Mainly: The latest
+version as of this writing is v3 but that has an absurd 3-day data limit for the free license (lol). I chose v1 over v2 mostly because Flux is now deprecated so it's not worth upgrading all of the queries on my dashboard to it. Even though v2 has an endpoint for my existing InfluxQL dashboard queries
 TODO version 1 2 and 3.
 
 ➡️ Apps > Discover Apps > ... > Install via YAML
