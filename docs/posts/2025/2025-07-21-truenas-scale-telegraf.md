@@ -155,6 +155,12 @@ After a while it becomes annoying. You can avoid it by running `HOME= influx` in
 
 ## Telegraf
 
+TODO [telegraf.conf](/_static/telegraf.conf) unmodified
+
+TODO systemd-run
+
+TODO alerts with health endpoint
+
 ```bash
 echo 'INFLUX_PASSWORD_TRUENAS="REPLACE_ME"' > env
 scp ./env ./telegraf.conf truenas_admin@10.192.168.10:/mnt/Vault/Apps/Telegraf/
