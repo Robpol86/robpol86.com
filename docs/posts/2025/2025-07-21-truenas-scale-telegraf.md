@@ -17,24 +17,16 @@ tags: homelab, nas
 ```
 
 This guide will explain how to run Telegraf on TrueNAS SCALE, as well as running InfluxDB and Grafana apps to collect metrics
-and show graphs. This is how I run all three apps on my Beelink Me Mini NAS. As of this writing I'm running TrueNAS SCALE
-25.04.1.
-
-Most guides and posts on the internet show how to run Telegraf from a Docker container with /sys and other filesystems
-mounted as well as running in privileged mode. I personally don't like that approach, so instead I just run Telegraf as root
-on "bare metal" (as in not in a container or in a VM).
-
-```{warning}
-Running Telegraf on bare metal is not officially supported by TrueNAS. This implementation may stop working on future
-versions of TrueNAS SCALE if they stop including the commands we need.
-```
+and show graphs. This is how I run all three apps on my
+[Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS SCALE
+25.04.1 (Fangtooth).
 
 ## Prerequisites
 
 Before starting there are a few things we need to setup:
 
-- Choose a pool for apps if you haven't used apps in TrueNAS before
-- Create datasets for each application
+1. Choose a pool for apps if you haven't used apps in TrueNAS before
+1. Create datasets for each application
 
 ### Choose a Pool
 
@@ -119,7 +111,7 @@ decided to stick with that.
 After you click "Save" you should see something like this.
 ```
 
-### Configuration
+### InfluxDB Configuration
 
 Now that InfluxDB is running it's time to configure it.
 
@@ -155,15 +147,36 @@ After a while it becomes annoying. You can avoid it by running `HOME= influx` in
 
 ## Telegraf
 
-TODO [telegraf.conf](/_static/telegraf.conf) unmodified
+Most guides and posts on the internet show how to run Telegraf from a Docker container with `/sys` and other filesystems
+mounted as well as running in privileged mode. I personally don't like that approach, so instead I just run Telegraf as root
+on "bare metal" (as in not in a container or in a VM).
 
-TODO [telegraf.env](/_static/telegraf.env) replace_me
+```{warning}
+Running Telegraf on bare metal is not officially supported by TrueNAS. This implementation may stop working on future
+versions of TrueNAS SCALE if they stop including the commands we need.
+```
 
-TODO Download the latest `amd64` Telegraf from https://github.com/influxdata/telegraf/releases, extract, and copy `usr/bin/telegraf` to `/mnt/Vault/Apps/Telegraf/`
+To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`:
 
-Save all three files in `/mnt/Vault/Apps/Telegraf/`
+1. [telegraf.conf](/_static/telegraf.conf) unmodified
+1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
+    - Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration)
+  section in place of REPLACE_ME
+1. `telegraf` from the latest [amd64 Linux](https://github.com/influxdata/telegraf/releases) release
+    - Extract the tar.gz file and look for the `telegraf` file in `usr/bin`
 
-TODO it'll look like this: .
+:::{hint}
+If you run `ls -lah /mnt/Vault/Apps/Telegraf` you should see something like this:
+
+```
+total 119M
+drwxrwx--- 2 root          root    5 Jul 21 21:59 .
+drwxrwx--- 5 root          root    5 Jul  4 15:47 ..
+-rwxrwx--- 1 truenas_admin root   44 Jul  4 16:00 env
+-rwxrwx--- 1 truenas_admin root 279M Jul  4 16:00 telegraf
+-rwxrwx--- 1 truenas_admin root 2.2K Jul  6 19:42 telegraf.conf
+```
+:::
 
 TODO systemd-run
 
