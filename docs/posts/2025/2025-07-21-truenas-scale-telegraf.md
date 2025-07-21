@@ -183,7 +183,7 @@ drwxrwx--- 5 root          root    5 Jul  4 15:47 ..
 You can confirm everything is setup correctly by running this command over SSH or through ➡️ System > Shell:
 
 ```bash
-sudo /bin/systemd-run --pty --unit telegraf-once -p User=root -p EnvironmentFile=/mnt/Vault/Apps/Telegraf/telegraf.env /mnt/Vault/Apps/Telegraf/telegraf --config /mnt/Vault/Apps/Telegraf/telegraf.conf --once
+sudo systemd-run --pty --unit telegraf-once -p User=root -p EnvironmentFile=/mnt/Vault/Apps/Telegraf/telegraf.env /mnt/Vault/Apps/Telegraf/telegraf --config /mnt/Vault/Apps/Telegraf/telegraf.conf --once
 ```
 
 It should print something like this:
