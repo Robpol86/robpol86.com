@@ -178,14 +178,23 @@ drwxrwx--- 5 root          root    5 Jul  4 15:47 ..
 ```
 :::
 
-TODO systemd-run
+### Test
 
-TODO alerts with health endpoint
+You can confirm everything is setup correctly by running this command over SSH or through ➡️ System > Shell:
 
 ```bash
-## Download from https://github.com/influxdata/telegraf/releases on macOS, then:
-scp ~/Downloads/telegraf-1.35.1/usr/bin/telegraf truenas_admin@10.192.168.10:/mnt/Vault/Apps/Telegraf/
+sudo /bin/systemd-run --pty --unit telegraf-once -p User=root -p EnvironmentFile=/mnt/Vault/Apps/Telegraf/telegraf.env /mnt/Vault/Apps/Telegraf/telegraf --config /mnt/Vault/Apps/Telegraf/telegraf.conf --once
 ```
+
+It should print something like this:
+
+```
+TODO
+```
+
+### Run on Boot
+
+TODO
 
 ➡️ System > Advanced Settings > Init/Shutdown Scripts > Add
 
@@ -200,6 +209,8 @@ Then reboot.
 
 ### Configure TrueNAS Graphite Exporter
 
+TODO influxdbv1 support but electing telegraf
+
 ➡️ Reporting > Exporters > Add
 
 1. **Name**: Telegraf
@@ -211,6 +222,8 @@ Then reboot.
 1. **Update Every**: 50
 
 ### Alerts
+
+TODO health endpoint
 
 ➡️ System > Advanced Settings > Cron Jobs > Add
 
@@ -224,7 +237,6 @@ Then reboot.
 ```
 
 ## Grafana
-
 
 ➡️ Apps > Discover Apps > ... > Install via YAML
 
