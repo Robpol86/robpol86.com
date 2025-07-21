@@ -38,7 +38,7 @@ Before starting there are a few things we need to setup:
 
 ### Choose a Pool
 
-For this guide we're using **Vault** as the pool. To enable apps in Truenas:
+For this guide we're using **Vault** as the pool. To enable apps in TrueNAS:
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Configuration** and then **Choose Pool**
