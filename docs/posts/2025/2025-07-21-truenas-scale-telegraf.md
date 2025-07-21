@@ -1,6 +1,6 @@
 ---
 blogpost: true
-date: 2025-07-20
+date: 2025-07-21
 author: Robpol86
 location: Melbourne
 category: Tutorials
@@ -9,8 +9,18 @@ tags: homelab, nas
 
 # TrueNAS Telegraf, Influx, Grafana
 
-This guide explains how I run Grafana, InfluxDB, and Telegraf on TrueNAS SCALE (25.04.1 as of this writing) running on my
-Beelink Me Mini.
+This guide will explain how to run Telegraf on TrueNAS SCALE, as well as running InfluxDB and Grafana apps to collect metrics
+and show graphs. This is how I run all three apps on my Beelink Me Mini NAS. Af of this writing I'm running TrueNAS SCALE
+25.04.1.
+
+Most guides and posts on the internet show how to run Telegraf from a Docker container with /sys and other filesystems
+mounted as well as running in privileged mode. I personally don't like that approach, so instead I just run Telegraf as root
+on "bare metal".
+
+```{warning}
+Running Telegraf on bare metal is not supported by TrueNAS. This implementation may stop working on future versions of
+TrueNAS SCALE if they stop including the commands we need.
+```
 
 ## Prerequisites
 
