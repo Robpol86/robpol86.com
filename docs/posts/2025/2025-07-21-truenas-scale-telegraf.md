@@ -67,6 +67,8 @@ You should now see something like this.
 
 ## InfluxDB
 
+TODO investigate influxdb v2 and bring back tabs, but use synced tabs.
+
 I use [InfluxDB](https://www.influxdata.com/) version 1 as the timeseries database to store all my metrics. Because the
 official InfluxDB TrueNAS app [uses v2](https://apps.truenas.com/catalog/influxdb/) I'm deploying mine as a custom app. If
 you'd rather run the official app feel free to use it instead and skip to the [Telegraf](#telegraf) section of this guide.
