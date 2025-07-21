@@ -9,7 +9,10 @@ tags: homelab, nas
 
 # TrueNAS Telegraf, Influx, Grafana
 
-TODO TrueNAS SCALE Telegraf InfluxDB Grafana
+This guide explains how I've setup single node instances of Grafana, Telegraf, and InfluxDB on my Beelink mini NAS running
+TrueNAS SCALE (25.04.1).
+
+TODO
 
 ## Prerequisites
 
