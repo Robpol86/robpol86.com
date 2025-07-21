@@ -31,9 +31,23 @@ versions of TrueNAS SCALE if they stop including the commands we need.
 
 ## Prerequisites
 
-Before starting we need to configure TrueNAS to use apps. For this guide we're using **Vault** as the pool and we'll be
-creating a few datasets. One dataset per app and one all-encompassing dataset for organizational purposes. This is the structure
-we'll be using:
+Before starting there are a few things we need to setup:
+
+- Choose a pool for apps if you haven't used apps in TrueNAS before
+- Create datasets for each application
+
+### Choose a Pool
+
+For this guide we're using **Vault** as the pool. To enable apps in Truenas:
+
+1. In the TrueNAS UI go to ➡️ Apps
+1. Click on **Configuration** and then **Choose Pool**
+1. Select a pool (e.g. Vault)
+
+### Create Datasets
+
+Next we'll be creating a few datasets. We'll create a dataset named **Apps** just for organization, and within it we'll
+create datasets for each individual app. This is the structure we'll be using:
 
 ```
 Vault (pool)
@@ -43,33 +57,21 @@ Vault (pool)
     └── Telegraf
 ```
 
-### Create Apps Dataset
+1. In the TrueNAS UI go to ➡️ Datasets
+1. Click on **Vault** then **Add Dataset**
+    1. **Name**: Apps
+    1. **Dataset Preset**: Apps
+    1. Save
+1. Click on the new **Apps** dataset then **Add Dataset** again
+    1. **Name**: InfluxDB
+    1. **Dataset Preset**: Apps
+    1. Save
+    1. Return to Pool List
+    1. *Repeat for Grafana and Telegraf*
 
-TODO
-
-If you haven't used apps yet on your TrueNAS system you'll need to pick a pool to enable them. First create the **Apps**
-dataset. Substitute "Vault" with your pool's name.
-
-➡️ Datasets > Vault > Add Dataset
-
-1. **Name**: Apps
-1. **Dataset Preset**: Apps
-
-### Configure Apps
-
-Next TODO
-
-➡️ Apps > Configuration
-
-1. **Choose Pool**: Vault
-
-➡️ Datasets > Vault/Apps > Add Dataset
-
-1. **Name**: InfluxDB
-1. **Dataset Preset**: Apps
-1. Save > Return to Pool List
-1. *Repeat for Grafana*
-1. *Repeat for Telegraf*
+```{imgur-figure} TODO
+You should now see something like this.
+```
 
 ## InfluxDB
 
