@@ -25,8 +25,8 @@ mounted as well as running in privileged mode. I personally don't like that appr
 on "bare metal" (as in not in a container or in a VM).
 
 ```{warning}
-Running Telegraf on bare metal is not supported by TrueNAS. This implementation may stop working on future versions of
-TrueNAS SCALE if they stop including the commands we need.
+Running Telegraf on bare metal is not officially supported by TrueNAS. This implementation may stop working on future
+versions of TrueNAS SCALE if they stop including the commands we need.
 ```
 
 ## Prerequisites
