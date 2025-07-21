@@ -10,10 +10,10 @@ tags: homelab, nas
 # TrueNAS Telegraf, Influx, Grafana
 
 ```{list-table}
-* - :::{imgur} TODO
-  - :::{imgur} TODO
-* - :::{imgur} TODO
-  - :::{imgur} TODO
+* - :::{imgur} UZEhmk5
+  - :::{imgur} 8HI9Usi
+* - :::{imgur} u1VnBj4
+  - :::{imgur} EuNZltU
 ```
 
 This guide will explain how to run Telegraf on TrueNAS SCALE, as well as running InfluxDB and Grafana apps to collect metrics
