@@ -15,7 +15,7 @@ and show graphs. This is how I run all three apps on my Beelink Me Mini NAS. Af 
 
 Most guides and posts on the internet show how to run Telegraf from a Docker container with /sys and other filesystems
 mounted as well as running in privileged mode. I personally don't like that approach, so instead I just run Telegraf as root
-on "bare metal".
+on "bare metal" (as in not in a container or in a VM).
 
 ```{warning}
 Running Telegraf on bare metal is not supported by TrueNAS. This implementation may stop working on future versions of
@@ -24,15 +24,33 @@ TrueNAS SCALE if they stop including the commands we need.
 
 ## Prerequisites
 
+Before starting we need to configure TrueNAS to use apps. For this guide we're using **Vault** as the pool and we'll be
+creating a few datasets. One dataset per app and one all-encompassing dataset for organizational purposes. This is the layout
+we'll be using:
+
+```
+Vault (pool)
+└─ Apps
+   ├─ InfluxDB
+   ├─ Grafana
+   └─ Telegraf
+```
+
+### Create Apps Dataset
+
 TODO
 
-Before starting we need to configure TrueNAS to use apps. For this guide we're using **Vault** as the pool and we'll be
-creating a new dataset for apps. We'll name this dataset **Apps**.
+If you haven't used apps yet on your TrueNAS system you'll need to pick a pool to enable them. First create the **Apps**
+dataset. Substitute "Vault" with your pool's name.
 
 ➡️ Datasets > Vault > Add Dataset
 
 1. **Name**: Apps
 1. **Dataset Preset**: Apps
+
+### Configure Apps
+
+Next TODO
 
 ➡️ Apps > Configuration
 
