@@ -75,6 +75,18 @@ You should now see something like this.
 
 ## InfluxDB
 
+I use [InfluxDB](https://www.influxdata.com/) as the timeseries database to store all my metrics. Here I'll explain two ways
+you can install it.
+
+::::{tab-set}
+
+:::{tab-item} Simple Install
+TODO
+:::
+
+:::{tab-item} Custom Install
+TODO version 1 2 and 3.
+
 ➡️ Apps > Discover Apps > ... > Install via YAML
 
 1. **Name**: influxdb
@@ -100,6 +112,11 @@ services:
     user: "568:568"
     volumes: [/mnt/Vault/Apps/InfluxDB:/var/lib/influxdb]
 ```
+:::
+
+::::
+
+### Configuration
 
 ➡️ Apps > influxdb > Workloads > Containers > influxdb > Shell
 
