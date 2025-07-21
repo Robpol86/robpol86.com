@@ -9,21 +9,24 @@ tags: homelab, nas
 
 # TrueNAS Telegraf, Influx, Grafana
 
-This guide explains how I've setup single node instances of Grafana, Telegraf, and InfluxDB on my Beelink mini NAS running
-TrueNAS SCALE (25.04.1).
+This guide explains how I run Grafana, InfluxDB, and Telegraf on TrueNAS SCALE (25.04.1 as of this writing) running on my
+Beelink Me Mini.
+
+## Prerequisites
 
 TODO
 
-## Prerequisites
+Before starting we need to configure TrueNAS to use apps. For this guide we're using **Vault** as the pool and we'll be
+creating a new dataset for apps. We'll name this dataset **Apps**.
 
 ➡️ Datasets > Vault > Add Dataset
 
 1. **Name**: Apps
 1. **Dataset Preset**: Apps
 
-➡️ Apps > Configuration > **Choose Pool**: Vault
+➡️ Apps > Configuration
 
-### Add Datasets
+1. **Choose Pool**: Vault
 
 ➡️ Datasets > Vault/Apps > Add Dataset
 
