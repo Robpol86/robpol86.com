@@ -32,7 +32,7 @@ versions of TrueNAS SCALE if they stop including the commands we need.
 ## Prerequisites
 
 Before starting we need to configure TrueNAS to use apps. For this guide we're using **Vault** as the pool and we'll be
-creating a few datasets. One dataset per app and one all-encompassing dataset for organizational purposes. This is the layout
+creating a few datasets. One dataset per app and one all-encompassing dataset for organizational purposes. This is the structure
 we'll be using:
 
 ```
