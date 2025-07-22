@@ -21,10 +21,6 @@ and show graphs. This is how I run all three apps on my
 [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS SCALE
 25.04.1 (Fangtooth).
 
-```{admonition} Caveats
-- agent.interval is 50s TODO
-```
-
 ## Prerequisites
 
 Before starting there are a few things we need to setup:
@@ -71,17 +67,15 @@ You should now see something like this.
 
 ## InfluxDB
 
-TODO switch to influxdb v2, no tabs
-
 I use [InfluxDB](https://www.influxdata.com/) version 1 as the timeseries database to store all my metrics. Because the
 official InfluxDB TrueNAS app [uses v2](https://apps.truenas.com/catalog/influxdb/) I'm deploying mine as a custom app. If
 you'd rather run the official app feel free to use it instead and skip to the [Telegraf](#telegraf) section of this guide.
 
 ```{note}
 I'm running v1 because the latest version (as of this writing it's v3) has an absurd 3-day data limit for the free license
-(lol). It also removed Flux (lol). I guess I could have gone with v2 but it looks like enabling InfluxQL requires additional
-steps. I don't want to rewrite all of my Grafana dashboard's queries in a dead language and nothing's wrong with v1 so I've
-decided to stick with that.
+(lol). It also removed Flux (lol). Try as I might I can't find any justifiable reason to use v2. Even the
+[CTO and cofounder of InfluxData](https://community.influxdata.com/t/in-2024-which-influxdb-should-i-use-to-get-started-and-then-go-to-production/32840)
+suggest starting with v1 over v2 for future proofing.
 ```
 
 1. In the TrueNAS UI go to ➡️ Apps
@@ -167,7 +161,7 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
     - Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration) section in place of REPLACE_ME
-1. `telegraf` from the latest [amd64 Linux](https://github.com/influxdata/telegraf/releases) release
+1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **amd64 Linux** release
     - Extract the tar.gz file and look for the `telegraf` file in `usr/bin`
 
 :::{hint}
@@ -182,6 +176,17 @@ drwxrwx--- 5 root          root    5 Jul  4 15:47 ..
 -rwxrwx--- 1 truenas_admin root 2.2K Jul  6 19:42 telegraf.conf
 ```
 :::
+
+```{note}
+I set `agent.interval=50s` in [telegraf.conf](/_static/telegraf.conf) as a compromise.
+
+Back in 2021 my InfluxDB v1 instance on a Xeon server suddenly started not responding to 50% of HTTP requests after 4 years
+of running with no issues. I suspect this was due to too much granular data.
+
+Unfortunately implementing downsampling and retention policies is ugly and overly complicated in InfluxDB v1 or v2,
+especially if you want to show these data in Grafana. I gave up on downsampling and instead I'm collecting less data than the
+10s default interval, to at least delay this problem until the future.
+```
 
 ### Run on Boot
 
