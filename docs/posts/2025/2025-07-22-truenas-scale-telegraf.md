@@ -20,7 +20,7 @@ This guide will explain how to run [Telegraf](https://www.influxdata.com/time-se
 [TrueNAS SCALE](https://www.truenas.com/truenas-scale/), as well as running the [InfluxDB](https://www.influxdata.com/) and
 [Grafana](https://grafana.com/oss/grafana/) apps to collect NAS metrics and show graphs. This is how I run all three apps on
 my [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
-SCALE 25.04.1 (Fangtooth).
+SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement monitoring in a homelab-tier single-node machine.
 
 Ever since I saw [MRTG](https://en.wikipedia.org/wiki/Multi_Router_Traffic_Grapher) graphs at my first job at an ISP in 2003,
 I've always wanted to collect metrics and show them in graphs. Things like free disk space or CPU temperatures. I ran MRTG on
