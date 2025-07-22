@@ -69,7 +69,7 @@ Vault (pool)
     1. Return to Pool List
     1. *Repeat for Grafana and Telegraf*
 
-```{imgur-figure} TODO
+```{imgur-figure} sZ4tExJ
 You should now see something like this.
 ```
 
@@ -77,8 +77,8 @@ You should now see something like this.
 
 I use [InfluxDB version 1](https://docs.influxdata.com/influxdb/v1/) as the timeseries database to store all my metrics.
 Because the official InfluxDB TrueNAS app [uses v2](https://apps.truenas.com/catalog/influxdb/) I'm deploying mine as a
-custom app. If you'd rather run the official app feel free to use it instead and skip to the [Telegraf](#telegraf) section of
-this guide.
+custom app. If you'd rather run the official app feel free to use that instead and skip to the [Telegraf](#telegraf) section
+of this guide.
 
 ```{note}
 I'm running v1 because the latest version (as of this writing it's v3) has an absurd 3-day data limit for the free license
@@ -89,7 +89,7 @@ suggests starting with v1 over v2 for future proofing.
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Discover Apps**
-1. Click on "⋮" menu button then **Install via YAML**
+1. Click on the "⋮" menu button then **Install via YAML**
     1. **Name**: influxdb
     1. **Custom Config**: *paste the following; change "Vault" to your pool name*
         ```yaml
@@ -116,7 +116,7 @@ suggests starting with v1 over v2 for future proofing.
             volumes: [/mnt/Vault/Apps/InfluxDB:/var/lib/influxdb]
         ```
 
-```{imgur-figure} TODO
+```{imgur-figure} DdzTqkM
 After you click "Save" you should see something like this.
 ```
 
@@ -126,7 +126,7 @@ Now that InfluxDB is running it's time to configure it.
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on the running **influxdb** application
-1. Under "Workloads" next to "influxdb - Running" click the command line icon to shell into the container
+1. Under "Workloads" next to "influxdb - Running" click the **Shell** icon
 1. Run the command `influx` and then execute these queries to create the **admin** user:
     ```sql
     CREATE USER admin WITH PASSWORD 'REPLACE_ME' WITH ALL PRIVILEGES
@@ -237,10 +237,10 @@ you might find a use for them.
 
 ### Alerts
 
-Finally we'll set up alerts. I configured my TrueNAS with email alerts, and I'd like to be notified if Telegraf isn't
-recording metrics. We'll accomplish this by using a cronjob that checks the `outputs.health` endpoint in
-[telegraf.conf](/_static/telegraf.conf). The cronjob will fail if Telegraf isn't running or if Telegraf hasn't sent metrics
-to InfluxDB in a while (usually after 5 minutes of downtime).
+I configured my TrueNAS with email alerts, and I'd like to be notified if Telegraf isn't recording metrics. We'll accomplish
+this by using a cronjob that checks the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf). The cronjob
+will fail if Telegraf isn't running or if Telegraf hasn't sent metrics to InfluxDB in a while (usually after 5 minutes of
+downtime).
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
 1. Add a Cron Job
