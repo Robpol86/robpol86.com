@@ -207,7 +207,8 @@ To stop Telegraf run: `sudo systemctl stop telegraf`
 
 ### TrueNAS Graphite Exporter
 
-TODO influxdbv1 support but electing telegraf
+TrueNAS supports exporting some metrics. Here we'll tell it to export them to Telegraf. They're not used in my dashboard but
+you might find a use for them.
 
 1. In the TrueNAS UI go to ➡️ Reporting
 1. Click on **Exporters** then **Add**
@@ -222,18 +223,23 @@ TODO influxdbv1 support but electing telegraf
 
 ### Alerts
 
-TODO health endpoint
+Finally we'll set up alerts. I configured my TrueNAS with email alerts, and I'd like to be notified if Telegraf isn't
+recording metrics. We'll accomplish this by using a cronjob that checks the `outputs.health` endpoint in
+[telegraf.conf](/_static/telegraf.conf). The cronjob will fail if Telegraf isn't running or if Telegraf hasn't sent metrics
+to InfluxDB in a while (usually after 5 minutes of downtime).
 
-➡️ System > Advanced Settings > Cron Jobs > Add
-
-1. **Description**: Telegraf Alerts
-1. **Run As User**: root
-1. **Schedule**: `*/10 * * * *`
-1. **Hide Standard Output/Error**: Uncheck
-
-```bash
-(curl -sSf http://localhost:12121 -o /dev/null || journalctl --since "1 minute ago" -u telegraf)
-```
+1. In the TrueNAS UI go to ➡️ System > Advanced Settings
+1. Add a Cron Job
+    1. **Description**: Telegraf Alerts
+    1. **Run As User**: root
+    1. **Schedule**: Custom
+        1. **Minutes**: `*`
+        1. **Hours**: `*`
+    1. **Hide Standard Output/Error**: Uncheck
+    1. **Command** (include the parenthesis):
+        ```bash
+        (curl -sSf http://localhost:12121 -o /dev/null || journalctl --since "1 minute ago" -u telegraf)
+        ```
 
 ## Grafana
 
