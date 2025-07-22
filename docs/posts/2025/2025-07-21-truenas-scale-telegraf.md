@@ -21,6 +21,10 @@ and show graphs. This is how I run all three apps on my
 [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS SCALE
 25.04.1 (Fangtooth).
 
+```{admonition} Caveats
+- agent.interval is 50s TODO
+```
+
 ## Prerequisites
 
 Before starting there are a few things we need to setup:
@@ -67,7 +71,7 @@ You should now see something like this.
 
 ## InfluxDB
 
-TODO investigate influxdb v2 and bring back tabs, but use synced tabs.
+TODO switch to influxdb v2, no tabs
 
 I use [InfluxDB](https://www.influxdata.com/) version 1 as the timeseries database to store all my metrics. Because the
 official InfluxDB TrueNAS app [uses v2](https://apps.truenas.com/catalog/influxdb/) I'm deploying mine as a custom app. If
@@ -162,8 +166,7 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
-    - Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration)
-  section in place of REPLACE_ME
+    - Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration) section in place of REPLACE_ME
 1. `telegraf` from the latest [amd64 Linux](https://github.com/influxdata/telegraf/releases) release
     - Extract the tar.gz file and look for the `telegraf` file in `usr/bin`
 
@@ -180,48 +183,42 @@ drwxrwx--- 5 root          root    5 Jul  4 15:47 ..
 ```
 :::
 
-### Test
-
-You can confirm everything is setup correctly by running this command over SSH or through ➡️ System > Shell:
-
-```bash
-sudo systemd-run --pty --unit telegraf-once -p User=root -p EnvironmentFile=/mnt/Vault/Apps/Telegraf/telegraf.env /mnt/Vault/Apps/Telegraf/telegraf --config /mnt/Vault/Apps/Telegraf/telegraf.conf --once
-```
-
-It should print something like this:
-
-```
-TODO
-```
-
 ### Run on Boot
 
-TODO
+Here we'll configure TrueNAS to run Telegraf on boot by using a post-init command. This command will use `systemd-run` to launch Telegraf and handle things such as logging, restarting on failures, and environment variables.
 
-➡️ System > Advanced Settings > Init/Shutdown Scripts > Add
+1. In the TrueNAS UI go to ➡️ System > Advanced Settings
+1. Add an Init/Shutdown script
+    1. **Description**: Telegraf
+    1. **Type**: Command
+    1. **When**: Post Init
+    1. **Command**:
+        ```bash
+        /bin/systemd-run --no-block --unit telegraf -p User=root -p Restart=always -p RestartSec=30 -p EnvironmentFile=/mnt/Vault/Apps/Telegraf/telegraf.env /mnt/Vault/Apps/Telegraf/telegraf --config /mnt/Vault/Apps/Telegraf/telegraf.conf
+        ```
 
-1. **Description**: Telegraf
-1. **When**: Post Init
+You can now reboot, or if you don't want to you can run the command with `sudo`.
 
-```bash
-/bin/systemd-run --no-block --unit telegraf -p User=root -p Restart=always -p RestartSec=30 -p EnvironmentFile=/mnt/Vault/Apps/Telegraf/telegraf.env /mnt/Vault/Apps/Telegraf/telegraf --config /mnt/Vault/Apps/Telegraf/telegraf.conf
+```{tip}
+To view Telegraf logs run: `sudo journalctl -u telegraf`
+
+To stop Telegraf run: `sudo systemctl stop telegraf`
 ```
 
-Then reboot.
-
-### Configure TrueNAS Graphite Exporter
+### TrueNAS Graphite Exporter
 
 TODO influxdbv1 support but electing telegraf
 
-➡️ Reporting > Exporters > Add
-
-1. **Name**: Telegraf
-1. **Type**: GRAPHITE
-1. **Destination IP**: localhost
-1. **Destination Port**: 2003
-1. **Prefix**: graphite
-1. **Namespace**: truenas_reporting
-1. **Update Every**: 50
+1. In the TrueNAS UI go to ➡️ Reporting
+1. Click on **Exporters** then **Add**
+    1. **Name**: Telegraf
+    1. **Type**: GRAPHITE
+    1. **Destination IP**: localhost
+    1. **Destination Port**: 2003
+    1. **Prefix**: graphite
+    1. **Namespace**: truenas_reporting
+    1. **Update Every**: 50
+        1. This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)
 
 ### Alerts
 
