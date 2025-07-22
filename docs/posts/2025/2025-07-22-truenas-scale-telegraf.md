@@ -233,7 +233,7 @@ you might find a use for them.
     1. **Prefix**: graphite
     1. **Namespace**: truenas_reporting
     1. **Update Every**: 50
-        1. This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)
+        - This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)
 
 To confirm this works you can **Shell** into the influxdb container and run this via `influx`:
 
@@ -269,41 +269,39 @@ downtime).
 
 ## Grafana
 
-➡️ Apps > Discover Apps > ... > Install via YAML
+TODO
 
-1. **Name**: grafana
-1. **Custom Config**: *paste app-grafana.yaml*
+1. In the TrueNAS UI go to ➡️ Apps
+1. Click on **Discover Apps**
+1. Search for **Grafana** and install it
+1. In the "Install Grafana" screen make these changes:
+    1. Storage Configuration > Grafana Data Storage
+        1. **Type**: Host Path
+        1. **Host Path**: /mnt/Vault/Apps/Grafana
 
-```yaml
-services:
-  grafana:
-    hostname: grafana
-    image: grafana/grafana:12.0.2
-    pull_policy: always
-    restart: always
-    ports:
-      - mode: ingress
-        protocol: tcp
-        published: 3000
-        target: 3000
-    user: "568:568"
-    volumes: [/mnt/Vault/Apps/Grafana:/var/lib/grafana]
-x-portals:
-  - host: 0.0.0.0
-    name: Grafana UI
-    path: /
-    port: 3000
-    scheme: http
-```
+### Grafana Configuration
 
-➡️ Apps > grafana > Application Info > Grafana UI
+Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. The default username and
+password are both "admin". Then do the following to set it up with our InfluxDB application.
 
-1. Login with admin/admin
-    1. Set new password
 1. Connections > Data sources > Add data source > InfluxDB
+    1. **Name**: influxdb
+    1. **Query language**: InfluxQL
     1. **URL**: http://172.16.0.1:8086
-    1. Basic Auth Details > **User**: grafana
+        - This is the Docker network IP that InfluxDB runs in
+    1. Auth
+        1. **Basic auth**: Enable
+        1. Basic Auth Details
+            - **User**: grafana
+            - **Password**: *Use the grafana password you used in the [InfluxDB Configuration](#influxdb-configuration) section*
     1. InfluxDB Details > **Database**: telegraf
+    1. Save & test
+        - *It should say something like: datasource is working 434 measurements found*
+
+You can now create a new dashboard or import mine and go from there.
+
+TODO
+
 1. Dashboards > New > Import
     1. Browse to [grafana.json](/_static/grafana.json)
     1. **Select a InfluxDB data source**: influxdb
