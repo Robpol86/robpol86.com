@@ -177,12 +177,12 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 If you run `ls -lah /mnt/Vault/Apps/Telegraf` you should see something like this:
 
 ```
-total 119M
-drwxrwx--- 2 root          root    5 Jul 21 21:59 .
-drwxrwx--- 5 root          root    5 Jul  4 15:47 ..
--rwxrwx--- 1 truenas_admin root   44 Jul  4 16:00 env
--rwxrwx--- 1 truenas_admin root 279M Jul  4 16:00 telegraf
--rwxrwx--- 1 truenas_admin root 2.2K Jul  6 19:42 telegraf.conf
+total 118M
+drwxrwx--- 2 root          root    5 Jul 22 17:40 .
+drwxrwx--- 5 root          root    5 Jul 22 17:17 ..
+-rwxrwx--- 1 truenas_admin root 279M Jul 22 17:40 telegraf
+-rwxrwx--- 1 truenas_admin root 2.2K Jul 22 17:40 telegraf.conf
+-rwxrwx--- 1 truenas_admin root   37 Jul 22 17:40 telegraf.env
 ```
 :::
 
@@ -234,6 +234,18 @@ you might find a use for them.
     1. **Namespace**: truenas_reporting
     1. **Update Every**: 50
         1. This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)
+
+To confirm this works you can **Shell** into the influxdb container and run this via `influx`:
+
+```sql
+AUTH
+USE telegraf
+SHOW MEASUREMENTS
+```
+
+```{imgur-figure} 9kt35ns
+You should see a lot of `graphite.*` measurements.
+```
 
 ### Alerts
 
