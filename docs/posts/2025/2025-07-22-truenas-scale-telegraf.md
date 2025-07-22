@@ -84,7 +84,7 @@ this guide.
 I'm running v1 because the latest version (as of this writing it's v3) has an absurd 3-day data limit for the free license
 (lol). It also removed Flux (lol). Try as I might I can't find any justifiable reason to use v2. Even the
 [CTO and cofounder of InfluxData](https://community.influxdata.com/t/in-2024-which-influxdb-should-i-use-to-get-started-and-then-go-to-production/32840)
-suggest starting with v1 over v2 for future proofing.
+suggests starting with v1 over v2 for future proofing.
 ```
 
 1. In the TrueNAS UI go to ➡️ Apps
