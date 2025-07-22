@@ -22,6 +22,13 @@ This guide will explain how to run [Telegraf](https://www.influxdata.com/time-se
 my [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
 SCALE 25.04.1 (Fangtooth).
 
+Ever since I saw [MRTG](https://en.wikipedia.org/wiki/Multi_Router_Traffic_Grapher) graphs at my first job at an ISP in 2003,
+I've always wanted to collect metrics and show them in graphs. Things like free disk space or CPU temperatures. I ran MRTG on
+my homelab file server for a few years, then tried [RRDtool](https://en.wikipedia.org/wiki/RRDtool) for a bit. It was in 2015
+at Uber where I learned about Grafana and fell in love with it. Not so much the Graphite backend they were using at the time.
+I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf. I've also setup Grafana to alert me via
+Discord.
+
 ## Prerequisites
 
 Before starting there are a few things we need to setup:
