@@ -29,10 +29,6 @@ at Uber where I learned about Grafana and fell in love with it. Not so much the 
 I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf. I've also setup Grafana to alert me via
 Discord.
 
-## TODOs
-
-- Fresh install, confirm hostname is "truenas". Don't change it and see if grafana.json can remain unmodified
-
 ## Prerequisites
 
 Before starting there are a few things we need to setup:
