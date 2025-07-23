@@ -312,6 +312,6 @@ I like to make this dashboard the default page for Grafana, so when I click on "
 
 You should now have the "TIG stack" running on your NAS. Feel free to add or remove panels in the dashboard to see the
 metrics you're interested in. You can also monitor additional components of your homelab by editing the `telegraf.conf` file.
-For more information you can read more about
+You can read more about
 [input plugins here](https://docs.influxdata.com/telegraf/v1/configure_plugins/input_plugins/). If you have any questions or
 suggestions feel free to leave a comment below.
