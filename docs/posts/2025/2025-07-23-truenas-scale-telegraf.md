@@ -282,7 +282,7 @@ InfluxDB application:
 1. Connections > Data sources > Add data source > InfluxDB
     1. **Name**: influxdb
     1. **Query language**: InfluxQL
-    1. **URL**: http://172.16.0.1:8086
+    1. **URL**: `http://172.16.0.1:8086`
         - This is the Docker network IP that InfluxDB runs in
     1. Auth
         1. **Basic auth**: Enable
