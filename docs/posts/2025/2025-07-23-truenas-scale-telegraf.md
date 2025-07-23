@@ -23,10 +23,10 @@ my [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS
 SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.
 
 Ever since I saw [MRTG](https://en.wikipedia.org/wiki/Multi_Router_Traffic_Grapher) graphs at my first job at an ISP in 2003,
-I've always wanted to collect metrics and visualize them in graphs. Things like free disk space or CPU temperatures. I ran MRTG on
-my homelab file server for a few years, then tried [RRDtool](https://en.wikipedia.org/wiki/RRDtool) for a bit. It was in 2015
-at Uber where I learned about Grafana and fell in love with it. Not so much the Graphite backend they were using at the time.
-I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf.
+I've always wanted to collect metrics and visualize them in graphs. Things like free disk space or CPU temperatures. I ran
+MRTG on my homelab file server for a few years, then tried [RRDtool](https://en.wikipedia.org/wiki/RRDtool) for a bit. It was
+in 2015 at Uber where I learned about Grafana and fell in love with it. Not so much the Graphite backend they were using at
+the time. I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf.
 
 ## Prerequisites
 
@@ -187,7 +187,8 @@ drwxrwx--- 5 root          root    5 Jul 22 17:17 ..
 
 ### Run on Boot
 
-Here we'll configure TrueNAS to run Telegraf on boot by using a post-init command. This command will use `systemd-run` to launch Telegraf and handle things such as logging, restarting on failures, and environment variables.
+Here we'll configure TrueNAS to run Telegraf on boot by using a post-init command. This command will use `systemd-run` to
+launch Telegraf and handle things such as logging, restarting on failures, and environment variables.
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
 1. Add an Init/Shutdown script
@@ -320,6 +321,6 @@ I like to make this dashboard the default page for Grafana, so when I click on "
 
 You should now have the "TIG stack" running on your NAS. Feel free to add or remove panels in the dashboard to see the
 metrics you're interested in. You can also monitor additional components of your homelab by editing the `telegraf.conf` file.
-You can read more about
+You can read more about Telegraf
 [input plugins here](https://docs.influxdata.com/telegraf/v1/configure_plugins/input_plugins/). If you have any questions or
 suggestions feel free to leave a comment below.
