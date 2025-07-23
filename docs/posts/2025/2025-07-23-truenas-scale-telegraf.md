@@ -190,17 +190,6 @@ drwxrwx--- 5 root          root    5 Jul 22 17:17 ..
 ```
 :::
 
-```{note}
-I set `agent.interval=50s` in [telegraf.conf](/_static/telegraf.conf) as a compromise.
-
-Back in 2021 my InfluxDB v1 instance on a Xeon server suddenly started not responding to 50% of HTTP requests after 4 years
-of running with no issues. I suspect this was due to too much granular data.
-
-Unfortunately implementing downsampling and retention policies is ugly and overly complicated in InfluxDB v1 or v2,
-especially if you want to show these data in Grafana. I gave up on downsampling and instead I'm collecting less data than the
-10s default interval, to at least delay this problem until the future.
-```
-
 ### Run on Boot
 
 Here we'll configure TrueNAS to run Telegraf on boot by using a post-init command. This command will use `systemd-run` to launch Telegraf and handle things such as logging, restarting on failures, and environment variables.
