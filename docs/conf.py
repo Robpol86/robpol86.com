@@ -161,6 +161,7 @@ blog_locations = {
     "Mexico City": ("Mexico City", "https://en.wikipedia.org/wiki/Mexico_City"),
     "Calafate": ("El Calafate", "https://en.wikipedia.org/wiki/El_Calafate"),
     "Sydney": ("Sydney", "https://en.wikipedia.org/wiki/Sydney"),
+    "Melbourne": ("Melbourne", "https://en.wikipedia.org/wiki/Melbourne"),
 }
 blog_title = project
 disqus_pages = False
