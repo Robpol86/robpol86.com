@@ -126,18 +126,18 @@ Now that InfluxDB is running it's time to configure it.
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on the running **influxdb** application
 1. Under "Workloads" next to "influxdb - Running" click the **Shell** icon
-1. Run the `influx` command and then execute these queries to create the **admin** user:
+1. Run the `influx` command and then execute these statements to create the **admin** user:
     ```sql
     CREATE USER admin WITH PASSWORD 'REPLACE_ME' WITH ALL PRIVILEGES
     AUTH
     ```
-1. Then run these queries to create the telegraf database and the user which Telegraf will use:
+1. Then run these statements to create the telegraf database and the user which Telegraf will use:
     ```sql
     CREATE DATABASE telegraf
     CREATE USER truenas WITH PASSWORD 'REPLACE_ME'
     GRANT WRITE ON telegraf TO truenas
     ```
-1. Finally run these queries to create the user Grafana will use:
+1. Finally run these statements to create the user Grafana will use:
     ```sql
     CREATE USER grafana WITH PASSWORD 'REPLACE_ME'
     GRANT READ ON telegraf TO grafana
