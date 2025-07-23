@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.7.23.73959]
+
+TrueNAS Telegraf guide
+
+* 7f79d76 TrueNAS Telegraf guide (#299)
+
 ## [2025.7.15.15706]
 
 Desk July Sydney
