@@ -7,6 +7,13 @@
       "type": "datasource",
       "pluginId": "influxdb",
       "pluginName": "InfluxDB"
+    },
+    {
+      "name": "VAR_NAS_HOST",
+      "type": "constant",
+      "label": "NAS_HOST",
+      "value": "tnas",
+      "description": ""
     }
   ],
   "__elements": {},
@@ -45,10 +52,17 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
+  "description": "https://robpol86.com/posts/2025/2025-07-23-truenas-scale-telegraf.html",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -171,8 +185,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             }
           ]
         }
@@ -498,8 +512,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -864,8 +878,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -1156,8 +1170,6 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT max(\"temp_input\") FROM \"sensors\" WHERE (\"host\" = 'tnas' AND \"feature\"::tag =~ /core_/) AND $timeFilter GROUP BY time($interval), \"feature\"::tag fill(previous)",
-          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1177,8 +1189,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -1244,7 +1256,7 @@
               },
               {
                 "color": "red",
-                "value": 90
+                "value": 70
               }
             ]
           },
@@ -1509,8 +1521,6 @@
           "measurement": "sensors",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT max(\"temp_input\") FROM \"sensors\" WHERE (\"host\" = 'tnas' AND \"feature\"::tag =~ /package|temp/) AND $timeFilter GROUP BY time($interval), \"feature\"::tag fill(previous)",
-          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1530,8 +1540,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -1748,8 +1758,6 @@
           "measurement": "exec_zfs_list",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"used\") FROM \"exec_zfs_list\" WHERE (\"host\" = 'tnas' AND \"name\"::tag =~ /Temporary|Robpol86\\/Robpol86|Stuff\\/Stuff/) AND $timeFilter GROUP BY time($__interval), \"name\"::tag fill(null)",
-          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1769,14 +1777,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
-            },
-            {
-              "condition": "AND",
-              "key": "name::tag",
               "operator": "=~",
-              "value": "/Apps\\/|Temporary|Robpol86\\/Robpol86|Stuff\\/Stuff/"
+              "value": "/^$NAS_HOST$/"
             }
           ]
         }
@@ -1990,8 +1992,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             }
           ]
         }
@@ -2362,8 +2364,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -2725,8 +2727,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -3087,8 +3089,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -3449,8 +3451,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -3587,8 +3589,6 @@
           "measurement": "system",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"load1\") FROM \"system\" WHERE (\"host\" = 'tnas') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -3650,8 +3650,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             }
           ]
         }
@@ -3769,8 +3769,6 @@
           "measurement": "cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_user\") AS \"user\", mean(\"usage_system\") AS \"system\", mean(\"usage_nice\") AS \"nice\", mean(\"usage_iowait\") AS \"iowait\", mean(\"usage_irq\") AS \"irq\", mean(\"usage_softirq\") AS \"softirq\" FROM \"cpu\" WHERE (\"host\" = 'tnas' AND \"cpu\" = 'cpu-total') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -3886,8 +3884,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -4053,8 +4051,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             }
           ]
         },
@@ -4106,8 +4104,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             }
           ]
         }
@@ -4359,8 +4357,6 @@
           "measurement": "diskio",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT non_negative_derivative(last(\"read_bytes\"), 1s) FROM \"diskio\" WHERE \"host\" = 'filesrv.rob86.net' AND \"name\" =~ /^sd.$/ AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -4416,8 +4412,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -4629,8 +4625,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             },
             {
               "condition": "AND",
@@ -4817,8 +4813,8 @@
           "tags": [
             {
               "key": "host",
-              "operator": "=",
-              "value": "tnas"
+              "operator": "=~",
+              "value": "/^$NAS_HOST$/"
             }
           ]
         }
@@ -4831,7 +4827,28 @@
   "schemaVersion": 41,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "description": "Hostname of the NAS.",
+        "hide": 2,
+        "name": "NAS_HOST",
+        "query": "${VAR_NAS_HOST}",
+        "skipUrlSync": true,
+        "type": "constant",
+        "current": {
+          "value": "${VAR_NAS_HOST}",
+          "text": "${VAR_NAS_HOST}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_NAS_HOST}",
+            "text": "${VAR_NAS_HOST}",
+            "selected": false
+          }
+        ]
+      }
+    ]
   },
   "time": {
     "from": "now-1h",
@@ -4839,8 +4856,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "TNAS",
+  "title": "NAS",
   "uid": "mcQnVpISz",
-  "version": 4,
+  "version": 8,
   "weekStart": ""
 }
