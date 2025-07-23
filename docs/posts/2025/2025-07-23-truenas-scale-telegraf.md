@@ -168,9 +168,9 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
-    - Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration) section in place of REPLACE_ME
+    - *Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration) section*
 1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **amd64 Linux** release
-    - Extract the tar.gz file and look for the `telegraf` file in `usr/bin`
+    - *Extract the tar.gz file and look for the `telegraf` file in `usr/bin`*
 
 :::{hint}
 If you run `ls -lah /mnt/Vault/Apps/Telegraf` you should see something like this:
