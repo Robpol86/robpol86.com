@@ -307,3 +307,8 @@ I like to make this dashboard the default page for Grafana, so when I click on "
 1. Upper right avatar > Profile > Preferences
     1. **Home Dashboard**: Dashboards/NAS
     1. Save
+
+## Conclusion
+
+You should now have the "TIG" stack running on your NAS. Feel free to add or remove panels in the dashboard to see the
+metrics you're interested in. If you have any questions or suggestions feel free to leave a comment below.
