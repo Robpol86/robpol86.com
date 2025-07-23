@@ -269,6 +269,10 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
             1. **Host Path**: /mnt/Vault/Apps/Grafana
             1. *Repeat for Grafana Plugins Storage*
 
+```{imgur-figure} qbXRRCO
+After you click "Install" you should see something like this.
+```
+
 ### Grafana Configuration
 
 Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. The default username and
