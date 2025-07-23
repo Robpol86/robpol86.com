@@ -1,6 +1,6 @@
 ---
 blogpost: true
-date: 2025-07-22
+date: 2025-07-23
 author: Robpol86
 location: Melbourne
 category: Tutorials
@@ -269,7 +269,8 @@ downtime).
 
 ## Grafana
 
-TODO
+We can use the offical Grafana TrueNAS app to visualize our metrics and draw pretty graphs. It also supports alerting you
+through email, Discord, Slack, and other methods (however I won't be covering Grafana alerts in this guide).
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Discover Apps**
@@ -298,12 +299,13 @@ password are both "admin". Then do the following to set it up with our InfluxDB 
     1. Save & test
         - *It should say something like: datasource is working 434 measurements found*
 
-You can now create a new dashboard or import mine and go from there.
-
-TODO
+You can now create a new dashboard or import mine and go from there. To import mine:
 
 1. Dashboards > New > Import
-    1. Browse to [grafana.json](/_static/grafana.json)
+    1. Upload my [grafana.json](/_static/grafana.json)
     1. **Select a InfluxDB data source**: influxdb
+    1. Import
+
+1. TODO
     1. Upper right avatar > Profile > Preferences
         1. **Home Dashboard**: Dashboards/TNAS
