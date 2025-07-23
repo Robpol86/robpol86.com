@@ -249,7 +249,7 @@ downtime).
     1. **Schedule**: Custom
         1. **Minutes**: `*`
         1. **Hours**: `*`
-    1. **Hide Standard Output/Error**: Uncheck
+    1. **Hide Standard Output/Error**: Uncheck both
     1. **Command** (include the parenthesis):
         ```bash
         (curl -sSf http://localhost:12121 -o /dev/null || journalctl --since "1 minute ago" -u telegraf)
