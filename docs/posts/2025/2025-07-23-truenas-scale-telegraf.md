@@ -126,7 +126,7 @@ Now that InfluxDB is running it's time to configure it.
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on the running **influxdb** application
 1. Under "Workloads" next to "influxdb - Running" click the **Shell** icon
-1. Run the command `influx` and then execute these queries to create the **admin** user:
+1. Run the `influx` command and then execute these queries to create the **admin** user:
     ```sql
     CREATE USER admin WITH PASSWORD 'REPLACE_ME' WITH ALL PRIVILEGES
     AUTH
