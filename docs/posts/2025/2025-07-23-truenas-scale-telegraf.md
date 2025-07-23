@@ -221,7 +221,7 @@ you might find a use for them.
     1. **Prefix**: graphite
     1. **Namespace**: truenas_reporting
     1. **Update Every**: 50
-        - This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)
+        - *This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)*
 
 To confirm this works you can **Shell** into the influxdb container and run this via `influx`:
 
