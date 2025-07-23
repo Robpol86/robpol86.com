@@ -254,6 +254,14 @@ will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics t
         if ! curl -sSf http://localhost:12121 -o /dev/null; then journalctl --since "1 minute ago" -u telegraf; exit 1; fi
         ```
 
+```{note}
+The way Telegraf's health endpoint is implemented is a bit confusing. If Telegraf isn't able to send metrics to InfluxDB,
+they pile up in its internal memory buffer. When the number of buffered metrics crosses a threshold (configured in
+`outputs.health.compares`) the health endpoint starts responding with an http 503 error (typically 5 minutes after InfluxDB
+has gone down). When InfluxDB is restored Telegraf will re-send these buffered metrics and the health check will return to a
+http 200 OK state.
+```
+
 ## Grafana
 
 We can use the offical Grafana TrueNAS app to visualize our metrics and draw pretty graphs. It also supports alerting you
@@ -299,7 +307,7 @@ You can now create a new dashboard or import mine and go from there. To import m
     1. Upload my [grafana.json](/_static/grafana.json)
     1. influxdb > **Select a InfluxDB data source**: influxdb
     1. **NAS_HOST**: *your NAS hostname*
-        - Find this hostname in the main Dashboard page of the TrueNAS UI, under **System Information**
+        - *Find this hostname in the main Dashboard page of the TrueNAS UI, under System Information*
     1. Import
 
 I like to make this dashboard the default page for Grafana, so when I click on "Web UI" it takes me directly to the graphs.
