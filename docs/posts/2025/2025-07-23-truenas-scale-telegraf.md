@@ -263,9 +263,11 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
 1. Click on **Discover Apps**
 1. Search for **Grafana** and install it
 1. In the "Install Grafana" screen make these changes:
-    1. Storage Configuration > Grafana Data Storage
-        1. **Type**: Host Path
-        1. **Host Path**: /mnt/Vault/Apps/Grafana
+    1. Storage Configuration
+        1. Grafana Data Storage
+            1. **Type**: Host Path
+            1. **Host Path**: /mnt/Vault/Apps/Grafana
+            1. *Repeat for Grafana Plugins Storage*
 
 ### Grafana Configuration
 
