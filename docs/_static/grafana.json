@@ -12,7 +12,7 @@
       "name": "VAR_NAS_HOST",
       "type": "constant",
       "label": "NAS_HOST",
-      "value": "tnas",
+      "value": "truenas",
       "description": ""
     }
   ],

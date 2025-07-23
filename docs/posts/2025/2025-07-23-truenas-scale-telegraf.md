@@ -29,6 +29,10 @@ at Uber where I learned about Grafana and fell in love with it. Not so much the 
 I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf. I've also setup Grafana to alert me via
 Discord.
 
+## TODOs
+
+- Fresh install, confirm hostname is "truenas". Don't change it and see if grafana.json can remain unmodified
+
 ## Prerequisites
 
 Before starting there are a few things we need to setup:
@@ -303,9 +307,13 @@ You can now create a new dashboard or import mine and go from there. To import m
 
 1. Dashboards > New > Import
     1. Upload my [grafana.json](/_static/grafana.json)
-    1. **Select a InfluxDB data source**: influxdb
+    1. influxdb > **Select a InfluxDB data source**: influxdb
+    1. **NAS_HOST**: *your NAS hostname*
+        - Find this hostname in the main Dashboard page of the TrueNAS UI, under **System Information**
     1. Import
 
-1. TODO
-    1. Upper right avatar > Profile > Preferences
-        1. **Home Dashboard**: Dashboards/TNAS
+I like to make this dashboard the default page for Grafana. So clicking on "Web UI" takes me directly to the graphs.
+
+1. Upper right avatar > Profile > Preferences
+    1. **Home Dashboard**: Dashboards/NAS
+    1. Save
