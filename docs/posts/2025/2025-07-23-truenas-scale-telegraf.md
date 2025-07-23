@@ -258,7 +258,7 @@ will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics t
 The way Telegraf's health endpoint is implemented is a bit confusing. If Telegraf isn't able to send metrics to InfluxDB,
 they pile up in its internal memory buffer. When the number of buffered metrics crosses a threshold (configured in
 `outputs.health.compares`) the health endpoint starts responding with an http 503 error (typically 5 minutes after InfluxDB
-has gone down). When InfluxDB is restored Telegraf will re-send these buffered metrics and the health check will return to a
+has gone down). When InfluxDB is restored Telegraf will re-send these buffered metrics and the health check will return to an
 http 200 OK state.
 ```
 
