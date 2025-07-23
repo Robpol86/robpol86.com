@@ -276,7 +276,8 @@ After you click "Install" you should see something like this.
 ### Grafana Configuration
 
 Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. The default username and
-password are both "admin". Then do the following to set it up with our InfluxDB application.
+password are both "admin". Click on the Grafana logo in the upper left corner and then do the following to set it up with our
+InfluxDB application:
 
 1. Connections > Data sources > Add data source > InfluxDB
     1. **Name**: influxdb
