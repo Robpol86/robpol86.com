@@ -239,8 +239,7 @@ You should see a lot of `graphite.*` measurements.
 
 I configured my TrueNAS with email alerts, and I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish
 this by using a cronjob that checks the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf). The cronjob
-will fail if Telegraf isn't running or if Telegraf hasn't sent metrics to InfluxDB in a while (usually after 5 minutes of
-downtime).
+will fail if Telegraf isn't running or if Telegraf hasn't sent metrics to InfluxDB.
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
 1. Add a Cron Job
@@ -250,10 +249,15 @@ downtime).
         1. **Minutes**: `*`
         1. **Hours**: `*`
     1. **Hide Standard Output/Error**: Uncheck both
-    1. **Command** (include the parenthesis):
+    1. **Command**:
         ```bash
-        (curl -sSf http://localhost:12121 -o /dev/null || journalctl --since "1 minute ago" -u telegraf)
+        if ! curl -sSf http://localhost:12121 -o /dev/null; then journalctl --since "1 minute ago" -u telegraf; exit 1; fi
         ```
+
+```{tip}
+You can verify this by going to ➡️ Apps and stopping the influxdb app. After about 5 minutes you should see a new alert with
+some Telegraf logs. Don't forget to start the app afterward.
+```
 
 ## Grafana
 
