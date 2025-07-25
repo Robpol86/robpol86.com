@@ -238,7 +238,11 @@ You should see a lot of `graphite.*` measurements.
 
 ### Email Alerts
 
-I configured my TrueNAS with email alerts, and I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish
+I configured my TrueNAS with email alerts, and I'd like to be notified if InfluxDB isn't recording metrics.
+
+#### TODO New Way/Old Way tabs
+
+We'll accomplish
 this by using a cronjob that checks the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf). The cronjob
 will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to InfluxDB.
 
@@ -254,6 +258,8 @@ will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics t
         ```bash
         if ! curl -sSf http://localhost:12121 -o /dev/null; then journalctl --since "1 minute ago" -u telegraf; exit 1; fi
         ```
+
+END TAB HERE
 
 ```{note}
 The way Telegraf's health endpoint is implemented is a bit confusing. If Telegraf isn't able to send metrics to InfluxDB,
