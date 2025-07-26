@@ -26,7 +26,7 @@ extensions = [
 ]
 language = "en"
 project = "Robpol86.com"
-pygments_style = "vs"
+pygments_style = "dracula"
 version = "1.0.0"
 release = version
 templates_path = ["_templates"]
@@ -35,7 +35,7 @@ templates_path = ["_templates"]
 # Options for HTML output.
 html_baseurl = os.environ.get("SPHINX_HTML_BASEURL", "") or "http://localhost:8000/"
 html_context = {
-    "default_mode": "light",
+    "default_mode": "dark",
     "html_baseurl": html_baseurl,
 }
 html_copy_source = False
