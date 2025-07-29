@@ -236,23 +236,21 @@ SHOW MEASUREMENTS
 You should see a lot of `graphite.*` measurements.
 ```
 
-### Email Alerts
+### Alerts
 
-I configured my TrueNAS with email alerts, and I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish
-this by using a cronjob that checks the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf). The cronjob
-will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to InfluxDB.
+I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish this by reappropriating the built-in
+ApplicationsStartFailed alert. Every minute a systemd timer will poll the `outputs.health` endpoint in
+[telegraf.conf](/_static/telegraf.conf) and fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to
+InfluxDB.
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
-1. Add a Cron Job
-    1. **Description**: Telegraf Alerts
-    1. **Run As User**: root
-    1. **Schedule**: Custom
-        1. **Minutes**: `*`
-        1. **Hours**: `*`
-    1. **Hide Standard Output/Error**: Uncheck both
+1. Add an Init/Shutdown script
+    1. **Description**: Telegraf Health
+    1. **Type**: Command
+    1. **When**: Post Init
     1. **Command**:
         ```bash
-        if ! curl -sSf http://localhost:12121 -o /dev/null; then journalctl --since "1 minute ago" -u telegraf; exit 1; fi
+        /bin/systemd-run --on-calendar='*:*:00' --unit telegraf-health sh -c 'curl -sSf http://localhost:12121 -o /dev/null || midclt call alert.oneshot_create ApplicationsStartFailed "{\"error\": \"telegraf unhealthy\"}"'
         ```
 
 ```{note}
@@ -262,6 +260,28 @@ they pile up in its internal memory buffer. When the number of buffered metrics 
 has gone down). When InfluxDB is restored Telegraf will re-send these buffered metrics and the health check will return to an
 http 200 OK state.
 ```
+
+### Fan Speed
+
+This step is optional and specific to the Beelink Me Mini. Out of the box the CPU fan speed isn't reported because of a
+[missing kernel driver](https://github.com/frankcrawford/it87/issues/3). I wrote a workaround that compiles and installs the
+driver into TrueNAS to see the current fan RPM in the dashboard.
+
+```{danger}
+Do this at your own risk. Custom kernel drivers are 100% not officially supported by TrueNAS.
+```
+
+1. In the TrueNAS UI go to ➡️ System > Advanced Settings
+1. Add an Init/Shutdown script
+    1. **Description**: Telegraf it87
+    1. **Type**: Command
+    1. **When**: Post Init
+    1. **Command**:
+        ```bash
+        /bin/systemd-run --unit telegraf-it87 -p User=root sh -euxc 'if ! sensors |grep -P "^fan.?:"; then until systemctl is-active docker.service; do sleep 10; done; echo "FROM ubuntu AS build\nRUN apt-get update && apt-get install -y git make gcc\nWORKDIR /source\nRUN git clone https://github.com/frankcrawford/it87 .\nCOPY --from=usrlib modules /lib/modules\nCOPY --from=usrlib x86_64-linux-gnu/libelf.so.1 /usr/lib/x86_64-linux-gnu/\nCOPY --from=usrsrc . /usr/src\nRUN make\nFROM scratch\nCOPY --from=build /source/it87.ko ." |docker build --build-context usrlib=/usr/lib --build-context usrsrc=/usr/src --output=/var/run/it87 -; mount -o remount,rw /usr; cp /var/run/it87/it87.ko "/usr/lib/modules/$(uname -r)/kernel/drivers/hwmon/"; mount -o remount,ro /usr; echo it87 |tee /etc/modules-load.d/it87.conf; modprobe it87; fi'
+        ```
+
+Reboot or run the command with `sudo`.
 
 ## Grafana
 
