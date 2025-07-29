@@ -255,6 +255,19 @@ will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics t
         if ! curl -sSf http://localhost:12121 -o /dev/null; then journalctl --since "1 minute ago" -u telegraf; exit 1; fi
         ```
 
+TODO v
+
+➡️ System > Advanced Settings > Init/Shutdown Scripts > Add
+
+1. **Description**: Telegraf Health
+1. **When**: Post Init
+
+```bash
+/bin/systemd-run --on-calendar='*:*:00' --unit telegraf-health sh -c 'curl -sSf http://localhost:12121 -o /dev/null || midclt call alert.oneshot_create ApplicationsStartFailed "{\"error\": \"telegraf unhealthy\"}"'
+```
+
+TODO ^
+
 ```{note}
 The way Telegraf's health endpoint is implemented is a bit confusing. If Telegraf isn't able to send metrics to InfluxDB,
 they pile up in its internal memory buffer. When the number of buffered metrics crosses a threshold (configured in
@@ -262,6 +275,21 @@ they pile up in its internal memory buffer. When the number of buffered metrics 
 has gone down). When InfluxDB is restored Telegraf will re-send these buffered metrics and the health check will return to an
 http 200 OK state.
 ```
+
+### Fan Speed
+
+TODO
+
+➡️ System > Advanced Settings > Init/Shutdown Scripts > Add
+
+1. **Description**: Telegraf it87
+1. **When**: Post Init
+
+```bash
+/bin/systemd-run --unit telegraf-it87 -p User=root sh -euxc 'if ! sensors |grep -P "^fan.?:"; then until systemctl is-active docker.service; do sleep 10; done; echo "FROM ubuntu AS build\nRUN apt-get update && apt-get install -y git make gcc\nWORKDIR /source\nRUN git clone https://github.com/frankcrawford/it87 .\nCOPY --from=usrlib modules /lib/modules\nCOPY --from=usrlib x86_64-linux-gnu/libelf.so.1 /usr/lib/x86_64-linux-gnu/\nCOPY --from=usrsrc . /usr/src\nRUN make\nFROM scratch\nCOPY --from=build /source/it87.ko ." |docker build --build-context usrlib=/usr/lib --build-context usrsrc=/usr/src --output=/var/run/it87 -; mount -o remount,rw /usr; cp /var/run/it87/it87.ko "/usr/lib/modules/$(uname -r)/kernel/drivers/hwmon/"; mount -o remount,ro /usr; echo it87 |tee /etc/modules-load.d/it87.conf; modprobe it87; fi'
+```
+
+Then reboot.
 
 ## Grafana
 
