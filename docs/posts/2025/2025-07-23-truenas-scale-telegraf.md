@@ -238,8 +238,10 @@ You should see a lot of `graphite.*` measurements.
 
 ### Alerts
 
-I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish this by TODO
-using a cronjob that checks the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf). The cronjob will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to InfluxDB.
+I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish this by reappropriating the built-in
+ApplicationsStartFailed alert. Every minute a systemd timer will poll the `outputs.health` endpoint in
+[telegraf.conf](/_static/telegraf.conf) and fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to
+InfluxDB.
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
 1. Add an Init/Shutdown script
@@ -261,18 +263,25 @@ http 200 OK state.
 
 ### Fan Speed
 
-TODO
+This step is optional and specific to the Beelink Me Mini. Out of the box the CPU fan speed isn't reported because of a
+[missing kernel driver](https://github.com/frankcrawford/it87/issues/3). I wrote a workaround that compiles and installs the
+driver into TrueNAS to see the current fan RPM in the dashboard.
 
-➡️ System > Advanced Settings > Init/Shutdown Scripts > Add
-
-1. **Description**: Telegraf it87
-1. **When**: Post Init
-
-```bash
-/bin/systemd-run --unit telegraf-it87 -p User=root sh -euxc 'if ! sensors |grep -P "^fan.?:"; then until systemctl is-active docker.service; do sleep 10; done; echo "FROM ubuntu AS build\nRUN apt-get update && apt-get install -y git make gcc\nWORKDIR /source\nRUN git clone https://github.com/frankcrawford/it87 .\nCOPY --from=usrlib modules /lib/modules\nCOPY --from=usrlib x86_64-linux-gnu/libelf.so.1 /usr/lib/x86_64-linux-gnu/\nCOPY --from=usrsrc . /usr/src\nRUN make\nFROM scratch\nCOPY --from=build /source/it87.ko ." |docker build --build-context usrlib=/usr/lib --build-context usrsrc=/usr/src --output=/var/run/it87 -; mount -o remount,rw /usr; cp /var/run/it87/it87.ko "/usr/lib/modules/$(uname -r)/kernel/drivers/hwmon/"; mount -o remount,ro /usr; echo it87 |tee /etc/modules-load.d/it87.conf; modprobe it87; fi'
+```{danger}
+Do this at your own risk. Custom kernel drivers are 100% not officially supported by TrueNAS.
 ```
 
-Then reboot.
+1. In the TrueNAS UI go to ➡️ System > Advanced Settings
+1. Add an Init/Shutdown script
+    1. **Description**: Telegraf it87
+    1. **Type**: Command
+    1. **When**: Post Init
+    1. **Command**:
+        ```bash
+        /bin/systemd-run --unit telegraf-it87 -p User=root sh -euxc 'if ! sensors |grep -P "^fan.?:"; then until systemctl is-active docker.service; do sleep 10; done; echo "FROM ubuntu AS build\nRUN apt-get update && apt-get install -y git make gcc\nWORKDIR /source\nRUN git clone https://github.com/frankcrawford/it87 .\nCOPY --from=usrlib modules /lib/modules\nCOPY --from=usrlib x86_64-linux-gnu/libelf.so.1 /usr/lib/x86_64-linux-gnu/\nCOPY --from=usrsrc . /usr/src\nRUN make\nFROM scratch\nCOPY --from=build /source/it87.ko ." |docker build --build-context usrlib=/usr/lib --build-context usrsrc=/usr/src --output=/var/run/it87 -; mount -o remount,rw /usr; cp /var/run/it87/it87.ko "/usr/lib/modules/$(uname -r)/kernel/drivers/hwmon/"; mount -o remount,ro /usr; echo it87 |tee /etc/modules-load.d/it87.conf; modprobe it87; fi'
+        ```
+
+Reboot or run the command with `sudo`.
 
 ## Grafana
 
