@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.7.29.64016]
+
+Telegraf alerts and beelink fan speed
+
+* 4c9c318 Telegraf alerts and beelink fan speed (#302)
+
 ## [2025.7.26.100108]
 
 Dark Mode
