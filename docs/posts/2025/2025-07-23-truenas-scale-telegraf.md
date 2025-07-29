@@ -236,37 +236,20 @@ SHOW MEASUREMENTS
 You should see a lot of `graphite.*` measurements.
 ```
 
-### Email Alerts
+### Alerts
 
-I configured my TrueNAS with email alerts, and I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish
-this by using a cronjob that checks the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf). The cronjob
-will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to InfluxDB.
+I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish this by TODO
+using a cronjob that checks the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf). The cronjob will fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to InfluxDB.
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
-1. Add a Cron Job
-    1. **Description**: Telegraf Alerts
-    1. **Run As User**: root
-    1. **Schedule**: Custom
-        1. **Minutes**: `*`
-        1. **Hours**: `*`
-    1. **Hide Standard Output/Error**: Uncheck both
+1. Add an Init/Shutdown script
+    1. **Description**: Telegraf Health
+    1. **Type**: Command
+    1. **When**: Post Init
     1. **Command**:
         ```bash
-        if ! curl -sSf http://localhost:12121 -o /dev/null; then journalctl --since "1 minute ago" -u telegraf; exit 1; fi
+        /bin/systemd-run --on-calendar='*:*:00' --unit telegraf-health sh -c 'curl -sSf http://localhost:12121 -o /dev/null || midclt call alert.oneshot_create ApplicationsStartFailed "{\"error\": \"telegraf unhealthy\"}"'
         ```
-
-TODO v
-
-➡️ System > Advanced Settings > Init/Shutdown Scripts > Add
-
-1. **Description**: Telegraf Health
-1. **When**: Post Init
-
-```bash
-/bin/systemd-run --on-calendar='*:*:00' --unit telegraf-health sh -c 'curl -sSf http://localhost:12121 -o /dev/null || midclt call alert.oneshot_create ApplicationsStartFailed "{\"error\": \"telegraf unhealthy\"}"'
-```
-
-TODO ^
 
 ```{note}
 The way Telegraf's health endpoint is implemented is a bit confusing. If Telegraf isn't able to send metrics to InfluxDB,
