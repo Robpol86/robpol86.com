@@ -131,10 +131,10 @@ notfound_context = dict(  # pylint: disable=use-dict-literal
     'frameborder="0" scrolling="no"></iframe>',
 )
 notfound_urls_prefix = ""
-ogp_custom_meta_tags = [
+ogp_custom_meta_tags = (
     '<meta name="twitter:card" content="summary_large_image">',
     f'<meta property="twitter:domain" content="{urlparse(html_baseurl).netloc}">',
-]
+)
 ogp_description_length = 300
 ogp_image = f"{html_baseurl.rstrip('/')}/{html_logo.rsplit('.', 1)[0]}.png"
 ogp_site_name = html_title
