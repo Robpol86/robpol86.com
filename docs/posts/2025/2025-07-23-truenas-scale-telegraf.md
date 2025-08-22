@@ -29,7 +29,7 @@ in 2015 at Uber where I learned about Grafana and fell in love with it. Not so m
 the time. I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf.
 
 ```{seealso}
-An earlier version of this guide was written for InfluxDB v1. You can access that documentation here:
+An earlier version of this guide was written for InfluxDB v1. You can access it here:
 https://github.com/Robpol86/robpol86.com/blob/4c9c31827b3fae5e85d1aa9543649868f33b9652/docs/posts/2025/2025-07-23-truenas-scale-telegraf.md
 ```
 
