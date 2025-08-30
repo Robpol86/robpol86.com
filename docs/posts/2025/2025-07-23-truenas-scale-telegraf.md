@@ -301,11 +301,12 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
 1. Search for **Grafana** and install it
 1. In the "Install Grafana" screen make these changes:
     1. Storage Configuration
-    1. TODO below
         1. Grafana Data Storage
             1. **Type**: Host Path
-            1. **Host Path**: /mnt/Vault/Apps/Grafana
-            1. *Repeat for Grafana Plugins Storage*
+            1. **Host Path**: /mnt/Vault/Apps/Grafana/data
+        1. Grafana Plugins Storage
+            1. **Type**: Host Path
+            1. **Host Path**: /mnt/Vault/Apps/Grafana/plugins
 
 ```{imgur-figure} qbXRRCO
 After you click "Install" you should see something like this.
