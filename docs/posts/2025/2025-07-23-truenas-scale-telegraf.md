@@ -95,41 +95,25 @@ We'll be using the official InfluxDB TrueNAS app as the timeseries database to s
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Discover Apps**
-1. TODO below
-1. Click on the "⋮" menu button then **Install via YAML**
-    1. **Name**: influxdb
-    1. **Custom Config**: *paste the following; change "Vault" to your pool name*
-        ```yaml
-        services:
-          influxdb:
-            hostname: influxdb
-            # 1.11.8 is the latest version of v1
-            image: influxdb:1.11.8
-            pull_policy: always
-            restart: always
-            environment:
-              # Without this you can read/write to InfluxDB without a password
-              INFLUXDB_HTTP_AUTH_ENABLED: "true"
-              # Allows you to use Flux in your Grafana queries
-              INFLUXDB_HTTP_FLUX_ENABLED: "true"
-            ports:
-            - mode: ingress
-              protocol: tcp
-              published: 8086
-              target: 8086
-            # This is the UID for the "apps" user in TrueNAS
-            user: "568:568"
-            # Change "Vault" to your pool name
-            volumes: [/mnt/Vault/Apps/InfluxDB:/var/lib/influxdb]
-        ```
+1. Search for **InfluxDB** and install it
+1. In the "Install Grafana" screen make these changes:
+    1. **Timezone**: UTC
+    1. **Port Number**: 8086
+    1. Storage Configuration
+        1. InfluxDB Config Storage
+            1. **Type**: Host Path
+            1. **Host Path**: /mnt/Vault/Apps/InfluxDB/config
+        1. InfluxDB Data Storage
+            1. **Type**: Host Path
+            1. **Host Path**: /mnt/Vault/Apps/InfluxDB/data
 
 ```{imgur-figure} DdzTqkM
-After you click "Save" you should see something like this.
+TODO UPDATE IMAGE. After you click "Save" you should see something like this.
 ```
 
 ### InfluxDB Configuration
 
-Now that InfluxDB is running it's time to configure it.
+Now that InfluxDB is running it's time to configure it. TODO web UI
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on the running **influxdb** application
@@ -309,7 +293,7 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
             1. **Host Path**: /mnt/Vault/Apps/Grafana/plugins
 
 ```{imgur-figure} qbXRRCO
-After you click "Install" you should see something like this.
+TODO UPDATE IMAGE. After you click "Install" you should see something like this.
 ```
 
 ### Grafana Configuration
