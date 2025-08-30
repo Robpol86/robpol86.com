@@ -113,37 +113,30 @@ TODO UPDATE IMAGE. After you click "Save" you should see something like this.
 
 ### InfluxDB Configuration
 
-Now that InfluxDB is running it's time to configure it. TODO web UI
+Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. You'll see a "Get Started" form.
+Fill it out with these values:
 
-1. In the TrueNAS UI go to ➡️ Apps
-1. Click on the running **influxdb** application
-1. Under "Workloads" next to "influxdb - Running" click the **Shell** icon
-1. Run the `influx` command and then execute these statements to create the **admin** user:
-    ```sql
-    CREATE USER admin WITH PASSWORD 'REPLACE_ME' WITH ALL PRIVILEGES
-    AUTH
-    ```
-1. Then run these statements to create the telegraf database and the user which Telegraf will use:
-    ```sql
-    CREATE DATABASE telegraf
-    CREATE USER truenas WITH PASSWORD 'REPLACE_ME'
-    GRANT WRITE ON telegraf TO truenas
-    ```
-1. Finally run these statements to create the user Grafana will use:
-    ```sql
-    CREATE USER grafana WITH PASSWORD 'REPLACE_ME'
-    GRANT READ ON telegraf TO grafana
-    ```
+1. **Username**: admin
+1. **Initial Organization Name**: homelab
+1. **Initial Bucket Name**: telegraf
+1. Advanced TODO explore other options
 
-:::{tip}
-You can ignore this error:
+Next we need to create a token for Telegraf to use for writing, and another token for Grafana to use for reading. In the web
+UI go to Load Data > API Tokens then click on **Generate API Token** > Custom API Token.
 
-```
-There was an error writing history file: open /.influx_history: permission denied
-```
+For Telegraf:
 
-After a while it becomes annoying. You can avoid it by running `HOME= influx` instead of just `influx`.
-:::
+1. **Description**: telegraf-truenas
+1. Buckets > telegraf > **Write**: Check
+1. Generate
+1. Copy the presented token, you won't be able to access it after this
+
+Then repeat the process for Grafana:
+
+1. **Description**: grafana
+1. Buckets > telegraf > **Read**: Check
+1. Generate
+1. Copy the presented token, you won't be able to access it after this
 
 ## Telegraf
 
@@ -160,7 +153,7 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
-    - *Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration) section*
+    - *Use the telegraf token you generated in the [InfluxDB Configuration](#influxdb-configuration) section*
 1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **amd64 Linux** release
     - *Extract the tar.gz file and look for the `telegraf` file in `usr/bin`*
 
@@ -172,7 +165,7 @@ total 118M
 drwxrwx--- 2 root          root    5 Jul 22 17:40 .
 drwxrwx--- 5 root          root    5 Jul 22 17:17 ..
 -rwxrwx--- 1 truenas_admin root 279M Jul 22 17:40 telegraf
--rwxrwx--- 1 truenas_admin root 2.2K Jul 22 17:40 telegraf.conf
+-rwxrwx--- 1 truenas_admin root 2.2K Jul 22 17:40 telegraf.conf TODO regenerate this block
 -rwxrwx--- 1 truenas_admin root   37 Jul 22 17:40 telegraf.env
 ```
 :::
@@ -213,20 +206,8 @@ you might find a use for them.
     1. **Destination Port**: 2003
     1. **Prefix**: graphite
     1. **Namespace**: truenas_reporting
-    1. **Update Every**: 50
+    1. **Update Every**: 10
         - *This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)*
-
-To confirm this works you can **Shell** into the influxdb container and run this via `influx`:
-
-```sql
-AUTH
-USE telegraf
-SHOW MEASUREMENTS
-```
-
-```{imgur-figure} 9kt35ns
-You should see a lot of `graphite.*` measurements.
-```
 
 ### Alerts
 
@@ -304,17 +285,16 @@ InfluxDB application:
 
 1. Connections > Data sources > Add data source > InfluxDB
     1. **Name**: influxdb
-    1. **Query language**: InfluxQL
+    1. **Query language**: Flux
     1. **URL**: `http://172.16.0.1:8086`
         - *This is the Docker network IP that InfluxDB runs in*
-    1. Auth
-        1. **Basic auth**: Enable
-        1. Basic Auth Details
-            - **User**: grafana
-            - **Password**: *Use the grafana password you used in the [InfluxDB Configuration](#influxdb-configuration) section*
-    1. InfluxDB Details > **Database**: telegraf
+    1. **Auth**: *Disable all*
+    1. InfluxDB Details
+        1. **Organization**: homelab
+        1. **Token**: *Use the grafana token you generated in the [InfluxDB Configuration](#influxdb-configuration) section*
+        1. **Default Bucket**: telegraf
     1. Save & test
-        - *It should say something like: datasource is working 434 measurements found*
+        - *It should say something like: TODO*
 
 You can now create a new dashboard or import mine and go from there. To import mine:
 
