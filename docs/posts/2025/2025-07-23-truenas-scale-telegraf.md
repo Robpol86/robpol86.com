@@ -77,22 +77,25 @@ Vault (pool)
 You should now see something like this.
 ```
 
+### Create Subdirectories
+
+Grafana and InfluxDB both require seperate directories for their configurations and data. You can create them by going to the
+TrueNAS shell under ➡️ System > Shell. Then run these commands:
+
+```bash
+mkdir /mnt/Vault/Apps/InfluxDB/config
+mkdir /mnt/Vault/Apps/InfluxDB/data
+mkdir /mnt/Vault/Apps/Grafana/plugins
+mkdir /mnt/Vault/Apps/Grafana/data
+```
+
 ## InfluxDB
 
-I use [InfluxDB version 1](https://docs.influxdata.com/influxdb/v1/) as the timeseries database to store all my metrics.
-Because the official InfluxDB TrueNAS app [uses v2](https://apps.truenas.com/catalog/influxdb/) I'm deploying mine as a
-custom app. If you'd rather run the official app feel free to use that instead and skip to the [Telegraf](#telegraf) section
-of this guide.
-
-```{note}
-I'm running v1 because the latest version (as of this writing it's v3) has an absurd 3-day data limit for the free license
-(lol). It also removed Flux (lol). Try as I might I can't find any justifiable reason to use v2. Even the
-[CTO and cofounder of InfluxData](https://community.influxdata.com/t/in-2024-which-influxdb-should-i-use-to-get-started-and-then-go-to-production/32840)
-suggests starting with v1 over v2 for future proofing.
-```
+We'll be using the official InfluxDB TrueNAS app as the timeseries database to store all of our metrics.
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Discover Apps**
+1. TODO below
 1. Click on the "⋮" menu button then **Install via YAML**
     1. **Name**: influxdb
     1. **Custom Config**: *paste the following; change "Vault" to your pool name*
@@ -298,6 +301,7 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
 1. Search for **Grafana** and install it
 1. In the "Install Grafana" screen make these changes:
     1. Storage Configuration
+    1. TODO below
         1. Grafana Data Storage
             1. **Type**: Host Path
             1. **Host Path**: /mnt/Vault/Apps/Grafana
