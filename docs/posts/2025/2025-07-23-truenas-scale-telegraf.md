@@ -49,8 +49,8 @@ Before starting there are a few things we need to setup:
 
 ### Choose a Pool
 
-The first step for enabling apps on TrueNAS is to select a pool. In a typical homelab you'll probably only have one pool
-where you store all of your files. Go ahead and select that pool. On my NAS I've named my pool **Vault**. Substitute that
+The first step for enabling apps on TrueNAS is to select a pool. In a typical home NAS you'll probably only have one pool
+where you store all of your files; go ahead and select that pool. On my NAS I've named my pool **Vault**. Substitute that
 with your pool's name.
 
 1. In the TrueNAS UI go to ➡️ Apps
