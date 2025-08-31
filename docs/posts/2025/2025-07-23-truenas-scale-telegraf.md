@@ -1,6 +1,6 @@
 ---
 blogpost: true
-date: 2025-07-23
+date: 2025-08-31
 author: Robpol86
 location: Melbourne
 category: Tutorials
@@ -179,12 +179,12 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 If you run `ls -lah /mnt/Vault/Apps/Telegraf` you should see something like this:
 
 ```
-total 118M
-drwxrwx--- 2 root          root    5 Jul 22 17:40 .
-drwxrwx--- 5 root          root    5 Jul 22 17:17 ..
--rwxrwx--- 1 truenas_admin root 279M Jul 22 17:40 telegraf
--rwxrwx--- 1 truenas_admin root 2.2K Jul 22 17:40 telegraf.conf TODO regenerate this block
--rwxrwx--- 1 truenas_admin root   37 Jul 22 17:40 telegraf.env
+total 120M
+drwxrwx--- 2 root          root    5 Aug 31 13:37 .
+drwxrwx--- 5 root          root    5 Aug 31 12:43 ..
+-rwxrwx--- 1 truenas_admin root 284M Aug 31 13:37 telegraf
+-rwxrwx--- 1 truenas_admin root 2.2K Aug 31 13:37 telegraf.conf
+-rwxrwx--- 1 truenas_admin root  104 Aug 31 13:37 telegraf.env
 ```
 :::
 
