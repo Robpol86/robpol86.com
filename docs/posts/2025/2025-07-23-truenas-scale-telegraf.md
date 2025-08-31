@@ -9,13 +9,11 @@ tags: homelab, nas
 
 # TrueNAS Telegraf, Influx, Grafana
 
-TODO new images v
-
 ```{list-table}
-* - :::{imgur} UZEhmk5
-  - :::{imgur} 8HI9Usi
-* - :::{imgur} u1VnBj4
-  - :::{imgur} EuNZltU
+* - :::{imgur} uXJoPnn
+  - :::{imgur} O8r0lnC
+* - :::{imgur} ovWSIhf
+  - :::{imgur} AzEomCa
 ```
 
 TODO what is TIG?
