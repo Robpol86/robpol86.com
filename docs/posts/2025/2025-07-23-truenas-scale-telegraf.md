@@ -343,7 +343,7 @@ graphs. To do that in the Grafana web UI go to:
 
 ## Conclusion
 
-You should now have the "TIG stack" running on your NAS. Feel free to add or remove panels in the dashboard to see the
+You should now have the TIG Stack running on your NAS. Feel free to add or remove panels in the dashboard to see the
 metrics you're interested in. You can also monitor additional components of your homelab by editing the `telegraf.conf` file.
 You can read more about Telegraf
 [input plugins here](https://docs.influxdata.com/telegraf/v1/configure_plugins/input_plugins/). If you have any questions or
