@@ -150,14 +150,14 @@ For Telegraf:
 1. **Description**: telegraf-truenas
 1. Buckets > telegraf > **Write**: Check
 1. Generate
-1. Copy the presented token, you won't be able to access it after this
+1. Write down the presented token for later, you won't be able to see it again
 
 Then repeat the process for Grafana:
 
 1. **Description**: grafana
 1. Buckets > telegraf > **Read**: Check
 1. Generate
-1. Copy the presented token, you won't be able to access it after this
+1. Write down the presented token for later, you won't be able to see it again
 
 ## Telegraf
 
@@ -324,7 +324,7 @@ following to set up Grafana with our InfluxDB application:
         1. **Token**: *Use the grafana token you generated in the [Generate Tokens](#generate-tokens) section*
         1. **Default Bucket**: telegraf
     1. Save & test
-        - *It should say something like: TODO*
+        - *It should say something like: datasource is working. 1 buckets found*
 
 You can now create a new dashboard or import mine and go from there. To import mine:
 
