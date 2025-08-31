@@ -16,15 +16,16 @@ tags: homelab, nas
   - :::{imgur} AzEomCa.png
 ```
 
-TODO what is TIG?
+TODO rephrase v
 
-TODO rephrase paragraph v
+[Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), [InfluxDB](https://docs.influxdata.com/influxdb/v2/get-started/),
+and [Grafana](https://grafana.com/oss/grafana/) are separate pieces of software that together allow you to build historical
+graphs for your servers, devices, and more. Together they make up the "TIG Stack".
 
-This guide will explain how to run [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/),
-[InfluxDB](https://www.influxdata.com/), and [Grafana](https://grafana.com/oss/grafana/) on
-[TrueNAS SCALE](https://www.truenas.com/truenas-scale/). This is how I run all three apps on
-my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
-SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.
+This guide will explain how to setup the TIG Stack on your NAS running [TrueNAS SCALE](https://www.truenas.com/truenas-scale/).
+This is how I run all three apps on my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of
+this writing I'm running TrueNAS SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring
+on a single node.
 
 Ever since I saw [MRTG](https://en.wikipedia.org/wiki/Multi_Router_Traffic_Grapher) graphs at my first job at an ISP in 2003,
 I've always wanted to collect metrics and visualize them in graphs. Things like free disk space or CPU temperatures. I ran
