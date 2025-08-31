@@ -227,6 +227,12 @@ you might find a use for them.
     1. **Update Every**: 10
         - *This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)*
 
+To confirm this works you can go into the InfluxDB web UI then click on **Data Explorer**:
+
+```{imgur-figure} wA62DJO
+You should see a lot of `graphite.*` measurements in the telegraf bucket.
+```
+
 ### Alerts
 
 I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish this by reappropriating the built-in
