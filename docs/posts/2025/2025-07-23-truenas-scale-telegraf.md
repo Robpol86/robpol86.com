@@ -122,15 +122,19 @@ We'll be using the official InfluxDB TrueNAS app as the timeseries database to s
 After you click "Install" you should see something like this.
 ```
 
-### InfluxDB Configuration
+### Initial Setup
 
-Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. You'll see a "Get Started" form.
-Fill it out with these values:
+Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. You'll see a "Get Started"
+button. Click on it and then fill out the form. Here I've provided some suggested values:
 
 1. **Username**: admin
 1. **Initial Organization Name**: homelab
 1. **Initial Bucket Name**: telegraf
-1. Advanced TODO explore other options
+1. Click **Continue** then **Quick Start**
+
+### Generate Tokens
+
+TODO sidebar collappsed by default
 
 Next we need to create a token for Telegraf to use for writing, and another token for Grafana to use for reading. In the web
 UI go to Load Data > API Tokens then click on **Generate API Token** > Custom API Token.
@@ -164,7 +168,7 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
-    - *Use the telegraf token you generated in the [InfluxDB Configuration](#influxdb-configuration) section*
+    - *Use the telegraf token you generated in the [Generate Tokens](#generate-tokens) section*
 1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **amd64 Linux** release
     - *Extract the tar.gz file and look for the `telegraf` file in `usr/bin`*
 
@@ -302,7 +306,7 @@ InfluxDB application:
     1. **Auth**: *Disable all*
     1. InfluxDB Details
         1. **Organization**: homelab
-        1. **Token**: *Use the grafana token you generated in the [InfluxDB Configuration](#influxdb-configuration) section*
+        1. **Token**: *Use the grafana token you generated in the [Generate Tokens](#generate-tokens) section*
         1. **Default Bucket**: telegraf
     1. Save & test
         - *It should say something like: TODO*
