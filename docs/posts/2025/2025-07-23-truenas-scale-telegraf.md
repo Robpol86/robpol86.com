@@ -134,6 +134,9 @@ button. Click on it and then fill out the form. Here I've provided some suggeste
 
 ### Generate Tokens
 
+```{imgur-figure} I7lVJeB
+```
+
 Next we need to create a token for Telegraf to use for writing, and another token for Grafana to use for reading. In the web
 UI expand the sidebar (there's an icon in the lower left corner) and go to:
 
