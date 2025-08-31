@@ -134,10 +134,13 @@ button. Click on it and then fill out the form. Here I've provided some suggeste
 
 ### Generate Tokens
 
-TODO sidebar collappsed by default
-
 Next we need to create a token for Telegraf to use for writing, and another token for Grafana to use for reading. In the web
-UI go to Load Data > API Tokens then click on **Generate API Token** > Custom API Token.
+UI expand the sidebar (there's an icon in the lower left corner) and go to:
+
+1. Load Data
+    1. API Tokens
+        1. Generate API Token
+            1. Custom API Token
 
 For Telegraf:
 
