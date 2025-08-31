@@ -299,9 +299,10 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
         1. Grafana Plugins Storage
             1. **Type**: Host Path
             1. **Host Path**: /mnt/Vault/Apps/Grafana/plugins
+1. Then click **Install**
 
-```{imgur-figure} qbXRRCO
-TODO UPDATE IMAGE. After you click "Install" you should see something like this.
+```{imgur-figure} 3HWC6nv
+After you click "Install" you should see something like this.
 ```
 
 ### Grafana Configuration
