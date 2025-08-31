@@ -105,7 +105,7 @@ We'll be using the official InfluxDB TrueNAS app as the timeseries database to s
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Discover Apps**
 1. Search for **InfluxDB** and install it
-1. In the "Install Grafana" screen make these changes:
+1. In the "Install InfluxDB" screen make these changes:
     1. **Timezone**: UTC
     1. **Port Number**: 8086
     1. Storage Configuration
