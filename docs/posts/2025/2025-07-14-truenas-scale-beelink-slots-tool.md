@@ -7,7 +7,7 @@ category: Tutorials
 tags: homelab, nas, beelink
 ---
 
-# TrueNAS Slots Tool for Me Mini
+# TrueNAS Slots Tool for ME Mini
 
 ```{list-table}
 * - :::{imgur-image} XObiRqa
@@ -27,7 +27,7 @@ Some SSDs have the serial numbers facing the heatsink.
 
 ## Requirements
 
-This script is designed for TrueNAS SCALE running on the [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150).
+This script is designed for TrueNAS SCALE running on the [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150).
 The NAS I have has the Intel N150 CPU, but I've read on Reddit that the newer ones ship with the N200 CPU. If you have one of
 those, please let me know in the comments whether the script works for you or not.
 
@@ -48,7 +48,7 @@ set -eu; cd /dev; for device in nvme?n1; do id="$(midclt call disk.query |jq -er
 ## Explanation
 
 The script reads the PCIe Root Port number for each NVMe drive. It compares them to a known mapping between these port
-numbers and the corresponding slot number on the Beelink Me Mini motherboard.
+numbers and the corresponding slot number on the Beelink ME Mini motherboard.
 
 ```{imgur-figure} khZAZAw
 Chipset > PCH-IO Configuration > PCI Express Configuration
@@ -110,7 +110,7 @@ for device in nvme?n1; do
         }
     ' "/sys/block/$device/device/device/firmware_node/path")"
     # Besides slot numbers I'm also showing the PCIe generation and width. One
-    # of the NVMe slots on the Me Mini has two lanes instead of one. We can show
+    # of the NVMe slots on the ME Mini has two lanes instead of one. We can show
     # this in the TrueNAS UI. The PCIe generation is shown as the link speed.
     address="$(head -1 "/sys/block/$device/device/address")"
     # If you're running this script manually you'll need sudo because of this
