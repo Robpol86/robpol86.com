@@ -16,9 +16,9 @@ tags: homelab, nas
   - :::{imgur} EuNZltU
 ```
 
-This guide will explain how to run [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) on
-[TrueNAS SCALE](https://www.truenas.com/truenas-scale/), as well as running the [InfluxDB](https://www.influxdata.com/) and
-[Grafana](https://grafana.com/oss/grafana/) apps to collect NAS metrics and show graphs. This is how I run all three apps on
+This guide will explain how to run [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/),
+[InfluxDB](https://www.influxdata.com/), and [Grafana](https://grafana.com/oss/grafana/) on
+[TrueNAS SCALE](https://www.truenas.com/truenas-scale/). This is how I run all three apps on
 my [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
 SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.
 
@@ -29,7 +29,8 @@ in 2015 at Uber where I learned about Grafana and fell in love with it. Not so m
 the time. I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf.
 
 ```{seealso}
-An earlier version of this guide was written for InfluxDB v1. You can access it here:
+This guide is written for InfluxDB v2, which is the version used by the latest TrueNAS app at this time. An earlier version
+of this guide was written for InfluxDB v1. You can access it here:
 https://github.com/Robpol86/robpol86.com/blob/4c9c31827b3fae5e85d1aa9543649868f33b9652/docs/posts/2025/2025-07-23-truenas-scale-telegraf.md
 ```
 
