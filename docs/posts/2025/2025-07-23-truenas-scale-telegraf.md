@@ -335,9 +335,10 @@ You can now create a new dashboard or import mine and go from there. To import m
         - *Find this hostname in the main Dashboard page of the TrueNAS UI, under System Information*
     1. Import
 
-I like to make this dashboard the default page for Grafana, so when I click on "Web UI" it takes me directly to the graphs.
+I like to make this dashboard the default page for Grafana, so when I go to the Grafana web UI it takes me directly to my
+graphs. To do that in the Grafana web UI go to:
 
-1. Upper right avatar > Profile > Preferences
+1. Upper right avatar icon > Profile > Preferences
     1. **Home Dashboard**: Dashboards/NAS
     1. Save
 
