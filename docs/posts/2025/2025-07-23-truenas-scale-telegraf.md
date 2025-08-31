@@ -106,7 +106,6 @@ We'll be using the official InfluxDB TrueNAS app as the timeseries database to s
 1. Click on **Discover Apps**
 1. Search for **InfluxDB** and install it
 1. In the "Install InfluxDB" screen make these changes:
-    1. **Timezone**: UTC
     1. **Port Number**: 8086
     1. Storage Configuration
         1. InfluxDB Config Storage
