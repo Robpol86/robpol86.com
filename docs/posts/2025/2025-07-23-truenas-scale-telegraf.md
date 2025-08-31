@@ -124,7 +124,7 @@ After you click "Install" you should see something like this.
 ### Initial Setup
 
 Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. You'll see a "Get Started"
-button. Click on it and then fill out the form. Here I've provided some suggested values:
+button. Click on it and then fill out the form with these values:
 
 1. **Username**: admin
 1. **Initial Organization Name**: homelab
