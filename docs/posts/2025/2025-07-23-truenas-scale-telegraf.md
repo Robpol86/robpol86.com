@@ -36,7 +36,7 @@ the time. I first started running my own Grafana at home in 2017 with InfluxDB a
 ```{seealso}
 This guide is written for InfluxDB v2, which is the version used by the latest TrueNAS app at this time. An earlier version
 of this guide was written for InfluxDB v1. You can access it here:
-https://github.com/Robpol86/robpol86.com/blob/4c9c31827b3fae5e85d1aa9543649868f33b9652/docs/posts/2025/2025-07-23-truenas-scale-telegraf.md
+https://github.com/Robpol86/robpol86.com/blob/2025-07-29-064016/docs/posts/2025/2025-07-23-truenas-scale-telegraf.md
 ```
 
 ## Prerequisites
