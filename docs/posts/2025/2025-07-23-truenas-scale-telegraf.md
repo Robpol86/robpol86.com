@@ -118,8 +118,8 @@ We'll be using the official InfluxDB TrueNAS app as the timeseries database to s
             1. **Host Path**: /mnt/Vault/Apps/InfluxDB/data
 1. Then click **Install**
 
-```{imgur-figure} DdzTqkM
-TODO UPDATE IMAGE. After you click "Install" you should see something like this.
+```{imgur-figure} 3HBbsW4
+After you click "Install" you should see something like this.
 ```
 
 ### InfluxDB Configuration
