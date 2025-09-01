@@ -309,8 +309,10 @@ After you click "Install" you should see something like this.
 ### Grafana Configuration
 
 Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. The default username and
-password are both "admin". Click on the Grafana logo in the upper left corner and then do the following to set it up with our
-InfluxDB application:
+password are both "admin".
+
+After you set a new admin password expand the sidebar (click on the Grafana logo in the upper left corner) and do the
+following to set up Grafana with our InfluxDB application:
 
 1. Connections > Data sources > Add data source > InfluxDB
     1. **Name**: influxdb
@@ -335,15 +337,16 @@ You can now create a new dashboard or import mine and go from there. To import m
         - *Find this hostname in the main Dashboard page of the TrueNAS UI, under System Information*
     1. Import
 
-I like to make this dashboard the default page for Grafana, so when I click on "Web UI" it takes me directly to the graphs.
+I like to make this dashboard the default page for Grafana, so when I go to the Grafana web UI it takes me directly to my
+graphs. To do that in the Grafana web UI go to:
 
-1. Upper right avatar > Profile > Preferences
+1. Upper right avatar icon > Profile > Preferences
     1. **Home Dashboard**: Dashboards/NAS
     1. Save
 
 ## Conclusion
 
-You should now have the "TIG stack" running on your NAS. Feel free to add or remove panels in the dashboard to see the
+You should now have the TIG Stack running on your NAS. Feel free to add or remove panels in the dashboard to see the
 metrics you're interested in. You can also monitor additional components of your homelab by editing the `telegraf.conf` file.
 You can read more about Telegraf
 [input plugins here](https://docs.influxdata.com/telegraf/v1/configure_plugins/input_plugins/). If you have any questions or
