@@ -61,8 +61,10 @@ create datasets for each individual app. This is the structure we'll be using:
 ```
 Vault (pool)
 └── Apps
-    ├── InfluxDB
-    ├── Grafana
+    ├── InfluxDB-Config
+    ├── InfluxDB-Data
+    ├── Grafana-Plugins
+    ├── Grafana-Data
     └── Telegraf
 ```
 
@@ -72,26 +74,14 @@ Vault (pool)
     1. **Dataset Preset**: Apps
     1. Save
 1. Click on the new **Apps** dataset then **Add Dataset** again
-    1. **Name**: InfluxDB
+    1. **Name**: InfluxDB-Config
     1. **Dataset Preset**: Apps
     1. Save
     1. Return to Pool List
-    1. *Repeat for Grafana and Telegraf*
+    1. *Repeat for InfluxDB-Data, Grafana-Plugins, Grafana-Data and Telegraf*
 
 ```{imgur-figure} sZ4tExJ.png
 You should now see something like this.
-```
-
-### Create Subdirectories
-
-Grafana and InfluxDB both require seperate directories for their configurations and data. You can create them by going to the
-TrueNAS shell under ➡️ System > Shell. Then run these commands:
-
-```bash
-mkdir /mnt/Vault/Apps/InfluxDB/config
-mkdir /mnt/Vault/Apps/InfluxDB/data
-mkdir /mnt/Vault/Apps/Grafana/plugins
-mkdir /mnt/Vault/Apps/Grafana/data
 ```
 
 ## InfluxDB
