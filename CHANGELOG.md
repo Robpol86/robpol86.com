@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.9.1.34946]
+
+InfluxDB v2
+
+* 9ceba76 Switching from InfluxDB v1 to v2 (#306)
+* abeeb46 Rewording, reducing the size of the influxdb v2 diff (#305)
+* 34c984b Beelink ME Mini (#304)
+* 6b7dbd9 Update dependencies (#303)
+
 ## [2025.7.29.64016]
 
 Telegraf alerts and beelink fan speed
