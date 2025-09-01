@@ -214,7 +214,6 @@ you might find a use for them.
     1. **Prefix**: graphite
     1. **Namespace**: truenas_reporting
     1. **Update Every**: 10
-        - *This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)*
 
 To confirm this works you can go into the InfluxDB web UI then click on **Data Explorer**:
 
