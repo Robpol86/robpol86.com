@@ -10,10 +10,10 @@ tags: homelab, nas
 # TrueNAS Telegraf, Influx, Grafana
 
 ```{list-table}
-* - :::{imgur} UZEhmk5
-  - :::{imgur} 8HI9Usi
-* - :::{imgur} u1VnBj4
-  - :::{imgur} EuNZltU
+* - :::{imgur} UZEhmk5.png
+  - :::{imgur} 8HI9Usi.png
+* - :::{imgur} u1VnBj4.png
+  - :::{imgur} EuNZltU.png
 ```
 
 This guide will explain how to run [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) on
@@ -68,7 +68,7 @@ Vault (pool)
     1. Return to Pool List
     1. *Repeat for Grafana and Telegraf*
 
-```{imgur-figure} sZ4tExJ
+```{imgur-figure} sZ4tExJ.png
 You should now see something like this.
 ```
 
@@ -115,7 +115,7 @@ suggests starting with v1 over v2 for future proofing.
             volumes: [/mnt/Vault/Apps/InfluxDB:/var/lib/influxdb]
         ```
 
-```{imgur-figure} DdzTqkM
+```{imgur-figure} DdzTqkM.png
 After you click "Save" you should see something like this.
 ```
 
@@ -232,7 +232,7 @@ USE telegraf
 SHOW MEASUREMENTS
 ```
 
-```{imgur-figure} 9kt35ns
+```{imgur-figure} 9kt35ns.png
 You should see a lot of `graphite.*` measurements.
 ```
 
@@ -298,7 +298,7 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
             1. **Host Path**: /mnt/Vault/Apps/Grafana
             1. *Repeat for Grafana Plugins Storage*
 
-```{imgur-figure} qbXRRCO
+```{imgur-figure} qbXRRCO.png
 After you click "Install" you should see something like this.
 ```
 
