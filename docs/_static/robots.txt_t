@@ -1,3 +1,7 @@
 User-agent: *
 
+{% if production -%}
 Sitemap: {{ html_baseurl.rstrip("/") }}/sitemap.xml
+{% else -%}
+Disallow: /
+{% endif -%}
