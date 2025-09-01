@@ -35,14 +35,13 @@ the time. I first started running my own Grafana at home in 2017 with InfluxDB a
 
 ## Prerequisites
 
-Before starting there are a few things we need to setup:
-
-1. Choose a pool for apps if you haven't used apps in TrueNAS before
-1. Create datasets for each application
+Before starting there are a few things we need to setup.
 
 ### Choose a Pool
 
-For this guide we're using **Vault** as the pool. To enable apps in TrueNAS:
+The first step for enabling apps on TrueNAS is to select a pool. In a typical home NAS you'll probably only have one pool
+where you store all of your files; go ahead and select that pool. On my NAS I've named my pool **Vault**. Substitute that
+with your pool's name.
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Configuration** and then **Choose Pool**
