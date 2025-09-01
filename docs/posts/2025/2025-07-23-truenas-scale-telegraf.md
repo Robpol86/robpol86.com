@@ -98,10 +98,10 @@ We'll be using the official InfluxDB TrueNAS app as the timeseries database to s
     1. Storage Configuration
         1. InfluxDB Config Storage
             1. **Type**: Host Path
-            1. **Host Path**: /mnt/Vault/Apps/InfluxDB/config
+            1. **Host Path**: /mnt/Vault/Apps/InfluxDB-Config
         1. InfluxDB Data Storage
             1. **Type**: Host Path
-            1. **Host Path**: /mnt/Vault/Apps/InfluxDB/data
+            1. **Host Path**: /mnt/Vault/Apps/InfluxDB-Data
 1. Then click **Install**
 
 ```{imgur-figure} 3HBbsW4.png
@@ -281,10 +281,10 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
     1. Storage Configuration
         1. Grafana Data Storage
             1. **Type**: Host Path
-            1. **Host Path**: /mnt/Vault/Apps/Grafana/data
+            1. **Host Path**: /mnt/Vault/Apps/Grafana-Data
         1. Grafana Plugins Storage
             1. **Type**: Host Path
-            1. **Host Path**: /mnt/Vault/Apps/Grafana/plugins
+            1. **Host Path**: /mnt/Vault/Apps/Grafana-Plugins
 1. Then click **Install**
 
 ```{imgur-figure} 3HWC6nv.png
