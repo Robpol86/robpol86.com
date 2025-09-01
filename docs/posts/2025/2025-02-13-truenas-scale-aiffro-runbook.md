@@ -21,7 +21,7 @@ TrueNAS so 8 GiB of RAM is sufficient (I still hit near-2.5Gbps speeds consisten
 access over Samba with my macOS single client.
 
 ```{note}
-**Update July 2025**: I've since upgraded to the [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150). I
+**Update July 2025**: I've since upgraded to the [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150). I
 was able to install the SSDs from the Aiffro to this and everything works without reinstalling or reconfiguring.
 ```
 
