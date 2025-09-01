@@ -41,10 +41,7 @@ https://github.com/Robpol86/robpol86.com/blob/2025-07-29-064016/docs/posts/2025/
 
 ## Prerequisites
 
-Before starting there are a few things we need to setup:
-
-1. Choose a pool for apps if you haven't used apps in TrueNAS before
-1. Create datasets for each application
+Before starting there are a few things we need to setup.
 
 ### Choose a Pool
 
