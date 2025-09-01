@@ -80,7 +80,7 @@ Vault (pool)
     1. Return to Pool List
     1. *Repeat for InfluxDB-Data, Grafana-Plugins, Grafana-Data and Telegraf*
 
-```{imgur-figure} sZ4tExJ.png
+```{imgur-figure} PeFA26e.png
 You should now see something like this.
 ```
 
