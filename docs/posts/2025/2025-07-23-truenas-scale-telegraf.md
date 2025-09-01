@@ -22,7 +22,7 @@ your servers and devices. With these graphs, charts, and other visualization too
 historical trends of space usage, CPU usage, and almost anything else. The three components make up the "TIG Stack", where
 Telegraf collects the data, InfluxDB stores the data in a kind of database, and Grafana produces the graphs and alerts.
 
-This guide will explain how to setup the TIG Stack on your NAS running [TrueNAS SCALE](https://www.truenas.com/truenas-scale/).
+This guide will explain how to setup the TIG Stack on your NAS running [TrueNAS Community Edition (SCALE)](https://www.truenas.com/truenas-community-edition/).
 This is how I run all three apps on my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of
 this writing I'm running TrueNAS SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring
 on a single node.
