@@ -16,9 +16,14 @@ tags: homelab, nas
   - :::{imgur} EuNZltU.png
 ```
 
-This guide will explain how to run [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) on
-[TrueNAS SCALE](https://www.truenas.com/truenas-scale/), as well as running the [InfluxDB](https://www.influxdata.com/) and
-[Grafana](https://grafana.com/oss/grafana/) apps to collect NAS metrics and show graphs. This is how I run all three apps on
+[Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), [InfluxDB](https://www.influxdata.com/),
+and [Grafana](https://grafana.com/oss/grafana/) are separate pieces of software that together allow you to graph metrics from
+your servers and devices. With these graphs, charts, and other visualization tools available in Grafana, you can see
+historical trends of space usage, CPU usage, and almost anything else. The three components make up the "TIG Stack", where
+Telegraf collects the data, InfluxDB stores the data in a kind of database, and Grafana produces the graphs and alerts.
+
+This guide will explain how to setup the TIG Stack on your NAS running
+[TrueNAS Community Edition (SCALE)](https://www.truenas.com/truenas-community-edition/). This is how I run all three apps on
 my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
 SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.
 
