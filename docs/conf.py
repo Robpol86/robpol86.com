@@ -162,6 +162,7 @@ blog_locations = {
     "Calafate": ("El Calafate", "https://en.wikipedia.org/wiki/El_Calafate"),
     "Sydney": ("Sydney", "https://en.wikipedia.org/wiki/Sydney"),
     "Melbourne": ("Melbourne", "https://en.wikipedia.org/wiki/Melbourne"),
+    "Queenstown": ("Queenstown", "https://en.wikipedia.org/wiki/Queenstown,_New_Zealand"),
 }
 blog_title = project
 disqus_pages = False

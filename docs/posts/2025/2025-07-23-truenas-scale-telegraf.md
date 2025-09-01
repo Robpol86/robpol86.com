@@ -1,8 +1,8 @@
 ---
 blogpost: true
-date: 2025-08-31
+date: 2025-09-01
 author: Robpol86
-location: Melbourne
+location: Melbourne, Queenstown
 category: Tutorials
 tags: homelab, nas
 ---
