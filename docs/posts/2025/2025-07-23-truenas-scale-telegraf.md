@@ -160,7 +160,7 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
-    - *Use the telegraf token you generated in the [Generate Tokens](#generate-tokens) section*
+    - *Use the telegraf-truenas token you generated in the [Generate Tokens](#generate-tokens) section*
 1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **linux_amd64** release
     - *Extract the tar.gz file and look for the `telegraf` file in `usr/bin`*
 
