@@ -1,8 +1,8 @@
 ---
 blogpost: true
-date: 2025-07-23
+date: 2025-09-01
 author: Robpol86
-location: Melbourne
+location: Melbourne, Queenstown
 category: Tutorials
 tags: homelab, nas
 ---
@@ -10,13 +10,13 @@ tags: homelab, nas
 # TrueNAS Telegraf, Influx, Grafana
 
 ```{list-table}
-* - :::{imgur} UZEhmk5.png
-  - :::{imgur} 8HI9Usi.png
-* - :::{imgur} u1VnBj4.png
-  - :::{imgur} EuNZltU.png
+* - :::{imgur} uXJoPnn.png
+  - :::{imgur} O8r0lnC.png
+* - :::{imgur} ovWSIhf.png
+  - :::{imgur} AzEomCa.png
 ```
 
-[Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), [InfluxDB](https://www.influxdata.com/),
+[Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), [InfluxDB](https://docs.influxdata.com/influxdb/v2/get-started/),
 and [Grafana](https://grafana.com/oss/grafana/) are separate pieces of software that together allow you to graph metrics from
 your servers and devices. With these graphs, charts, and other visualization tools available in Grafana, you can see
 historical trends of space usage, CPU usage, and almost anything else. The three components make up the "TIG Stack", where
@@ -32,6 +32,12 @@ I've always wanted to collect metrics and visualize them in graphs. Things like 
 MRTG on my homelab file server for a few years, then tried [RRDtool](https://en.wikipedia.org/wiki/RRDtool) for a bit. It was
 in 2015 at Uber where I learned about Grafana and fell in love with it. Not so much the Graphite backend they were using at
 the time. I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf.
+
+```{seealso}
+This guide is written for InfluxDB v2, which is the version used by the latest TrueNAS app at this time. An earlier version
+of this guide was written for InfluxDB v1. You can access it here:
+https://github.com/Robpol86/robpol86.com/blob/2025-07-29-064016/docs/posts/2025/2025-07-23-truenas-scale-telegraf.md
+```
 
 ## Prerequisites
 
@@ -55,8 +61,10 @@ create datasets for each individual app. This is the structure we'll be using:
 ```
 Vault (pool)
 └── Apps
-    ├── InfluxDB
-    ├── Grafana
+    ├── InfluxDB-Config
+    ├── InfluxDB-Data
+    ├── Grafana-Plugins
+    ├── Grafana-Data
     └── Telegraf
 ```
 
@@ -66,96 +74,76 @@ Vault (pool)
     1. **Dataset Preset**: Apps
     1. Save
 1. Click on the new **Apps** dataset then **Add Dataset** again
-    1. **Name**: InfluxDB
+    1. **Name**: InfluxDB-Config
     1. **Dataset Preset**: Apps
     1. Save
     1. Return to Pool List
-    1. *Repeat for Grafana and Telegraf*
+    1. *Repeat for InfluxDB-Data, Grafana-Plugins, Grafana-Data and Telegraf*
 
-```{imgur-figure} sZ4tExJ.png
+```{imgur-figure} PeFA26e.png
 You should now see something like this.
 ```
 
 ## InfluxDB
 
-I use [InfluxDB version 1](https://docs.influxdata.com/influxdb/v1/) as the timeseries database to store all my metrics.
-Because the official InfluxDB TrueNAS app [uses v2](https://apps.truenas.com/catalog/influxdb/) I'm deploying mine as a
-custom app. If you'd rather run the official app feel free to use that instead and skip to the [Telegraf](#telegraf) section
-of this guide.
-
-```{note}
-I'm running v1 because the latest version (as of this writing it's v3) has an absurd 3-day data limit for the free license
-(lol). It also removed Flux (lol). Try as I might I can't find any justifiable reason to use v2. Even the
-[CTO and cofounder of InfluxData](https://community.influxdata.com/t/in-2024-which-influxdb-should-i-use-to-get-started-and-then-go-to-production/32840)
-suggests starting with v1 over v2 for future proofing.
-```
+We'll be using the official InfluxDB TrueNAS app as the timeseries database to store all of our metrics.
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Discover Apps**
-1. Click on the "⋮" menu button then **Install via YAML**
-    1. **Name**: influxdb
-    1. **Custom Config**: *paste the following; change "Vault" to your pool name*
-        ```yaml
-        services:
-          influxdb:
-            hostname: influxdb
-            # 1.11.8 is the latest version of v1
-            image: influxdb:1.11.8
-            pull_policy: always
-            restart: always
-            environment:
-              # Without this you can read/write to InfluxDB without a password
-              INFLUXDB_HTTP_AUTH_ENABLED: "true"
-              # Allows you to use Flux in your Grafana queries
-              INFLUXDB_HTTP_FLUX_ENABLED: "true"
-            ports:
-            - mode: ingress
-              protocol: tcp
-              published: 8086
-              target: 8086
-            # This is the UID for the "apps" user in TrueNAS
-            user: "568:568"
-            # Change "Vault" to your pool name
-            volumes: [/mnt/Vault/Apps/InfluxDB:/var/lib/influxdb]
-        ```
+1. Search for **InfluxDB** and install it
+1. In the "Install InfluxDB" screen make these changes:
+    1. Network Configuration
+        1. WebUI Port
+            1. **Port Number**: 8086
+    1. Storage Configuration
+        1. InfluxDB Config Storage
+            1. **Type**: Host Path
+            1. **Host Path**: /mnt/Vault/Apps/InfluxDB-Config
+        1. InfluxDB Data Storage
+            1. **Type**: Host Path
+            1. **Host Path**: /mnt/Vault/Apps/InfluxDB-Data
+1. Then click **Install**
 
-```{imgur-figure} DdzTqkM.png
-After you click "Save" you should see something like this.
+```{imgur-figure} 3HBbsW4.png
+After you click "Install" you should see something like this.
 ```
 
-### InfluxDB Configuration
+### Initial Setup
 
-Now that InfluxDB is running it's time to configure it.
+Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. You'll see a "Get Started"
+button. Click on it and then fill out the form with these values:
 
-1. In the TrueNAS UI go to ➡️ Apps
-1. Click on the running **influxdb** application
-1. Under "Workloads" next to "influxdb - Running" click the **Shell** icon
-1. Run the `influx` command and then execute these statements to create the **admin** user:
-    ```sql
-    CREATE USER admin WITH PASSWORD 'REPLACE_ME' WITH ALL PRIVILEGES
-    AUTH
-    ```
-1. Then run these statements to create the telegraf database and the user which Telegraf will use:
-    ```sql
-    CREATE DATABASE telegraf
-    CREATE USER truenas WITH PASSWORD 'REPLACE_ME'
-    GRANT WRITE ON telegraf TO truenas
-    ```
-1. Finally run these statements to create the user Grafana will use:
-    ```sql
-    CREATE USER grafana WITH PASSWORD 'REPLACE_ME'
-    GRANT READ ON telegraf TO grafana
-    ```
+1. **Username**: admin
+1. **Initial Organization Name**: homelab
+1. **Initial Bucket Name**: telegraf
+1. Click **Continue** then **Quick Start**
 
-:::{tip}
-You can ignore this error:
+### Generate Tokens
 
-```
-There was an error writing history file: open /.influx_history: permission denied
+```{imgur-figure} I7lVJeB.png
 ```
 
-After a while it becomes annoying. You can avoid it by running `HOME= influx` instead of just `influx`.
-:::
+Next we need to create a token for Telegraf to use for writing, and another token for Grafana to use for reading. In the web
+UI expand the sidebar (there's an icon in the lower left corner) and go to:
+
+- Load Data
+    - API Tokens
+        - Generate API Token
+            - Custom API Token
+
+For Telegraf:
+
+1. **Description**: telegraf-truenas
+1. Buckets > telegraf > **Write**: Check
+1. Generate
+1. Write down the presented token for later, you won't be able to see it again
+
+Then repeat the process for Grafana:
+
+1. **Description**: grafana
+1. Buckets > telegraf > **Read**: Check
+1. Generate
+1. Write down the presented token for later, you won't be able to see it again
 
 ## Telegraf
 
@@ -172,7 +160,7 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
-    - *Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration) section*
+    - *Use the telegraf-truenas token you generated in the [Generate Tokens](#generate-tokens) section*
 1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **linux_amd64** release
     - *Extract the tar.gz file and look for the `telegraf` file in `usr/bin`*
 
@@ -180,12 +168,12 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 If you run `ls -lah /mnt/Vault/Apps/Telegraf` you should see something like this:
 
 ```
-total 118M
-drwxrwx--- 2 root          root    5 Jul 22 17:40 .
-drwxrwx--- 5 root          root    5 Jul 22 17:17 ..
--rwxrwx--- 1 truenas_admin root 279M Jul 22 17:40 telegraf
--rwxrwx--- 1 truenas_admin root 2.2K Jul 22 17:40 telegraf.conf
--rwxrwx--- 1 truenas_admin root   37 Jul 22 17:40 telegraf.env
+total 120M
+drwxrwx--- 2 root          root    5 Aug 31 13:37 .
+drwxrwx--- 5 root          root    5 Aug 31 12:43 ..
+-rwxrwx--- 1 truenas_admin root 284M Aug 31 13:37 telegraf
+-rwxrwx--- 1 truenas_admin root 2.2K Aug 31 13:37 telegraf.conf
+-rwxrwx--- 1 truenas_admin root  104 Aug 31 13:37 telegraf.env
 ```
 :::
 
@@ -227,16 +215,10 @@ you might find a use for them.
     1. **Namespace**: truenas_reporting
     1. **Update Every**: 10
 
-To confirm this works you can **Shell** into the influxdb container and run this via `influx`:
+To confirm this works you can go into the InfluxDB web UI then click on **Data Explorer**:
 
-```sql
-AUTH
-USE telegraf
-SHOW MEASUREMENTS
-```
-
-```{imgur-figure} 9kt35ns.png
-You should see a lot of `graphite.*` measurements.
+```{imgur-figure} wA62DJO.png
+You should see a lot of `graphite.*` measurements in the telegraf bucket.
 ```
 
 ### Alerts
@@ -299,10 +281,13 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
     1. Storage Configuration
         1. Grafana Data Storage
             1. **Type**: Host Path
-            1. **Host Path**: /mnt/Vault/Apps/Grafana
-            1. *Repeat for Grafana Plugins Storage*
+            1. **Host Path**: /mnt/Vault/Apps/Grafana-Data
+        1. Grafana Plugins Storage
+            1. **Type**: Host Path
+            1. **Host Path**: /mnt/Vault/Apps/Grafana-Plugins
+1. Then click **Install**
 
-```{imgur-figure} qbXRRCO.png
+```{imgur-figure} 3HWC6nv.png
 After you click "Install" you should see something like this.
 ```
 
@@ -316,17 +301,16 @@ following to set up Grafana with our InfluxDB application:
 
 1. Connections > Data sources > Add data source > InfluxDB
     1. **Name**: influxdb
-    1. **Query language**: InfluxQL
+    1. **Query language**: Flux
     1. **URL**: `http://172.16.0.1:8086`
         - *This is the Docker network IP that InfluxDB runs in*
-    1. Auth
-        1. **Basic auth**: Enable
-        1. Basic Auth Details
-            - **User**: grafana
-            - **Password**: *Use the grafana password you used in the [InfluxDB Configuration](#influxdb-configuration) section*
-    1. InfluxDB Details > **Database**: telegraf
+    1. **Auth**: *Disable all*
+    1. InfluxDB Details
+        1. **Organization**: homelab
+        1. **Token**: *Use the grafana token you generated in the [Generate Tokens](#generate-tokens) section*
+        1. **Default Bucket**: telegraf
     1. Save & test
-        - *It should say something like: datasource is working 434 measurements found*
+        - *It should say something like: datasource is working. 1 buckets found*
 
 You can now create a new dashboard or import mine and go from there. To import mine:
 

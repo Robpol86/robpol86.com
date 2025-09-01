@@ -9,6 +9,13 @@
       "pluginName": "InfluxDB"
     },
     {
+      "name": "VAR_BUCKET",
+      "type": "constant",
+      "label": "BUCKET",
+      "value": "telegraf",
+      "description": ""
+    },
+    {
       "name": "VAR_NAS_HOST",
       "type": "constant",
       "label": "NAS_HOST",
@@ -22,7 +29,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "12.0.2"
+      "version": "12.1.1"
     },
     {
       "type": "datasource",
@@ -47,17 +54,14 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
         "type": "dashboard"
       }
     ]
@@ -77,7 +81,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 33,
+      "id": 2,
       "panels": [],
       "title": "Uptime",
       "type": "row"
@@ -87,32 +91,22 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "The host's most recently reported uptime in human readable format",
       "fieldConfig": {
         "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "transparent",
+                "value": 0
               }
             ]
-          },
-          "unit": "none"
+          }
         },
         "overrides": []
       },
@@ -122,73 +116,33 @@
         "x": 0,
         "y": 1
       },
-      "id": 8,
-      "maxDataPoints": 100,
+      "id": 1,
       "options": {
         "colorMode": "none",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
-        "orientation": "horizontal",
+        "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^system\\.last$/",
+          "fields": "/^uptime$/",
           "values": false
         },
         "showPercentChange": false,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
           },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "uptime_format"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            }
-          ]
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field == \"uptime\")\n  |> drop(columns: [\"host\"])\n  |> last()\n  |> map(fn: (r) => {\n      // uptime_format is deprecated: https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/README.md?plain=1#L46\n      // https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/system.go#L89\n      uptime = r._value\n      days = int(v: uptime / (60 * 60 * 24))\n      uptimeFormatDays =\n        if days > 1 then \"${days} days, \"\n        else if days == 1 then \"${days} day, \"\n        else \"\"\n      seconds = int(v: uptime % 60)\n      uptimeFormatSeconds = if seconds < 10 then \"0${seconds}\" else \"${seconds}\"\n      minutes_ = uptime / 60\n      hours = int(v: (minutes_ / 60) % 24)\n      minutes = int(v: minutes_ % 60)\n      uptimeFormatMinutes = if minutes < 10 then \"0${minutes}\" else \"${minutes}\"\n      uptimeFormat = \"${hours}:${uptimeFormatMinutes}:${uptimeFormatSeconds}\"\n      return { r with _value: \"${uptimeFormatDays}${uptimeFormat}\" }\n  })",
+          "refId": "A"
         }
       ],
       "title": "Uptime",
@@ -202,7 +156,7 @@
         "x": 0,
         "y": 4
       },
-      "id": 34,
+      "id": 3,
       "panels": [],
       "title": "Temperatures",
       "type": "row"
@@ -212,6 +166,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "The internal temperature of each drive",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -247,15 +202,17 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "dashed+area"
             }
           },
+          "displayName": "${__field.labels.model} ${__field.labels.serial_no}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
+                "color": "transparent",
+                "value": 0
               },
               {
                 "color": "red",
@@ -265,168 +222,7 @@
           },
           "unit": "celsius"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 13,
@@ -434,7 +230,7 @@
         "x": 0,
         "y": 5
       },
-      "id": 39,
+      "id": 8,
       "options": {
         "legend": {
           "calcs": [
@@ -455,76 +251,18 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_model $tag_serial_no",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"smart_attribute\")\n  |> filter(fn: (r) => r._field == \"raw_value\")\n  |> filter(fn: (r) => r.name == \"Temperature_Celsius\")\n  |> drop(columns: [\"device\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "serial_no"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "model::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "smart_attribute",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "raw_value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=",
-              "value": "Temperature_Celsius"
-            }
-          ]
+          }
         }
       ],
-      "title": "SSD Main",
+      "title": "SSD/HDD Temperature",
       "type": "timeseries"
     },
     {
@@ -532,6 +270,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "Additional temperature sensors for each drive",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -567,15 +306,17 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "dashed+area"
             }
           },
+          "displayName": "${__field.labels.model} ${__field.labels.serial_no} ${__field.labels.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
+                "color": "transparent",
+                "value": 0
               },
               {
                 "color": "red",
@@ -585,208 +326,7 @@
           },
           "unit": "celsius"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 13,
@@ -794,7 +334,7 @@
         "x": 12,
         "y": 5
       },
-      "id": 41,
+      "id": 9,
       "options": {
         "legend": {
           "calcs": [
@@ -815,82 +355,18 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_model $tag_serial_no $tag_name",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"smart_attribute\")\n  |> filter(fn: (r) => r._field == \"raw_value\")\n  |> filter(fn: (r) => r.name =~ /(Temperature_Sensor_|Airflow_Temperature)/)\n  |> drop(columns: [\"device\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "serial_no"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "model::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "name::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "smart_attribute",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "raw_value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=~",
-              "value": "/Temperature_Sensor_./"
-            }
-          ]
+          }
         }
       ],
-      "title": "SSD Others",
+      "title": "SSD/HDD Additional Temperature",
       "type": "timeseries"
     },
     {
@@ -898,6 +374,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "CPU temperatures per core",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -933,15 +410,17 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "dashed+area"
             }
           },
+          "displayName": "${__field.labels.feature} (${__field.labels.chip})",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
+                "color": "transparent",
+                "value": 0
               },
               {
                 "color": "red",
@@ -951,179 +430,19 @@
           },
           "unit": "celsius"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 13,
         "w": 8,
         "x": 0,
         "y": 18
       },
-      "id": 6,
+      "id": 10,
       "options": {
         "legend": {
           "calcs": [
+            "mean",
             "lastNotNull",
             "max",
             "min"
@@ -1138,76 +457,18 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_feature ($tag_chip)",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"sensors\")\n  |> filter(fn: (r) => r._field == \"temp_input\")\n  |> filter(fn: (r) => r.feature =~ /core_/)\n  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "feature::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "chip::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temp_input"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "feature::tag",
-              "operator": "=~",
-              "value": "/core_/"
-            }
-          ]
+          }
         }
       ],
-      "title": "CPU",
+      "title": "CPU Temperature",
       "type": "timeseries"
     },
     {
@@ -1215,6 +476,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "System temperatures",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1250,15 +512,17 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "dashed+area"
             }
           },
+          "displayName": "${__field.labels.feature} (${__field.labels.chip})",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
+                "color": "transparent",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1268,219 +532,19 @@
           },
           "unit": "celsius"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 13,
         "w": 8,
         "x": 8,
         "y": 18
       },
-      "id": 42,
+      "id": 11,
       "options": {
         "legend": {
           "calcs": [
+            "mean",
             "lastNotNull",
             "max",
             "min"
@@ -1488,7 +552,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true,
-          "sortBy": "Max",
+          "sortBy": "Mean",
           "sortDesc": true
         },
         "tooltip": {
@@ -1497,449 +561,26 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_feature ($tag_chip)",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"sensors\")\n  |> filter(fn: (r) => r._field == \"temp_input\")\n  |> filter(fn: (r) => r.feature =~ /package|temp/)\n  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "feature::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "chip::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temp_input"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "feature::tag",
-              "operator": "=~",
-              "value": "/package|temp/"
-            }
-          ]
-        }
-      ],
-      "title": "System",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "line+area"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "transparent"
-              }
-            ]
-          },
-          "unit": "rotrpm"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
           }
-        ]
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 16,
-        "y": 18
-      },
-      "id": 48,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull",
-            "max",
-            "min"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.0.2",
-      "targets": [
-        {
-          "alias": "$tag_feature ($tag_chip)",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "feature::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "chip::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sensors",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "fan_input"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "feature::tag",
-              "operator": "=",
-              "value": "fan2"
-            }
-          ]
         }
       ],
-      "title": "Fan",
+      "title": "System Temperature",
       "type": "timeseries"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 29
-      },
-      "id": 36,
-      "panels": [],
-      "title": "Space Usage",
-      "type": "row"
     },
     {
       "datasource": {
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "CPU fan speed",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1978,103 +619,139 @@
               "mode": "off"
             }
           },
+          "displayName": "${__field.labels.feature} (${__field.labels.chip})",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
+                "color": "transparent",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "rotrpm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 8,
+        "x": 16,
+        "y": 18
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"sensors\")\n  |> filter(fn: (r) => r._field == \"fan_input\")\n  |> filter(fn: (r) => r.feature == \"fan2\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          }
+        }
+      ],
+      "title": "Fan Speed",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 7,
+      "panels": [],
+      "title": "Space Usage",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "description": "Space used by each ZFS dataset (does not include child datasets)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "${__field.labels.name}",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
               {
-                "color": "red",
-                "value": 80
+                "color": "transparent",
+                "value": 0
               }
             ]
           },
           "unit": "bytes"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Inodes: /"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Inodes: /"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Inodes: /"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 32
       },
-      "id": 40,
+      "id": 13,
       "options": {
         "legend": {
           "calcs": [
@@ -2092,62 +769,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_name",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"exec_zfs_list\")\n  |> filter(fn: (r) => r._field == \"referenced\")\n  |> filter(fn: (r) => r._value > 1024 * 1024 * 100)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "name::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "exec_zfs_list",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            }
-          ]
+          }
         }
       ],
       "title": "Datasets Used Space",
@@ -2158,6 +788,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "Free space for each ZFS pool",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2193,15 +824,17 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "dashed+area"
             }
           },
+          "displayName": "${__field.labels.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": 0
               },
               {
                 "color": "transparent",
@@ -2211,88 +844,15 @@
           },
           "unit": "bytes"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Inodes: /"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Inodes: /"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Inodes: /"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 32
       },
-      "id": 11,
+      "id": 14,
       "options": {
         "legend": {
           "calcs": [
@@ -2300,7 +860,9 @@
           ],
           "displayMode": "table",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -2308,61 +870,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_name",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"exec_zfs_list\")\n  |> filter(fn: (r) => r._field == \"available\")\n  |> filter(fn: (r) => r.name =~ /^[^\\/]+$/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "name::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "exec_zpool_list",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "free"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            }
-          ]
+          }
         }
       ],
       "title": "Pools Free Space",
@@ -2374,9 +890,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 43
       },
-      "id": 43,
+      "id": 6,
       "panels": [],
       "title": "SSD Faults",
       "type": "row"
@@ -2386,6 +902,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "Number of unsafe shutdowns. This count is incremented when a\nshutdown notification (CC.SHN) is not received prior to loss of power.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2421,19 +938,17 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "off"
             }
           },
+          "displayName": "${__field.labels.model} ${__field.labels.serial_no}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
-              },
-              {
-                "color": "red",
-                "value": 400
+                "color": "transparent",
+                "value": 0
               }
             ]
           }
@@ -2453,7 +968,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": true,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": false
                 }
               }
@@ -2473,167 +988,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": false
                 }
               }
@@ -2645,9 +1000,9 @@
         "h": 13,
         "w": 12,
         "x": 0,
-        "y": 42
+        "y": 44
       },
-      "id": 44,
+      "id": 15,
       "options": {
         "legend": {
           "calcs": [
@@ -2659,7 +1014,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true,
-          "sortBy": "Mean",
+          "sortBy": "Last *",
           "sortDesc": true
         },
         "tooltip": {
@@ -2668,79 +1023,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_model $tag_serial_no",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"smart_attribute\")\n  |> filter(fn: (r) => r._field == \"raw_value\")\n  |> filter(fn: (r) => r.name == \"Unsafe_Shutdowns\")\n  |> drop(columns: [\"device\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "serial_no"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "model::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "name::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "smart_attribute",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "raw_value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=",
-              "value": "Unsafe_Shutdowns"
-            }
-          ]
+          }
         }
       ],
       "title": "Unsafe Shutdowns",
@@ -2751,6 +1042,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "Percentage of available spare space (spare space for bad block mapping)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2786,231 +1078,32 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "off"
             }
           },
+          "displayName": "${__field.labels.model} ${__field.labels.serial_no}",
           "mappings": [],
           "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
+                "color": "transparent",
+                "value": 0
               }
             ]
           },
           "unit": "percent"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 13,
         "w": 12,
         "x": 12,
-        "y": 42
+        "y": 44
       },
-      "id": 45,
+      "id": 16,
       "options": {
         "legend": {
           "calcs": [
@@ -3022,8 +1115,8 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true,
-          "sortBy": "Mean",
-          "sortDesc": true
+          "sortBy": "Last *",
+          "sortDesc": false
         },
         "tooltip": {
           "hideZeros": false,
@@ -3031,79 +1124,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_model $tag_serial_no",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"smart_attribute\")\n  |> filter(fn: (r) => r._field == \"raw_value\")\n  |> filter(fn: (r) => r.name == \"Available_Spare\")\n  |> drop(columns: [\"device\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "serial_no"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "model::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "name::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "smart_attribute",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "raw_value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=",
-              "value": "Available_Spare"
-            }
-          ]
+          }
         }
       ],
       "title": "Available Spare",
@@ -3114,6 +1143,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "A vendor specific estimate of the percentage of NVM subsystem life used\nbased on the actual usage and the manufacturer’s prediction of NVM life. A value of 100 indicates that\nthe estimated endurance of the NVM in the NVM subsystem has been consumed, but may not indicate\nan NVM subsystem failure. The value is allowed to exceed 100. Percentages greater than 254 shall be\nrepresented as 255.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3149,15 +1179,17 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "off"
             }
           },
+          "displayName": "${__field.labels.model} ${__field.labels.serial_no}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
+                "color": "transparent",
+                "value": 0
               }
             ]
           },
@@ -3178,7 +1210,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": true,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": false
                 }
               }
@@ -3198,167 +1230,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": false
                 }
               }
@@ -3370,9 +1242,9 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 55
+        "y": 57
       },
-      "id": 46,
+      "id": 17,
       "options": {
         "legend": {
           "calcs": [
@@ -3384,7 +1256,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true,
-          "sortBy": "Mean",
+          "sortBy": "Last *",
           "sortDesc": true
         },
         "tooltip": {
@@ -3393,82 +1265,18 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_model $tag_serial_no",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"smart_attribute\")\n  |> filter(fn: (r) => r._field == \"raw_value\")\n  |> filter(fn: (r) => r.name == \"Percentage_Used\")\n  |> drop(columns: [\"device\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "serial_no"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "model::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "name::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "smart_attribute",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "raw_value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=",
-              "value": "Percentage_Used"
-            }
-          ]
+          }
         }
       ],
-      "title": "Percent Used",
+      "title": "Percentage Used",
       "type": "timeseries"
     },
     {
@@ -3476,6 +1284,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "Contains the amount of time in minutes that the controller\nis operational and the temperature is greater than or equal to the Warning or Critical Composite\nTemperature Threshold.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3511,15 +1320,17 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "off"
             }
           },
+          "displayName": "${__field.labels.model} ${__field.labels.serial_no} ${__field.labels.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
+                "color": "transparent",
+                "value": 0
               }
             ]
           },
@@ -3540,7 +1351,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": true,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": false
                 }
               }
@@ -3560,167 +1371,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": false
                 }
               }
@@ -3732,9 +1383,9 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 55
+        "y": 57
       },
-      "id": 47,
+      "id": 18,
       "options": {
         "legend": {
           "calcs": [
@@ -3746,7 +1397,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true,
-          "sortBy": "Mean",
+          "sortBy": "Last *",
           "sortDesc": true
         },
         "tooltip": {
@@ -3755,79 +1406,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$tag_model $tag_serial_no $tag_name",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"smart_attribute\")\n  |> filter(fn: (r) => r._field == \"raw_value\")\n  |> filter(fn: (r) => r.name =~ /Temperature_Time/)\n  |> drop(columns: [\"device\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "serial_no"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "model::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "name::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "smart_attribute",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "raw_value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=~",
-              "value": "/Temperature_Time/"
-            }
-          ]
+          }
         }
       ],
       "title": "Temperature Times",
@@ -3839,9 +1426,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 62
+        "y": 64
       },
-      "id": 37,
+      "id": 5,
       "panels": [],
       "title": "CPU, Memory, and IO",
       "type": "row"
@@ -3851,6 +1438,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "A metric that shows the number of tasks currently executed by the CPU and tasks waiting in the queue (ideally it's lower than the number of CPUs on the system, e.g. <4 for a 4-core CPU)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3886,23 +1474,24 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line+area"
+              "mode": "dashed+area"
             }
           },
+          "displayName": "${__field.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent"
+                "color": "transparent",
+                "value": 0
               },
               {
                 "color": "red",
-                "value": 16
+                "value": 4
               }
             ]
-          },
-          "unit": "short"
+          }
         },
         "overrides": []
       },
@@ -3910,9 +1499,9 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 63
+        "y": 65
       },
-      "id": 13,
+      "id": 19,
       "options": {
         "legend": {
           "calcs": [
@@ -3931,96 +1520,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field =~ /^load\\d/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> map(fn: (r) => ({ r with _field: \n      if r._field == \"load1\" then \"load  1\"\n      else if r._field == \"load5\" then \"load  5\" \n      else if r._field == \"load15\" then \"load 15\"\n      else r._field\n  }))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "load1"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "load1"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "load5"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "load5"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "load15"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "load15"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            }
-          ]
+          }
         }
       ],
       "title": "Load Averages",
@@ -4031,6 +1539,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "CPU usage based on types of tasks (as reported by `top`)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4069,16 +1578,14 @@
               "mode": "off"
             }
           },
+          "displayName": "${__field.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "transparent",
+                "value": 0
               }
             ]
           },
@@ -4090,9 +1597,9 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 63
+        "y": 65
       },
-      "id": 14,
+      "id": 20,
       "options": {
         "legend": {
           "calcs": [
@@ -4103,7 +1610,9 @@
           ],
           "displayMode": "table",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -4111,156 +1620,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"cpu\")\n  |> filter(fn: (r) => r.cpu == \"cpu-total\")\n  |> filter(fn: (r) => r._field =~ /usage_(user|system|nice|iowait|irq|softirq)/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_user"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "user"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "usage_system"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "system"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "usage_nice"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "nice"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "usage_iowait"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "iowait"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "usage_irq"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "irq"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "usage_softirq"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "softirq"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=",
-              "value": "cpu-total"
-            }
-          ]
+          }
         }
       ],
       "title": "CPU",
@@ -4271,6 +1639,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "Memory and swap usage",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4309,16 +1678,14 @@
               "mode": "off"
             }
           },
+          "displayName": "${__series.name} ${__field.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "transparent",
+                "value": 0
               }
             ]
           },
@@ -4327,22 +1694,25 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 9,
         "w": 12,
         "x": 0,
-        "y": 72
+        "y": 74
       },
-      "id": 10,
+      "id": 21,
       "options": {
         "legend": {
           "calcs": [
+            "mean",
             "lastNotNull",
             "max",
             "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -4350,131 +1720,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "mem",
-          "orderByTime": "ASC",
-          "policy": "default",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"mem\" or r._measurement == \"swap\")\n  |> filter(fn: (r) => r._field == \"used\" or r._field == \"active\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
           "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "used"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "active"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "active"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            }
-          ]
-        },
-        {
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "swap",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "used"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            }
-          ]
+          }
         }
       ],
       "title": "Memory",
@@ -4485,6 +1739,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
+      "description": "Read and write operations involving a physical drive measured in bytes per second",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4523,20 +1778,18 @@
               "mode": "off"
             }
           },
+          "displayName": "${__field.name} ${__field.labels.serial}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "transparent",
+                "value": 0
               }
             ]
           },
-          "unit": "Bps"
+          "unit": "binBps"
         },
         "overrides": [
           {
@@ -4553,7 +1806,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": true,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": false
                 }
               }
@@ -4573,87 +1826,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
+                  "tooltip": false,
                   "viz": false
                 }
               }
@@ -4662,18 +1835,19 @@
         ]
       },
       "gridPos": {
-        "h": 10,
+        "h": 9,
         "w": 12,
         "x": 12,
-        "y": 72
+        "y": 74
       },
-      "id": 12,
+      "id": 22,
       "options": {
         "legend": {
           "calcs": [
             "mean",
             "lastNotNull",
-            "max"
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -4687,108 +1861,15 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"diskio\")\n  |> filter(fn: (r) => r.DEVTYPE == \"disk\")\n  |> filter(fn: (r) => r._field == \"read_bytes\" or r._field == \"write_bytes\")\n  |> drop(columns: [\"name\", \"DEVLINKS\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> derivative(unit: 1s, nonNegative: true)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "serial::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "name::tag"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "diskio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "read_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "read"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "write_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "write"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "DEVTYPE::tag",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
+          }
         }
       ],
       "title": "Disk IO",
@@ -4800,9 +1881,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 82
+        "y": 83
       },
-      "id": 38,
+      "id": 4,
       "panels": [],
       "title": "Network",
       "type": "row"
@@ -4812,206 +1893,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 83
-      },
-      "id": 16,
-      "options": {
-        "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max",
-            "min"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Mean",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.0.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
-              },
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "bytes_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
-              },
-              {
-                "params": [
-                  "bytes_sent"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/enp.s0/"
-            }
-          ]
-        }
-      ],
-      "title": "Throughput",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
+      "description": "Network traffic per interface measured in bits per second",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5050,71 +1932,28 @@
               "mode": "off"
             }
           },
+          "displayName": "${__field.name} ${__field.labels.interface}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "transparent",
+                "value": 0
               }
             ]
           },
-          "unit": "short"
+          "unit": "bps"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsNull",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 11,
         "w": 12,
-        "x": 12,
-        "y": 83
+        "x": 0,
+        "y": 84
       },
-      "id": 17,
+      "id": 23,
       "options": {
         "legend": {
           "calcs": [
@@ -5135,55 +1974,155 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "$col",
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"net\")\n  |> filter(fn: (r) => r.interface =~ /enp.s0/)\n  |> filter(fn: (r) => r._field == \"bytes_recv\" or r._field == \"bytes_sent\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> derivative(unit: 1s, nonNegative: true)\n  |> map(fn: (r) => ({ r with _value: r._value * 8.0 }))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> rename(columns: {\"bytes_recv\": \"recv\", \"bytes_sent\": \"sent\"})",
+          "refId": "A",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
+          }
+        }
+      ],
+      "title": "Throughput",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "description": "Unit counts for TCP/UDP connection states from the `netstat` command",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
           },
-          "dsType": "influxdb",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
             },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
             }
-          ],
-          "measurement": "netstat",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
+          },
+          "displayName": "${__field.name}",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
               {
-                "params": [
-                  "*"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
+                "color": "transparent",
+                "value": 0
               }
             ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byValue",
+              "options": {
+                "op": "gte",
+                "reducer": "allIsZero",
+                "value": 0
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": false,
+                  "viz": false
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byValue",
+              "options": {
+                "op": "gte",
+                "reducer": "allIsNull",
+                "value": 0
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": false,
+                  "viz": false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 84
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
           ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$NAS_HOST$/"
-            }
-          ]
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "query": "from(bucket: \"${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"netstat\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          }
         }
       ],
       "title": "Netstat",
@@ -5195,6 +2134,26 @@
   "tags": [],
   "templating": {
     "list": [
+      {
+        "description": "Name of the InfluxDB bucket with telegraf metrics.",
+        "hide": 2,
+        "name": "BUCKET",
+        "query": "${VAR_BUCKET}",
+        "skipUrlSync": true,
+        "type": "constant",
+        "current": {
+          "value": "${VAR_BUCKET}",
+          "text": "${VAR_BUCKET}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_BUCKET}",
+            "text": "${VAR_BUCKET}",
+            "selected": false
+          }
+        ]
+      },
       {
         "description": "Hostname of the NAS.",
         "hide": 2,
@@ -5224,7 +2183,7 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "NAS",
-  "uid": "mcQnVpISz",
-  "version": 12,
+  "uid": "f1639b8d-85ff-4a51-bc8c-47567de87b46",
+  "version": 21,
   "weekStart": ""
 }
