@@ -19,7 +19,7 @@ tags: homelab, nas
 This guide will explain how to run [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) on
 [TrueNAS SCALE](https://www.truenas.com/truenas-scale/), as well as running the [InfluxDB](https://www.influxdata.com/) and
 [Grafana](https://grafana.com/oss/grafana/) apps to collect NAS metrics and show graphs. This is how I run all three apps on
-my [Beelink Me Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
+my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
 SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.
 
 Ever since I saw [MRTG](https://en.wikipedia.org/wiki/Multi_Router_Traffic_Grapher) graphs at my first job at an ISP in 2003,
@@ -263,7 +263,7 @@ http 200 OK state.
 
 ### Fan Speed
 
-This step is optional and specific to the Beelink Me Mini. Out of the box the CPU fan speed isn't reported because of a
+This step is optional and specific to the Beelink ME Mini. Out of the box the CPU fan speed isn't reported because of a
 [missing kernel driver](https://github.com/frankcrawford/it87/issues/3). I wrote a workaround that compiles and installs the
 driver into TrueNAS to see the current fan RPM in the dashboard.
 
