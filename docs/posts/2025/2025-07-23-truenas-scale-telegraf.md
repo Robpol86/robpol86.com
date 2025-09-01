@@ -173,7 +173,7 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
     - *Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration) section*
-1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **amd64 Linux** release
+1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **linux_amd64** release
     - *Extract the tar.gz file and look for the `telegraf` file in `usr/bin`*
 
 :::{hint}
@@ -225,8 +225,7 @@ you might find a use for them.
     1. **Destination Port**: 2003
     1. **Prefix**: graphite
     1. **Namespace**: truenas_reporting
-    1. **Update Every**: 50
-        - *This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)*
+    1. **Update Every**: 10
 
 To confirm this works you can **Shell** into the influxdb container and run this via `influx`:
 
@@ -243,9 +242,7 @@ You should see a lot of `graphite.*` measurements.
 ### Alerts
 
 I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish this by reappropriating the built-in
-ApplicationsStartFailed alert. Every minute a systemd timer will poll the `outputs.health` endpoint in
-[telegraf.conf](/_static/telegraf.conf) and fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to
-InfluxDB.
+ApplicationsStartFailed alert.
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
 1. Add an Init/Shutdown script
@@ -258,6 +255,9 @@ InfluxDB.
         ```
 
 ```{note}
+Every minute a systemd timer will poll the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf) and fail if
+Telegraf isn't running or if Telegraf hasn't been sending metrics to InfluxDB.
+
 The way Telegraf's health endpoint is implemented is a bit confusing. If Telegraf isn't able to send metrics to InfluxDB,
 they pile up in its internal memory buffer. When the number of buffered metrics crosses a threshold (configured in
 `outputs.health.compares`) the health endpoint starts responding with an http 503 error (typically 5 minutes after InfluxDB
