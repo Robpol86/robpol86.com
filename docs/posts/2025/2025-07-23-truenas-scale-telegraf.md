@@ -224,9 +224,7 @@ You should see a lot of `graphite.*` measurements in the telegraf bucket.
 ### Alerts
 
 I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish this by reappropriating the built-in
-ApplicationsStartFailed alert. Every minute a systemd timer will poll the `outputs.health` endpoint in
-[telegraf.conf](/_static/telegraf.conf) and fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to
-InfluxDB.
+ApplicationsStartFailed alert.
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
 1. Add an Init/Shutdown script
@@ -239,6 +237,9 @@ InfluxDB.
         ```
 
 ```{note}
+Every minute a systemd timer will poll the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf) and fail if
+Telegraf isn't running or if Telegraf hasn't been sending metrics to InfluxDB.
+
 The way Telegraf's health endpoint is implemented is a bit confusing. If Telegraf isn't able to send metrics to InfluxDB,
 they pile up in its internal memory buffer. When the number of buffered metrics crosses a threshold (configured in
 `outputs.health.compares`) the health endpoint starts responding with an http 503 error (typically 5 minutes after InfluxDB
