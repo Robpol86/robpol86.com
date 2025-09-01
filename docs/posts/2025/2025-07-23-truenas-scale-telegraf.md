@@ -10,15 +10,20 @@ tags: homelab, nas
 # TrueNAS Telegraf, Influx, Grafana
 
 ```{list-table}
-* - :::{imgur} UZEhmk5
-  - :::{imgur} 8HI9Usi
-* - :::{imgur} u1VnBj4
-  - :::{imgur} EuNZltU
+* - :::{imgur} UZEhmk5.png
+  - :::{imgur} 8HI9Usi.png
+* - :::{imgur} u1VnBj4.png
+  - :::{imgur} EuNZltU.png
 ```
 
-This guide will explain how to run [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) on
-[TrueNAS SCALE](https://www.truenas.com/truenas-scale/), as well as running the [InfluxDB](https://www.influxdata.com/) and
-[Grafana](https://grafana.com/oss/grafana/) apps to collect NAS metrics and show graphs. This is how I run all three apps on
+[Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), [InfluxDB](https://www.influxdata.com/),
+and [Grafana](https://grafana.com/oss/grafana/) are separate pieces of software that together allow you to graph metrics from
+your servers and devices. With these graphs, charts, and other visualization tools available in Grafana, you can see
+historical trends of space usage, CPU usage, and almost anything else. The three components make up the "TIG Stack", where
+Telegraf collects the data, InfluxDB stores the data in a kind of database, and Grafana produces the graphs and alerts.
+
+This guide will explain how to setup the TIG Stack on your NAS running
+[TrueNAS Community Edition (SCALE)](https://www.truenas.com/truenas-community-edition/). This is how I run all three apps on
 my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
 SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.
 
@@ -30,14 +35,13 @@ the time. I first started running my own Grafana at home in 2017 with InfluxDB a
 
 ## Prerequisites
 
-Before starting there are a few things we need to setup:
-
-1. Choose a pool for apps if you haven't used apps in TrueNAS before
-1. Create datasets for each application
+Before starting there are a few things we need to setup.
 
 ### Choose a Pool
 
-For this guide we're using **Vault** as the pool. To enable apps in TrueNAS:
+The first step for enabling apps on TrueNAS is to select a pool. In a typical home NAS you'll probably only have one pool
+where you store all of your files; go ahead and select that pool. On my NAS I've named my pool **Vault**. Substitute that
+with your pool's name.
 
 1. In the TrueNAS UI go to ➡️ Apps
 1. Click on **Configuration** and then **Choose Pool**
@@ -68,7 +72,7 @@ Vault (pool)
     1. Return to Pool List
     1. *Repeat for Grafana and Telegraf*
 
-```{imgur-figure} sZ4tExJ
+```{imgur-figure} sZ4tExJ.png
 You should now see something like this.
 ```
 
@@ -115,7 +119,7 @@ suggests starting with v1 over v2 for future proofing.
             volumes: [/mnt/Vault/Apps/InfluxDB:/var/lib/influxdb]
         ```
 
-```{imgur-figure} DdzTqkM
+```{imgur-figure} DdzTqkM.png
 After you click "Save" you should see something like this.
 ```
 
@@ -169,7 +173,7 @@ To get started download three files and save them in `/mnt/Vault/Apps/Telegraf/`
 1. [telegraf.conf](/_static/telegraf.conf) unmodified
 1. [telegraf.env](/_static/telegraf.env) with "REPLACE_ME" replaced
     - *Use the telegraf password you used in the [InfluxDB Configuration](#influxdb-configuration) section*
-1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **amd64 Linux** release
+1. [telegraf](https://github.com/influxdata/telegraf/releases) from the latest **linux_amd64** release
     - *Extract the tar.gz file and look for the `telegraf` file in `usr/bin`*
 
 :::{hint}
@@ -221,8 +225,7 @@ you might find a use for them.
     1. **Destination Port**: 2003
     1. **Prefix**: graphite
     1. **Namespace**: truenas_reporting
-    1. **Update Every**: 50
-        - *This matches `agent.interval` in [telegraf.conf](/_static/telegraf.conf)*
+    1. **Update Every**: 10
 
 To confirm this works you can **Shell** into the influxdb container and run this via `influx`:
 
@@ -232,16 +235,14 @@ USE telegraf
 SHOW MEASUREMENTS
 ```
 
-```{imgur-figure} 9kt35ns
+```{imgur-figure} 9kt35ns.png
 You should see a lot of `graphite.*` measurements.
 ```
 
 ### Alerts
 
 I'd like to be notified if InfluxDB isn't recording metrics. We'll accomplish this by reappropriating the built-in
-ApplicationsStartFailed alert. Every minute a systemd timer will poll the `outputs.health` endpoint in
-[telegraf.conf](/_static/telegraf.conf) and fail if Telegraf isn't running or if Telegraf hasn't been sending metrics to
-InfluxDB.
+ApplicationsStartFailed alert.
 
 1. In the TrueNAS UI go to ➡️ System > Advanced Settings
 1. Add an Init/Shutdown script
@@ -254,6 +255,9 @@ InfluxDB.
         ```
 
 ```{note}
+Every minute a systemd timer will poll the `outputs.health` endpoint in [telegraf.conf](/_static/telegraf.conf) and fail if
+Telegraf isn't running or if Telegraf hasn't been sending metrics to InfluxDB.
+
 The way Telegraf's health endpoint is implemented is a bit confusing. If Telegraf isn't able to send metrics to InfluxDB,
 they pile up in its internal memory buffer. When the number of buffered metrics crosses a threshold (configured in
 `outputs.health.compares`) the health endpoint starts responding with an http 503 error (typically 5 minutes after InfluxDB
@@ -298,15 +302,17 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
             1. **Host Path**: /mnt/Vault/Apps/Grafana
             1. *Repeat for Grafana Plugins Storage*
 
-```{imgur-figure} qbXRRCO
+```{imgur-figure} qbXRRCO.png
 After you click "Install" you should see something like this.
 ```
 
 ### Grafana Configuration
 
 Once the application is "Running" click on it. Under "Application Info" click on **Web UI**. The default username and
-password are both "admin". Click on the Grafana logo in the upper left corner and then do the following to set it up with our
-InfluxDB application:
+password are both "admin".
+
+After you set a new admin password expand the sidebar (click on the Grafana logo in the upper left corner) and do the
+following to set up Grafana with our InfluxDB application:
 
 1. Connections > Data sources > Add data source > InfluxDB
     1. **Name**: influxdb
@@ -331,15 +337,16 @@ You can now create a new dashboard or import mine and go from there. To import m
         - *Find this hostname in the main Dashboard page of the TrueNAS UI, under System Information*
     1. Import
 
-I like to make this dashboard the default page for Grafana, so when I click on "Web UI" it takes me directly to the graphs.
+I like to make this dashboard the default page for Grafana, so when I go to the Grafana web UI it takes me directly to my
+graphs. To do that in the Grafana web UI go to:
 
-1. Upper right avatar > Profile > Preferences
+1. Upper right avatar icon > Profile > Preferences
     1. **Home Dashboard**: Dashboards/NAS
     1. Save
 
 ## Conclusion
 
-You should now have the "TIG stack" running on your NAS. Feel free to add or remove panels in the dashboard to see the
+You should now have the TIG Stack running on your NAS. Feel free to add or remove panels in the dashboard to see the
 metrics you're interested in. You can also monitor additional components of your homelab by editing the `telegraf.conf` file.
 You can read more about Telegraf
 [input plugins here](https://docs.influxdata.com/telegraf/v1/configure_plugins/input_plugins/). If you have any questions or
