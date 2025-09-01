@@ -20,7 +20,7 @@ tags: homelab, nas
 and [Grafana](https://grafana.com/oss/grafana/) are separate pieces of software that together allow you to graph metrics from
 your servers and devices. With these graphs, charts, and other visualization tools available in Grafana, you can see
 historical trends of space usage, CPU usage, and almost anything else. The three components make up the "TIG Stack", where
-Telegraf collects the data, InfluxDB stores the data in a kind of database, and Grafana generates the graphs and alerts.
+Telegraf collects the data, InfluxDB stores the data in a kind of database, and Grafana produces the graphs and alerts.
 
 This guide will explain how to setup the TIG Stack on your NAS running [TrueNAS SCALE](https://www.truenas.com/truenas-scale/).
 This is how I run all three apps on my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of
