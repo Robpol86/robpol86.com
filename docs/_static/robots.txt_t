@@ -1,7 +1,7 @@
 User-agent: *
 
-{% if production -%}
-Sitemap: {{ html_baseurl.rstrip("/") }}/sitemap.xml
-{% else -%}
+{% if "rob86stageXXX" in html_baseurl -%}
 Disallow: /
+{% else -%}
+Sitemap: {{ html_baseurl.rstrip("/") }}/sitemap.xml
 {% endif -%}
