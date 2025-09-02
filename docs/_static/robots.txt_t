@@ -1,3 +1,7 @@
 User-agent: *
 
+{% if "rob86stage" in html_baseurl -%}
+Disallow: /
+{% else -%}
 Sitemap: {{ html_baseurl.rstrip("/") }}/sitemap.xml
+{% endif %}
