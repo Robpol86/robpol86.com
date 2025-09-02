@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.9.2.00011]
+
+InfluxDB Rephrase
+
+* ffc3a62 Rephrased again. (#307)
+
 ## [2025.9.1.34946]
 
 InfluxDB v2
