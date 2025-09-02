@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.9.2.03300]
+
+Block robots on stage
+
+* 255f97d Block robots on stage (#308)
+
 ## [2025.9.2.00011]
 
 InfluxDB Rephrase
