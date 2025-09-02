@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.9.2.35311]
+
+Fix alert, new output name
+
+* 9c0b93c Fix alert, new output name (#309)
+
 ## [2025.9.2.03300]
 
 Block robots on stage
