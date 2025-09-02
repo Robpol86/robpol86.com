@@ -4,4 +4,4 @@ User-agent: *
 Disallow: /
 {% else -%}
 Sitemap: {{ html_baseurl.rstrip("/") }}/sitemap.xml
-{% endif -%}
+{% endif %}
