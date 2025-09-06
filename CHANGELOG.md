@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2025.9.6.60948]
+
+Fix derivative found out-of-order times in time column
+
+* 0b6ca99 Fix derivative found out-of-order times in time column (#311)
+
 ## [2025.9.4.10643]
 
 Fix last data spike in graphs
