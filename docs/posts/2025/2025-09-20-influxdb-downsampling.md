@@ -62,6 +62,13 @@ ${dsPost}
 
 TODO compare query statistics (or profiling), best of 10 each.
 
+TODO revisit all pygments lexers
+
+```bash
+# REMOVE ME
+for lexer in $(poetry run python -c 'from pygments.lexers._mapping import LEXERS; print(" ".join([l[2][0] for l in LEXERS.values() if len(l[2]) >= 1]))'); do echo ">$lexer"; gsed -i '/^:language:/s/:[^:]*$/: '"$lexer"'/' docs/posts/2025/2025-09-20-influxdb-downsampling.md; sleep 5; echo; done
+```
+
 ## InfluxDB Side
 
 TODO
