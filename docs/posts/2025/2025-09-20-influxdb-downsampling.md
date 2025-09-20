@@ -30,7 +30,7 @@ TODO strings last() ints mean()
 
 TODO compare query statistics (or profiling), best of 10 each.
 
-## Backend
+## InfluxDB Side
 
 TODO
 
@@ -101,7 +101,7 @@ TODO reduce docstring and document here instead
 
 TODO
 
-## Frontend
+## Grafana Side
 
 TODO gif with production ranges showing zooming out and panning
 
