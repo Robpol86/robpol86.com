@@ -38,6 +38,61 @@ TODO
 
 TODO reduce docstring and document here instead
 
+```
+// InfluxDB v2 Flux task. All numerical values (int, uint, float) will be downsampled with mean(), whilst every other value
+// (string, bool, etc.) will be downsampled with last() (the last entry within the time range specified in task.every).
+//
+// ## Prerequisites
+//
+// Create the downsample buckets before running this task. An example pattern:
+//
+// * "telegraf" is your main bucket with raw data, added every 10 seconds or so.
+// * "telegraf_1m" is your downsample bucket that this tasks writes to, averaging data to every 1 minute.
+//
+// Set an appropriate retention policy for each bucket. I personally keep data in InfluxDB longer than what I have Grafana
+// query in case I want to adjust how much raw data I want to display before the graph starts to smooth out.
+//
+// As an example these are the buckets I use and their retentions:
+//
+// * telegraf: 30 days
+// * telegraf_1m: 90 days
+// * telegraf_5m: 1 year
+// * telegraf_10m: forever
+//
+// Proceed on to the Backfill section if you've got old data you want to backfill into the new downsample buckets. If you
+// don't have any old data to preserve then skip to the Install section below. 
+//
+// ## Backfill
+//
+// To backfill a new downsample bucket with historical data you'll want to do it in chunks. It could take 1-16 minutes to
+// backfill just one day of data for one telegraf host. To backfill, make a copy of this file (e.g. dsTask-backfill.flux)
+// with the following changes:
+//
+// 1. Set backfill.enabled to true
+// 2. Set backfill.everyResolution to the resolution if your target bucket (e.g. 1m for telegraf_1m, 5m for telegraf_5m)
+// 3. Set backfill.chunkStart to a date before your earliest data point (for simplicity keep the time to all zeros)
+// 4. Set backfill.chunkStop to however much data you wish to process in one go (set the time to the last possible nanosecond
+//    before the next chunk window to avoid potential data loss)
+//
+// Then execute the file using the influx CLI. Here's an example command:
+//      influx query - < ./dsTask-backfill.flux > backfill.log
+//
+// ## Install
+//
+// 1. In your InfluxDB UI go to Tasks > Create Task > New Task
+// 2. In the left pane/column you can name your task "dsTask-<bucket>_<every>" (e.g. dsTask-telegraf_1m)
+// 3. Set "Every" to "1m" to downsample data to 1 minute intervals (don't use CRON)
+// 4. For offset I use "15s" to give Telegraf enough time to finish writing data to InfluxDB for each iteration.
+// 5. To work around an InfluxDB bug (#25197) put a space in the right pane and save the new empty task. Then edit it, you'll
+//    see it auto-inserted "option task". Delete that (everything in the right pane) for now.
+// 6. On the right pane paste this entire script. You only need to make changes to the script if your bucket names are
+//    different. Everything in the "option task" variable in the right pane will be overridden by what's in the left pane.
+// 7. Click save.
+//
+// If you have additional buckets you can just clone the task then edit the new task to change its name and "Every" value.
+//
+```
+
 ```{literalinclude} /_static/dsTask.flux
 :language: text
 ```
@@ -52,7 +107,57 @@ TODO gif with production ranges showing zooming out and panning
 
 ### Grafana Query Variable
 
-TODO eliminate "PASTE EVERYTHING BELOW THIS LINE IN GRAFANA"
+TODO
+
+```
+// Grafana Flux query variable. Helps combine InfluxDB v2 downsample buckets into output to be displayed in a Grafana panel.
+// When the user zooms in, downsampled buckets that are no longer within the scope of the current time range won't be
+// queried. This query will run once per dashboard load, refresh, or time range change before any panels queries are run.
+//
+// ## Prerequisites
+//
+// 1. Decide which buckets shall be queried for which time ranges. For example if you want the "telegraf" bucket to be used
+//    for metrics from "now-5m" to "now" you'll specify it with "telegraf=now:-5m". And if you want the rest of the graph to
+//    use the bucket "telegraf_1m" you'll specify that with "telegraf_1m=-5m:inf".
+// 2. Set a Grafana constant variable named "dsBuckets" to your bucket name and range specification, separated with "|". Your
+//    first range must start with "now" and your last range must end with "inf". You can specify two or more buckets, here
+//    are some examples:
+//      telegraf=now:-5m|telegraf_1m=-5m:inf
+//      telegraf=now:-30m|telegraf_1m=-30m:-1h|telegraf_5m=-1h:inf
+//      telegraf=now:-1d|telegraf_1m=-1d:-2d|telegraf_5m=-2d:-3d|telegraf_10m=-3d:inf
+//
+// ## Install
+//
+// 1. In your Grafana dashboard settings go to the Variables section and add a new variable.
+// 2. The variable type is "Query", the variable name must be "dsPost", set the data source to your influxdb instance, you
+//    must set the refresh setting to "On time range change", and uncheck "multi-value", "allow custom values", and "include
+//    All option" (as of Grafana v12.0.2). Disable sorting and leave Regex empty as well.
+// 3. Paste this script below the "PASTE EVERYTHING BELOW THIS LINE IN GRAFANA" line into the "Query" field. Test it by
+//    clicking on "Run query", you should see a preview value. Then click "Back to list". Then go back to your dashboard.
+// 4. If you didn't hide the variable you should see "dsPost" at the top of your dashboard. When you change the dashboard
+//    time range you should see your buckets appear/disappear from the value of this variable. Every refresh, time range
+//    change, and browser refresh will update dsPost.
+//
+// ## Usage
+//
+// Finally to use dsPost in your panels you'll need to update all of the queries. For most queries all you need to do is add
+// "dsQuery = (bucket, start, stop) =>" to the top and "${dsPost}" to the bottom (without quotes) and set your bucket and
+// range to the bucket, start, and stop variables. Here's an example panel query:
+//
+//      dsQuery = (bucket, start, stop) =>
+//      from(bucket)
+//      |> range(start, stop)
+//      |> filter(fn: (r) =>
+//          r._measurement == "cpu" and
+//          r.host == "tnas" and
+//          r.cpu == "cpu-total" and
+//          r._field == "usage_user"
+//      )
+//      ${dsPost}
+//
+
+// PASTE EVERYTHING BELOW THIS LINE IN GRAFANA
+```
 
 ```{literalinclude} /_static/dsPost.flux
 :language: text

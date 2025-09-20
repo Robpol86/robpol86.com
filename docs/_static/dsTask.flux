@@ -1,57 +1,5 @@
 // dsTask.flux: Flux task that downsamples one bucket into another.
 //
-// InfluxDB v2 Flux task. All numerical values (int, uint, float) will be downsampled with mean(), whilst every other value
-// (string, bool, etc.) will be downsampled with last() (the last entry within the time range specified in task.every).
-//
-// ## Prerequisites
-//
-// Create the downsample buckets before running this task. An example pattern:
-//
-// * "telegraf" is your main bucket with raw data, added every 10 seconds or so.
-// * "telegraf_1m" is your downsample bucket that this tasks writes to, averaging data to every 1 minute.
-//
-// Set an appropriate retention policy for each bucket. I personally keep data in InfluxDB longer than what I have Grafana
-// query in case I want to adjust how much raw data I want to display before the graph starts to smooth out.
-//
-// As an example these are the buckets I use and their retentions:
-//
-// * telegraf: 30 days
-// * telegraf_1m: 90 days
-// * telegraf_5m: 1 year
-// * telegraf_10m: forever
-//
-// Proceed on to the Backfill section if you've got old data you want to backfill into the new downsample buckets. If you
-// don't have any old data to preserve then skip to the Install section below. 
-//
-// ## Backfill
-//
-// To backfill a new downsample bucket with historical data you'll want to do it in chunks. It could take 1-16 minutes to
-// backfill just one day of data for one telegraf host. To backfill, make a copy of this file (e.g. dsTask-backfill.flux)
-// with the following changes:
-//
-// 1. Set backfill.enabled to true
-// 2. Set backfill.everyResolution to the resolution if your target bucket (e.g. 1m for telegraf_1m, 5m for telegraf_5m)
-// 3. Set backfill.chunkStart to a date before your earliest data point (for simplicity keep the time to all zeros)
-// 4. Set backfill.chunkStop to however much data you wish to process in one go (set the time to the last possible nanosecond
-//    before the next chunk window to avoid potential data loss)
-//
-// Then execute the file using the influx CLI. Here's an example command:
-//      influx query - < ./dsTask-backfill.flux > backfill.log
-//
-// ## Install
-//
-// 1. In your InfluxDB UI go to Tasks > Create Task > New Task
-// 2. In the left pane/column you can name your task "dsTask-<bucket>_<every>" (e.g. dsTask-telegraf_1m)
-// 3. Set "Every" to "1m" to downsample data to 1 minute intervals (don't use CRON)
-// 4. For offset I use "15s" to give Telegraf enough time to finish writing data to InfluxDB for each iteration.
-// 5. To work around an InfluxDB bug (#25197) put a space in the right pane and save the new empty task. Then edit it, you'll
-//    see it auto-inserted "option task". Delete that (everything in the right pane) for now.
-// 6. On the right pane paste this entire script. You only need to make changes to the script if your bucket names are
-//    different. Everything in the "option task" variable in the right pane will be overridden by what's in the left pane.
-// 7. Click save.
-//
-// If you have additional buckets you can just clone the task then edit the new task to change its name and "Every" value.
-//
 // BSD 2-Clause License
 // Copyright (c) 2025, Robpol86
 // All rights reserved.

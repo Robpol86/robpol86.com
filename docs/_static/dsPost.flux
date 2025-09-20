@@ -1,53 +1,5 @@
 // dsPost.flux: Query one or more downsample buckets in Grafana.
 //
-// Grafana Flux query variable. Helps combine InfluxDB v2 downsample buckets into output to be displayed in a Grafana panel.
-// When the user zooms in, downsampled buckets that are no longer within the scope of the current time range won't be
-// queried. This query will run once per dashboard load, refresh, or time range change before any panels queries are run.
-//
-// ## Prerequisites
-//
-// 1. Decide which buckets shall be queried for which time ranges. For example if you want the "telegraf" bucket to be used
-//    for metrics from "now-5m" to "now" you'll specify it with "telegraf=now:-5m". And if you want the rest of the graph to
-//    use the bucket "telegraf_1m" you'll specify that with "telegraf_1m=-5m:inf".
-// 2. Set a Grafana constant variable named "dsBuckets" to your bucket name and range specification, separated with "|". Your
-//    first range must start with "now" and your last range must end with "inf". You can specify two or more buckets, here
-//    are some examples:
-//      telegraf=now:-5m|telegraf_1m=-5m:inf
-//      telegraf=now:-30m|telegraf_1m=-30m:-1h|telegraf_5m=-1h:inf
-//      telegraf=now:-1d|telegraf_1m=-1d:-2d|telegraf_5m=-2d:-3d|telegraf_10m=-3d:inf
-//
-// ## Install
-//
-// 1. In your Grafana dashboard settings go to the Variables section and add a new variable.
-// 2. The variable type is "Query", the variable name must be "dsPost", set the data source to your influxdb instance, you
-//    must set the refresh setting to "On time range change", and uncheck "multi-value", "allow custom values", and "include
-//    All option" (as of Grafana v12.0.2). Disable sorting and leave Regex empty as well.
-// 3. Paste this script below the "PASTE EVERYTHING BELOW THIS LINE IN GRAFANA" line into the "Query" field. Test it by
-//    clicking on "Run query", you should see a preview value. Then click "Back to list". Then go back to your dashboard.
-// 4. If you didn't hide the variable you should see "dsPost" at the top of your dashboard. When you change the dashboard
-//    time range you should see your buckets appear/disappear from the value of this variable. Every refresh, time range
-//    change, and browser refresh will update dsPost.
-//
-// ## Usage
-//
-// Finally to use dsPost in your panels you'll need to update all of the queries. For most queries all you need to do is add
-// "dsQuery = (bucket, start, stop) =>" to the top and "${dsPost}" to the bottom (without quotes) and set your bucket and
-// range to the bucket, start, and stop variables. Here's an example panel query:
-//
-//      dsQuery = (bucket, start, stop) =>
-//      from(bucket)
-//      |> range(start, stop)
-//      |> filter(fn: (r) =>
-//          r._measurement == "cpu" and
-//          r.host == "tnas" and
-//          r.cpu == "cpu-total" and
-//          r._field == "usage_user"
-//      )
-//      ${dsPost}
-//
-
-// PASTE EVERYTHING BELOW THIS LINE IN GRAFANA
-
 // BSD 2-Clause License
 // Copyright (c) 2025, Robpol86
 // All rights reserved.
