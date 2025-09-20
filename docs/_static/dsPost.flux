@@ -25,7 +25,8 @@ import "array"
 import "date"
 import "strings"
 
-// Take in any string array and outputs it as a stream so Grafana can ingest it as a single or multi-value variable.
+// Take in any string array and outputs it as a stream so Grafana can ingest it as a single
+// or multi-value variable.
 exportAsStream = (arr) =>
     array.from(rows: array.map(arr: arr, fn: (x) => ({ _value: x })))
 
@@ -35,9 +36,11 @@ stringToTime = (s) =>
     else if s == "inf" or s == "-inf" then date.time(t: inf)
     else date.time(t: duration(v: s))
 
-// Parse dsBuckets string into array of strings and stop/stop time objects bound within the range of trStart/trStop.
+// Parse dsBuckets string into array of strings and stop/stop time objects bound within the
+// range of trStart/trStop.
 parseBucketsString = (buckets, trStop, trStart) =>
-    // Split dsBuckets string with pipe delimiter. Valid string example: telegraf=now:-5m|telegraf_1m=-5m:-inf
+    // Split dsBuckets string with pipe delimiter.
+    // Valid string example: telegraf=now:-5m|telegraf_1m=-5m:-inf
     strings.split(v: buckets, t: "|")
         |> array.map(fn: (x) => strings.trimSpace(v: x))
         // Filter out invalid substrings.
@@ -67,8 +70,9 @@ parseBucketsString = (buckets, trStop, trStart) =>
 dsPostSingle = (bucket) =>
     "dsQuery(bucket: \"${bucket.name}\", start: ${bucket.start}, stop: ${bucket.stop})"
 
-// Return one dsQuery() call per bucket and route the outputs into union() to merge them into one metric.
-// Normalize start/stop boundary times so Grafana displays them as one line.
+// Return one dsQuery() call per bucket and route the outputs into union() to merge them
+// into one metric. Normalize start/stop boundary times so Grafana displays them as one
+// line.
 dsPostMulti = (parsedBuckets, trStop, trStart) => {
     dsQueryCalls = array.map(arr: parsedBuckets, fn: (x) => dsPostSingle(bucket: x))
     dsQueryArr = "[" + strings.joinStr(arr: dsQueryCalls, v: ", ") + "]"

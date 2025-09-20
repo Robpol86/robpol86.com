@@ -33,7 +33,8 @@ option task = {
 // Set your main bucket name here.
 option bucketRootName = "telegraf"
 
-// Set backfill.enabled to true when backfilling a new downsample bucket with "influx query ...".
+// Set backfill.enabled to true when backfilling a new downsample bucket with
+// "influx query ...".
 option backfill = {
     bfEnabled: false,
     bfEveryResolution: 1m,
@@ -52,8 +53,10 @@ buckets = {
 // Select all data into this variable.
 dataAll =
     if backfill.bfEnabled
-    then from(bucket: buckets.source) |> range(start: backfill.bfChunkStart, stop: backfill.bfChunkStop)
-    else from(bucket: buckets.source) |> range(start: -resolution)
+    then from(bucket: buckets.source)
+        |> range(start: backfill.bfChunkStart, stop: backfill.bfChunkStop)
+    else from(bucket: buckets.source)
+        |> range(start: -resolution)
 
 // Integers and floats will be averaged together with mean().
 dataToMean = dataAll
@@ -63,7 +66,8 @@ dataToMean = dataAll
         types.isType(v: r._value, type: "float")
     )
 
-// For all other data types (e.g. strings) we'll select the last value within the time range.
+// For all other data types (e.g. strings) we'll select the last value within the time
+// range.
 dataToLast = dataAll
     |> filter(fn: (r) =>
         not types.isType(v: r._value, type: "int") and
