@@ -9,9 +9,15 @@ tags: homelab, nas
 
 # InfluxDB Downsampling
 
-TODO IMAGE WITH DOTS
+```{list-table}
+* - :::{imgur-image} q04bUPy
+    :::
+```
 
-TODO introduction
+In this guide I will show you how I've implemented InfluxDB v2 downsampling that plays nicely with Grafana with minimal
+changes to queries.
+
+TODO compare query statistics, best of 10 each.
 
 ## Backend
 
