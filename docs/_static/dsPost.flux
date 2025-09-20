@@ -77,7 +77,8 @@ dsPostMulti = (parsedBuckets, trStop, trStart) => {
     dsQueryCalls = array.map(arr: parsedBuckets, fn: (x) => dsPostSingle(bucket: x))
     dsQueryArr = "[" + strings.joinStr(arr: dsQueryCalls, v: ", ") + "]"
     dsQueryUnion = "union(tables: ${dsQueryArr})"
-    return "map(tables: ${dsQueryUnion}, fn: (r) => ({ r with _start: ${trStart}, _stop: ${trStop} }))"
+    dsStartStop = "({ r with _start: ${trStart}, _stop: ${trStop} })"
+    return "map(tables: ${dsQueryUnion}, fn: (r) => ${dsStartStop})"
 }
 
 // Main.
