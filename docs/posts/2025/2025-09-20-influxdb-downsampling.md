@@ -15,10 +15,14 @@ TODO introduction
 
 ## Backend
 
-TODO include dsTask.flux
+```{literalinclude} /_static/dsTask.flux
+:language: text
+```
 
 ## Frontend
 
-TODO include dsPost.flux
+```{literalinclude} /_static/dsPost.flux
+:language: text
+```
 
 TODO [dsGrafana.json](/_static/dsGrafana.json)
