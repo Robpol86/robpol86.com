@@ -16,17 +16,20 @@ tags: homelab, nas
 
 In this guide I will show you how I've implemented InfluxDB v2 downsampling that plays nicely with Grafana with minimal
 changes to queries. I use it to downsample Telegraf metrics but it should work with any data. Ints and floats are downsampled
-using `mean()` whilst all other types are downsampled with `last()`. Grafana will read metrics from your main and downsample
-buckets and combine them with `union()`. The last part I've automated into a single Grafana variable to avoid copying and
-pasting a lot of code for each of your queries.
+using `mean()` whilst all other types are downsampled with `last()`. Grafana will read metrics from your main bucket and one
+or more downsample buckets. It will then combine data from the buckets with `union()`. The last part I've automated into a
+single Grafana variable to avoid copying and pasting a lot of code for each of your queries.
 
 The official [InfluxDB v2 documentation](https://docs.influxdata.com/influxdb/v2/process-data/common-tasks/downsample-data/)
 implements downsampling in a strange way that doesn't seem usable for real time metrics such as with Telegraf. They also
-don't cover consuming the downsampled data. Turns out that was the hard part.
+don't cover consuming the downsampled data. It turns out that was the hardest part to get right.
 
 TODO top image with four buckets is hard to read when shown as an og embed. Make it three or two buckets.
 
 ## Overview
+
+Downsampling is implemented in two parts: the InfluxDB side which does the downsampling, and the Grafana side which reads
+data from one or more buckets.
 
 TODO strings last() ints mean()
 
