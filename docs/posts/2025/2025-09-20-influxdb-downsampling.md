@@ -24,6 +24,8 @@ The official [InfluxDB v2 documentation](https://docs.influxdata.com/influxdb/v2
 implements downsampling in a strange way that doesn't seem usable for real time metrics such as with Telegraf. They also
 don't cover consuming the downsampled data. Turns out that was the hard part.
 
+TODO top image with four buckets is hard to read when shown as an og embed. Make it three or two buckets.
+
 ## Overview
 
 TODO strings last() ints mean()
