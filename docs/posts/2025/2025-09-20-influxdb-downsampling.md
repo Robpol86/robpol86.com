@@ -17,13 +17,11 @@ tags: homelab, nas
 In this guide I will show you how I've implemented InfluxDB v2 downsampling that plays nicely with Grafana with minimal
 changes to queries.
 
-TODO compare query statistics, best of 10 each.
-
 TODO strings last() ints mean()
 
 ## Overview
 
-TODO
+TODO compare query statistics, best of 10 each.
 
 ## Backend
 
