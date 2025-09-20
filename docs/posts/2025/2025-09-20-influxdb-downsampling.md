@@ -28,10 +28,37 @@ TODO top image with four buckets is hard to read when shown as an og embed. Make
 
 ## Overview
 
-Downsampling is implemented in two parts: the InfluxDB side which does the downsampling, and the Grafana side which reads
-data from one or more buckets.
+Downsampling is implemented in two parts: the [InfluxDB side](/_static/dsTask.flux) which does the downsampling, and the
+[Grafana side](/_static/dsPost.flux) which reads data from one or more buckets.
 
-TODO strings last() ints mean()
+On the InfluxDB side you will have a [Flux task](https://docs.influxdata.com/influxdb/v2/process-data/get-started/) that runs
+on a schedule downsampling recent data into a separate downsample bucket. You may wish to have multiple downsample buckets
+with different granularity/resolution of data each with their own retention policies. If you have old data you want to
+downsample instead of just the new data I'm covering that in the [Backfilling Data](#backfilling-data) section below.
+
+On the Grafana side we'll need to tell it to query the main bucket as well as the downsample buckets. The goal of this
+project is to see very detailed recent metrics and then use downsampled metrics at a lower resolution for historical data. We
+want to avoid having to process thousands or millions of data points per panel when we have Grafana zoom out to month or year
+time frames. Another goal I set for this project is to minimize the changes needed to be done to each query to enable
+downsampling. My solution is basically to add three short lines to each query. An example before and after downsampling:
+
+```
+// Before
+from(bucket: "${BUCKET}")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r.host == "${HOST}")
+  |> filter(fn: (r) => r._measurement == "mem")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+
+// After
+dsQuery = (bucket, start, stop) =>
+from(bucket)
+  |> range(start, stop)
+  |> filter(fn: (r) => r.host == "${HOST}")
+  |> filter(fn: (r) => r._measurement == "mem")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+${dsPost}
+```
 
 TODO compare query statistics (or profiling), best of 10 each.
 
