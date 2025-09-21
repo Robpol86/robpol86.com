@@ -228,12 +228,6 @@ TODO
 :language: d
 ```
 
-#### d-objdump
-
-```{literalinclude} /_static/dsPost.flux
-:language: d-objdump
-```
-
 #### dax
 
 ```{literalinclude} /_static/dsPost.flux
@@ -270,34 +264,10 @@ TODO
 :language: igor
 ```
 
-#### javascript+django
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+django
-```
-
-#### javascript+ruby
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+ruby
-```
-
-#### js+genshitext
-
-```{literalinclude} /_static/dsPost.flux
-:language: js+genshitext
-```
-
 #### javascript
 
 ```{literalinclude} /_static/dsPost.flux
 :language: javascript
-```
-
-#### javascript+php
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+php
 ```
 
 #### javascript+smarty
@@ -306,22 +276,10 @@ TODO
 :language: javascript+smarty
 ```
 
-#### js+ul4
-
-```{literalinclude} /_static/dsPost.flux
-:language: js+ul4
-```
-
 #### jsgf
 
 ```{literalinclude} /_static/dsPost.flux
 :language: jsgf
-```
-
-#### jsx
-
-```{literalinclude} /_static/dsPost.flux
-:language: jsx
 ```
 
 #### juttle
@@ -354,34 +312,10 @@ TODO
 :language: mcschema
 ```
 
-#### javascript+mako
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+mako
-```
-
-#### minid
-
-```{literalinclude} /_static/dsPost.flux
-:language: minid
-```
-
 #### modula2
 
 ```{literalinclude} /_static/dsPost.flux
 :language: modula2
-```
-
-#### javascript+myghty
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+myghty
-```
-
-#### nodejsrepl
-
-```{literalinclude} /_static/dsPost.flux
-:language: nodejsrepl
 ```
 
 #### objective-j
@@ -402,12 +336,6 @@ TODO
 :language: qml
 ```
 
-#### ragel-d
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-d
-```
-
 #### scilab
 
 ```{literalinclude} /_static/dsPost.flux
@@ -418,12 +346,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: supercollider
-```
-
-#### tsx
-
-```{literalinclude} /_static/dsPost.flux
-:language: tsx
 ```
 
 #### typescript
