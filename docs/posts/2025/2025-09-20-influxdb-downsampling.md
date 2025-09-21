@@ -199,18 +199,6 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: abap
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: amdgpu
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: apl
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: abnf
 ```
 
@@ -223,14 +211,6 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: ada
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: adl
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: agda
 ```
 
@@ -239,95 +219,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: alloy
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ambienttalk
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ampl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+ng2
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ng2
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-actionscript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-csharp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-cpp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-java
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-objc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-perl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-python
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-ruby
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: apacheconf
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: applescript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: arduino
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: arrow
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: arturo
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: asc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: asn1
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: aspectj
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: asymptote
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -343,35 +235,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: awk
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: bbcbasic
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: bbcode
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: bc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: bqn
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: bst
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: bare
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: basemake
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -383,19 +247,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: batch
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: bdd
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: befunge
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: berry
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -403,31 +255,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: blitzbasic
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: blitzmax
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: blueprint
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: bnf
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: boa
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: boo
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: boogie
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -435,91 +263,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: bugs
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: camkes
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: c
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cmake
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: c-objdump
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cpsa
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+ul4
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: aspx-cs
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: csharp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ca65
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cadl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: capdl
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: capnp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: carbon
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cbmbas
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cddl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ceylon
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cfengine3
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: chaiscript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: chapel
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: charmci
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+cheetah
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -531,39 +275,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: xml+cheetah
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: cirru
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: clay
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: clean
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: clojure
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: clojurescript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cobolfree
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cobol
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: codeql
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -571,107 +283,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: cfc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cfm
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cfs
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: comal
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: common-lisp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: componentpascal
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: coq
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: cplint
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cpp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cpp-objdump
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: crmsh
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: croc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cryptol
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cr
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: csound-document
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: csound
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: csound-score
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+django
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+ruby
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+genshitext
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+php
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+smarty
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cuda
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cypher
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: cython
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -687,39 +303,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: dart
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: dasm16
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: dax
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: debcontrol
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: debian.sources
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: delphi
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: desktop
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: devicetree
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: dg
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -731,19 +315,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: zone
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: docker
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: dtd
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: duel
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -755,47 +327,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: dylan-lid
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ecl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ec
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: earl-grey
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: easytrieve
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ebnf
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: eiffel
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: iex
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: elixir
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: elm
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: elpi
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -803,47 +335,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: email
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: erb
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: erlang
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: erl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+evoque
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: evoque
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+evoque
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: execline
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ezhil
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: fsharp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: fstar
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -859,27 +355,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: felix
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: fennel
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: fift
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: fish
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: flatline
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: floscript
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -887,27 +363,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: fortranfixed
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: fortran
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: foxpro
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: freefem
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: func
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: futhark
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -923,23 +379,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: glsl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: gsql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: gas
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: gcode
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: genshi
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -947,35 +387,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: pot
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: gherkin
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: gleam
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: gnuplot
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: go
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: golo
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: gooddata-cl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: googlesql
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -987,27 +399,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: graphql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: graphviz
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: groff
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: groovy
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: hlsl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+ul4
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1015,71 +407,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: html+handlebars
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: handlebars
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: hare
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: haskell
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: haxe
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: hexdump
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: hsail
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: hspec
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+django
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+genshi
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+php
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+smarty
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: http
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: haxeml
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: hylang
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: hybris
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1087,19 +415,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: icon
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: idris
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: igor
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: inform6
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1115,47 +431,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: io
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ioke
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: irc
 ```
 
 ```{literalinclude} /_static/dsPost.flux
 :language: isabelle
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: j
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: jmespath
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: jslt
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: jags
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: janet
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: jasmin
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: java
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1187,31 +467,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: jcl
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: jsgf
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: json5
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: jsonld
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: json
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: jsonnet
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: jsp
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1235,15 +491,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: kal
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: kconfig
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: kmsg
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1251,47 +499,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: kotlin
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: kuin
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: kql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: lsl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+lasso
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+lasso
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: javascript+lasso
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: lasso
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+lasso
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ldapconf
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ldif
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1300,22 +508,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: lean4
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: less
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: lighttpd
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: lilypond
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: limbo
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1343,35 +535,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: llvm
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: llvm-mir-body
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: llvm-mir
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: logos
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: logtalk
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: lua
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: luau
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mcfunction
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1379,15 +543,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: mime
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: mips
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: moocode
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1399,18 +555,6 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: make
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+mako
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+mako
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: javascript+mako
 ```
 
@@ -1419,31 +563,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: xml+mako
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: maple
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: maql
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: markdown
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mask
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mason
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mathematica
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1459,19 +583,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: meson
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: minid
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: miniscript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: modelica
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1480,30 +592,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: trac-wiki
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mojo
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: monkey
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: monte
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: moonscript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mosel
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+mozpreproc
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1519,35 +607,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: xul+mozpreproc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mscgen
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: mupad
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mxml
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: mysql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+myghty
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+myghty
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1559,59 +619,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: xml+myghty
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ncl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nsis
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nasm
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: objdump-nasm
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nemerle
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nesc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nestedtext
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: newlisp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: newspeak
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nginx
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nimrod
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nit
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nixos
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1619,31 +627,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: notmuch
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: nusmv
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: numpy
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: numba_ir
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: objdump
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: objective-c
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: objective-c++
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1651,35 +635,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: ocaml
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: octave
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: odin
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: omg-idl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ooc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: opa
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: openedge
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: openscad
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1695,19 +655,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: pan
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: parasail
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pawn
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pddl
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1723,59 +671,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: phix
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: php
 ```
 
 ```{literalinclude} /_static/dsPost.flux
 :language: pig
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pike
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pkgconfig
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: plpgsql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pointless
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pony
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: portugol
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: postscript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: psql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: postgres-explain
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: postgresql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pov
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1787,59 +687,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: praat
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: procfile
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: prolog
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: promql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: promela
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: properties
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: protobuf
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: prql
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: psysh
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ptx
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pug
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: puppet
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: pypylog
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: python2
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1851,31 +703,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: python
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: pytb
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: py+ul4
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: qbasic
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: q
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: qvto
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: qlik
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1899,14 +731,6 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: ragel-c
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-cpp
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: ragel-d
 ```
 
@@ -1915,67 +739,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: ragel-java
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-objc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-ruby
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: rd
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: reasonml
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: rebol
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: red
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: redcode
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: registry
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: rego
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: resourcebundle
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: rexx
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: rhtml
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ride
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: rita
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1991,10 +755,6 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: rql
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: rsl
 ```
 
@@ -2003,19 +763,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: trafficscript
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: rbcon
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ruby
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: rust
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2027,30 +775,6 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: sml
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: snbt
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sarl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sass
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: savi
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: scala
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: scaml
 ```
 
@@ -2059,35 +783,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: scheme
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: scilab
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: scss
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sed
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: shexc
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: shen
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sieve
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: silver
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2095,79 +791,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: slash
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: slim
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: slurm
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: smali
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: smalltalk
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sgf
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: smarty
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: smithy
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: snobol
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: snowball
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: solidity
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: androidbp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sophia
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: debsources
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sparql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: spice
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sql+jinja
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: sql
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2179,39 +807,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: srcinfo
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ssp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: stan
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: stata
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: supercollider
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: swift
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: swig
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: systemverilog
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: systemd
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2219,47 +815,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: tnt
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: toml
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: tablegen
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: tact
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: tads3
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: tal
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: tasm
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: tcl
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: tcsh
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: tcshcon
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: tea
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2271,18 +831,6 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: termcap
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: terminfo
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: terraform
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: tex
 ```
 
@@ -2291,47 +839,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: ti
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: thrift
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: tid
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: tlb
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: tls
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: todotxt
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: tsql
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: treetop
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: tsx
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: turtle
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+twig
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2343,31 +855,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: typoscriptcssdata
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: typoscripthtmldata
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: typoscript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: typst
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: ul4
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ucode
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: unicon
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2375,71 +863,11 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: urbiscript
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: urlencoded
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: usd
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: vbscript
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: vcl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: vclsnippets
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: vctreestatus
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: vgl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: vala
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: aspx-vb
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: vb.net
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+velocity
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: velocity
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+velocity
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: verifpal
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: verilog
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: vhdl
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2455,31 +883,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: vue
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: vyper
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: wdiff
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: wast
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: webidl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: wgsl
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: whiley
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2491,67 +895,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: wren
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: x10
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+ul4
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xquery
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+django
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+ruby
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+php
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+smarty
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xorg.conf
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xpp
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xslt
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: xtend
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: extempore
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: yaml+jinja
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: yaml
 ```
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2563,19 +907,7 @@ TODO
 ```
 
 ```{literalinclude} /_static/dsPost.flux
-:language: zeek
-```
-
-```{literalinclude} /_static/dsPost.flux
 :language: zephir
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: zig
-```
-
-```{literalinclude} /_static/dsPost.flux
-:language: ansys
 ```
 
 ### Update Queries
