@@ -205,3 +205,5 @@ TODO
 ### Update Queries
 
 TODO [dsGrafana.json](/_static/dsGrafana.json)
+
+TODO toFloat()
