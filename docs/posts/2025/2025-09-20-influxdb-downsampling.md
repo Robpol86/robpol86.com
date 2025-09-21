@@ -198,12 +198,6 @@ TODO
 // PASTE EVERYTHING BELOW THIS LINE IN GRAFANA
 ```
 
-#### abnf
-
-```{literalinclude} /_static/dsPost.flux
-:language: abnf
-```
-
 #### actionscript3
 
 ```{literalinclude} /_static/dsPost.flux
@@ -220,24 +214,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: agda
-```
-
-#### aheui
-
-```{literalinclude} /_static/dsPost.flux
-:language: aheui
-```
-
-#### asc
-
-```{literalinclude} /_static/dsPost.flux
-:language: asc
-```
-
-#### augeas
-
-```{literalinclude} /_static/dsPost.flux
-:language: augeas
 ```
 
 #### autoit
@@ -264,58 +240,16 @@ TODO
 :language: bash
 ```
 
-#### console
-
-```{literalinclude} /_static/dsPost.flux
-:language: console
-```
-
 #### bdd
 
 ```{literalinclude} /_static/dsPost.flux
 :language: bdd
 ```
 
-#### bibtex
-
-```{literalinclude} /_static/dsPost.flux
-:language: bibtex
-```
-
-#### bnf
-
-```{literalinclude} /_static/dsPost.flux
-:language: bnf
-```
-
-#### brainfuck
-
-```{literalinclude} /_static/dsPost.flux
-:language: brainfuck
-```
-
-#### capnp
-
-```{literalinclude} /_static/dsPost.flux
-:language: capnp
-```
-
 #### javascript+cheetah
 
 ```{literalinclude} /_static/dsPost.flux
 :language: javascript+cheetah
-```
-
-#### cheetah
-
-```{literalinclude} /_static/dsPost.flux
-:language: cheetah
-```
-
-#### cirru
-
-```{literalinclude} /_static/dsPost.flux
-:language: cirru
 ```
 
 #### coffeescript
@@ -348,28 +282,10 @@ TODO
 :language: d-objdump
 ```
 
-#### dpatch
-
-```{literalinclude} /_static/dsPost.flux
-:language: dpatch
-```
-
 #### dax
 
 ```{literalinclude} /_static/dsPost.flux
 :language: dax
-```
-
-#### diff
-
-```{literalinclude} /_static/dsPost.flux
-:language: diff
-```
-
-#### django
-
-```{literalinclude} /_static/dsPost.flux
-:language: django
 ```
 
 #### docker
@@ -388,30 +304,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: dylan
-```
-
-#### iex
-
-```{literalinclude} /_static/dsPost.flux
-:language: iex
-```
-
-#### emacs-lisp
-
-```{literalinclude} /_static/dsPost.flux
-:language: emacs-lisp
-```
-
-#### erb
-
-```{literalinclude} /_static/dsPost.flux
-:language: erb
-```
-
-#### erl
-
-```{literalinclude} /_static/dsPost.flux
-:language: erl
 ```
 
 #### factor
@@ -438,28 +330,10 @@ TODO
 :language: fift
 ```
 
-#### forth
-
-```{literalinclude} /_static/dsPost.flux
-:language: forth
-```
-
 #### foxpro
 
 ```{literalinclude} /_static/dsPost.flux
 :language: foxpro
-```
-
-#### gap-console
-
-```{literalinclude} /_static/dsPost.flux
-:language: gap-console
-```
-
-#### gap
-
-```{literalinclude} /_static/dsPost.flux
-:language: gap
 ```
 
 #### gdscript
@@ -468,22 +342,10 @@ TODO
 :language: gdscript
 ```
 
-#### gcode
-
-```{literalinclude} /_static/dsPost.flux
-:language: gcode
-```
-
 #### genshitext
 
 ```{literalinclude} /_static/dsPost.flux
 :language: genshitext
-```
-
-#### gherkin
-
-```{literalinclude} /_static/dsPost.flux
-:language: gherkin
 ```
 
 #### gosu
@@ -492,28 +354,10 @@ TODO
 :language: gosu
 ```
 
-#### gst
-
-```{literalinclude} /_static/dsPost.flux
-:language: gst
-```
-
-#### groff
-
-```{literalinclude} /_static/dsPost.flux
-:language: groff
-```
-
 #### haml
 
 ```{literalinclude} /_static/dsPost.flux
 :language: haml
-```
-
-#### hylang
-
-```{literalinclude} /_static/dsPost.flux
-:language: hylang
 ```
 
 #### idl
