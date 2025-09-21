@@ -10,7 +10,7 @@ tags: homelab, nas
 # InfluxDB Downsampling
 
 ```{list-table}
-* - :::{imgur-image} 56f27gr
+* - :::{imgur-image} 0m3qdla.png
     :::
 ```
 
