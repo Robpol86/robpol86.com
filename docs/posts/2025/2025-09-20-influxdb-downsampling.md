@@ -210,58 +210,10 @@ TODO
 :language: actionscript
 ```
 
-#### agda
-
-```{literalinclude} /_static/dsPost.flux
-:language: agda
-```
-
-#### autoit
-
-```{literalinclude} /_static/dsPost.flux
-:language: autoit
-```
-
-#### autohotkey
-
-```{literalinclude} /_static/dsPost.flux
-:language: autohotkey
-```
-
-#### bc
-
-```{literalinclude} /_static/dsPost.flux
-:language: bc
-```
-
-#### bash
-
-```{literalinclude} /_static/dsPost.flux
-:language: bash
-```
-
-#### bdd
-
-```{literalinclude} /_static/dsPost.flux
-:language: bdd
-```
-
 #### javascript+cheetah
 
 ```{literalinclude} /_static/dsPost.flux
 :language: javascript+cheetah
-```
-
-#### coffeescript
-
-```{literalinclude} /_static/dsPost.flux
-:language: coffeescript
-```
-
-#### coq
-
-```{literalinclude} /_static/dsPost.flux
-:language: coq
 ```
 
 #### croc
@@ -288,34 +240,10 @@ TODO
 :language: dax
 ```
 
-#### docker
-
-```{literalinclude} /_static/dsPost.flux
-:language: docker
-```
-
-#### dylan-console
-
-```{literalinclude} /_static/dsPost.flux
-:language: dylan-console
-```
-
 #### dylan
 
 ```{literalinclude} /_static/dsPost.flux
 :language: dylan
-```
-
-#### factor
-
-```{literalinclude} /_static/dsPost.flux
-:language: factor
-```
-
-#### fancy
-
-```{literalinclude} /_static/dsPost.flux
-:language: fancy
 ```
 
 #### fan
@@ -330,24 +258,6 @@ TODO
 :language: fift
 ```
 
-#### foxpro
-
-```{literalinclude} /_static/dsPost.flux
-:language: foxpro
-```
-
-#### gdscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: gdscript
-```
-
-#### genshitext
-
-```{literalinclude} /_static/dsPost.flux
-:language: genshitext
-```
-
 #### gosu
 
 ```{literalinclude} /_static/dsPost.flux
@@ -360,22 +270,10 @@ TODO
 :language: haml
 ```
 
-#### idl
-
-```{literalinclude} /_static/dsPost.flux
-:language: idl
-```
-
 #### igor
 
 ```{literalinclude} /_static/dsPost.flux
 :language: igor
-```
-
-#### isabelle
-
-```{literalinclude} /_static/dsPost.flux
-:language: isabelle
 ```
 
 #### javascript+django
@@ -432,12 +330,6 @@ TODO
 :language: jsx
 ```
 
-#### julia
-
-```{literalinclude} /_static/dsPost.flux
-:language: julia
-```
-
 #### juttle
 
 ```{literalinclude} /_static/dsPost.flux
@@ -448,12 +340,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: k
-```
-
-#### kconfig
-
-```{literalinclude} /_static/dsPost.flux
-:language: kconfig
 ```
 
 #### koka
@@ -468,52 +354,16 @@ TODO
 :language: javascript+lasso
 ```
 
-#### lean
-
-```{literalinclude} /_static/dsPost.flux
-:language: lean
-```
-
-#### lean4
-
-```{literalinclude} /_static/dsPost.flux
-:language: lean4
-```
-
 #### mcschema
 
 ```{literalinclude} /_static/dsPost.flux
 :language: mcschema
 ```
 
-#### mips
-
-```{literalinclude} /_static/dsPost.flux
-:language: mips
-```
-
-#### macaulay2
-
-```{literalinclude} /_static/dsPost.flux
-:language: macaulay2
-```
-
 #### javascript+mako
 
 ```{literalinclude} /_static/dsPost.flux
 :language: javascript+mako
-```
-
-#### maple
-
-```{literalinclude} /_static/dsPost.flux
-:language: maple
-```
-
-#### matlab
-
-```{literalinclude} /_static/dsPost.flux
-:language: matlab
 ```
 
 #### minid
@@ -552,34 +402,10 @@ TODO
 :language: objective-j
 ```
 
-#### octave
-
-```{literalinclude} /_static/dsPost.flux
-:language: octave
-```
-
-#### pacmanconf
-
-```{literalinclude} /_static/dsPost.flux
-:language: pacmanconf
-```
-
 #### parasail
 
 ```{literalinclude} /_static/dsPost.flux
 :language: parasail
-```
-
-#### pig
-
-```{literalinclude} /_static/dsPost.flux
-:language: pig
-```
-
-#### powershell
-
-```{literalinclude} /_static/dsPost.flux
-:language: powershell
 ```
 
 #### q
@@ -594,34 +420,10 @@ TODO
 :language: qml
 ```
 
-#### rng-compact
-
-```{literalinclude} /_static/dsPost.flux
-:language: rng-compact
-```
-
-#### spec
-
-```{literalinclude} /_static/dsPost.flux
-:language: spec
-```
-
 #### ragel-d
 
 ```{literalinclude} /_static/dsPost.flux
 :language: ragel-d
-```
-
-#### sas
-
-```{literalinclude} /_static/dsPost.flux
-:language: sas
-```
-
-#### splus
-
-```{literalinclude} /_static/dsPost.flux
-:language: splus
 ```
 
 #### scaml
@@ -636,22 +438,10 @@ TODO
 :language: scilab
 ```
 
-#### slurm
-
-```{literalinclude} /_static/dsPost.flux
-:language: slurm
-```
-
 #### supercollider
 
 ```{literalinclude} /_static/dsPost.flux
 :language: supercollider
-```
-
-#### tcsh
-
-```{literalinclude} /_static/dsPost.flux
-:language: tcsh
 ```
 
 #### teal
@@ -676,12 +466,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: unixconfig
-```
-
-#### vim
-
-```{literalinclude} /_static/dsPost.flux
-:language: vim
 ```
 
 #### x10
