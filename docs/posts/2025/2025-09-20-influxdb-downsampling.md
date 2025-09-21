@@ -228,12 +228,6 @@ TODO
 :language: gosu
 ```
 
-#### jsgf
-
-```{literalinclude} /_static/dsPost.flux
-:language: jsgf
-```
-
 #### juttle
 
 ```{literalinclude} /_static/dsPost.flux
@@ -256,12 +250,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: mcschema
-```
-
-#### modula2
-
-```{literalinclude} /_static/dsPost.flux
-:language: modula2
 ```
 
 #### objective-j
@@ -304,12 +292,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: x10
-```
-
-#### yara
-
-```{literalinclude} /_static/dsPost.flux
-:language: yara
 ```
 
 #### zephir
