@@ -198,34 +198,6 @@ TODO
 // PASTE EVERYTHING BELOW THIS LINE IN GRAFANA
 ```
 
-```{literalinclude} /_static/dsPost.flux
-:language: text
-```
-
-### Update Queries
-
-TODO [dsGrafana.json](/_static/dsGrafana.json)
-
-TODO toFloat()
-
-#### abap
-
-```{literalinclude} /_static/dsPost.flux
-:language: abap
-```
-
-#### amdgpu
-
-```{literalinclude} /_static/dsPost.flux
-:language: amdgpu
-```
-
-#### apl
-
-```{literalinclude} /_static/dsPost.flux
-:language: apl
-```
-
 #### abnf
 
 ```{literalinclude} /_static/dsPost.flux
@@ -244,18 +216,6 @@ TODO toFloat()
 :language: actionscript
 ```
 
-#### ada
-
-```{literalinclude} /_static/dsPost.flux
-:language: ada
-```
-
-#### adl
-
-```{literalinclude} /_static/dsPost.flux
-:language: adl
-```
-
 #### agda
 
 ```{literalinclude} /_static/dsPost.flux
@@ -268,142 +228,10 @@ TODO toFloat()
 :language: aheui
 ```
 
-#### alloy
-
-```{literalinclude} /_static/dsPost.flux
-:language: alloy
-```
-
-#### ambienttalk
-
-```{literalinclude} /_static/dsPost.flux
-:language: ambienttalk
-```
-
-#### ampl
-
-```{literalinclude} /_static/dsPost.flux
-:language: ampl
-```
-
-#### html+ng2
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+ng2
-```
-
-#### ng2
-
-```{literalinclude} /_static/dsPost.flux
-:language: ng2
-```
-
-#### antlr-actionscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-actionscript
-```
-
-#### antlr-csharp
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-csharp
-```
-
-#### antlr-cpp
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-cpp
-```
-
-#### antlr-java
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-java
-```
-
-#### antlr
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr
-```
-
-#### antlr-objc
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-objc
-```
-
-#### antlr-perl
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-perl
-```
-
-#### antlr-python
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-python
-```
-
-#### antlr-ruby
-
-```{literalinclude} /_static/dsPost.flux
-:language: antlr-ruby
-```
-
-#### apacheconf
-
-```{literalinclude} /_static/dsPost.flux
-:language: apacheconf
-```
-
-#### applescript
-
-```{literalinclude} /_static/dsPost.flux
-:language: applescript
-```
-
-#### arduino
-
-```{literalinclude} /_static/dsPost.flux
-:language: arduino
-```
-
-#### arrow
-
-```{literalinclude} /_static/dsPost.flux
-:language: arrow
-```
-
-#### arturo
-
-```{literalinclude} /_static/dsPost.flux
-:language: arturo
-```
-
 #### asc
 
 ```{literalinclude} /_static/dsPost.flux
 :language: asc
-```
-
-#### asn1
-
-```{literalinclude} /_static/dsPost.flux
-:language: asn1
-```
-
-#### aspectj
-
-```{literalinclude} /_static/dsPost.flux
-:language: aspectj
-```
-
-#### asymptote
-
-```{literalinclude} /_static/dsPost.flux
-:language: asymptote
 ```
 
 #### augeas
@@ -424,52 +252,10 @@ TODO toFloat()
 :language: autohotkey
 ```
 
-#### awk
-
-```{literalinclude} /_static/dsPost.flux
-:language: awk
-```
-
-#### bbcbasic
-
-```{literalinclude} /_static/dsPost.flux
-:language: bbcbasic
-```
-
-#### bbcode
-
-```{literalinclude} /_static/dsPost.flux
-:language: bbcode
-```
-
 #### bc
 
 ```{literalinclude} /_static/dsPost.flux
 :language: bc
-```
-
-#### bqn
-
-```{literalinclude} /_static/dsPost.flux
-:language: bqn
-```
-
-#### bst
-
-```{literalinclude} /_static/dsPost.flux
-:language: bst
-```
-
-#### bare
-
-```{literalinclude} /_static/dsPost.flux
-:language: bare
-```
-
-#### basemake
-
-```{literalinclude} /_static/dsPost.flux
-:language: basemake
 ```
 
 #### bash
@@ -484,28 +270,10 @@ TODO toFloat()
 :language: console
 ```
 
-#### batch
-
-```{literalinclude} /_static/dsPost.flux
-:language: batch
-```
-
 #### bdd
 
 ```{literalinclude} /_static/dsPost.flux
 :language: bdd
-```
-
-#### befunge
-
-```{literalinclude} /_static/dsPost.flux
-:language: befunge
-```
-
-#### berry
-
-```{literalinclude} /_static/dsPost.flux
-:language: berry
 ```
 
 #### bibtex
@@ -514,46 +282,10 @@ TODO toFloat()
 :language: bibtex
 ```
 
-#### blitzbasic
-
-```{literalinclude} /_static/dsPost.flux
-:language: blitzbasic
-```
-
-#### blitzmax
-
-```{literalinclude} /_static/dsPost.flux
-:language: blitzmax
-```
-
-#### blueprint
-
-```{literalinclude} /_static/dsPost.flux
-:language: blueprint
-```
-
 #### bnf
 
 ```{literalinclude} /_static/dsPost.flux
 :language: bnf
-```
-
-#### boa
-
-```{literalinclude} /_static/dsPost.flux
-:language: boa
-```
-
-#### boo
-
-```{literalinclude} /_static/dsPost.flux
-:language: boo
-```
-
-#### boogie
-
-```{literalinclude} /_static/dsPost.flux
-:language: boogie
 ```
 
 #### brainfuck
@@ -562,136 +294,10 @@ TODO toFloat()
 :language: brainfuck
 ```
 
-#### bugs
-
-```{literalinclude} /_static/dsPost.flux
-:language: bugs
-```
-
-#### camkes
-
-```{literalinclude} /_static/dsPost.flux
-:language: camkes
-```
-
-#### c
-
-```{literalinclude} /_static/dsPost.flux
-:language: c
-```
-
-#### cmake
-
-```{literalinclude} /_static/dsPost.flux
-:language: cmake
-```
-
-#### c-objdump
-
-```{literalinclude} /_static/dsPost.flux
-:language: c-objdump
-```
-
-#### cpsa
-
-```{literalinclude} /_static/dsPost.flux
-:language: cpsa
-```
-
-#### css+ul4
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+ul4
-```
-
-#### aspx-cs
-
-```{literalinclude} /_static/dsPost.flux
-:language: aspx-cs
-```
-
-#### csharp
-
-```{literalinclude} /_static/dsPost.flux
-:language: csharp
-```
-
-#### ca65
-
-```{literalinclude} /_static/dsPost.flux
-:language: ca65
-```
-
-#### cadl
-
-```{literalinclude} /_static/dsPost.flux
-:language: cadl
-```
-
-#### capdl
-
-```{literalinclude} /_static/dsPost.flux
-:language: capdl
-```
-
 #### capnp
 
 ```{literalinclude} /_static/dsPost.flux
 :language: capnp
-```
-
-#### carbon
-
-```{literalinclude} /_static/dsPost.flux
-:language: carbon
-```
-
-#### cbmbas
-
-```{literalinclude} /_static/dsPost.flux
-:language: cbmbas
-```
-
-#### cddl
-
-```{literalinclude} /_static/dsPost.flux
-:language: cddl
-```
-
-#### ceylon
-
-```{literalinclude} /_static/dsPost.flux
-:language: ceylon
-```
-
-#### cfengine3
-
-```{literalinclude} /_static/dsPost.flux
-:language: cfengine3
-```
-
-#### chaiscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: chaiscript
-```
-
-#### chapel
-
-```{literalinclude} /_static/dsPost.flux
-:language: chapel
-```
-
-#### charmci
-
-```{literalinclude} /_static/dsPost.flux
-:language: charmci
-```
-
-#### html+cheetah
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+cheetah
 ```
 
 #### javascript+cheetah
@@ -706,58 +312,10 @@ TODO toFloat()
 :language: cheetah
 ```
 
-#### xml+cheetah
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+cheetah
-```
-
 #### cirru
 
 ```{literalinclude} /_static/dsPost.flux
 :language: cirru
-```
-
-#### clay
-
-```{literalinclude} /_static/dsPost.flux
-:language: clay
-```
-
-#### clean
-
-```{literalinclude} /_static/dsPost.flux
-:language: clean
-```
-
-#### clojure
-
-```{literalinclude} /_static/dsPost.flux
-:language: clojure
-```
-
-#### clojurescript
-
-```{literalinclude} /_static/dsPost.flux
-:language: clojurescript
-```
-
-#### cobolfree
-
-```{literalinclude} /_static/dsPost.flux
-:language: cobolfree
-```
-
-#### cobol
-
-```{literalinclude} /_static/dsPost.flux
-:language: cobol
-```
-
-#### codeql
-
-```{literalinclude} /_static/dsPost.flux
-:language: codeql
 ```
 
 #### coffeescript
@@ -766,160 +324,16 @@ TODO toFloat()
 :language: coffeescript
 ```
 
-#### cfc
-
-```{literalinclude} /_static/dsPost.flux
-:language: cfc
-```
-
-#### cfm
-
-```{literalinclude} /_static/dsPost.flux
-:language: cfm
-```
-
-#### cfs
-
-```{literalinclude} /_static/dsPost.flux
-:language: cfs
-```
-
-#### comal
-
-```{literalinclude} /_static/dsPost.flux
-:language: comal
-```
-
-#### common-lisp
-
-```{literalinclude} /_static/dsPost.flux
-:language: common-lisp
-```
-
-#### componentpascal
-
-```{literalinclude} /_static/dsPost.flux
-:language: componentpascal
-```
-
 #### coq
 
 ```{literalinclude} /_static/dsPost.flux
 :language: coq
 ```
 
-#### cplint
-
-```{literalinclude} /_static/dsPost.flux
-:language: cplint
-```
-
-#### cpp
-
-```{literalinclude} /_static/dsPost.flux
-:language: cpp
-```
-
-#### cpp-objdump
-
-```{literalinclude} /_static/dsPost.flux
-:language: cpp-objdump
-```
-
-#### crmsh
-
-```{literalinclude} /_static/dsPost.flux
-:language: crmsh
-```
-
 #### croc
 
 ```{literalinclude} /_static/dsPost.flux
 :language: croc
-```
-
-#### cryptol
-
-```{literalinclude} /_static/dsPost.flux
-:language: cryptol
-```
-
-#### cr
-
-```{literalinclude} /_static/dsPost.flux
-:language: cr
-```
-
-#### csound-document
-
-```{literalinclude} /_static/dsPost.flux
-:language: csound-document
-```
-
-#### csound
-
-```{literalinclude} /_static/dsPost.flux
-:language: csound
-```
-
-#### csound-score
-
-```{literalinclude} /_static/dsPost.flux
-:language: csound-score
-```
-
-#### css+django
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+django
-```
-
-#### css+ruby
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+ruby
-```
-
-#### css+genshitext
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+genshitext
-```
-
-#### css
-
-```{literalinclude} /_static/dsPost.flux
-:language: css
-```
-
-#### css+php
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+php
-```
-
-#### css+smarty
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+smarty
-```
-
-#### cuda
-
-```{literalinclude} /_static/dsPost.flux
-:language: cuda
-```
-
-#### cypher
-
-```{literalinclude} /_static/dsPost.flux
-:language: cypher
-```
-
-#### cython
-
-```{literalinclude} /_static/dsPost.flux
-:language: cython
 ```
 
 #### d
@@ -940,58 +354,10 @@ TODO toFloat()
 :language: dpatch
 ```
 
-#### dart
-
-```{literalinclude} /_static/dsPost.flux
-:language: dart
-```
-
-#### dasm16
-
-```{literalinclude} /_static/dsPost.flux
-:language: dasm16
-```
-
 #### dax
 
 ```{literalinclude} /_static/dsPost.flux
 :language: dax
-```
-
-#### debcontrol
-
-```{literalinclude} /_static/dsPost.flux
-:language: debcontrol
-```
-
-#### debian.sources
-
-```{literalinclude} /_static/dsPost.flux
-:language: debian.sources
-```
-
-#### delphi
-
-```{literalinclude} /_static/dsPost.flux
-:language: delphi
-```
-
-#### desktop
-
-```{literalinclude} /_static/dsPost.flux
-:language: desktop
-```
-
-#### devicetree
-
-```{literalinclude} /_static/dsPost.flux
-:language: devicetree
-```
-
-#### dg
-
-```{literalinclude} /_static/dsPost.flux
-:language: dg
 ```
 
 #### diff
@@ -1006,28 +372,10 @@ TODO toFloat()
 :language: django
 ```
 
-#### zone
-
-```{literalinclude} /_static/dsPost.flux
-:language: zone
-```
-
 #### docker
 
 ```{literalinclude} /_static/dsPost.flux
 :language: docker
-```
-
-#### dtd
-
-```{literalinclude} /_static/dsPost.flux
-:language: dtd
-```
-
-#### duel
-
-```{literalinclude} /_static/dsPost.flux
-:language: duel
 ```
 
 #### dylan-console
@@ -1042,70 +390,10 @@ TODO toFloat()
 :language: dylan
 ```
 
-#### dylan-lid
-
-```{literalinclude} /_static/dsPost.flux
-:language: dylan-lid
-```
-
-#### ecl
-
-```{literalinclude} /_static/dsPost.flux
-:language: ecl
-```
-
-#### ec
-
-```{literalinclude} /_static/dsPost.flux
-:language: ec
-```
-
-#### earl-grey
-
-```{literalinclude} /_static/dsPost.flux
-:language: earl-grey
-```
-
-#### easytrieve
-
-```{literalinclude} /_static/dsPost.flux
-:language: easytrieve
-```
-
-#### ebnf
-
-```{literalinclude} /_static/dsPost.flux
-:language: ebnf
-```
-
-#### eiffel
-
-```{literalinclude} /_static/dsPost.flux
-:language: eiffel
-```
-
 #### iex
 
 ```{literalinclude} /_static/dsPost.flux
 :language: iex
-```
-
-#### elixir
-
-```{literalinclude} /_static/dsPost.flux
-:language: elixir
-```
-
-#### elm
-
-```{literalinclude} /_static/dsPost.flux
-:language: elm
-```
-
-#### elpi
-
-```{literalinclude} /_static/dsPost.flux
-:language: elpi
 ```
 
 #### emacs-lisp
@@ -1114,70 +402,16 @@ TODO toFloat()
 :language: emacs-lisp
 ```
 
-#### email
-
-```{literalinclude} /_static/dsPost.flux
-:language: email
-```
-
 #### erb
 
 ```{literalinclude} /_static/dsPost.flux
 :language: erb
 ```
 
-#### erlang
-
-```{literalinclude} /_static/dsPost.flux
-:language: erlang
-```
-
 #### erl
 
 ```{literalinclude} /_static/dsPost.flux
 :language: erl
-```
-
-#### html+evoque
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+evoque
-```
-
-#### evoque
-
-```{literalinclude} /_static/dsPost.flux
-:language: evoque
-```
-
-#### xml+evoque
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+evoque
-```
-
-#### execline
-
-```{literalinclude} /_static/dsPost.flux
-:language: execline
-```
-
-#### ezhil
-
-```{literalinclude} /_static/dsPost.flux
-:language: ezhil
-```
-
-#### fsharp
-
-```{literalinclude} /_static/dsPost.flux
-:language: fsharp
-```
-
-#### fstar
-
-```{literalinclude} /_static/dsPost.flux
-:language: fstar
 ```
 
 #### factor
@@ -1198,40 +432,10 @@ TODO toFloat()
 :language: fan
 ```
 
-#### felix
-
-```{literalinclude} /_static/dsPost.flux
-:language: felix
-```
-
-#### fennel
-
-```{literalinclude} /_static/dsPost.flux
-:language: fennel
-```
-
 #### fift
 
 ```{literalinclude} /_static/dsPost.flux
 :language: fift
-```
-
-#### fish
-
-```{literalinclude} /_static/dsPost.flux
-:language: fish
-```
-
-#### flatline
-
-```{literalinclude} /_static/dsPost.flux
-:language: flatline
-```
-
-#### floscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: floscript
 ```
 
 #### forth
@@ -1240,40 +444,10 @@ TODO toFloat()
 :language: forth
 ```
 
-#### fortranfixed
-
-```{literalinclude} /_static/dsPost.flux
-:language: fortranfixed
-```
-
-#### fortran
-
-```{literalinclude} /_static/dsPost.flux
-:language: fortran
-```
-
 #### foxpro
 
 ```{literalinclude} /_static/dsPost.flux
 :language: foxpro
-```
-
-#### freefem
-
-```{literalinclude} /_static/dsPost.flux
-:language: freefem
-```
-
-#### func
-
-```{literalinclude} /_static/dsPost.flux
-:language: func
-```
-
-#### futhark
-
-```{literalinclude} /_static/dsPost.flux
-:language: futhark
 ```
 
 #### gap-console
@@ -1294,34 +468,10 @@ TODO toFloat()
 :language: gdscript
 ```
 
-#### glsl
-
-```{literalinclude} /_static/dsPost.flux
-:language: glsl
-```
-
-#### gsql
-
-```{literalinclude} /_static/dsPost.flux
-:language: gsql
-```
-
-#### gas
-
-```{literalinclude} /_static/dsPost.flux
-:language: gas
-```
-
 #### gcode
 
 ```{literalinclude} /_static/dsPost.flux
 :language: gcode
-```
-
-#### genshi
-
-```{literalinclude} /_static/dsPost.flux
-:language: genshi
 ```
 
 #### genshitext
@@ -1330,52 +480,10 @@ TODO toFloat()
 :language: genshitext
 ```
 
-#### pot
-
-```{literalinclude} /_static/dsPost.flux
-:language: pot
-```
-
 #### gherkin
 
 ```{literalinclude} /_static/dsPost.flux
 :language: gherkin
-```
-
-#### gleam
-
-```{literalinclude} /_static/dsPost.flux
-:language: gleam
-```
-
-#### gnuplot
-
-```{literalinclude} /_static/dsPost.flux
-:language: gnuplot
-```
-
-#### go
-
-```{literalinclude} /_static/dsPost.flux
-:language: go
-```
-
-#### golo
-
-```{literalinclude} /_static/dsPost.flux
-:language: golo
-```
-
-#### gooddata-cl
-
-```{literalinclude} /_static/dsPost.flux
-:language: gooddata-cl
-```
-
-#### googlesql
-
-```{literalinclude} /_static/dsPost.flux
-:language: googlesql
 ```
 
 #### gosu
@@ -1390,40 +498,10 @@ TODO toFloat()
 :language: gst
 ```
 
-#### graphql
-
-```{literalinclude} /_static/dsPost.flux
-:language: graphql
-```
-
-#### graphviz
-
-```{literalinclude} /_static/dsPost.flux
-:language: graphviz
-```
-
 #### groff
 
 ```{literalinclude} /_static/dsPost.flux
 :language: groff
-```
-
-#### groovy
-
-```{literalinclude} /_static/dsPost.flux
-:language: groovy
-```
-
-#### hlsl
-
-```{literalinclude} /_static/dsPost.flux
-:language: hlsl
-```
-
-#### html+ul4
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+ul4
 ```
 
 #### haml
@@ -1432,106 +510,10 @@ TODO toFloat()
 :language: haml
 ```
 
-#### html+handlebars
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+handlebars
-```
-
-#### handlebars
-
-```{literalinclude} /_static/dsPost.flux
-:language: handlebars
-```
-
-#### hare
-
-```{literalinclude} /_static/dsPost.flux
-:language: hare
-```
-
-#### haskell
-
-```{literalinclude} /_static/dsPost.flux
-:language: haskell
-```
-
-#### haxe
-
-```{literalinclude} /_static/dsPost.flux
-:language: haxe
-```
-
-#### hexdump
-
-```{literalinclude} /_static/dsPost.flux
-:language: hexdump
-```
-
-#### hsail
-
-```{literalinclude} /_static/dsPost.flux
-:language: hsail
-```
-
-#### hspec
-
-```{literalinclude} /_static/dsPost.flux
-:language: hspec
-```
-
-#### html+django
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+django
-```
-
-#### html+genshi
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+genshi
-```
-
-#### html
-
-```{literalinclude} /_static/dsPost.flux
-:language: html
-```
-
-#### html+php
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+php
-```
-
-#### html+smarty
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+smarty
-```
-
-#### http
-
-```{literalinclude} /_static/dsPost.flux
-:language: http
-```
-
-#### haxeml
-
-```{literalinclude} /_static/dsPost.flux
-:language: haxeml
-```
-
 #### hylang
 
 ```{literalinclude} /_static/dsPost.flux
 :language: hylang
-```
-
-#### hybris
-
-```{literalinclude} /_static/dsPost.flux
-:language: hybris
 ```
 
 #### idl
@@ -1540,28 +522,10 @@ TODO toFloat()
 :language: idl
 ```
 
-#### icon
-
-```{literalinclude} /_static/dsPost.flux
-:language: icon
-```
-
-#### idris
-
-```{literalinclude} /_static/dsPost.flux
-:language: idris
-```
-
 #### igor
 
 ```{literalinclude} /_static/dsPost.flux
 :language: igor
-```
-
-#### inform6
-
-```{literalinclude} /_static/dsPost.flux
-:language: inform6
 ```
 
 #### i6t
@@ -1582,18 +546,6 @@ TODO toFloat()
 :language: ini
 ```
 
-#### io
-
-```{literalinclude} /_static/dsPost.flux
-:language: io
-```
-
-#### ioke
-
-```{literalinclude} /_static/dsPost.flux
-:language: ioke
-```
-
 #### irc
 
 ```{literalinclude} /_static/dsPost.flux
@@ -1604,48 +556,6 @@ TODO toFloat()
 
 ```{literalinclude} /_static/dsPost.flux
 :language: isabelle
-```
-
-#### j
-
-```{literalinclude} /_static/dsPost.flux
-:language: j
-```
-
-#### jmespath
-
-```{literalinclude} /_static/dsPost.flux
-:language: jmespath
-```
-
-#### jslt
-
-```{literalinclude} /_static/dsPost.flux
-:language: jslt
-```
-
-#### jags
-
-```{literalinclude} /_static/dsPost.flux
-:language: jags
-```
-
-#### janet
-
-```{literalinclude} /_static/dsPost.flux
-:language: janet
-```
-
-#### jasmin
-
-```{literalinclude} /_static/dsPost.flux
-:language: jasmin
-```
-
-#### java
-
-```{literalinclude} /_static/dsPost.flux
-:language: java
 ```
 
 #### javascript+django
@@ -1690,46 +600,10 @@ TODO toFloat()
 :language: js+ul4
 ```
 
-#### jcl
-
-```{literalinclude} /_static/dsPost.flux
-:language: jcl
-```
-
 #### jsgf
 
 ```{literalinclude} /_static/dsPost.flux
 :language: jsgf
-```
-
-#### json5
-
-```{literalinclude} /_static/dsPost.flux
-:language: json5
-```
-
-#### jsonld
-
-```{literalinclude} /_static/dsPost.flux
-:language: jsonld
-```
-
-#### json
-
-```{literalinclude} /_static/dsPost.flux
-:language: json
-```
-
-#### jsonnet
-
-```{literalinclude} /_static/dsPost.flux
-:language: jsonnet
-```
-
-#### jsp
-
-```{literalinclude} /_static/dsPost.flux
-:language: jsp
 ```
 
 #### jsx
@@ -1762,22 +636,10 @@ TODO toFloat()
 :language: k
 ```
 
-#### kal
-
-```{literalinclude} /_static/dsPost.flux
-:language: kal
-```
-
 #### kconfig
 
 ```{literalinclude} /_static/dsPost.flux
 :language: kconfig
-```
-
-#### kmsg
-
-```{literalinclude} /_static/dsPost.flux
-:language: kmsg
 ```
 
 #### koka
@@ -1786,70 +648,10 @@ TODO toFloat()
 :language: koka
 ```
 
-#### kotlin
-
-```{literalinclude} /_static/dsPost.flux
-:language: kotlin
-```
-
-#### kuin
-
-```{literalinclude} /_static/dsPost.flux
-:language: kuin
-```
-
-#### kql
-
-```{literalinclude} /_static/dsPost.flux
-:language: kql
-```
-
-#### lsl
-
-```{literalinclude} /_static/dsPost.flux
-:language: lsl
-```
-
-#### css+lasso
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+lasso
-```
-
-#### html+lasso
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+lasso
-```
-
 #### javascript+lasso
 
 ```{literalinclude} /_static/dsPost.flux
 :language: javascript+lasso
-```
-
-#### lasso
-
-```{literalinclude} /_static/dsPost.flux
-:language: lasso
-```
-
-#### xml+lasso
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+lasso
-```
-
-#### ldapconf
-
-```{literalinclude} /_static/dsPost.flux
-:language: ldapconf
-```
-
-#### ldif
-
-```{literalinclude} /_static/dsPost.flux
-:language: ldif
 ```
 
 #### lean
@@ -1862,30 +664,6 @@ TODO toFloat()
 
 ```{literalinclude} /_static/dsPost.flux
 :language: lean4
-```
-
-#### less
-
-```{literalinclude} /_static/dsPost.flux
-:language: less
-```
-
-#### lighttpd
-
-```{literalinclude} /_static/dsPost.flux
-:language: lighttpd
-```
-
-#### lilypond
-
-```{literalinclude} /_static/dsPost.flux
-:language: lilypond
-```
-
-#### limbo
-
-```{literalinclude} /_static/dsPost.flux
-:language: limbo
 ```
 
 #### liquid
@@ -1924,52 +702,10 @@ TODO toFloat()
 :language: livescript
 ```
 
-#### llvm
-
-```{literalinclude} /_static/dsPost.flux
-:language: llvm
-```
-
-#### llvm-mir-body
-
-```{literalinclude} /_static/dsPost.flux
-:language: llvm-mir-body
-```
-
 #### llvm-mir
 
 ```{literalinclude} /_static/dsPost.flux
 :language: llvm-mir
-```
-
-#### logos
-
-```{literalinclude} /_static/dsPost.flux
-:language: logos
-```
-
-#### logtalk
-
-```{literalinclude} /_static/dsPost.flux
-:language: logtalk
-```
-
-#### lua
-
-```{literalinclude} /_static/dsPost.flux
-:language: lua
-```
-
-#### luau
-
-```{literalinclude} /_static/dsPost.flux
-:language: luau
-```
-
-#### mcfunction
-
-```{literalinclude} /_static/dsPost.flux
-:language: mcfunction
 ```
 
 #### mcschema
@@ -1978,22 +714,10 @@ TODO toFloat()
 :language: mcschema
 ```
 
-#### mime
-
-```{literalinclude} /_static/dsPost.flux
-:language: mime
-```
-
 #### mips
 
 ```{literalinclude} /_static/dsPost.flux
 :language: mips
-```
-
-#### moocode
-
-```{literalinclude} /_static/dsPost.flux
-:language: moocode
 ```
 
 #### doscon
@@ -2008,24 +732,6 @@ TODO toFloat()
 :language: macaulay2
 ```
 
-#### make
-
-```{literalinclude} /_static/dsPost.flux
-:language: make
-```
-
-#### css+mako
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+mako
-```
-
-#### html+mako
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+mako
-```
-
 #### javascript+mako
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2038,46 +744,16 @@ TODO toFloat()
 :language: mako
 ```
 
-#### xml+mako
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+mako
-```
-
 #### maple
 
 ```{literalinclude} /_static/dsPost.flux
 :language: maple
 ```
 
-#### maql
-
-```{literalinclude} /_static/dsPost.flux
-:language: maql
-```
-
 #### markdown
 
 ```{literalinclude} /_static/dsPost.flux
 :language: markdown
-```
-
-#### mask
-
-```{literalinclude} /_static/dsPost.flux
-:language: mask
-```
-
-#### mason
-
-```{literalinclude} /_static/dsPost.flux
-:language: mason
-```
-
-#### mathematica
-
-```{literalinclude} /_static/dsPost.flux
-:language: mathematica
 ```
 
 #### matlab
@@ -2098,28 +774,10 @@ TODO toFloat()
 :language: maxima
 ```
 
-#### meson
-
-```{literalinclude} /_static/dsPost.flux
-:language: meson
-```
-
 #### minid
 
 ```{literalinclude} /_static/dsPost.flux
 :language: minid
-```
-
-#### miniscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: miniscript
-```
-
-#### modelica
-
-```{literalinclude} /_static/dsPost.flux
-:language: modelica
 ```
 
 #### modula2
@@ -2132,42 +790,6 @@ TODO toFloat()
 
 ```{literalinclude} /_static/dsPost.flux
 :language: trac-wiki
-```
-
-#### mojo
-
-```{literalinclude} /_static/dsPost.flux
-:language: mojo
-```
-
-#### monkey
-
-```{literalinclude} /_static/dsPost.flux
-:language: monkey
-```
-
-#### monte
-
-```{literalinclude} /_static/dsPost.flux
-:language: monte
-```
-
-#### moonscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: moonscript
-```
-
-#### mosel
-
-```{literalinclude} /_static/dsPost.flux
-:language: mosel
-```
-
-#### css+mozpreproc
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+mozpreproc
 ```
 
 #### mozhashpreproc
@@ -2188,52 +810,10 @@ TODO toFloat()
 :language: mozpercentpreproc
 ```
 
-#### xul+mozpreproc
-
-```{literalinclude} /_static/dsPost.flux
-:language: xul+mozpreproc
-```
-
-#### mql
-
-```{literalinclude} /_static/dsPost.flux
-:language: mql
-```
-
-#### mscgen
-
-```{literalinclude} /_static/dsPost.flux
-:language: mscgen
-```
-
 #### mupad
 
 ```{literalinclude} /_static/dsPost.flux
 :language: mupad
-```
-
-#### mxml
-
-```{literalinclude} /_static/dsPost.flux
-:language: mxml
-```
-
-#### mysql
-
-```{literalinclude} /_static/dsPost.flux
-:language: mysql
-```
-
-#### css+myghty
-
-```{literalinclude} /_static/dsPost.flux
-:language: css+myghty
-```
-
-#### html+myghty
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+myghty
 ```
 
 #### javascript+myghty
@@ -2248,88 +828,10 @@ TODO toFloat()
 :language: myghty
 ```
 
-#### xml+myghty
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+myghty
-```
-
-#### ncl
-
-```{literalinclude} /_static/dsPost.flux
-:language: ncl
-```
-
-#### nsis
-
-```{literalinclude} /_static/dsPost.flux
-:language: nsis
-```
-
-#### nasm
-
-```{literalinclude} /_static/dsPost.flux
-:language: nasm
-```
-
 #### objdump-nasm
 
 ```{literalinclude} /_static/dsPost.flux
 :language: objdump-nasm
-```
-
-#### nemerle
-
-```{literalinclude} /_static/dsPost.flux
-:language: nemerle
-```
-
-#### nesc
-
-```{literalinclude} /_static/dsPost.flux
-:language: nesc
-```
-
-#### nestedtext
-
-```{literalinclude} /_static/dsPost.flux
-:language: nestedtext
-```
-
-#### newlisp
-
-```{literalinclude} /_static/dsPost.flux
-:language: newlisp
-```
-
-#### newspeak
-
-```{literalinclude} /_static/dsPost.flux
-:language: newspeak
-```
-
-#### nginx
-
-```{literalinclude} /_static/dsPost.flux
-:language: nginx
-```
-
-#### nimrod
-
-```{literalinclude} /_static/dsPost.flux
-:language: nimrod
-```
-
-#### nit
-
-```{literalinclude} /_static/dsPost.flux
-:language: nit
-```
-
-#### nixos
-
-```{literalinclude} /_static/dsPost.flux
-:language: nixos
 ```
 
 #### nodejsrepl
@@ -2338,46 +840,10 @@ TODO toFloat()
 :language: nodejsrepl
 ```
 
-#### notmuch
-
-```{literalinclude} /_static/dsPost.flux
-:language: notmuch
-```
-
-#### nusmv
-
-```{literalinclude} /_static/dsPost.flux
-:language: nusmv
-```
-
-#### numpy
-
-```{literalinclude} /_static/dsPost.flux
-:language: numpy
-```
-
-#### numba_ir
-
-```{literalinclude} /_static/dsPost.flux
-:language: numba_ir
-```
-
 #### objdump
 
 ```{literalinclude} /_static/dsPost.flux
 :language: objdump
-```
-
-#### objective-c
-
-```{literalinclude} /_static/dsPost.flux
-:language: objective-c
-```
-
-#### objective-c++
-
-```{literalinclude} /_static/dsPost.flux
-:language: objective-c++
 ```
 
 #### objective-j
@@ -2386,52 +852,16 @@ TODO toFloat()
 :language: objective-j
 ```
 
-#### ocaml
-
-```{literalinclude} /_static/dsPost.flux
-:language: ocaml
-```
-
 #### octave
 
 ```{literalinclude} /_static/dsPost.flux
 :language: octave
 ```
 
-#### odin
-
-```{literalinclude} /_static/dsPost.flux
-:language: odin
-```
-
-#### omg-idl
-
-```{literalinclude} /_static/dsPost.flux
-:language: omg-idl
-```
-
-#### ooc
-
-```{literalinclude} /_static/dsPost.flux
-:language: ooc
-```
-
-#### opa
-
-```{literalinclude} /_static/dsPost.flux
-:language: opa
-```
-
 #### openedge
 
 ```{literalinclude} /_static/dsPost.flux
 :language: openedge
-```
-
-#### openscad
-
-```{literalinclude} /_static/dsPost.flux
-:language: openscad
 ```
 
 #### org
@@ -2452,28 +882,10 @@ TODO toFloat()
 :language: pacmanconf
 ```
 
-#### pan
-
-```{literalinclude} /_static/dsPost.flux
-:language: pan
-```
-
 #### parasail
 
 ```{literalinclude} /_static/dsPost.flux
 :language: parasail
-```
-
-#### pawn
-
-```{literalinclude} /_static/dsPost.flux
-:language: pawn
-```
-
-#### pddl
-
-```{literalinclude} /_static/dsPost.flux
-:language: pddl
 ```
 
 #### peg
@@ -2494,12 +906,6 @@ TODO toFloat()
 :language: perl
 ```
 
-#### phix
-
-```{literalinclude} /_static/dsPost.flux
-:language: phix
-```
-
 #### php
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2510,72 +916,6 @@ TODO toFloat()
 
 ```{literalinclude} /_static/dsPost.flux
 :language: pig
-```
-
-#### pike
-
-```{literalinclude} /_static/dsPost.flux
-:language: pike
-```
-
-#### pkgconfig
-
-```{literalinclude} /_static/dsPost.flux
-:language: pkgconfig
-```
-
-#### plpgsql
-
-```{literalinclude} /_static/dsPost.flux
-:language: plpgsql
-```
-
-#### pointless
-
-```{literalinclude} /_static/dsPost.flux
-:language: pointless
-```
-
-#### pony
-
-```{literalinclude} /_static/dsPost.flux
-:language: pony
-```
-
-#### portugol
-
-```{literalinclude} /_static/dsPost.flux
-:language: portugol
-```
-
-#### postscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: postscript
-```
-
-#### psql
-
-```{literalinclude} /_static/dsPost.flux
-:language: psql
-```
-
-#### postgres-explain
-
-```{literalinclude} /_static/dsPost.flux
-:language: postgres-explain
-```
-
-#### postgresql
-
-```{literalinclude} /_static/dsPost.flux
-:language: postgresql
-```
-
-#### pov
-
-```{literalinclude} /_static/dsPost.flux
-:language: pov
 ```
 
 #### powershell
@@ -2590,88 +930,16 @@ TODO toFloat()
 :language: pwsh-session
 ```
 
-#### praat
-
-```{literalinclude} /_static/dsPost.flux
-:language: praat
-```
-
-#### procfile
-
-```{literalinclude} /_static/dsPost.flux
-:language: procfile
-```
-
-#### prolog
-
-```{literalinclude} /_static/dsPost.flux
-:language: prolog
-```
-
-#### promql
-
-```{literalinclude} /_static/dsPost.flux
-:language: promql
-```
-
-#### promela
-
-```{literalinclude} /_static/dsPost.flux
-:language: promela
-```
-
 #### properties
 
 ```{literalinclude} /_static/dsPost.flux
 :language: properties
 ```
 
-#### protobuf
-
-```{literalinclude} /_static/dsPost.flux
-:language: protobuf
-```
-
-#### prql
-
-```{literalinclude} /_static/dsPost.flux
-:language: prql
-```
-
 #### psysh
 
 ```{literalinclude} /_static/dsPost.flux
 :language: psysh
-```
-
-#### ptx
-
-```{literalinclude} /_static/dsPost.flux
-:language: ptx
-```
-
-#### pug
-
-```{literalinclude} /_static/dsPost.flux
-:language: pug
-```
-
-#### puppet
-
-```{literalinclude} /_static/dsPost.flux
-:language: puppet
-```
-
-#### pypylog
-
-```{literalinclude} /_static/dsPost.flux
-:language: pypylog
-```
-
-#### python2
-
-```{literalinclude} /_static/dsPost.flux
-:language: python2
 ```
 
 #### py2tb
@@ -2686,46 +954,16 @@ TODO toFloat()
 :language: pycon
 ```
 
-#### python
-
-```{literalinclude} /_static/dsPost.flux
-:language: python
-```
-
 #### pytb
 
 ```{literalinclude} /_static/dsPost.flux
 :language: pytb
 ```
 
-#### py+ul4
-
-```{literalinclude} /_static/dsPost.flux
-:language: py+ul4
-```
-
-#### qbasic
-
-```{literalinclude} /_static/dsPost.flux
-:language: qbasic
-```
-
 #### q
 
 ```{literalinclude} /_static/dsPost.flux
 :language: q
-```
-
-#### qvto
-
-```{literalinclude} /_static/dsPost.flux
-:language: qvto
-```
-
-#### qlik
-
-```{literalinclude} /_static/dsPost.flux
-:language: qlik
 ```
 
 #### qml
@@ -2758,18 +996,6 @@ TODO toFloat()
 :language: racket
 ```
 
-#### ragel-c
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-c
-```
-
-#### ragel-cpp
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-cpp
-```
-
 #### ragel-d
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2782,100 +1008,10 @@ TODO toFloat()
 :language: ragel-em
 ```
 
-#### ragel-java
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-java
-```
-
-#### ragel
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel
-```
-
-#### ragel-objc
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-objc
-```
-
-#### ragel-ruby
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-ruby
-```
-
 #### rd
 
 ```{literalinclude} /_static/dsPost.flux
 :language: rd
-```
-
-#### reasonml
-
-```{literalinclude} /_static/dsPost.flux
-:language: reasonml
-```
-
-#### rebol
-
-```{literalinclude} /_static/dsPost.flux
-:language: rebol
-```
-
-#### red
-
-```{literalinclude} /_static/dsPost.flux
-:language: red
-```
-
-#### redcode
-
-```{literalinclude} /_static/dsPost.flux
-:language: redcode
-```
-
-#### registry
-
-```{literalinclude} /_static/dsPost.flux
-:language: registry
-```
-
-#### rego
-
-```{literalinclude} /_static/dsPost.flux
-:language: rego
-```
-
-#### resourcebundle
-
-```{literalinclude} /_static/dsPost.flux
-:language: resourcebundle
-```
-
-#### rexx
-
-```{literalinclude} /_static/dsPost.flux
-:language: rexx
-```
-
-#### rhtml
-
-```{literalinclude} /_static/dsPost.flux
-:language: rhtml
-```
-
-#### ride
-
-```{literalinclude} /_static/dsPost.flux
-:language: ride
-```
-
-#### rita
-
-```{literalinclude} /_static/dsPost.flux
-:language: rita
 ```
 
 #### roboconf-graph
@@ -2896,12 +1032,6 @@ TODO toFloat()
 :language: robotframework
 ```
 
-#### rql
-
-```{literalinclude} /_static/dsPost.flux
-:language: rql
-```
-
 #### rsl
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2914,28 +1044,10 @@ TODO toFloat()
 :language: restructuredtext
 ```
 
-#### trafficscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: trafficscript
-```
-
 #### rbcon
 
 ```{literalinclude} /_static/dsPost.flux
 :language: rbcon
-```
-
-#### ruby
-
-```{literalinclude} /_static/dsPost.flux
-:language: ruby
-```
-
-#### rust
-
-```{literalinclude} /_static/dsPost.flux
-:language: rust
 ```
 
 #### sas
@@ -2950,42 +1062,6 @@ TODO toFloat()
 :language: splus
 ```
 
-#### sml
-
-```{literalinclude} /_static/dsPost.flux
-:language: sml
-```
-
-#### snbt
-
-```{literalinclude} /_static/dsPost.flux
-:language: snbt
-```
-
-#### sarl
-
-```{literalinclude} /_static/dsPost.flux
-:language: sarl
-```
-
-#### sass
-
-```{literalinclude} /_static/dsPost.flux
-:language: sass
-```
-
-#### savi
-
-```{literalinclude} /_static/dsPost.flux
-:language: savi
-```
-
-#### scala
-
-```{literalinclude} /_static/dsPost.flux
-:language: scala
-```
-
 #### scaml
 
 ```{literalinclude} /_static/dsPost.flux
@@ -2998,52 +1074,10 @@ TODO toFloat()
 :language: scdoc
 ```
 
-#### scheme
-
-```{literalinclude} /_static/dsPost.flux
-:language: scheme
-```
-
 #### scilab
 
 ```{literalinclude} /_static/dsPost.flux
 :language: scilab
-```
-
-#### scss
-
-```{literalinclude} /_static/dsPost.flux
-:language: scss
-```
-
-#### sed
-
-```{literalinclude} /_static/dsPost.flux
-:language: sed
-```
-
-#### shexc
-
-```{literalinclude} /_static/dsPost.flux
-:language: shexc
-```
-
-#### shen
-
-```{literalinclude} /_static/dsPost.flux
-:language: shen
-```
-
-#### sieve
-
-```{literalinclude} /_static/dsPost.flux
-:language: sieve
-```
-
-#### silver
-
-```{literalinclude} /_static/dsPost.flux
-:language: silver
 ```
 
 #### singularity
@@ -3052,118 +1086,16 @@ TODO toFloat()
 :language: singularity
 ```
 
-#### slash
-
-```{literalinclude} /_static/dsPost.flux
-:language: slash
-```
-
-#### slim
-
-```{literalinclude} /_static/dsPost.flux
-:language: slim
-```
-
 #### slurm
 
 ```{literalinclude} /_static/dsPost.flux
 :language: slurm
 ```
 
-#### smali
-
-```{literalinclude} /_static/dsPost.flux
-:language: smali
-```
-
-#### smalltalk
-
-```{literalinclude} /_static/dsPost.flux
-:language: smalltalk
-```
-
-#### sgf
-
-```{literalinclude} /_static/dsPost.flux
-:language: sgf
-```
-
 #### smarty
 
 ```{literalinclude} /_static/dsPost.flux
 :language: smarty
-```
-
-#### smithy
-
-```{literalinclude} /_static/dsPost.flux
-:language: smithy
-```
-
-#### snobol
-
-```{literalinclude} /_static/dsPost.flux
-:language: snobol
-```
-
-#### snowball
-
-```{literalinclude} /_static/dsPost.flux
-:language: snowball
-```
-
-#### solidity
-
-```{literalinclude} /_static/dsPost.flux
-:language: solidity
-```
-
-#### androidbp
-
-```{literalinclude} /_static/dsPost.flux
-:language: androidbp
-```
-
-#### sophia
-
-```{literalinclude} /_static/dsPost.flux
-:language: sophia
-```
-
-#### sp
-
-```{literalinclude} /_static/dsPost.flux
-:language: sp
-```
-
-#### debsources
-
-```{literalinclude} /_static/dsPost.flux
-:language: debsources
-```
-
-#### sparql
-
-```{literalinclude} /_static/dsPost.flux
-:language: sparql
-```
-
-#### spice
-
-```{literalinclude} /_static/dsPost.flux
-:language: spice
-```
-
-#### sql+jinja
-
-```{literalinclude} /_static/dsPost.flux
-:language: sql+jinja
-```
-
-#### sql
-
-```{literalinclude} /_static/dsPost.flux
-:language: sql
 ```
 
 #### sqlite3
@@ -3178,58 +1110,10 @@ TODO toFloat()
 :language: squidconf
 ```
 
-#### srcinfo
-
-```{literalinclude} /_static/dsPost.flux
-:language: srcinfo
-```
-
-#### ssp
-
-```{literalinclude} /_static/dsPost.flux
-:language: ssp
-```
-
-#### stan
-
-```{literalinclude} /_static/dsPost.flux
-:language: stan
-```
-
-#### stata
-
-```{literalinclude} /_static/dsPost.flux
-:language: stata
-```
-
 #### supercollider
 
 ```{literalinclude} /_static/dsPost.flux
 :language: supercollider
-```
-
-#### swift
-
-```{literalinclude} /_static/dsPost.flux
-:language: swift
-```
-
-#### swig
-
-```{literalinclude} /_static/dsPost.flux
-:language: swig
-```
-
-#### systemverilog
-
-```{literalinclude} /_static/dsPost.flux
-:language: systemverilog
-```
-
-#### systemd
-
-```{literalinclude} /_static/dsPost.flux
-:language: systemd
 ```
 
 #### tap
@@ -3238,70 +1122,16 @@ TODO toFloat()
 :language: tap
 ```
 
-#### tnt
-
-```{literalinclude} /_static/dsPost.flux
-:language: tnt
-```
-
-#### toml
-
-```{literalinclude} /_static/dsPost.flux
-:language: toml
-```
-
-#### tablegen
-
-```{literalinclude} /_static/dsPost.flux
-:language: tablegen
-```
-
-#### tact
-
-```{literalinclude} /_static/dsPost.flux
-:language: tact
-```
-
-#### tads3
-
-```{literalinclude} /_static/dsPost.flux
-:language: tads3
-```
-
 #### tal
 
 ```{literalinclude} /_static/dsPost.flux
 :language: tal
 ```
 
-#### tasm
-
-```{literalinclude} /_static/dsPost.flux
-:language: tasm
-```
-
-#### tcl
-
-```{literalinclude} /_static/dsPost.flux
-:language: tcl
-```
-
 #### tcsh
 
 ```{literalinclude} /_static/dsPost.flux
 :language: tcsh
-```
-
-#### tcshcon
-
-```{literalinclude} /_static/dsPost.flux
-:language: tcshcon
-```
-
-#### tea
-
-```{literalinclude} /_static/dsPost.flux
-:language: tea
 ```
 
 #### teal
@@ -3316,24 +1146,6 @@ TODO toFloat()
 :language: teratermmacro
 ```
 
-#### termcap
-
-```{literalinclude} /_static/dsPost.flux
-:language: termcap
-```
-
-#### terminfo
-
-```{literalinclude} /_static/dsPost.flux
-:language: terminfo
-```
-
-#### terraform
-
-```{literalinclude} /_static/dsPost.flux
-:language: terraform
-```
-
 #### tex
 
 ```{literalinclude} /_static/dsPost.flux
@@ -3346,70 +1158,16 @@ TODO toFloat()
 :language: text
 ```
 
-#### ti
-
-```{literalinclude} /_static/dsPost.flux
-:language: ti
-```
-
-#### thrift
-
-```{literalinclude} /_static/dsPost.flux
-:language: thrift
-```
-
 #### tid
 
 ```{literalinclude} /_static/dsPost.flux
 :language: tid
 ```
 
-#### tlb
-
-```{literalinclude} /_static/dsPost.flux
-:language: tlb
-```
-
-#### tls
-
-```{literalinclude} /_static/dsPost.flux
-:language: tls
-```
-
-#### todotxt
-
-```{literalinclude} /_static/dsPost.flux
-:language: todotxt
-```
-
-#### tsql
-
-```{literalinclude} /_static/dsPost.flux
-:language: tsql
-```
-
-#### treetop
-
-```{literalinclude} /_static/dsPost.flux
-:language: treetop
-```
-
 #### tsx
 
 ```{literalinclude} /_static/dsPost.flux
 :language: tsx
-```
-
-#### turtle
-
-```{literalinclude} /_static/dsPost.flux
-:language: turtle
-```
-
-#### html+twig
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+twig
 ```
 
 #### twig
@@ -3424,46 +1182,10 @@ TODO toFloat()
 :language: typescript
 ```
 
-#### typoscriptcssdata
-
-```{literalinclude} /_static/dsPost.flux
-:language: typoscriptcssdata
-```
-
-#### typoscripthtmldata
-
-```{literalinclude} /_static/dsPost.flux
-:language: typoscripthtmldata
-```
-
-#### typoscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: typoscript
-```
-
-#### typst
-
-```{literalinclude} /_static/dsPost.flux
-:language: typst
-```
-
 #### ul4
 
 ```{literalinclude} /_static/dsPost.flux
 :language: ul4
-```
-
-#### ucode
-
-```{literalinclude} /_static/dsPost.flux
-:language: ucode
-```
-
-#### unicon
-
-```{literalinclude} /_static/dsPost.flux
-:language: unicon
 ```
 
 #### unixconfig
@@ -3472,106 +1194,16 @@ TODO toFloat()
 :language: unixconfig
 ```
 
-#### urbiscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: urbiscript
-```
-
 #### urlencoded
 
 ```{literalinclude} /_static/dsPost.flux
 :language: urlencoded
 ```
 
-#### usd
-
-```{literalinclude} /_static/dsPost.flux
-:language: usd
-```
-
-#### vbscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: vbscript
-```
-
-#### vcl
-
-```{literalinclude} /_static/dsPost.flux
-:language: vcl
-```
-
-#### vclsnippets
-
-```{literalinclude} /_static/dsPost.flux
-:language: vclsnippets
-```
-
 #### vctreestatus
 
 ```{literalinclude} /_static/dsPost.flux
 :language: vctreestatus
-```
-
-#### vgl
-
-```{literalinclude} /_static/dsPost.flux
-:language: vgl
-```
-
-#### vala
-
-```{literalinclude} /_static/dsPost.flux
-:language: vala
-```
-
-#### aspx-vb
-
-```{literalinclude} /_static/dsPost.flux
-:language: aspx-vb
-```
-
-#### vb.net
-
-```{literalinclude} /_static/dsPost.flux
-:language: vb.net
-```
-
-#### html+velocity
-
-```{literalinclude} /_static/dsPost.flux
-:language: html+velocity
-```
-
-#### velocity
-
-```{literalinclude} /_static/dsPost.flux
-:language: velocity
-```
-
-#### xml+velocity
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+velocity
-```
-
-#### verifpal
-
-```{literalinclude} /_static/dsPost.flux
-:language: verifpal
-```
-
-#### verilog
-
-```{literalinclude} /_static/dsPost.flux
-:language: verilog
-```
-
-#### vhdl
-
-```{literalinclude} /_static/dsPost.flux
-:language: vhdl
 ```
 
 #### vim
@@ -3592,46 +1224,10 @@ TODO toFloat()
 :language: visualprolog
 ```
 
-#### vue
-
-```{literalinclude} /_static/dsPost.flux
-:language: vue
-```
-
-#### vyper
-
-```{literalinclude} /_static/dsPost.flux
-:language: vyper
-```
-
 #### wdiff
 
 ```{literalinclude} /_static/dsPost.flux
 :language: wdiff
-```
-
-#### wast
-
-```{literalinclude} /_static/dsPost.flux
-:language: wast
-```
-
-#### webidl
-
-```{literalinclude} /_static/dsPost.flux
-:language: webidl
-```
-
-#### wgsl
-
-```{literalinclude} /_static/dsPost.flux
-:language: wgsl
-```
-
-#### whiley
-
-```{literalinclude} /_static/dsPost.flux
-:language: whiley
 ```
 
 #### wikitext
@@ -3646,100 +1242,10 @@ TODO toFloat()
 :language: wowtoc
 ```
 
-#### wren
-
-```{literalinclude} /_static/dsPost.flux
-:language: wren
-```
-
 #### x10
 
 ```{literalinclude} /_static/dsPost.flux
 :language: x10
-```
-
-#### xml+ul4
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+ul4
-```
-
-#### xquery
-
-```{literalinclude} /_static/dsPost.flux
-:language: xquery
-```
-
-#### xml+django
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+django
-```
-
-#### xml+ruby
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+ruby
-```
-
-#### xml
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml
-```
-
-#### xml+php
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+php
-```
-
-#### xml+smarty
-
-```{literalinclude} /_static/dsPost.flux
-:language: xml+smarty
-```
-
-#### xorg.conf
-
-```{literalinclude} /_static/dsPost.flux
-:language: xorg.conf
-```
-
-#### xpp
-
-```{literalinclude} /_static/dsPost.flux
-:language: xpp
-```
-
-#### xslt
-
-```{literalinclude} /_static/dsPost.flux
-:language: xslt
-```
-
-#### xtend
-
-```{literalinclude} /_static/dsPost.flux
-:language: xtend
-```
-
-#### extempore
-
-```{literalinclude} /_static/dsPost.flux
-:language: extempore
-```
-
-#### yaml+jinja
-
-```{literalinclude} /_static/dsPost.flux
-:language: yaml+jinja
-```
-
-#### yaml
-
-```{literalinclude} /_static/dsPost.flux
-:language: yaml
 ```
 
 #### yang
@@ -3754,26 +1260,14 @@ TODO toFloat()
 :language: yara
 ```
 
-#### zeek
-
-```{literalinclude} /_static/dsPost.flux
-:language: zeek
-```
-
 #### zephir
 
 ```{literalinclude} /_static/dsPost.flux
 :language: zephir
 ```
 
-#### zig
+### Update Queries
 
-```{literalinclude} /_static/dsPost.flux
-:language: zig
-```
+TODO [dsGrafana.json](/_static/dsGrafana.json)
 
-#### ansys
-
-```{literalinclude} /_static/dsPost.flux
-:language: ansys
-```
+TODO toFloat()
