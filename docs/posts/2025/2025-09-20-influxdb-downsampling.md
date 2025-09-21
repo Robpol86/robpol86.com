@@ -372,30 +372,6 @@ TODO
 :language: igor
 ```
 
-#### i6t
-
-```{literalinclude} /_static/dsPost.flux
-:language: i6t
-```
-
-#### inform7
-
-```{literalinclude} /_static/dsPost.flux
-:language: inform7
-```
-
-#### ini
-
-```{literalinclude} /_static/dsPost.flux
-:language: ini
-```
-
-#### irc
-
-```{literalinclude} /_static/dsPost.flux
-:language: irc
-```
-
 #### isabelle
 
 ```{literalinclude} /_static/dsPost.flux
@@ -456,12 +432,6 @@ TODO
 :language: jsx
 ```
 
-#### jlcon
-
-```{literalinclude} /_static/dsPost.flux
-:language: jlcon
-```
-
 #### julia
 
 ```{literalinclude} /_static/dsPost.flux
@@ -510,48 +480,6 @@ TODO
 :language: lean4
 ```
 
-#### liquid
-
-```{literalinclude} /_static/dsPost.flux
-:language: liquid
-```
-
-#### literate-agda
-
-```{literalinclude} /_static/dsPost.flux
-:language: literate-agda
-```
-
-#### literate-cryptol
-
-```{literalinclude} /_static/dsPost.flux
-:language: literate-cryptol
-```
-
-#### literate-haskell
-
-```{literalinclude} /_static/dsPost.flux
-:language: literate-haskell
-```
-
-#### literate-idris
-
-```{literalinclude} /_static/dsPost.flux
-:language: literate-idris
-```
-
-#### livescript
-
-```{literalinclude} /_static/dsPost.flux
-:language: livescript
-```
-
-#### llvm-mir
-
-```{literalinclude} /_static/dsPost.flux
-:language: llvm-mir
-```
-
 #### mcschema
 
 ```{literalinclude} /_static/dsPost.flux
@@ -562,12 +490,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: mips
-```
-
-#### doscon
-
-```{literalinclude} /_static/dsPost.flux
-:language: doscon
 ```
 
 #### macaulay2
@@ -582,40 +504,16 @@ TODO
 :language: javascript+mako
 ```
 
-#### mako
-
-```{literalinclude} /_static/dsPost.flux
-:language: mako
-```
-
 #### maple
 
 ```{literalinclude} /_static/dsPost.flux
 :language: maple
 ```
 
-#### markdown
-
-```{literalinclude} /_static/dsPost.flux
-:language: markdown
-```
-
 #### matlab
 
 ```{literalinclude} /_static/dsPost.flux
 :language: matlab
-```
-
-#### matlabsession
-
-```{literalinclude} /_static/dsPost.flux
-:language: matlabsession
-```
-
-#### maxima
-
-```{literalinclude} /_static/dsPost.flux
-:language: maxima
 ```
 
 #### minid
@@ -630,30 +528,6 @@ TODO
 :language: modula2
 ```
 
-#### trac-wiki
-
-```{literalinclude} /_static/dsPost.flux
-:language: trac-wiki
-```
-
-#### mozhashpreproc
-
-```{literalinclude} /_static/dsPost.flux
-:language: mozhashpreproc
-```
-
-#### javascript+mozpreproc
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+mozpreproc
-```
-
-#### mozpercentpreproc
-
-```{literalinclude} /_static/dsPost.flux
-:language: mozpercentpreproc
-```
-
 #### mupad
 
 ```{literalinclude} /_static/dsPost.flux
@@ -666,28 +540,10 @@ TODO
 :language: javascript+myghty
 ```
 
-#### myghty
-
-```{literalinclude} /_static/dsPost.flux
-:language: myghty
-```
-
-#### objdump-nasm
-
-```{literalinclude} /_static/dsPost.flux
-:language: objdump-nasm
-```
-
 #### nodejsrepl
 
 ```{literalinclude} /_static/dsPost.flux
 :language: nodejsrepl
-```
-
-#### objdump
-
-```{literalinclude} /_static/dsPost.flux
-:language: objdump
 ```
 
 #### objective-j
@@ -702,24 +558,6 @@ TODO
 :language: octave
 ```
 
-#### openedge
-
-```{literalinclude} /_static/dsPost.flux
-:language: openedge
-```
-
-#### org
-
-```{literalinclude} /_static/dsPost.flux
-:language: org
-```
-
-#### output
-
-```{literalinclude} /_static/dsPost.flux
-:language: output
-```
-
 #### pacmanconf
 
 ```{literalinclude} /_static/dsPost.flux
@@ -730,30 +568,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: parasail
-```
-
-#### peg
-
-```{literalinclude} /_static/dsPost.flux
-:language: peg
-```
-
-#### perl6
-
-```{literalinclude} /_static/dsPost.flux
-:language: perl6
-```
-
-#### perl
-
-```{literalinclude} /_static/dsPost.flux
-:language: perl
-```
-
-#### php
-
-```{literalinclude} /_static/dsPost.flux
-:language: php
 ```
 
 #### pig
@@ -768,42 +582,6 @@ TODO
 :language: powershell
 ```
 
-#### pwsh-session
-
-```{literalinclude} /_static/dsPost.flux
-:language: pwsh-session
-```
-
-#### properties
-
-```{literalinclude} /_static/dsPost.flux
-:language: properties
-```
-
-#### psysh
-
-```{literalinclude} /_static/dsPost.flux
-:language: psysh
-```
-
-#### py2tb
-
-```{literalinclude} /_static/dsPost.flux
-:language: py2tb
-```
-
-#### pycon
-
-```{literalinclude} /_static/dsPost.flux
-:language: pycon
-```
-
-#### pytb
-
-```{literalinclude} /_static/dsPost.flux
-:language: pytb
-```
-
 #### q
 
 ```{literalinclude} /_static/dsPost.flux
@@ -814,12 +592,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: qml
-```
-
-#### rconsole
-
-```{literalinclude} /_static/dsPost.flux
-:language: rconsole
 ```
 
 #### rng-compact
@@ -834,64 +606,10 @@ TODO
 :language: spec
 ```
 
-#### racket
-
-```{literalinclude} /_static/dsPost.flux
-:language: racket
-```
-
 #### ragel-d
 
 ```{literalinclude} /_static/dsPost.flux
 :language: ragel-d
-```
-
-#### ragel-em
-
-```{literalinclude} /_static/dsPost.flux
-:language: ragel-em
-```
-
-#### rd
-
-```{literalinclude} /_static/dsPost.flux
-:language: rd
-```
-
-#### roboconf-graph
-
-```{literalinclude} /_static/dsPost.flux
-:language: roboconf-graph
-```
-
-#### roboconf-instances
-
-```{literalinclude} /_static/dsPost.flux
-:language: roboconf-instances
-```
-
-#### robotframework
-
-```{literalinclude} /_static/dsPost.flux
-:language: robotframework
-```
-
-#### rsl
-
-```{literalinclude} /_static/dsPost.flux
-:language: rsl
-```
-
-#### restructuredtext
-
-```{literalinclude} /_static/dsPost.flux
-:language: restructuredtext
-```
-
-#### rbcon
-
-```{literalinclude} /_static/dsPost.flux
-:language: rbcon
 ```
 
 #### sas
@@ -912,22 +630,10 @@ TODO
 :language: scaml
 ```
 
-#### scdoc
-
-```{literalinclude} /_static/dsPost.flux
-:language: scdoc
-```
-
 #### scilab
 
 ```{literalinclude} /_static/dsPost.flux
 :language: scilab
-```
-
-#### singularity
-
-```{literalinclude} /_static/dsPost.flux
-:language: singularity
 ```
 
 #### slurm
@@ -936,40 +642,10 @@ TODO
 :language: slurm
 ```
 
-#### smarty
-
-```{literalinclude} /_static/dsPost.flux
-:language: smarty
-```
-
-#### sqlite3
-
-```{literalinclude} /_static/dsPost.flux
-:language: sqlite3
-```
-
-#### squidconf
-
-```{literalinclude} /_static/dsPost.flux
-:language: squidconf
-```
-
 #### supercollider
 
 ```{literalinclude} /_static/dsPost.flux
 :language: supercollider
-```
-
-#### tap
-
-```{literalinclude} /_static/dsPost.flux
-:language: tap
-```
-
-#### tal
-
-```{literalinclude} /_static/dsPost.flux
-:language: tal
 ```
 
 #### tcsh
@@ -984,40 +660,10 @@ TODO
 :language: teal
 ```
 
-#### teratermmacro
-
-```{literalinclude} /_static/dsPost.flux
-:language: teratermmacro
-```
-
-#### tex
-
-```{literalinclude} /_static/dsPost.flux
-:language: tex
-```
-
-#### text
-
-```{literalinclude} /_static/dsPost.flux
-:language: text
-```
-
-#### tid
-
-```{literalinclude} /_static/dsPost.flux
-:language: tid
-```
-
 #### tsx
 
 ```{literalinclude} /_static/dsPost.flux
 :language: tsx
-```
-
-#### twig
-
-```{literalinclude} /_static/dsPost.flux
-:language: twig
 ```
 
 #### typescript
@@ -1026,64 +672,16 @@ TODO
 :language: typescript
 ```
 
-#### ul4
-
-```{literalinclude} /_static/dsPost.flux
-:language: ul4
-```
-
 #### unixconfig
 
 ```{literalinclude} /_static/dsPost.flux
 :language: unixconfig
 ```
 
-#### urlencoded
-
-```{literalinclude} /_static/dsPost.flux
-:language: urlencoded
-```
-
-#### vctreestatus
-
-```{literalinclude} /_static/dsPost.flux
-:language: vctreestatus
-```
-
 #### vim
 
 ```{literalinclude} /_static/dsPost.flux
 :language: vim
-```
-
-#### visualprologgrammar
-
-```{literalinclude} /_static/dsPost.flux
-:language: visualprologgrammar
-```
-
-#### visualprolog
-
-```{literalinclude} /_static/dsPost.flux
-:language: visualprolog
-```
-
-#### wdiff
-
-```{literalinclude} /_static/dsPost.flux
-:language: wdiff
-```
-
-#### wikitext
-
-```{literalinclude} /_static/dsPost.flux
-:language: wikitext
-```
-
-#### wowtoc
-
-```{literalinclude} /_static/dsPost.flux
-:language: wowtoc
 ```
 
 #### x10
