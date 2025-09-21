@@ -18,6 +18,10 @@ This implementation builds on the very minimal
 [InfluxDB v2 example](https://docs.influxdata.com/influxdb/v2/process-data/common-tasks/downsample-data/) and shows how
 to consume the downsampled data in Grafana. It turns out the latter was the hardest part to get right.
 
+This guide will walk you through implementing downsampling for your Telegraf data, but it should work with all data types.
+I'll also touch on [backfilling](#backfilling-data), which is when you've been collecting data for some time and wish to
+retroactively downsample it.
+
 ```{list-table}
 * - :::{imgur-image} 0m3qdla.png
     :::
@@ -25,13 +29,21 @@ to consume the downsampled data in Grafana. It turns out the latter was the hard
 
 ## Overview
 
-Downsampling is implemented in two parts: the [InfluxDB side](/_static/dsTask.flux) which does the downsampling, and the
-[Grafana side](/_static/dsPost.flux) which reads data from one or more buckets.
+Downsampling is implemented in two parts: the InfluxDB side and the Grafana side.
 
-On the InfluxDB side you will have a [Flux task](https://docs.influxdata.com/influxdb/v2/process-data/get-started/) for each
-downsample bucket which runs on a schedule downsampling recent data into a separate downsample bucket. You may wish to have multiple downsample buckets
-with different granularity/resolution of data each with their own retention policies. If you have old data you want to
-downsample instead of just the new data I'm covering that in the [Backfilling Data](#backfilling-data) section below.
+### InfluxDB Side
+
+On the InfluxDB side we'll have a Flux task that runs on a timer, downsampling data from a main bucket (e.g. "telegraf") into
+a separate downsample bucket (e.g. "telegraf_1m"). Multiple downsample buckets are supported, so in theory you can have three
+buckets:
+
+1. **telegraf**: raw data written by telegraf every 10 seconds (10 second resolution)
+2. **telegraf_1m**: downsampled data, averaged out to every minute (1 minute resolution)
+3. **telegraf_5m**: downsampled to an average of every 5 minutes (5 minute resolution)
+
+For each bucket you can set different retention policies.
+
+### Grafana Side
 
 On the Grafana side we'll need to tell it to query the main bucket as well as the downsample buckets. The goal of this
 project is to see very detailed recent metrics and then use downsampled metrics at a lower resolution for historical data. We
@@ -61,7 +73,7 @@ ${dsPost}
 
 TODO compare query statistics (or profiling), best of 10 each.
 
-## Flux Downsample Tasks
+## InfluxDB Side2
 
 ### Flux Tasks
 
@@ -130,7 +142,7 @@ TODO reduce docstring and document here instead
 
 TODO
 
-## Grafana Side
+## Grafana Side2
 
 TODO gif with production ranges showing zooming out and panning
 
