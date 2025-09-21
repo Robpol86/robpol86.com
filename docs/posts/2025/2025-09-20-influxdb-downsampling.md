@@ -210,12 +210,6 @@ TODO
 :language: actionscript
 ```
 
-#### javascript+cheetah
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+cheetah
-```
-
 #### croc
 
 ```{literalinclude} /_static/dsPost.flux
@@ -228,52 +222,10 @@ TODO
 :language: d
 ```
 
-#### dax
-
-```{literalinclude} /_static/dsPost.flux
-:language: dax
-```
-
-#### dylan
-
-```{literalinclude} /_static/dsPost.flux
-:language: dylan
-```
-
-#### fan
-
-```{literalinclude} /_static/dsPost.flux
-:language: fan
-```
-
-#### fift
-
-```{literalinclude} /_static/dsPost.flux
-:language: fift
-```
-
 #### gosu
 
 ```{literalinclude} /_static/dsPost.flux
 :language: gosu
-```
-
-#### igor
-
-```{literalinclude} /_static/dsPost.flux
-:language: igor
-```
-
-#### javascript
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript
-```
-
-#### javascript+smarty
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+smarty
 ```
 
 #### jsgf
@@ -298,12 +250,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: koka
-```
-
-#### javascript+lasso
-
-```{literalinclude} /_static/dsPost.flux
-:language: javascript+lasso
 ```
 
 #### mcschema
