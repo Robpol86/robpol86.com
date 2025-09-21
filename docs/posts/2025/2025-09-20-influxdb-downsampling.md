@@ -42,7 +42,7 @@ want to avoid having to process thousands or millions of data points per panel w
 time frames. Another goal I set for this project is to minimize the changes needed to be done to each query to enable
 downsampling. My solution is basically to add three short lines to each query. An example before and after downsampling:
 
-```
+```koka
 // Before
 from(bucket: "${BUCKET}")
   |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
@@ -133,7 +133,7 @@ TODO reduce docstring and document here instead
 ```
 
 ```{literalinclude} /_static/dsTask.flux
-:language: text
+:language: koka
 ```
 
 ### Backfilling Data
@@ -198,106 +198,8 @@ TODO
 // PASTE EVERYTHING BELOW THIS LINE IN GRAFANA
 ```
 
-#### actionscript3
-
-```{literalinclude} /_static/dsPost.flux
-:language: actionscript3
-```
-
-#### actionscript
-
-```{literalinclude} /_static/dsPost.flux
-:language: actionscript
-```
-
-#### croc
-
-```{literalinclude} /_static/dsPost.flux
-:language: croc
-```
-
-#### d
-
-```{literalinclude} /_static/dsPost.flux
-:language: d
-```
-
-#### gosu
-
-```{literalinclude} /_static/dsPost.flux
-:language: gosu
-```
-
-#### juttle
-
-```{literalinclude} /_static/dsPost.flux
-:language: juttle
-```
-
-#### k
-
-```{literalinclude} /_static/dsPost.flux
-:language: k
-```
-
-#### koka
-
 ```{literalinclude} /_static/dsPost.flux
 :language: koka
-```
-
-#### mcschema
-
-```{literalinclude} /_static/dsPost.flux
-:language: mcschema
-```
-
-#### objective-j
-
-```{literalinclude} /_static/dsPost.flux
-:language: objective-j
-```
-
-#### q
-
-```{literalinclude} /_static/dsPost.flux
-:language: q
-```
-
-#### qml
-
-```{literalinclude} /_static/dsPost.flux
-:language: qml
-```
-
-#### scilab
-
-```{literalinclude} /_static/dsPost.flux
-:language: scilab
-```
-
-#### supercollider
-
-```{literalinclude} /_static/dsPost.flux
-:language: supercollider
-```
-
-#### typescript
-
-```{literalinclude} /_static/dsPost.flux
-:language: typescript
-```
-
-#### x10
-
-```{literalinclude} /_static/dsPost.flux
-:language: x10
-```
-
-#### zephir
-
-```{literalinclude} /_static/dsPost.flux
-:language: zephir
 ```
 
 ### Update Queries
