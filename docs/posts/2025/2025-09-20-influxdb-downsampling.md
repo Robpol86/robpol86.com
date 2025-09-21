@@ -264,12 +264,6 @@ TODO
 :language: gosu
 ```
 
-#### haml
-
-```{literalinclude} /_static/dsPost.flux
-:language: haml
-```
-
 #### igor
 
 ```{literalinclude} /_static/dsPost.flux
@@ -378,12 +372,6 @@ TODO
 :language: modula2
 ```
 
-#### mupad
-
-```{literalinclude} /_static/dsPost.flux
-:language: mupad
-```
-
 #### javascript+myghty
 
 ```{literalinclude} /_static/dsPost.flux
@@ -400,12 +388,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: objective-j
-```
-
-#### parasail
-
-```{literalinclude} /_static/dsPost.flux
-:language: parasail
 ```
 
 #### q
@@ -426,12 +408,6 @@ TODO
 :language: ragel-d
 ```
 
-#### scaml
-
-```{literalinclude} /_static/dsPost.flux
-:language: scaml
-```
-
 #### scilab
 
 ```{literalinclude} /_static/dsPost.flux
@@ -442,12 +418,6 @@ TODO
 
 ```{literalinclude} /_static/dsPost.flux
 :language: supercollider
-```
-
-#### teal
-
-```{literalinclude} /_static/dsPost.flux
-:language: teal
 ```
 
 #### tsx
@@ -462,22 +432,10 @@ TODO
 :language: typescript
 ```
 
-#### unixconfig
-
-```{literalinclude} /_static/dsPost.flux
-:language: unixconfig
-```
-
 #### x10
 
 ```{literalinclude} /_static/dsPost.flux
 :language: x10
-```
-
-#### yang
-
-```{literalinclude} /_static/dsPost.flux
-:language: yang
 ```
 
 #### yara
