@@ -9,30 +9,27 @@ tags: homelab, nas
 
 # InfluxDB Downsampling
 
+In this guide I will show you how I've implemented InfluxDB v2 downsampling that plays nicely with Grafana with minimal
+changes to queries. Integers and floats are downsampled with `mean()` and all other types are downsampled with `last()`.
+A three line change to Grafana queries will enable it to read narrowed down time ranges for each bucket and combine the
+output with `union()`.
+
+This implementation builds on the very minimal
+[InfluxDB v2 example](https://docs.influxdata.com/influxdb/v2/process-data/common-tasks/downsample-data/) and shows how
+to consume the downsampled data in Grafana. It turns out the latter was the hardest part to get right.
+
 ```{list-table}
 * - :::{imgur-image} 0m3qdla.png
     :::
 ```
-
-In this guide I will show you how I've implemented InfluxDB v2 downsampling that plays nicely with Grafana with minimal
-changes to queries. I use it to downsample Telegraf metrics but it should work with any data. Ints and floats are downsampled
-using `mean()` whilst all other types are downsampled with `last()`. Grafana will read metrics from your main bucket and one
-or more downsample buckets. It will then combine data from the buckets with `union()`. The last part I've automated into a
-single Grafana variable to avoid copying and pasting a lot of code for each of your queries.
-
-The official [InfluxDB v2 documentation](https://docs.influxdata.com/influxdb/v2/process-data/common-tasks/downsample-data/)
-implements downsampling in a strange way that doesn't seem usable for real time metrics such as with Telegraf. They also
-don't cover consuming the downsampled data. It turns out that was the hardest part to get right.
-
-TODO top image with four buckets is hard to read when shown as an og embed. Make it three or two buckets.
 
 ## Overview
 
 Downsampling is implemented in two parts: the [InfluxDB side](/_static/dsTask.flux) which does the downsampling, and the
 [Grafana side](/_static/dsPost.flux) which reads data from one or more buckets.
 
-On the InfluxDB side you will have a [Flux task](https://docs.influxdata.com/influxdb/v2/process-data/get-started/) that runs
-on a schedule downsampling recent data into a separate downsample bucket. You may wish to have multiple downsample buckets
+On the InfluxDB side you will have a [Flux task](https://docs.influxdata.com/influxdb/v2/process-data/get-started/) for each
+downsample bucket which runs on a schedule downsampling recent data into a separate downsample bucket. You may wish to have multiple downsample buckets
 with different granularity/resolution of data each with their own retention policies. If you have old data you want to
 downsample instead of just the new data I'm covering that in the [Backfilling Data](#backfilling-data) section below.
 
@@ -60,11 +57,11 @@ from(bucket)
 ${dsPost}
 ```
 
+### Performance
+
 TODO compare query statistics (or profiling), best of 10 each.
 
-## InfluxDB Side
-
-TODO
+## Flux Downsample Tasks
 
 ### Flux Tasks
 
