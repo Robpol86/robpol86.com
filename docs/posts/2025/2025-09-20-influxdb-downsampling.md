@@ -19,7 +19,7 @@ This implementation builds on the very minimal
 to consume the downsampled data in Grafana. It turns out the latter was the hardest part to get right.
 
 This guide will walk you through implementing downsampling for your Telegraf data, but it should work with all data types.
-I'll also touch on [backfilling](#backfilling-data), which is when you've been collecting data for some time and wish to
+I'll also touch on [backfilling](#backfill-data), which is when you've been collecting data for some time and wish to
 retroactively downsample it.
 
 ```{list-table}
@@ -33,8 +33,8 @@ Downsampling is implemented in two parts: the InfluxDB side and the Grafana side
 
 ### InfluxDB Side
 
-On the InfluxDB side we'll have a Flux task that runs on a timer, downsampling data from a main bucket (e.g. "telegraf") into
-a separate downsample bucket (e.g. "telegraf_1m"). Multiple downsample buckets are supported, so in theory you can have three
+On the InfluxDB side we'll have a task that runs on a timer, downsampling data from a main bucket (e.g. "telegraf") into a
+separate downsample bucket (e.g. "telegraf_1m"). Multiple downsample buckets are supported, so in theory you can have three
 buckets:
 
 1. **telegraf**: raw data written by telegraf every 10 seconds (10 second resolution)
@@ -73,9 +73,15 @@ ${dsPost}
 
 TODO compare query statistics (or profiling), best of 10 each.
 
-## InfluxDB Side2
+## Prerequisites
 
-### Flux Tasks
+TODO plan. TODO InfluxDB v2 tested, Flux required, Grafana.
+
+## Create Buckets
+
+TODO
+
+## Create Tasks
 
 TODO reduce docstring and document here instead
 
@@ -138,17 +144,11 @@ TODO reduce docstring and document here instead
 :language: koka
 ```
 
-### Backfilling Data
+## Backfill Data
 
-TODO
+TODO chunking
 
-## Grafana Side2
-
-TODO gif with production ranges showing zooming out and panning
-
-### Grafana Query Variable
-
-TODO
+## Set Grafana Variables
 
 ```
 // Grafana Flux query variable. Helps combine InfluxDB v2 downsample buckets into output to be displayed in a Grafana panel.
@@ -204,8 +204,14 @@ TODO
 :language: koka
 ```
 
-### Update Queries
+## Update Queries
+
+TODO gif with production ranges showing zooming out and panning
 
 TODO [dsGrafana.json](/_static/dsGrafana.json)
 
 TODO toFloat()
+
+## Conclusion
+
+TODO telegraf retention
