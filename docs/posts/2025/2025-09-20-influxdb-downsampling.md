@@ -7,14 +7,14 @@ category: Tutorials
 tags: homelab, nas
 ---
 
-# InfluxDB Downsampling
+# InfluxDB v2 Downsampling
 
-In this guide I will show you how I've implemented InfluxDB v2 downsampling that plays nicely with Grafana with minimal
+In this guide I will show you how I've implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal
 changes to queries. Integers and floats are downsampled with `mean()` and all other types are downsampled with `last()`.
 A three line change to Grafana queries will enable it to read narrowed down time ranges for each bucket and combine the
 output with `union()`.
 
-This implementation builds on the very minimal
+This implementation builds on the very brief
 [InfluxDB v2 example](https://docs.influxdata.com/influxdb/v2/process-data/common-tasks/downsample-data/) and shows how
 to consume the downsampled data in Grafana. It turns out the latter was the hardest part to get right.
 
