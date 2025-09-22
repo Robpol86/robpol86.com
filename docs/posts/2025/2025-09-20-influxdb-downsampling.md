@@ -115,33 +115,17 @@ this is due to [another InfluxDB bug](https://github.com/influxdata/influxdb/iss
 create an empty task first (just put a space), then edit it and paste the task you originally intended.
 ```
 
-In the InfluxDB web UI create a task:
+1. In your InfluxDB UI go to Tasks > Create Task > New Task
+1. In the left pane/column you can name your task `dsTask-<bucket>_<every>` (e.g. dsTask-telegraf_1m)
+1. Set "Every" to "1m" to downsample data to 1 minute intervals (don't use CRON)
+1. For offset I use "15s" to give Telegraf enough time to finish writing data to InfluxDB for each iteration.
+1. To work around an InfluxDB bug (#25197) put a space in the right pane and save the new empty task. Then edit it, you'll
+   see it auto-inserted "option task". Delete that (everything in the right pane) for now.
+1. On the right pane paste this entire script. You only need to make changes to the script if your bucket names are
+   different. Everything in the "option task" variable in the right pane will be overridden by what's in the left pane.
+1. Click save.
 
-1. Load Data
-1. Buckets
-1. Create Bucket
-    1. **Name**: telegraf_1m
-    1. **Delete Data** > Older Than: 90 days
-1. Create
-
-TODO reduce docstring and document here instead
-
-```
-// ## Install
-//
-// 1. In your InfluxDB UI go to Tasks > Create Task > New Task
-// 2. In the left pane/column you can name your task "dsTask-<bucket>_<every>" (e.g. dsTask-telegraf_1m)
-// 3. Set "Every" to "1m" to downsample data to 1 minute intervals (don't use CRON)
-// 4. For offset I use "15s" to give Telegraf enough time to finish writing data to InfluxDB for each iteration.
-// 5. To work around an InfluxDB bug (#25197) put a space in the right pane and save the new empty task. Then edit it, you'll
-//    see it auto-inserted "option task". Delete that (everything in the right pane) for now.
-// 6. On the right pane paste this entire script. You only need to make changes to the script if your bucket names are
-//    different. Everything in the "option task" variable in the right pane will be overridden by what's in the left pane.
-// 7. Click save.
-//
-// If you have additional buckets you can just clone the task then edit the new task to change its name and "Every" value.
-//
-```
+If you have additional buckets you can just clone the task then edit the new task to change its name and "Every" value.
 
 ```{literalinclude} /_static/dsTask.flux
 :language: koka
