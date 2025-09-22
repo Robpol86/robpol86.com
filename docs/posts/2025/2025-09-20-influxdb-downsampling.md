@@ -126,7 +126,7 @@ web UI form. Let's create the task for `telegraf_1m`:
    affect data timestamps)
 1. On the right pane paste the entire script shown below unmodified
 1. Click save
-1. Repeat for **dsTask-telegraf_5m** with "Every" set to `5m`
+1. Repeat for `dsTask-telegraf_5m` with "Every" set to `5m`
 
 ```{literalinclude} /_static/dsTask.flux
 :language: koka
