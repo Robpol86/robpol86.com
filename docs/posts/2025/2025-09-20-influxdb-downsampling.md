@@ -117,18 +117,23 @@ create an empty task first (just put a space), then edit it and paste the task y
 
 Each downsample bucket will need its own task. The task script below can be pasted without modification (unless your bucket names
 are different) for both tasks because InfluxDB automatically updates the `option task` statement with whatever you put in the
-web UI form. Let's create the first task:
+web UI form. Let's create the task for `telegraf_1m`:
 
 1. In your InfluxDB web UI go to Tasks > Create Task > New Task
-1. In the left pane/column you can name your task `dsTask-<bucket>_<every>` (e.g. dsTask-telegraf_1m)
-1. Set "Every" to "1m" to downsample data to 1 minute intervals (don't use CRON)
-1. For offset I use "15s" to give Telegraf enough time to finish writing data to InfluxDB for each iteration
-1. On the right pane paste the entire script shown below
+1. In the left pane/column you can name your task `dsTask-telegraf_1m`
+1. Set "Every" to `1m` (don't use CRON)
+1. For offset I use `15s` to give Telegraf enough time to finish writing data to InfluxDB for each iteration (this won't
+   affect data timestamps)
+1. On the right pane paste the entire script shown below unmodified
 1. Click save
-1. Repeat for **dsTask-telegraf_5m**
+1. Repeat for **dsTask-telegraf_5m** with "Every" set to `5m`
 
 ```{literalinclude} /_static/dsTask.flux
 :language: koka
+```
+
+```{imgur-figure} 3HBbsW4.png
+TODO After you click "Install" you should see something like this.
 ```
 
 ## Backfill Data
