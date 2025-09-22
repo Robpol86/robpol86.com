@@ -23,11 +23,11 @@
 
 import "types"
 
-// Options for InfluxDB task (no need to edit).
+// Options for InfluxDB task (will be automatically overridden by InfluxDB).
 option task = {
-    name: "Everything in 'option task' will be overridden when saving the task",
-    every: 1m,
-    offset: 15s
+    name: "",
+    every: 0s,
+    offset: 0s
 }
 
 // Set your main bucket name here.

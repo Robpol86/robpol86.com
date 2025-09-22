@@ -98,26 +98,29 @@ In the InfluxDB web UI (http://localhost:8086) create your downsample buckets:
 
 Repeat for **telegraf_5m** but instead of "Older Than" click on "Never".
 
+```{imgur-figure} qEbiR2z.png
+TODO
+```
+
 ## Create Tasks
+
+```{warning}
+Due to an [InfluxDB bug](https://github.com/influxdata/influxdb/issues/26781) you should avoid cloning tasks and instead
+create each one from scratch as outlined here.
+```
+
+In the InfluxDB web UI create a task:
+
+1. Load Data
+1. Buckets
+1. Create Bucket
+    1. **Name**: telegraf_1m
+    1. **Delete Data** > Older Than: 90 days
+1. Create
 
 TODO reduce docstring and document here instead
 
 ```
-// ## Backfill
-//
-// To backfill a new downsample bucket with historical data you'll want to do it in chunks. It could take 1-16 minutes to
-// backfill just one day of data for one telegraf host. To backfill, make a copy of this file (e.g. dsTask-backfill.flux)
-// with the following changes:
-//
-// 1. Set backfill.enabled to true
-// 2. Set backfill.everyResolution to the resolution if your target bucket (e.g. 1m for telegraf_1m, 5m for telegraf_5m)
-// 3. Set backfill.chunkStart to a date before your earliest data point (for simplicity keep the time to all zeros)
-// 4. Set backfill.chunkStop to however much data you wish to process in one go (set the time to the last possible nanosecond
-//    before the next chunk window to avoid potential data loss)
-//
-// Then execute the file using the influx CLI. Here's an example command:
-//      influx query - < ./dsTask-backfill.flux > backfill.log
-//
 // ## Install
 //
 // 1. In your InfluxDB UI go to Tasks > Create Task > New Task
@@ -141,6 +144,24 @@ TODO reduce docstring and document here instead
 ## Backfill Data
 
 TODO chunking
+
+```
+// ## Backfill
+//
+// To backfill a new downsample bucket with historical data you'll want to do it in chunks. It could take 1-16 minutes to
+// backfill just one day of data for one telegraf host. To backfill, make a copy of this file (e.g. dsTask-backfill.flux)
+// with the following changes:
+//
+// 1. Set backfill.enabled to true
+// 2. Set backfill.everyResolution to the resolution if your target bucket (e.g. 1m for telegraf_1m, 5m for telegraf_5m)
+// 3. Set backfill.chunkStart to a date before your earliest data point (for simplicity keep the time to all zeros)
+// 4. Set backfill.chunkStop to however much data you wish to process in one go (set the time to the last possible nanosecond
+//    before the next chunk window to avoid potential data loss)
+//
+// Then execute the file using the influx CLI. Here's an example command:
+//      influx query - < ./dsTask-backfill.flux > backfill.log
+//
+```
 
 ## Set Grafana Variables
 
