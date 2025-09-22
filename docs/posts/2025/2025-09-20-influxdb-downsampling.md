@@ -109,6 +109,12 @@ Due to an [InfluxDB bug](https://github.com/influxdata/influxdb/issues/26781) yo
 create each one from scratch as outlined here.
 ```
 
+```{note}
+If you get the error "Failed to create new task: Invalid flux script. Please check your query text." when creating a task
+this is due to [another InfluxDB bug](https://github.com/influxdata/influxdb/issues/25197). The workaround I found was to
+create an empty task first (just put a space), then edit it and paste the task you originally intended.
+```
+
 In the InfluxDB web UI create a task:
 
 1. Load Data
