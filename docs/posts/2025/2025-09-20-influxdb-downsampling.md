@@ -115,17 +115,17 @@ this is due to [another InfluxDB bug](https://github.com/influxdata/influxdb/iss
 create an empty task first (just put a space), then edit it and paste the task you originally intended.
 ```
 
-1. In your InfluxDB UI go to Tasks > Create Task > New Task
+Each downsample bucket will need its own task. The task script below can be pasted without modification (unless your bucket names
+are different) for both tasks because InfluxDB automatically updates the `option task` statement with whatever you put in the
+web UI form. Let's create the first task:
+
+1. In your InfluxDB web UI go to Tasks > Create Task > New Task
 1. In the left pane/column you can name your task `dsTask-<bucket>_<every>` (e.g. dsTask-telegraf_1m)
 1. Set "Every" to "1m" to downsample data to 1 minute intervals (don't use CRON)
-1. For offset I use "15s" to give Telegraf enough time to finish writing data to InfluxDB for each iteration.
-1. To work around an InfluxDB bug (#25197) put a space in the right pane and save the new empty task. Then edit it, you'll
-   see it auto-inserted "option task". Delete that (everything in the right pane) for now.
-1. On the right pane paste this entire script. You only need to make changes to the script if your bucket names are
-   different. Everything in the "option task" variable in the right pane will be overridden by what's in the left pane.
-1. Click save.
-
-If you have additional buckets you can just clone the task then edit the new task to change its name and "Every" value.
+1. For offset I use "15s" to give Telegraf enough time to finish writing data to InfluxDB for each iteration
+1. On the right pane paste the entire script shown below
+1. Click save
+1. Repeat for **dsTask-telegraf_5m**
 
 ```{literalinclude} /_static/dsTask.flux
 :language: koka
