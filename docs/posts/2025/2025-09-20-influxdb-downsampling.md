@@ -77,38 +77,32 @@ TODO compare query statistics (or profiling), best of 10 each.
 
 TODO plan. TODO InfluxDB v2 tested, Flux required, Grafana.
 
+TODO in this guide telegraf, telegraf_1m and 5m.
+
+* telegraf: 30 days
+* telegraf_1m: 90 days
+* telegraf_5m: forever (never)
+
+TODO docker example
+
 ## Create Buckets
 
-TODO
+In the InfluxDB web UI (http://localhost:8086) create your downsample buckets:
+
+1. Load Data
+1. Buckets
+1. Create Bucket
+    1. **Name**: telegraf_1m
+    1. **Delete Data** > Older Than: 90 days
+1. Create
+
+Repeat for **telegraf_5m** but instead of "Older Than" click on "Never".
 
 ## Create Tasks
 
 TODO reduce docstring and document here instead
 
 ```
-// InfluxDB v2 Flux task. All numerical values (int, uint, float) will be downsampled with mean(), whilst every other value
-// (string, bool, etc.) will be downsampled with last() (the last entry within the time range specified in task.every).
-//
-// ## Prerequisites
-//
-// Create the downsample buckets before running this task. An example pattern:
-//
-// * "telegraf" is your main bucket with raw data, added every 10 seconds or so.
-// * "telegraf_1m" is your downsample bucket that this tasks writes to, averaging data to every 1 minute.
-//
-// Set an appropriate retention policy for each bucket. I personally keep data in InfluxDB longer than what I have Grafana
-// query in case I want to adjust how much raw data I want to display before the graph starts to smooth out.
-//
-// As an example these are the buckets I use and their retentions:
-//
-// * telegraf: 30 days
-// * telegraf_1m: 90 days
-// * telegraf_5m: 1 year
-// * telegraf_10m: forever
-//
-// Proceed on to the Backfill section if you've got old data you want to backfill into the new downsample buckets. If you
-// don't have any old data to preserve then skip to the Install section below. 
-//
 // ## Backfill
 //
 // To backfill a new downsample bucket with historical data you'll want to do it in chunks. It could take 1-16 minutes to
@@ -215,3 +209,5 @@ TODO toFloat()
 ## Conclusion
 
 TODO telegraf retention
+
+TODO revisit original flux docstrings instructions.
