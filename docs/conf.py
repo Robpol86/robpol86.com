@@ -23,6 +23,7 @@ extensions = [
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
     "ablog",  # https://ablog.readthedocs.io/
     "robpol86_com.html_context",
+    "robpol86_com.thumb_image",
 ]
 language = "en"
 project = "Robpol86.com"
