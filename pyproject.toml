@@ -1,52 +1,52 @@
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry]
+[project]
 name = "Robpol86.com"
 version = "2025.9.6.60948"
 description = "My personal website."
 readme = "README.md"
-authors = ["Robpol86 <robpol86@gmail.com>"]
+authors = [{name = "Robpol86", email = "robpol86@gmail.com"}]
 license = "BSD-2-Clause"
-packages = [{include = "robpol86_com"}]
 classifiers = [
     "Private :: Do Not Upload",
 ]
+requires-python = "^3.9"
+dependencies = [
+    "ablog",
+    "myst-parser[linkify]",
+    "sphinx",
+    "sphinx-book-theme",
+    "sphinx-copybutton",
+    "sphinx-imgur",
+    "sphinx-notfound-page",
+    "sphinx-sitemap",
+    "sphinxcontrib-youtube",
+    "sphinxext-opengraph",
+]
 
-[tool.poetry.urls]
+[project.urls]
 repository = "https://github.com/Robpol86/robpol86.com"
 
-[tool.poetry.dependencies]
-python = "^3.9"
-# Project dependencies.
-ablog = "*"
-myst-parser = {version = "*", extras = ["linkify"]}
-sphinx = "*"
-sphinx-book-theme = "*"
-sphinx-copybutton = "*"
-sphinx-imgur = "*"
-sphinx-notfound-page = "*"
-sphinx-sitemap = "*"
-sphinxcontrib-youtube = "*"
-sphinxext-opengraph = "*"
+[tool.poetry]
+packages = [{include = "robpol86_com"}]
 
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-# Docs.
-sphinx-autobuild = "*"
-# Linters.
-black = "*"
-flake8 = "*"
-flake8-docstrings = "*"
-flake8-import-order = "*"
-pep8-naming = "*"
-pylint = "*"
-# Tests.
-pytest = "*"
-pytest-icdiff = "*"
+[dependency-groups]
+dev = [
+    # Docs.
+    "sphinx-autobuild",
+    # Linters.
+    "black",
+    "flake8",
+    "flake8-docstrings",
+    "flake8-import-order",
+    "pep8-naming",
+    "pylint",
+    # Tests.
+    "pytest",
+    "pytest-icdiff",
+]
 
 [tool.black]
 line-length = 125
