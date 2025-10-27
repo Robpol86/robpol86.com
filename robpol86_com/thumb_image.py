@@ -5,7 +5,6 @@ https://github.com/Robpol86/sphinx-thumb-image
 https://pypi.org/project/sphinx-thumb-image
 
 TODO:
-
 * Support pdf and non-html builders
 * If source image <= thumb size: noop
 * Support parallel resizing, use lock files (one image may be referenced by multiple pages)
