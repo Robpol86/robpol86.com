@@ -15,7 +15,12 @@ TODO:
     * :target: override as user expects
 * thumb-image directive
     * Default scales down to default width
+    * :thumb_width: 700px (unitless == px, no other units supported)
+    * :no_target:
+    * :target_fmt: https://localhost/images/%s
 * config option to thumbisize all images/figures (sphinx directives)
+    * No new directive options for ..image/..figure
+* Remote/linked images unsupported
 """
 
 from typing import Dict
