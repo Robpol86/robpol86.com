@@ -147,9 +147,9 @@ sitemap_show_lastmod = False
 sitemap_url_scheme = "{link}"
 thumb_image_target_format = True
 thumb_image_target_format_substitutions = {
-    "GIT_BRANCH": html_theme_options["repository_branch"] or "None",
     "GIT_REPOSITORY": GIT_REPOSITORY or "None",
     "path_to_docs": html_theme_options["path_to_docs"],
+    "repository_branch": html_theme_options["repository_branch"] or "None",
 }
 
 
