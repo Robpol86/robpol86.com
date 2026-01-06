@@ -19,11 +19,11 @@ extensions = [
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
+    "sphinx_thumb_image",  # https://sphinx-thumb-image.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
     "ablog",  # https://ablog.readthedocs.io/
     "robpol86_com.html_context",
-    "robpol86_com.thumb_image",
 ]
 language = "en"
 project = "Robpol86.com"
