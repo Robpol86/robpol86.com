@@ -6,7 +6,8 @@ import time
 from urllib.parse import urlparse
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
-GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.get("GITHUB_REPOSITORY", "") else None
+GIT_REPOSITORY = os.environ["GITHUB_REPOSITORY"] if os.environ.get("GITHUB_REPOSITORY", "") else None
+GIT_URL = f'https://github.com/{GIT_REPOSITORY}' if GIT_REPOSITORY else None
 
 
 # General configuration.
@@ -144,6 +145,12 @@ ogp_type = "website"
 ogp_use_first_image = True
 sitemap_show_lastmod = False
 sitemap_url_scheme = "{link}"
+thumb_image_target_format = True
+thumb_image_target_format_substitutions = {
+    "GIT_BRANCH": html_theme_options["repository_branch"] or "None",
+    "GIT_REPOSITORY": GIT_REPOSITORY or "None",
+    "path_to_docs": html_theme_options["path_to_docs"],
+}
 
 
 # Ablog settings.
