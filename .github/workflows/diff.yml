@@ -54,7 +54,7 @@ jobs:
     needs: Build
     steps:
       - name: Fetch Old HTML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: "${{ env.BRANCH_NAME_HTML_OLD }}"
           path: html
