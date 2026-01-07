@@ -22,7 +22,7 @@ dependencies = [
     "sphinx-imgur",
     "sphinx-notfound-page",
     "sphinx-sitemap",
-    "sphinx-thumb-image",
+    "sphinx-thumb-image @ git+https://github.com/Robpol86/sphinx-thumb-image@logging", #"sphinx-thumb-image",
     "sphinxcontrib-youtube",
     "sphinxext-opengraph",
 ]
