@@ -60,7 +60,7 @@ build:
 	@echo NotImplemented: $@
 
 docs/_build/html/index.html::
-	poetry run sphinx-build -vvv -T -n -W docs $(@D)
+	poetry run sphinx-build -T -n -W docs $(@D)
 	@echo Documentation available here: $@
 
 .PHONY: docs
