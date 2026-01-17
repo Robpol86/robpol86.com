@@ -14,7 +14,6 @@ me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does 
 ## Create ISO
 
 ```{imgur} 1J45UMB
-:ext: png
 ```
 
 | File Name                  | sha1sum / Get-FileHash -Algorithm SHA1   |
@@ -76,16 +75,13 @@ Clean up
 ## Install
 
 ```{list-table}
-* - ```{imgur-figure} TjJUZ4T
-    :ext: png
+* - ```{thumb-figure} _images/imgur-TjJUZ4T.png
     Boot Camp Assistant
     ```
-  - ```{imgur-figure} gF0n0oK
-    :ext: png
+  - ```{thumb-figure} _images/imgur-gF0n0oK.png
     Installing Windows 11
     ```
-  - ```{imgur-figure} Cvx57Ac
-    :ext: png
+  - ```{thumb-figure} _images/imgur-Cvx57Ac.png
     Boot Camp Drivers
     ```
 ```
@@ -141,16 +137,13 @@ You'll also need to obtain the Windows Support Software from the Boot Camp Assis
 ### Format USB Flash Drive
 
 ```{list-table}
-* - ```{imgur-figure} GvtHamn
-    :ext: png
+* - ```{thumb-figure} _images/imgur-GvtHamn.png
     Disk Utility
     ```
-  - ```{imgur-figure} O9Ytvtw
-    :ext: png
+  - ```{thumb-figure} _images/imgur-O9Ytvtw.png
     Erase USB Drive
     ```
-  - ```{imgur-figure} nlgkq4N
-    :ext: png
+  - ```{thumb-figure} _images/imgur-nlgkq4N.png
     UNetbootin
     ```
 ```
@@ -178,16 +171,13 @@ end.
 ```
 
 ```{list-table}
-* - ```{imgur-figure} HL5fUTI
-    :ext: png
+* - ```{thumb-figure} _images/imgur-HL5fUTI.png
     Partition SSD
     ```
-  - ```{imgur-figure} 2k0QnAP
-    :ext: png
+  - ```{thumb-figure} _images/imgur-2k0QnAP.png
     Add Partition
     ```
-  - ```{imgur-figure} ViA41PH
-    :ext: png
+  - ```{thumb-figure} _images/imgur-ViA41PH.png
     Name it BOOTCAMP
     ```
 ```
@@ -210,12 +200,10 @@ It removed the Windows partition and removed the Windows EFI entry as well!
 ## Remove macOS
 
 ```{list-table}
-* - ```{imgur-figure} 58oJm7t
-    :ext: png
+* - ```{thumb-figure} _images/imgur-58oJm7t.png
     Before Repartitioning
     ```
-  - ```{imgur-figure} gPd6laP
-    :ext: png
+  - ```{thumb-figure} _images/imgur-gPd6laP.png
     After Repartitioning
     ```
 ```
@@ -233,16 +221,13 @@ do the repartitioning from Windows.
 ## BitLocker
 
 ```{list-table}
-* - ```{imgur-figure} EKbY5zv
-    :ext: png
+* - ```{thumb-figure} _images/imgur-EKbY5zv.png
     Use gpedit.msc to disable the TPM check
     ```
-  - ```{imgur-figure} I6XTevu
-    :ext: png
+  - ```{thumb-figure} _images/imgur-I6XTevu.png
     Now you can enable BitLocker
     ```
-  - ```{imgur-figure} mop8gO7
-    :ext: png
+  - ```{thumb-figure} _images/imgur-mop8gO7.png
     This error is expected
     ```
 ```
@@ -270,10 +255,10 @@ Now you can enable BitLocker the usual way.
 ## Restore macOS
 
 ```{list-table}
-* - ```{imgur-figure} ICGyjGt
+* - ```{thumb-figure} _images/imgur-ICGyjGt.jpg
     Main Menu
     ```
-  - ```{imgur-figure} sDNXbxm
+  - ```{thumb-figure} _images/imgur-sDNXbxm.jpg
     Erase the SSD
     ```
 ```
