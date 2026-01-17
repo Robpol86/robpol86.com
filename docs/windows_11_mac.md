@@ -13,7 +13,7 @@ me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does 
 
 ## Create ISO
 
-```{imgur} 1J45UMB
+```{thumb-image} _images/imgur-1J45UMB.png
 ```
 
 | File Name                  | sha1sum / Get-FileHash -Algorithm SHA1   |

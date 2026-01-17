@@ -55,7 +55,7 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
   - :::{imgur-figure} c1zTKOl
     Pulled off the trim on the ceiling holding the headliner in place.
     :::
-* - :::{imgur} 6mvlZLh
+* - :::{thumb-image} _images/imgur-6mvlZLh.jpg
     :::
   - :::{imgur-figure} 1xf5oIO
     Then I pulled off the trim covering the C pillar.
@@ -78,7 +78,7 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
   - :::{imgur-figure} uBQz1es
     You can see how I broke the clip on the left side of the boot. Anyway I ran the cable towards the other side since it doesn't have any connectors in the way.
     :::
-* - :::{imgur} 6uwjb7P
+* - :::{thumb-image} _images/imgur-6uwjb7P.jpg
     :::
   - :::{imgur-figure} cgMYj4I
     Instead of replacing the boot I did a quick fix with my 3d printer: https://www.thingiverse.com/thing:3246429
@@ -88,13 +88,13 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 * - :::{imgur-figure} iPbAkTQ
     Finally I mounted the cameras and anchored the wires with some spare cable tie mounting pads I had lying around. I shoved the excess wires into the body via the square hole.
     :::
-  - :::{imgur} tyXtaLq
+  - :::{thumb-image} _images/imgur-tyXtaLq.jpg
     :::
-* - :::{imgur} 3ypCZaP
+* - :::{thumb-image} _images/imgur-3ypCZaP.jpg
     :::
-  - :::{imgur} NoJtWRb
+  - :::{thumb-image} _images/imgur-NoJtWRb.png
     :::
-* - :::{imgur} xzICRX8
+* - :::{thumb-image} _images/imgur-xzICRX8.png
     :::
   -
 ```

@@ -21,34 +21,34 @@ I bought the drawer for $156 on ECS Tuning:
 ```
 
 ```{list-table}
-* - :::{imgur} 2Ru4C2G
+* - :::{thumb-image} _images/imgur-2Ru4C2G.jpg
     :::
-  - :::{imgur} njMjiyx
+  - :::{thumb-image} _images/imgur-njMjiyx.jpg
     :::
-  - :::{imgur} M01ffNs
+  - :::{thumb-image} _images/imgur-M01ffNs.jpg
     :::
-* - :::{imgur} SuKmYfc
+* - :::{thumb-image} _images/imgur-SuKmYfc.jpg
     :::
-  - :::{imgur} 9OHtucJ
+  - :::{thumb-image} _images/imgur-9OHtucJ.jpg
     :::
-  - :::{imgur} W7T6lmB
+  - :::{thumb-image} _images/imgur-W7T6lmB.jpg
     :::
-* - :::{imgur} 8B9h5Ez
+* - :::{thumb-image} _images/imgur-8B9h5Ez.jpg
     :::
-  - :::{imgur} quRwwlP
+  - :::{thumb-image} _images/imgur-quRwwlP.jpg
     :::
-  - :::{imgur} WdTxCID
+  - :::{thumb-image} _images/imgur-WdTxCID.jpg
     :::
-* - :::{imgur} RmhF3eu
+* - :::{thumb-image} _images/imgur-RmhF3eu.jpg
     :::
-  - :::{imgur} rvg4OVm
+  - :::{thumb-image} _images/imgur-rvg4OVm.jpg
     :::
-  - :::{imgur} HU7zEKI
+  - :::{thumb-image} _images/imgur-HU7zEKI.jpg
     :::
-* - :::{imgur} LNlLcQS
+* - :::{thumb-image} _images/imgur-LNlLcQS.jpg
     :::
-  - :::{imgur} 1lMS091
+  - :::{thumb-image} _images/imgur-1lMS091.jpg
     :::
-  - :::{imgur} 88oVQIw
+  - :::{thumb-image} _images/imgur-88oVQIw.jpg
     :::
 ```

@@ -10,10 +10,10 @@ tags: homelab, nas
 # TrueNAS Telegraf, Influx, Grafana
 
 ```{list-table}
-* - :::{imgur} uXJoPnn.png
-  - :::{imgur} O8r0lnC.png
-* - :::{imgur} ovWSIhf.png
-  - :::{imgur} AzEomCa.png
+* - :::{thumb-image} _images/imgur-uXJoPnn.png
+  - :::{thumb-image} _images/imgur-O8r0lnC.png
+* - :::{thumb-image} _images/imgur-ovWSIhf.png
+  - :::{thumb-image} _images/imgur-AzEomCa.png
 ```
 
 This guide will explain how to setup [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/),

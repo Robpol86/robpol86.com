@@ -51,113 +51,113 @@ I first installed just the two cameras in the front and wired them to the batter
 the batteries to my fuse panel, using the rear 12v outlet instead.
 
 ```{list-table}
-* - :::{imgur} IDZ0czL
+* - :::{thumb-image} _images/imgur-IDZ0czL.jpg
     :::
-  - :::{imgur} TTJGbTB
+  - :::{thumb-image} _images/imgur-TTJGbTB.jpg
     :::
-  - :::{imgur} AlToxmu
+  - :::{thumb-image} _images/imgur-AlToxmu.jpg
     :::
-* - :::{imgur} FlbNm6F
+* - :::{thumb-image} _images/imgur-FlbNm6F.jpg
     :::
-  - :::{imgur} eHJGGFM
+  - :::{thumb-image} _images/imgur-eHJGGFM.jpg
     :::
-  - :::{imgur} XweNNXV
+  - :::{thumb-image} _images/imgur-XweNNXV.jpg
     :::
-* - :::{imgur} xp7Y01M
+* - :::{thumb-image} _images/imgur-xp7Y01M.jpg
     :::
-  - :::{imgur} iMCazjM
+  - :::{thumb-image} _images/imgur-iMCazjM.jpg
     :::
-  - :::{imgur} GtucHXE
+  - :::{thumb-image} _images/imgur-GtucHXE.jpg
     :::
-* - :::{imgur} 8Pu19sr
+* - :::{thumb-image} _images/imgur-8Pu19sr.jpg
     :::
-  - :::{imgur} 1sk83Rr
+  - :::{thumb-image} _images/imgur-1sk83Rr.jpg
     :::
-  - :::{imgur} brum0yz
+  - :::{thumb-image} _images/imgur-brum0yz.jpg
     :::
-* - :::{imgur} 6CERPeS
+* - :::{thumb-image} _images/imgur-6CERPeS.jpg
     :::
-  - :::{imgur} byI36OA
+  - :::{thumb-image} _images/imgur-byI36OA.jpg
     :::
-  - :::{imgur} tLL235q
+  - :::{thumb-image} _images/imgur-tLL235q.jpg
     :::
-* - :::{imgur} coZX62E
+* - :::{thumb-image} _images/imgur-coZX62E.jpg
     :::
-  - :::{imgur} mKWecEj
+  - :::{thumb-image} _images/imgur-mKWecEj.jpg
     :::
-  - :::{imgur} nLWRZTx
+  - :::{thumb-image} _images/imgur-nLWRZTx.jpg
     :::
-* - :::{imgur} pHhZe6h
+* - :::{thumb-image} _images/imgur-pHhZe6h.jpg
     :::
-  - :::{imgur} MUgOLOs
+  - :::{thumb-image} _images/imgur-MUgOLOs.jpg
     :::
-  - :::{imgur} 1QqYfap
+  - :::{thumb-image} _images/imgur-1QqYfap.jpg
     :::
-* - :::{imgur} BHT5uVb
+* - :::{thumb-image} _images/imgur-BHT5uVb.jpg
     :::
-  - :::{imgur} S74pBCH
+  - :::{thumb-image} _images/imgur-S74pBCH.jpg
     :::
-  - :::{imgur} LoyuAT1
+  - :::{thumb-image} _images/imgur-LoyuAT1.jpg
     :::
-* - :::{imgur} yh86Ype
+* - :::{thumb-image} _images/imgur-yh86Ype.jpg
     :::
-  - :::{imgur} aPmtrYC
+  - :::{thumb-image} _images/imgur-aPmtrYC.jpg
     :::
-  - :::{imgur} f80ILAA
+  - :::{thumb-image} _images/imgur-f80ILAA.jpg
     :::
-* - :::{imgur} W6yWhoK
+* - :::{thumb-image} _images/imgur-W6yWhoK.jpg
     :::
-  - :::{imgur} Q2ud7NR
+  - :::{thumb-image} _images/imgur-Q2ud7NR.jpg
     :::
-  - :::{imgur} XF3QmKu
+  - :::{thumb-image} _images/imgur-XF3QmKu.jpg
     :::
-* - :::{imgur} 2Ls04ra
+* - :::{thumb-image} _images/imgur-2Ls04ra.jpg
     :::
-  - :::{imgur} xAGbc8Q
+  - :::{thumb-image} _images/imgur-xAGbc8Q.jpg
     :::
-  - :::{imgur} JohJ7k4
+  - :::{thumb-image} _images/imgur-JohJ7k4.jpg
     :::
-* - :::{imgur} HAp6oH1
+* - :::{thumb-image} _images/imgur-HAp6oH1.jpg
     :::
-  - :::{imgur} sVhTgrZ
+  - :::{thumb-image} _images/imgur-sVhTgrZ.jpg
     :::
-  - :::{imgur} 2wUn61q
+  - :::{thumb-image} _images/imgur-2wUn61q.jpg
     :::
-* - :::{imgur} gqDFxtY
+* - :::{thumb-image} _images/imgur-gqDFxtY.jpg
     :::
-  - :::{imgur} mvyRz9i
+  - :::{thumb-image} _images/imgur-mvyRz9i.jpg
     :::
-  - :::{imgur} fQYWtik
+  - :::{thumb-image} _images/imgur-fQYWtik.jpg
     :::
-* - :::{imgur} eX4DkeH
+* - :::{thumb-image} _images/imgur-eX4DkeH.jpg
     :::
-  - :::{imgur} ia8kAVj
+  - :::{thumb-image} _images/imgur-ia8kAVj.jpg
     :::
-  - :::{imgur} EC8uTGP
+  - :::{thumb-image} _images/imgur-EC8uTGP.jpg
     :::
-* - :::{imgur} f6RsWJt
+* - :::{thumb-image} _images/imgur-f6RsWJt.jpg
     :::
-  - :::{imgur} fUV0GP5
+  - :::{thumb-image} _images/imgur-fUV0GP5.jpg
     :::
-  - :::{imgur} bw2TwLM
+  - :::{thumb-image} _images/imgur-bw2TwLM.jpg
     :::
-* - :::{imgur} 4ItfspT
+* - :::{thumb-image} _images/imgur-4ItfspT.jpg
     :::
-  - :::{imgur} 9dVe8pY
+  - :::{thumb-image} _images/imgur-9dVe8pY.jpg
     :::
-  - :::{imgur} 6RHv76w
+  - :::{thumb-image} _images/imgur-6RHv76w.jpg
     :::
-* - :::{imgur} hHDo3C0
+* - :::{thumb-image} _images/imgur-hHDo3C0.jpg
     :::
-  - :::{imgur} g6oiZli
+  - :::{thumb-image} _images/imgur-g6oiZli.jpg
     :::
-  - :::{imgur} 9ivpRLA
+  - :::{thumb-image} _images/imgur-9ivpRLA.jpg
     :::
-* - :::{imgur} poVGoQu
+* - :::{thumb-image} _images/imgur-poVGoQu.png
     :::
-  - :::{imgur} FjF73ez
+  - :::{thumb-image} _images/imgur-FjF73ez.jpg
     :::
-  - :::{imgur} cPOqdpY
+  - :::{thumb-image} _images/imgur-cPOqdpY.png
     :::
 ```
 
@@ -170,25 +170,25 @@ a second tapped fuse since I may add a second pair of cameras in the future. I t
 the ignition is off they'll lose power and prevent the BlackVue battery from draining my car's battery when parked.
 
 ```{list-table}
-* - :::{imgur} QVXJfM0
+* - :::{thumb-image} _images/imgur-QVXJfM0.jpg
     :::
-  - :::{imgur} Qo3cCJt
+  - :::{thumb-image} _images/imgur-Qo3cCJt.jpg
     :::
-  - :::{imgur} emg1RTQ
+  - :::{thumb-image} _images/imgur-emg1RTQ.jpg
     :::
-* - :::{imgur} vS722GJ
+* - :::{thumb-image} _images/imgur-vS722GJ.jpg
     :::
-  - :::{imgur} 1bbH2Ix
+  - :::{thumb-image} _images/imgur-1bbH2Ix.jpg
     :::
-  - :::{imgur} dT3Kv4T
+  - :::{thumb-image} _images/imgur-dT3Kv4T.jpg
     :::
-* - :::{imgur} DfAf2CZ
+* - :::{thumb-image} _images/imgur-DfAf2CZ.jpg
     :::
-  - :::{imgur} LvopdKU
+  - :::{thumb-image} _images/imgur-LvopdKU.jpg
     :::
-  - :::{imgur} 3HQLKt3
+  - :::{thumb-image} _images/imgur-3HQLKt3.jpg
     :::
-* - :::{imgur} YnwDPL7
+* - :::{thumb-image} _images/imgur-YnwDPL7.jpg
     :::
   -
   -

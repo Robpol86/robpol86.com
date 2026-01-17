@@ -77,11 +77,11 @@ I used the following tools:
   - :::{imgur-figure} 0Yt6Rpz
     Snapped right into place. Done!
     :::
-* - :::{imgur} 4VyjYuL
+* - :::{thumb-image} _images/imgur-4VyjYuL.jpg
     :::
-  - :::{imgur} rmVWLwl
+  - :::{thumb-image} _images/imgur-rmVWLwl.jpg
     :::
-* - :::{imgur} 9AM0DN5
+* - :::{thumb-image} _images/imgur-9AM0DN5.jpg
     :::
   -
 ```

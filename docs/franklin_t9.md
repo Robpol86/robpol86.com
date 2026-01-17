@@ -14,41 +14,41 @@ data. I'm using it with [Google Fi](https://fi.google.com/about).
 
 ```{list-table}
 
-* - :::{imgur} yZjfLix
+* - :::{thumb-image} _images/imgur-yZjfLix.jpg
     :::
-  - :::{imgur} MUdUSiT
+  - :::{thumb-image} _images/imgur-MUdUSiT.jpg
     :::
-  - :::{imgur} 4Pdh8oi
+  - :::{thumb-image} _images/imgur-4Pdh8oi.jpg
     :::
-* - :::{imgur} 6qS4mh5
+* - :::{thumb-image} _images/imgur-6qS4mh5.jpg
     :::
-  - :::{imgur} m7iPSx8
+  - :::{thumb-image} _images/imgur-m7iPSx8.jpg
     :::
-  - :::{imgur} 7t02RPc
+  - :::{thumb-image} _images/imgur-7t02RPc.jpg
     :::
-* - :::{imgur} Jgq94Qp
+* - :::{thumb-image} _images/imgur-Jgq94Qp.jpg
     :::
-  - :::{imgur} IzUS6AD
+  - :::{thumb-image} _images/imgur-IzUS6AD.jpg
     :::
-  - :::{imgur} sY2JXzl
+  - :::{thumb-image} _images/imgur-sY2JXzl.jpg
     :::
-* - :::{imgur} qcAAd6q
+* - :::{thumb-image} _images/imgur-qcAAd6q.jpg
     :::
-  - :::{imgur} UgbzUxF
+  - :::{thumb-image} _images/imgur-UgbzUxF.jpg
     :::
-  - :::{imgur} KtwAoH9
+  - :::{thumb-image} _images/imgur-KtwAoH9.jpg
     :::
-* - :::{imgur} lO1oBgL
+* - :::{thumb-image} _images/imgur-lO1oBgL.jpg
     :::
-  - :::{imgur} 8KnzN30
+  - :::{thumb-image} _images/imgur-8KnzN30.jpg
     :::
-  - :::{imgur} zRzUg1m
+  - :::{thumb-image} _images/imgur-zRzUg1m.jpg
     :::
-* - :::{imgur} 6U8BpT3
+* - :::{thumb-image} _images/imgur-6U8BpT3.jpg
     :::
-  - :::{imgur} 0m4FKnV
+  - :::{thumb-image} _images/imgur-0m4FKnV.jpg
     :::
-  - :::{imgur} zbxHXjR
+  - :::{thumb-image} _images/imgur-zbxHXjR.jpg
     :::
 ```
 
@@ -244,7 +244,7 @@ You can easily change the logo on the little LCD by editing a PNG file. Since my
 
 I edited that file using Paint 3D to keep the transparency.
 
-```{imgur} MUdUSiT
+```{thumb-image} _images/imgur-MUdUSiT.jpg
 :alt: Hacked Logo
 :width: 100%
 ```
@@ -320,7 +320,7 @@ It turns out if you hold down the power button when you plug in the device, it w
 to hold the button it won't shut back down. Knowing this the solution is to cut a piece of plastic into a "U" shape and wedge
 it between the case and the button so it's always pressed down.
 
-```{imgur} 4Pdh8oi
+```{thumb-image} _images/imgur-4Pdh8oi.jpg
 :alt: T9 Power Button Wedge
 :width: 100%
 ```

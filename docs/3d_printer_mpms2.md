@@ -48,7 +48,7 @@ For crimping the wires I used the following:
   - :::{imgur-figure} otK2hdq
     Old carriage plate on the left and the new thicker one on the right.
     :::
-* - :::{imgur} FYdDx79
+* - :::{thumb-image} _images/imgur-FYdDx79.jpg
     :::
   - :::{imgur-figure} C00K6Ne
     Crimped new terminals on the shortened fan cable.
@@ -98,7 +98,7 @@ Items needed:
   - :::{imgur-figure} BSiu7G3
     First time I've seen the underside, neat.
     :::
-* - :::{imgur} AQ4ZU37
+* - :::{thumb-image} _images/imgur-AQ4ZU37.jpg
     :::
   - :::{imgur-figure} fXsf2fm
     Need to get rid of the adhesive residue.
