@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Euro Tail Lights
 
-```{imgur-figure} HMxM8Kv.gif
+```{thumb-figure} _images/imgur-HMxM8Kv.gif
 ```
 
 I've always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack
@@ -37,13 +37,13 @@ Items purchased:
   * Rear Fog: **2**
   * Style: **2018+ NAR LED to Euro LED, tinted**
 
-```{imgur-figure} 6hayUFc
+```{thumb-figure} _images/imgur-6hayUFc.jpg
 :width: 100%
 ```
 
 ## Euro Switch
 
-```{imgur-figure} jzNrO3j
+```{thumb-figure} _images/imgur-jzNrO3j.jpg
 :width: 100%
 ```
 
@@ -53,13 +53,13 @@ at position **0** push in the switch and turn it towards **Auto** then pull it o
 ## Modify Harness
 
 ```{list-table}
-* - ```{imgur-figure} pZKVVDG
+* - ```{thumb-figure} _images/imgur-pZKVVDG.jpg
     Outer harness before modification
     ```
-  - ```{imgur-figure} JVCZV7i
+  - ```{thumb-figure} _images/imgur-JVCZV7i.jpg
     Outer harness trimmed
     ```
-  - ```{imgur-figure} 5NiYmRk
+  - ```{thumb-figure} _images/imgur-5NiYmRk.jpg
     Inner harness trimmed
     ```
 ```
@@ -80,9 +80,9 @@ car's connectors.
 ## Outer Taillights
 
 ```{list-table}
-* - ```{imgur-figure} Bh72jOs
+* - ```{thumb-figure} _images/imgur-Bh72jOs.jpg
     ```
-  - ```{imgur-figure} YgeEq3D
+  - ```{thumb-figure} _images/imgur-YgeEq3D.jpg
     ```
 ```
 
@@ -104,7 +104,7 @@ connecting the two. This means the two inner lights will connect to each other w
 behind the inner plastic body trim. *If you didn't get fog lights and only received the outer lights with the amber turn
 signals then you can skip this section.*
 
-```{imgur-figure} idiFM0N
+```{thumb-figure} _images/imgur-idiFM0N.jpg
 :width: 100%
 ```
 
@@ -113,10 +113,9 @@ that need to be removed. Then you can remove the lights by pivoting them away fr
 new inner taillights in the reverse order and tighten the four nuts.
 
 ```{list-table}
-* - ```{imgur-figure} H1Vr4p6
-    :ext: png
+* - ```{thumb-figure} _images/imgur-H1Vr4p6.png
     ```
-  - ```{imgur-figure} y3ZL67J
+  - ```{thumb-figure} _images/imgur-y3ZL67J.jpg
     Hatch with all inner body trim pieces removed. The main piece to remove is the largest one, but I found it easier to
     first pop off the long piece spanning the top (when closed) of the hatch and then popping off the two side pieces.
     ```
@@ -128,13 +127,13 @@ didn't like the idea of a wire being loose back there so I went with the slightl
 hatch inner plastic trim to get a complete unobstructed view of where the wire will go.
 
 ```{list-table}
-* - ```{imgur-figure} H0Q7sZT
+* - ```{thumb-figure} _images/imgur-H0Q7sZT.jpg
     ```
-  - ```{imgur-figure} wqQeEvP
+  - ```{thumb-figure} _images/imgur-wqQeEvP.jpg
     ```
-* - ```{imgur-figure} QcbOFMP
+* - ```{thumb-figure} _images/imgur-QcbOFMP.jpg
     ```
-  - ```{imgur-figure} leahnOj
+  - ```{thumb-figure} _images/imgur-leahnOj.jpg
     ```
 ```
 
@@ -142,7 +141,7 @@ I ended up zip tying the harness wire to the existing wiring in the hatch. I the
 
 ## Coding
 
-```{imgur-figure} pzLtcvk.gif
+```{thumb-figure} _images/imgur-pzLtcvk.gif
 :width: 100%
 Without coding the wrong lights will be designated as brakes and blinkers.
 ```
@@ -159,7 +158,7 @@ To start you'll need to enter an **access code** to enable writing:
 3. Login code: **31347**
 4. Tap "Enter", it should say "Verifying login code" then "Success"
 
-```{imgur-figure} k1UTy0N
+```{thumb-figure} _images/imgur-k1UTy0N.jpg
 :width: 100%
 ```
 
@@ -172,7 +171,7 @@ The next step I believe is to enable the rear fog lights to work with the Euro s
    1. Set to **Yes**
 5. Write
 
-```{imgur-figure} RSlu0wb
+```{thumb-figure} _images/imgur-RSlu0wb.jpg
 :width: 100%
 ```
 

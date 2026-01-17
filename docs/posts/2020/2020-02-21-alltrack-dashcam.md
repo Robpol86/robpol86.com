@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Front Dashcam Pair
 
-```{imgur-figure} 9dVe8pY
+```{thumb-figure} _images/imgur-9dVe8pY.jpg
 :width: 100%
 ```
 

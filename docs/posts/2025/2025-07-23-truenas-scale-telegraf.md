@@ -80,7 +80,7 @@ Vault (pool)
     1. Return to Pool List
     1. *Repeat for InfluxDB-Data, Grafana-Plugins, Grafana-Data and Telegraf*
 
-```{imgur-figure} PeFA26e.png
+```{thumb-figure} _images/imgur-PeFA26e.png
 You should now see something like this.
 ```
 
@@ -104,7 +104,7 @@ We'll be using the official InfluxDB TrueNAS app as the timeseries database to s
             1. **Host Path**: /mnt/Vault/Apps/InfluxDB-Data
 1. Then click **Install**
 
-```{imgur-figure} 3HBbsW4.png
+```{thumb-figure} _images/imgur-3HBbsW4.png
 After you click "Install" you should see something like this.
 ```
 
@@ -120,7 +120,7 @@ button. Click on it and then fill out the form with these values:
 
 ### Generate Tokens
 
-```{imgur-figure} I7lVJeB.png
+```{thumb-figure} _images/imgur-I7lVJeB.png
 ```
 
 Next we need to create a token for Telegraf to use for writing, and another token for Grafana to use for reading. In the web
@@ -217,7 +217,7 @@ you might find a use for them.
 
 To confirm this works you can go into the InfluxDB web UI then click on **Data Explorer**:
 
-```{imgur-figure} wA62DJO.png
+```{thumb-figure} _images/imgur-wA62DJO.png
 You should see a lot of `graphite.*` measurements in the telegraf bucket.
 ```
 
@@ -287,7 +287,7 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
             1. **Host Path**: /mnt/Vault/Apps/Grafana-Plugins
 1. Then click **Install**
 
-```{imgur-figure} 3HWC6nv.png
+```{thumb-figure} _images/imgur-3HWC6nv.png
 After you click "Install" you should see something like this.
 ```
 

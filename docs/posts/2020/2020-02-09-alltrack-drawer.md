@@ -16,7 +16,7 @@ with felt so things wouldn't rattle. I'm using foil to eventually trace out the 
 I bought the drawer for $156 on ECS Tuning:
 [Driver's Seat Tray Kit Titanium Black 5GM 882 599 KT](https://www.ecstuning.com/b-genuine-volkswagen-audi-parts/drivers-seat-tray-kit-titanium-black/5gm882599kt/)
 
-```{imgur-figure} W7T6lmB
+```{thumb-figure} _images/imgur-W7T6lmB.jpg
 :width: 100%
 ```
 

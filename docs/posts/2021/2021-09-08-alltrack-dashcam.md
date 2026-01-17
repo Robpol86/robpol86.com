@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Rear Dashcam Pair
 
-```{imgur-figure} 3ypCZaP
+```{thumb-figure} _images/imgur-3ypCZaP.jpg
 :width: 100%
 ```
 
@@ -37,55 +37,55 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 ## Photos
 
 ```{list-table}
-* - :::{imgur-figure} e0FQZxI
+* - :::{thumb-figure} _images/imgur-e0FQZxI.jpg
     I spliced together the long male cigarette lighter cable that came with the camera with the short female cigarette lighter adapter that came with the battery so that everything will fit underneath my cargo liner.
     :::
-  - :::{imgur-figure} FPo2JhU
+  - :::{thumb-figure} _images/imgur-FPo2JhU.jpg
     I used a coat hanger to help fish the cable.
     :::
-* - :::{imgur-figure} vVlKfJv
+* - :::{thumb-figure} _images/imgur-vVlKfJv.jpg
     This made things way easier to see in my garage.
     :::
-  - :::{imgur-figure} caIWHsR
+  - :::{thumb-figure} _images/imgur-caIWHsR.jpg
     After fishing the cable under the cargo liner I tucked the rest of the cable towards the battery. There seemed to be some glue half way there that I had to get through by prying the liner wall towards me.
     :::
-* - :::{imgur-figure} 5CWlXf9
+* - :::{thumb-figure} _images/imgur-5CWlXf9.jpg
     Finished running the cable at the battery side.
     :::
-  - :::{imgur-figure} c1zTKOl
+  - :::{thumb-figure} _images/imgur-c1zTKOl.jpg
     Pulled off the trim on the ceiling holding the headliner in place.
     :::
 * - :::{thumb-image} _images/imgur-6mvlZLh.jpg
     :::
-  - :::{imgur-figure} 1xf5oIO
+  - :::{thumb-figure} _images/imgur-1xf5oIO.jpg
     Then I pulled off the trim covering the C pillar.
     :::
-* - :::{imgur-figure} pdTih8V
+* - :::{thumb-figure} _images/imgur-pdTih8V.jpg
     Fished the wire up the C pillar.
     :::
-  - :::{imgur-figure} 0N2BXU2
+  - :::{thumb-figure} _images/imgur-0N2BXU2.jpg
     Lightly zip tied the cable to my panoramic roof drain hose.
     :::
-* - :::{imgur-figure} hsUPB4B
+* - :::{thumb-figure} _images/imgur-hsUPB4B.jpg
     I cut off the glued/velcroed strap holding the wiring harnesses in this plastic holder and ran the camera cable through it, then zip tied everything in place.
     :::
-  - :::{imgur-figure} wempB2n
+  - :::{thumb-figure} _images/imgur-wempB2n.jpg
     Popped off the inner top trim off the hatch.
     :::
-* - :::{imgur-figure} j3WV15y
+* - :::{thumb-figure} _images/imgur-j3WV15y.jpg
     I had to unclip the hatch rubber boot to fish the cable through with the help of my coat hanger. BEWARE: the clips are easy to break and it's a pain to fix!
     :::
-  - :::{imgur-figure} uBQz1es
+  - :::{thumb-figure} _images/imgur-uBQz1es.jpg
     You can see how I broke the clip on the left side of the boot. Anyway I ran the cable towards the other side since it doesn't have any connectors in the way.
     :::
 * - :::{thumb-image} _images/imgur-6uwjb7P.jpg
     :::
-  - :::{imgur-figure} cgMYj4I
+  - :::{thumb-figure} _images/imgur-cgMYj4I.jpg
     Instead of replacing the boot I did a quick fix with my 3d printer: https://www.thingiverse.com/thing:3246429
     https://imgur.com/a/0GqFRgX
     If you'd rather replace the boot you can follow: https://www.youtube.com/watch?v=GhNbGtLDZiU&ab_channel=DeutscheAutoParts
     :::
-* - :::{imgur-figure} iPbAkTQ
+* - :::{thumb-figure} _images/imgur-iPbAkTQ.jpg
     Finally I mounted the cameras and anchored the wires with some spare cable tie mounting pads I had lying around. I shoved the excess wires into the body via the square hole.
     :::
   - :::{thumb-image} _images/imgur-tyXtaLq.jpg

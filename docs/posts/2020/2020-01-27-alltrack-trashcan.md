@@ -14,7 +14,7 @@ Bought this from Amazon:
 
 Sadly it's no longer available.
 
-```{imgur-figure} BwicdEg
+```{thumb-figure} _images/imgur-BwicdEg.jpg
 :alt: Trashcan
 :width: 100%
 ```
