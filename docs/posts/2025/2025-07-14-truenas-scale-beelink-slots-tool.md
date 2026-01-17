@@ -10,9 +10,9 @@ tags: homelab, nas, beelink
 # TrueNAS Slots Tool for ME Mini
 
 ```{list-table}
-* - :::{imgur-image} XObiRqa
+* - :::{thumb-figure} _images/imgur-XObiRqa.png
     :::
-* - :::{imgur-image} KjFxyXB
+* - :::{thumb-figure} _images/imgur-KjFxyXB.png
     :::
 ```
 

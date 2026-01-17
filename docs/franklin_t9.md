@@ -264,13 +264,14 @@ The hard way to get into fastboot is to open up the device and short a couple of
 1. Short the two pins circled in red in the image below
 1. Power on with the power button
 
-```{imgur-image} gi7e24z
+```{thumb-figure} _images/imgur-gi7e24z.jpg
 ```
 
 The device should show up when you run `fastboot devices` within a couple of seconds, and the hotspot's display will just
 say "Welcome" the entire time.
 
-```{imgur-image} pJ9WuSf
+```{thumb-figure} _images/imgur-pJ9WuSf.png
+:resize-width: 500
 ```
 
 To get out of fastboot mode just power cycle it or run `fastboot continue`.
@@ -305,7 +306,8 @@ ln: /sbin/usb/compositions/hsusb_next: File exists
 
 The device should immediately show up when you run `adb devices`.
 
-```{imgur-image} dFVo3HQ
+```{thumb-figure} _images/imgur-dFVo3HQ.png
+:resize-width: 400
 ```
 
 ## Automatic Power On
