@@ -145,7 +145,7 @@ ogp_type = "website"
 ogp_use_first_image = True
 sitemap_show_lastmod = False
 sitemap_url_scheme = "{link}"
-thumb_image_resize_width = 700
+thumb_image_resize_width = 800
 thumb_image_target_format = True
 thumb_image_target_format_substitutions = {
     "GIT_REPOSITORY": GIT_REPOSITORY or "None",
