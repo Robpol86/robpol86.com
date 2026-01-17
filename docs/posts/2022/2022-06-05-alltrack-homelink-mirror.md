@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # HomeLink Rearview Mirror
 
-```{thumb-figure} _images/imgur-Cvf4Nmp.gif
+```{figure} _images/imgur-Cvf4Nmp.gif
 ```
 
 My 2019 Golf Alltrack SE came with an auto-dimming mirror, but I wanted the one with garage door buttons integrated in it.

@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Euro Tail Lights
 
-```{thumb-figure} _images/imgur-HMxM8Kv.gif
+```{figure} _images/imgur-HMxM8Kv.png
 ```
 
 I've always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack
@@ -141,7 +141,7 @@ I ended up zip tying the harness wire to the existing wiring in the hatch. I the
 
 ## Coding
 
-```{thumb-figure} _images/imgur-pzLtcvk.gif
+```{figure} _images/imgur-pzLtcvk.gif
 :width: 100%
 Without coding the wrong lights will be designated as brakes and blinkers.
 ```
