@@ -2271,7 +2271,7 @@ sphinx = "*"
 type = "git"
 url = "https://github.com/Robpol86/sphinx-thumb-image"
 reference = "main"
-resolved_reference = "d8dd9a06c1b6511e4e2432871f6f65daaddc98ac"
+resolved_reference = "349f26387083b894abc9d79e992236d1d842685b"
 
 [[package]]
 name = "sphinxcontrib-applehelp"
