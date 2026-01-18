@@ -83,7 +83,7 @@ html_theme = "sphinx_book_theme"
 html_theme_options = {
     "analytics": {"google_analytics_id": "G-EJSD449CRH"},
     "path_to_docs": "docs",
-    "pygment_light_style": pygments_style,
+    "pygments_light_style": pygments_style,
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
     "use_download_button": False,
