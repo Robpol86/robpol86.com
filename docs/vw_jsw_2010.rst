@@ -49,9 +49,9 @@ image you can see that there is a lot of room down there.
 
 .. list-table::
 
-    * - .. imgur:: NWCmESI
-      - .. imgur:: nbwMYCw
-      - .. imgur:: k41ZdxS
+    * - .. thumb-image:: _images/imgur-NWCmESI.jpg
+      - .. thumb-image:: _images/imgur-nbwMYCw.jpg
+      - .. thumb-image:: _images/imgur-k41ZdxS.jpg
 
 Step 2: Remove Head Unit
 ------------------------
@@ -65,9 +65,9 @@ of the cables, I just left my shifter in 4th gear and rested the head unit on it
 
 .. list-table::
 
-    * - .. imgur:: RjFyVQp
-      - .. imgur:: PJJv47m
-      - .. imgur:: ZxgLd1i
+    * - .. thumb-image:: _images/imgur-RjFyVQp.jpg
+      - .. thumb-image:: _images/imgur-PJJv47m.jpg
+      - .. thumb-image:: _images/imgur-ZxgLd1i.jpg
 
 Step 3: Remove Air Vents
 ------------------------
@@ -77,8 +77,8 @@ cable for the hazard lights button. It's clipped on and also held in place with 
 
 .. list-table::
 
-    * - .. imgur:: Ww02qMK
-      - .. imgur:: jX1kQG4
+    * - .. thumb-image:: _images/imgur-Ww02qMK.jpg
+      - .. thumb-image:: _images/imgur-jX1kQG4.jpg
 
 Step 4: Run Cable through Vents
 -------------------------------
@@ -101,9 +101,9 @@ In the end, the USB cable runs down the right side of the air vents. It's a tigh
 
 .. list-table::
 
-    * - .. imgur:: oEIw1kS
-      - .. imgur:: lwmxAvc
-      - .. imgur:: 7O0EUpU
+    * - .. thumb-image:: _images/imgur-oEIw1kS.jpg
+      - .. thumb-image:: _images/imgur-lwmxAvc.jpg
+      - .. thumb-image:: _images/imgur-7O0EUpU.jpg
 
 Step 5: Reassembling Everything
 -------------------------------
@@ -122,9 +122,9 @@ minimal slack.
 
 .. list-table::
 
-    * - .. imgur:: wzcOYuQ
-      - .. imgur:: 2CMNydn
-      - .. imgur:: nd3whf1
+    * - .. thumb-image:: _images/imgur-wzcOYuQ.jpg
+      - .. thumb-image:: _images/imgur-2CMNydn.jpg
+      - .. thumb-image:: _images/imgur-nd3whf1.jpg
 
 Step 6: Run Cable through Cubby
 -------------------------------
@@ -136,9 +136,9 @@ fine).
 
 .. list-table::
 
-    * - .. imgur:: 55krwnA
-      - .. imgur:: 7lHFKUv
-      - .. imgur:: 7WTPx0v.gif
+    * - .. thumb-image:: _images/imgur-55krwnA.jpg
+      - .. thumb-image:: _images/imgur-7lHFKUv.jpg
+      - .. thumb-image:: _images/imgur-7WTPx0v.gif
 
 Delivery
 ========
@@ -147,36 +147,36 @@ Images I took shortly after receiving my brand new car.
 
 .. list-table::
 
-    * - .. imgur:: T640Q
-      - .. imgur:: vT2SN
-      - .. imgur:: TQ3BH
-    * - .. imgur:: g3vnR
-      - .. imgur:: Y2ziD
-      - .. imgur:: eLut3
-    * - .. imgur:: UFZST
-      - .. imgur:: KZo5j
-      - .. imgur:: ziSTv
-    * - .. imgur:: DbXvX
-      - .. imgur:: kVbMX
-      - .. imgur:: WJqLK
-    * - .. imgur:: 7v2Xf
-      - .. imgur:: PVixc
-      - .. imgur:: PEDQH
-    * - .. imgur:: wtvxY
-      - .. imgur:: CaUOW
-      - .. imgur:: VzRGA
-    * - .. imgur:: DHcik
-      - .. imgur:: 11Gq8
-      - .. imgur:: DBQVK
-    * - .. imgur:: 5Ui7D
-      - .. imgur:: sjLJ2
-      - .. imgur:: fXw0P
-    * - .. imgur:: NbFfu
-      - .. imgur:: 49dr4
-      - .. imgur:: o6xgw
-    * - .. imgur:: jJ994
-      - .. imgur:: tOmfy
-      - .. imgur:: 9wLnO
-    * - .. imgur:: YQhWF
+    * - .. thumb-image:: _images/imgur-T640Q.jpg
+      - .. thumb-image:: _images/imgur-vT2SN.jpg
+      - .. thumb-image:: _images/imgur-TQ3BH.jpg
+    * - .. thumb-image:: _images/imgur-g3vnR.jpg
+      - .. thumb-image:: _images/imgur-Y2ziD.jpg
+      - .. thumb-image:: _images/imgur-eLut3.jpg
+    * - .. thumb-image:: _images/imgur-UFZST.jpg
+      - .. thumb-image:: _images/imgur-KZo5j.jpg
+      - .. thumb-image:: _images/imgur-ziSTv.jpg
+    * - .. thumb-image:: _images/imgur-DbXvX.jpg
+      - .. thumb-image:: _images/imgur-kVbMX.jpg
+      - .. thumb-image:: _images/imgur-WJqLK.jpg
+    * - .. thumb-image:: _images/imgur-7v2Xf.jpg
+      - .. thumb-image:: _images/imgur-PVixc.jpg
+      - .. thumb-image:: _images/imgur-PEDQH.jpg
+    * - .. thumb-image:: _images/imgur-wtvxY.jpg
+      - .. thumb-image:: _images/imgur-CaUOW.jpg
+      - .. thumb-image:: _images/imgur-VzRGA.jpg
+    * - .. thumb-image:: _images/imgur-DHcik.jpg
+      - .. thumb-image:: _images/imgur-11Gq8.jpg
+      - .. thumb-image:: _images/imgur-DBQVK.jpg
+    * - .. thumb-image:: _images/imgur-5Ui7D.jpg
+      - .. thumb-image:: _images/imgur-sjLJ2.jpg
+      - .. thumb-image:: _images/imgur-fXw0P.jpg
+    * - .. thumb-image:: _images/imgur-NbFfu.jpg
+      - .. thumb-image:: _images/imgur-49dr4.jpg
+      - .. thumb-image:: _images/imgur-o6xgw.jpg
+    * - .. thumb-image:: _images/imgur-jJ994.jpg
+      - .. thumb-image:: _images/imgur-tOmfy.jpg
+      - .. thumb-image:: _images/imgur-9wLnO.jpg
+    * - .. thumb-image:: _images/imgur-YQhWF.jpg
       -
       -

@@ -14,11 +14,16 @@ to get to your IPMI web interface? Have I got a guide for you!
 
 .. list-table::
 
-    * - .. imgur:: Waa1HJk
-      - .. imgur:: eiUc8Bu
-    * - .. imgur:: 4NS0cDs
-      - .. imgur:: uqRXaeu
-    * - .. imgur:: iz4qY7O
+    * - .. thumb-image:: _images/imgur-Waa1HJk.png
+            :resize-width: 400
+      - .. thumb-image:: _images/imgur-eiUc8Bu.png
+            :resize-width: 400
+    * - .. thumb-image:: _images/imgur-4NS0cDs.png
+            :resize-width: 400
+      - .. thumb-image:: _images/imgur-uqRXaeu.png
+            :resize-width: 400
+    * - .. thumb-image:: _images/imgur-iz4qY7O.png
+            :resize-width: 400
       -
 
 This guide will go over setting up an offline root certificate authority for your home network. It is based on what I've

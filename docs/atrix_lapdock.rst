@@ -18,8 +18,8 @@ actually has a couple of magnets to keep it in place, and two small plastic clip
 
 .. list-table::
 
-   * - .. imgur:: WpsmI
-     - .. imgur:: 5HAGw
+   * - .. thumb-image:: _images/imgur-WpsmI.jpg
+     - .. thumb-image:: _images/imgur-5HAGw.jpg
 
 Pictures and Videos
 ===================
@@ -164,8 +164,8 @@ Works with the Nexus 4 just fine, appears to maintain aspect ratio. Adapters use
 
 .. list-table::
 
-   * - .. imgur:: MJs3n49
-     - .. imgur:: MUViVQI
+   * - .. thumb-image:: _images/imgur-MJs3n49.jpg
+     - .. thumb-image:: _images/imgur-MUViVQI.jpg
 
 Using USB OTG
 -------------
@@ -201,9 +201,9 @@ Steps taken to accomplish:
 
 .. list-table::
 
-   * - .. imgur:: qbs7sWg
-     - .. imgur:: yNgacIC
-   * - .. imgur:: K7glCXN
+   * - .. thumb-image:: _images/imgur-qbs7sWg.jpg
+     - .. thumb-image:: _images/imgur-yNgacIC.jpg
+   * - .. thumb-image:: _images/imgur-K7glCXN.png
      -
 
 Using USB OTG and Miracast
@@ -233,9 +233,9 @@ Adapters used:
 
 .. list-table::
 
-   * - .. imgur:: cZR03
-     - .. imgur:: MrTBN
-   * - .. imgur:: vCYfG
+   * - .. thumb-image:: _images/imgur-cZR03.jpg
+     - .. thumb-image:: _images/imgur-MrTBN.jpg
+   * - .. thumb-image:: _images/imgur-vCYfG.jpg
      -
 
 With a Laptop
@@ -249,8 +249,8 @@ time I traveled I had to deal with a single monitor. Not anymore! Adapters used:
 
 .. list-table::
 
-   * - .. imgur:: ldQ0c
-     - .. imgur:: KONZZ
+   * - .. thumb-image:: _images/imgur-ldQ0c.jpg
+     - .. thumb-image:: _images/imgur-KONZZ.jpg
 
 With a Wii
 ==========
@@ -265,9 +265,9 @@ the way. This should work just fine with the Xbox 360, PS3, or any other HDMI de
 
 .. list-table::
 
-   * - .. imgur:: TXiVx
-     - .. imgur:: UkdYJ
-   * - .. imgur:: cc5TK
+   * - .. thumb-image:: _images/imgur-TXiVx.jpg
+     - .. thumb-image:: _images/imgur-UkdYJ.jpg
+   * - .. thumb-image:: _images/imgur-cc5TK.jpg
      -
 
 Lapdock 500 Teardown

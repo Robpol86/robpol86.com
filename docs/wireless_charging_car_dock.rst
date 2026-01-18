@@ -32,13 +32,13 @@ my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 
 .. list-table::
 
-    * - .. imgur:: GJE9zkv
-      - .. imgur:: zIgncli
-      - .. imgur:: 7zHnpLJ
-    * - .. imgur:: 55krwnA
-      - .. imgur:: 7lHFKUv
-      - .. imgur:: N3ZRXRI
-    * - .. imgur:: 5KjUkO5
+    * - .. thumb-image:: _images/imgur-GJE9zkv.jpg
+      - .. thumb-image:: _images/imgur-zIgncli.jpg
+      - .. thumb-image:: _images/imgur-7zHnpLJ.jpg
+    * - .. thumb-image:: _images/imgur-55krwnA.jpg
+      - .. thumb-image:: _images/imgur-7lHFKUv.jpg
+      - .. thumb-image:: _images/imgur-N3ZRXRI.jpg
+    * - .. thumb-image:: _images/imgur-5KjUkO5.jpg
       -
       -
 
@@ -98,14 +98,14 @@ Here are some pictures of the final version, sans washers.
 
 .. list-table::
 
-    * - .. imgur:: COavxfY
-      - .. imgur:: qJONaXG
-      - .. imgur:: GhOvZg9
+    * - .. thumb-image:: _images/imgur-COavxfY.jpg
+      - .. thumb-image:: _images/imgur-qJONaXG.jpg
+      - .. thumb-image:: _images/imgur-GhOvZg9.jpg
 
 .. list-table::
 
-    * - .. imgur:: OvXMV5w
-      - .. imgur:: dRQ4q77
+    * - .. thumb-image:: _images/imgur-OvXMV5w.jpg
+      - .. thumb-image:: _images/imgur-dRQ4q77.jpg
 
 And here are some pictures after I routed the `wire inside the <https://www.amazon.com/gp/product/B003YKX6WW/>`_ center
 console. After you take out the shifter boot, little cubby, head unit, and air vents there is a ton of room inside to
@@ -115,8 +115,8 @@ The only downside is I can't close the little cubby anymore. Oh well.
 
 .. list-table::
 
-    * - .. imgur:: sRKNN6F
-      - .. imgur:: 8R5ROC4
-      - .. imgur:: 7jA3c1J
+    * - .. thumb-image:: _images/imgur-sRKNN6F.jpg
+      - .. thumb-image:: _images/imgur-8R5ROC4.jpg
+      - .. thumb-image:: _images/imgur-7jA3c1J.jpg
 
 .. _Mountek nGroove Snap Magnetic Vehicle Mount: https://www.amazon.com/dp/B00E9L0HGI
