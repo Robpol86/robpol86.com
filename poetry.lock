@@ -2183,24 +2183,6 @@ code-style = ["pre-commit (==2.12.1)"]
 rtd = ["ipython", "myst-nb", "sphinx", "sphinx-book-theme", "sphinx-examples"]
 
 [[package]]
-name = "sphinx-imgur"
-version = "3.0.0"
-description = "Embed Imgur images and albums in Sphinx documents/pages."
-optional = false
-python-versions = ">=3.6.2,<4.0.0"
-groups = ["main"]
-files = [
-    {file = "sphinx-imgur-3.0.0.tar.gz", hash = "sha256:db5dbd1169f60468394ebfb9b3f1387a4f4ed567b061c98ad1312048afe5a760"},
-    {file = "sphinx_imgur-3.0.0-py3-none-any.whl", hash = "sha256:6048f2a6a00192124849d679ca3ac7c29eaad6150e4a51a238ba9337f42d772e"},
-]
-
-[package.dependencies]
-sphinx = "*"
-
-[package.extras]
-docs = ["sphinx-copybutton", "sphinx-notfound-page", "sphinx-panels", "sphinx-rtd-theme", "sphinxext-opengraph", "toml"]
-
-[[package]]
 name = "sphinx-last-updated-by-git"
 version = "0.3.8"
 description = "Get the \"last updated\" time for each Sphinx page from Git"
@@ -2951,4 +2933,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.9"
-content-hash = "eed84b37a0429c89ebbeb5645a9703ca14a2dfed001b4c82565a75f367a6a1b6"
+content-hash = "bd14c604e5d7143f031ac0f273a46802257fd3775b318c3a7d1438bd7939aa0e"
