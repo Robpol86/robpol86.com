@@ -15,14 +15,14 @@ classifiers = [
 requires-python = "^3.9"
 dependencies = [
     "ablog",
-    "myst-parser[linkify]",
-    "sphinx",
+    "myst-parser[linkify] (<5.0.0)",
+    "sphinx (<9.0.0)",
     "sphinx-book-theme",
     "sphinx-copybutton",
     "sphinx-imgur",
     "sphinx-notfound-page",
     "sphinx-sitemap",
-    "sphinx-thumb-image @ git+https://github.com/Robpol86/sphinx-thumb-image@logging", #"sphinx-thumb-image",
+    "sphinx-thumb-image @ git+https://github.com/Robpol86/sphinx-thumb-image@main", #"sphinx-thumb-image",
     "sphinxcontrib-youtube",
     "sphinxext-opengraph",
 ]
