@@ -13,8 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          lfs: true
+          lfs: false
           fetch-depth: 0
+
+      - name: LFS
+        uses: ./.github/actions/lfs-cache
 
       - name: Setup Dependencies
         uses: ./.github/actions/deps

@@ -24,8 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          lfs: true
+          lfs: false
           fetch-depth: 0  # for git log
+      - name: LFS
+        uses: ./.github/actions/lfs-cache
       - name: New Version
         id: new_version
         run: date $'+NEW_TAG=%Y-%m-%d-%H%M%S\nNEW_VERSION=%-Y.%-m.%-d.%-H%M%S' |tee -a "$GITHUB_OUTPUT"

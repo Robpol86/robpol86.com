@@ -1,0 +1,30 @@
+name: LFS Cache
+description: >
+  Cache LFS to avoid hitting quotas.
+  From: https://github.com/actions/checkout/issues/165#issuecomment-2776048200
+
+
+runs:
+  using: composite
+  steps:
+
+    - name: Create Git LFS file list
+      shell: bash
+      run: git lfs ls-files -l |cut -d' ' -f1 |sort > .git/lfs-hashes.txt
+
+    - name: Restore Git LFS object cache
+      uses: actions/cache@v5
+      with:
+        path: .git/lfs
+        key: ${{ runner.os }}-lfsdata-v1-${{ hashFiles('.git/lfs-hashes.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-lfsdata-v1-
+          ${{ runner.os }}-lfsdata
+
+    - name: Fetch any needed Git LFS objects and prune extraneous ones
+      shell: bash
+      run: git lfs fetch --prune
+
+    - name: Check out Git LFS content
+      shell: bash
+      run: git lfs checkout
