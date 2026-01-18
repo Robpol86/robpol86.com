@@ -26,109 +26,109 @@ Pictures and Videos
 
 .. list-table::
 
-    * - .. imgur-figure:: MJs3n49
+    * - .. thumb-figure:: _images/imgur-MJs3n49.jpg
 
             Lapdock with a Nexus 4
 
             Works fine with SlimPort.
-      - .. imgur-figure:: MUViVQI
+      - .. thumb-figure:: _images/imgur-MUViVQI.jpg
 
             Lapdock with a Nexus 4 (Adapters Used)
 
             MicroUSB extension (optional); SlimPort HDMI, HDMI male to microHDMI female; HDMI right angle (optional)
-    * - .. imgur-figure:: yNgacIC
+    * - .. thumb-figure:: _images/imgur-yNgacIC.jpg
 
             Lapdock with a Nexus 4 (OTG) (USB Hub Test)
 
             If you can see, I ran lsusb on the phone, removed the USB WiFi adapter, and ran lsusb again. Notice the shorter
             "paragraph" on my phone. Definitely working.
-      - .. imgur-figure:: K7glCXN
+      - .. thumb-figure:: _images/imgur-K7glCXN.png
 
             Lapdock with a Nexus 4 (OTG) (USB Hub Test) (Screen Shot)
 
             First group is with the USB WiFi adapter, second group is after I removed it. The phone can detect things on the USB
             hub.
-    * - .. imgur-figure:: qbs7sWg
+    * - .. thumb-figure:: _images/imgur-qbs7sWg.jpg
 
             Lapdock with a Nexus 4 (OTG)
 
             Ignore the Raspberry Pi, I'm just using it to trick the Lapdock into powering on. Notice the mouse cursor on my
             phone!
-      - .. imgur-figure:: 5HAGw
+      - .. thumb-figure:: _images/imgur-5HAGw.jpg
 
             Lapdock IO Plate Off
 
             This is how the Lapdock's phone dock looks like without the plate. More room for HDMI/USB adapters.
-    * - .. imgur-figure:: WpsmI
+    * - .. thumb-figure:: _images/imgur-WpsmI.jpg
 
             Lapdock IO Plate On
 
             This plate is removable. Use the notches (one on each side) to remove the plate with your fingernails. It should
             easily come off.
-      - .. imgur-figure:: ldQ0c
+      - .. thumb-figure:: _images/imgur-ldQ0c.jpg
 
             Lapdock as a Second Display
 
             The Lapdock is very handy as a second display for my laptop! At home my laptop is docked with two monitors. Now when
             I travel I can still have two monitors.
-    * - .. imgur-figure:: KONZZ
+    * - .. thumb-figure:: _images/imgur-KONZZ.jpg
 
             Lapdock as a Second Display (Adapters Used)
 
             I used a Micro HDMI female to HDMI male adapter and an HDMI female/female coupler.
-      - .. imgur-figure:: qs9ph
+      - .. thumb-figure:: _images/imgur-qs9ph.jpg
 
             Lapdock with a Galaxy Nexus (VZW LTE)
 
             The Galaxy Nexus works fine with the Lapdock, however only HDMI (video) works. The MHL standard disables USB when
             using HDMI, so the Lapdock's keyboard, touchpad, and USB ports don't work. Charging the phone works though.
-    * - .. imgur-figure:: VpSTT
+    * - .. thumb-figure:: _images/imgur-VpSTT.jpg
 
             Lapdock with a Galaxy Nexus (VZW LTE) (Netflix)
 
             Netflix works fine.
-      - .. imgur-figure:: Ct9Ii
+      - .. thumb-figure:: _images/imgur-Ct9Ii.jpg
 
             Lapdock with a Galaxy Nexus (VZW LTE) (Adapters Used)
 
             Any MHL capable phone will work with an MHL adapter. I also used a Micro HDMI female to HDMI male adapter, an HDMI
             female/female coupler (my MHL adapter has an HDMI male connector), and a MicroUSB male/female extension cable.
-    * - .. imgur-figure:: 2SA93
+    * - .. thumb-figure:: _images/imgur-2SA93.jpg
 
             Lapdock Shaved Adapters (Above View)
 
             Another view of the adapters I shaved.
-      - .. imgur-figure:: vCYfG
+      - .. thumb-figure:: _images/imgur-vCYfG.jpg
 
             Lapdock Shaved Adapters
 
             In order for the Micro-HDMI and Micro-USB adapters to fit at the same time, I had to shave off a lot of excess
             plastic.
-    * - .. imgur-figure:: TXiVx
+    * - .. thumb-figure:: _images/imgur-TXiVx.jpg
 
             Lapdock with a Wii
 
             I don't have a 360 or PS3, but I have a Wii and after I found an HDMI adapter I tried it with the Lapdock. Turns out
             it works just fine. The Lapdock takes care of changing resolution as long as it's at or below 1366x768. Audio works
             too by the way. This should work just fine with the Xbox 360, PS3, or any other HDMI devices.
-      - .. imgur-figure:: UkdYJ
+      - .. thumb-figure:: _images/imgur-UkdYJ.jpg
 
             Lapdock with a Wii (Adapters Used)
 
             I used a Micro HDMI female to HDMI male adapter and an HDMI female/female coupler.
-    * - .. imgur-figure:: cc5TK
+    * - .. thumb-figure:: _images/imgur-cc5TK.jpg
 
             Lapdock with a Wii (Wii HDMI Adapter)
 
             Here you ca see the Wii HDMI adapter I used.
-      - .. imgur-figure:: cZR03
+      - .. thumb-figure:: _images/imgur-cZR03.jpg
 
             Lapdock with a Raspberry Pi
 
             The Lapdock works great with the Raspberry Pi, but with a few problems. Every time the Lapdock's lid is opened or
             closed, power is cut off the RPI for a second, causing it to reboot. Also there's a problem with the RPI's USB hub
             that prevents me from using the Lapdock's keyboard and a USB WiFi adapter.
-    * - .. imgur-figure:: MrTBN
+    * - .. thumb-figure:: _images/imgur-MrTBN.jpg
 
             Lapdock with a Raspberry Pi (Adapters Used)
 
@@ -275,14 +275,14 @@ Lapdock 500 Teardown
 
 .. list-table::
 
-    * - .. imgur-figure:: on1EG
+    * - .. thumb-figure:: _images/imgur-on1EG.jpg
 
             Step 1: First Set of Screws to Remove
 
             To start the teardown, remove most of the rubber grommets/feet on the underside of the Lapdock to access the screws.
             There are 15 screws total (not counting the two used for the pull-out tray).
 
-      - .. imgur-figure:: 4zK6V
+      - .. thumb-figure:: _images/imgur-4zK6V.jpg
 
             Step 2: Removing the Keyboard
 
@@ -291,14 +291,14 @@ Lapdock 500 Teardown
             off once all the tabs are pushed in. With the keyboard out, lightly tug on its ribbon cable to disconnect it from the
             Lapdock's controller board. Do the same with the touchpad's cable while you're at it.
 
-    * - .. imgur-figure:: nH3Vw
+    * - .. thumb-figure:: _images/imgur-nH3Vw.jpg
 
             Step 3: Removing the Plastic Cover
 
             Gently tug up on the black plastic panel covering the IO ports. I pulled out the phone drawer and started pulling up
             from there.
 
-      - .. imgur-figure:: qVXHC
+      - .. thumb-figure:: _images/imgur-qVXHC.jpg
 
             Step 4: Removing the Palm Rest
 
@@ -307,7 +307,7 @@ Lapdock 500 Teardown
             holes (using a Phillips) and using a flathead to pry the bottom part of the Lapdock (which curves up) from the palm
             rest. Be very gentle, the clips are fragile and I broke one during this step.
 
-    * - .. imgur-figure:: VxcB7
+    * - .. thumb-figure:: _images/imgur-VxcB7.jpg
 
             Step 5: Removing the Monitor
 
@@ -315,67 +315,67 @@ Lapdock 500 Teardown
             To remove the bigger cable you gently tug on the cord. The cable should disconnect from the connector. To remove the
             smaller cable, I used my thumb nails (both) to pry the plastic connector from the controller.
 
-      - .. imgur-figure:: bcGIk
+      - .. thumb-figure:: _images/imgur-bcGIk.jpg
 
             Step 6: Lapdock 500 With No Monitor
 
             After removing five screws on the hinge bases (attached to the Lapdock's base; three screws on the left, two on the
             right) the monitor should lift right off.
 
-    * - .. imgur-figure:: GnLRF
+    * - .. thumb-figure:: _images/imgur-GnLRF.jpg
 
             Lapdock 500 Controller Board
 
             This is a close-up of the Lapdock's controller board.
 
-      - .. imgur-figure:: n3Yv0
+      - .. thumb-figure:: _images/imgur-n3Yv0.jpg
 
             The perfect Raspberry Pi Laptop
 
             If someone can help me hack this stupid Lapdock 500 to work with any HDMI input, this would be possible! I would
             probably have to remove a few components from the Pi though.
 
-    * - .. imgur-figure:: UOARn
+    * - .. thumb-figure:: _images/imgur-UOARn.jpg
 
             Lapdock 500 Controller Board (Upper Left)
 
-      - .. imgur-figure:: 9AxyU
+      - .. thumb-figure:: _images/imgur-9AxyU.jpg
 
             Lapdock 500 Controller Board (Upper Center)
 
-    * - .. imgur-figure:: knTzK
+    * - .. thumb-figure:: _images/imgur-knTzK.jpg
 
             Lapdock 500 Controller Board (Upper Right)
 
-      - .. imgur-figure:: mx9AW
+      - .. thumb-figure:: _images/imgur-mx9AW.jpg
 
             Lapdock 500 Controller Board (Lower Left)
 
-    * - .. imgur-figure:: S6zx9
+    * - .. thumb-figure:: _images/imgur-S6zx9.jpg
 
             Lapdock 500 Controller Board (Lower Center)
 
-      - .. imgur-figure:: 2PbFf
+      - .. thumb-figure:: _images/imgur-2PbFf.jpg
 
             Lapdock 500 Controller Board (Lower Right)
 
-    * - .. imgur-figure:: WNuEX
+    * - .. thumb-figure:: _images/imgur-WNuEX.jpg
 
             Lapdock 500 Controller Board (Second Shot)
 
-      - .. imgur-figure:: HD108
+      - .. thumb-figure:: _images/imgur-HD108.jpg
 
             Lapdock 500 Controller Board (Input Cable Removed)
 
-    * - .. imgur-figure:: R5mq1
+    * - .. thumb-figure:: _images/imgur-R5mq1.jpg
 
             Lapdock 500 Controller Board (Rear)
 
-      - .. imgur-figure:: pphBk
+      - .. thumb-figure:: _images/imgur-pphBk.jpg
 
             Lapdock 500 Controller Board (Rear Top)
 
-    * - .. imgur-figure:: uW0oK
+    * - .. thumb-figure:: _images/imgur-uW0oK.jpg
 
             Lapdock 500 Controller Board (Rear Bottom)
 
