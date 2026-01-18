@@ -14,9 +14,9 @@ This guide will go over how to get a Raspberry Pi (or really any Linux system) o
 provider then you can use their `data only SIM cards <https://support.google.com/fi?p=data_only_SIM>`_ to get your
 Raspberry Pi online for relatively cheap depending on your use case.
 
-.. imgur-image:: PmqSPyj
+.. thumb-image:: _images/imgur-PmqSPyj.jpg
     :width: 49%
-.. imgur-image:: dE4GgBg
+.. thumb-image:: _images/imgur-dE4GgBg.jpg
     :width: 49%
 
 I was able to power the 3G modem directly from the USB port on my Pi Zero. You'll probably need a good USB power supply
@@ -317,9 +317,9 @@ Once it hangs with no errors you can open another terminal (or re-run wvdial in 
 
 It is pretty slow though (I get around 15 KiB/s). Good enough for my use case however.
 
-.. imgur-image:: zTRT6Ja
+.. thumb-image:: _images/imgur-zTRT6Ja.jpg
     :width: 49%
-.. imgur-image:: 87aSM89
+.. thumb-image:: _images/imgur-87aSM89.jpg
     :width: 49%
 
 NDISDUP
@@ -407,7 +407,7 @@ In my experience this setup seems pretty robust. I tried different reboot/power 
 placed my Raspberry Pi in my microwave (poor-man's grounded faraday cage) to block out cellular signals for a few
 minutes. Every time the Raspberry Pi managed to re-connect automatically.
 
-.. imgur-image:: ZfQYQF9
+.. thumb-image:: _images/imgur-ZfQYQF9.jpg
 
 References
 ==========

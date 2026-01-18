@@ -93,13 +93,17 @@ Once you have your ``MIN`` and phone number:
 Installing Service
 ==================
 
-.. imgur-image:: SndBdi5
+.. thumb-image:: _images/imgur-SndBdi5.png
+    :resize-width: 500
     :width: 24%
-.. imgur-image:: 2s0oJBW
+.. thumb-image:: _images/imgur-2s0oJBW.png
+    :resize-width: 500
     :width: 24%
-.. imgur-image:: sWaejkq
+.. thumb-image:: _images/imgur-sWaejkq.png
+    :resize-width: 500
     :width: 24%
-.. imgur-image:: IJgDFM4
+.. thumb-image:: _images/imgur-IJgDFM4.png
+    :resize-width: 500
     :width: 24%
 
 Flashing the Phone
@@ -158,9 +162,11 @@ Flashing the Phone
 Configuring APNs
 ----------------
 
-.. imgur-image:: NqeznNP
+.. thumb-image:: _images/imgur-NqeznNP.png
+    :resize-width: 400
     :width: 49%
-.. imgur-image:: aHlRCy6
+.. thumb-image:: _images/imgur-aHlRCy6.png
+    :resize-width: 400
     :width: 49%
 
 1. Once Android boots back up, open the app **Voice Dialer**.
