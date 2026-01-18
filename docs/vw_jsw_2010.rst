@@ -138,7 +138,7 @@ fine).
 
     * - .. thumb-image:: _images/imgur-55krwnA.jpg
       - .. thumb-image:: _images/imgur-7lHFKUv.jpg
-      - .. thumb-image:: _images/imgur-7WTPx0v.gif
+      - .. image:: _images/imgur-7WTPx0v.gif
 
 Delivery
 ========
