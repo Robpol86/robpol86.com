@@ -176,3 +176,4 @@ blog_locations = {
 blog_title = project
 disqus_pages = False
 disqus_shortname = "rob86wiki"
+fontawesome_included = False
