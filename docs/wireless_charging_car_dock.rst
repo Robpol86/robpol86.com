@@ -9,7 +9,8 @@
 Wireless Charging Car Dock
 ==========================
 
-.. figure:: _images/imgur-7WTPx0v.gif
+.. thumb-figure:: /_images/pictures/imgur-import/imgur-7WTPx0v.gif
+   :no-resize:
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
 find very many car docks out there with wireless charging, and I read that Nokia's wireless charging car dock didn't
@@ -32,19 +33,19 @@ my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 
 .. list-table::
 
-    * - .. thumb-image:: _images/imgur-GJE9zkv.jpg
+    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-GJE9zkv.jpg
          :resize-width: 300px
-      - .. thumb-image:: _images/imgur-zIgncli.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-zIgncli.jpg
          :resize-width: 300px
-      - .. thumb-image:: _images/imgur-7zHnpLJ.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7zHnpLJ.jpg
          :resize-width: 300px
-    * - .. thumb-image:: _images/imgur-55krwnA.jpg
+    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-55krwnA.jpg
          :resize-width: 300px
-      - .. thumb-image:: _images/imgur-7lHFKUv.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7lHFKUv.jpg
          :resize-width: 300px
-      - .. thumb-image:: _images/imgur-N3ZRXRI.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-N3ZRXRI.jpg
          :resize-width: 300px
-    * - .. thumb-image:: _images/imgur-5KjUkO5.jpg
+    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-5KjUkO5.jpg
          :resize-width: 300px
       -
       -
@@ -53,7 +54,8 @@ my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 Previous Implementation
 =======================
 
-.. figure:: _images/imgur-X8fbOGl.gif
+.. thumb-figure:: /_images/pictures/imgur-import/imgur-X8fbOGl.gif
+   :no-resize:
 
 So I built my own. I originally posted everything
 `on the XDA forums <https://forum.xda-developers.com/showthread.php?p=47509705#post47509705>`_. Since the Nexus 5 has
@@ -105,18 +107,18 @@ Here are some pictures of the final version, sans washers.
 
 .. list-table::
 
-    * - .. thumb-image:: _images/imgur-COavxfY.jpg
+    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-COavxfY.jpg
          :resize-width: 300px
-      - .. thumb-image:: _images/imgur-qJONaXG.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-qJONaXG.jpg
          :resize-width: 300px
-      - .. thumb-image:: _images/imgur-GhOvZg9.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-GhOvZg9.jpg
          :resize-width: 300px
 
 .. list-table::
 
-    * - .. thumb-image:: _images/imgur-OvXMV5w.jpg
+    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-OvXMV5w.jpg
          :resize-width: 400px
-      - .. thumb-image:: _images/imgur-dRQ4q77.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-dRQ4q77.jpg
          :resize-width: 400px
 
 And here are some pictures after I routed the `wire inside the <https://www.amazon.com/gp/product/B003YKX6WW/>`_ center
@@ -127,11 +129,11 @@ The only downside is I can't close the little cubby anymore. Oh well.
 
 .. list-table::
 
-    * - .. thumb-image:: _images/imgur-sRKNN6F.jpg
+    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-sRKNN6F.jpg
          :resize-width: 300px
-      - .. thumb-image:: _images/imgur-8R5ROC4.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-8R5ROC4.jpg
          :resize-width: 300px
-      - .. thumb-image:: _images/imgur-7jA3c1J.jpg
+      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7jA3c1J.jpg
          :resize-width: 300px
 
 .. _Mountek nGroove Snap Magnetic Vehicle Mount: https://www.amazon.com/dp/B00E9L0HGI
