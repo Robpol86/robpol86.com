@@ -35,7 +35,7 @@ jobs:
       group: "deploy-${{ inputs.environment || 'staging' }}"
     steps:
       - name: Download HTML
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: html
           path: html

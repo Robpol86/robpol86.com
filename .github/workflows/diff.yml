@@ -34,7 +34,7 @@ jobs:
     needs: Build
     steps:
       - name: Fetch New HTML
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: html
           path: html
@@ -61,7 +61,7 @@ jobs:
       - name: Prepare for New HTML
         run: git -C html rm -r . && git -C html restore --staged .
       - name: Fetch new HTML
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: html
           path: html
@@ -100,7 +100,7 @@ jobs:
           rm -v git_diff.patch.orig
       - name: Store Metafiles as Temporary Artifacts
         if: hashFiles('git_status.txt')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: git_status_diff
           path: |
@@ -126,7 +126,7 @@ jobs:
     steps:
       - name: Fetch Metafiles
         if: needs.Diff.outputs.changed
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: git_status_diff
       - name: Split Patch
@@ -142,7 +142,7 @@ jobs:
           ls -lah
       - name: Post (No Changes)
         if: needs.Diff.outputs.no-changes
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const url = `${process.env.HEADER_URL_BASE}/${process.env.BRANCH_NAME_HTML_OLD}`
@@ -156,7 +156,7 @@ jobs:
             })
       - name: Post (No Modified)
         if: needs.Diff.outputs.changed && needs.Diff.outputs.no-modifications
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const url = `${process.env.HEADER_URL_BASE}/${process.env.BRANCH_NAME_HTML_OLD}`
@@ -174,7 +174,7 @@ jobs:
             })
       - name: Post Diff
         if: needs.Diff.outputs.changed && needs.Diff.outputs.modified
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           IS_TRUNCATED: "${{ hashFiles('git_diff.patch.truncated') }}"
         with:
