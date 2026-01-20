@@ -30,7 +30,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: "${{ inputs.commit }}"
@@ -70,7 +70,7 @@ jobs:
           prettier --write "docs/_build/html/**/*.{js,css,html,xml}"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: html
           path: docs/_build/html
