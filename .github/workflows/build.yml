@@ -34,6 +34,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: "${{ inputs.commit }}"
+          submodules: true
 
       - name: Setup Dependencies
         uses: ./.github/actions/deps

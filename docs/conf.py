@@ -144,8 +144,7 @@ ogp_use_first_image = True
 sitemap_show_lastmod = False
 sitemap_url_scheme = "{link}"
 thumb_image_default_target = (
-    "https://media.githubusercontent.com/media/%(GIT_REPOSITORY)s/refs/heads/"
-    "%(repository_branch)s/%(path_to_docs)s/%(fullsize_path)s"
+    "https://media.githubusercontent.com/media/Robpol86/robpol86.com-pictures/refs/heads/initial/%(fullsize_path)s"
 )
 thumb_image_resize_width = 800
 thumb_image_target_format = True
