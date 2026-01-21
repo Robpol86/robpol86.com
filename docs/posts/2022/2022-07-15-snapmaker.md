@@ -30,22 +30,22 @@ need to disconnect them when removing or replacing the enclosure.
 ## Pictures
 
 ```{list-table}
-* - :::{thumb-figure} _images/imgur-KHWYDpz.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-KHWYDpz.jpg
     Before and After
     :::
-  - :::{thumb-figure} _images/imgur-CDeC10F.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-CDeC10F.jpg
     Bottom Cable Management
 
     I didn't want any of the cables dragging on the table under the printer to avoid any snagging when moving it. I also
     eliminated any slack with the heated platform cable so it no longer touches the platform itself.
     :::
-* - :::{thumb-figure} _images/imgur-VfdJDt8.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-VfdJDt8.jpg
     Stop Button
     :::
-  - :::{thumb-figure} _images/imgur-w9NQt2t.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-w9NQt2t.jpg
     Rear Cable Management
     :::
-* - :::{thumb-figure} _images/imgur-6GdAPM7.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-6GdAPM7.jpg
     Thread Tapping
 
     This was the fun part. Instead of 3D printing a new print head cover with threads for the teflon tube fitting I ended up
@@ -54,20 +54,20 @@ need to disconnect them when removing or replacing the enclosure.
     the same drill and slowly carved the threads. I was super surprised with the results, the push-in fitting screwed on smoothly
     and stays put very firmly without any play.
     :::
-  - :::{thumb-figure} _images/imgur-joKQgiy.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-joKQgiy.jpg
     Head Fitting
 
     The PTFE teflon tubing kit I bought came with two types of push-in fittings. The blue fittings prevent the teflon tube from
     going all the way through.
     :::
-* - :::{thumb-figure} _images/imgur-f3CX7MR.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-f3CX7MR.jpg
     Teflon Tube
 
     The black fitting that comes with the kit allows the teflon tube to push through but keeps it in place during normal usage.
     It turns out these fittings are the perfect size. It easily screws into the plastic snap-bushing that came with the enclosure
     so I didn't need to drill or tap anything for this one.
     :::
-  - :::{thumb-figure} _images/imgur-UoAtduN.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-UoAtduN.jpg
     UPS
 
     I have my 3D printer on a UPS since my lights flicker during thunderstorms. However if I would buy a UPS again I would get a

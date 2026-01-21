@@ -61,58 +61,58 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 
 ```{list-table}
 
-* - :::{thumb-figure} _images/imgur-J09tdcy.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-J09tdcy.jpg
     %
     Finished project.
     :::
-  - :::{thumb-figure} _images/imgur-D1sV4X8.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-D1sV4X8.jpg
     %
     Removed the LED strips from the now-bottom rails to relocate them back to the top of the enclosure.
     :::
-* - :::{thumb-figure} _images/imgur-5cDGBUU.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-5cDGBUU.jpg
     %
     Flip the hall/door sensor. I used a zip tie to help keep the plastic washers in place. The sensor actually has bright white
     LEDs that light up when it detects when the two doors are closed.
     :::
-  - :::{thumb-figure} _images/imgur-yJP9vVH.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-yJP9vVH.jpg
     %
     Half way through I put the doors on to verify they fit and close properly. The magnets are aligned just fine.
     :::
-* - :::{thumb-figure} _images/imgur-wGu1uNO.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-wGu1uNO.jpg
     %
     Mark where the foot fixtures will go and use T-nuts to fasten them in place.
     :::
-  - :::{thumb-figure} _images/imgur-J03jTjo.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-J03jTjo.jpg
     %
     The touchscreen cord is long enough to reach its new location. I used a spare screw to ensure it won't ride up and touch the
     hot platform or get pinched by the moving platform.
     :::
-* - :::{thumb-figure} _images/imgur-osjlmEC.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-osjlmEC.jpg
     %
     Installed some additional weather stripping after flipping this enclosure panel with the touchscreen cutout.
     :::
-  - :::{thumb-figure} _images/imgur-Rbld72t.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-Rbld72t.jpg
     %
     Unrelated: for my new coffee table setup I'm moving the power supply to be on top of the UPS and not take up table space.
     :::
-* - :::{thumb-figure} _images/imgur-iFNKJxn.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-iFNKJxn.jpg
     %
     I bought a filament dry box from Amazon instead of relocating the spool holder which would have required cutting or drilling
     into the enclosure panels. This works for me because I already use a PTFE/Teflon tube with my printer.
     :::
-  - :::{thumb-figure} _images/imgur-bNa6Ul4.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-bNa6Ul4.jpg
     %
     Done!
     :::
-* - :::{thumb-figure} _images/imgur-B6j9Ws3.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-B6j9Ws3.jpg
     %
     Teflon tube routing: dry box
     :::
-  - :::{thumb-figure} _images/imgur-XJZNBUH.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-XJZNBUH.jpg
     %
     Teflon tube routing: enclosure through-hole
     :::
-* - :::{thumb-figure} _images/imgur-aDOjJnX.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-aDOjJnX.jpg
     %
     Teflon tube routing: print head
     :::

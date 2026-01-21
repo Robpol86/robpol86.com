@@ -36,39 +36,39 @@ drop when transferring the old oil from the extractor back into the 5 qt oil jug
 ## Pictures
 
 ```{list-table}
-* - :::{thumb-figure} _images/imgur-ehm4xGw.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-ehm4xGw.jpg
     Finished Project
     :::
-  - :::{thumb-figure} _images/imgur-JlCNRDJ.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-JlCNRDJ.jpg
     Underside of Lid
 
     Unscrew the lid collar and pop off the lid. This is the underside, held in place with a Bessey vise.
     :::
-* - :::{thumb-figure} _images/imgur-oS6xG9B.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-oS6xG9B.jpg
     Remove the Valve
 
     Unscrew the floater valve and remove the metal nut to release the pneumatic valve.
     :::
-  - :::{thumb-figure} _images/imgur-okN52HT.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-okN52HT.jpg
     Install the Gauge
 
     Screw together the gauge, the 45 degree elbow, and the bulkhead coupler. Then install the assembly with the nut that came
     with the coupler. I didn't need to use any teflon tape or sealant for any of the couplings.
     :::
-* - :::{thumb-figure} _images/imgur-BvGrOio.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-BvGrOio.jpg
     First Use
 
     I pumped it to -20 inHg to start the oil flowing. It held that vacuum very well, and I only had to pump it back to -20 once
     more before all the oil was sucked out.
     :::
-  - :::{thumb-figure} _images/imgur-HsYcPca.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-HsYcPca.jpg
     Graduated Cylinder
 
     Before the first use I used water to manually measure and mark the container in quarts. I scored the plastic with a blade
     so I can re-mark it with a sharpie once the ink wears off over time. And yes, I pulled out 7 quarts of oil from my MK7 VW
     instead of 6. I overfilled it a bit on my last oil change, oops lol.
     :::
-* - :::{thumb-figure} _images/imgur-IS0lDFc.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-IS0lDFc.jpg
     Gas Can Spout
 
     Turns out the gas can spout I bought on Amazon is a perfect fit. This made pouring the used oil into the spent containers

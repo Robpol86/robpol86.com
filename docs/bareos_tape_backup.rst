@@ -13,7 +13,7 @@ I use `Bareos <https://www.bareos.org/en/>`_ (a fork of `Bacula <http://bacula.o
 Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it's probably
 debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool!
 
-.. thumb-figure:: _images/imgur-7DZQt.jpg
+.. thumb-figure:: /_images/pictures/imgur-import/imgur-7DZQt.jpg
 
 Equipment Used
 ==============

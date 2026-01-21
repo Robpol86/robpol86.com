@@ -93,16 +93,16 @@ Once you have your ``MIN`` and phone number:
 Installing Service
 ==================
 
-.. thumb-image:: _images/imgur-SndBdi5.png
+.. thumb-image:: /_images/pictures/imgur-import/imgur-SndBdi5.png
     :resize-width: 500
     :width: 24%
-.. thumb-image:: _images/imgur-2s0oJBW.png
+.. thumb-image:: /_images/pictures/imgur-import/imgur-2s0oJBW.png
     :resize-width: 500
     :width: 24%
-.. thumb-image:: _images/imgur-sWaejkq.png
+.. thumb-image:: /_images/pictures/imgur-import/imgur-sWaejkq.png
     :resize-width: 500
     :width: 24%
-.. thumb-image:: _images/imgur-IJgDFM4.png
+.. thumb-image:: /_images/pictures/imgur-import/imgur-IJgDFM4.png
     :resize-width: 500
     :width: 24%
 
@@ -162,10 +162,10 @@ Flashing the Phone
 Configuring APNs
 ----------------
 
-.. thumb-image:: _images/imgur-NqeznNP.png
+.. thumb-image:: /_images/pictures/imgur-import/imgur-NqeznNP.png
     :resize-width: 400
     :width: 49%
-.. thumb-image:: _images/imgur-aHlRCy6.png
+.. thumb-image:: /_images/pictures/imgur-import/imgur-aHlRCy6.png
     :resize-width: 400
     :width: 49%
 

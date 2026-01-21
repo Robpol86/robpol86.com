@@ -34,54 +34,54 @@ I used the following tools:
 * [X-ACTO knife](https://www.amazon.com/gp/product/B00JWFIKOC)
 
 ```{list-table}
-* - :::{thumb-figure} _images/imgur-6anE3Sa.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-6anE3Sa.jpg
     Before installing.
     :::
-  - :::{thumb-figure} _images/imgur-1Vho7Jt.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-1Vho7Jt.jpg
     Because I don't have a ratchet wrench that will fit I had to remove the rear tires to remove the screws in the wheel wells. I left the OEM mud flaps on to avoid scratch the bottom of my bumper.
     :::
-* - :::{thumb-figure} _images/imgur-BQOEa48.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-BQOEa48.jpg
     My 2019 Alltrack SE came with sensors in the bumpers, so I had to unplug this cable on the passenger side to get the bumper off.
     :::
-  - :::{thumb-figure} _images/imgur-C1Ic2zo.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-C1Ic2zo.jpg
     Removed the rear bumper.
     :::
-* - :::{thumb-figure} _images/imgur-TxzqnKN.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-TxzqnKN.jpg
     Removed the impact bar.
     :::
-  - :::{thumb-figure} _images/imgur-ZiMsEjW.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-ZiMsEjW.jpg
     Had to remove these sensors to get them out of the way when mounting the hitch.
     :::
-* - :::{thumb-figure} _images/imgur-hPgPDd2.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-hPgPDd2.jpg
     The instructions say to place the impact bar on the hitch and install both of them at the same time. The hitch itself is pretty heavy, and both of them together would be too heavy for a solo-install. Mounting them one at a time worked fine.
     :::
-  - :::{thumb-figure} _images/imgur-N6wDiSM.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-N6wDiSM.jpg
     Bought stronger bolts to use instead of the ones that came with the hitch: https://www.mcmaster.com/91029A107/ (from https://www.mcmaster.com/bolts/fastener-strength-grade-class~class-12-9/extreme-strength-metric-class-12-9-steel-hex-head-screws/thread-size~m8/).
     The EcoHitch manual also states to torque these to 18 ft-lbs but the Curt hitch manual says to torque to 23 ft-lbs. I went with the latter.
     :::
-* - :::{thumb-figure} _images/imgur-q3odPX7.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-q3odPX7.jpg
     To make trimming and mounting the bumper easier I removed the bottom piece of trim from the bumper before reinstalling the bumper.
     :::
-  - :::{thumb-figure} _images/imgur-HzpY5UB.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-HzpY5UB.jpg
     If you have OEM splash guards I highly recommend removing them now. I spent 30 minutes trying to get the bumper back on before I removed them and saw the plastic pieces not lining up correctly, on both sides!
     :::
-* - :::{thumb-figure} _images/imgur-C9wCPA2.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-C9wCPA2.jpg
     Popped off the inner piece of the bottom bumper trim. Will make it easier to trim.
     :::
-  - :::{thumb-figure} _images/imgur-IOmeAxb.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-IOmeAxb.jpg
     After iterating several times I ended up with these cuts to the bumper. It's about 9.75 cm wide, flush with the inner side of the preexisting cut out. I did the trimming with an X-Acto knife, which ended up being relatively easy to do and give me cleaner cuts than using snips. It was like cutting cold butter with a cold blunt butter knife.
     :::
-* - :::{thumb-figure} _images/imgur-8Muv2W7.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-8Muv2W7.jpg
     Reassembled before installing.
     :::
-  - :::{thumb-figure} _images/imgur-0Yt6Rpz.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-0Yt6Rpz.jpg
     Snapped right into place. Done!
     :::
-* - :::{thumb-image} _images/imgur-4VyjYuL.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-4VyjYuL.jpg
     :::
-  - :::{thumb-image} _images/imgur-rmVWLwl.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-rmVWLwl.jpg
     :::
-* - :::{thumb-image} _images/imgur-9AM0DN5.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-9AM0DN5.jpg
     :::
   -
 ```

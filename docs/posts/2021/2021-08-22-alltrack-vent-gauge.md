@@ -16,12 +16,12 @@ I didn't bother hooking up the dimmer wire since you can dim it manually by hold
 controller box using zip ties (it's on tight and doesn't move at all) and I heatshrinked the unused wires to avoid any
 potential shorts.
 
-```{thumb-figure} _images/imgur-qAFrhWS.jpg
+```{thumb-figure} /_images/pictures/imgur-import/imgur-qAFrhWS.jpg
 :alt: Vent Gauge
 :width: 100%
 ```
 
-```{thumb-figure} _images/imgur-KXQqsg6.jpg
+```{thumb-figure} /_images/pictures/imgur-import/imgur-KXQqsg6.jpg
 :alt: Controller Mount
 :width: 100%
 ```

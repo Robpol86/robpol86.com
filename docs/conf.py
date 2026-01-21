@@ -154,7 +154,7 @@ thumb_image_target_format_substitutions = {
     "SUBMODULE_BRANCH": SUBMODULE_BRANCH,
     "path_to_docs": html_theme_options["path_to_docs"],
     "repository_branch": html_theme_options["repository_branch"] or "None",
-    "fullsize_partialpath": lambda fullsize_path: fullsize_path.replace("todo/todo", ""),
+    # "fullsize_partialpath": lambda fullsize_path: fullsize_path.replace("todo/todo", ""),
 }
 
 

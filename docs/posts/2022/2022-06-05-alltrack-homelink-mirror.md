@@ -9,7 +9,8 @@ tags: car, alltrack
 
 # HomeLink Rearview Mirror
 
-```{figure} _images/imgur-Cvf4Nmp.gif
+```{thumb-figure} /_images/pictures/imgur-import/imgur-Cvf4Nmp.gif
+:no-resize:
 ```
 
 My 2019 Golf Alltrack SE came with an auto-dimming mirror, but I wanted the one with garage door buttons integrated in it.
@@ -34,27 +35,27 @@ The compass in the mirror seemed to self-calibrate after I drove around for a bi
 
 ```{list-table}
 
-* - :::{thumb-figure} _images/imgur-nsAp0wL.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-nsAp0wL.jpg
     %
     New mirror connector is nearly the same as my factory one except some pins are in different positions. Worked fine though.
     :::
-  - :::{thumb-figure} _images/imgur-skLYp4J.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-skLYp4J.jpg
     %
     Remove this black plastic trim by wedging a trim removal tool in the bottom center to split the two pieces apart. Do it
     gently, I broke the middle clip doing this (picture of clips is from a spare I bought, part numbers 3G0-858-633-82V and
     3G0-858-634-82V).
     :::
-* - :::{thumb-figure} _images/imgur-nmMMbH7.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-nmMMbH7.jpg
     %
     Original mirror with the trim removed. To remove the mirror you just need to twist it counter-clockwise (towards the driver
     side).
     :::
-  - :::{thumb-figure} _images/imgur-KmZVCHt.jpg
+  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-KmZVCHt.jpg
     %
     The new mirror. I run my dashcam wires through the mirror's metal base to avoid having the wires tear up my headliner in case
     somebody tries to steal it by pulling hard on it.
     :::
-* - :::{thumb-figure} _images/imgur-9tcWDox.jpg
+* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-9tcWDox.jpg
     %
     Zip tying my dashcam wires to the mirror before installing it.
     :::

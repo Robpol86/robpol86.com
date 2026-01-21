@@ -16,39 +16,39 @@ with felt so things wouldn't rattle. I'm using foil to eventually trace out the 
 I bought the drawer for $156 on ECS Tuning:
 [Driver's Seat Tray Kit Titanium Black 5GM 882 599 KT](https://www.ecstuning.com/b-genuine-volkswagen-audi-parts/drivers-seat-tray-kit-titanium-black/5gm882599kt/)
 
-```{thumb-figure} _images/imgur-W7T6lmB.jpg
+```{thumb-figure} /_images/pictures/imgur-import/imgur-W7T6lmB.jpg
 :width: 100%
 ```
 
 ```{list-table}
-* - :::{thumb-image} _images/imgur-2Ru4C2G.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-2Ru4C2G.jpg
     :::
-  - :::{thumb-image} _images/imgur-njMjiyx.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-njMjiyx.jpg
     :::
-  - :::{thumb-image} _images/imgur-M01ffNs.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-M01ffNs.jpg
     :::
-* - :::{thumb-image} _images/imgur-SuKmYfc.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-SuKmYfc.jpg
     :::
-  - :::{thumb-image} _images/imgur-9OHtucJ.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-9OHtucJ.jpg
     :::
-  - :::{thumb-image} _images/imgur-W7T6lmB.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-W7T6lmB.jpg
     :::
-* - :::{thumb-image} _images/imgur-8B9h5Ez.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-8B9h5Ez.jpg
     :::
-  - :::{thumb-image} _images/imgur-quRwwlP.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-quRwwlP.jpg
     :::
-  - :::{thumb-image} _images/imgur-WdTxCID.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-WdTxCID.jpg
     :::
-* - :::{thumb-image} _images/imgur-RmhF3eu.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-RmhF3eu.jpg
     :::
-  - :::{thumb-image} _images/imgur-rvg4OVm.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-rvg4OVm.jpg
     :::
-  - :::{thumb-image} _images/imgur-HU7zEKI.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-HU7zEKI.jpg
     :::
-* - :::{thumb-image} _images/imgur-LNlLcQS.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-LNlLcQS.jpg
     :::
-  - :::{thumb-image} _images/imgur-1lMS091.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-1lMS091.jpg
     :::
-  - :::{thumb-image} _images/imgur-88oVQIw.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-88oVQIw.jpg
     :::
 ```

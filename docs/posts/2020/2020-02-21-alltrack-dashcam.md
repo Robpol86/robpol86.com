@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Front Dashcam Pair
 
-```{thumb-figure} _images/imgur-9dVe8pY.jpg
+```{thumb-figure} /_images/pictures/imgur-import/imgur-9dVe8pY.jpg
 :width: 100%
 ```
 
@@ -51,113 +51,113 @@ I first installed just the two cameras in the front and wired them to the batter
 the batteries to my fuse panel, using the rear 12v outlet instead.
 
 ```{list-table}
-* - :::{thumb-image} _images/imgur-IDZ0czL.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-IDZ0czL.jpg
     :::
-  - :::{thumb-image} _images/imgur-TTJGbTB.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-TTJGbTB.jpg
     :::
-  - :::{thumb-image} _images/imgur-AlToxmu.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-AlToxmu.jpg
     :::
-* - :::{thumb-image} _images/imgur-FlbNm6F.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-FlbNm6F.jpg
     :::
-  - :::{thumb-image} _images/imgur-eHJGGFM.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-eHJGGFM.jpg
     :::
-  - :::{thumb-image} _images/imgur-XweNNXV.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-XweNNXV.jpg
     :::
-* - :::{thumb-image} _images/imgur-xp7Y01M.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-xp7Y01M.jpg
     :::
-  - :::{thumb-image} _images/imgur-iMCazjM.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-iMCazjM.jpg
     :::
-  - :::{thumb-image} _images/imgur-GtucHXE.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-GtucHXE.jpg
     :::
-* - :::{thumb-image} _images/imgur-8Pu19sr.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-8Pu19sr.jpg
     :::
-  - :::{thumb-image} _images/imgur-1sk83Rr.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-1sk83Rr.jpg
     :::
-  - :::{thumb-image} _images/imgur-brum0yz.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-brum0yz.jpg
     :::
-* - :::{thumb-image} _images/imgur-6CERPeS.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-6CERPeS.jpg
     :::
-  - :::{thumb-image} _images/imgur-byI36OA.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-byI36OA.jpg
     :::
-  - :::{thumb-image} _images/imgur-tLL235q.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-tLL235q.jpg
     :::
-* - :::{thumb-image} _images/imgur-coZX62E.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-coZX62E.jpg
     :::
-  - :::{thumb-image} _images/imgur-mKWecEj.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-mKWecEj.jpg
     :::
-  - :::{thumb-image} _images/imgur-nLWRZTx.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-nLWRZTx.jpg
     :::
-* - :::{thumb-image} _images/imgur-pHhZe6h.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-pHhZe6h.jpg
     :::
-  - :::{thumb-image} _images/imgur-MUgOLOs.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-MUgOLOs.jpg
     :::
-  - :::{thumb-image} _images/imgur-1QqYfap.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-1QqYfap.jpg
     :::
-* - :::{thumb-image} _images/imgur-BHT5uVb.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-BHT5uVb.jpg
     :::
-  - :::{thumb-image} _images/imgur-S74pBCH.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-S74pBCH.jpg
     :::
-  - :::{thumb-image} _images/imgur-LoyuAT1.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-LoyuAT1.jpg
     :::
-* - :::{thumb-image} _images/imgur-yh86Ype.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-yh86Ype.jpg
     :::
-  - :::{thumb-image} _images/imgur-aPmtrYC.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-aPmtrYC.jpg
     :::
-  - :::{thumb-image} _images/imgur-f80ILAA.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-f80ILAA.jpg
     :::
-* - :::{thumb-image} _images/imgur-W6yWhoK.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-W6yWhoK.jpg
     :::
-  - :::{thumb-image} _images/imgur-Q2ud7NR.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-Q2ud7NR.jpg
     :::
-  - :::{thumb-image} _images/imgur-XF3QmKu.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-XF3QmKu.jpg
     :::
-* - :::{thumb-image} _images/imgur-2Ls04ra.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-2Ls04ra.jpg
     :::
-  - :::{thumb-image} _images/imgur-xAGbc8Q.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-xAGbc8Q.jpg
     :::
-  - :::{thumb-image} _images/imgur-JohJ7k4.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-JohJ7k4.jpg
     :::
-* - :::{thumb-image} _images/imgur-HAp6oH1.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-HAp6oH1.jpg
     :::
-  - :::{thumb-image} _images/imgur-sVhTgrZ.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-sVhTgrZ.jpg
     :::
-  - :::{thumb-image} _images/imgur-2wUn61q.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-2wUn61q.jpg
     :::
-* - :::{thumb-image} _images/imgur-gqDFxtY.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-gqDFxtY.jpg
     :::
-  - :::{thumb-image} _images/imgur-mvyRz9i.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-mvyRz9i.jpg
     :::
-  - :::{thumb-image} _images/imgur-fQYWtik.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-fQYWtik.jpg
     :::
-* - :::{thumb-image} _images/imgur-eX4DkeH.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-eX4DkeH.jpg
     :::
-  - :::{thumb-image} _images/imgur-ia8kAVj.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-ia8kAVj.jpg
     :::
-  - :::{thumb-image} _images/imgur-EC8uTGP.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-EC8uTGP.jpg
     :::
-* - :::{thumb-image} _images/imgur-f6RsWJt.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-f6RsWJt.jpg
     :::
-  - :::{thumb-image} _images/imgur-fUV0GP5.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-fUV0GP5.jpg
     :::
-  - :::{thumb-image} _images/imgur-bw2TwLM.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-bw2TwLM.jpg
     :::
-* - :::{thumb-image} _images/imgur-4ItfspT.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-4ItfspT.jpg
     :::
-  - :::{thumb-image} _images/imgur-9dVe8pY.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-9dVe8pY.jpg
     :::
-  - :::{thumb-image} _images/imgur-6RHv76w.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-6RHv76w.jpg
     :::
-* - :::{thumb-image} _images/imgur-hHDo3C0.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-hHDo3C0.jpg
     :::
-  - :::{thumb-image} _images/imgur-g6oiZli.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-g6oiZli.jpg
     :::
-  - :::{thumb-image} _images/imgur-9ivpRLA.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-9ivpRLA.jpg
     :::
-* - :::{thumb-image} _images/imgur-poVGoQu.png
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-poVGoQu.png
     :::
-  - :::{thumb-image} _images/imgur-FjF73ez.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-FjF73ez.jpg
     :::
-  - :::{thumb-image} _images/imgur-cPOqdpY.png
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-cPOqdpY.png
     :::
 ```
 
@@ -170,25 +170,25 @@ a second tapped fuse since I may add a second pair of cameras in the future. I t
 the ignition is off they'll lose power and prevent the BlackVue battery from draining my car's battery when parked.
 
 ```{list-table}
-* - :::{thumb-image} _images/imgur-QVXJfM0.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-QVXJfM0.jpg
     :::
-  - :::{thumb-image} _images/imgur-Qo3cCJt.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-Qo3cCJt.jpg
     :::
-  - :::{thumb-image} _images/imgur-emg1RTQ.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-emg1RTQ.jpg
     :::
-* - :::{thumb-image} _images/imgur-vS722GJ.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-vS722GJ.jpg
     :::
-  - :::{thumb-image} _images/imgur-1bbH2Ix.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-1bbH2Ix.jpg
     :::
-  - :::{thumb-image} _images/imgur-dT3Kv4T.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-dT3Kv4T.jpg
     :::
-* - :::{thumb-image} _images/imgur-DfAf2CZ.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-DfAf2CZ.jpg
     :::
-  - :::{thumb-image} _images/imgur-LvopdKU.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-LvopdKU.jpg
     :::
-  - :::{thumb-image} _images/imgur-3HQLKt3.jpg
+  - :::{thumb-image} /_images/pictures/imgur-import/imgur-3HQLKt3.jpg
     :::
-* - :::{thumb-image} _images/imgur-YnwDPL7.jpg
+* - :::{thumb-image} /_images/pictures/imgur-import/imgur-YnwDPL7.jpg
     :::
   -
   -
