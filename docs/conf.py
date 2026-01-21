@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
 GIT_REPOSITORY = os.environ["GITHUB_REPOSITORY"] if os.environ.get("GITHUB_REPOSITORY", "") else None
 GIT_URL = f"https://github.com/{GIT_REPOSITORY}" if GIT_REPOSITORY else None
-SUBMODULE_BRANCH = "initial"  # TODO
+SUBMODULE_BRANCH = "initial"  # TODO ConfigParser
 
 
 # General configuration.
@@ -148,15 +148,10 @@ thumb_image_default_target = (
     "https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/"
     "%(SUBMODULE_BRANCH)s/%(fullsize_path:18:)s"
 )
-
-# Sphinx thumb image extension settings.
 thumb_image_resize_width = 800
 thumb_image_target_format = True
 thumb_image_target_format_substitutions = {
-    "GIT_REPOSITORY": GIT_REPOSITORY or "None",
     "SUBMODULE_BRANCH": SUBMODULE_BRANCH,
-    "path_to_docs": html_theme_options["path_to_docs"],
-    "repository_branch": html_theme_options["repository_branch"] or "None",
 }
 
 
