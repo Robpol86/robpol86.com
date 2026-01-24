@@ -1196,14 +1196,14 @@ testing-docutils = ["pygments", "pytest (>=8,<9)", "pytest-param-files (>=0.6.0,
 
 [[package]]
 name = "packaging"
-version = "25.0"
+version = "26.0"
 description = "Core utilities for Python packages"
 optional = false
 python-versions = ">=3.8"
 groups = ["main", "dev"]
 files = [
-    {file = "packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484"},
-    {file = "packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"},
+    {file = "packaging-26.0-py3-none-any.whl", hash = "sha256:b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529"},
+    {file = "packaging-26.0.tar.gz", hash = "sha256:00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"},
 ]
 
 [[package]]
@@ -2276,24 +2276,20 @@ dev = ["build", "flake8", "pre-commit", "pytest", "sphinx", "sphinx-last-updated
 
 [[package]]
 name = "sphinx-thumb-image"
-version = "0.1.0"
-description = "Sphinx extension that resizes images into thumbnails on the fly"
+version = "0.2.0"
+description = "Resize images in Sphinx documents/pages to thumbnails"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
-files = []
-develop = false
+files = [
+    {file = "sphinx_thumb_image-0.2.0-py3-none-any.whl", hash = "sha256:1d7b091db6ed319beccdb0ad2b6b2cd21c37c7d861e14354881f1e052ebf6849"},
+    {file = "sphinx_thumb_image-0.2.0.tar.gz", hash = "sha256:a60e1234c1d6043ee675759d1939683ca9484ed5c25ddaff3855aabac57df3e3"},
+]
 
 [package.dependencies]
 pillow = "*"
 portalocker = "*"
 sphinx = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/Robpol86/sphinx-thumb-image"
-reference = "callables"
-resolved_reference = "69f478a86534876f1e937a57559605a9855e8866"
 
 [[package]]
 name = "sphinxcontrib-applehelp"
@@ -2973,4 +2969,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.9"
-content-hash = "93a6230e09f044d770d9f05623c353aa4d823de711c9c39b4760caec43c87c9d"
+content-hash = "2b4ff072c38f3781dd4fc0f4824b14ec19d7faf2b2f53222a923965d8bbaeb82"

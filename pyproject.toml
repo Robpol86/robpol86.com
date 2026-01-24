@@ -21,7 +21,7 @@ dependencies = [
     "sphinx-copybutton",
     "sphinx-notfound-page",
     "sphinx-sitemap",
-    "sphinx-thumb-image @ git+https://github.com/Robpol86/sphinx-thumb-image@callables", #  TODO release
+    "sphinx-thumb-image",
     "sphinxcontrib-youtube",
     "sphinxext-opengraph",
 ]
