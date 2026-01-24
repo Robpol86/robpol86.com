@@ -8,9 +8,10 @@ poetry.lock:
 	poetry lock
 
 .PHONY: relock
-relock: _HELP = Delete and recreate poetry lock file
+relock: _HELP = Delete and recreate poetry lock file and update the git submodule
 relock:
 	rm -f poetry.lock && $(MAKE) poetry.lock
+	git submodule update --remote
 
 # Reduce repo/GHA/Makefile complexity by always installing dev deps
 .PHONY: deps

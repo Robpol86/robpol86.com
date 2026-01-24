@@ -9,7 +9,7 @@
 Wireless Charging Car Dock
 ==========================
 
-.. thumb-figure:: /_images/pictures/imgur-import/imgur-7WTPx0v.gif
+.. thumb-figure:: /_images/pictures/wireless-charging-car-dock/execution4.gif
    :no-resize:
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
@@ -33,19 +33,19 @@ my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-GJE9zkv.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_2.jpg
          :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-zIgncli.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_1.jpg
          :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7zHnpLJ.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-7zHnpLJ.jpg
          :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-55krwnA.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_17.jpg
          :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7lHFKUv.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_18.jpg
          :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-N3ZRXRI.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-N3ZRXRI.jpg
          :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-5KjUkO5.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-5KjUkO5.jpg
          :resize-width: 300px
       -
       -
@@ -54,7 +54,7 @@ my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 Previous Implementation
 =======================
 
-.. thumb-figure:: /_images/pictures/imgur-import/imgur-X8fbOGl.gif
+.. thumb-figure:: /_images/pictures/wireless-charging-car-dock/execution3.gif
    :no-resize:
 
 So I built my own. I originally posted everything
@@ -107,18 +107,18 @@ Here are some pictures of the final version, sans washers.
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-COavxfY.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_1.jpg
          :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-qJONaXG.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_2.jpg
          :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-GhOvZg9.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_3.jpg
          :resize-width: 300px
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-OvXMV5w.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_4.jpg
          :resize-width: 400px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-dRQ4q77.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_5.jpg
          :resize-width: 400px
 
 And here are some pictures after I routed the `wire inside the <https://www.amazon.com/gp/product/B003YKX6WW/>`_ center
@@ -129,11 +129,11 @@ The only downside is I can't close the little cubby anymore. Oh well.
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-sRKNN6F.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_6.jpg
          :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-8R5ROC4.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_8.jpg
          :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7jA3c1J.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_7.jpg
          :resize-width: 300px
 
 .. _Mountek nGroove Snap Magnetic Vehicle Mount: https://www.amazon.com/dp/B00E9L0HGI

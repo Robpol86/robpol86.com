@@ -136,9 +136,9 @@ fine).
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-55krwnA.jpg
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7lHFKUv.jpg
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7WTPx0v.gif
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_17.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_18.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/execution4.gif
           :no-resize:
 
 Delivery
