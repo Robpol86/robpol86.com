@@ -8,7 +8,6 @@ from urllib.parse import urlparse
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
 GIT_REPOSITORY = os.environ["GITHUB_REPOSITORY"] if os.environ.get("GITHUB_REPOSITORY", "") else None
 GIT_URL = f"https://github.com/{GIT_REPOSITORY}" if GIT_REPOSITORY else None
-SUBMODULE_BRANCH = "initial"  # TODO ConfigParser via robpol86_com/submodule_branch.py
 
 
 # General configuration.
@@ -25,6 +24,7 @@ extensions = [
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
     "ablog",  # https://ablog.readthedocs.io/
     "robpol86_com.html_context",
+    "robpol86_com.submodule_branch",
 ]
 language = "en"
 project = "Robpol86.com"
@@ -150,9 +150,6 @@ thumb_image_default_target = (
 )
 thumb_image_resize_width = 800
 thumb_image_target_format = True
-thumb_image_target_format_substitutions = {
-    "SUBMODULE_BRANCH": SUBMODULE_BRANCH,
-}
 
 
 # Ablog settings.
