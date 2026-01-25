@@ -50,8 +50,11 @@ image you can see that there is a lot of room down there.
 .. list-table::
 
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-NWCmESI.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-nbwMYCw.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-k41ZdxS.jpg
+          :resize-width: 300px
 
 Step 2: Remove Head Unit
 ------------------------
@@ -66,8 +69,11 @@ of the cables, I just left my shifter in 4th gear and rested the head unit on it
 .. list-table::
 
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-RjFyVQp.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-PJJv47m.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-ZxgLd1i.jpg
+          :resize-width: 300px
 
 Step 3: Remove Air Vents
 ------------------------
@@ -78,7 +84,9 @@ cable for the hazard lights button. It's clipped on and also held in place with 
 .. list-table::
 
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-Ww02qMK.jpg
+          :resize-width: 400px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-jX1kQG4.jpg
+          :resize-width: 400px
 
 Step 4: Run Cable through Vents
 -------------------------------
@@ -102,8 +110,11 @@ In the end, the USB cable runs down the right side of the air vents. It's a tigh
 .. list-table::
 
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-oEIw1kS.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-lwmxAvc.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-7O0EUpU.jpg
+          :resize-width: 300px
 
 Step 5: Reassembling Everything
 -------------------------------
@@ -123,8 +134,11 @@ minimal slack.
 .. list-table::
 
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-wzcOYuQ.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-2CMNydn.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-nd3whf1.jpg
+          :resize-width: 300px
 
 Step 6: Run Cable through Cubby
 -------------------------------
@@ -137,7 +151,9 @@ fine).
 .. list-table::
 
     * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_17.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_18.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/execution4.gif
           :no-resize:
 
@@ -149,35 +165,66 @@ Images I took shortly after receiving my brand new car.
 .. list-table::
 
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-T640Q.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-vT2SN.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-TQ3BH.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-g3vnR.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-Y2ziD.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-eLut3.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-UFZST.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-KZo5j.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-ziSTv.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-DbXvX.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-kVbMX.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-WJqLK.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-7v2Xf.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-PVixc.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-PEDQH.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-wtvxY.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-CaUOW.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-VzRGA.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-DHcik.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-11Gq8.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-DBQVK.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-5Ui7D.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-sjLJ2.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-fXw0P.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-NbFfu.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-49dr4.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-o6xgw.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-jJ994.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-tOmfy.jpg
+          :resize-width: 300px
       - .. thumb-image:: /_images/pictures/imgur-import/imgur-9wLnO.jpg
+          :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/imgur-import/imgur-YQhWF.jpg
+          :resize-width: 300px
       -
       -
