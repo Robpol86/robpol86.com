@@ -34,5 +34,5 @@ posts/**
 :hidden:
 :glob:
 
-**
+*
 ```
