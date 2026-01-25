@@ -164,67 +164,67 @@ Images I took shortly after receiving my brand new car.
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-T640Q.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/01-front-left.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-vT2SN.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/02-rear-left.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-TQ3BH.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/03-front.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-g3vnR.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/04-rear.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-Y2ziD.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/05-hatch-open.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-eLut3.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/06-dashboard.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-UFZST.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/07-center-dash.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-KZo5j.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/08-center-console-nook-open.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-ziSTv.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/09-center-console-nook.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-DbXvX.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/10-center-console.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-kVbMX.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/11-inverter.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-WJqLK.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/12-pano-roof-open.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-7v2Xf.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/13-pano-roof.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-PVixc.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/14-pano-roof-controls.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-PEDQH.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/15-gauge-cluster.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-wtvxY.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/16-light-switch.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-CaUOW.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/17-driver-door.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-VzRGA.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/18-driver-rear-door.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-DHcik.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/19-front-seats.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-11Gq8.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/20-rear-seats.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-DBQVK.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/21-left-doors.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-5Ui7D.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/22-cargo-cover.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-sjLJ2.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/23-cargo-area.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-fXw0P.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/24-cargo-area-2.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-NbFfu.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/25-cargo-medium-storage.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-49dr4.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/26-cargo-large-storage.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-o6xgw.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/27-cargo-large-storage-2.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-jJ994.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/28-spare-tire.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-tOmfy.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/29-cargo-nook.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-9wLnO.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/30-cargo-small-storage.jpg
           :resize-width: 300px
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-YQhWF.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/31-cargo-small-storage-open.jpg
           :resize-width: 300px
       -
       -
