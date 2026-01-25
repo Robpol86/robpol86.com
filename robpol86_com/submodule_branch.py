@@ -1,5 +1,9 @@
 """Read the pictures git submodule's branch name."""
 
+import re
+from configparser import ConfigParser
+from pathlib import Path
+
 from sphinx.application import Sphinx
 from sphinx.config import Config
 
@@ -11,8 +15,18 @@ def read_gitmodules(app: Sphinx, config: Config):
     :param app: Sphinx application object.
     :param config: Sphinx config.
     """
+    # Read .gitmodules.
+    gitmodules = Path(__file__).parent.parent / ".gitmodules"
+    parser = ConfigParser()
+    parser.read(gitmodules)
+    section = 'submodule "docs/_images/pictures"'
+    branch = parser[section]["branch"]
+    url = parser[section]["url"]
+    repo = re.sub(r"^https://github.com/", "", re.sub(r"[.]git$", "", url))
+
+    # Update Sphinx config.
     thumb_image_target_format_substitutions: dict = config.thumb_image_target_format_substitutions
-    branch = "initial"  # TODO
+    thumb_image_target_format_substitutions.setdefault("SUBMODULE_REPO", repo)
     thumb_image_target_format_substitutions.setdefault("SUBMODULE_BRANCH", branch)
 
 

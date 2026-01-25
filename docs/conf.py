@@ -145,8 +145,7 @@ ogp_use_first_image = True
 sitemap_show_lastmod = False
 sitemap_url_scheme = "{link}"
 thumb_image_default_target = (
-    "https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/"
-    "%(SUBMODULE_BRANCH)s/%(fullsize_path:18:)s"
+    "https://raw.githubusercontent.com/%(SUBMODULE_REPO)s/refs/heads/%(SUBMODULE_BRANCH)s/%(fullsize_path:18:)s"
 )
 thumb_image_resize_width = 800
 thumb_image_target_format = True
