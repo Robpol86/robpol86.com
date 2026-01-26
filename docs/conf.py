@@ -13,7 +13,7 @@ GIT_URL = f"https://github.com/{GIT_REPOSITORY}" if GIT_REPOSITORY else None
 # General configuration.
 author = "Robpol86"
 copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-builtin  # noqa
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "_images"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
