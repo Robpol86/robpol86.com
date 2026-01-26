@@ -2292,8 +2292,8 @@ sphinx = "*"
 [package.source]
 type = "git"
 url = "https://github.com/Robpol86/sphinx-thumb-image"
-reference = "fix-rebuild"
-resolved_reference = "51962709058ae5bf08e5c74e968938783835668d"
+reference = "main"
+resolved_reference = "9cccb5d1e6cdd94418066fe5ffdb6357ddc61964"
 
 [[package]]
 name = "sphinxcontrib-applehelp"
@@ -2973,4 +2973,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.9"
-content-hash = "3b13a2fedbe4d89ee9dfe7b57a959a9734ff5555a51b1548dc2d4b7a882fd25d"
+content-hash = "bd14c604e5d7143f031ac0f273a46802257fd3775b318c3a7d1438bd7939aa0e"
