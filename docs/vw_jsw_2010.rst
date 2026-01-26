@@ -49,11 +49,11 @@ image you can see that there is a lot of room down there.
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-NWCmESI.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_3.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-nbwMYCw.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_4.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-k41ZdxS.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_5.jpg
           :resize-width: 300px
 
 Step 2: Remove Head Unit
@@ -68,11 +68,11 @@ of the cables, I just left my shifter in 4th gear and rested the head unit on it
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-RjFyVQp.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_6.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-PJJv47m.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_7.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-ZxgLd1i.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_8.jpg
           :resize-width: 300px
 
 Step 3: Remove Air Vents
@@ -83,9 +83,9 @@ cable for the hazard lights button. It's clipped on and also held in place with 
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-Ww02qMK.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_9.jpg
           :resize-width: 400px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-jX1kQG4.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_10.jpg
           :resize-width: 400px
 
 Step 4: Run Cable through Vents
@@ -109,11 +109,11 @@ In the end, the USB cable runs down the right side of the air vents. It's a tigh
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-oEIw1kS.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_11.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-lwmxAvc.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_12.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-7O0EUpU.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_13.jpg
           :resize-width: 300px
 
 Step 5: Reassembling Everything
@@ -133,11 +133,11 @@ minimal slack.
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-wzcOYuQ.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_14.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-2CMNydn.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_15.jpg
           :resize-width: 300px
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-nd3whf1.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_16.jpg
           :resize-width: 300px
 
 Step 6: Run Cable through Cubby
