@@ -15,40 +15,58 @@ data. I'm using it with [Google Fi](https://fi.google.com/about).
 ```{list-table}
 
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-yZjfLix.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-MUdUSiT.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-4Pdh8oi.jpg
+    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-6qS4mh5.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-m7iPSx8.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-7t02RPc.jpg
+    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-Jgq94Qp.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-IzUS6AD.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-sY2JXzl.jpg
+    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-qcAAd6q.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-UgbzUxF.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-KtwAoH9.jpg
+    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-lO1oBgL.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-8KnzN30.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-zRzUg1m.jpg
+    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-6U8BpT3.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-0m4FKnV.jpg
+    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-zbxHXjR.jpg
+    :resize-width: 300
     :::
 ```
 
@@ -271,7 +289,7 @@ The device should show up when you run `fastboot devices` within a couple of sec
 say "Welcome" the entire time.
 
 ```{thumb-figure} /_images/pictures/imgur-import/imgur-pJ9WuSf.png
-:resize-width: 500
+:no-resize:
 ```
 
 To get out of fastboot mode just power cycle it or run `fastboot continue`.
@@ -307,7 +325,7 @@ ln: /sbin/usb/compositions/hsusb_next: File exists
 The device should immediately show up when you run `adb devices`.
 
 ```{thumb-figure} /_images/pictures/imgur-import/imgur-dFVo3HQ.png
-:resize-width: 400
+:no-resize:
 ```
 
 ## Automatic Power On
@@ -322,7 +340,6 @@ it between the case and the button so it's always pressed down.
 
 ```{thumb-image} /_images/pictures/imgur-import/imgur-4Pdh8oi.jpg
 :alt: T9 Power Button Wedge
-:width: 100%
 ```
 
 ## Notes
