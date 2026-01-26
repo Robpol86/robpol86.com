@@ -13,7 +13,7 @@ me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does 
 
 ## Create ISO
 
-```{thumb-image} /_images/pictures/imgur-import/imgur-1J45UMB.png
+```{thumb-image} /_images/pictures/windows-11-mac/custom-iso.png
 ```
 
 | File Name                  | sha1sum / Get-FileHash -Algorithm SHA1   |
@@ -75,13 +75,16 @@ Clean up
 ## Install
 
 ```{list-table}
-* - ```{thumb-figure} /_images/pictures/imgur-import/imgur-TjJUZ4T.png
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/boot-camp.png
+    :resize-width: 300
     Boot Camp Assistant
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-gF0n0oK.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/windows-setup.png
+    :resize-width: 300
     Installing Windows 11
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-Cvx57Ac.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/boot-camp-windows-installer.png
+    :resize-width: 300
     Boot Camp Drivers
     ```
 ```
@@ -137,13 +140,16 @@ You'll also need to obtain the Windows Support Software from the Boot Camp Assis
 ### Format USB Flash Drive
 
 ```{list-table}
-* - ```{thumb-figure} /_images/pictures/imgur-import/imgur-GvtHamn.png
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-disk-utility.png
+    :resize-width: 300
     Disk Utility
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-O9Ytvtw.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-erase.png
+    :resize-width: 300
     Erase USB Drive
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-nlgkq4N.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-unetbootin.png
+    :resize-width: 300
     UNetbootin
     ```
 ```
@@ -171,13 +177,16 @@ end.
 ```
 
 ```{list-table}
-* - ```{thumb-figure} /_images/pictures/imgur-import/imgur-HL5fUTI.png
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-partition-ssd.png
+    :resize-width: 300
     Partition SSD
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-2k0QnAP.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-add-partition.png
+    :resize-width: 300
     Add Partition
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-ViA41PH.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-bootcamp.png
+    :resize-width: 300
     Name it BOOTCAMP
     ```
 ```
@@ -200,10 +209,12 @@ It removed the Windows partition and removed the Windows EFI entry as well!
 ## Remove macOS
 
 ```{list-table}
-* - ```{thumb-figure} /_images/pictures/imgur-import/imgur-58oJm7t.png
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/minitool-initial.png
+    :resize-width: 400
     Before Repartitioning
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-gPd6laP.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/minitool-final.png
+    :resize-width: 400
     After Repartitioning
     ```
 ```
@@ -221,13 +232,16 @@ do the repartitioning from Windows.
 ## BitLocker
 
 ```{list-table}
-* - ```{thumb-figure} /_images/pictures/imgur-import/imgur-EKbY5zv.png
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-tpm.png
+    :resize-width: 300
     Use gpedit.msc to disable the TPM check
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-I6XTevu.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-setting.png
+    :resize-width: 300
     Now you can enable BitLocker
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-mop8gO7.png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-enable.png
+    :resize-width: 300
     This error is expected
     ```
 ```
@@ -255,10 +269,12 @@ Now you can enable BitLocker the usual way.
 ## Restore macOS
 
 ```{list-table}
-* - ```{thumb-figure} /_images/pictures/imgur-import/imgur-ICGyjGt.jpg
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/main-menu.jpg
+    :resize-width: 400
     Main Menu
     ```
-  - ```{thumb-figure} /_images/pictures/imgur-import/imgur-sDNXbxm.jpg
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/disk-utility.jpg
+    :resize-width: 400
     Erase the SSD
     ```
 ```
