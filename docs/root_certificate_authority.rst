@@ -14,15 +14,15 @@ to get to your IPMI web interface? Have I got a guide for you!
 
 .. list-table::
 
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-Waa1HJk.png
+    * - .. thumb-image:: /_images/pictures/root-ca/01-keychain.png
             :resize-width: 400
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-eiUc8Bu.png
+      - .. thumb-image:: /_images/pictures/root-ca/02-router.png
             :resize-width: 400
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-4NS0cDs.png
+    * - .. thumb-image:: /_images/pictures/root-ca/03-windows-10.png
             :resize-width: 400
-      - .. thumb-image:: /_images/pictures/imgur-import/imgur-uqRXaeu.png
+      - .. thumb-image:: /_images/pictures/root-ca/04-bridge-the-gap-rpi.png
             :resize-width: 400
-    * - .. thumb-image:: /_images/pictures/imgur-import/imgur-iz4qY7O.png
+    * - .. thumb-image:: /_images/pictures/root-ca/05-bridge-the-gap-android.png
             :resize-width: 400
       -
 
