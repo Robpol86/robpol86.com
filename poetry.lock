@@ -2276,24 +2276,20 @@ dev = ["build", "flake8", "pre-commit", "pytest", "sphinx", "sphinx-last-updated
 
 [[package]]
 name = "sphinx-thumb-image"
-version = "0.2.0"
+version = "0.3.0"
 description = "Resize images in Sphinx documents/pages to thumbnails"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
-files = []
-develop = false
+files = [
+    {file = "sphinx_thumb_image-0.3.0-py3-none-any.whl", hash = "sha256:fcc1f28435e28f1887d81651da973e629b71facdcbcc26e88fe0ebcf01f37640"},
+    {file = "sphinx_thumb_image-0.3.0.tar.gz", hash = "sha256:d536e0709dd1ae2275c4ca9f810f87585cd150504787eaa4de3fc3046179e7c7"},
+]
 
 [package.dependencies]
 pillow = "*"
 portalocker = "*"
 sphinx = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/Robpol86/sphinx-thumb-image"
-reference = "main"
-resolved_reference = "9cccb5d1e6cdd94418066fe5ffdb6357ddc61964"
 
 [[package]]
 name = "sphinxcontrib-applehelp"
@@ -2973,4 +2969,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.9"
-content-hash = "bd14c604e5d7143f031ac0f273a46802257fd3775b318c3a7d1438bd7939aa0e"
+content-hash = "2b4ff072c38f3781dd4fc0f4824b14ec19d7faf2b2f53222a923965d8bbaeb82"
