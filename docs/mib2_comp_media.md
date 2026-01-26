@@ -56,8 +56,7 @@ Using your OBD11 or VCDS enable development mode (I'll be using OBD11):
    1. Set to **Activated**
 5. Write
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-dba8LPe.png
-:width: 100%
+```{thumb-figure} /_images/pictures/mib2-comp-media/enable_dev_mode.png
 ```
 
 ```{tip}
@@ -83,16 +82,14 @@ Next we need to enable ethernet mode, otherwise the USB network adapter will be 
 9. Ping `192.168.1.4` to confirm the head unit's network is up
    1. You can confirm this is the head unit's IP by going back to the green menu debugging mlp screen
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-0kQqbaI.png
-:width: 100%
+```{thumb-figure} /_images/pictures/mib2-comp-media/green_menu.png
 ```
 
 ### Telnet or FTP
 
 The last step is to confirm you can telnet and/or FTP into the head unit.
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-LlmTirV.jpg
-:width: 100%
+```{thumb-figure} /_images/pictures/mib2-comp-media/rooting.jpg
 ```
 
 My unit exposed three services over the network:
