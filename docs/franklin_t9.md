@@ -14,58 +14,58 @@ data. I'm using it with [Google Fi](https://fi.google.com/about).
 
 ```{list-table}
 
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-yZjfLix.jpg
+* - :::{thumb-image} /_images/pictures/franklin-t9/bottom.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-MUdUSiT.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/t9_logo.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-4Pdh8oi.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/t9_power_wedge.jpg
     :resize-width: 300
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-6qS4mh5.jpg
+* - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_1.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-m7iPSx8.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_2.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-7t02RPc.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_3.jpg
     :resize-width: 300
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-Jgq94Qp.jpg
+* - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_4.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-IzUS6AD.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_5.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-sY2JXzl.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_6.jpg
     :resize-width: 300
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-qcAAd6q.jpg
+* - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_7.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-UgbzUxF.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_8.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-KtwAoH9.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_9.jpg
     :resize-width: 300
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-lO1oBgL.jpg
+* - :::{thumb-image} /_images/pictures/franklin-t9/top.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-8KnzN30.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_1.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-zRzUg1m.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_2.jpg
     :resize-width: 300
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-6U8BpT3.jpg
+* - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_3.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-0m4FKnV.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_4.jpg
     :resize-width: 300
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-zbxHXjR.jpg
+  - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_5.jpg
     :resize-width: 300
     :::
 ```
@@ -262,7 +262,7 @@ You can easily change the logo on the little LCD by editing a PNG file. Since my
 
 I edited that file using Paint 3D to keep the transparency.
 
-```{thumb-image} /_images/pictures/imgur-import/imgur-MUdUSiT.jpg
+```{thumb-image} /_images/pictures/franklin-t9/t9_logo.jpg
 :alt: Hacked Logo
 :width: 100%
 ```
@@ -282,13 +282,13 @@ The hard way to get into fastboot is to open up the device and short a couple of
 1. Short the two pins circled in red in the image below
 1. Power on with the power button
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-gi7e24z.jpg
+```{thumb-figure} /_images/pictures/franklin-t9/imgur-gi7e24z.jpg
 ```
 
 The device should show up when you run `fastboot devices` within a couple of seconds, and the hotspot's display will just
 say "Welcome" the entire time.
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-pJ9WuSf.png
+```{thumb-figure} /_images/pictures/franklin-t9/imgur-pJ9WuSf.png
 :no-resize:
 ```
 
@@ -324,7 +324,7 @@ ln: /sbin/usb/compositions/hsusb_next: File exists
 
 The device should immediately show up when you run `adb devices`.
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-dFVo3HQ.png
+```{thumb-figure} /_images/pictures/franklin-t9/imgur-dFVo3HQ.png
 :no-resize:
 ```
 
@@ -338,7 +338,7 @@ It turns out if you hold down the power button when you plug in the device, it w
 to hold the button it won't shut back down. Knowing this the solution is to cut a piece of plastic into a "U" shape and wedge
 it between the case and the button so it's always pressed down.
 
-```{thumb-image} /_images/pictures/imgur-import/imgur-4Pdh8oi.jpg
+```{thumb-image} /_images/pictures/franklin-t9/t9_power_wedge.jpg
 :alt: T9 Power Button Wedge
 ```
 
