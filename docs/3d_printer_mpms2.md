@@ -36,45 +36,61 @@ For crimping the wires I used the following:
 * [Wire Stripper Automatic 3 in 1 Multi-Function Wire Pliers (22AWG-8AWG)](https://www.amazon.com/dp/B08XXL3B7K)
 
 ```{list-table}
+:widths: 10 10
+
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-ELxxo4Y.jpg
+    :resize-width: 400
     Old hot end with the stepper motor and brass nozzle already removed.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-niwWs5S.jpg
+    :resize-width: 400
     New cooling block and heat break being assembled.
     :::
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-ZYG9SuA.jpg
+    :resize-width: 400
     The bottom are the old bits.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-otK2hdq.jpg
+    :resize-width: 400
     Old carriage plate on the left and the new thicker one on the right.
     :::
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-FYdDx79.jpg
+    :resize-width: 400
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-C00K6Ne.jpg
+    :resize-width: 400
     Crimped new terminals on the shortened fan cable.
     :::
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-wjOobLN.jpg
+    :resize-width: 400
     I pushed the terminals into the connector using a paper clip to avoid kinking the thin wires.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-cHl9KBe.jpg
+    :resize-width: 400
     ARCTIC thermal pad about to get chopped up.
     :::
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-nKOBlK1.jpg
+    :resize-width: 400
     Applied it to the heat sink and cut out holes for the screws before threading the screws in.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-d5Qa3UV.jpg
+    :resize-width: 400
     Didn't want excess thermal pad material to get jammed up in the extruder gearing so I trimmed it some more.
     :::
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-YJWyMhi.jpg
+    :resize-width: 400
     Extruder re-assembled.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-C0yb2eE.jpg
+    :resize-width: 400
     Original noisy fan.
     :::
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-iM8leWP.jpg
+    :resize-width: 400
     New quieter fan.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-0Y8Z3Ca.jpg
+    :resize-width: 400
     Presto!
     :::
 ```
@@ -92,30 +108,41 @@ Items needed:
 * Gloves (I used nitrile gloves) to prevent adhesive from reconstituting on your fingers
 
 ```{list-table}
+:widths: 10 10
+
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-O6toHP4.jpg
+    :resize-width: 400
     Removed the original BuildTak sheet from my Monoprice Maker Select v2.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-BSiu7G3.jpg
+    :resize-width: 400
     First time I've seen the underside, neat.
     :::
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-AQ4ZU37.jpg
+    :resize-width: 400
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-fXsf2fm.jpg
+    :resize-width: 400
     Need to get rid of the adhesive residue.
     :::
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-xnsWJTr.jpg
+    :resize-width: 400
     Got it off with some 91% isopropyl alcohol, paper towels, and nitrile gloves. Took about an hour.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-KfuU1sd.jpg
+    :resize-width: 400
     Used an old glass bed as a template to cut the corners off the magnetic sheet.
     :::
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-qV4PvZy.jpg
+    :resize-width: 400
     I thought those were bubbles but it feels flat to the touch.
     :::
   - :::{thumb-figure} /_images/pictures/imgur-import/imgur-gQZBOjY.jpg
+    :resize-width: 400
     Done!
     :::
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-FtYoGQn.jpg
+    :resize-width: 400
     Nice and flat. The magnet holds the plate very well in place.
     :::
   -
