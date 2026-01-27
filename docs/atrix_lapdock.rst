@@ -311,7 +311,7 @@ Lapdock 500 Teardown
 .. list-table::
     :widths: 10 10
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-on1EG.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_1_bottom.jpg
             :resize-width: 400
 
             Step 1: First Set of Screws to Remove
@@ -319,7 +319,7 @@ Lapdock 500 Teardown
             To start the teardown, remove most of the rubber grommets/feet on the underside of the Lapdock to access the screws.
             There are 15 screws total (not counting the two used for the pull-out tray).
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-4zK6V.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_2_keyboard.jpg
             :resize-width: 400
 
             Step 2: Removing the Keyboard
@@ -329,7 +329,7 @@ Lapdock 500 Teardown
             off once all the tabs are pushed in. With the keyboard out, lightly tug on its ribbon cable to disconnect it from the
             Lapdock's controller board. Do the same with the touchpad's cable while you're at it.
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-nH3Vw.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_3_io-cover.jpg
             :resize-width: 400
 
             Step 3: Removing the Plastic Cover
@@ -337,7 +337,7 @@ Lapdock 500 Teardown
             Gently tug up on the black plastic panel covering the IO ports. I pulled out the phone drawer and started pulling up
             from there.
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-qVXHC.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_4_palmrest.jpg
             :resize-width: 400
 
             Step 4: Removing the Palm Rest
@@ -347,7 +347,7 @@ Lapdock 500 Teardown
             holes (using a Phillips) and using a flathead to pry the bottom part of the Lapdock (which curves up) from the palm
             rest. Be very gentle, the clips are fragile and I broke one during this step.
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-VxcB7.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_5_inside.jpg
             :resize-width: 400
 
             Step 5: Removing the Monitor
@@ -356,7 +356,7 @@ Lapdock 500 Teardown
             To remove the bigger cable you gently tug on the cord. The cable should disconnect from the connector. To remove the
             smaller cable, I used my thumb nails (both) to pry the plastic connector from the controller.
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-bcGIk.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_6_no-monitor.jpg
             :resize-width: 400
 
             Step 6: Lapdock 500 With No Monitor
@@ -364,14 +364,14 @@ Lapdock 500 Teardown
             After removing five screws on the hinge bases (attached to the Lapdock's base; three screws on the left, two on the
             right) the monitor should lift right off.
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-GnLRF.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_7_controller.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board
 
             This is a close-up of the Lapdock's controller board.
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-n3Yv0.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_8_wish.jpg
             :resize-width: 400
 
             The perfect Raspberry Pi Laptop
@@ -379,57 +379,57 @@ Lapdock 500 Teardown
             If someone can help me hack this stupid Lapdock 500 to work with any HDMI input, this would be possible! I would
             probably have to remove a few components from the Pi though.
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-UOARn.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_9_controller_upper-left.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Upper Left)
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-9AxyU.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_10_controller_upper-center.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Upper Center)
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-knTzK.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_11_controller_upper-right.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Upper Right)
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-mx9AW.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_12_controller_lower-left.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Lower Left)
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-S6zx9.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_13_controller_lower-center.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Lower Center)
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-2PbFf.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_14_controller_lower-right.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Lower Right)
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-WNuEX.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_15_controller2.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Second Shot)
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-HD108.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_16_controller_cable-removed.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Input Cable Removed)
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-R5mq1.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_17_controller_rear.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Rear)
 
-      - .. thumb-figure:: /_images/pictures/imgur-import/imgur-pphBk.jpg
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_18_controller_rear-top.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Rear Top)
 
-    * - .. thumb-figure:: /_images/pictures/imgur-import/imgur-uW0oK.jpg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_19_controller_rear-bottom.jpg
             :resize-width: 400
 
             Lapdock 500 Controller Board (Rear Bottom)
