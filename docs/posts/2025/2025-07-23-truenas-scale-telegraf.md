@@ -11,9 +11,13 @@ tags: homelab, nas
 
 ```{list-table}
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-uXJoPnn.png
+    :resize-width: 400
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-O8r0lnC.png
+    :resize-width: 400
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-ovWSIhf.png
+    :resize-width: 400
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-AzEomCa.png
+    :resize-width: 400
 ```
 
 This guide will explain how to setup [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/),
