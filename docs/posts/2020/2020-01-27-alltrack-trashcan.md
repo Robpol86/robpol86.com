@@ -14,7 +14,7 @@ Bought this from Amazon:
 
 Sadly it's no longer available.
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-BwicdEg.jpg
+```{thumb-figure} /_images/pictures/alltrack/trashcan.jpg
 :alt: Trashcan
 :width: 100%
 ```
