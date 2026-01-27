@@ -93,18 +93,16 @@ Once you have your ``MIN`` and phone number:
 Installing Service
 ==================
 
-.. thumb-image:: /_images/pictures/imgur-import/imgur-SndBdi5.png
-    :resize-width: 500
-    :width: 24%
-.. thumb-image:: /_images/pictures/imgur-import/imgur-2s0oJBW.png
-    :resize-width: 500
-    :width: 24%
-.. thumb-image:: /_images/pictures/imgur-import/imgur-sWaejkq.png
-    :resize-width: 500
-    :width: 24%
-.. thumb-image:: /_images/pictures/imgur-import/imgur-IJgDFM4.png
-    :resize-width: 500
-    :width: 24%
+.. list-table::
+
+    * - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig1_droidflash_hwvsp.png
+            :resize-width: 200
+      - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig2_droidflash_cdmaws.png
+            :resize-width: 200
+      - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig3_droidflash_qpstmip.png
+            :resize-width: 200
+      - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig4_droidflash_qpstppp.png
+            :resize-width: 200
 
 Flashing the Phone
 ------------------
@@ -162,12 +160,12 @@ Flashing the Phone
 Configuring APNs
 ----------------
 
-.. thumb-image:: /_images/pictures/imgur-import/imgur-NqeznNP.png
-    :resize-width: 400
-    :width: 49%
-.. thumb-image:: /_images/pictures/imgur-import/imgur-aHlRCy6.png
-    :resize-width: 400
-    :width: 49%
+.. list-table::
+
+    * - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig5_droidflash_openapns.png
+            :resize-width: 400
+      - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig6_droidflash_apns.png
+            :resize-width: 400
 
 1. Once Android boots back up, open the app **Voice Dialer**.
     1. Say aloud "Open APNs" and tap OK.
