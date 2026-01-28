@@ -97,7 +97,7 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
     :::
   - :::{thumb-image} /_images/pictures/alltrack/dashcam-2021/IMG_3029.png
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-xzICRX8.png
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2021/imgur-xzICRX8.png
     :::
   -
 ```
