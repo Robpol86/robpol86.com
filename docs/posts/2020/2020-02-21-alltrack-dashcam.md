@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Front Dashcam Pair
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-9dVe8pY.jpg
+```{thumb-figure} /_images/pictures/alltrack/dashcam-2020/IMG_0799.jpeg
 :width: 100%
 ```
 
@@ -51,113 +51,113 @@ I first installed just the two cameras in the front and wired them to the batter
 the batteries to my fuse panel, using the rear 12v outlet instead.
 
 ```{list-table}
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-IDZ0czL.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0347.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-TTJGbTB.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0387.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-AlToxmu.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0390.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-FlbNm6F.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0403.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-eHJGGFM.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0406.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-XweNNXV.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0410.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-xp7Y01M.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0412.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-iMCazjM.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0417.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-GtucHXE.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0423.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-8Pu19sr.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0426.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-1sk83Rr.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0427.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-brum0yz.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0428.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-6CERPeS.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0430.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-byI36OA.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0437.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-tLL235q.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0443.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-coZX62E.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0444.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-mKWecEj.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0446.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-nLWRZTx.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0447.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-pHhZe6h.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0459.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-MUgOLOs.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0466.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-1QqYfap.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0478.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-BHT5uVb.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0479.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-S74pBCH.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0503.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-LoyuAT1.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0515.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-yh86Ype.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0526.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-aPmtrYC.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0547.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-f80ILAA.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0552.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-W6yWhoK.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0561.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-Q2ud7NR.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0564.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-XF3QmKu.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0566.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-2Ls04ra.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0569.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-xAGbc8Q.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0590.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-JohJ7k4.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0601.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-HAp6oH1.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0614.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-sVhTgrZ.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0617.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-2wUn61q.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0626.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-gqDFxtY.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0693.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-mvyRz9i.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0699.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-fQYWtik.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0703.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-eX4DkeH.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0710.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-ia8kAVj.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0734.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-EC8uTGP.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0740.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-f6RsWJt.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0750.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-fUV0GP5.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0773.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-bw2TwLM.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0790.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-4ItfspT.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0791.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-9dVe8pY.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0799.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-6RHv76w.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0801.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-hHDo3C0.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0815.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-g6oiZli.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0830.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-9ivpRLA.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0838.jpeg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-poVGoQu.png
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0840.png
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-FjF73ez.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_front-forward.jpeg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-cPOqdpY.png
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_front-inward.png
     :::
 ```
 
