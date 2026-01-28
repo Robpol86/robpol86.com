@@ -174,25 +174,25 @@ the ignition is off they'll lose power and prevent the BlackVue battery from dra
 ```{list-table-thumbs}
 :resize-width: 300
 
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-QVXJfM0.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-QVXJfM0.jpg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-Qo3cCJt.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-Qo3cCJt.jpg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-emg1RTQ.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-emg1RTQ.jpg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-vS722GJ.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-vS722GJ.jpg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-1bbH2Ix.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-1bbH2Ix.jpg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-dT3Kv4T.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-dT3Kv4T.jpg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-DfAf2CZ.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-DfAf2CZ.jpg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-LvopdKU.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-LvopdKU.jpg
     :::
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-3HQLKt3.jpg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-3HQLKt3.jpg
     :::
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-YnwDPL7.jpg
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-YnwDPL7.jpg
     :::
   -
   -
