@@ -19,7 +19,7 @@ prepay with cash at gas stations.
 * Apps > Refuel quantity in dashboard > ON
 * https://forum.obdeleven.com/thread/536/refuel-quantity-dashboard
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-cJgOPtJ.jpg
+```{thumb-figure} /_images/pictures/alltrack/refuel-quantity.jpg
 :alt: Refuel quantity in dashboard
 :width: 100%
 ```
@@ -31,8 +31,7 @@ Instead of having to toggle DST manually the car does it automatically.
 * Vehicle > 5F Multimedia > Long Coding > Summertime-automatic > USA
 * https://www.golfmk7.com/forums/index.php?threads/automatic-summer-time.341637
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-6UlKtvf.jpg
+```{thumb-figure} /_images/pictures/alltrack/auto-dst.jpg
 :alt: Automatic daylight saving time switchover
 :width: 100%
 ```
-
