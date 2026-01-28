@@ -50,7 +50,9 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 I first installed just the two cameras in the front and wired them to the batteries in my cargo area. For now I didn't wire
 the batteries to my fuse panel, using the rear 12v outlet instead.
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
+
 * - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0347.jpeg
     :::
   - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0387.jpeg
@@ -155,7 +157,7 @@ the batteries to my fuse panel, using the rear 12v outlet instead.
     :::
 * - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0840.png
     :::
-  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_front-forward.jpeg
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_front-forward.png
     :::
   - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_front-inward.png
     :::
@@ -169,7 +171,9 @@ a second tapped fuse since I may add a second pair of cameras in the future. I t
 [fuse 48 and 36](https://fuse-box.info/volkswagen/volkswagen-golf-vii-mk7-2013-2020-fuses). These are switched fuses so when
 the ignition is off they'll lose power and prevent the BlackVue battery from draining my car's battery when parked.
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
+
 * - :::{thumb-image} /_images/pictures/imgur-import/imgur-QVXJfM0.jpg
     :::
   - :::{thumb-image} /_images/pictures/imgur-import/imgur-Qo3cCJt.jpg
@@ -193,4 +197,3 @@ the ignition is off they'll lose power and prevent the BlackVue battery from dra
   -
   -
 ```
-
