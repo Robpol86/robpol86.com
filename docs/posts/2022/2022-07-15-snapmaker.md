@@ -29,7 +29,10 @@ need to disconnect them when removing or replacing the enclosure.
 
 ## Pictures
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-KHWYDpz.jpg
     Before and After
     :::

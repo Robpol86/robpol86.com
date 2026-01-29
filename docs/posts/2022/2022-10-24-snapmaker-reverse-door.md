@@ -59,7 +59,9 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 
 ## Pictures
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
 
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-J09tdcy.jpg
     %

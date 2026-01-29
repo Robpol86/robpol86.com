@@ -41,7 +41,10 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
 
 ## Pictures
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-qlu0JHF.jpg
     %
     New bleeder block installed on my transmission.

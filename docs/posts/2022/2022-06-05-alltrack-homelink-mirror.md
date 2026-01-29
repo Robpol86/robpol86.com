@@ -33,7 +33,9 @@ The compass in the mirror seemed to self-calibrate after I drove around for a bi
 
 ## Install Pictures
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
 
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-nsAp0wL.jpg
     %

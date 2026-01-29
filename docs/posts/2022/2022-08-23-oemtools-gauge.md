@@ -35,7 +35,10 @@ drop when transferring the old oil from the extractor back into the 5 qt oil jug
 
 ## Pictures
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-ehm4xGw.jpg
     Finished Project
     :::
