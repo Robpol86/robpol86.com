@@ -63,58 +63,58 @@ https://forum.snapmaker.com/t/enclosure-door-sides/9503/9
 :resize-width: 400
 :widths: 10 10
 
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-J09tdcy.jpg
+* - :::{thumb-figure} /_images/pictures/snapmaker/door/0-final-product.jpg
     %
     Finished project.
     :::
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-D1sV4X8.jpg
+  - :::{thumb-figure} /_images/pictures/snapmaker/door/1-led-strip-removed.jpg
     %
     Removed the LED strips from the now-bottom rails to relocate them back to the top of the enclosure.
     :::
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-5cDGBUU.jpg
+* - :::{thumb-figure} /_images/pictures/snapmaker/door/2-hall-sensor.jpg
     %
     Flip the hall/door sensor. I used a zip tie to help keep the plastic washers in place. The sensor actually has bright white
     LEDs that light up when it detects when the two doors are closed.
     :::
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-yJP9vVH.jpg
+  - :::{thumb-figure} /_images/pictures/snapmaker/door/3-flipped-with-doors.jpg
     %
     Half way through I put the doors on to verify they fit and close properly. The magnets are aligned just fine.
     :::
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-wGu1uNO.jpg
+* - :::{thumb-figure} /_images/pictures/snapmaker/door/4-foot-fixture-marking.jpg
     %
     Mark where the foot fixtures will go and use T-nuts to fasten them in place.
     :::
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-J03jTjo.jpg
+  - :::{thumb-figure} /_images/pictures/snapmaker/door/5-touchscreen-cable.jpg
     %
     The touchscreen cord is long enough to reach its new location. I used a spare screw to ensure it won't ride up and touch the
     hot platform or get pinched by the moving platform.
     :::
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-osjlmEC.jpg
+* - :::{thumb-figure} /_images/pictures/snapmaker/door/6-weather-stripping.jpg
     %
     Installed some additional weather stripping after flipping this enclosure panel with the touchscreen cutout.
     :::
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-Rbld72t.jpg
+  - :::{thumb-figure} /_images/pictures/snapmaker/door/7-power-supply.jpg
     %
     Unrelated: for my new coffee table setup I'm moving the power supply to be on top of the UPS and not take up table space.
     :::
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-iFNKJxn.jpg
+* - :::{thumb-figure} /_images/pictures/snapmaker/door/8-drybox.jpg
     %
     I bought a filament dry box from Amazon instead of relocating the spool holder which would have required cutting or drilling
     into the enclosure panels. This works for me because I already use a PTFE/Teflon tube with my printer.
     :::
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-bNa6Ul4.jpg
+  - :::{thumb-figure} /_images/pictures/snapmaker/door/9-done.jpg
     %
     Done!
     :::
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-B6j9Ws3.jpg
+* - :::{thumb-figure} /_images/pictures/snapmaker/door/10-filament-tube-1.jpg
     %
     Teflon tube routing: dry box
     :::
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-XJZNBUH.jpg
+  - :::{thumb-figure} /_images/pictures/snapmaker/door/11-filament-tube-2.jpg
     %
     Teflon tube routing: enclosure through-hole
     :::
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-aDOjJnX.jpg
+* - :::{thumb-figure} /_images/pictures/snapmaker/door/12-filament-tube-3.jpg
     %
     Teflon tube routing: print head
     :::
