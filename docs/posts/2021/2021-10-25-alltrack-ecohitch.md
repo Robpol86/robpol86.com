@@ -33,7 +33,10 @@ I used the following tools:
 * [Plastic trim removal tools](https://www.amazon.com/gp/product/B005NMCE04) and a flat screwdriver
 * [X-ACTO knife](https://www.amazon.com/gp/product/B00JWFIKOC)
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
 * - :::{thumb-figure} /_images/pictures/imgur-import/imgur-6anE3Sa.jpg
     Before installing.
     :::
@@ -85,4 +88,3 @@ I used the following tools:
     :::
   -
 ```
-
