@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Euro Tail Lights
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-HMxM8Kv.png
+```{thumb-figure} /_images/pictures/alltrack/euro-tails/before-and-after.gif
 :no-resize:
 ```
 
