@@ -11,7 +11,7 @@ tags: car, alltrack
 
 Taken off of Shoreline Hwy in Stinson Beach CA.
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-kh7I65B.jpg
+```{thumb-figure} /_images/pictures/alltrack/photo-2021-08-23.jpg
 :alt: Alltrack Photo 2021-08-23
 :width: 100%
 ```
