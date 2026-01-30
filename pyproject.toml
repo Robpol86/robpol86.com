@@ -12,11 +12,11 @@ license = "BSD-2-Clause"
 classifiers = [
     "Private :: Do Not Upload",
 ]
-requires-python = "^3.9"
+requires-python = "^3.14"
 dependencies = [
-    "ablog (<0.11.13)",  # TODO
-    "myst-parser[linkify] (<5.0.0)",  # TODO
-    "sphinx (<9.0.0)",  # TODO
+    "ablog",
+    "myst-parser[linkify]",
+    "sphinx",
     "sphinx-book-theme",
     "sphinx-copybutton",
     "sphinx-notfound-page",
