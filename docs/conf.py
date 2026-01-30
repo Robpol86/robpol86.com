@@ -12,17 +12,19 @@ GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.
 # General configuration.
 author = "Robpol86"
 copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-builtin  # noqa
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "_images"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
     "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
+    "sphinx_thumb_image",  # https://sphinx-thumb-image.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
     "ablog",  # https://ablog.readthedocs.io/
     "robpol86_com.html_context",
+    "robpol86_com.submodule_branch",
 ]
 language = "en"
 project = "Robpol86.com"
@@ -143,6 +145,12 @@ ogp_type = "website"
 ogp_use_first_image = True
 sitemap_show_lastmod = False
 sitemap_url_scheme = "{link}"
+thumb_image_default_target = (
+    "https://raw.githubusercontent.com/%(SUBMODULE_REPO)s/refs/heads/%(SUBMODULE_BRANCH)s/%(fullsize_path:18:)s"
+)
+thumb_image_resize_quality = 25
+thumb_image_resize_width = 800
+thumb_image_target_format = True
 
 
 # Ablog settings.
