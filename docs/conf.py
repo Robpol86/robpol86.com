@@ -6,8 +6,7 @@ import time
 from urllib.parse import urlparse
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
-GIT_REPOSITORY = os.environ["GITHUB_REPOSITORY"] if os.environ.get("GITHUB_REPOSITORY", "") else None
-GIT_URL = f"https://github.com/{GIT_REPOSITORY}" if GIT_REPOSITORY else None
+GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.get("GITHUB_REPOSITORY", "") else None
 
 
 # General configuration.
