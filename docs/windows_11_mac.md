@@ -74,17 +74,17 @@ Clean up
 
 ## Install
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
+:widths: 10 10 10
+
 * - ```{thumb-figure} /_images/pictures/windows-11-mac/boot-camp.png
-    :resize-width: 300
     Boot Camp Assistant
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/windows-setup.png
-    :resize-width: 300
     Installing Windows 11
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/boot-camp-windows-installer.png
-    :resize-width: 300
     Boot Camp Drivers
     ```
 ```
@@ -139,17 +139,17 @@ You'll also need to obtain the Windows Support Software from the Boot Camp Assis
 
 ### Format USB Flash Drive
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
+:widths: 10 10 10
+
 * - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-disk-utility.png
-    :resize-width: 300
     Disk Utility
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-erase.png
-    :resize-width: 300
     Erase USB Drive
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-unetbootin.png
-    :resize-width: 300
     UNetbootin
     ```
 ```
@@ -176,17 +176,17 @@ end.
 ```{warning} Backup any important files just in case something goes wrong and you lose all of your files on your computer.
 ```
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
+:widths: 10 10 10
+
 * - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-partition-ssd.png
-    :resize-width: 300
     Partition SSD
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-add-partition.png
-    :resize-width: 300
     Add Partition
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-bootcamp.png
-    :resize-width: 300
     Name it BOOTCAMP
     ```
 ```
@@ -208,13 +208,14 @@ It removed the Windows partition and removed the Windows EFI entry as well!
 
 ## Remove macOS
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
 * - ```{thumb-figure} /_images/pictures/windows-11-mac/minitool-initial.png
-    :resize-width: 400
     Before Repartitioning
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/minitool-final.png
-    :resize-width: 400
     After Repartitioning
     ```
 ```
@@ -231,17 +232,17 @@ do the repartitioning from Windows.
 
 ## BitLocker
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
+:widths: 10 10 10
+
 * - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-tpm.png
-    :resize-width: 300
     Use gpedit.msc to disable the TPM check
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-setting.png
-    :resize-width: 300
     Now you can enable BitLocker
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-enable.png
-    :resize-width: 300
     This error is expected
     ```
 ```
@@ -268,13 +269,14 @@ Now you can enable BitLocker the usual way.
 
 ## Restore macOS
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
 * - ```{thumb-figure} /_images/pictures/windows-11-mac/main-menu.jpg
-    :resize-width: 400
     Main Menu
     ```
   - ```{thumb-figure} /_images/pictures/windows-11-mac/disk-utility.jpg
-    :resize-width: 400
     Erase the SSD
     ```
 ```
