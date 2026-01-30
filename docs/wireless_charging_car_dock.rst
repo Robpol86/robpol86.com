@@ -31,22 +31,16 @@ that I was able to drive around for three hours with my phone on the charger wit
 All you need to do is mount the nGroove Snap and then place the charger on it, and that’s it! I routed the cable behind
 my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
     * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_2.jpg
-         :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_1.jpg
-         :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-7zHnpLJ.jpg
-         :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_17.jpg
-         :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_18.jpg
-         :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-N3ZRXRI.jpg
-         :resize-width: 300px
     * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-5KjUkO5.jpg
-         :resize-width: 300px
       -
       -
 
@@ -105,21 +99,18 @@ case for it and add more magnets.
 
 Here are some pictures of the final version, sans washers.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
     * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_1.jpg
-         :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_2.jpg
-         :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_3.jpg
-         :resize-width: 300px
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 400px
 
     * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_4.jpg
-         :resize-width: 400px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_5.jpg
-         :resize-width: 400px
 
 And here are some pictures after I routed the `wire inside the <https://www.amazon.com/gp/product/B003YKX6WW/>`_ center
 console. After you take out the shifter boot, little cubby, head unit, and air vents there is a ton of room inside to
@@ -127,13 +118,11 @@ route the wire. The front plate of the AC vents snaps on so I was able to pry it
 wire in. I cut out a small notch of plastic to give the wire some room without blocking any of the vents' moving parts.
 The only downside is I can't close the little cubby anymore. Oh well.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
     * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_6.jpg
-         :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_8.jpg
-         :resize-width: 300px
       - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_7.jpg
-         :resize-width: 300px
 
 .. _Mountek nGroove Snap Magnetic Vehicle Mount: https://www.amazon.com/dp/B00E9L0HGI
