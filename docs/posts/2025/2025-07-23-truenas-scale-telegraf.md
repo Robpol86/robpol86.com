@@ -12,10 +12,10 @@ tags: homelab, nas
 ```{list-table-thumbs}
 :resize-width: 400
 
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-uXJoPnn.png
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-O8r0lnC.png
-* - :::{thumb-image} /_images/pictures/imgur-import/imgur-ovWSIhf.png
-  - :::{thumb-image} /_images/pictures/imgur-import/imgur-AzEomCa.png
+* - :::{thumb-image} /_images/pictures/travel-nas/truenas-scale-telegraf/grafana-panels-1-uptime-temps.png
+  - :::{thumb-image} /_images/pictures/travel-nas/truenas-scale-telegraf/grafana-panels-2-ssd-faults.png
+* - :::{thumb-image} /_images/pictures/travel-nas/truenas-scale-telegraf/grafana-panels-3-cpu.png
+  - :::{thumb-image} /_images/pictures/travel-nas/truenas-scale-telegraf/grafana-panels-4-space-usage.png
 ```
 
 This guide will explain how to setup [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/),
@@ -82,7 +82,7 @@ Vault (pool)
     1. Return to Pool List
     1. *Repeat for InfluxDB-Data, Grafana-Plugins, Grafana-Data and Telegraf*
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-PeFA26e.png
+```{thumb-figure} /_images/pictures/travel-nas/truenas-scale-telegraf/datasets2.png
 You should now see something like this.
 ```
 
@@ -106,7 +106,7 @@ We'll be using the official InfluxDB TrueNAS app as the timeseries database to s
             1. **Host Path**: /mnt/Vault/Apps/InfluxDB-Data
 1. Then click **Install**
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-3HBbsW4.png
+```{thumb-figure} /_images/pictures/travel-nas/truenas-scale-telegraf/influxdb-v2-running.png
 After you click "Install" you should see something like this.
 ```
 
@@ -122,7 +122,7 @@ button. Click on it and then fill out the form with these values:
 
 ### Generate Tokens
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-I7lVJeB.png
+```{thumb-figure} /_images/pictures/travel-nas/truenas-scale-telegraf/influxdb-v2-token.png
 ```
 
 Next we need to create a token for Telegraf to use for writing, and another token for Grafana to use for reading. In the web
@@ -219,7 +219,7 @@ you might find a use for them.
 
 To confirm this works you can go into the InfluxDB web UI then click on **Data Explorer**:
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-wA62DJO.png
+```{thumb-figure} /_images/pictures/travel-nas/truenas-scale-telegraf/influxdb-v2-graphite.png
 You should see a lot of `graphite.*` measurements in the telegraf bucket.
 ```
 
@@ -289,7 +289,7 @@ through email, Discord, Slack, and other methods (however I won't be covering Gr
             1. **Host Path**: /mnt/Vault/Apps/Grafana-Plugins
 1. Then click **Install**
 
-```{thumb-figure} /_images/pictures/imgur-import/imgur-3HWC6nv.png
+```{thumb-figure} /_images/pictures/travel-nas/truenas-scale-telegraf/grafana2-running.png
 After you click "Install" you should see something like this.
 ```
 
