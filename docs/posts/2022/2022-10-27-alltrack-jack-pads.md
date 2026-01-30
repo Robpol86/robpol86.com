@@ -30,42 +30,42 @@ Pictures:
 :resize-width: 400
 :widths: 10 10
 
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-bKipQfp.jpg
+* - :::{thumb-figure} /_images/pictures/alltrack/jack-pads/1-parts.jpg
     %
     Parts included in the kit I bought from ShopDAP (excluding the pick which I got from Amazon).
     :::
 
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-c574eG9.jpg
+  - :::{thumb-figure} /_images/pictures/alltrack/jack-pads/2-rear-original.jpg
     Rear (Driver Side) Before
 
     I started with the rear. This is how it originally looked like. I used the pick tool to stab and yank out the two plastic
     covers.
     :::
 
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-9A0Pzjd.jpg
+* - :::{thumb-figure} /_images/pictures/alltrack/jack-pads/3-rear-installing.jpg
     Rear (Passenger Side) Installation
 
     I installed the rear pad by pressing it into the front hole first until it snapped into place. I then rotated the pad and the
     rear side snapped in easily. I didn't need to use any type of grease either.
     :::
 
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-wVSirBZ.jpg
+  - :::{thumb-figure} /_images/pictures/alltrack/jack-pads/4-rear-done.jpg
     %
     Done with both rears.
     :::
 
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-dw898De.jpg
+* - :::{thumb-figure} /_images/pictures/alltrack/jack-pads/5-front-original.jpg
     Front Before
 
     Remove the Torx screw first. Then push in the two tabs on the other side and slide the trim piece towards the rear.
     :::
 
-  - :::{thumb-figure} /_images/pictures/imgur-import/imgur-4KFUGuV.jpg
+  - :::{thumb-figure} /_images/pictures/alltrack/jack-pads/6-front-removed.jpg
     %
     This is what it looks like with the trim piece removed.
     :::
 
-* - :::{thumb-figure} /_images/pictures/imgur-import/imgur-TQ6LhyF.jpg
+* - :::{thumb-figure} /_images/pictures/alltrack/jack-pads/7-front-done.jpg
     %
     Install the rubber piece first (not visible here). Then slide in the new trim piece (there are three guides that should hold
     the corners of the trim piece in place as you slide it). It should click into place. Screw in the Torx screw and then install
