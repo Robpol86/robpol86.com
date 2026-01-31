@@ -12,43 +12,44 @@ tags: car, hacking
 My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
 data. I'm using it with [Google Fi](https://fi.google.com/about).
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
 
-* - :::{imgur} yZjfLix
+* - :::{thumb-image} /_images/pictures/franklin-t9/bottom.jpg
     :::
-  - :::{imgur} MUdUSiT
+  - :::{thumb-image} /_images/pictures/franklin-t9/t9_logo.jpg
     :::
-  - :::{imgur} 4Pdh8oi
+  - :::{thumb-image} /_images/pictures/franklin-t9/t9_power_wedge.jpg
     :::
-* - :::{imgur} 6qS4mh5
+* - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_1.jpg
     :::
-  - :::{imgur} m7iPSx8
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_2.jpg
     :::
-  - :::{imgur} 7t02RPc
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_3.jpg
     :::
-* - :::{imgur} Jgq94Qp
+* - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_4.jpg
     :::
-  - :::{imgur} IzUS6AD
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_5.jpg
     :::
-  - :::{imgur} sY2JXzl
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_6.jpg
     :::
-* - :::{imgur} qcAAd6q
+* - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_7.jpg
     :::
-  - :::{imgur} UgbzUxF
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_8.jpg
     :::
-  - :::{imgur} KtwAoH9
+  - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_9.jpg
     :::
-* - :::{imgur} lO1oBgL
+* - :::{thumb-image} /_images/pictures/franklin-t9/top.jpg
     :::
-  - :::{imgur} 8KnzN30
+  - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_1.jpg
     :::
-  - :::{imgur} zRzUg1m
+  - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_2.jpg
     :::
-* - :::{imgur} 6U8BpT3
+* - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_3.jpg
     :::
-  - :::{imgur} 0m4FKnV
+  - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_4.jpg
     :::
-  - :::{imgur} zbxHXjR
+  - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_5.jpg
     :::
 ```
 
@@ -244,7 +245,7 @@ You can easily change the logo on the little LCD by editing a PNG file. Since my
 
 I edited that file using Paint 3D to keep the transparency.
 
-```{imgur} MUdUSiT
+```{thumb-image} /_images/pictures/franklin-t9/t9_logo.jpg
 :alt: Hacked Logo
 :width: 100%
 ```
@@ -264,13 +265,14 @@ The hard way to get into fastboot is to open up the device and short a couple of
 1. Short the two pins circled in red in the image below
 1. Power on with the power button
 
-```{imgur-image} gi7e24z
+```{thumb-figure} /_images/pictures/franklin-t9/imgur-gi7e24z.jpg
 ```
 
 The device should show up when you run `fastboot devices` within a couple of seconds, and the hotspot's display will just
 say "Welcome" the entire time.
 
-```{imgur-image} pJ9WuSf
+```{thumb-figure} /_images/pictures/franklin-t9/imgur-pJ9WuSf.png
+:no-resize:
 ```
 
 To get out of fastboot mode just power cycle it or run `fastboot continue`.
@@ -305,7 +307,8 @@ ln: /sbin/usb/compositions/hsusb_next: File exists
 
 The device should immediately show up when you run `adb devices`.
 
-```{imgur-image} dFVo3HQ
+```{thumb-figure} /_images/pictures/franklin-t9/imgur-dFVo3HQ.png
+:no-resize:
 ```
 
 ## Automatic Power On
@@ -318,9 +321,8 @@ It turns out if you hold down the power button when you plug in the device, it w
 to hold the button it won't shut back down. Knowing this the solution is to cut a piece of plastic into a "U" shape and wedge
 it between the case and the button so it's always pressed down.
 
-```{imgur} 4Pdh8oi
+```{thumb-image} /_images/pictures/franklin-t9/t9_power_wedge.jpg
 :alt: T9 Power Button Wedge
-:width: 100%
 ```
 
 ## Notes
