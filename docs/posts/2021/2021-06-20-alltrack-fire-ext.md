@@ -15,7 +15,7 @@ Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
 I then zip tied it to my car placing some velcro around the fire extinguisher, so it's easy to pull out during an emergency.
 It stays put after driving for weeks and doesn't get in the way of lifting the cover to access my spare tire.
 
-```{imgur-figure} 705hYoS
+```{thumb-figure} /_images/pictures/alltrack/fire-extinguisher.jpg
 :alt: Fire Extinguisher
 :width: 100%
 ```
@@ -26,8 +26,7 @@ Every now and then the fire extinguisher would move a bit, getting in the way of
 using some zip ties to hold the extinguisher in place. I made sure it's still easy to remove during an emergency, just slide
 off the zip tie with my thumb.
 
-```{imgur-figure} CJUFaP7
+```{thumb-figure} /_images/pictures/alltrack/fire-extinguisher-update.jpg
 :alt: Fire Extinguisher Update
 :width: 100%
 ```
-
