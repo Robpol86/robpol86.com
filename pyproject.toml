@@ -22,6 +22,7 @@ dependencies = [
     "sphinx-imgur",
     "sphinx-notfound-page",
     "sphinx-sitemap",
+    "sphinx-thumb-image",
     "sphinxcontrib-youtube",
     "sphinxext-opengraph",
 ]
