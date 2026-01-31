@@ -10,9 +10,9 @@ tags: homelab, nas, beelink
 # TrueNAS Slots Tool for ME Mini
 
 ```{list-table}
-* - :::{thumb-figure} /_images/pictures/travel-nas/beelink-slots/beelink-slots-column.png
+* - :::{thumb-image} /_images/pictures/travel-nas/beelink-slots/beelink-slots-column.png
     :::
-* - :::{thumb-figure} /_images/pictures/travel-nas/beelink-slots/beelink-slots.png
+* - :::{thumb-image} /_images/pictures/travel-nas/beelink-slots/beelink-slots.png
     :::
 ```
 
