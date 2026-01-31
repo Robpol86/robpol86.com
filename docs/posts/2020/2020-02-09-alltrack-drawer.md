@@ -16,39 +16,41 @@ with felt so things wouldn't rattle. I'm using foil to eventually trace out the 
 I bought the drawer for $156 on ECS Tuning:
 [Driver's Seat Tray Kit Titanium Black 5GM 882 599 KT](https://www.ecstuning.com/b-genuine-volkswagen-audi-parts/drivers-seat-tray-kit-titanium-black/5gm882599kt/)
 
-```{imgur-figure} W7T6lmB
+```{thumb-figure} /_images/pictures/alltrack/drawer/imgur-W7T6lmB.jpg
 :width: 100%
 ```
 
-```{list-table}
-* - :::{imgur} 2Ru4C2G
+```{list-table-thumbs}
+:resize-width: 300
+
+* - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-2Ru4C2G.jpg
     :::
-  - :::{imgur} njMjiyx
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-njMjiyx.jpg
     :::
-  - :::{imgur} M01ffNs
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-M01ffNs.jpg
     :::
-* - :::{imgur} SuKmYfc
+* - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-SuKmYfc.jpg
     :::
-  - :::{imgur} 9OHtucJ
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-9OHtucJ.jpg
     :::
-  - :::{imgur} W7T6lmB
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-W7T6lmB.jpg
     :::
-* - :::{imgur} 8B9h5Ez
+* - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-8B9h5Ez.jpg
     :::
-  - :::{imgur} quRwwlP
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-quRwwlP.jpg
     :::
-  - :::{imgur} WdTxCID
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-WdTxCID.jpg
     :::
-* - :::{imgur} RmhF3eu
+* - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-RmhF3eu.jpg
     :::
-  - :::{imgur} rvg4OVm
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-rvg4OVm.jpg
     :::
-  - :::{imgur} HU7zEKI
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-HU7zEKI.jpg
     :::
-* - :::{imgur} LNlLcQS
+* - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-LNlLcQS.jpg
     :::
-  - :::{imgur} 1lMS091
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-1lMS091.jpg
     :::
-  - :::{imgur} 88oVQIw
+  - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-88oVQIw.jpg
     :::
 ```
