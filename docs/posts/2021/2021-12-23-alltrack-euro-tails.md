@@ -53,6 +53,8 @@ at position **0** push in the switch and turn it towards **Auto** then pull it o
 ## Modify Harness
 
 ```{list-table}
+:widths: 10 10 10
+
 * - ```{imgur-figure} pZKVVDG
     Outer harness before modification
     ```
@@ -80,9 +82,9 @@ car's connectors.
 ## Outer Taillights
 
 ```{list-table}
-* - ```{imgur-figure} Bh72jOs
+* - ```{imgur} Bh72jOs
     ```
-  - ```{imgur-figure} YgeEq3D
+  - ```{imgur} YgeEq3D
     ```
 ```
 
@@ -113,6 +115,8 @@ that need to be removed. Then you can remove the lights by pivoting them away fr
 new inner taillights in the reverse order and tighten the four nuts.
 
 ```{list-table}
+:widths: 10 10
+
 * - ```{imgur-figure} H1Vr4p6
     :ext: png
     ```
@@ -128,13 +132,13 @@ didn't like the idea of a wire being loose back there so I went with the slightl
 hatch inner plastic trim to get a complete unobstructed view of where the wire will go.
 
 ```{list-table}
-* - ```{imgur-figure} H0Q7sZT
+* - ```{imgur} H0Q7sZT
     ```
-  - ```{imgur-figure} wqQeEvP
+  - ```{imgur} wqQeEvP
     ```
-* - ```{imgur-figure} QcbOFMP
+* - ```{imgur} QcbOFMP
     ```
-  - ```{imgur-figure} leahnOj
+  - ```{imgur} leahnOj
     ```
 ```
 
