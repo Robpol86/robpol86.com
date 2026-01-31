@@ -17,7 +17,6 @@ extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
-    "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
     "sphinx_thumb_image",  # https://sphinx-thumb-image.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
@@ -122,7 +121,6 @@ linkcheck_timeout = 5
 
 
 # Extension settings.
-imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
 myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
 myst_heading_anchors = 3
 myst_url_schemes = ("http", "https", "mailto")
