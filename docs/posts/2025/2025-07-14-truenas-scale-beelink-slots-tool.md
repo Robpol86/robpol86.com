@@ -10,9 +10,9 @@ tags: homelab, nas, beelink
 # TrueNAS Slots Tool for ME Mini
 
 ```{list-table}
-* - :::{imgur-image} XObiRqa
+* - :::{thumb-figure} /_images/pictures/travel-nas/beelink-slots/beelink-slots-column.png
     :::
-* - :::{imgur-image} KjFxyXB
+* - :::{thumb-figure} /_images/pictures/travel-nas/beelink-slots/beelink-slots.png
     :::
 ```
 
@@ -21,7 +21,7 @@ needs to be replaced I'd rather not have to pull each one out to see if the seri
 generation (by way of the link speed) and width (how many PCIe lanes the SSD is using). It also shows if the SSD is operating
 below its maximum capability.
 
-```{imgur-figure} OSU97Ou
+```{thumb-figure} /_images/pictures/travel-nas/beelink-slots/beelink-no-lid.jpeg
 Some SSDs have the serial numbers facing the heatsink.
 ```
 
@@ -50,7 +50,7 @@ set -eu; cd /dev; for device in nvme?n1; do id="$(midclt call disk.query |jq -er
 The script reads the PCIe Root Port number for each NVMe drive. It compares them to a known mapping between these port
 numbers and the corresponding slot number on the Beelink ME Mini motherboard.
 
-```{imgur-figure} khZAZAw
+```{thumb-figure} /_images/pictures/travel-nas/beelink-slots/beelink-bios-rp.png
 Chipset > PCH-IO Configuration > PCI Express Configuration
 ```
 
