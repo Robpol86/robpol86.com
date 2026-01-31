@@ -12,18 +12,14 @@ Setting Up a Home Root CA
 Tired of getting those SSL error pages when accessing your router's admin interface? Sick of having to click three times
 to get to your IPMI web interface? Have I got a guide for you!
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 400
 
     * - .. thumb-image:: /_images/pictures/root-ca/01-keychain.png
-            :resize-width: 400
       - .. thumb-image:: /_images/pictures/root-ca/02-router.png
-            :resize-width: 400
     * - .. thumb-image:: /_images/pictures/root-ca/03-windows-10.png
-            :resize-width: 400
       - .. thumb-image:: /_images/pictures/root-ca/04-bridge-the-gap-rpi.png
-            :resize-width: 400
     * - .. thumb-image:: /_images/pictures/root-ca/05-bridge-the-gap-android.png
-            :resize-width: 400
       -
 
 This guide will go over setting up an offline root certificate authority for your home network. It is based on what I've

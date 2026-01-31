@@ -93,16 +93,13 @@ Once you have your ``MIN`` and phone number:
 Installing Service
 ==================
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 200
 
     * - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig1_droidflash_hwvsp.png
-            :resize-width: 200
       - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig2_droidflash_cdmaws.png
-            :resize-width: 200
       - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig3_droidflash_qpstmip.png
-            :resize-width: 200
       - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig4_droidflash_qpstppp.png
-            :resize-width: 200
 
 Flashing the Phone
 ------------------
@@ -160,12 +157,11 @@ Flashing the Phone
 Configuring APNs
 ----------------
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 400
 
     * - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig5_droidflash_openapns.png
-            :resize-width: 400
       - .. thumb-image:: /_images/pictures/flash-droid-cricket/fig6_droidflash_apns.png
-            :resize-width: 400
 
 1. Once Android boots back up, open the app **Voice Dialer**.
     1. Say aloud "Open APNs" and tap OK.
