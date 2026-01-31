@@ -47,11 +47,12 @@ Next remove the two screws holding in the little cubby and 12v outlet pictured i
 up giving you access to the two cables. Press the clips and remove the cables, then pull out the cubby. In the third
 image you can see that there is a lot of room down there.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: NWCmESI
-      - .. imgur:: nbwMYCw
-      - .. imgur:: k41ZdxS
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_3.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_4.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_5.jpg
 
 Step 2: Remove Head Unit
 ------------------------
@@ -63,11 +64,12 @@ Use your trim removal tool to gentry pop out the trim around the head unit. Ther
 image below. Then just remove the four screws holding in the head unit and side it out. I didn’t bother unplugging any
 of the cables, I just left my shifter in 4th gear and rested the head unit on it.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: RjFyVQp
-      - .. imgur:: PJJv47m
-      - .. imgur:: ZxgLd1i
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_6.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_7.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_8.jpg
 
 Step 3: Remove Air Vents
 ------------------------
@@ -75,10 +77,11 @@ Step 3: Remove Air Vents
 This one is easy. Just remove the two screws circled in the first image below and pull it out. You'll have to remove the
 cable for the hazard lights button. It's clipped on and also held in place with some plastic thing. Just pull that up.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 400px
 
-    * - .. imgur:: Ww02qMK
-      - .. imgur:: jX1kQG4
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_9.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_10.jpg
 
 Step 4: Run Cable through Vents
 -------------------------------
@@ -99,11 +102,12 @@ the USB cable through. Then I just slid the cable down towards the hole.
 
 In the end, the USB cable runs down the right side of the air vents. It's a tight fit.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: oEIw1kS
-      - .. imgur:: lwmxAvc
-      - .. imgur:: 7O0EUpU
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_11.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_12.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_13.jpg
 
 Step 5: Reassembling Everything
 -------------------------------
@@ -120,11 +124,12 @@ and the two screws on the air vents. I waited until the last minute to put back 
 I installed the car mount and charger, and then pulled on the USB cable just enough to have it reach the charger with
 minimal slack.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: wzcOYuQ
-      - .. imgur:: 2CMNydn
-      - .. imgur:: nd3whf1
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_14.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_15.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_16.jpg
 
 Step 6: Run Cable through Cubby
 -------------------------------
@@ -134,49 +139,52 @@ has a bulky USB connector. I didn't take any pictures but the cubby has a couple
 to give me trouble. I had to use a lot of force getting the cable through, almost breaking it (but luckily it was
 fine).
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: 55krwnA
-      - .. imgur:: 7lHFKUv
-      - .. imgur:: 7WTPx0v.gif
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_17.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_18.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/execution4.gif
+          :no-resize:
 
 Delivery
 ========
 
 Images I took shortly after receiving my brand new car.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: T640Q
-      - .. imgur:: vT2SN
-      - .. imgur:: TQ3BH
-    * - .. imgur:: g3vnR
-      - .. imgur:: Y2ziD
-      - .. imgur:: eLut3
-    * - .. imgur:: UFZST
-      - .. imgur:: KZo5j
-      - .. imgur:: ziSTv
-    * - .. imgur:: DbXvX
-      - .. imgur:: kVbMX
-      - .. imgur:: WJqLK
-    * - .. imgur:: 7v2Xf
-      - .. imgur:: PVixc
-      - .. imgur:: PEDQH
-    * - .. imgur:: wtvxY
-      - .. imgur:: CaUOW
-      - .. imgur:: VzRGA
-    * - .. imgur:: DHcik
-      - .. imgur:: 11Gq8
-      - .. imgur:: DBQVK
-    * - .. imgur:: 5Ui7D
-      - .. imgur:: sjLJ2
-      - .. imgur:: fXw0P
-    * - .. imgur:: NbFfu
-      - .. imgur:: 49dr4
-      - .. imgur:: o6xgw
-    * - .. imgur:: jJ994
-      - .. imgur:: tOmfy
-      - .. imgur:: 9wLnO
-    * - .. imgur:: YQhWF
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/01-front-left.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/02-rear-left.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/03-front.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/04-rear.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/05-hatch-open.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/06-dashboard.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/07-center-dash.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/08-center-console-nook-open.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/09-center-console-nook.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/10-center-console.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/11-inverter.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/12-pano-roof-open.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/13-pano-roof.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/14-pano-roof-controls.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/15-gauge-cluster.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/16-light-switch.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/17-driver-door.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/18-driver-rear-door.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/19-front-seats.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/20-rear-seats.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/21-left-doors.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/22-cargo-cover.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/23-cargo-area.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/24-cargo-area-2.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/25-cargo-medium-storage.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/26-cargo-large-storage.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/27-cargo-large-storage-2.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/28-spare-tire.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/29-cargo-nook.jpg
+      - .. thumb-image:: /_images/pictures/jsw-first-received/30-cargo-small-storage.jpg
+    * - .. thumb-image:: /_images/pictures/jsw-first-received/31-cargo-small-storage-open.jpg
       -
       -
