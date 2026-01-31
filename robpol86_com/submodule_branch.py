@@ -15,13 +15,14 @@ def read_gitmodules(app: Sphinx, config: Config):
     :param config: Sphinx config.
     """
     # Read .gitmodules.
-    gitmodules = app.confdir.parent / ".gitmodules"
     parser = ConfigParser()
-    parser.read(gitmodules)
+    parser.read(app.confdir.parent / ".gitmodules")
     section = 'submodule "docs/_images/pictures"'
     branch = parser[section]["branch"]
     url = parser[section]["url"]
-    repo = re.sub(r"^https://github.com/", "", re.sub(r"[.]git$", "", url))
+    repo = re.sub(r"^https://github.com/(.+)\.git$", r"\1", url)
+    if repo == url or not repo:
+        raise ValueError("Did not substitute")
 
     # Update Sphinx config.
     thumb_image_target_format_substitutions: dict = config.thumb_image_target_format_substitutions
