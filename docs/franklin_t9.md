@@ -12,61 +12,44 @@ tags: car, hacking
 My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
 data. I'm using it with [Google Fi](https://fi.google.com/about).
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
 
 * - :::{thumb-image} /_images/pictures/franklin-t9/bottom.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/t9_logo.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/t9_power_wedge.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_1.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_2.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_3.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_4.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_5.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_6.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_7.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_8.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/bottom_zoom_9.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/franklin-t9/top.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_1.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_2.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_3.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_4.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/franklin-t9/top_zoom_5.jpg
-    :resize-width: 300
     :::
 ```
 
