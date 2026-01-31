@@ -1,8 +1,7 @@
-"""Read the pictures git submodule's branch name."""
+"""Read the docs/_images/pictures git submodule branch name."""
 
 import re
 from configparser import ConfigParser
-from pathlib import Path
 
 from sphinx.application import Sphinx
 from sphinx.config import Config
@@ -16,7 +15,7 @@ def read_gitmodules(app: Sphinx, config: Config):
     :param config: Sphinx config.
     """
     # Read .gitmodules.
-    gitmodules = Path(__file__).parent.parent / ".gitmodules"
+    gitmodules = app.confdir.parent / ".gitmodules"
     parser = ConfigParser()
     parser.read(gitmodules)
     section = 'submodule "docs/_images/pictures"'
