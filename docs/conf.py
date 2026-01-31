@@ -6,12 +6,12 @@ import time
 from urllib.parse import urlparse
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
-GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.get("GITHUB_REPOSITORY", "") else None
+GIT_URL = f"https://github.com/{os.environ['GITHUB_REPOSITORY']}" if os.environ.get("GITHUB_REPOSITORY", "") else None
 
 
 # General configuration.
 author = "Robpol86"
-copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-builtin  # noqa
+copyright = f"{time.strftime('%Y')}, {author}"  # pylint: disable=redefined-builtin  # noqa
 exclude_patterns = ["_build", "_images"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io

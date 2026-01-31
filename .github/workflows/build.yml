@@ -45,13 +45,17 @@ jobs:
           PY_COLORS: 1
         run: make test
 
+      - name: Run Integration Tests
+        if: '! inputs.skip_lints_tests'
+        run: make it
+
       - name: Run Lints
         if: '! inputs.skip_lints_tests'
         run: make lint
 
-      - name: Run Integration Tests
+      - name: Verify Formatting
         if: '! inputs.skip_lints_tests'
-        run: make it
+        run: make format && git diff-index HEAD -p --exit-code
 
       - name: Build
         env:  # Note: these can be empty

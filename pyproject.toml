@@ -12,7 +12,7 @@ license = "BSD-2-Clause"
 classifiers = [
     "Private :: Do Not Upload",
 ]
-requires-python = "^3.14"
+requires-python = ">=3.14"
 dependencies = [
     "ablog",
     "myst-parser[linkify]",
@@ -37,47 +37,23 @@ dev = [
     # Docs.
     "sphinx-autobuild",
     # Linters.
-    "black",
-    "flake8",
-    "flake8-docstrings",
-    "flake8-import-order",
-    "pep8-naming",
-    "pylint",
+    "ruff",
     # Tests.
     "pytest",
     "pytest-icdiff",
 ]
 
-[tool.black]
-line-length = 125
-target-version = ["py39", "py310", "py311", "py312"]
-
-[tool.pylint.FORMAT]
-good-names = ["i", "j", "k", "ex", "Run", "_", "x", "y", "z", "fd"]
-ignore = [
-    ".venv/*",
-    "build/*",
-    "dist/*",
-    "docs/_build/*",
-]
-max-line-length = 125
-reports = false
-
-[tool.pylint."MESSAGES CONTROL"]
-disable = [
-    "consider-using-f-string",
-    "duplicate-code",
-    "fixme",
-    "too-many-arguments",
-]
-
-[tool.pylint.SIMILARITIES]
-ignore-imports = true
-min-similarity-lines = 7
-
-[tool.pylint.TYPECHECK]
-ignored-modules = ["distutils", "py"]
-
 [tool.pytest.ini_options]
 addopts = "--durations=15 --showlocals --verbose --verbose"
 log_level = "DEBUG"
+
+[tool.ruff]
+line-length = 125
+
+[tool.ruff.lint]
+select = ["D", "E", "F", "I", "N", "PLR", "S"]
+extend-select = ["E501"]
+ignore = ["D203", "D213"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S607"]

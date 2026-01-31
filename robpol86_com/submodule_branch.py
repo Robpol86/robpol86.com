@@ -31,7 +31,7 @@ def read_gitmodules(app: Sphinx, config: Config):
 
 
 def setup(app: Sphinx):
-    """Called by Sphinx.
+    """Register with Sphinx (called by Sphinx during phase 0 [initialization]).
 
     :param app: Sphinx application object.
     """
