@@ -34,6 +34,8 @@ I used the following tools:
 * [X-ACTO knife](https://www.amazon.com/gp/product/B00JWFIKOC)
 
 ```{list-table}
+:widths: 10 10
+
 * - :::{imgur-figure} 6anE3Sa
     Before installing.
     :::

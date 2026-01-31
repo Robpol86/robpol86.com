@@ -36,6 +36,8 @@ For crimping the wires I used the following:
 * [Wire Stripper Automatic 3 in 1 Multi-Function Wire Pliers (22AWG-8AWG)](https://www.amazon.com/dp/B08XXL3B7K)
 
 ```{list-table}
+:widths: 10 10
+
 * - :::{imgur-figure} ELxxo4Y
     Old hot end with the stepper motor and brass nozzle already removed.
     :::
@@ -92,6 +94,8 @@ Items needed:
 * Gloves (I used nitrile gloves) to prevent adhesive from reconstituting on your fingers
 
 ```{list-table}
+:widths: 10 10
+
 * - :::{imgur-figure} O6toHP4
     Removed the original BuildTak sheet from my Monoprice Maker Select v2.
     :::
