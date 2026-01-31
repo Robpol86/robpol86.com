@@ -273,6 +273,7 @@ say "Welcome" the entire time.
 
 ```{thumb-figure} /_images/pictures/franklin-t9/imgur-pJ9WuSf.png
 :no-resize:
+:width: 100%
 ```
 
 To get out of fastboot mode just power cycle it or run `fastboot continue`.
@@ -309,6 +310,7 @@ The device should immediately show up when you run `adb devices`.
 
 ```{thumb-figure} /_images/pictures/franklin-t9/imgur-dFVo3HQ.png
 :no-resize:
+:width: 100%
 ```
 
 ## Automatic Power On
