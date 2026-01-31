@@ -265,13 +265,13 @@ The hard way to get into fastboot is to open up the device and short a couple of
 1. Short the two pins circled in red in the image below
 1. Power on with the power button
 
-```{thumb-figure} /_images/pictures/franklin-t9/imgur-gi7e24z.jpg
+```{thumb-image} /_images/pictures/franklin-t9/imgur-gi7e24z.jpg
 ```
 
 The device should show up when you run `fastboot devices` within a couple of seconds, and the hotspot's display will just
 say "Welcome" the entire time.
 
-```{thumb-figure} /_images/pictures/franklin-t9/imgur-pJ9WuSf.png
+```{thumb-image} /_images/pictures/franklin-t9/imgur-pJ9WuSf.png
 :no-resize:
 :width: 100%
 ```
@@ -308,7 +308,7 @@ ln: /sbin/usb/compositions/hsusb_next: File exists
 
 The device should immediately show up when you run `adb devices`.
 
-```{thumb-figure} /_images/pictures/franklin-t9/imgur-dFVo3HQ.png
+```{thumb-image} /_images/pictures/franklin-t9/imgur-dFVo3HQ.png
 :no-resize:
 :width: 100%
 ```
