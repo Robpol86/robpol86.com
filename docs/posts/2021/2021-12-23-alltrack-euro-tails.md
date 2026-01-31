@@ -85,11 +85,10 @@ car's connectors.
 
 ```{list-table-thumbs}
 :resize-width: 400
-:widths: 10 10
 
-* - ```{thumb-figure} /_images/pictures/alltrack/euro-tails/install-outer.jpg
+* - ```{thumb-image} /_images/pictures/alltrack/euro-tails/install-outer.jpg
     ```
-  - ```{thumb-figure} /_images/pictures/alltrack/euro-tails/install-outer-adjustment.jpg
+  - ```{thumb-image} /_images/pictures/alltrack/euro-tails/install-outer-adjustment.jpg
     ```
 ```
 
@@ -138,15 +137,14 @@ hatch inner plastic trim to get a complete unobstructed view of where the wire w
 
 ```{list-table-thumbs}
 :resize-width: 400
-:widths: 10 10
 
-* - ```{thumb-figure} /_images/pictures/alltrack/euro-tails/install-inner-wiring-driver.jpg
+* - ```{thumb-image} /_images/pictures/alltrack/euro-tails/install-inner-wiring-driver.jpg
     ```
-  - ```{thumb-figure} /_images/pictures/alltrack/euro-tails/install-inner-wiring-passenger.jpg
+  - ```{thumb-image} /_images/pictures/alltrack/euro-tails/install-inner-wiring-passenger.jpg
     ```
-* - ```{thumb-figure} /_images/pictures/alltrack/euro-tails/install-inner-wiring-driver-done.jpg
+* - ```{thumb-image} /_images/pictures/alltrack/euro-tails/install-inner-wiring-driver-done.jpg
     ```
-  - ```{thumb-figure} /_images/pictures/alltrack/euro-tails/install-inner-wiring-passenger-done.jpg
+  - ```{thumb-image} /_images/pictures/alltrack/euro-tails/install-inner-wiring-passenger-done.jpg
     ```
 ```
 

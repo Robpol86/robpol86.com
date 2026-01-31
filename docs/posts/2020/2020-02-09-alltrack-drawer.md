@@ -20,50 +20,37 @@ I bought the drawer for $156 on ECS Tuning:
 :width: 100%
 ```
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 300
+
 * - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-2Ru4C2G.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-njMjiyx.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-M01ffNs.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-SuKmYfc.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-9OHtucJ.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-W7T6lmB.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-8B9h5Ez.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-quRwwlP.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-WdTxCID.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-RmhF3eu.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-rvg4OVm.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-HU7zEKI.jpg
-    :resize-width: 300
     :::
 * - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-LNlLcQS.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-1lMS091.jpg
-    :resize-width: 300
     :::
   - :::{thumb-image} /_images/pictures/alltrack/drawer/imgur-88oVQIw.jpg
-    :resize-width: 300
     :::
 ```
