@@ -45,13 +45,13 @@ jobs:
           PY_COLORS: 1
         run: make test
 
-      - name: Run Lints
-        if: '! inputs.skip_lints_tests'
-        run: make lint
-
       - name: Run Integration Tests
         if: '! inputs.skip_lints_tests'
         run: make it
+
+      - name: Run Lints
+        if: '! inputs.skip_lints_tests'
+        run: make lint
 
       - name: Build
         env:  # Note: these can be empty

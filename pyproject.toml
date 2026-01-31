@@ -12,7 +12,7 @@ license = "BSD-2-Clause"
 classifiers = [
     "Private :: Do Not Upload",
 ]
-requires-python = "^3.14"
+requires-python = ">=3.14"
 dependencies = [
     "ablog",
     "myst-parser[linkify]",
