@@ -53,6 +53,10 @@ jobs:
         if: '! inputs.skip_lints_tests'
         run: make lint
 
+      - name: Verify Formatting
+        if: '! inputs.skip_lints_tests'
+        run: make format && git diff-index HEAD -p --exit-code
+
       - name: Build
         env:  # Note: these can be empty
           SPHINX_GITHUB_BRANCH: "${{ inputs.sphinx_github_branch }}"

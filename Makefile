@@ -25,9 +25,13 @@ deps:
 lint: _HELP = Run linters
 lint:
 	poetry check
-	poetry run black --check --color --diff .
-	poetry run flake8 --application-import-names $(PROJECT_NAME),docs,tests
-	poetry run pylint $(PROJECT_NAME) docs tests
+	poetry run ruff check
+
+.PHONY: format
+format: _HELP = Apply format/lint fixes
+format:
+	poetry run ruff format
+	poetry run ruff check --fix
 
 .PHONY: test
 test: _HELP = Run unit tests
