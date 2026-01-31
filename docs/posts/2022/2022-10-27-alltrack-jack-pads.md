@@ -27,6 +27,7 @@ Instructions:
 Pictures:
 
 ```{list-table}
+:widths: 10 10
 
 * - :::{imgur-figure} bKipQfp
     %

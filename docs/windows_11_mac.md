@@ -76,6 +76,8 @@ Clean up
 ## Install
 
 ```{list-table}
+:widths: 10 10 10
+
 * - ```{imgur-figure} TjJUZ4T
     :ext: png
     Boot Camp Assistant
@@ -141,6 +143,8 @@ You'll also need to obtain the Windows Support Software from the Boot Camp Assis
 ### Format USB Flash Drive
 
 ```{list-table}
+:widths: 10 10 10
+
 * - ```{imgur-figure} GvtHamn
     :ext: png
     Disk Utility
@@ -178,6 +182,8 @@ end.
 ```
 
 ```{list-table}
+:widths: 10 10 10
+
 * - ```{imgur-figure} HL5fUTI
     :ext: png
     Partition SSD
@@ -210,6 +216,8 @@ It removed the Windows partition and removed the Windows EFI entry as well!
 ## Remove macOS
 
 ```{list-table}
+:widths: 10 10
+
 * - ```{imgur-figure} 58oJm7t
     :ext: png
     Before Repartitioning
@@ -233,6 +241,8 @@ do the repartitioning from Windows.
 ## BitLocker
 
 ```{list-table}
+:widths: 10 10 10
+
 * - ```{imgur-figure} EKbY5zv
     :ext: png
     Use gpedit.msc to disable the TPM check
@@ -270,6 +280,8 @@ Now you can enable BitLocker the usual way.
 ## Restore macOS
 
 ```{list-table}
+:widths: 10 10
+
 * - ```{imgur-figure} ICGyjGt
     Main Menu
     ```

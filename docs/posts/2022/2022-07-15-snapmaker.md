@@ -30,6 +30,8 @@ need to disconnect them when removing or replacing the enclosure.
 ## Pictures
 
 ```{list-table}
+:widths: 10 10
+
 * - :::{imgur-figure} KHWYDpz
     Before and After
     :::

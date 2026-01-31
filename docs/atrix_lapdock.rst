@@ -25,6 +25,7 @@ Pictures and Videos
 ===================
 
 .. list-table::
+    :widths: 10 10
 
     * - .. imgur-figure:: MJs3n49
 
@@ -274,6 +275,7 @@ Lapdock 500 Teardown
 ====================
 
 .. list-table::
+    :widths: 10 10
 
     * - .. imgur-figure:: on1EG
 

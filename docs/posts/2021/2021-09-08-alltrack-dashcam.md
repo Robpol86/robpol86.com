@@ -37,6 +37,8 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 ## Photos
 
 ```{list-table}
+:widths: 10 10
+
 * - :::{imgur-figure} e0FQZxI
     I spliced together the long male cigarette lighter cable that came with the camera with the short female cigarette lighter adapter that came with the battery so that everything will fit underneath my cargo liner.
     :::
