@@ -16,13 +16,12 @@ I didn't bother hooking up the dimmer wire since you can dim it manually by hold
 controller box using zip ties (it's on tight and doesn't move at all) and I heatshrinked the unused wires to avoid any
 potential shorts.
 
-```{imgur-figure} qAFrhWS
+```{thumb-figure} /_images/pictures/alltrack/vent-gauge.jpg
 :alt: Vent Gauge
 :width: 100%
 ```
 
-```{imgur-figure} KXQqsg6
+```{thumb-figure} /_images/pictures/alltrack/vent-install.jpg
 :alt: Controller Mount
 :width: 100%
 ```
-

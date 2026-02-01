@@ -23,7 +23,7 @@ button for 3 seconds and have them saved to the SD card. You'll need an [OBD11/O
 6. Reboot head unit by holding down the power button/knob for 10 seconds.
    1. It will first go to sleep mode (with the clock), then the display will turn off and it will automatically boot back up.
 
-```{imgur-figure} gwoUm7V
+```{thumb-figure} /_images/pictures/alltrack/mib2-development-mode.png
 :width: 100%
 ```
 

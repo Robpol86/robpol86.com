@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Front Dashcam Pair
 
-```{imgur-figure} 9dVe8pY
+```{thumb-figure} /_images/pictures/alltrack/dashcam-2020/IMG_0799.jpeg
 :width: 100%
 ```
 
@@ -50,114 +50,116 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 I first installed just the two cameras in the front and wired them to the batteries in my cargo area. For now I didn't wire
 the batteries to my fuse panel, using the rear 12v outlet instead.
 
-```{list-table}
-* - :::{imgur} IDZ0czL
+```{list-table-thumbs}
+:resize-width: 300
+
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0347.jpeg
     :::
-  - :::{imgur} TTJGbTB
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0387.jpeg
     :::
-  - :::{imgur} AlToxmu
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0390.jpeg
     :::
-* - :::{imgur} FlbNm6F
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0403.jpeg
     :::
-  - :::{imgur} eHJGGFM
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0406.jpeg
     :::
-  - :::{imgur} XweNNXV
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0410.jpeg
     :::
-* - :::{imgur} xp7Y01M
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0412.jpeg
     :::
-  - :::{imgur} iMCazjM
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0417.jpeg
     :::
-  - :::{imgur} GtucHXE
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0423.jpeg
     :::
-* - :::{imgur} 8Pu19sr
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0426.jpeg
     :::
-  - :::{imgur} 1sk83Rr
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0427.jpeg
     :::
-  - :::{imgur} brum0yz
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0428.jpeg
     :::
-* - :::{imgur} 6CERPeS
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0430.jpeg
     :::
-  - :::{imgur} byI36OA
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0437.jpeg
     :::
-  - :::{imgur} tLL235q
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0443.jpeg
     :::
-* - :::{imgur} coZX62E
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0444.jpeg
     :::
-  - :::{imgur} mKWecEj
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0446.jpeg
     :::
-  - :::{imgur} nLWRZTx
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0447.jpeg
     :::
-* - :::{imgur} pHhZe6h
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0459.jpeg
     :::
-  - :::{imgur} MUgOLOs
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0466.jpeg
     :::
-  - :::{imgur} 1QqYfap
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0478.jpeg
     :::
-* - :::{imgur} BHT5uVb
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0479.jpeg
     :::
-  - :::{imgur} S74pBCH
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0503.jpeg
     :::
-  - :::{imgur} LoyuAT1
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0515.jpeg
     :::
-* - :::{imgur} yh86Ype
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0526.jpeg
     :::
-  - :::{imgur} aPmtrYC
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0547.jpeg
     :::
-  - :::{imgur} f80ILAA
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0552.jpeg
     :::
-* - :::{imgur} W6yWhoK
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0561.jpeg
     :::
-  - :::{imgur} Q2ud7NR
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0564.jpeg
     :::
-  - :::{imgur} XF3QmKu
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0566.jpeg
     :::
-* - :::{imgur} 2Ls04ra
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0569.jpeg
     :::
-  - :::{imgur} xAGbc8Q
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0590.jpeg
     :::
-  - :::{imgur} JohJ7k4
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0601.jpeg
     :::
-* - :::{imgur} HAp6oH1
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0614.jpeg
     :::
-  - :::{imgur} sVhTgrZ
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0617.jpeg
     :::
-  - :::{imgur} 2wUn61q
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0626.jpeg
     :::
-* - :::{imgur} gqDFxtY
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0693.jpeg
     :::
-  - :::{imgur} mvyRz9i
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0699.jpeg
     :::
-  - :::{imgur} fQYWtik
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0703.jpeg
     :::
-* - :::{imgur} eX4DkeH
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0710.jpeg
     :::
-  - :::{imgur} ia8kAVj
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0734.jpeg
     :::
-  - :::{imgur} EC8uTGP
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0740.jpeg
     :::
-* - :::{imgur} f6RsWJt
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0750.jpeg
     :::
-  - :::{imgur} fUV0GP5
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0773.jpeg
     :::
-  - :::{imgur} bw2TwLM
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0790.jpeg
     :::
-* - :::{imgur} 4ItfspT
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0791.jpeg
     :::
-  - :::{imgur} 9dVe8pY
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0799.jpeg
     :::
-  - :::{imgur} 6RHv76w
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0801.jpeg
     :::
-* - :::{imgur} hHDo3C0
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0815.jpeg
     :::
-  - :::{imgur} g6oiZli
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0830.jpeg
     :::
-  - :::{imgur} 9ivpRLA
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0838.jpeg
     :::
-* - :::{imgur} poVGoQu
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_0840.png
     :::
-  - :::{imgur} FjF73ez
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_front-forward.png
     :::
-  - :::{imgur} cPOqdpY
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/IMG_front-inward.png
     :::
 ```
 
@@ -169,28 +171,29 @@ a second tapped fuse since I may add a second pair of cameras in the future. I t
 [fuse 48 and 36](https://fuse-box.info/volkswagen/volkswagen-golf-vii-mk7-2013-2020-fuses). These are switched fuses so when
 the ignition is off they'll lose power and prevent the BlackVue battery from draining my car's battery when parked.
 
-```{list-table}
-* - :::{imgur} QVXJfM0
+```{list-table-thumbs}
+:resize-width: 300
+
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-QVXJfM0.jpg
     :::
-  - :::{imgur} Qo3cCJt
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-Qo3cCJt.jpg
     :::
-  - :::{imgur} emg1RTQ
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-emg1RTQ.jpg
     :::
-* - :::{imgur} vS722GJ
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-vS722GJ.jpg
     :::
-  - :::{imgur} 1bbH2Ix
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-1bbH2Ix.jpg
     :::
-  - :::{imgur} dT3Kv4T
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-dT3Kv4T.jpg
     :::
-* - :::{imgur} DfAf2CZ
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-DfAf2CZ.jpg
     :::
-  - :::{imgur} LvopdKU
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-LvopdKU.jpg
     :::
-  - :::{imgur} 3HQLKt3
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-3HQLKt3.jpg
     :::
-* - :::{imgur} YnwDPL7
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2020/imgur-YnwDPL7.jpg
     :::
   -
   -
 ```
-

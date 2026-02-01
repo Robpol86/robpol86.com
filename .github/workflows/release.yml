@@ -22,9 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0  # for git log
+          submodules: true
       - name: New Version
         id: new_version
         run: date $'+NEW_TAG=%Y-%m-%d-%H%M%S\nNEW_VERSION=%-Y.%-m.%-d.%-H%M%S' |tee -a "$GITHUB_OUTPUT"
@@ -88,7 +89,7 @@ jobs:
           new_version: "${{ steps.new_version.outputs.NEW_VERSION }}"
       - name: Commit and Push
         id: commit
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "${{ steps.new_version.outputs.NEW_VERSION }}: ${{ inputs.release_title }}"
           file_pattern: CHANGELOG.md pyproject.toml
@@ -111,7 +112,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download HTML
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: html
           path: html

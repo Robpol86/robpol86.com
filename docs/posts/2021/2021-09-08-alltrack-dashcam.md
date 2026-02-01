@@ -9,7 +9,7 @@ tags: car, alltrack
 
 # Rear Dashcam Pair
 
-```{imgur-figure} 3ypCZaP
+```{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_3040.jpg
 :width: 100%
 ```
 
@@ -36,66 +36,68 @@ BlackVue B-124E Power Magic Ultra Battery Expansion
 
 ## Photos
 
-```{list-table}
-* - :::{imgur-figure} e0FQZxI
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2937.jpg
     I spliced together the long male cigarette lighter cable that came with the camera with the short female cigarette lighter adapter that came with the battery so that everything will fit underneath my cargo liner.
     :::
-  - :::{imgur-figure} FPo2JhU
+  - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2939.jpg
     I used a coat hanger to help fish the cable.
     :::
-* - :::{imgur-figure} vVlKfJv
+* - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2942.jpg
     This made things way easier to see in my garage.
     :::
-  - :::{imgur-figure} caIWHsR
+  - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2943.jpg
     After fishing the cable under the cargo liner I tucked the rest of the cable towards the battery. There seemed to be some glue half way there that I had to get through by prying the liner wall towards me.
     :::
-* - :::{imgur-figure} 5CWlXf9
+* - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2946.jpg
     Finished running the cable at the battery side.
     :::
-  - :::{imgur-figure} c1zTKOl
+  - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2948.jpg
     Pulled off the trim on the ceiling holding the headliner in place.
     :::
-* - :::{imgur} 6mvlZLh
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2021/IMG_2949.jpg
     :::
-  - :::{imgur-figure} 1xf5oIO
+  - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2950.jpg
     Then I pulled off the trim covering the C pillar.
     :::
-* - :::{imgur-figure} pdTih8V
+* - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2958.jpg
     Fished the wire up the C pillar.
     :::
-  - :::{imgur-figure} 0N2BXU2
+  - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2964.jpg
     Lightly zip tied the cable to my panoramic roof drain hose.
     :::
-* - :::{imgur-figure} hsUPB4B
+* - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2970.jpg
     I cut off the glued/velcroed strap holding the wiring harnesses in this plastic holder and ran the camera cable through it, then zip tied everything in place.
     :::
-  - :::{imgur-figure} wempB2n
+  - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2979.jpg
     Popped off the inner top trim off the hatch.
     :::
-* - :::{imgur-figure} j3WV15y
+* - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2983.jpg
     I had to unclip the hatch rubber boot to fish the cable through with the help of my coat hanger. BEWARE: the clips are easy to break and it's a pain to fix!
     :::
-  - :::{imgur-figure} uBQz1es
+  - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2984.jpg
     You can see how I broke the clip on the left side of the boot. Anyway I ran the cable towards the other side since it doesn't have any connectors in the way.
     :::
-* - :::{imgur} 6uwjb7P
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2021/IMG_2990.jpg
     :::
-  - :::{imgur-figure} cgMYj4I
+  - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_2997.jpg
     Instead of replacing the boot I did a quick fix with my 3d printer: https://www.thingiverse.com/thing:3246429
     https://imgur.com/a/0GqFRgX
     If you'd rather replace the boot you can follow: https://www.youtube.com/watch?v=GhNbGtLDZiU&ab_channel=DeutscheAutoParts
     :::
-* - :::{imgur-figure} iPbAkTQ
+* - :::{thumb-figure} /_images/pictures/alltrack/dashcam-2021/IMG_3010.jpg
     Finally I mounted the cameras and anchored the wires with some spare cable tie mounting pads I had lying around. I shoved the excess wires into the body via the square hole.
     :::
-  - :::{imgur} tyXtaLq
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2021/IMG_3024.jpg
     :::
-* - :::{imgur} 3ypCZaP
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2021/IMG_3040.jpg
     :::
-  - :::{imgur} NoJtWRb
+  - :::{thumb-image} /_images/pictures/alltrack/dashcam-2021/IMG_3029.png
     :::
-* - :::{imgur} xzICRX8
+* - :::{thumb-image} /_images/pictures/alltrack/dashcam-2021/imgur-xzICRX8.png
     :::
   -
 ```
-

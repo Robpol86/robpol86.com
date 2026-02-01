@@ -6,23 +6,24 @@ import time
 from urllib.parse import urlparse
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
-GIT_URL = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}' if os.environ.get("GITHUB_REPOSITORY", "") else None
+GIT_URL = f"https://github.com/{os.environ['GITHUB_REPOSITORY']}" if os.environ.get("GITHUB_REPOSITORY", "") else None
 
 
 # General configuration.
 author = "Robpol86"
-copyright = f'{time.strftime("%Y")}, {author}'  # pylint: disable=redefined-builtin  # noqa
-exclude_patterns = ["_build"]
+copyright = f"{time.strftime('%Y')}, {author}"  # pylint: disable=redefined-builtin  # noqa
+exclude_patterns = ["_build", "_images"]
 extensions = [
     "myst_parser",  # https://myst-parser.readthedocs.io
     "notfound.extension",  # https://sphinx-notfound-page.readthedocs.io
     "sphinx_copybutton",  # https://sphinx-copybutton.readthedocs.io
-    "sphinx_imgur.imgur",  # https://sphinx-imgur.readthedocs.io
     "sphinx_sitemap",  # https://sphinx-sitemap.readthedocs.io
+    "sphinx_thumb_image",  # https://sphinx-thumb-image.readthedocs.io
     "sphinxcontrib.youtube",  # https://sphinxcontrib-youtube.readthedocs.io
     "sphinxext.opengraph",  # https://sphinxext-opengraph.readthedocs.io
     "ablog",  # https://ablog.readthedocs.io/
     "robpol86_com.html_context",
+    "robpol86_com.submodule_branch",
 ]
 language = "en"
 project = "Robpol86.com"
@@ -81,7 +82,7 @@ html_theme = "sphinx_book_theme"
 html_theme_options = {
     "analytics": {"google_analytics_id": "G-EJSD449CRH"},
     "path_to_docs": "docs",
-    "pygment_light_style": pygments_style,
+    "pygments_light_style": pygments_style,
     "repository_branch": GIT_BRANCH,
     "repository_url": GIT_URL,
     "use_download_button": False,
@@ -120,7 +121,6 @@ linkcheck_timeout = 5
 
 
 # Extension settings.
-imgur_target_format = "https://i.imgur.com/%(id)s.%(ext)s"
 myst_enable_extensions = ["colon_fence", "deflist", "fieldlist", "linkify", "replacements", "strikethrough", "substitution"]
 myst_heading_anchors = 3
 myst_url_schemes = ("http", "https", "mailto")
@@ -143,6 +143,12 @@ ogp_type = "website"
 ogp_use_first_image = True
 sitemap_show_lastmod = False
 sitemap_url_scheme = "{link}"
+thumb_image_default_target = (
+    "https://raw.githubusercontent.com/%(SUBMODULE_REPO)s/refs/heads/%(SUBMODULE_BRANCH)s/%(fullsize_path:18:)s"
+)
+thumb_image_resize_quality = 25
+thumb_image_resize_width = 800
+thumb_image_target_format = True
 
 
 # Ablog settings.
@@ -168,3 +174,4 @@ blog_locations = {
 blog_title = project
 disqus_pages = False
 disqus_shortname = "rob86wiki"
+fontawesome_included = True

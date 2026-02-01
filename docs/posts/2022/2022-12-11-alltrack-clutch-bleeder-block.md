@@ -41,29 +41,32 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
 
 ## Pictures
 
-```{list-table}
-* - :::{imgur-figure} qlu0JHF
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/alltrack/clutch-bleeder-block/0-installed.jpg
     %
     New bleeder block installed on my transmission.
     :::
-  - :::{imgur-figure} 6Wiq3hY
+  - :::{thumb-figure} /_images/pictures/alltrack/clutch-bleeder-block/1-items.jpg
     %
     Items used (forgot to include the 8mm wrench).
     :::
-* - :::{imgur-figure} TJJbTDQ
+* - :::{thumb-figure} /_images/pictures/alltrack/clutch-bleeder-block/2-airbox-before.jpg
     Remove the Air Box
 
     Use a pick or screwdriver to remove the little vacuum hose nearest to the front of the car. Use your fingers to pinch the
     plastic bracket to remove the middle hose if your car has it. Finally use hose clamp pliers (or regular pliers) to remove the
     main intake hose.
     :::
-  - :::{imgur-figure} j286FE6
+  - :::{thumb-figure} /_images/pictures/alltrack/clutch-bleeder-block/3-airbox.jpg
     Air Box After Removal
 
     With all the hoses removed you can just pull up on the air box to remove it. Roll it towards the front of the car and then
     lift it out and set aside.
     :::
-* - :::{imgur-figure} Vcpnmgs
+* - :::{thumb-figure} /_images/pictures/alltrack/clutch-bleeder-block/4-airbox-removed.jpg
     Prepare to Remove Bleeder Block
 
     This is what my car looked like before replacing the block. I've circled the original plastic block in this picture. To
@@ -72,7 +75,7 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
     transmission. Don't forget to replace the two O-rings with the new ones that came with the metal block (you'll want to use
     the pick to remove the old O-rings).
     :::
-  - :::{imgur-figure} jAhRKuP
+  - :::{thumb-figure} /_images/pictures/alltrack/clutch-bleeder-block/5-block-installed.jpg
     New Block Installed
 
     With new O-rings installed on the hose and the protruding end on the transmission side install the new block. Orient it so
@@ -80,13 +83,13 @@ replace the remaining old brake fluid in the clutch master cylinder and clutch l
     the hose and slide it into the thin side and install the second clip. I gently tugged on the hose afterwards to ensure the
     clips held everything in place.
     :::
-* - :::{imgur-figure} XhTJHLF
+* - :::{thumb-figure} /_images/pictures/alltrack/clutch-bleeder-block/6-bleed.jpg
     Bleed the Clutch
 
     I used the same power bleeder for my brakes to bleed my clutch. It's the same process as bleeding brakes, you just need to
     attach a catch bottle to the bleed screw of the clutch block as if it were a brake caliper.
     :::
-  - :::{imgur-figure} DxQl9VN
+  - :::{thumb-figure} /_images/pictures/alltrack/clutch-bleeder-block/7-diagram.jpg
     Clutch Hydraulics Diagram
 
     From page 18 of the service manual D4B80989C93 6-Speed_Manual_Transmission_02S.

@@ -16,119 +16,122 @@ It's a good idea to remove the plate on the docking area (underneath where the p
 plug in the adapters or have to sand/shave them less. You can easily pull it off with your finger nails (the plate
 actually has a couple of magnets to keep it in place, and two small plastic clips).
 
-.. list-table::
+.. list-table-thumbs::
+   :resize-width: 400
 
-   * - .. imgur:: WpsmI
-     - .. imgur:: 5HAGw
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_io_plate_on.jpg
+     - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_io_plate_off.jpg
 
 Pictures and Videos
 ===================
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 400
+    :widths: 10 10
 
-    * - .. imgur-figure:: MJs3n49
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_n4.jpg
 
             Lapdock with a Nexus 4
 
             Works fine with SlimPort.
-      - .. imgur-figure:: MUViVQI
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_n4_adapters.jpg
 
             Lapdock with a Nexus 4 (Adapters Used)
 
             MicroUSB extension (optional); SlimPort HDMI, HDMI male to microHDMI female; HDMI right angle (optional)
-    * - .. imgur-figure:: yNgacIC
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/imgur-yNgacIC.jpg
 
             Lapdock with a Nexus 4 (OTG) (USB Hub Test)
 
             If you can see, I ran lsusb on the phone, removed the USB WiFi adapter, and ran lsusb again. Notice the shorter
             "paragraph" on my phone. Definitely working.
-      - .. imgur-figure:: K7glCXN
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/imgur-K7glCXN.png
 
             Lapdock with a Nexus 4 (OTG) (USB Hub Test) (Screen Shot)
 
             First group is with the USB WiFi adapter, second group is after I removed it. The phone can detect things on the USB
             hub.
-    * - .. imgur-figure:: qbs7sWg
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/imgur-qbs7sWg.jpg
 
             Lapdock with a Nexus 4 (OTG)
 
             Ignore the Raspberry Pi, I'm just using it to trick the Lapdock into powering on. Notice the mouse cursor on my
             phone!
-      - .. imgur-figure:: 5HAGw
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_io_plate_off.jpg
 
             Lapdock IO Plate Off
 
             This is how the Lapdock's phone dock looks like without the plate. More room for HDMI/USB adapters.
-    * - .. imgur-figure:: WpsmI
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_io_plate_on.jpg
 
             Lapdock IO Plate On
 
             This plate is removable. Use the notches (one on each side) to remove the plate with your fingernails. It should
             easily come off.
-      - .. imgur-figure:: ldQ0c
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_laptop.jpg
 
             Lapdock as a Second Display
 
             The Lapdock is very handy as a second display for my laptop! At home my laptop is docked with two monitors. Now when
             I travel I can still have two monitors.
-    * - .. imgur-figure:: KONZZ
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_laptop_adapters.jpg
 
             Lapdock as a Second Display (Adapters Used)
 
             I used a Micro HDMI female to HDMI male adapter and an HDMI female/female coupler.
-      - .. imgur-figure:: qs9ph
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_gnex_homescreen.jpg
 
             Lapdock with a Galaxy Nexus (VZW LTE)
 
             The Galaxy Nexus works fine with the Lapdock, however only HDMI (video) works. The MHL standard disables USB when
             using HDMI, so the Lapdock's keyboard, touchpad, and USB ports don't work. Charging the phone works though.
-    * - .. imgur-figure:: VpSTT
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_gnex_netflix.jpg
 
             Lapdock with a Galaxy Nexus (VZW LTE) (Netflix)
 
             Netflix works fine.
-      - .. imgur-figure:: Ct9Ii
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_gnex_adapters.jpg
 
             Lapdock with a Galaxy Nexus (VZW LTE) (Adapters Used)
 
             Any MHL capable phone will work with an MHL adapter. I also used a Micro HDMI female to HDMI male adapter, an HDMI
             female/female coupler (my MHL adapter has an HDMI male connector), and a MicroUSB male/female extension cable.
-    * - .. imgur-figure:: 2SA93
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_shaved-adapters_above.jpg
 
             Lapdock Shaved Adapters (Above View)
 
             Another view of the adapters I shaved.
-      - .. imgur-figure:: vCYfG
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_shaved-adapters.jpg
 
             Lapdock Shaved Adapters
 
             In order for the Micro-HDMI and Micro-USB adapters to fit at the same time, I had to shave off a lot of excess
             plastic.
-    * - .. imgur-figure:: TXiVx
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_wii.jpg
 
             Lapdock with a Wii
 
             I don't have a 360 or PS3, but I have a Wii and after I found an HDMI adapter I tried it with the Lapdock. Turns out
             it works just fine. The Lapdock takes care of changing resolution as long as it's at or below 1366x768. Audio works
             too by the way. This should work just fine with the Xbox 360, PS3, or any other HDMI devices.
-      - .. imgur-figure:: UkdYJ
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_wii_adapters.jpg
 
             Lapdock with a Wii (Adapters Used)
 
             I used a Micro HDMI female to HDMI male adapter and an HDMI female/female coupler.
-    * - .. imgur-figure:: cc5TK
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_wii_hdmi.jpg
 
             Lapdock with a Wii (Wii HDMI Adapter)
 
             Here you ca see the Wii HDMI adapter I used.
-      - .. imgur-figure:: cZR03
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_rpi.jpg
 
             Lapdock with a Raspberry Pi
 
             The Lapdock works great with the Raspberry Pi, but with a few problems. Every time the Lapdock's lid is opened or
             closed, power is cut off the RPI for a second, causing it to reboot. Also there's a problem with the RPI's USB hub
             that prevents me from using the Lapdock's keyboard and a USB WiFi adapter.
-    * - .. imgur-figure:: MrTBN
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock_rpi_adapters.jpg
 
             Lapdock with a Raspberry Pi (Adapters Used)
 
@@ -162,10 +165,11 @@ Works with the Nexus 4 just fine, appears to maintain aspect ratio. Adapters use
 * `SlimPort SP1002 (HDMI) <https://www.amazon.com/dp/B009UZBLSG/>`_
 * `HDMI Port Saver (Male to Female) 90 Degree <https://www.monoprice.com/products/product.asp?p_id=3733>`_
 
-.. list-table::
+.. list-table-thumbs::
+   :resize-width: 400
 
-   * - .. imgur:: MJs3n49
-     - .. imgur:: MUViVQI
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_n4.jpg
+     - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_n4_adapters.jpg
 
 Using USB OTG
 -------------
@@ -199,11 +203,12 @@ Steps taken to accomplish:
     If you can see, I ran ``lsusb`` on the phone, removed the USB WiFi adapter, and ran ``lsusb`` again. Notice the
     shorter "paragraph" on my phone. Definitely working.
 
-.. list-table::
+.. list-table-thumbs::
+   :resize-width: 400
 
-   * - .. imgur:: qbs7sWg
-     - .. imgur:: yNgacIC
-   * - .. imgur:: K7glCXN
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/imgur-qbs7sWg.jpg
+     - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/imgur-yNgacIC.jpg
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/imgur-K7glCXN.png
      -
 
 Using USB OTG and Miracast
@@ -231,11 +236,12 @@ Adapters used:
     enough power through. So I had to splice another USB cable into the micro USB extension and route the USB data
     cables (green and white) to the spliced cable.
 
-.. list-table::
+.. list-table-thumbs::
+   :resize-width: 400
 
-   * - .. imgur:: cZR03
-     - .. imgur:: MrTBN
-   * - .. imgur:: vCYfG
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_rpi.jpg
+     - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_rpi_adapters.jpg
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_shaved-adapters.jpg
      -
 
 With a Laptop
@@ -247,10 +253,11 @@ time I traveled I had to deal with a single monitor. Not anymore! Adapters used:
 * `HDMI Male to Micro HDMI Female <https://www.dealextreme.com/p/hdmi-male-to-micro-hdmi-female-adapter-66079>`_
 * HDMI Female/Female Coupler
 
-.. list-table::
+.. list-table-thumbs::
+   :resize-width: 400
 
-   * - .. imgur:: ldQ0c
-     - .. imgur:: KONZZ
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_laptop.jpg
+     - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_laptop_adapters.jpg
 
 With a Wii
 ==========
@@ -263,26 +270,29 @@ the way. This should work just fine with the Xbox 360, PS3, or any other HDMI de
 * HDMI Female/Female Coupler
 * `Wii HDMI Adapter <https://www.amazon.com/gp/product/B0057UNPQO/>`_
 
-.. list-table::
+.. list-table-thumbs::
+   :resize-width: 400
 
-   * - .. imgur:: TXiVx
-     - .. imgur:: UkdYJ
-   * - .. imgur:: cc5TK
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_wii.jpg
+     - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_wii_adapters.jpg
+   * - .. thumb-image:: /_images/pictures/atrix-lapdock-other-uses/lapdock_wii_hdmi.jpg
      -
 
 Lapdock 500 Teardown
 ====================
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 400
+    :widths: 10 10
 
-    * - .. imgur-figure:: on1EG
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_1_bottom.jpg
 
             Step 1: First Set of Screws to Remove
 
             To start the teardown, remove most of the rubber grommets/feet on the underside of the Lapdock to access the screws.
             There are 15 screws total (not counting the two used for the pull-out tray).
 
-      - .. imgur-figure:: 4zK6V
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_2_keyboard.jpg
 
             Step 2: Removing the Keyboard
 
@@ -291,14 +301,14 @@ Lapdock 500 Teardown
             off once all the tabs are pushed in. With the keyboard out, lightly tug on its ribbon cable to disconnect it from the
             Lapdock's controller board. Do the same with the touchpad's cable while you're at it.
 
-    * - .. imgur-figure:: nH3Vw
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_3_io-cover.jpg
 
             Step 3: Removing the Plastic Cover
 
             Gently tug up on the black plastic panel covering the IO ports. I pulled out the phone drawer and started pulling up
             from there.
 
-      - .. imgur-figure:: qVXHC
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_4_palmrest.jpg
 
             Step 4: Removing the Palm Rest
 
@@ -307,7 +317,7 @@ Lapdock 500 Teardown
             holes (using a Phillips) and using a flathead to pry the bottom part of the Lapdock (which curves up) from the palm
             rest. Be very gentle, the clips are fragile and I broke one during this step.
 
-    * - .. imgur-figure:: VxcB7
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_5_inside.jpg
 
             Step 5: Removing the Monitor
 
@@ -315,67 +325,67 @@ Lapdock 500 Teardown
             To remove the bigger cable you gently tug on the cord. The cable should disconnect from the connector. To remove the
             smaller cable, I used my thumb nails (both) to pry the plastic connector from the controller.
 
-      - .. imgur-figure:: bcGIk
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_6_no-monitor.jpg
 
             Step 6: Lapdock 500 With No Monitor
 
             After removing five screws on the hinge bases (attached to the Lapdock's base; three screws on the left, two on the
             right) the monitor should lift right off.
 
-    * - .. imgur-figure:: GnLRF
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_7_controller.jpg
 
             Lapdock 500 Controller Board
 
             This is a close-up of the Lapdock's controller board.
 
-      - .. imgur-figure:: n3Yv0
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_8_wish.jpg
 
             The perfect Raspberry Pi Laptop
 
             If someone can help me hack this stupid Lapdock 500 to work with any HDMI input, this would be possible! I would
             probably have to remove a few components from the Pi though.
 
-    * - .. imgur-figure:: UOARn
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_9_controller_upper-left.jpg
 
             Lapdock 500 Controller Board (Upper Left)
 
-      - .. imgur-figure:: 9AxyU
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_10_controller_upper-center.jpg
 
             Lapdock 500 Controller Board (Upper Center)
 
-    * - .. imgur-figure:: knTzK
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_11_controller_upper-right.jpg
 
             Lapdock 500 Controller Board (Upper Right)
 
-      - .. imgur-figure:: mx9AW
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_12_controller_lower-left.jpg
 
             Lapdock 500 Controller Board (Lower Left)
 
-    * - .. imgur-figure:: S6zx9
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_13_controller_lower-center.jpg
 
             Lapdock 500 Controller Board (Lower Center)
 
-      - .. imgur-figure:: 2PbFf
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_14_controller_lower-right.jpg
 
             Lapdock 500 Controller Board (Lower Right)
 
-    * - .. imgur-figure:: WNuEX
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_15_controller2.jpg
 
             Lapdock 500 Controller Board (Second Shot)
 
-      - .. imgur-figure:: HD108
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_16_controller_cable-removed.jpg
 
             Lapdock 500 Controller Board (Input Cable Removed)
 
-    * - .. imgur-figure:: R5mq1
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_17_controller_rear.jpg
 
             Lapdock 500 Controller Board (Rear)
 
-      - .. imgur-figure:: pphBk
+      - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_18_controller_rear-top.jpg
 
             Lapdock 500 Controller Board (Rear Top)
 
-    * - .. imgur-figure:: uW0oK
+    * - .. thumb-figure:: /_images/pictures/atrix-lapdock-other-uses/lapdock500_teardown_19_controller_rear-bottom.jpg
 
             Lapdock 500 Controller Board (Rear Bottom)
 

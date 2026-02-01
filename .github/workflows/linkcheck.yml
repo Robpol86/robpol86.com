@@ -11,9 +11,10 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          submodules: true
 
       - name: Setup Dependencies
         uses: ./.github/actions/deps

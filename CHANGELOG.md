@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026.1.31.90851]
+
+Imgur Deprecation Completed
+
+* a302d41 Remove imgur extension. (#345)
+* dfd0e5b Migrate remaining (#344)
+* bdd9aab Migrate 3d printer posts (#343)
+* 84d009c Migrate rst pages (#342)
+* de6cf1e Migrate remaining Alltrack (#341)
+* 54a6768 Ecohitch and Euro Tails (#340)
+* 37cb94b Migrated JSW (#339)
+* 411b63d Migrate dashcam posts (#338)
+* fef39e8 Migrate rack posts (#337)
+* 82ef386 Migrating desk photos (#336)
+
+## [2026.1.31.34829]
+
+Begin Imgur Deprecation
+
+* d330de7 Switch to sphinx-thumb-images (#333)
+* 0b08f40 Make all columns the same width. (#334)
+* 3ba8f36 Update dependencies (#331)
+* 3e52305 Fix "document is referenced in multiple toctrees" (#324)
+* 91de89f Update actions versions. (#322)
+* 5b4532f Fix deprecation-caused full rebuild. (#320)
+* 34f919c Update dependencies. (#319)
+* 91711e3 Update dependencies. (#315)
+* 741fd13 New pyproject spec. (#314)
+* 47ff2b9 Update dependencies (#313)
+
 ## [2025.9.6.60948]
 
 Fix derivative found out-of-order times in time column

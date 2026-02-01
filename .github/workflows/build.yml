@@ -30,10 +30,11 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: "${{ inputs.commit }}"
+          submodules: true
 
       - name: Setup Dependencies
         uses: ./.github/actions/deps
@@ -41,16 +42,21 @@ jobs:
       - name: Run Tests
         if: '! inputs.skip_lints_tests'
         env:
+          COVERAGE_FAIL_UNDER: ${{ github.event_name == 'pull_request' && '1' || '0' }}
           PY_COLORS: 1
         run: make test
+
+      - name: Run Integration Tests
+        if: '! inputs.skip_lints_tests'
+        run: make it
 
       - name: Run Lints
         if: '! inputs.skip_lints_tests'
         run: make lint
 
-      - name: Run Integration Tests
+      - name: Verify Formatting
         if: '! inputs.skip_lints_tests'
-        run: make it
+        run: make format && git diff-index HEAD -p --exit-code
 
       - name: Build
         env:  # Note: these can be empty
@@ -70,7 +76,7 @@ jobs:
           prettier --write "docs/_build/html/**/*.{js,css,html,xml}"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: html
           path: docs/_build/html

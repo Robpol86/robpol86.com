@@ -9,7 +9,8 @@
 Wireless Charging Car Dock
 ==========================
 
-.. imgur-figure:: 7WTPx0v.gif
+.. thumb-figure:: /_images/pictures/wireless-charging-car-dock/execution4.gif
+   :no-resize:
 
 So I was tired of having to hold my phone while plugging in a microusb cable after I've docked it in my car. I couldn't
 find very many car docks out there with wireless charging, and I read that Nokia's wireless charging car dock didn't
@@ -30,15 +31,16 @@ that I was able to drive around for three hours with my phone on the charger wit
 All you need to do is mount the nGroove Snap and then place the charger on it, and that’s it! I routed the cable behind
 my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: GJE9zkv
-      - .. imgur:: zIgncli
-      - .. imgur:: 7zHnpLJ
-    * - .. imgur:: 55krwnA
-      - .. imgur:: 7lHFKUv
-      - .. imgur:: N3ZRXRI
-    * - .. imgur:: 5KjUkO5
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_2.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_1.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-7zHnpLJ.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_17.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt4_18.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-N3ZRXRI.jpg
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/imgur-5KjUkO5.jpg
       -
       -
 
@@ -46,7 +48,8 @@ my dash to make it look a bit cleaner :doc:`instructions here </vw_jsw_2010>`.
 Previous Implementation
 =======================
 
-.. imgur-figure:: X8fbOGl.gif
+.. thumb-figure:: /_images/pictures/wireless-charging-car-dock/execution3.gif
+   :no-resize:
 
 So I built my own. I originally posted everything
 `on the XDA forums <https://forum.xda-developers.com/showthread.php?p=47509705#post47509705>`_. Since the Nexus 5 has
@@ -96,16 +99,18 @@ case for it and add more magnets.
 
 Here are some pictures of the final version, sans washers.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: COavxfY
-      - .. imgur:: qJONaXG
-      - .. imgur:: GhOvZg9
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_1.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_2.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_3.jpg
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 400px
 
-    * - .. imgur:: OvXMV5w
-      - .. imgur:: dRQ4q77
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_4.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_5.jpg
 
 And here are some pictures after I routed the `wire inside the <https://www.amazon.com/gp/product/B003YKX6WW/>`_ center
 console. After you take out the shifter boot, little cubby, head unit, and air vents there is a ton of room inside to
@@ -113,10 +118,11 @@ route the wire. The front plate of the AC vents snaps on so I was able to pry it
 wire in. I cut out a small notch of plastic to give the wire some room without blocking any of the vents' moving parts.
 The only downside is I can't close the little cubby anymore. Oh well.
 
-.. list-table::
+.. list-table-thumbs::
+    :resize-width: 300px
 
-    * - .. imgur:: sRKNN6F
-      - .. imgur:: 8R5ROC4
-      - .. imgur:: 7jA3c1J
+    * - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_6.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_8.jpg
+      - .. thumb-image:: /_images/pictures/wireless-charging-car-dock/qi_attempt3_7.jpg
 
 .. _Mountek nGroove Snap Magnetic Vehicle Mount: https://www.amazon.com/dp/B00E9L0HGI

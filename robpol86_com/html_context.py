@@ -32,7 +32,7 @@ def override_disqus_identifier(app: Sphinx, pagename: str, templatename: str, co
 
 
 def setup(app: Sphinx):
-    """Called by Sphinx.
+    """Register with Sphinx (called by Sphinx during phase 0 [initialization]).
 
     :param app: Sphinx application object.
     """

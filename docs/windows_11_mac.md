@@ -13,8 +13,7 @@ me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does 
 
 ## Create ISO
 
-```{imgur} 1J45UMB
-:ext: png
+```{thumb-image} /_images/pictures/windows-11-mac/custom-iso.png
 ```
 
 | File Name                  | sha1sum / Get-FileHash -Algorithm SHA1   |
@@ -75,17 +74,17 @@ Clean up
 
 ## Install
 
-```{list-table}
-* - ```{imgur-figure} TjJUZ4T
-    :ext: png
+```{list-table-thumbs}
+:resize-width: 300
+:widths: 10 10 10
+
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/boot-camp.png
     Boot Camp Assistant
     ```
-  - ```{imgur-figure} gF0n0oK
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/windows-setup.png
     Installing Windows 11
     ```
-  - ```{imgur-figure} Cvx57Ac
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/boot-camp-windows-installer.png
     Boot Camp Drivers
     ```
 ```
@@ -140,17 +139,17 @@ You'll also need to obtain the Windows Support Software from the Boot Camp Assis
 
 ### Format USB Flash Drive
 
-```{list-table}
-* - ```{imgur-figure} GvtHamn
-    :ext: png
+```{list-table-thumbs}
+:resize-width: 300
+:widths: 10 10 10
+
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-disk-utility.png
     Disk Utility
     ```
-  - ```{imgur-figure} O9Ytvtw
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-erase.png
     Erase USB Drive
     ```
-  - ```{imgur-figure} nlgkq4N
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-unetbootin.png
     UNetbootin
     ```
 ```
@@ -177,17 +176,17 @@ end.
 ```{warning} Backup any important files just in case something goes wrong and you lose all of your files on your computer.
 ```
 
-```{list-table}
-* - ```{imgur-figure} HL5fUTI
-    :ext: png
+```{list-table-thumbs}
+:resize-width: 300
+:widths: 10 10 10
+
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-partition-ssd.png
     Partition SSD
     ```
-  - ```{imgur-figure} 2k0QnAP
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-add-partition.png
     Add Partition
     ```
-  - ```{imgur-figure} ViA41PH
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/alt-bootcamp.png
     Name it BOOTCAMP
     ```
 ```
@@ -209,13 +208,14 @@ It removed the Windows partition and removed the Windows EFI entry as well!
 
 ## Remove macOS
 
-```{list-table}
-* - ```{imgur-figure} 58oJm7t
-    :ext: png
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/minitool-initial.png
     Before Repartitioning
     ```
-  - ```{imgur-figure} gPd6laP
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/minitool-final.png
     After Repartitioning
     ```
 ```
@@ -232,17 +232,17 @@ do the repartitioning from Windows.
 
 ## BitLocker
 
-```{list-table}
-* - ```{imgur-figure} EKbY5zv
-    :ext: png
+```{list-table-thumbs}
+:resize-width: 300
+:widths: 10 10 10
+
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-tpm.png
     Use gpedit.msc to disable the TPM check
     ```
-  - ```{imgur-figure} I6XTevu
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-setting.png
     Now you can enable BitLocker
     ```
-  - ```{imgur-figure} mop8gO7
-    :ext: png
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/bitlocker-enable.png
     This error is expected
     ```
 ```
@@ -269,11 +269,14 @@ Now you can enable BitLocker the usual way.
 
 ## Restore macOS
 
-```{list-table}
-* - ```{imgur-figure} ICGyjGt
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - ```{thumb-figure} /_images/pictures/windows-11-mac/main-menu.jpg
     Main Menu
     ```
-  - ```{imgur-figure} sDNXbxm
+  - ```{thumb-figure} /_images/pictures/windows-11-mac/disk-utility.jpg
     Erase the SSD
     ```
 ```
