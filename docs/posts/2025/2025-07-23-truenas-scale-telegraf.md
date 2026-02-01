@@ -9,6 +9,12 @@ tags: homelab, nas
 
 # TrueNAS Telegraf, Influx, Grafana
 
+This guide will explain how to setup [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/),
+[InfluxDB](https://docs.influxdata.com/influxdb/v2/get-started/), and [Grafana](https://grafana.com/oss/grafana/) on
+[TrueNAS SCALE (Community Edition)](https://www.truenas.com/truenas-community-edition/). This is how I run all three apps on
+my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
+SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.
+
 ```{list-table-thumbs}
 :resize-width: 400
 
@@ -17,12 +23,6 @@ tags: homelab, nas
 * - :::{thumb-image} /_images/pictures/travel-nas/truenas-scale-telegraf/grafana-panels-3-cpu.png
   - :::{thumb-image} /_images/pictures/travel-nas/truenas-scale-telegraf/grafana-panels-4-space-usage.png
 ```
-
-This guide will explain how to setup [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/),
-[InfluxDB](https://docs.influxdata.com/influxdb/v2/get-started/), and [Grafana](https://grafana.com/oss/grafana/) on
-[TrueNAS SCALE (Community Edition)](https://www.truenas.com/truenas-community-edition/). This is how I run all three apps on
-my [Beelink ME Mini](https://www.bee-link.com/products/beelink-me-mini-n150) NAS. As of this writing I'm running TrueNAS
-SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.
 
 Telegraf, InfluxDB, and Grafana are separate pieces of software that together allow you to graph metrics from
 your servers and devices. With these graphs, charts, and other visualization tools available in Grafana, you can see
