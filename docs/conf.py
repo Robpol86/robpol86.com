@@ -131,7 +131,7 @@ notfound_context = dict(  # pylint: disable=use-dict-literal
 )
 notfound_urls_prefix = ""
 ogp_site_url = html_baseurl
-ogp_social_cards = {"image": "_static/logo.png"}
+ogp_social_cards = {"enable": True}
 ogp_type = "website"
 ogp_use_first_image = True
 sitemap_show_lastmod = False
