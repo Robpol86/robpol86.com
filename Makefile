@@ -9,9 +9,10 @@ uv.lock:
 	unset UV_FROZEN && uv lock
 
 .PHONY: relock
-relock: _HELP = Delete and recreate uv lock file
+relock: _HELP = Delete and recreate uv lock file and update the git submodule
 relock:
 	rm -f uv.lock && $(MAKE) uv.lock
+	git submodule update --remote
 
 .PHONY: deps
 deps: _HELP = Install project dependencies
@@ -53,7 +54,7 @@ itpdb:
 
 .PHONY: all
 all: _HELP = Run linters, unit tests, integration tests, and builds
-all: test it lint docs build
+all: test it lint build
 
 ## Build
 
