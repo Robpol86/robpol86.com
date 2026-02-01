@@ -36,12 +36,12 @@ format:
 .PHONY: test
 test: _HELP = Run unit tests
 test:
-	@echo NotImplemented: $@
+	poetry run pytest --cov=$(PROJECT_NAME) --cov-report=html --cov-report=xml tests/unit_tests
 
 .PHONY: testpdb
 testpdb: _HELP = Run unit tests and drop into the debugger on failure
 testpdb:
-	@echo NotImplemented: $@
+	poetry run pytest --pdb tests/unit_tests
 
 .PHONY: it
 it: _HELP = Run integration tests
@@ -55,22 +55,17 @@ itpdb:
 
 .PHONY: all
 all: _HELP = Run linters, unit tests, integration tests, and builds
-all: test it lint docs linkcheck build
+all: test it lint build
 
 ## Build
-
-.PHONY: build
-build: _HELP = Build Python package (sdist and wheel)
-build:
-	@echo NotImplemented: $@
 
 docs/_build/html/index.html::
 	poetry run sphinx-build -T -n -W docs $(@D)
 	@echo Documentation available here: $@
 
-.PHONY: docs
-docs: _HELP = Build HTML documentation
-docs: docs/_build/html/index.html
+.PHONY: docs build
+docs build: _HELP = Build HTML documentation
+docs build: docs/_build/html/index.html
 
 autodocs: _HELP = Start a web server, open browser, and auto-rebuild HTML on file changes
 autodocs: docs/_build/html/index.html

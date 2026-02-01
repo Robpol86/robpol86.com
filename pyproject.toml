@@ -39,12 +39,24 @@ dev = [
     # Linters.
     "ruff",
     # Tests.
+    "coverage[toml]",
     "pytest",
+    "pytest-cov",
     "pytest-icdiff",
 ]
 
+[tool.coverage.report]
+exclude_lines = [
+    "^\\s*from",
+    "^\\s*import",
+]
+fail_under = "${COVERAGE_FAIL_UNDER-0}"
+
+[tool.coverage.run]
+branch = true
+
 [tool.pytest.ini_options]
-addopts = "--durations=15 --showlocals --verbose --verbose"
+addopts = "--cov-report=term-missing --durations=15 --showlocals --verbose --verbose"
 log_level = "DEBUG"
 
 [tool.ruff]
