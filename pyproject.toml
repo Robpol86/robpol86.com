@@ -23,7 +23,7 @@ dependencies = [
     "sphinx-sitemap",
     "sphinx-thumb-image",
     "sphinxcontrib-youtube",
-    "sphinxext-opengraph",
+    "sphinxext-opengraph[social_cards]",
 ]
 
 [project.urls]
