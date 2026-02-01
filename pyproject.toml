@@ -1,6 +1,6 @@
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "Robpol86.com"
@@ -29,8 +29,11 @@ dependencies = [
 [project.urls]
 repository = "https://github.com/Robpol86/robpol86.com"
 
-[tool.poetry]
-packages = [{include = "robpol86_com"}]
+[tool.hatch.build.targets.sdist]
+include = ["robpol86_com"]
+
+[tool.hatch.build.targets.wheel]
+include = ["robpol86_com"]
 
 [dependency-groups]
 dev = [
