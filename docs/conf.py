@@ -3,7 +3,6 @@
 # pylint: disable=invalid-name
 import os
 import time
-from urllib.parse import urlparse
 
 GIT_BRANCH = os.environ.get("SPHINX_GITHUB_BRANCH", "") or os.environ.get("GITHUB_REF_NAME", None)
 GIT_URL = f"https://github.com/{os.environ['GITHUB_REPOSITORY']}" if os.environ.get("GITHUB_REPOSITORY", "") else None
@@ -64,7 +63,7 @@ html_extra_path = [
     "_static/safari-pinned-tab.svg",
     "_static/site.webmanifest",
 ]
-html_logo = "_static/logo.svg"
+html_logo = "_static/logo.png"
 html_sidebars = {
     "**": [
         "navbar-logo.html",
