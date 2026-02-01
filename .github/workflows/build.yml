@@ -42,6 +42,7 @@ jobs:
       - name: Run Tests
         if: '! inputs.skip_lints_tests'
         env:
+          COVERAGE_FAIL_UNDER: ${{ github.event_name == 'pull_request' && '1' || '0' }}
           PY_COLORS: 1
         run: make test
 
