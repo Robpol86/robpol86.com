@@ -1,85 +1,78 @@
 .DEFAULT_GOAL = help
 PROJECT_NAME = robpol86_com
+export UV_FROZEN = true
 
 ## Dependencies
 
-poetry.lock: _HELP = Lock dependency versions to file
-poetry.lock:
-	poetry lock
+uv.lock: _HELP = Lock dependency versions to file
+uv.lock:
+	unset UV_FROZEN && uv lock
 
 .PHONY: relock
-relock: _HELP = Delete and recreate poetry lock file and update the git submodule
+relock: _HELP = Delete and recreate uv lock file
 relock:
-	rm -f poetry.lock && $(MAKE) poetry.lock
-	git submodule update --remote
+	rm -f uv.lock && $(MAKE) uv.lock
 
-# Reduce repo/GHA/Makefile complexity by always installing dev deps
 .PHONY: deps
 deps: _HELP = Install project dependencies
 deps:
-	poetry install --with dev
+	uv sync
 
 ## Testing
 
 .PHONY: lint
 lint: _HELP = Run linters
 lint:
-	poetry check
-	poetry run ruff check
+	uv run ruff check
 
 .PHONY: format
 format: _HELP = Apply format/lint fixes
 format:
-	poetry run ruff format
-	poetry run ruff check --fix
+	uv run ruff format
+	uv run ruff check --fix
 
 .PHONY: test
 test: _HELP = Run unit tests
 test:
-	@echo NotImplemented: $@
+	uv run pytest --cov=$(PROJECT_NAME) --cov-report=html --cov-report=xml tests/unit_tests
 
 .PHONY: testpdb
 testpdb: _HELP = Run unit tests and drop into the debugger on failure
 testpdb:
-	@echo NotImplemented: $@
+	uv run pytest --pdb tests/unit_tests
 
 .PHONY: it
 it: _HELP = Run integration tests
 it:
-	poetry run pytest tests/integration_tests
+	uv run pytest tests/integration_tests
 
 .PHONY: itpdb
 itpdb: _HELP = Run integration tests and drop into the debugger on failure
 itpdb:
-	poetry run pytest --pdb tests/integration_tests
+	uv run pytest --pdb tests/integration_tests
 
 .PHONY: all
 all: _HELP = Run linters, unit tests, integration tests, and builds
-all: test it lint docs linkcheck build
+all: test it lint docs build
 
 ## Build
 
-.PHONY: build
-build: _HELP = Build Python package (sdist and wheel)
-build:
-	@echo NotImplemented: $@
-
 docs/_build/html/index.html::
-	poetry run sphinx-build -T -n -W docs $(@D)
+	uv run sphinx-build -T -n -W docs $(@D)
 	@echo Documentation available here: $@
 
-.PHONY: docs
-docs: _HELP = Build HTML documentation
-docs: docs/_build/html/index.html
+.PHONY: docs build
+docs build: _HELP = Build HTML documentation
+docs build: docs/_build/html/index.html
 
 autodocs: _HELP = Start a web server, open browser, and auto-rebuild HTML on file changes
 autodocs: docs/_build/html/index.html
-	poetry run sphinx-autobuild --open-browser --show-traceback --delay=1 --host localhost -n -W docs $(<D)
+	uv run sphinx-autobuild --open-browser --show-traceback --delay=1 --host localhost -n -W docs $(<D)
 
 .PHONY: linkcheck
 linkcheck: _HELP = Check for broken links in documents
 linkcheck: docs/_build/html/index.html
-	poetry run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D) && ret=0 || ret=$$? && \
+	uv run sphinx-build -T -n -W --keep-going -b linkcheck docs $(<D) && ret=0 || ret=$$? && \
 		{ jq -s . $(<D)/output.json > $(<D)/output2.json && mv $(<D)/output2.json $(<D)/output.json; \
 			jq -r '.[] |select(.status == "broken") |.uri' $(<D)/output.json > $(<D)/broken.txt; echo; echo; \
 			echo "======================= output.txt ======================="; sort $(<D)/output.txt; \

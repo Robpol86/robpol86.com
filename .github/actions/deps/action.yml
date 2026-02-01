@@ -6,14 +6,13 @@ runs:
   using: composite
   steps:
 
-    - name: Install Poetry
-      uses: abatilo/actions-poetry@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
 
     - name: Install Python
       uses: actions/setup-python@v6
       with:
         python-version: "3.14"
-        cache: poetry
 
     - name: Install Dependencies
       shell: bash
