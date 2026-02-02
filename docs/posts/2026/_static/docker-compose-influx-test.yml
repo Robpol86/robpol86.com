@@ -71,8 +71,22 @@ services:
       - grafana-plugins:/var/lib/grafana/plugins
       - grafana-provisioning:/etc/grafana/provisioning
   grafana-init:
-    command: -euxc 'whoami && ls -lah /etc/grafana/provisioning'
+    command: -euxc 'printenv datasource_yml_txt > /etc/grafana/provisioning/datasources/datasource.yml'
     entrypoint: /bin/sh
+    environment:
+      datasource_yml_txt: |
+        apiVersion: 1
+        datasources:
+          - name: influxdb
+            type: influxdb
+            access: proxy
+            url: http://influxdb:8086
+            jsonData:
+              version: Flux
+              organization: homelab
+              defaultBucket: telegraf
+            secureJsonData:
+              token: abc123def456
     image: *image-grafana
     volumes:
       - grafana-provisioning:/etc/grafana/provisioning
