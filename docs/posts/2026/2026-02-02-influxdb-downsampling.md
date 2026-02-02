@@ -1,8 +1,8 @@
 ---
 blogpost: true
-date: 2025-09-20
+date: 2026-02-02
 author: Robpol86
-location: Taipei
+location: Hong Kong
 category: Tutorials
 tags: homelab, nas
 ---
