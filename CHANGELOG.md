@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026.2.2.35316]
+
+Desk Hong Kong
+
+* 6a17b42 Adding 2026 desk photo (#351)
+* 1338a07 Migrate from poetry to uv (#348)
+* d44cb39 Adding placeholder tests for consistency (#349)
+* 7da27d4 Switch linters to ruff (#346)
+* d69aa4a Switch from pkg_resources to importlib (#347)
+
 ## [2026.1.31.90851]
 
 Imgur Deprecation Completed
