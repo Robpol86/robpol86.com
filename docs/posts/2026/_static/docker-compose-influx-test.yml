@@ -71,7 +71,7 @@ services:
       - grafana-plugins:/var/lib/grafana/plugins
       - grafana-provisioning:/etc/grafana/provisioning
   grafana-init:
-    command: -euxc 'printenv datasource_yml_txt > /etc/grafana/provisioning/datasources/datasource.yml && printenv dashboard_yml_text > /etc/grafana/provisioning/dashboards/home.yaml'
+    command: -euxc 'printenv datasource_yml_txt > /etc/grafana/provisioning/datasources/datasource.yml && printenv dashboard_yml_text > /etc/grafana/provisioning/dashboards/home.json'
     entrypoint: /bin/sh
     environment:
       datasource_yml_txt: |
@@ -88,621 +88,580 @@ services:
             secureJsonData:
               token: abc123def456
       dashboard_yml_text: |
-        apiVersion: dashboard.grafana.app/v2beta1
-        kind: Dashboard
-        metadata:
-          name: f1639b8d-85ff-4a51-bc8c-47567de87b46
-          namespace: default
-          uid: P4xnKSMcGrjl0Xhipg1rokynfGXQ4fOJmZyqesIe52gX
-          resourceVersion: '1'
-          generation: 2
-          creationTimestamp: '2026-02-02T07:12:37Z'
-          labels:
-            grafana.app/deprecatedInternalID: '1'
-          annotations:
-            grafana.app/createdBy: user:ffc07cp4roveob
-            grafana.app/updatedBy: user:ffc07cp4roveob
-            grafana.app/updatedTimestamp: '2026-02-02T07:12:37Z'
-        spec:
-          annotations:
-            - kind: AnnotationQuery
-              spec:
-                builtIn: true
-                enable: true
-                hide: true
-                iconColor: rgba(0, 211, 255, 1)
-                name: Annotations & Alerts
-                query:
-                  datasource:
-                    name: '-- Grafana --'
-                  group: grafana
-                  kind: DataQuery
-                  spec: {}
-                  version: v0
-          cursorSync: 'Off'
-          description: https://robpol86.com/posts/2025/2025-07-23-truenas-scale-telegraf.html
-          editable: true
-          elements:
-            panel-1:
-              kind: Panel
-              spec:
-                data:
-                  kind: QueryGroup
-                  spec:
-                    queries:
-                      - kind: PanelQuery
-                        spec:
-                          hidden: false
-                          query:
-                            datasource:
-                              name: P3C6603E967DC8568
-                            group: influxdb
-                            kind: DataQuery
-                            spec:
-                              query: |-
-                                from(bucket: "$${BUCKET}")
-                                  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                                  |> filter(fn: (r) => r.host == "$${NAS_HOST}")
-                                  |> filter(fn: (r) => r._measurement == "system")
-                                  |> filter(fn: (r) => r._field == "uptime")
-                                  |> drop(columns: ["host"])
-                                  |> last()
-                                  |> map(fn: (r) => {
-                                      // uptime_format is deprecated: https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/README.md?plain=1#L46
-                                      // https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/system.go#L89
-                                      uptime = r._value
-                                      days = int(v: uptime / (60 * 60 * 24))
-                                      uptimeFormatDays =
-                                        if days > 1 then "$${days} days, "
-                                        else if days == 1 then "$${days} day, "
-                                        else ""
-                                      seconds = int(v: uptime % 60)
-                                      uptimeFormatSeconds = if seconds < 10 then "0$${seconds}" else "$${seconds}"
-                                      minutes_ = uptime / 60
-                                      hours = int(v: (minutes_ / 60) % 24)
-                                      minutes = int(v: minutes_ % 60)
-                                      uptimeFormatMinutes = if minutes < 10 then "0$${minutes}" else "$${minutes}"
-                                      uptimeFormat = "$${hours}:$${uptimeFormatMinutes}:$${uptimeFormatSeconds}"
-                                      return { r with _value: "$${uptimeFormatDays}$${uptimeFormat}" }
-                                  })
-                            version: v0
-                          refId: A
-                    queryOptions: {}
-                    transformations: []
-                description: The host's most recently reported uptime in human readable format
-                id: 1
-                links: []
-                title: Uptime
-                vizConfig:
-                  group: stat
-                  kind: VizConfig
-                  spec:
-                    fieldConfig:
-                      defaults:
-                        color:
-                          mode: thresholds
-                        thresholds:
-                          mode: absolute
-                          steps:
-                            - color: transparent
-                              value: 0
-                      overrides: []
-                    options:
-                      colorMode: none
-                      graphMode: area
-                      justifyMode: auto
-                      orientation: auto
-                      percentChangeColorMode: standard
-                      reduceOptions:
-                        calcs:
-                          - lastNotNull
-                        fields: /^uptime$$/
-                        values: false
-                      showPercentChange: false
-                      textMode: auto
-                      wideLayout: true
-                  version: 12.3.2
-            panel-19:
-              kind: Panel
-              spec:
-                data:
-                  kind: QueryGroup
-                  spec:
-                    queries:
-                      - kind: PanelQuery
-                        spec:
-                          hidden: false
-                          query:
-                            datasource:
-                              name: P3C6603E967DC8568
-                            group: influxdb
-                            kind: DataQuery
-                            spec:
-                              query: |-
-                                from(bucket: "$${BUCKET}")
-                                  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                                  |> filter(fn: (r) => r.host == "$${NAS_HOST}")
-                                  |> filter(fn: (r) => r._measurement == "system")
-                                  |> filter(fn: (r) => r._field =~ /^load\d/)
-                                  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-                                  |> map(fn: (r) => ({ r with _field:
-                                      if r._field == "load1" then "load  1"
-                                      else if r._field == "load5" then "load  5"
-                                      else if r._field == "load15" then "load 15"
-                                      else r._field
-                                  }))
-                                  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
-                            version: v0
-                          refId: A
-                    queryOptions: {}
-                    transformations: []
-                description: >-
-                  A metric that shows the number of tasks currently executed by the CPU
-                  and tasks waiting in the queue (ideally it's lower than the number of
-                  CPUs on the system, e.g. <4 for a 4-core CPU)
-                id: 19
-                links: []
-                title: Load Averages
-                vizConfig:
-                  group: timeseries
-                  kind: VizConfig
-                  spec:
-                    fieldConfig:
-                      defaults:
-                        color:
-                          mode: palette-classic
-                        custom:
-                          axisBorderShow: false
-                          axisCenteredZero: false
-                          axisColorMode: text
-                          axisLabel: ''
-                          axisPlacement: auto
-                          barAlignment: 0
-                          barWidthFactor: 0.6
-                          drawStyle: line
-                          fillOpacity: 10
-                          gradientMode: none
-                          hideFrom:
-                            legend: false
-                            tooltip: false
-                            viz: false
-                          insertNulls: false
-                          lineInterpolation: linear
-                          lineWidth: 1
-                          pointSize: 5
-                          scaleDistribution:
-                            type: linear
-                          showPoints: never
-                          showValues: false
-                          spanNulls: true
-                          stacking:
-                            group: A
-                            mode: none
-                          thresholdsStyle:
-                            mode: dashed+area
-                        displayName: $${__field.name}
-                        thresholds:
-                          mode: absolute
-                          steps:
-                            - color: transparent
-                              value: 0
-                            - color: red
-                              value: 4
-                      overrides: []
-                    options:
-                      legend:
-                        calcs:
-                          - mean
-                          - lastNotNull
-                          - max
-                          - min
-                        displayMode: table
-                        placement: bottom
-                        showLegend: true
-                      tooltip:
-                        hideZeros: false
-                        mode: multi
-                        sort: none
-                  version: 12.3.2
-            panel-20:
-              kind: Panel
-              spec:
-                data:
-                  kind: QueryGroup
-                  spec:
-                    queries:
-                      - kind: PanelQuery
-                        spec:
-                          hidden: false
-                          query:
-                            datasource:
-                              name: P3C6603E967DC8568
-                            group: influxdb
-                            kind: DataQuery
-                            spec:
-                              query: |-
-                                from(bucket: "$${BUCKET}")
-                                  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                                  |> filter(fn: (r) => r.host == "$${NAS_HOST}")
-                                  |> filter(fn: (r) => r._measurement == "cpu")
-                                  |> filter(fn: (r) => r.cpu == "cpu-total")
-                                  |> filter(fn: (r) => r._field =~ /usage_(user|system|nice|iowait|irq|softirq)/)
-                                  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-                                  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
-                            version: v0
-                          refId: A
-                    queryOptions: {}
-                    transformations: []
-                description: CPU usage based on types of tasks (as reported by `top`)
-                id: 20
-                links: []
-                title: CPU
-                vizConfig:
-                  group: timeseries
-                  kind: VizConfig
-                  spec:
-                    fieldConfig:
-                      defaults:
-                        color:
-                          mode: palette-classic
-                        custom:
-                          axisBorderShow: false
-                          axisCenteredZero: false
-                          axisColorMode: text
-                          axisLabel: ''
-                          axisPlacement: auto
-                          barAlignment: 0
-                          barWidthFactor: 0.6
-                          drawStyle: line
-                          fillOpacity: 10
-                          gradientMode: none
-                          hideFrom:
-                            legend: false
-                            tooltip: false
-                            viz: false
-                          insertNulls: false
-                          lineInterpolation: linear
-                          lineWidth: 1
-                          pointSize: 5
-                          scaleDistribution:
-                            type: linear
-                          showPoints: never
-                          showValues: false
-                          spanNulls: true
-                          stacking:
-                            group: A
-                            mode: none
-                          thresholdsStyle:
-                            mode: 'off'
-                        displayName: $${__field.name}
-                        thresholds:
-                          mode: absolute
-                          steps:
-                            - color: transparent
-                              value: 0
-                        unit: percent
-                      overrides: []
-                    options:
-                      legend:
-                        calcs:
-                          - mean
-                          - lastNotNull
-                          - max
-                          - min
-                        displayMode: table
-                        placement: bottom
-                        showLegend: true
-                        sortBy: Mean
-                        sortDesc: true
-                      tooltip:
-                        hideZeros: false
-                        mode: multi
-                        sort: none
-                  version: 12.3.2
-            panel-21:
-              kind: Panel
-              spec:
-                data:
-                  kind: QueryGroup
-                  spec:
-                    queries:
-                      - kind: PanelQuery
-                        spec:
-                          hidden: false
-                          query:
-                            datasource:
-                              name: P3C6603E967DC8568
-                            group: influxdb
-                            kind: DataQuery
-                            spec:
-                              query: |-
-                                from(bucket: "$${BUCKET}")
-                                  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                                  |> filter(fn: (r) => r.host == "$${NAS_HOST}")
-                                  |> filter(fn: (r) => r._measurement == "mem" or r._measurement == "swap")
-                                  |> filter(fn: (r) => r._field == "used" or r._field == "active")
-                                  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-                                  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
-                            version: v0
-                          refId: A
-                    queryOptions: {}
-                    transformations: []
-                description: Memory and swap usage
-                id: 21
-                links: []
-                title: Memory
-                vizConfig:
-                  group: timeseries
-                  kind: VizConfig
-                  spec:
-                    fieldConfig:
-                      defaults:
-                        color:
-                          mode: palette-classic
-                        custom:
-                          axisBorderShow: false
-                          axisCenteredZero: false
-                          axisColorMode: text
-                          axisLabel: ''
-                          axisPlacement: auto
-                          barAlignment: 0
-                          barWidthFactor: 0.6
-                          drawStyle: line
-                          fillOpacity: 10
-                          gradientMode: none
-                          hideFrom:
-                            legend: false
-                            tooltip: false
-                            viz: false
-                          insertNulls: false
-                          lineInterpolation: linear
-                          lineWidth: 1
-                          pointSize: 5
-                          scaleDistribution:
-                            type: linear
-                          showPoints: never
-                          showValues: false
-                          spanNulls: true
-                          stacking:
-                            group: A
-                            mode: none
-                          thresholdsStyle:
-                            mode: 'off'
-                        displayName: $${__series.name} $${__field.name}
-                        thresholds:
-                          mode: absolute
-                          steps:
-                            - color: transparent
-                              value: 0
-                        unit: bytes
-                      overrides: []
-                    options:
-                      legend:
-                        calcs:
-                          - mean
-                          - lastNotNull
-                          - max
-                          - min
-                        displayMode: table
-                        placement: bottom
-                        showLegend: true
-                        sortBy: Mean
-                        sortDesc: true
-                      tooltip:
-                        hideZeros: false
-                        mode: multi
-                        sort: none
-                  version: 12.3.2
-            panel-24:
-              kind: Panel
-              spec:
-                data:
-                  kind: QueryGroup
-                  spec:
-                    queries:
-                      - kind: PanelQuery
-                        spec:
-                          hidden: false
-                          query:
-                            datasource:
-                              name: P3C6603E967DC8568
-                            group: influxdb
-                            kind: DataQuery
-                            spec:
-                              query: |-
-                                from(bucket: "$${BUCKET}")
-                                  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                                  |> filter(fn: (r) => r.host == "$${NAS_HOST}")
-                                  |> filter(fn: (r) => r._measurement == "netstat")
-                                  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-                                  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
-                            version: v0
-                          refId: A
-                    queryOptions: {}
-                    transformations: []
-                description: Unit counts for TCP/UDP connection states from the `netstat` command
-                id: 24
-                links: []
-                title: Netstat
-                vizConfig:
-                  group: timeseries
-                  kind: VizConfig
-                  spec:
-                    fieldConfig:
-                      defaults:
-                        color:
-                          mode: palette-classic
-                        custom:
-                          axisBorderShow: false
-                          axisCenteredZero: false
-                          axisColorMode: text
-                          axisLabel: ''
-                          axisPlacement: auto
-                          barAlignment: 0
-                          barWidthFactor: 0.6
-                          drawStyle: line
-                          fillOpacity: 10
-                          gradientMode: none
-                          hideFrom:
-                            legend: false
-                            tooltip: false
-                            viz: false
-                          insertNulls: false
-                          lineInterpolation: linear
-                          lineWidth: 1
-                          pointSize: 5
-                          scaleDistribution:
-                            type: linear
-                          showPoints: never
-                          showValues: false
-                          spanNulls: true
-                          stacking:
-                            group: A
-                            mode: none
-                          thresholdsStyle:
-                            mode: 'off'
-                        displayName: $${__field.name}
-                        thresholds:
-                          mode: absolute
-                          steps:
-                            - color: transparent
-                              value: 0
-                      overrides:
-                        - matcher:
-                            id: byValue
-                            options:
-                              op: gte
-                              reducer: allIsZero
-                              value: 0
-                          properties:
-                            - id: custom.hideFrom
-                              value:
-                                legend: true
-                                tooltip: false
-                                viz: false
-                        - matcher:
-                            id: byValue
-                            options:
-                              op: gte
-                              reducer: allIsNull
-                              value: 0
-                          properties:
-                            - id: custom.hideFrom
-                              value:
-                                legend: true
-                                tooltip: false
-                                viz: false
-                    options:
-                      legend:
-                        calcs:
-                          - mean
-                          - lastNotNull
-                          - max
-                          - min
-                        displayMode: table
-                        placement: bottom
-                        showLegend: true
-                        sortBy: Mean
-                        sortDesc: true
-                      tooltip:
-                        hideZeros: false
-                        mode: multi
-                        sort: none
-                  version: 12.3.2
-          layout:
-            kind: GridLayout
-            spec:
-              items:
-                - kind: GridLayoutItem
-                  spec:
-                    element:
-                      kind: ElementReference
-                      name: panel-1
-                    height: 3
-                    width: 24
-                    x: 0
-                    'y': 0
-                - kind: GridLayoutItem
-                  spec:
-                    element:
-                      kind: ElementReference
-                      name: panel-19
-                    height: 9
-                    width: 12
-                    x: 0
-                    'y': 3
-                - kind: GridLayoutItem
-                  spec:
-                    element:
-                      kind: ElementReference
-                      name: panel-20
-                    height: 9
-                    width: 12
-                    x: 12
-                    'y': 3
-                - kind: GridLayoutItem
-                  spec:
-                    element:
-                      kind: ElementReference
-                      name: panel-21
-                    height: 9
-                    width: 12
-                    x: 0
-                    'y': 12
-                - kind: GridLayoutItem
-                  spec:
-                    element:
-                      kind: ElementReference
-                      name: panel-24
-                    height: 9
-                    width: 12
-                    x: 12
-                    'y': 12
-          links: []
-          liveNow: false
-          preload: false
-          tags: []
-          timeSettings:
-            autoRefresh: 1m
-            autoRefreshIntervals:
-              - 5s
-              - 10s
-              - 30s
-              - 1m
-              - 5m
-              - 15m
-              - 30m
-              - 1h
-              - 2h
-              - 1d
-            fiscalYearStartMonth: 0
-            from: now-1h
-            hideTimepicker: false
-            timezone: browser
-            to: now
-          title: Mock Container
-          variables:
-            - kind: ConstantVariable
-              spec:
-                current:
-                  text: telegraf
-                  value: telegraf
-                description: Name of the InfluxDB bucket with telegraf metrics.
-                hide: hideVariable
-                name: BUCKET
-                query: telegraf
-                skipUrlSync: true
-            - kind: ConstantVariable
-              spec:
-                current:
-                  text: mock-container
-                  value: mock-container
-                description: Hostname of the NAS.
-                hide: hideVariable
-                name: NAS_HOST
-                query: mock-container
-                skipUrlSync: true
-        status: {}
+        {
+          "annotations": {
+            "list": [
+              {
+                "builtIn": 1,
+                "datasource": {
+                  "type": "grafana",
+                  "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+              }
+            ]
+          },
+          "description": "https://robpol86.com/posts/2025/2025-07-23-truenas-scale-telegraf.html",
+          "editable": true,
+          "fiscalYearStartMonth": 0,
+          "graphTooltip": 0,
+          "id": 0,
+          "links": [],
+          "panels": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "P3C6603E967DC8568"
+              },
+              "description": "The host's most recently reported uptime in human readable format",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "mappings": [],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "transparent",
+                        "value": 0
+                      }
+                    ]
+                  }
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 3,
+                "w": 24,
+                "x": 0,
+                "y": 0
+              },
+              "id": 1,
+              "options": {
+                "colorMode": "none",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "/^uptime$$/",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              },
+              "pluginVersion": "12.3.2",
+              "targets": [
+                {
+                  "datasource": {
+                    "type": "influxdb",
+                    "uid": "P3C6603E967DC8568"
+                  },
+                  "query": "from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field == \"uptime\")\n  |> drop(columns: [\"host\"])\n  |> last()\n  |> map(fn: (r) => {\n      // uptime_format is deprecated: https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/README.md?plain=1#L46\n      // https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/system.go#L89\n      uptime = r._value\n      days = int(v: uptime / (60 * 60 * 24))\n      uptimeFormatDays =\n        if days > 1 then \"$${days} days, \"\n        else if days == 1 then \"$${days} day, \"\n        else \"\"\n      seconds = int(v: uptime % 60)\n      uptimeFormatSeconds = if seconds < 10 then \"0$${seconds}\" else \"$${seconds}\"\n      minutes_ = uptime / 60\n      hours = int(v: (minutes_ / 60) % 24)\n      minutes = int(v: minutes_ % 60)\n      uptimeFormatMinutes = if minutes < 10 then \"0$${minutes}\" else \"$${minutes}\"\n      uptimeFormat = \"$${hours}:$${uptimeFormatMinutes}:$${uptimeFormatSeconds}\"\n      return { r with _value: \"$${uptimeFormatDays}$${uptimeFormat}\" }\n  })",
+                  "refId": "A"
+                }
+              ],
+              "title": "Uptime",
+              "type": "stat"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "P3C6603E967DC8568"
+              },
+              "description": "A metric that shows the number of tasks currently executed by the CPU and tasks waiting in the queue (ideally it's lower than the number of CPUs on the system, e.g. <4 for a 4-core CPU)",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "never",
+                    "showValues": false,
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "dashed+area"
+                    }
+                  },
+                  "displayName": "$${__field.name}",
+                  "mappings": [],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "transparent",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 4
+                      }
+                    ]
+                  }
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 0,
+                "y": 3
+              },
+              "id": 19,
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "mean",
+                    "lastNotNull",
+                    "max",
+                    "min"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "pluginVersion": "12.3.2",
+              "targets": [
+                {
+                  "datasource": {
+                    "type": "influxdb",
+                    "uid": "P3C6603E967DC8568"
+                  },
+                  "query": "from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field =~ /^load\\d/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> map(fn: (r) => ({ r with _field:\n      if r._field == \"load1\" then \"load  1\"\n      else if r._field == \"load5\" then \"load  5\"\n      else if r._field == \"load15\" then \"load 15\"\n      else r._field\n  }))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+                  "refId": "A"
+                }
+              ],
+              "title": "Load Averages",
+              "type": "timeseries"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "P3C6603E967DC8568"
+              },
+              "description": "CPU usage based on types of tasks (as reported by `top`)",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "never",
+                    "showValues": false,
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "displayName": "$${__field.name}",
+                  "mappings": [],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "transparent",
+                        "value": 0
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 12,
+                "y": 3
+              },
+              "id": 20,
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "mean",
+                    "lastNotNull",
+                    "max",
+                    "min"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Mean",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "pluginVersion": "12.3.2",
+              "targets": [
+                {
+                  "datasource": {
+                    "type": "influxdb",
+                    "uid": "P3C6603E967DC8568"
+                  },
+                  "query": "from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"cpu\")\n  |> filter(fn: (r) => r.cpu == \"cpu-total\")\n  |> filter(fn: (r) => r._field =~ /usage_(user|system|nice|iowait|irq|softirq)/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+                  "refId": "A"
+                }
+              ],
+              "title": "CPU",
+              "type": "timeseries"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "P3C6603E967DC8568"
+              },
+              "description": "Memory and swap usage",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "never",
+                    "showValues": false,
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "displayName": "$${__series.name} $${__field.name}",
+                  "mappings": [],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "transparent",
+                        "value": 0
+                      }
+                    ]
+                  },
+                  "unit": "bytes"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 0,
+                "y": 12
+              },
+              "id": 21,
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "mean",
+                    "lastNotNull",
+                    "max",
+                    "min"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Mean",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "pluginVersion": "12.3.2",
+              "targets": [
+                {
+                  "datasource": {
+                    "type": "influxdb",
+                    "uid": "P3C6603E967DC8568"
+                  },
+                  "query": "from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"mem\" or r._measurement == \"swap\")\n  |> filter(fn: (r) => r._field == \"used\" or r._field == \"active\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+                  "refId": "A"
+                }
+              ],
+              "title": "Memory",
+              "type": "timeseries"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "P3C6603E967DC8568"
+              },
+              "description": "Unit counts for TCP/UDP connection states from the `netstat` command",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "never",
+                    "showValues": false,
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "displayName": "$${__field.name}",
+                  "mappings": [],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "transparent",
+                        "value": 0
+                      }
+                    ]
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byValue",
+                      "options": {
+                        "op": "gte",
+                        "reducer": "allIsZero",
+                        "value": 0
+                      }
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byValue",
+                      "options": {
+                        "op": "gte",
+                        "reducer": "allIsNull",
+                        "value": 0
+                      }
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hideFrom",
+                        "value": {
+                          "legend": true,
+                          "tooltip": false,
+                          "viz": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 12,
+                "y": 12
+              },
+              "id": 24,
+              "options": {
+                "legend": {
+                  "calcs": [
+                    "mean",
+                    "lastNotNull",
+                    "max",
+                    "min"
+                  ],
+                  "displayMode": "table",
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Mean",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "pluginVersion": "12.3.2",
+              "targets": [
+                {
+                  "datasource": {
+                    "type": "influxdb",
+                    "uid": "P3C6603E967DC8568"
+                  },
+                  "query": "from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"netstat\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+                  "refId": "A"
+                }
+              ],
+              "title": "Netstat",
+              "type": "timeseries"
+            }
+          ],
+          "preload": false,
+          "refresh": "1m",
+          "schemaVersion": 42,
+          "tags": [],
+          "templating": {
+            "list": [
+              {
+                "current": {
+                  "text": "telegraf",
+                  "value": "telegraf"
+                },
+                "description": "Name of the InfluxDB bucket with telegraf metrics.",
+                "hide": 2,
+                "name": "BUCKET",
+                "query": "telegraf",
+                "skipUrlSync": true,
+                "type": "constant"
+              },
+              {
+                "current": {
+                  "text": "mock-container",
+                  "value": "mock-container"
+                },
+                "description": "Hostname of the NAS.",
+                "hide": 2,
+                "name": "NAS_HOST",
+                "query": "mock-container",
+                "skipUrlSync": true,
+                "type": "constant"
+              }
+            ]
+          },
+          "time": {
+            "from": "now-1h",
+            "to": "now"
+          },
+          "timepicker": {},
+          "timezone": "browser",
+          "title": "Mock Container",
+          "uid": "21A0F742-6EA7-43C9-838F-580BD1D4F032",
+          "version": 3
+        }
     image: *image-grafana
     volumes:
       - grafana-provisioning:/etc/grafana/provisioning
