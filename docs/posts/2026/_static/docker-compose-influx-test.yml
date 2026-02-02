@@ -62,6 +62,8 @@ services:
     depends_on:
       grafana-init:
         condition: service_completed_successfully
+    environment:
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/home.json
     image: &image-grafana "grafana/grafana:12.3.2"
     ports:
       - "3000:3000"
