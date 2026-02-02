@@ -169,7 +169,6 @@ blog_locations = {
     "Sydney": ("Sydney", "https://en.wikipedia.org/wiki/Sydney"),
     "Melbourne": ("Melbourne", "https://en.wikipedia.org/wiki/Melbourne"),
     "Queenstown": ("Queenstown", "https://en.wikipedia.org/wiki/Queenstown,_New_Zealand"),
-    "Taipei": ("Taipei", "https://en.wikipedia.org/wiki/Taipei"),
 }
 blog_title = project
 disqus_pages = False
