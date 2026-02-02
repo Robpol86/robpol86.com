@@ -20,16 +20,17 @@ services:
     depends_on:
       telegraf-init:
         condition: service_completed_successfully
-    image: "telegraf:1.37.1"
+    image: &image-telegraf "telegraf:1.37.1"
     restart: always
     volumes:
       - telegraf:/etc/telegraf
   telegraf-init:
-    command: printenv telegraf_conf_txt > /etc/telegraf/telegraf.conf
+    command: -c 'printenv telegraf_conf_txt > /etc/telegraf/telegraf.conf'
+    entrypoint: /bin/sh
     environment:
       - telegraf_conf_txt=TODO
-    image: "telegraf:1.37.1"
-    restart: always
+    image: *image-telegraf
+    user: root
     volumes:
       - telegraf:/etc/telegraf
   grafana:
