@@ -3,12 +3,12 @@ name: influx-test
 services:
   influxdb:
     environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=abcd1234
-      - DOCKER_INFLUXDB_INIT_ORG=homelab
-      - DOCKER_INFLUXDB_INIT_BUCKET=telegraf
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=abc123def456
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: abcd1234
+      DOCKER_INFLUXDB_INIT_ORG: homelab
+      DOCKER_INFLUXDB_INIT_BUCKET: telegraf
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: abc123def456
     image: "influxdb:2.8.0"
     ports:
       - "8086:8086"
@@ -28,7 +28,7 @@ services:
     command: -c 'printenv telegraf_conf_txt > /etc/telegraf/telegraf.conf'
     entrypoint: /bin/sh
     environment:
-      - telegraf_conf_txt=TODO
+      telegraf_conf_txt: TODO
     image: *image-telegraf
     user: root
     volumes:
