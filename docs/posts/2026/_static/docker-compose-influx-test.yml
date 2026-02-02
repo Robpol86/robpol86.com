@@ -17,8 +17,21 @@ services:
       - influxdb-config:/etc/influxdb2
       - influxdb-data:/var/lib/influxdb2
   telegraf:
+    depends_on:
+      telegraf-init:
+        condition: service_completed_successfully
     image: "telegraf:1.37.1"
     restart: always
+    volumes:
+      - telegraf:/etc/telegraf
+  telegraf-init:
+    command: printenv telegraf_conf_txt > /etc/telegraf/telegraf.conf
+    environment:
+      - telegraf_conf_txt=TODO
+    image: "telegraf:1.37.1"
+    restart: always
+    volumes:
+      - telegraf:/etc/telegraf
   grafana:
     image: "grafana/grafana:12.3.2"
     ports:
