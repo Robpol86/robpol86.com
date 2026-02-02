@@ -129,7 +129,7 @@ web UI form. Let's create the task for `telegraf_1m`:
 1. Click save
 1. Repeat for `dsTask-telegraf_5m` with "Every" set to `5m`
 
-```{literalinclude} /_static/dsTask.flux
+```{literalinclude} _static/dsTask.flux
 :language: koka
 ```
 
@@ -211,7 +211,7 @@ TODO chunking
 // PASTE EVERYTHING BELOW THIS LINE IN GRAFANA
 ```
 
-```{literalinclude} /_static/dsPost.flux
+```{literalinclude} _static/dsPost.flux
 :language: koka
 ```
 
@@ -219,7 +219,7 @@ TODO chunking
 
 TODO gif with production ranges showing zooming out and panning
 
-TODO [dsGrafana.json](/_static/dsGrafana.json)
+TODO [dsGrafana.json](_static/dsGrafana.json)
 
 TODO toFloat()
 
