@@ -20,15 +20,40 @@ services:
     depends_on:
       telegraf-init:
         condition: service_completed_successfully
+    hostname: mock-container
     image: &image-telegraf "telegraf:1.37.1"
     restart: always
     volumes:
       - telegraf:/etc/telegraf
   telegraf-init:
-    command: -c 'printenv telegraf_conf_txt > /etc/telegraf/telegraf.conf'
+    command: -euxc 'test -e /etc/telegraf/telegraf.conf || printenv telegraf_conf_txt > /etc/telegraf/telegraf.conf'
     entrypoint: /bin/sh
     environment:
-      telegraf_conf_txt: TODO
+      telegraf_conf_txt: |
+        [global_tags]
+        [agent]
+          interval = "10s"
+        [[outputs.influxdb_v2]]
+          urls = ["http://influxdb:8086"]
+          bucket = "telegraf"
+          organization = "homelab"
+          token = "abc123def456"
+        [[inputs.cpu]]
+          percpu = true
+          totalcpu = true
+          collect_cpu_time = false
+          report_active = false
+          core_tags = false
+        [[inputs.disk]]
+          ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
+        [[inputs.kernel]]
+        [[inputs.mem]]
+        [[inputs.net]]
+        [[inputs.nstat]]
+        [[inputs.netstat]]
+        [[inputs.processes]]
+        [[inputs.swap]]
+        [[inputs.system]]
     image: *image-telegraf
     user: root
     volumes:
