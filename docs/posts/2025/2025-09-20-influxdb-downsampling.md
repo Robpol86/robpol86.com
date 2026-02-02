@@ -29,7 +29,8 @@ retroactively downsample it.
 
 ## Overview
 
-Downsampling is implemented in two parts: the InfluxDB side and the Grafana side.
+Downsampling is implemented in two parts: the InfluxDB side and the Grafana side. TODO skip this section if you want to get
+started right away.
 
 ### InfluxDB Side
 
