@@ -23,7 +23,7 @@ This guide will walk you through implementing downsampling on a demo TIG stack (
 buckets.
 
 ```{list-table}
-* - :::{thumb-image} /_images/pictures/TODO/0m3qdla.png
+* - :::{thumb-image} /_images/pictures/influxdb-downsampling/downsample.png
     :::
 ```
 
@@ -60,7 +60,7 @@ In the InfluxDB web UI (http://localhost:8086) create your downsample buckets:
 
 Repeat for **telegraf_5m** but instead of "Older Than" click on "Never".
 
-```{thumb-figure} /_images/pictures/TODO/qEbiR2z.png
+```{thumb-figure} /_images/pictures/influxdb-downsampling/imgur-qEbiR2z.png
 TODO
 ```
 
@@ -94,7 +94,7 @@ web UI form. Let's create the task for `telegraf_1m`:
 :language: koka
 ```
 
-```{thumb-figure} /_images/pictures/TODO/3HBbsW4.png
+```{thumb-figure} /_images/pictures/influxdb-downsampling/imgur-3HBbsW4.png
 TODO After you click "Install" you should see something like this.
 ```
 
