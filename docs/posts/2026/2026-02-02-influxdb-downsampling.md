@@ -41,7 +41,7 @@ TODO in this guide telegraf, telegraf_1m and 5m.
 * telegraf_1m: 90 days
 * telegraf_5m: forever (never)
 
-TODO docker example [docker-compose-influx-test.yml](_static/docker-compose-influx-test.yml)
+TODO docker example [docker-compose-dsdemo.yml](_static/docker-compose-dsdemo.yml)
 
 ```bash
 docker-compose -f docker-compose-dsdemo.yml -p dsdemo up -d
