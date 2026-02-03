@@ -27,53 +27,6 @@ retroactively downsample it.
     :::
 ```
 
-## Overview
-
-Downsampling is implemented in two parts: the InfluxDB side and the Grafana side. TODO skip this section if you want to get
-started right away.
-
-### InfluxDB Side
-
-On the InfluxDB side we'll have a task that runs on a timer, downsampling data from a main bucket (e.g. "telegraf") into a
-separate downsample bucket (e.g. "telegraf_1m"). Multiple downsample buckets are supported, so in theory you can have three
-buckets:
-
-1. **telegraf**: raw data written by telegraf every 10 seconds (10 second resolution)
-2. **telegraf_1m**: downsampled data, averaged out to every minute (1 minute resolution)
-3. **telegraf_5m**: downsampled to an average of every 5 minutes (5 minute resolution)
-
-For each bucket you can set different retention policies.
-
-### Grafana Side
-
-On the Grafana side we'll need to tell it to query the main bucket as well as the downsample buckets. The goal of this
-project is to see very detailed recent metrics and then use downsampled metrics at a lower resolution for historical data. We
-want to avoid having to process thousands or millions of data points per panel when we have Grafana zoom out to month or year
-time frames. Another goal I set for this project is to minimize the changes needed to be done to each query to enable
-downsampling. My solution is basically to add three short lines to each query. An example before and after downsampling:
-
-```koka
-// Before
-from(bucket: "${BUCKET}")
-  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-  |> filter(fn: (r) => r.host == "${HOST}")
-  |> filter(fn: (r) => r._measurement == "mem")
-  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-
-// After
-dsQuery = (bucket, start, stop) =>
-from(bucket)
-  |> range(start, stop)
-  |> filter(fn: (r) => r.host == "${HOST}")
-  |> filter(fn: (r) => r._measurement == "mem")
-  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-${dsPost}
-```
-
-### Performance
-
-TODO compare query statistics (or profiling), best of 10 each.
-
 ## Prerequisites
 
 TODO plan. TODO InfluxDB v2 tested, Flux required, Grafana.
@@ -222,6 +175,53 @@ TODO gif with production ranges showing zooming out and panning
 TODO [dsGrafana.json](_static/dsGrafana.json)
 
 TODO toFloat()
+
+## Overview
+
+Downsampling is implemented in two parts: the InfluxDB side and the Grafana side. TODO skip this section if you want to get
+started right away.
+
+### InfluxDB Side
+
+On the InfluxDB side we'll have a task that runs on a timer, downsampling data from a main bucket (e.g. "telegraf") into a
+separate downsample bucket (e.g. "telegraf_1m"). Multiple downsample buckets are supported, so in theory you can have three
+buckets:
+
+1. **telegraf**: raw data written by telegraf every 10 seconds (10 second resolution)
+2. **telegraf_1m**: downsampled data, averaged out to every minute (1 minute resolution)
+3. **telegraf_5m**: downsampled to an average of every 5 minutes (5 minute resolution)
+
+For each bucket you can set different retention policies.
+
+### Grafana Side
+
+On the Grafana side we'll need to tell it to query the main bucket as well as the downsample buckets. The goal of this
+project is to see very detailed recent metrics and then use downsampled metrics at a lower resolution for historical data. We
+want to avoid having to process thousands or millions of data points per panel when we have Grafana zoom out to month or year
+time frames. Another goal I set for this project is to minimize the changes needed to be done to each query to enable
+downsampling. My solution is basically to add three short lines to each query. An example before and after downsampling:
+
+```koka
+// Before
+from(bucket: "${BUCKET}")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r.host == "${HOST}")
+  |> filter(fn: (r) => r._measurement == "mem")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+
+// After
+dsQuery = (bucket, start, stop) =>
+from(bucket)
+  |> range(start, stop)
+  |> filter(fn: (r) => r.host == "${HOST}")
+  |> filter(fn: (r) => r._measurement == "mem")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+${dsPost}
+```
+
+### Performance
+
+TODO compare query statistics (or profiling), best of 10 each.
 
 ## Conclusion
 
