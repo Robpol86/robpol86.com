@@ -26,10 +26,10 @@ services:
     volumes:
       - telegraf:/etc/telegraf
   telegraf-init:
-    command: -euxc 'printenv telegraf_conf_txt > /etc/telegraf/telegraf.conf'
+    command: -euxc 'printenv telegraf_conf > /etc/telegraf/telegraf.conf'
     entrypoint: /bin/sh
     environment:
-      telegraf_conf_txt: |
+      telegraf_conf: |
         [global_tags]
         [agent]
           interval = "10s"
