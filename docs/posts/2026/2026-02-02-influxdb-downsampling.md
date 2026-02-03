@@ -18,14 +18,18 @@ This implementation builds on the very brief
 [InfluxDB v2 example](https://docs.influxdata.com/influxdb/v2/process-data/common-tasks/downsample-data/) and shows how
 to consume the downsampled data in Grafana. It turns out the latter was the hardest part to get right.
 
-This guide will walk you through implementing downsampling for your Telegraf data, but it should work with all data types.
-I'll also touch on [backfilling](#backfill-data), which is when you've been collecting data for some time and wish to
-retroactively downsample it.
+This guide will walk you through implementing downsampling on a demo TIG stack (Telegraf, InfluxDBv2, Grafana) using
+[Docker Compose](https://docs.docker.com/compose/). I'll also cover backfilling existing data into the new downsample
+buckets.
 
 ```{list-table}
 * - :::{thumb-image} /_images/pictures/TODO/0m3qdla.png
     :::
 ```
+
+## Overview
+
+Keep this brief. TODO.
 
 ## Prerequisites
 
@@ -37,7 +41,7 @@ TODO in this guide telegraf, telegraf_1m and 5m.
 * telegraf_1m: 90 days
 * telegraf_5m: forever (never)
 
-TODO docker example
+TODO docker example [docker-compose-influx-test.yml](_static/docker-compose-influx-test.yml)
 
 ## Create Buckets
 
