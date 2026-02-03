@@ -43,6 +43,10 @@ TODO in this guide telegraf, telegraf_1m and 5m.
 
 TODO docker example [docker-compose-influx-test.yml](_static/docker-compose-influx-test.yml)
 
+```bash
+docker-compose -f docker-compose-dsdemo.yml -p dsdemo up -d
+```
+
 ## Create Buckets
 
 In the InfluxDB web UI (http://localhost:8086) create your downsample buckets:
