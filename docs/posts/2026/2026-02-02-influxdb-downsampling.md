@@ -66,13 +66,11 @@ one command, pre-configured.
     ```
 3. Access the Grafana dashboard (username is **admin** and password is **YAyDMtj3XMvEZA**): http://localhost:13000/
 
-```{thumb-figure} /_images/pictures/influxdb-downsampling/downsample.png
-You should now see something like this.
+```{list-table}
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/tig-demo-oob.png
+    You should now see something like this.
+    :::
 ```
-
-TODO plan. TODO InfluxDB v2 tested, Flux required, Grafana.
-
-TODO in this guide telegraf, telegraf_1m and 5m.
 
 ## Create Buckets
 
