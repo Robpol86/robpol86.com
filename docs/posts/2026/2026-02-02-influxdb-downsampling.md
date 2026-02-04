@@ -9,7 +9,7 @@ tags: homelab, nas
 
 # InfluxDB v2 Downsampling
 
-In this guide I will show you how I've implemented InfluxDB 2.8 downsampling that plays nicely with Grafana with minimal
+In this guide I will show you how I've implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal
 changes to queries. Integers and floats are downsampled with `mean()` and all other types are downsampled with `last()`.
 A three line change to Grafana queries will enable it to read narrowed down time ranges for each bucket and combine the
 output with `union()`. Below is an example Grafana panel query change:
@@ -226,3 +226,5 @@ TODO compare query statistics (or profiling), best of 10 each.
 TODO telegraf retention
 
 TODO revisit original flux docstrings instructions.
+
+TODO test with influxdb 2.7.
