@@ -9,7 +9,7 @@ tags: homelab, nas
 
 # InfluxDB v2 Downsampling
 
-In this guide I will show you how I've implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal
+In this guide I will show you how I've implemented InfluxDB 2.8 downsampling that plays nicely with Grafana with minimal
 changes to queries. Integers and floats are downsampled with `mean()` and all other types are downsampled with `last()`.
 A three line change to Grafana queries will enable it to read narrowed down time ranges for each bucket and combine the
 output with `union()`. Below is an example Grafana panel query change:
@@ -45,14 +45,12 @@ This guide will walk you through implementing downsampling on a demo TIG stack (
 
 I'll also cover backfilling existing data into the new downsample buckets.
 
-```{list-table}
-* - :::{thumb-image} /_images/pictures/influxdb-downsampling/downsample.png
-    :::
+```{thumb-image} /_images/pictures/influxdb-downsampling/downsample.png
 ```
 
 ## Prerequisites
 
-Before you start you'll need to have Docker Compose installed. You can find those instructions here:
+Before starting you'll need to have Docker Compose installed. You can find those instructions here:
 https://docs.docker.com/compose/install
 
 Next start the demo TIG stack. This is a basic example with an InfluxDB container, a Telegraf container to send it some data,
@@ -65,16 +63,26 @@ one command, pre-configured.
     docker-compose -f docker-compose-dsdemo.yml -p dsdemo up -d
     ```
 3. Access the Grafana dashboard (username is **admin** and password is **YAyDMtj3XMvEZA**): http://localhost:13000/
+3. Access the InfluxDB dashboard (username and password are the same as Grafana's): http://localhost:18086/
 
 ```{list-table}
-* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/tig-demo-oob.png
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/tig-demo-oob-grafana.png
     You should now see something like this.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/tig-demo-oob-influxdb.png
+    You should also see something like this.
     :::
 ```
 
 ## Create Buckets
 
-In the InfluxDB web UI (http://localhost:8086) create your downsample buckets:
+Currently Telegraf writes data to the **telegraf** bucket every 10 seconds. And this bucket stores those data indefinitely.
+Our goal is to create new buckets to downsample data into and then set a retention policy on the **telegraf** bucket so high
+resolution data is only stored for 30 days. We'll create a **telegraf_1m** bucket to store data with 1 minute
+resolution (instead of 10 second) with a 90 day retention policy, and we'l create a **telegraf_5m** bucket to store data with
+5 minute resolution with no retention policy. This last bucket will store our historical data indefinitely.
+
+In the InfluxDB web UI (http://localhost:18086) create your downsample buckets:
 
 1. Load Data
 1. Buckets
@@ -86,7 +94,7 @@ In the InfluxDB web UI (http://localhost:8086) create your downsample buckets:
 Repeat for **telegraf_5m** but instead of "Older Than" click on "Never".
 
 ```{thumb-figure} /_images/pictures/influxdb-downsampling/imgur-qEbiR2z.png
-TODO
+Creating the telegraf_1m bucket.
 ```
 
 ## Create Tasks
