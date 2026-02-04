@@ -65,7 +65,10 @@ one command, pre-configured.
 3. Access the Grafana dashboard (username is **admin** and password is **YAyDMtj3XMvEZA**): http://localhost:13000/
 3. Access the InfluxDB dashboard (username and password are the same as Grafana's): http://localhost:18086/
 
-```{list-table}
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
 * - :::{thumb-figure} /_images/pictures/influxdb-downsampling/tig-demo-oob-grafana.png
     You should now see something like this.
     :::
