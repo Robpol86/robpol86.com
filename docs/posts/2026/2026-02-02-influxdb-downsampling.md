@@ -37,8 +37,13 @@ This implementation builds on the very brief
 to consume the downsampled data in Grafana. It turns out the latter was the hardest part to get right.
 
 This guide will walk you through implementing downsampling on a demo TIG stack (Telegraf, InfluxDBv2, Grafana) using
-[Docker Compose](https://docs.docker.com/compose/). I'll also cover backfilling existing data into the new downsample
-buckets.
+[Docker Compose](https://docs.docker.com/compose/). We'll implement the following buckets with these retention policies:
+
+* **telegraf**: 30 day retention policy, main ingestion bucket
+* **telegraf_1m**: 90 day retention policy, 1 minute data resolution
+* **telegraf_5m**: no retention policy, 5 minute data resolution, keep historical data forever
+
+I'll also cover backfilling existing data into the new downsample buckets.
 
 ```{list-table}
 * - :::{thumb-image} /_images/pictures/influxdb-downsampling/downsample.png
@@ -47,19 +52,25 @@ buckets.
 
 ## Prerequisites
 
+Before you start you'll need to have Docker Compose installed. You can find those instructions here:
+https://docs.docker.com/compose/install
+
+Next start the demo TIG stack. I've written a Docker Compose file that starts everything up with one command.
+
+1. Download [docker-compose-dsdemo.yml](_static/docker-compose-dsdemo.yml)
+2. Start the apps by running:
+    ```bash
+    docker-compose -f docker-compose-dsdemo.yml -p dsdemo up -d
+    ```
+3. Access the Grafana dashboard by going to: http://localhost:13000/
+
+```{thumb-figure} /_images/pictures/influxdb-downsampling/downsample.png
+You should now see something like this. TODO
+```
+
 TODO plan. TODO InfluxDB v2 tested, Flux required, Grafana.
 
 TODO in this guide telegraf, telegraf_1m and 5m.
-
-* telegraf: 30 days
-* telegraf_1m: 90 days
-* telegraf_5m: forever (never)
-
-TODO docker example [docker-compose-dsdemo.yml](_static/docker-compose-dsdemo.yml)
-
-```bash
-docker-compose -f docker-compose-dsdemo.yml -p dsdemo up -d
-```
 
 ## Create Buckets
 
