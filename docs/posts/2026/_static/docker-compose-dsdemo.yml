@@ -5,10 +5,10 @@ services:
     environment:
       DOCKER_INFLUXDB_INIT_MODE: setup
       DOCKER_INFLUXDB_INIT_USERNAME: admin
-      DOCKER_INFLUXDB_INIT_PASSWORD: abcd1234
+      DOCKER_INFLUXDB_INIT_PASSWORD: YAyDMtj3XMvEZA
       DOCKER_INFLUXDB_INIT_ORG: homelab
       DOCKER_INFLUXDB_INIT_BUCKET: telegraf
-      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: abc123def456
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: xfjsEbb0Tpu48bqlQUjHAl0WHRB1GWAr
     image: "influxdb:2.8.0"
     ports:
       - "18086:8086"
@@ -38,7 +38,7 @@ services:
           urls = ["http://influxdb:8086"]
           bucket = "telegraf"
           organization = "homelab"
-          token = "abc123def456"
+          token = "xfjsEbb0Tpu48bqlQUjHAl0WHRB1GWAr"
         [[inputs.cpu]]
           percpu = true
           totalcpu = true
@@ -64,6 +64,7 @@ services:
       grafana-init:
         condition: service_completed_successfully
     environment:
+      GF_SECURITY_ADMIN_PASSWORD: YAyDMtj3XMvEZA
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/home.json
     image: &image-grafana "grafana/grafana:12.3.2"
     ports:
@@ -92,7 +93,7 @@ services:
               organization: homelab
               defaultBucket: telegraf
             secureJsonData:
-              token: abc123def456
+              token: xfjsEbb0Tpu48bqlQUjHAl0WHRB1GWAr
       dashboard_json: >
         {"annotations":{"list":[{"builtIn":1,"datasource":{"type":"grafana","uid":"-- Grafana --"},"enable":true,"hide":true,
         "iconColor":"rgba(0, 211, 255, 1)","name":"Annotations & Alerts","type":"dashboard"}]},"description":
