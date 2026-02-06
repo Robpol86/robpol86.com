@@ -39,7 +39,7 @@ to consume the downsampled data in Grafana. It turns out the latter was the hard
 This guide will walk you through implementing downsampling on a demo TIG stack (Telegraf, InfluxDB, Grafana) using
 [Docker Compose](https://docs.docker.com/compose/). We'll implement the following buckets with these retention policies:
 
-* **telegraf**: 30 day retention policy, main ingestion bucket
+* **telegraf**: 30 day retention policy, 10 second data resolution, main ingestion bucket
 * **telegraf_1m**: 90 day retention policy, 1 minute data resolution
 * **telegraf_5m**: no retention policy, 5 minute data resolution, keep historical data forever
 
@@ -101,8 +101,16 @@ In the InfluxDB web UI (http://localhost:18086) create your downsample buckets:
 
 Repeat for **telegraf_5m** but instead of "Older Than" click on "Never".
 
-```{thumb-figure} /_images/pictures/influxdb-downsampling/imgur-qEbiR2z.png
-Creating the telegraf_1m bucket.
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/imgur-qEbiR2z.png
+    Creating the telegraf_1m bucket.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-buckets-done.png
+    After creating buckets you should see something like this.
+    :::
 ```
 
 ## Create Tasks
@@ -160,6 +168,10 @@ TODO chunking
 //      influx query - < ./dsTask-backfill.flux > backfill.log
 //
 ```
+
+## Set Remaining Retention Policy
+
+TODO
 
 ## Set Grafana Variables
 
@@ -238,3 +250,5 @@ TODO revisit original flux docstrings instructions.
 TODO test with influxdb 2.7.
 
 TODO all new screenshots
+
+TODO copy final screenshots to tnas
