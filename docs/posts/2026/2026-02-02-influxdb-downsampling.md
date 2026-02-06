@@ -77,12 +77,17 @@ one command, pre-configured.
     :::
 ```
 
+```{note}
+In the demo we'll be using InfluxDB 2.8 but this should work with InfluxDB 2.7 as well. The downsampling is implemented in
+the Flux language so unfortunately InfluxDB v3 and v1 are not supported.
+```
+
 ## Create Buckets
 
 Currently Telegraf writes data to the **telegraf** bucket every 10 seconds. And this bucket stores those data indefinitely.
 Our goal is to create new buckets to downsample data into and then set a retention policy on the **telegraf** bucket so high
 resolution data is only stored for 30 days. We'll create a **telegraf_1m** bucket to store data with 1 minute
-resolution (instead of 10 second) with a 90 day retention policy, and we'l create a **telegraf_5m** bucket to store data with
+resolution (instead of 10 second) with a 90 day retention policy, and we'll create a **telegraf_5m** bucket to store data with
 5 minute resolution with no retention policy. This last bucket will store our historical data indefinitely.
 
 In the InfluxDB web UI (http://localhost:18086) create your downsample buckets:
@@ -231,3 +236,5 @@ TODO telegraf retention
 TODO revisit original flux docstrings instructions.
 
 TODO test with influxdb 2.7.
+
+TODO all new screenshots
