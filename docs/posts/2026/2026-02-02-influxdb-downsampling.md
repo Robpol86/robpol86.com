@@ -62,7 +62,7 @@ one command, pre-configured.
     ```bash
     docker-compose -f docker-compose-dsdemo.yml -p dsdemo up -d
     ```
-3. Access the Grafana dashboard (username is **admin** and password is **YAyDMtj3XMvEZA**): http://localhost:13000/
+3. Access the Grafana dashboard (username is **admin** and password is **Stand&Deliver**): http://localhost:13000/
 3. Access the InfluxDB dashboard (username and password are the same as Grafana's): http://localhost:18086/
 
 ```{list-table-thumbs}

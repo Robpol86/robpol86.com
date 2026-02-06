@@ -5,7 +5,7 @@ services:
     environment:
       DOCKER_INFLUXDB_INIT_MODE: setup
       DOCKER_INFLUXDB_INIT_USERNAME: admin
-      DOCKER_INFLUXDB_INIT_PASSWORD: YAyDMtj3XMvEZA
+      DOCKER_INFLUXDB_INIT_PASSWORD: Stand&Deliver
       DOCKER_INFLUXDB_INIT_ORG: homelab
       DOCKER_INFLUXDB_INIT_BUCKET: telegraf
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: xfjsEbb0Tpu48bqlQUjHAl0WHRB1GWAr
@@ -64,7 +64,7 @@ services:
       grafana-init:
         condition: service_completed_successfully
     environment:
-      GF_SECURITY_ADMIN_PASSWORD: YAyDMtj3XMvEZA
+      GF_SECURITY_ADMIN_PASSWORD: Stand&Deliver
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/home.json
     image: &image-grafana "grafana/grafana:12.3.2"
     ports:
