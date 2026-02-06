@@ -123,12 +123,13 @@ create each one from scratch as outlined here.
 ```{note}
 If you get the error "Failed to create new task: Invalid flux script. Please check your query text." when creating a task
 this is due to [another InfluxDB bug](https://github.com/influxdata/influxdb/issues/25197). The workaround I found was to
-create an empty task first (just put a space), then edit it and paste the task you originally intended.
+create an empty task first (just put a space instead of the script), then edit it and paste the script you originally
+intended.
 ```
 
-Each downsample bucket will need its own task. The task script below can be pasted without modification (unless your bucket names
-are different) for both tasks because InfluxDB automatically updates the `option task` statement with whatever you put in the
-web UI form. Let's create the task for `telegraf_1m`:
+Each downsample bucket will need its own task. The task script below can be pasted without modification for both tasks
+because InfluxDB automatically updates the `option task` statement with whatever you put in the web UI form. Let's create the
+task for `telegraf_1m`:
 
 1. In your InfluxDB web UI go to Tasks > Create Task > New Task
 1. In the left pane/column you can name your task `dsTask-telegraf_1m`
@@ -143,8 +144,8 @@ web UI form. Let's create the task for `telegraf_1m`:
 :language: koka
 ```
 
-```{thumb-figure} /_images/pictures/influxdb-downsampling/imgur-3HBbsW4.png
-TODO After you click "Install" you should see something like this.
+```{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done.png
+After creating dsTask-telegraf_1m the bucket should start having data with `_time` every minute.
 ```
 
 ## Backfill Data
