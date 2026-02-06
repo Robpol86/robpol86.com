@@ -151,7 +151,7 @@ After creating dsTask-telegraf_1m the bucket should start having data with `_tim
 ## Backfill Data
 
 If you have existing data that you'd like to keep you'll need to backfill it into the newly created downsample buckets. In
-this section we'll populate the new buckets with the old downsampled data so in the end your graphs will look the same.
+this section we'll populate the new buckets with the downsampled old data written by Telegraf before any dsTask has run.
 
 Depending on how much data you have backfilling may take a long time (days, weeks, maybe even months for everything), so
 we'll be doing it in chunks. Bigger chunks mean more memory usage in the InfluxDB container, so keeping chunks small avoids
