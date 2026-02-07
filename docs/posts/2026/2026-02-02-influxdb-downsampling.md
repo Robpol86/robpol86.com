@@ -148,39 +148,6 @@ task for `telegraf_1m`:
 After creating dsTask-telegraf_1m the bucket should start having data with `_time` every minute.
 ```
 
-## Backfill Data
-
-If you have existing data that you'd like to keep you'll need to backfill it into the newly created downsample buckets. In
-this section we'll populate the new buckets with the downsampled old data written by Telegraf before any dsTask has run.
-
-Depending on how much data you have backfilling may take a long time (days, weeks, maybe even months for everything), so
-we'll be doing it in chunks. Bigger chunks mean more memory usage in the InfluxDB container, so keeping chunks small avoids
-OOMKill. When I backfilled my data for a single telegraf host it took up to 16 minutes for 24 hours of data.
-
-TODO chunking
-
-```
-// ## Backfill
-//
-// To backfill a new downsample bucket with historical data you'll want to do it in chunks. It could take 1-16 minutes to
-// backfill just one day of data for one telegraf host. To backfill, make a copy of this file (e.g. dsTask-backfill.flux)
-// with the following changes:
-//
-// 1. Set backfill.enabled to true
-// 2. Set backfill.everyResolution to the resolution if your target bucket (e.g. 1m for telegraf_1m, 5m for telegraf_5m)
-// 3. Set backfill.chunkStart to a date before your earliest data point (for simplicity keep the time to all zeros)
-// 4. Set backfill.chunkStop to however much data you wish to process in one go (set the time to the last possible nanosecond
-//    before the next chunk window to avoid potential data loss)
-//
-// Then execute the file using the influx CLI. Here's an example command:
-//      influx query - < ./dsTask-backfill.flux > backfill.log
-//
-```
-
-## Set Remaining Retention Policy
-
-TODO
-
 ## Set Grafana Variables
 
 ```
@@ -237,13 +204,47 @@ TODO
 :language: koka
 ```
 
-## Update Queries
+## Update Grafana Queries
 
 TODO gif with production ranges showing zooming out and panning
 
 TODO [dsGrafana.json](_static/dsGrafana.json)
 
 TODO toFloat()
+
+## Backfill Data
+
+If you have existing data that you'd like to keep you'll need to backfill it into the newly created downsample buckets. In
+this section we'll populate the new buckets with the downsampled old data written by Telegraf before any dsTask has run.
+
+Depending on how much data you have backfilling may take a long time (days, weeks, maybe even months for everything), so
+we'll be doing it in chunks. Bigger chunks mean more memory usage in the InfluxDB container, so keeping chunks small avoids
+OOMKill. When I backfilled my homelab production data for a single telegraf host it took up to 16 minutes for 24 hours of
+data.
+
+TODO chunking
+
+```
+// ## Backfill
+//
+// To backfill a new downsample bucket with historical data you'll want to do it in chunks. It could take 1-16 minutes to
+// backfill just one day of data for one telegraf host. To backfill, make a copy of this file (e.g. dsTask-backfill.flux)
+// with the following changes:
+//
+// 1. Set backfill.enabled to true
+// 2. Set backfill.everyResolution to the resolution if your target bucket (e.g. 1m for telegraf_1m, 5m for telegraf_5m)
+// 3. Set backfill.chunkStart to a date before your earliest data point (for simplicity keep the time to all zeros)
+// 4. Set backfill.chunkStop to however much data you wish to process in one go (set the time to the last possible nanosecond
+//    before the next chunk window to avoid potential data loss)
+//
+// Then execute the file using the influx CLI. Here's an example command:
+//      influx query - < ./dsTask-backfill.flux > backfill.log
+//
+```
+
+## Set Retention Policy
+
+TODO telegraf
 
 ### Performance
 
