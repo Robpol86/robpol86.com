@@ -150,11 +150,14 @@ After creating dsTask-telegraf_1m the bucket should start having data with `_tim
 
 ## Set Grafana Variables
 
-```
-// Grafana Flux query variable. Helps combine InfluxDB v2 downsample buckets into output to be displayed in a Grafana panel.
-// When the user zooms in, downsampled buckets that are no longer within the scope of the current time range won't be
-// queried. This query will run once per dashboard load, refresh, or time range change before any panels queries are run.
-//
+On the Grafana side the heavy lifting will be done by a Flux script stored in a dashboard variable. The variable handles
+which buckets need to be queried for the current time range. When the user zooms in downsampled buckets that are no longer
+within the scope of the current time range won't be queried. The script in the variable will run once per dashboard load,
+refresh, or time range change before any panel queries are run.
+
+A second variable will be used to define which buckets are queried for which time ranges.
+
+```koka
 // ## Prerequisites
 //
 // 1. Decide which buckets shall be queried for which time ranges. For example if you want the "telegraf" bucket to be used
