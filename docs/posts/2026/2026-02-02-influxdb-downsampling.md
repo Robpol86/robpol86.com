@@ -131,7 +131,7 @@ Each downsample bucket will need its own task. The task script below can be past
 because InfluxDB automatically updates the `option task` statement with whatever you put in the web UI form. Let's create the
 task for `telegraf_1m`:
 
-1. In your InfluxDB web UI go to Tasks > Create Task > New Task
+1. In your InfluxDB web UI (http://localhost:18086) go to Tasks > Create Task > New Task
 1. In the left pane/column you can name your task `dsTask-telegraf_1m`
 1. Set "Every" to `1m` (don't use CRON)
 1. For offset I use `15s` to give Telegraf enough time to finish writing data to InfluxDB for each iteration (this won't
@@ -150,38 +150,54 @@ After creating dsTask-telegraf_1m the bucket should start having data with `_tim
 
 ## Set Grafana Variables
 
-On the Grafana side the heavy lifting will be done by a Flux script stored in a dashboard variable. The variable handles
-which buckets need to be queried for the current time range. When the user zooms in downsampled buckets that are no longer
-within the scope of the current time range won't be queried. The script in the variable will run once per dashboard load,
-refresh, or time range change before any panel queries are run.
+In Grafana we will create two variables. The first one will contain the Flux script that does the heavy lifting and decides
+which buckets need to be queried for the current time range. The second variable will be used to define which buckets are
+queried for which time ranges.
 
-A second variable will be used to define which buckets are queried for which time ranges.
+### Create First Variable
+
+1. In the Grafana Dashboard (http://localhost:13000) click on "Edit" and then "Settings"
+1. Go to the "Variables" tab then click "New variable"
+1. The variable type is "Query", the variable name must be "dsPost", the data source should be "influxdb"
+1. In the text area paste the entire script shown below unmodified
+1. Scroll down and set the refresh setting to "On time range change"
+1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
+1. Leave sorting disabled and leave Regex empty
+1. Click "Back to list"
+
+```{literalinclude} _static/dsPost.flux
+:language: koka
+```
+
+### Create Second Variable
+
+1. In the "Variables" tab click "New variable"
+1. The variable type is "Custom", the variable name must be "dsBuckets"
+1. In the text area paste the following code block shown below unmodified
+1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
+1. Click "Back to list" then "Back to dashboard"
+
+```
+${BUCKET}=now:-30m|
+${BUCKET}_1m=-30m:-1h|
+${BUCKET}_5m=-1h:inf
+```
+
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/grafana-ds-vars.png
+    Your "Variables" tab should look like this.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/grafana-ds-dashboard-pre.png
+    Your dashboard should now look like this.
+    :::
+```
+
+## Update Grafana Queries
 
 ```koka
-// ## Prerequisites
-//
-// 1. Decide which buckets shall be queried for which time ranges. For example if you want the "telegraf" bucket to be used
-//    for metrics from "now-5m" to "now" you'll specify it with "telegraf=now:-5m". And if you want the rest of the graph to
-//    use the bucket "telegraf_1m" you'll specify that with "telegraf_1m=-5m:inf".
-// 2. Set a Grafana constant variable named "dsBuckets" to your bucket name and range specification, separated with "|". Your
-//    first range must start with "now" and your last range must end with "inf". You can specify two or more buckets, here
-//    are some examples:
-//      telegraf=now:-5m|telegraf_1m=-5m:inf
-//      telegraf=now:-30m|telegraf_1m=-30m:-1h|telegraf_5m=-1h:inf
-//      telegraf=now:-1d|telegraf_1m=-1d:-2d|telegraf_5m=-2d:-3d|telegraf_10m=-3d:inf
-//
-// ## Install
-//
-// 1. In your Grafana dashboard settings go to the Variables section and add a new variable.
-// 2. The variable type is "Query", the variable name must be "dsPost", set the data source to your influxdb instance, you
-//    must set the refresh setting to "On time range change", and uncheck "multi-value", "allow custom values", and "include
-//    All option" (as of Grafana v12.0.2). Disable sorting and leave Regex empty as well.
-// 3. Paste this script below the "PASTE EVERYTHING BELOW THIS LINE IN GRAFANA" line into the "Query" field. Test it by
-//    clicking on "Run query", you should see a preview value. Then click "Back to list". Then go back to your dashboard.
-// 4. If you didn't hide the variable you should see "dsPost" at the top of your dashboard. When you change the dashboard
-//    time range you should see your buckets appear/disappear from the value of this variable. Every refresh, time range
-//    change, and browser refresh will update dsPost.
-//
 // ## Usage
 //
 // Finally to use dsPost in your panels you'll need to update all of the queries. For most queries all you need to do is add
@@ -202,12 +218,6 @@ A second variable will be used to define which buckets are queried for which tim
 
 // PASTE EVERYTHING BELOW THIS LINE IN GRAFANA
 ```
-
-```{literalinclude} _static/dsPost.flux
-:language: koka
-```
-
-## Update Grafana Queries
 
 TODO gif with production ranges showing zooming out and panning
 
