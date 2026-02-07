@@ -115,6 +115,8 @@ Repeat for **telegraf_5m** but instead of "Older Than" click on "Never".
 
 ## Create Tasks
 
+TODO import JSON instead
+
 ```{warning}
 Due to an [InfluxDB bug](https://github.com/influxdata/influxdb/issues/26781) you should avoid cloning tasks and instead
 create each one from scratch as outlined here.
@@ -154,7 +156,7 @@ In Grafana we will create two variables. The first one will contain the Flux scr
 which buckets need to be queried for the current time range. The second variable will be used to define which buckets are
 queried for which time ranges.
 
-### Create First Variable
+### dsPost Variable
 
 1. In the Grafana Dashboard (http://localhost:13000) click on "Edit" and then "Settings"
 1. Go to the "Variables" tab then click "New variable"
@@ -169,7 +171,7 @@ queried for which time ranges.
 :language: koka
 ```
 
-### Create Second Variable
+### dsBuckets Variable
 
 1. In the "Variables" tab click "New variable"
 1. The variable type is "Custom", the variable name must be "dsBuckets"
@@ -197,6 +199,8 @@ ${BUCKET}_5m=-1h:inf
 
 ## Update Grafana Queries
 
+Like a good rug it's time to tie everything together.
+
 ```koka
 // ## Usage
 //
@@ -221,9 +225,42 @@ ${BUCKET}_5m=-1h:inf
 
 TODO gif with production ranges showing zooming out and panning
 
-TODO [dsGrafana.json](_static/dsGrafana.json)
+:::{note}
+If you get the error "invalid: runtime error: schema collision detected: column "raw_value" is both of type int and float"
+you'll need to add `toFloat()` to cast integers from the main bucket to floats since that's the datatype used in downsample
+buckets.
 
-TODO toFloat()
+An example before and after of the fix:
+
+```koka
+// Before
+dsQuery = (bucket, start, stop) =>
+from(bucket)
+  |> range(start, stop)
+  |> filter(fn: (r) => r.host == "${NAS_HOST}")
+  |> filter(fn: (r) => r._measurement == "smart_attribute")
+  |> filter(fn: (r) => r._field == "raw_value")
+  |> filter(fn: (r) => r.name == "Temperature_Celsius")
+  |> drop(columns: ["device"])
+  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)
+  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+${dsPost}
+
+// After
+dsQuery = (bucket, start, stop) =>
+from(bucket)
+  |> range(start, stop)
+  |> filter(fn: (r) => r.host == "${NAS_HOST}")
+  |> filter(fn: (r) => r._measurement == "smart_attribute")
+  |> filter(fn: (r) => r._field == "raw_value")
+  |> filter(fn: (r) => r.name == "Temperature_Celsius")
+  |> drop(columns: ["device"])
+  |> toFloat()
+  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)
+  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+${dsPost}
+```
+:::
 
 ## Backfill Data
 
@@ -274,3 +311,5 @@ TODO test with influxdb 2.7.
 TODO all new screenshots
 
 TODO copy final screenshots to tnas
+
+TODO [dsGrafana.json](_static/dsGrafana.json)
