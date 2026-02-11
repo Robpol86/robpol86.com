@@ -99,7 +99,7 @@ In the InfluxDB web UI (http://localhost:18086) create your downsample buckets:
     1. **Delete Data** > Older Than: 90 days
 1. Create
 
-Repeat for **telegraf_5m** but instead of "Older Than" click on "Never".
+Repeat for **telegraf_5m** but instead of "Older Than" select "Never".
 
 ```{list-table-thumbs}
 :resize-width: 400
@@ -199,7 +199,7 @@ ${BUCKET}_5m=-1h:inf
 
 ## Update Grafana Queries
 
-Like a good rug it's time to tie everything together.
+It's time to tie everything together.
 
 ```koka
 // ## Usage
@@ -292,7 +292,7 @@ TODO chunking
 //
 ```
 
-## Set Retention Policy
+## Main Bucket Retention Policy
 
 TODO telegraf
 
