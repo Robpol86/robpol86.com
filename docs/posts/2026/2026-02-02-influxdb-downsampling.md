@@ -167,7 +167,7 @@ queried for which time ranges.
 1. In the Grafana Dashboard (http://localhost:13000) click on "Edit" and then "Settings"
 1. Go to the "Variables" tab then click "New variable"
 1. The variable type is "Query", the variable name must be "dsPost", the data source should be "influxdb"
-1. In the text area paste the entire script shown below unmodified
+1. In the "Query options" text area paste the entire script shown below unmodified
 1. Scroll down and set the refresh setting to "On time range change"
 1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
 1. Leave sorting disabled and leave Regex empty
@@ -181,11 +181,11 @@ queried for which time ranges.
 
 1. In the "Variables" tab click "New variable"
 1. The variable type is "Custom", the variable name must be "dsBuckets"
-1. In the text area paste the following code block shown below unmodified
+1. In the "Values separated by comma" text area paste the following code block shown below unmodified
 1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
 1. Click "Back to list" then "Back to dashboard"
 
-```
+```bash
 ${BUCKET}=now:-30m|
 ${BUCKET}_1m=-30m:-1h|
 ${BUCKET}_5m=-1h:inf
