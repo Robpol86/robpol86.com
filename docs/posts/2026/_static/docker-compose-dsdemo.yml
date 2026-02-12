@@ -140,7 +140,7 @@ services:
         "axisCenteredZero":false,"axisColorMode":"text","axisLabel":"","axisPlacement":"auto","barAlignment":0,
         "barWidthFactor":0.6,"drawStyle":"line","fillOpacity":10,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":
         false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":
-        {"type":"linear"},"showPoints":"never","showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},
+        {"type":"linear"},"showPoints":"always","showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},
         "thresholdsStyle":{"mode":"dashed+area"}},"displayName":"$${__field.name}","mappings":[],"thresholds":{"mode":
         "absolute","steps":[{"color":"transparent","value":0},{"color":"red","value":4}]}},"overrides":[]},"gridPos":{"h":9,
         "w":12,"x":0,"y":3},"id":19,"options":{"legend":{"calcs":["mean","lastNotNull","max","min"],"displayMode":"table",
@@ -157,7 +157,7 @@ services:
         {"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text","axisLabel":"","axisPlacement":"auto",
         "barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":10,"gradientMode":"none","hideFrom":{"legend":
         false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,
-        "scaleDistribution":{"type":"linear"},"showPoints":"never","showValues":false,"spanNulls":true,"stacking":{"group":
+        "scaleDistribution":{"type":"linear"},"showPoints":"always","showValues":false,"spanNulls":true,"stacking":{"group":
         "A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"displayName":"$${__field.name}","mappings":[],"thresholds":
         {"mode":"absolute","steps":[{"color":"transparent","value":0}]},"unit":"percent"},"overrides":[]},"gridPos":{"h":9,
         "w":12,"x":12,"y":3},"id":20,"options":{"legend":{"calcs":["mean","lastNotNull","max","min"],"displayMode":"table",
@@ -172,7 +172,7 @@ services:
         {"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text",
         "axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":10,
         "gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,
-        "lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"never",
+        "lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"always",
         "showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},
         "displayName":"$${__series.name} $${__field.name}","mappings":[],"thresholds":{"mode":"absolute","steps":[{"color":
         "transparent","value":0}]},"unit":"bytes"},"overrides":[]},"gridPos":{"h":9,"w":12,"x":0,"y":12},"id":21,"options":
@@ -188,7 +188,7 @@ services:
         {"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text",
         "axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":10,
         "gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,
-        "lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"never",
+        "lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"always",
         "showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},
         "displayName":"$${__field.name}","mappings":[],"thresholds":{"mode":"absolute","steps":[{"color":"transparent",
         "value":0}]}},"overrides":[{"matcher":{"id":"byValue","options":{"op":"gte","reducer":"allIsZero","value":0}},

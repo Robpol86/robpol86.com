@@ -205,28 +205,36 @@ ${BUCKET}_5m=-1h:inf
 
 ## Update Grafana Queries
 
-It's time to tie everything together.
+It's time to tie everything together. For each of the four graphs edit the queries and make these changes:
+
+1. Add `dsQuery = (bucket, start, stop) =>` as the first line
+1. Add `${dsPost}` as the last line
+1. Replace `"${BUCKET}"` with `bucket`
+1. Replace `v.timeRangeStart` with `start`
+1. Replace `v.timeRangeStop` with `stop`
+
+For example, the following is the before and after for the Memory graph:
 
 ```koka
-// ## Usage
-//
-// Finally to use dsPost in your panels you'll need to update all of the queries. For most queries all you need to do is add
-// "dsQuery = (bucket, start, stop) =>" to the top and "${dsPost}" to the bottom (without quotes) and set your bucket and
-// range to the bucket, start, and stop variables. Here's an example panel query:
-//
-//      dsQuery = (bucket, start, stop) =>
-//      from(bucket)
-//      |> range(start, stop)
-//      |> filter(fn: (r) =>
-//          r._measurement == "cpu" and
-//          r.host == "tnas" and
-//          r.cpu == "cpu-total" and
-//          r._field == "usage_user"
-//      )
-//      ${dsPost}
-//
+// Before
+from(bucket: "${BUCKET}")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r.host == "${NAS_HOST}")
+  |> filter(fn: (r) => r._measurement == "mem" or r._measurement == "swap")
+  |> filter(fn: (r) => r._field == "used" or r._field == "active")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
 
-// PASTE EVERYTHING BELOW THIS LINE IN GRAFANA
+// After
+dsQuery = (bucket, start, stop) =>
+from(bucket: bucket)
+  |> range(start: start, stop: stop)
+  |> filter(fn: (r) => r.host == "${NAS_HOST}")
+  |> filter(fn: (r) => r._measurement == "mem" or r._measurement == "swap")
+  |> filter(fn: (r) => r._field == "used" or r._field == "active")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+${dsPost}
 ```
 
 TODO gif with production ranges showing zooming out and panning
