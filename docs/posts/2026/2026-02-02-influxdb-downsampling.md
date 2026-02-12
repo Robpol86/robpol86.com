@@ -310,7 +310,7 @@ TODO chunking
 
 TODO telegraf
 
-### Performance
+## Performance
 
 TODO compare query statistics (or profiling), best of 10 each.
 
