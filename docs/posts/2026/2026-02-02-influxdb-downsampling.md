@@ -148,7 +148,7 @@ task for `telegraf_1m`:
 :resize-width: 400
 :widths: 10 10
 
-* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done-query.png
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done.png
     After creating tasks you should see something like this.
     :::
   - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done-query.png
@@ -209,8 +209,8 @@ TODO finish this, maybe add some screenshots.
 
 It's time to tie everything together. For each of the four graphs edit the queries and make these changes:
 
-1. Add `dsQuery = (bucket, start, stop) =>` as the first line
-1. Add `${dsPost}` as the last line
+1. Insert `dsQuery = (bucket, start, stop) =>` as the first line
+1. Append `${dsPost}` as the last line
 1. Replace `"${BUCKET}"` with `bucket`
 1. Replace `v.timeRangeStart` with `start`
 1. Replace `v.timeRangeStop` with `stop`
