@@ -205,6 +205,8 @@ ${BUCKET}_5m=-1h:inf
 
 ## Update Grafana Queries
 
+TODO finish this, maybe add some screenshots.
+
 It's time to tie everything together. For each of the four graphs edit the queries and make these changes:
 
 1. Add `dsQuery = (bucket, start, stop) =>` as the first line
