@@ -39,8 +39,8 @@ to consume the downsampled data in Grafana. It turns out the latter was the hard
 This guide will walk you through implementing downsampling on a demo TIG stack (Telegraf, InfluxDB, Grafana) using
 [Docker Compose](https://docs.docker.com/compose/). We'll implement the following buckets with these retention policies:
 
-* **telegraf**: 30 day retention policy, 10 second data resolution, main ingestion bucket
-* **telegraf_1m**: 90 day retention policy, 1 minute data resolution
+* **telegraf**: 7 day retention policy, 10 second data resolution, main ingestion bucket
+* **telegraf_1m**: 14 day retention policy, 1 minute data resolution
 * **telegraf_5m**: no retention policy, 5 minute data resolution, keep historical data forever
 
 I'll also cover backfilling existing data into the new downsample buckets.
@@ -84,10 +84,10 @@ the Flux language so unfortunately InfluxDB v3 and v1 are not supported.
 
 ## Create Buckets
 
-Currently Telegraf writes data to the **telegraf** bucket every 10 seconds. And this bucket stores those data indefinitely.
+Currently Telegraf writes data to the **telegraf** bucket every 10 seconds, and this bucket stores those data indefinitely.
 Our goal is to create new buckets to downsample data into and then set a retention policy on the **telegraf** bucket so high
-resolution data is only stored for 30 days. We'll create a **telegraf_1m** bucket to store data with 1 minute
-resolution (instead of 10 second) with a 90 day retention policy, and we'll create a **telegraf_5m** bucket to store data with
+resolution data is only stored for 7 days. We'll create a **telegraf_1m** bucket to store data with 1 minute resolution
+(instead of 10 second) with a 14 day retention policy, and we'll create a **telegraf_5m** bucket to store data with
 5 minute resolution with no retention policy. This last bucket will store our historical data indefinitely.
 
 In the InfluxDB web UI (http://localhost:18086) create your downsample buckets:
@@ -96,7 +96,7 @@ In the InfluxDB web UI (http://localhost:18086) create your downsample buckets:
 1. Buckets
 1. Create Bucket
     1. **Name**: telegraf_1m
-    1. **Delete Data** > Older Than: 90 days
+    1. **Delete Data** > Older Than: 14 days
 1. Create
 
 Repeat for **telegraf_5m** but instead of "Older Than" select "Never".
