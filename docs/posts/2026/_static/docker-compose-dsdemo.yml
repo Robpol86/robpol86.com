@@ -65,7 +65,6 @@ services:
         condition: service_completed_successfully
     environment:
       GF_SECURITY_ADMIN_PASSWORD: Stand&Deliver
-      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/home.json
     image: &image-grafana "grafana/grafana:12.3.2"
     ports:
       - "13000:3000"
