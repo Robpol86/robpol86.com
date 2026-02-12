@@ -66,12 +66,6 @@ services:
     environment:
       GF_SECURITY_ADMIN_PASSWORD: Stand&Deliver
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/home.json
-    healthcheck:
-      test: ["CMD", "curl", "-sf", "http://localhost:3000/api/health"]
-      interval: 2s
-      timeout: 2s
-      retries: 30
-      start_period: 5s
     image: &image-grafana "grafana/grafana:12.3.2"
     ports:
       - "13000:3000"
@@ -103,6 +97,8 @@ services:
   grafana-post:
     command: |
       -euxc '
+        # Wait for grafana to start.
+        until curl -sf "$$API_URL_HEALTH"; do sleep 2; done
         # Import dashboard from JSON.
         printenv dashboard_json |
           curl -vf -u "$$API_AUTH" -H "Content-Type: application/json" -d @- "$$API_URL_DASHBOARDS"
@@ -110,13 +106,11 @@ services:
         echo "{\"homeDashboardUID\":\"mock-container\"}" |
           curl -vf -u "$$API_AUTH" -H "Content-Type: application/json" -d @- -X PUT "$$API_URL_PREFERENCES"
         '
-    depends_on:
-      grafana:
-        condition: service_healthy
     entrypoint: /bin/sh
     environment:
       API_AUTH: "admin:Stand&Deliver"
       API_URL_DASHBOARDS: "http://grafana:3000/apis/dashboard.grafana.app/v1beta1/namespaces/default/dashboards"
+      API_URL_HEALTH: "http://grafana:3000/api/health"
       API_URL_PREFERENCES: "http://grafana:3000/api/org/preferences"
       dashboard_json: >
         {"metadata":{"name":"mock-container"},"spec":{"annotations":{"list":[{"builtIn":1,"datasource":{"type":"grafana",
