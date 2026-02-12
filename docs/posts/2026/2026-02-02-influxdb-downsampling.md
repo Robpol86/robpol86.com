@@ -115,8 +115,6 @@ Repeat for **telegraf_5m** but instead of "Older Than" select "Never".
 
 ## Create Tasks
 
-TODO import JSON instead
-
 ```{warning}
 Due to an [InfluxDB bug](https://github.com/influxdata/influxdb/issues/26781) you should avoid cloning tasks and instead
 create each one from scratch as outlined here.
@@ -135,7 +133,7 @@ task for `telegraf_1m`:
 
 1. In your InfluxDB web UI (http://localhost:18086) go to Tasks > Create Task > New Task
 1. In the left pane/column you can name your task `dsTask-telegraf_1m`
-1. Set "Every" to `1m` (don't use CRON)
+1. Set "Every" to `1m` (don't use CRON for this demo)
 1. For offset I use `15s` to give Telegraf enough time to finish writing data to InfluxDB for each iteration (this won't
    affect data timestamps)
 1. On the right pane paste the entire script shown below unmodified
@@ -146,8 +144,16 @@ task for `telegraf_1m`:
 :language: koka
 ```
 
-```{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done.png
-After creating dsTask-telegraf_1m the bucket should start having data with `_time` every minute.
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done-query.png
+    After creating tasks you should see something like this.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done-query.png
+    After 5 minutes the telegraf_1m bucket should start having data with `_time` every minute.
+    :::
 ```
 
 ## Set Grafana Variables
