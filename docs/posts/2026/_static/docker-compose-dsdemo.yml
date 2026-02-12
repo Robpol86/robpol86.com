@@ -66,6 +66,12 @@ services:
     environment:
       GF_SECURITY_ADMIN_PASSWORD: Stand&Deliver
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/home.json
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:3000/api/health"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+      start_period: 5s
     image: &image-grafana "grafana/grafana:12.3.2"
     ports:
       - "13000:3000"
@@ -75,10 +81,7 @@ services:
       - grafana-plugins:/var/lib/grafana/plugins
       - grafana-provisioning:/etc/grafana/provisioning
   grafana-init:
-    command: |
-      -euxc '
-        printenv datasource_yml > /etc/grafana/provisioning/datasources/datasource.yml &&
-        printenv dashboard_json > /etc/grafana/provisioning/dashboards/home.json'
+    command: -euxc 'printenv datasource_yml > /etc/grafana/provisioning/datasources/datasource.yml'
     entrypoint: /bin/sh
     environment:
       datasource_yml: |
@@ -94,21 +97,43 @@ services:
               defaultBucket: telegraf
             secureJsonData:
               token: xfjsEbb0Tpu48bqlQUjHAl0WHRB1GWAr
+    image: *image-grafana
+    volumes:
+      - grafana-provisioning:/etc/grafana/provisioning
+  grafana-post:
+    command: |
+      -euxc '
+        # Import dashboard from JSON.
+        printenv dashboard_json |
+          curl -vf -u "$$API_AUTH" -H "Content-Type: application/json" -d @- "$$API_URL_DASHBOARDS"
+        # Set dashboard as home.
+        echo "{\"homeDashboardUID\":\"mock-container\"}" |
+          curl -vf -u "$$API_AUTH" -H "Content-Type: application/json" -d @- -X PUT "$$API_URL_PREFERENCES"
+        '
+    depends_on:
+      grafana:
+        condition: service_healthy
+    entrypoint: /bin/sh
+    environment:
+      API_AUTH: "admin:Stand&Deliver"
+      API_URL_DASHBOARDS: "http://grafana:3000/apis/dashboard.grafana.app/v1beta1/namespaces/default/dashboards"
+      API_URL_PREFERENCES: "http://grafana:3000/api/org/preferences"
       dashboard_json: >
-        {"annotations":{"list":[{"builtIn":1,"datasource":{"type":"grafana","uid":"-- Grafana --"},"enable":true,"hide":true,
-        "iconColor":"rgba(0, 211, 255, 1)","name":"Annotations & Alerts","type":"dashboard"}]},"description":
-        "https://robpol86.com/posts/2025/2025-07-23-truenas-scale-telegraf.html","editable":true,"fiscalYearStartMonth":0,
-        "graphTooltip":0,"id":0,"links":[],"panels":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},
-        "description":"The host's most recently reported uptime in human readable format","fieldConfig":{"defaults":{"color":
-        {"mode":"thresholds"},"mappings":[],"thresholds":{"mode":"absolute","steps":[{"color":"transparent","value":0}]}},
-        "overrides":[]},"gridPos":{"h":3,"w":24,"x":0,"y":0},"id":1,"options":{"colorMode":"none","graphMode":"area",
-        "justifyMode":"auto","orientation":"auto","percentChangeColorMode":"standard","reduceOptions":{"calcs":
-        ["lastNotNull"],"fields":"/^uptime$$/","values":false},"showPercentChange":false,"textMode":"auto","wideLayout":
-        true},"pluginVersion":"12.3.2","targets":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},"query":
-        "from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>
-        r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field ==
-        \"uptime\")\n  |> drop(columns: [\"host\"])\n  |> last()\n  |> map(fn: (r) => {\n      // uptime_format is
-        deprecated: https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/README.md?plain=1#L46\n      //
+        {"metadata":{"name":"mock-container"},"spec":{"annotations":{"list":[{"builtIn":1,"datasource":{"type":"grafana",
+        "uid":"-- Grafana --"},"enable":true,"hide":true,"iconColor":"rgba(0, 211, 255, 1)","name":"Annotations & Alerts",
+        "type":"dashboard"}]},"description":"https://robpol86.com/posts/2025/2025-07-23-truenas-scale-telegraf.html",
+        "editable":true,"fiscalYearStartMonth":0,"graphTooltip":0,"id":0,"links":[],"panels":[{"datasource":{"type":
+        "influxdb","uid":"P3C6603E967DC8568"},"description":"The host's most recently reported uptime in human readable
+        format","fieldConfig":{"defaults":{"color":{"mode":"thresholds"},"mappings":[],"thresholds":{"mode":"absolute",
+        "steps":[{"color":"transparent","value":0}]}},"overrides":[]},"gridPos":{"h":3,"w":24,"x":0,"y":0},"id":1,"options":
+        {"colorMode":"none","graphMode":"area","justifyMode":"auto","orientation":"auto","percentChangeColorMode":"standard",
+        "reduceOptions":{"calcs":["lastNotNull"],"fields":"/^uptime$$/","values":false},"showPercentChange":false,"textMode":
+        "auto","wideLayout":true},"pluginVersion":"12.3.2","targets":[{"datasource":{"type":"influxdb","uid":
+        "P3C6603E967DC8568"},"query":"from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop:
+        v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement ==
+        \"system\")\n  |> filter(fn: (r) => r._field == \"uptime\")\n  |> drop(columns: [\"host\"])\n  |> last()\n  |>
+        map(fn: (r) => {\n      // uptime_format is deprecated:
+        https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/README.md?plain=1#L46\n      //
         https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/system.go#L89\n      uptime =
         r._value\n      days = int(v: uptime / (60 * 60 * 24))\n      uptimeFormatDays =\n        if days > 1 then \"$${days}
         days, \"\n        else if days == 1 then \"$${days} day, \"\n        else \"\"\n      seconds = int(v: uptime %
@@ -116,10 +141,10 @@ services:
         / 60\n      hours = int(v: (minutes_ / 60) % 24)\n      minutes = int(v: minutes_ % 60)\n      uptimeFormatMinutes =
         if minutes < 10 then \"0$${minutes}\" else \"$${minutes}\"\n      uptimeFormat =
         \"$${hours}:$${uptimeFormatMinutes}:$${uptimeFormatSeconds}\"\n      return { r with _value:
-        \"$${uptimeFormatDays}$${uptimeFormat}\" }\n  })","refId":"A"}],"title":"Uptime","type":"stat"},{"datasource":{"type"
-        :"influxdb","uid":"P3C6603E967DC8568"},"description":"A metric that shows the number of tasks currently executed by
-        the CPU and tasks waiting in the queue (ideally it's lower than the number of CPUs on the system, e.g. <4 for a
-        4-core CPU)","fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,
+        \"$${uptimeFormatDays}$${uptimeFormat}\" }\n  })","refId":"A"}],"title":"Uptime","type":"stat"},{"datasource":
+        {"type":"influxdb","uid":"P3C6603E967DC8568"},"description":"A metric that shows the number of tasks currently
+        executed by the CPU and tasks waiting in the queue (ideally it's lower than the number of CPUs on the system, e.g.
+        <4 for a 4-core CPU)","fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,
         "axisCenteredZero":false,"axisColorMode":"text","axisLabel":"","axisPlacement":"auto","barAlignment":0,
         "barWidthFactor":0.6,"drawStyle":"line","fillOpacity":10,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":
         false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":
@@ -154,45 +179,43 @@ services:
         "influxdb","uid":"P3C6603E967DC8568"},"description":"Memory and swap usage","fieldConfig":{"defaults":{"color":
         {"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text",
         "axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":10,
-        "gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation"
-        :"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"never","showValues":false,
-        "spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"displayName":
-        "$${__series.name} $${__field.name}","mappings":[],"thresholds":{"mode":"absolute","steps":[{"color":"transparent",
-        "value":0}]},"unit":"bytes"},"overrides":[]},"gridPos":{"h":9,"w":12,"x":0,"y":12},"id":21,"options":{"legend":
-        {"calcs":["mean","lastNotNull","max","min"],"displayMode":"table","placement":"bottom","showLegend":true,"sortBy":
+        "gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,
+        "lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"never",
+        "showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},
+        "displayName":"$${__series.name} $${__field.name}","mappings":[],"thresholds":{"mode":"absolute","steps":[{"color":
+        "transparent","value":0}]},"unit":"bytes"},"overrides":[]},"gridPos":{"h":9,"w":12,"x":0,"y":12},"id":21,"options":
+        {"legend":{"calcs":["mean","lastNotNull","max","min"],"displayMode":"table","placement":"bottom","showLegend":true,
+        "sortBy":"Mean","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"multi","sort":"none"}},"pluginVersion":
+        "12.3.2","targets":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},"query":"from(bucket:
+        \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host ==
+        \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"mem\" or r._measurement == \"swap\")\n  |> filter(fn:
+        (r) => r._field == \"used\" or r._field == \"active\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean,
+        createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")","refId":
+        "A"}],"title":"Memory","type":"timeseries"},{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},
+        "description":"Unit counts for TCP/UDP connection states from the `netstat` command","fieldConfig":{"defaults":
+        {"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text",
+        "axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":10,
+        "gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,
+        "lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"never",
+        "showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},
+        "displayName":"$${__field.name}","mappings":[],"thresholds":{"mode":"absolute","steps":[{"color":"transparent",
+        "value":0}]}},"overrides":[{"matcher":{"id":"byValue","options":{"op":"gte","reducer":"allIsZero","value":0}},
+        "properties":[{"id":"custom.hideFrom","value":{"legend":true,"tooltip":false,"viz":false}}]},{"matcher":{"id":
+        "byValue","options":{"op":"gte","reducer":"allIsNull","value":0}},"properties":[{"id":"custom.hideFrom","value":{
+        "legend":true,"tooltip":false,"viz":false}}]}]},"gridPos":{"h":9,"w":12,"x":12,"y":12},"id":24,"options":{"legend":{
+        "calcs":["mean","lastNotNull","max","min"],"displayMode":"table","placement":"bottom","showLegend":true,"sortBy":
         "Mean","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"multi","sort":"none"}},"pluginVersion":"12.3.2",
         "targets":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},"query":"from(bucket: \"$${BUCKET}\")\n  |>
         range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |>
-        filter(fn: (r) => r._measurement == \"mem\" or r._measurement == \"swap\")\n  |> filter(fn: (r) => r._field ==
-        \"used\" or r._field == \"active\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |>
-        pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")","refId":"A"}],"title":"Memory","type":
-        "timeseries"},{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},"description":"Unit counts for TCP/UDP
-        connection states from the `netstat` command","fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":
-        {"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text","axisLabel":"","axisPlacement":"auto",
-        "barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":10,"gradientMode":"none","hideFrom":{"legend":
-        false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,
-        "scaleDistribution":{"type":"linear"},"showPoints":"never","showValues":false,"spanNulls":true,"stacking":{"group":
-        "A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"displayName":"$${__field.name}","mappings":[],"thresholds":
-        {"mode":"absolute","steps":[{"color":"transparent","value":0}]}},"overrides":[{"matcher":{"id":"byValue","options":
-        {"op":"gte","reducer":"allIsZero","value":0}},"properties":[{"id":"custom.hideFrom","value":{"legend":true,"tooltip":
-        false,"viz":false}}]},{"matcher":{"id":"byValue","options":{"op":"gte","reducer":"allIsNull","value":0}},
-        "properties":[{"id":"custom.hideFrom","value":{"legend":true,"tooltip":false,"viz":false}}]}]},"gridPos":{"h":9,"w":
-        12,"x":12,"y":12},"id":24,"options":{"legend":{"calcs":["mean","lastNotNull","max","min"],"displayMode":"table",
-        "placement":"bottom","showLegend":true,"sortBy":"Mean","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"multi",
-        "sort":"none"}},"pluginVersion":"12.3.2","targets":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},
-        "query":"from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn:
-        (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"netstat\")\n  |>
-        aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey:
-        [\"_field\"], valueColumn: \"_value\")","refId":"A"}],"title":"Netstat","type":"timeseries"}],"preload":false,
-        "refresh":"1m","schemaVersion":42,"tags":[],"templating":{"list":[{"current":{"text":"telegraf","value":"telegraf"},
-        "description":"Name of the InfluxDB bucket with telegraf metrics.","hide":2,"name":"BUCKET","query":"telegraf",
-        "skipUrlSync":true,"type":"constant"},{"current":{"text":"mock-container","value":"mock-container"},"description":
-        "Hostname of the NAS.","hide":2,"name":"NAS_HOST","query":"mock-container","skipUrlSync":true,"type":"constant"}]},
-        "time":{"from":"now-1h","to":"now"},"timepicker":{},"timezone":"browser","title":"Mock Container","uid":
-        "21A0F742-6EA7-43C9-838F-580BD1D4F032","version":3}
+        filter(fn: (r) => r._measurement == \"netstat\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty:
+        false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")","refId":"A"}],"title":
+        "Netstat","type":"timeseries"}],"preload":false,"refresh":"1m","schemaVersion":42,"tags":[],"templating":{"list":[{
+        "current":{"text":"telegraf","value":"telegraf"},"description":"Name of the InfluxDB bucket with telegraf metrics.",
+        "hide":2,"name":"BUCKET","query":"telegraf","skipUrlSync":true,"type":"constant"},{"current":{"text":"mock-container"
+        ,"value":"mock-container"},"description":"Hostname of the NAS.","hide":2,"name":"NAS_HOST","query":"mock-container",
+        "skipUrlSync":true,"type":"constant"}]},"time":{"from":"now-1h","to":"now"},"timepicker":{},"timezone":"browser",
+        "title":"Mock Container","uid":"21A0F742-6EA7-43C9-838F-580BD1D4F032","version":3}}
     image: *image-grafana
-    volumes:
-      - grafana-provisioning:/etc/grafana/provisioning
 
 volumes:
   influxdb-config:
