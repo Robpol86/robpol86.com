@@ -105,10 +105,10 @@ Repeat for **telegraf_5m** but instead of "Older Than" select "Never".
 :resize-width: 400
 :widths: 10 10
 
-* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/imgur-qEbiR2z.png
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/1-create-bucket.png
     Creating the telegraf_1m bucket.
     :::
-  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-buckets-done.png
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/1-create-buckets-done.png
     After creating buckets you should see something like this.
     :::
 ```
