@@ -69,10 +69,10 @@ one command, pre-configured.
 :resize-width: 400
 :widths: 10 10
 
-* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/tig-demo-oob-grafana.png
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/0-tig-demo-oob-grafana.png
     You should now see something like this.
     :::
-  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/tig-demo-oob-influxdb.png
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/0-tig-demo-oob-influxdb.png
     You should also see something like this.
     :::
 ```
