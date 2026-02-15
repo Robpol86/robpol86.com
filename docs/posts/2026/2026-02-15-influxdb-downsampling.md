@@ -373,3 +373,5 @@ TODO s/telegraf/telegraf_main/ bucket?
 TODO confirm guide looks good on mobile
 
 TODO resolve gl/n/issues/116
+
+TODO read entire guide and revise
