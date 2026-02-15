@@ -331,9 +331,8 @@ no going back.
 ## Performance
 
 The main benefits with downsampling are reduce disk space usage, reduced CPU load for expensive queries, and reduced query
-response times. Below you'll see some screenshots from my "production" homelab NAS InfluxDB instance. The total number of
-rows remains about the same due to my usage of `aggregateWindow()` but you can see the massive improvements in the total
-request time metric.
+response times. Below you'll see some screenshots from my "production" homelab NAS. The total number of rows remains about
+the same due to my usage of `aggregateWindow()`, but you can see the massive improvements in the total request time metric.
 
 ```{list-table-thumbs}
 :resize-width: 400
