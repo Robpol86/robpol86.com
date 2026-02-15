@@ -210,8 +210,6 @@ ${BUCKET}_5m=-40m:inf
 Wait for one hour for the downsample tasks you created to downsample enough data to show up in the graphs.
 ```
 
-TODO finish this, maybe add some screenshots.
-
 It's time to tie everything together. For each of the four graphs edit the queries and make these changes:
 
 1. Insert `dsQuery = (bucket, start, stop) =>` as the first line
@@ -244,7 +242,17 @@ from(bucket: bucket)
 ${dsPost}
 ```
 
-TODO gif with production ranges showing zooming out and panning
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/4-memory-graph.png
+    The Memory graph should look like this when you click on `Refresh`
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/4-grafana-ds-dashboard.png
+    Your dashboard should now look like this.
+    :::
+```
 
 :::{note}
 If you get the error "invalid: runtime error: schema collision detected: column "raw_value" is both of type int and float"
