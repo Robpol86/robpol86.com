@@ -334,3 +334,7 @@ TODO copy final screenshots to tnas
 TODO [dsGrafana.json](_static/dsGrafana.json)
 
 TODO confirm on podman
+
+TODO run through guide fast
+
+TODO then run through slow (wait 1h after oob, another 1h after create tasks)
