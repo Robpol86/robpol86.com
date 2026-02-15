@@ -202,11 +202,10 @@ services:
         filter(fn: (r) => r._measurement == \"netstat\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty:
         false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")","refId":"A"}],"title":
         "Netstat","type":"timeseries"}],"preload":false,"refresh":"1m","schemaVersion":42,"tags":[],"templating":{"list":[{
-        "current":{"text":"telegraf","value":"telegraf"},"description":"Name of the InfluxDB bucket with telegraf metrics.",
-        "hide":2,"name":"BUCKET","query":"telegraf","skipUrlSync":true,"type":"constant"},{"current":{"text":"mock-container"
-        ,"value":"mock-container"},"description":"Hostname of the NAS.","hide":2,"name":"HOST","query":"mock-container",
-        "skipUrlSync":true,"type":"constant"}]},"time":{"from":"now-1h","to":"now"},"timepicker":{},"timezone":"browser",
-        "title":"Mock Container","uid":"21A0F742-6EA7-43C9-838F-580BD1D4F032","version":3}}
+        "description":"Name of the InfluxDB bucket with telegraf metrics.","hide":2,"name":"BUCKET","query":"telegraf",
+        "skipUrlSync":true,"type":"constant"},{"description":"Hostname of the container.","hide":2,"name":"HOST","query":
+        "mock-container","skipUrlSync":true,"type":"constant"}]},"time":{"from":"now-1h","to":"now"},"timepicker":{},
+        "timezone":"browser","title":"Mock Container","uid":"21A0F742-6EA7-43C9-838F-580BD1D4F032","version":3}}
     image: *image-grafana
 
 volumes:
