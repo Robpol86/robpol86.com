@@ -360,8 +360,6 @@ TODO all new screenshots using Safari on macbook display
 
 TODO copy final screenshots to tnas
 
-TODO [dsGrafana.json](_static/dsGrafana.json)
-
 TODO confirm on podman
 
 TODO run through guide fast

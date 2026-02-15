@@ -122,7 +122,7 @@ services:
         "reduceOptions":{"calcs":["lastNotNull"],"fields":"/^uptime$$/","values":false},"showPercentChange":false,"textMode":
         "auto","wideLayout":true},"pluginVersion":"12.3.2","targets":[{"datasource":{"type":"influxdb","uid":
         "P3C6603E967DC8568"},"query":"from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop:
-        v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement ==
+        v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${HOST}\")\n  |> filter(fn: (r) => r._measurement ==
         \"system\")\n  |> filter(fn: (r) => r._field == \"uptime\")\n  |> drop(columns: [\"host\"])\n  |> last()\n  |>
         map(fn: (r) => {\n      // uptime_format is deprecated:
         https://github.com/influxdata/telegraf/blob/59234e6/plugins/inputs/system/README.md?plain=1#L46\n      //
@@ -147,7 +147,7 @@ services:
         "placement":"bottom","showLegend":true},"tooltip":{"hideZeros":false,"mode":"multi","sort":"none"}},"pluginVersion":
         "12.3.2","targets":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},"query":"from(bucket:
         \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host ==
-        \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field =~
+        \"$${HOST}\")\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field =~
         /^load\\d/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> map(fn: (r) => ({ r with
         _field:\n      if r._field == \"load1\" then \"load  1\"\n      else if r._field == \"load5\" then
         \"load  5\"\n      else if r._field == \"load15\" then \"load 15\"\n      else r._field\n  }))\n  |> pivot(rowKey:
@@ -164,7 +164,7 @@ services:
         "placement":"bottom","showLegend":true,"sortBy":"Mean","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"multi",
         "sort":"none"}},"pluginVersion":"12.3.2","targets":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},
         "query":"from(bucket: \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn:
-        (r) => r.host == \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"cpu\")\n  |> filter(fn: (r) => r.cpu
+        (r) => r.host == \"$${HOST}\")\n  |> filter(fn: (r) => r._measurement == \"cpu\")\n  |> filter(fn: (r) => r.cpu
         == \"cpu-total\")\n  |> filter(fn: (r) => r._field =~ /usage_(user|system|nice|iowait|irq|softirq)/)\n  |>
         aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey:
         [\"_field\"], valueColumn: \"_value\")","refId":"A"}],"title":"CPU","type":"timeseries"},{"datasource":{"type":
@@ -180,7 +180,7 @@ services:
         "sortBy":"Mean","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"multi","sort":"none"}},"pluginVersion":
         "12.3.2","targets":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},"query":"from(bucket:
         \"$${BUCKET}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host ==
-        \"$${NAS_HOST}\")\n  |> filter(fn: (r) => r._measurement == \"mem\" or r._measurement == \"swap\")\n  |> filter(fn:
+        \"$${HOST}\")\n  |> filter(fn: (r) => r._measurement == \"mem\" or r._measurement == \"swap\")\n  |> filter(fn:
         (r) => r._field == \"used\" or r._field == \"active\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean,
         createEmpty: false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")","refId":
         "A"}],"title":"Memory","type":"timeseries"},{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},
@@ -198,13 +198,13 @@ services:
         "calcs":["mean","lastNotNull","max","min"],"displayMode":"table","placement":"bottom","showLegend":true,"sortBy":
         "Mean","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"multi","sort":"none"}},"pluginVersion":"12.3.2",
         "targets":[{"datasource":{"type":"influxdb","uid":"P3C6603E967DC8568"},"query":"from(bucket: \"$${BUCKET}\")\n  |>
-        range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${NAS_HOST}\")\n  |>
+        range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r.host == \"$${HOST}\")\n  |>
         filter(fn: (r) => r._measurement == \"netstat\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty:
         false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")","refId":"A"}],"title":
         "Netstat","type":"timeseries"}],"preload":false,"refresh":"1m","schemaVersion":42,"tags":[],"templating":{"list":[{
         "current":{"text":"telegraf","value":"telegraf"},"description":"Name of the InfluxDB bucket with telegraf metrics.",
         "hide":2,"name":"BUCKET","query":"telegraf","skipUrlSync":true,"type":"constant"},{"current":{"text":"mock-container"
-        ,"value":"mock-container"},"description":"Hostname of the NAS.","hide":2,"name":"NAS_HOST","query":"mock-container",
+        ,"value":"mock-container"},"description":"Hostname of the NAS.","hide":2,"name":"HOST","query":"mock-container",
         "skipUrlSync":true,"type":"constant"}]},"time":{"from":"now-1h","to":"now"},"timepicker":{},"timezone":"browser",
         "title":"Mock Container","uid":"21A0F742-6EA7-43C9-838F-580BD1D4F032","version":3}}
     image: *image-grafana
