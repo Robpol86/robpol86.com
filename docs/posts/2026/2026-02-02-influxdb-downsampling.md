@@ -291,7 +291,7 @@ ${dsPost}
 ```
 :::
 
-## Backfill Data
+## Backfill Data Guidance
 
 If you have existing data that you'd like to keep you'll need to backfill it into the newly created downsample buckets. In
 this section we'll populate the new buckets with the downsampled old data written by Telegraf before any dsTask has run.
@@ -301,24 +301,22 @@ we'll be doing it in chunks. Bigger chunks mean more memory usage in the InfluxD
 OOMKill. When I backfilled my homelab production data for a single telegraf host it took up to 16 minutes for 24 hours of
 data.
 
-TODO chunking
+The [dsTask.flux](_static/dsTask.flux) file provided in the [Create Tasks](#create-tasks) section can also be used for
+backfilling from the command line. Below is a bash script that modifies the file to backfill a chunk:
 
-```
-// ## Backfill
-//
-// To backfill a new downsample bucket with historical data you'll want to do it in chunks. It could take 1-16 minutes to
-// backfill just one day of data for one telegraf host. To backfill, make a copy of this file (e.g. dsTask-backfill.flux)
-// with the following changes:
-//
-// 1. Set backfill.enabled to true
-// 2. Set backfill.everyResolution to the resolution if your target bucket (e.g. 1m for telegraf_1m, 5m for telegraf_5m)
-// 3. Set backfill.chunkStart to a date before your earliest data point (for simplicity keep the time to all zeros)
-// 4. Set backfill.chunkStop to however much data you wish to process in one go (set the time to the last possible nanosecond
-//    before the next chunk window to avoid potential data loss)
-//
-// Then execute the file using the influx CLI. Here's an example command:
-//      influx query - < ./dsTask-backfill.flux > backfill.log
-//
+```bash
+resolution="1m"
+chunkstart="2025-08-25T02:00:00.000000000Z"
+chunkstop="2025-08-25T02:59:59.999999999Z"
+sed \
+    -e '/bfEnabled:/s/:[^,]\+,/: true,/' \
+    -e '/bfEveryResolution:/s/:[^,]\+,/: '"$resolution"',/' \
+    -e '/bfChunkStart:/s/:[^,]\+,/: '"$chunkstart"',/' \
+    -e '/bfChunkStop:/s/:[^,]\+,/: '"$chunkstop"',/' \
+    ./dsTask.flux > backfill.flux
+
+token=""  # Create an influxdb token with read+write to downsample buckets.
+influx query --org homelab --token "$token" - < backfill.flux
 ```
 
 ## Main Bucket Retention Policy
