@@ -186,9 +186,9 @@ queried for which time ranges.
 1. Click "Back to list" then "Back to dashboard"
 
 ```bash
-${BUCKET}=now:-30m|
-${BUCKET}_1m=-30m:-1h|
-${BUCKET}_5m=-1h:inf
+${BUCKET}=now:-20m|
+${BUCKET}_1m=-20m:-40m|
+${BUCKET}_5m=-40m:inf
 ```
 
 ```{list-table-thumbs}
