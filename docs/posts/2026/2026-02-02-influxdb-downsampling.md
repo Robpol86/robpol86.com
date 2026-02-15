@@ -166,9 +166,9 @@ queried for which time ranges.
 
 1. In the Grafana Dashboard (http://localhost:13000) click on "Edit" and then "Settings"
 1. Go to the "Variables" tab then click "New variable"
-1. The variable type is "Query", the variable name must be "dsPost", the data source should be "influxdb"
+1. The variable type is `Query`, the variable name must be `dsPost`, the data source should be `influxdb`
 1. In the "Query options" text area paste the entire script shown below unmodified
-1. Scroll down and set the refresh setting to "On time range change"
+1. Scroll down and set the refresh setting to `On time range change`
 1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
 1. Leave sorting disabled and leave Regex empty
 1. Click "Back to list"
@@ -180,10 +180,11 @@ queried for which time ranges.
 ### dsBuckets Variable
 
 1. In the "Variables" tab click "New variable"
-1. The variable type is "Custom", the variable name must be "dsBuckets"
+1. The variable type is `Custom`, the variable name must be `dsBuckets`
 1. In the "Values separated by comma" text area paste the following code block shown below unmodified
 1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
 1. Click "Back to list" then "Back to dashboard"
+1. Click on "Save dashboard" to save these changes
 
 ```bash
 ${BUCKET}=now:-20m|
@@ -204,6 +205,10 @@ ${BUCKET}_5m=-40m:inf
 ```
 
 ## Update Grafana Queries
+
+```{note}
+Wait for one hour for the downsample tasks you created to downsample enough data to show up in the graphs.
+```
 
 TODO finish this, maybe add some screenshots.
 
