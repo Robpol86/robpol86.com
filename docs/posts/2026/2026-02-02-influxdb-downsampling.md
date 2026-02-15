@@ -320,7 +320,13 @@ influx query --org homelab --token "$token" - < backfill.flux
 
 ## Main Bucket Retention Policy
 
-TODO telegraf
+The last step is to set a retention policy on the `telegraf` bucket to drop old data, now that that data is downsampled to
+other buckets. I would advise you to make a backup or snapshot of your influxdb data before implementing this step as there's
+no going back.
+
+1. In your InfluxDB web UI (http://localhost:18086) go to Load Data > Buckets > `telegraf` > Settings
+1. Set "Delete Data" to "Older Than" 7 days
+1. Click "Save Changes"
 
 ## Performance
 
@@ -343,3 +349,5 @@ TODO confirm on podman
 TODO run through guide fast
 
 TODO then run through slow (wait 1h after oob, another 1h after create tasks)
+
+TODO s/telegraf/telegraf_main/ bucket?
