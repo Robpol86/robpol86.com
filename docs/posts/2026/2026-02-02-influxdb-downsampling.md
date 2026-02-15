@@ -323,8 +323,6 @@ TODO compare query statistics (or profiling), best of 10 each.
 
 ## Conclusion
 
-TODO telegraf retention
-
 TODO revisit original flux docstrings instructions.
 
 TODO test with influxdb 2.7.
