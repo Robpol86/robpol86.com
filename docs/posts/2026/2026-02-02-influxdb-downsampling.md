@@ -329,7 +329,7 @@ TODO revisit original flux docstrings instructions.
 
 TODO test with influxdb 2.7.
 
-TODO all new screenshots using Safari
+TODO all new screenshots using Safari on macbook display
 
 TODO copy final screenshots to tnas
 
