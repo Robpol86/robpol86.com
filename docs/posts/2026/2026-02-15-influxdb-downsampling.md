@@ -39,7 +39,7 @@ to consume the downsampled data in Grafana. It turns out the latter was the hard
 This guide will walk you through implementing downsampling on a demo TIG stack (Telegraf, InfluxDB, Grafana) using
 [Docker Compose](https://docs.docker.com/compose/). We'll implement the following buckets with these retention policies:
 
-* **telegraf**: 7 day retention policy, 10 second data resolution, main ingestion bucket
+* **telegraf_main**: 7 day retention policy, 10 second data resolution, main ingestion bucket
 * **telegraf_1m**: 14 day retention policy, 1 minute data resolution
 * **telegraf_5m**: no retention policy, 5 minute data resolution, keep historical data forever
 
@@ -84,11 +84,12 @@ the Flux language so unfortunately InfluxDB v3 and v1 are not supported.
 
 ## Create Buckets
 
-Currently Telegraf writes data to the **telegraf** bucket every 10 seconds, and this bucket stores those data indefinitely.
-Our goal is to create new buckets to downsample data into and then set a retention policy on the **telegraf** bucket so high
-resolution data is only stored for 7 days. We'll create a **telegraf_1m** bucket to store data with 1 minute resolution
-(instead of 10 second) with a 14 day retention policy, and we'll create a **telegraf_5m** bucket to store data with
-5 minute resolution with no retention policy. This last bucket will store our historical data indefinitely.
+Currently Telegraf writes data to the **telegraf_main** bucket every 10 seconds, and this bucket stores those data
+indefinitely. Our goal is to create new buckets to downsample data into and then set a retention policy on the
+**telegraf_main** bucket so high resolution data is only stored for 7 days. We'll create a **telegraf_1m** bucket to store
+data with 1 minute resolution (instead of 10 second) with a 14 day retention policy, and we'll create a **telegraf_5m**
+bucket to store data with 5 minute resolution with no retention policy. This last bucket will store our historical data
+indefinitely.
 
 In the InfluxDB web UI (http://localhost:18086) create your downsample buckets:
 
@@ -320,11 +321,11 @@ influx query --org homelab --token "$token" - < backfill.flux
 
 ## Main Bucket Retention Policy
 
-The last step is to set a retention policy on the `telegraf` bucket to drop old data, now that that data is downsampled to
+The last step is to set a retention policy on the `telegraf_main` bucket to drop old data, now that that data is downsampled to
 other buckets. I would advise you to make a backup or snapshot of your influxdb data before implementing this step as there's
 no going back.
 
-1. In your InfluxDB web UI (http://localhost:18086) go to Load Data > Buckets > `telegraf` > Settings
+1. In your InfluxDB web UI (http://localhost:18086) go to Load Data > Buckets > `telegraf_main` > Settings
 1. Set "Delete Data" to "Older Than" 7 days
 1. Click "Save Changes"
 
@@ -365,8 +366,6 @@ TODO confirm on podman
 TODO run through guide fast
 
 TODO then run through slow (wait 1h after oob, another 1h after create tasks)
-
-TODO s/telegraf/telegraf_main/ bucket?
 
 TODO confirm guide looks good on mobile
 

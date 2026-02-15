@@ -7,7 +7,7 @@ services:
       DOCKER_INFLUXDB_INIT_USERNAME: admin
       DOCKER_INFLUXDB_INIT_PASSWORD: Stand&Deliver
       DOCKER_INFLUXDB_INIT_ORG: homelab
-      DOCKER_INFLUXDB_INIT_BUCKET: telegraf
+      DOCKER_INFLUXDB_INIT_BUCKET: telegraf_main
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: xfjsEbb0Tpu48bqlQUjHAl0WHRB1GWAr
     image: "influxdb:2.8.0"
     ports:
@@ -36,7 +36,7 @@ services:
           interval = "10s"
         [[outputs.influxdb_v2]]
           urls = ["http://influxdb:8086"]
-          bucket = "telegraf"
+          bucket = "telegraf_main"
           organization = "homelab"
           token = "xfjsEbb0Tpu48bqlQUjHAl0WHRB1GWAr"
         [[inputs.cpu]]
@@ -86,7 +86,7 @@ services:
             jsonData:
               version: Flux
               organization: homelab
-              defaultBucket: telegraf
+              defaultBucket: telegraf_main
             secureJsonData:
               token: xfjsEbb0Tpu48bqlQUjHAl0WHRB1GWAr
     image: *image-grafana
@@ -202,7 +202,7 @@ services:
         filter(fn: (r) => r._measurement == \"netstat\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty:
         false)\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")","refId":"A"}],"title":
         "Netstat","type":"timeseries"}],"preload":false,"refresh":"1m","schemaVersion":42,"tags":[],"templating":{"list":[{
-        "description":"Name of the InfluxDB bucket with telegraf metrics.","hide":2,"name":"BUCKET","query":"telegraf",
+        "description":"Name of the InfluxDB bucket with telegraf metrics.","hide":2,"name":"BUCKET","query":"telegraf_main",
         "skipUrlSync":true,"type":"constant"},{"description":"Hostname of the container.","hide":2,"name":"HOST","query":
         "mock-container","skipUrlSync":true,"type":"constant"}]},"time":{"from":"now-1h","to":"now"},"timepicker":{},
         "timezone":"browser","title":"Mock Container","uid":"21A0F742-6EA7-43C9-838F-580BD1D4F032","version":3}}
