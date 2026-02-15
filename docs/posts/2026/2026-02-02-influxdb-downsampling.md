@@ -293,13 +293,12 @@ ${dsPost}
 
 ## Backfill Data Guidance
 
-If you have existing data that you'd like to keep you'll need to backfill it into the newly created downsample buckets. In
-this section we'll populate the new buckets with the downsampled old data written by Telegraf before any dsTask has run.
+If you have existing data that you'd like to keep you'll need to backfill it into the newly created downsample buckets.
 
-Depending on how much data you have backfilling may take a long time (days, weeks, maybe even months for everything), so
-we'll be doing it in chunks. Bigger chunks mean more memory usage in the InfluxDB container, so keeping chunks small avoids
-OOMKill. When I backfilled my homelab production data for a single telegraf host it took up to 16 minutes for 24 hours of
-data.
+Depending on how much data you have, backfilling may take a long time (days, weeks, maybe even months for everything), so
+it's advised to do it in chunks. Bigger chunks mean more memory usage in the InfluxDB container, so keeping chunks small
+avoids OOMKill. When I backfilled my homelab production data for a single telegraf host it took up to 16 minutes for 24 hours
+of data on an Intel N150.
 
 The [dsTask.flux](_static/dsTask.flux) file provided in the [Create Tasks](#create-tasks) section can also be used for
 backfilling from the command line. Below is a bash script that modifies the file to backfill a chunk:
