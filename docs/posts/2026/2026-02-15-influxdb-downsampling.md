@@ -369,10 +369,10 @@ comment below.
 
 ## TODOs
 
-TODO copy final screenshots to tnas
-
 TODO confirm guide looks good on mobile
 
 TODO read entire guide and revise
+
+TODO copy final screenshots to tnas
 
 TODO resolve gl/n/issues/116
