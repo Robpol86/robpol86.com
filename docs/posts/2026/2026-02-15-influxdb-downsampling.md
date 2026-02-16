@@ -369,19 +369,19 @@ comment below.
 
 ## TODOs
 
-TODO revisit original flux docstrings instructions.
-
 TODO test with influxdb 2.7.
-
-TODO all new screenshots using Safari on macbook display
-
-TODO copy final screenshots to tnas
 
 TODO confirm on podman
 
 TODO run through guide fast
 
-TODO then run through slow (wait 1h after oob, another 1h after create tasks)
+TODO revisit original flux docstrings instructions.
+
+TODO all new screenshots using Safari on macbook display
+
+TODO copy final screenshots to tnas
+
+TODO run through slow (wait after oob, again after create tasks, as per notes)
 
 TODO confirm guide looks good on mobile
 
