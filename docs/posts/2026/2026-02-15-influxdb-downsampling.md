@@ -369,16 +369,14 @@ comment below.
 
 ## TODOs
 
-TODO revisit original flux docstrings instructions.
+TODO run through slow (wait after oob, again after create tasks, as per notes)
 
 TODO all new screenshots using Safari on macbook display
 
 TODO copy final screenshots to tnas
 
-TODO run through slow (wait after oob, again after create tasks, as per notes)
-
 TODO confirm guide looks good on mobile
 
-TODO resolve gl/n/issues/116
-
 TODO read entire guide and revise
+
+TODO resolve gl/n/issues/116
