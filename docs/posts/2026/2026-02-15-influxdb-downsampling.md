@@ -308,14 +308,14 @@ backfilling from the command line. Below is a bash script that modifies the file
 dsdemo-influx-1 container):
 
 ```bash
-resolution="1m"
+token="$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
 chunkstart="2025-08-25T02:00:00.000000000Z"
 
 # To avoid duplicate data chunkstop should not be more recent than the oldest
 # data point in the target bucket.
+resolution="1m"
 bucket="telegraf_${resolution}"
 query="from(bucket: \"$bucket\") |> range(start: 0) |> first() |> keep(columns: [\"_time\"]) |> limit(n: 1)"
-token="$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
 chunkstop="$(influx query --org homelab --token "$token" "$query" |grep -Pm1 '^2.+Z$')"
 sed \
     -e '/bfEnabled:/s/:[^,]\+,/: true,/' \
