@@ -159,33 +159,18 @@ task for `telegraf_1m`:
 
 ## Set Grafana Variables
 
-In Grafana we will create two variables. The first one will contain the Flux script that does the heavy lifting and decides
-which buckets need to be queried for the current time range. The second variable will be used to define which buckets are
-queried for which time ranges.
-
-### dsPost Variable
-
-1. In the Grafana Dashboard (http://localhost:13000) click on "Edit" and then "Settings"
-1. Go to the "Variables" tab then click "New variable"
-1. The variable type is `Query`, the variable name must be `dsPost`, the data source should be `influxdb`
-1. In the "Query options" text area paste the entire script shown below unmodified
-1. Scroll down and set the refresh setting to `On time range change`
-1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
-1. Leave sorting disabled and leave Regex empty
-1. Click "Back to list"
-
-```{literalinclude} _static/dsPost.flux
-:language: koka
-```
+In Grafana we will create two variables. The first variable will be where we define which buckets are queried for which time
+ranges. The second one will contain the Flux script that does the heavy lifting and decides which buckets need to be queried
+for the current time range.
 
 ### dsBuckets Variable
 
-1. In the "Variables" tab click "New variable"
+1. In the Grafana Dashboard (http://localhost:13000) click on "Edit" and then "Settings"
+1. Go to the "Variables" tab then click "New variable"
 1. The variable type is `Custom`, the variable name must be `dsBuckets`
 1. In the "Values separated by comma" text area paste the following code block shown below unmodified
 1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
-1. Click "Back to list" then "Back to dashboard"
-1. Click on "Save dashboard" to save these changes
+1. Click "Back to list"
 
 ```bash
 telegraf_main=now:-20m|
@@ -193,14 +178,26 @@ telegraf_1m=-20m:-40m|
 telegraf_5m=-40m:inf
 ```
 
-```{list-table-thumbs}
-:resize-width: 300
-:widths: 10 10 10
+### dsPost Variable
 
-* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-create-var.png
-    Creating the dsBuckets variable.
-    :::
-  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-ds-vars.png
+1. In the "Variables" tab click "New variable"
+1. The variable type is `Query`, the variable name must be `dsPost`, the data source should be `influxdb`
+1. In the "Query options" text area paste the entire script shown below unmodified
+1. Scroll down and set the refresh setting to `On time range change`
+1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
+1. Leave sorting disabled and leave Regex empty
+1. Click "Back to list" then "Back to dashboard"
+1. Click on "Save dashboard" to save these changes
+
+```{literalinclude} _static/dsPost.flux
+:language: koka
+```
+
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-ds-vars.png
     Your "Variables" tab should look like this.
     :::
   - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-ds-dashboard-vars-only.png
@@ -371,8 +368,6 @@ you ran into problems with this tutorial or encountered issues when scaling this
 comment below.
 
 ## TODOs
-
-TODO dsBuckets before dsPost (dependency)
 
 TODO run through slow (wait after oob, again after create tasks, as per notes)
 
