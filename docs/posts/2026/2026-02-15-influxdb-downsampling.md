@@ -149,10 +149,10 @@ task for `telegraf_1m`:
 :resize-width: 400
 :widths: 10 10
 
-* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done.png
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/2-create-tasks-done.png
     After creating tasks you should see something like this.
     :::
-  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/create-tasks-done-query.png
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/2-create-tasks-done-query.png
     After 5 minutes the telegraf_1m bucket should start having data with `_time` every minute.
     :::
 ```
@@ -194,13 +194,16 @@ telegraf_5m=-40m:inf
 ```
 
 ```{list-table-thumbs}
-:resize-width: 400
-:widths: 10 10
+:resize-width: 300
+:widths: 10 10 10
 
-* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/grafana-ds-vars.png
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-create-var.png
+    Creating the dsBuckets variable.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-ds-vars.png
     Your "Variables" tab should look like this.
     :::
-  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/grafana-ds-dashboard-pre.png
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-ds-dashboard-vars-only.png
     Your dashboard should now look like this.
     :::
 ```
@@ -368,6 +371,8 @@ you ran into problems with this tutorial or encountered issues when scaling this
 comment below.
 
 ## TODOs
+
+TODO dsBuckets before dsPost (dependency)
 
 TODO run through slow (wait after oob, again after create tasks, as per notes)
 
