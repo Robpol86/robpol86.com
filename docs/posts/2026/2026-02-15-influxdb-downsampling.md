@@ -305,7 +305,7 @@ of data on an Intel N150.
 
 The [dsTask.flux](_static/dsTask.flux) file provided in the [Create Tasks](#create-tasks) section can also be used for
 backfilling from the command line. Below is a bash script that modifies the file to backfill a chunk (you can run it from the
-dsdemo-influx-1 container):
+dsdemo-influxdb-1 container):
 
 ```bash
 token="$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
