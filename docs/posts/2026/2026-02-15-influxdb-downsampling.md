@@ -188,9 +188,9 @@ queried for which time ranges.
 1. Click on "Save dashboard" to save these changes
 
 ```bash
-${BUCKET}=now:-20m|
-${BUCKET}_1m=-20m:-40m|
-${BUCKET}_5m=-40m:inf
+telegraf_main=now:-20m|
+telegraf_1m=-20m:-40m|
+telegraf_5m=-40m:inf
 ```
 
 ```{list-table-thumbs}
@@ -208,7 +208,7 @@ ${BUCKET}_5m=-40m:inf
 ## Update Grafana Queries
 
 ```{note}
-Wait for one hour for the downsample tasks you created to downsample enough data to show up in the graphs.
+Wait for 30 minutes for the tasks you created to downsample enough data to show up in the graphs.
 ```
 
 It's time to tie everything together. For each of the four graphs edit the queries and make these changes:
@@ -292,6 +292,8 @@ ${dsPost}
 ```
 :::
 
+Don't forget to save your changes to the dashboard.
+
 ## Backfill Data Guidance
 
 If you have existing data that you'd like to keep you'll need to backfill it into the newly created downsample buckets.
@@ -302,12 +304,19 @@ avoids OOMKill. When I backfilled my homelab production data for a single telegr
 of data on an Intel N150.
 
 The [dsTask.flux](_static/dsTask.flux) file provided in the [Create Tasks](#create-tasks) section can also be used for
-backfilling from the command line. Below is a bash script that modifies the file to backfill a chunk:
+backfilling from the command line. Below is a bash script that modifies the file to backfill a chunk (you can run it from the
+dsdemo-influx-1 container):
 
 ```bash
 resolution="1m"
 chunkstart="2025-08-25T02:00:00.000000000Z"
-chunkstop="2025-08-25T02:59:59.999999999Z"
+
+# To avoid duplicate data chunkstop should not be more recent than the oldest
+# data point in the target bucket.
+target_bucket="telegraf_${resolution}"
+query="from(bucket: \"$target_bucket\") |> range(start: 0) |> first() |> keep(columns: [\"_time\"]) |> limit(n: 1)"
+token="$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
+chunkstop="$(influx query --org homelab --token "$token" "$query" |grep -Pm1 '^2.+Z$')"
 sed \
     -e '/bfEnabled:/s/:[^,]\+,/: true,/' \
     -e '/bfEveryResolution:/s/:[^,]\+,/: '"$resolution"',/' \
@@ -315,8 +324,7 @@ sed \
     -e '/bfChunkStop:/s/:[^,]\+,/: '"$chunkstop"',/' \
     ./dsTask.flux > backfill.flux
 
-token=""  # Create an influxdb token with read+write to downsample buckets.
-influx query --org homelab --token "$token" - < backfill.flux
+influx query --org homelab --token "$token" - < backfill.flux >> "backfill-$resolution.log"
 ```
 
 ## Main Bucket Retention Policy
