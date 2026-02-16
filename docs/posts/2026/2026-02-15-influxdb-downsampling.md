@@ -313,8 +313,8 @@ chunkstart="2025-08-25T02:00:00.000000000Z"
 
 # To avoid duplicate data chunkstop should not be more recent than the oldest
 # data point in the target bucket.
-target_bucket="telegraf_${resolution}"
-query="from(bucket: \"$target_bucket\") |> range(start: 0) |> first() |> keep(columns: [\"_time\"]) |> limit(n: 1)"
+bucket="telegraf_${resolution}"
+query="from(bucket: \"$bucket\") |> range(start: 0) |> first() |> keep(columns: [\"_time\"]) |> limit(n: 1)"
 token="$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
 chunkstop="$(influx query --org homelab --token "$token" "$query" |grep -Pm1 '^2.+Z$')"
 sed \
@@ -324,6 +324,7 @@ sed \
     -e '/bfChunkStop:/s/:[^,]\+,/: '"$chunkstop"',/' \
     ./dsTask.flux > backfill.flux
 
+# Backfill chunk.
 influx query --org homelab --token "$token" - < backfill.flux >> "backfill-$resolution.log"
 ```
 
@@ -337,7 +338,9 @@ no going back.
 1. Set "Delete Data" to "Older Than" 7 days
 1. Click "Save Changes"
 
-TODO screenshot
+```{thumb-figure} /_images/pictures/influxdb-downsampling/6-rp.png
+Your buckets' retention policies should look like this.
+```
 
 ## Performance
 
