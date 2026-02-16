@@ -362,7 +362,10 @@ the same due to my usage of `aggregateWindow()`, but you can see the massive imp
 
 ## Conclusion
 
-TODO
+You should now have fully implemented downsampling in the TIG demo stack. While I've only tested it at a small scale, it's
+been working well for the past 6 months on my underpowered NAS running the stack in Docker containers under TrueNAS SCALE. If
+you ran into problems with this tutorial or encountered issues when scaling this up in production feel free to leave a
+comment below.
 
 ## TODOs
 
