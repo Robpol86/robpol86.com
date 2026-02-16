@@ -45,7 +45,7 @@ This guide will walk you through implementing downsampling on a demo TIG stack (
 
 I'll also cover backfilling existing data into the new downsample buckets.
 
-```{thumb-image} /_images/pictures/influxdb-downsampling/downsample.png
+```{thumb-image} /_images/pictures/influxdb-downsampling/7-downsample.png
 ```
 
 ## Prerequisites
@@ -338,7 +338,7 @@ no going back.
 1. Set "Delete Data" to "Older Than" 7 days
 1. Click "Save Changes"
 
-```{thumb-figure} /_images/pictures/influxdb-downsampling/6-rp.png
+```{thumb-figure} /_images/pictures/influxdb-downsampling/5-rp.png
 Your buckets' retention policies should look like this.
 ```
 
@@ -352,10 +352,10 @@ the same due to my usage of `aggregateWindow()`, but you can see the massive imp
 :resize-width: 400
 :widths: 10 10
 
-* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/5-performance-before.png
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/6-performance-before.png
     High request timings without downsampling.
     :::
-  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/5-performance-after.png
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/6-performance-after.png
     Queries are much less expensive with downsampling implemented.
     :::
 ```
