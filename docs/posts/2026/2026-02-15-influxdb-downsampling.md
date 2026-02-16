@@ -369,10 +369,6 @@ comment below.
 
 ## TODOs
 
-TODO run through slow (wait after oob, again after create tasks, as per notes)
-
-TODO all new screenshots using Safari on macbook display
-
 TODO copy final screenshots to tnas
 
 TODO confirm guide looks good on mobile
