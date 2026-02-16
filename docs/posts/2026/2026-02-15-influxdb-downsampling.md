@@ -70,7 +70,7 @@ one command, pre-configured.
 :widths: 10 10
 
 * - :::{thumb-figure} /_images/pictures/influxdb-downsampling/0-tig-demo-oob-grafana.png
-    You should now see something like this.
+    After 15 minutes you should see something like this.
     :::
   - :::{thumb-figure} /_images/pictures/influxdb-downsampling/0-tig-demo-oob-influxdb.png
     You should also see something like this.
@@ -328,6 +328,8 @@ no going back.
 1. In your InfluxDB web UI (http://localhost:18086) go to Load Data > Buckets > `telegraf_main` > Settings
 1. Set "Delete Data" to "Older Than" 7 days
 1. Click "Save Changes"
+
+TODO screenshot
 
 ## Performance
 

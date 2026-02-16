@@ -31,7 +31,8 @@ option task = {
 }
 
 // Set your main bucket name here.
-option bucketRootName = "telegraf"
+option bucketSourceName = "telegraf_main"
+option bucketTargetPrefix = "telegraf_"
 
 // Set backfill.enabled to true when backfilling a new downsample bucket with
 // "influx query ...".
@@ -46,8 +47,8 @@ option backfill = {
 
 resolution = if backfill.bfEnabled then backfill.bfEveryResolution else task.every
 buckets = {
-    source: bucketRootName,
-    target: "${bucketRootName}_${resolution}"
+    source: bucketSourceName,
+    target: "${bucketTargetPrefix}${resolution}"
 }
 
 // Select all data into this variable.
