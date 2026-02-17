@@ -1,0 +1,368 @@
+---
+blogpost: true
+date: 2026-02-17
+author: Robpol86
+location: Seoul
+category: Tutorials
+tags: homelab, nas
+---
+
+# InfluxDB v2 Downsampling
+
+In this guide I will show you how I've implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal
+changes to queries. Integers and floats are downsampled with `mean()` and all other types are downsampled with `last()`.
+A three line change to Grafana queries will enable it to read narrowed down time ranges for each bucket and combine the
+output with `union()`. Below is an example Grafana panel query change:
+
+```koka
+// Before
+from(bucket: "${BUCKET}")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r.host == "${HOST}")
+  |> filter(fn: (r) => r._measurement == "mem")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+
+// After
+dsQuery = (bucket, start, stop) =>
+from(bucket)
+  |> range(start, stop)
+  |> filter(fn: (r) => r.host == "${HOST}")
+  |> filter(fn: (r) => r._measurement == "mem")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+${dsPost}
+```
+
+This implementation builds on the very brief
+[InfluxDB v2 example](https://docs.influxdata.com/influxdb/v2/process-data/common-tasks/downsample-data/) and shows how
+to consume the downsampled data in Grafana. It turns out the latter was the hardest part to get right.
+
+This guide will walk you through implementing downsampling on a demo TIG stack (Telegraf, InfluxDB, Grafana) using
+[Docker Compose](https://docs.docker.com/compose/). We'll implement the following buckets with these retention policies:
+
+* **telegraf_main**: 7 day retention policy, 10 second data resolution, main ingestion bucket
+* **telegraf_1m**: 14 day retention policy, 1 minute data resolution
+* **telegraf_5m**: no retention policy, 5 minute data resolution, keep historical data forever
+
+I'll also cover backfilling existing data into the new downsample buckets.
+
+```{thumb-image} /_images/pictures/influxdb-downsampling/7-downsample.png
+```
+
+## Prerequisites
+
+Before starting you'll need to have Docker Compose installed. You can find those instructions here:
+https://docs.docker.com/compose/install
+
+Next start the demo TIG stack. This is a basic example with an InfluxDB container, a Telegraf container to send it some data,
+and a Grafana container to show the data using four graphs. I've written a Docker Compose file that starts everything up with
+one command, pre-configured.
+
+1. Download [docker-compose-dsdemo.yml](_static/docker-compose-dsdemo.yml)
+2. Start the apps by running:
+    ```bash
+    docker-compose -f docker-compose-dsdemo.yml -p dsdemo up -d
+    ```
+3. Access the Grafana dashboard (username is **admin** and password is **Stand&Deliver**): http://localhost:13000/
+3. Access the InfluxDB dashboard (username and password are the same as Grafana's): http://localhost:18086/
+
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/0-tig-demo-oob-grafana.png
+    After 15 minutes you should see something like this.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/0-tig-demo-oob-influxdb.png
+    You should also see something like this.
+    :::
+```
+
+```{note}
+In the demo we'll be using InfluxDB 2.8 but this should work with InfluxDB 2.7 as well. The downsampling is implemented in
+the Flux language so unfortunately InfluxDB v3 and v1 are not supported.
+```
+
+## Create Buckets
+
+Currently Telegraf writes data to the **telegraf_main** bucket every 10 seconds, and this bucket stores those data
+indefinitely. Our goal is to create new buckets to downsample data into and then set a retention policy on the
+**telegraf_main** bucket so high resolution data is only stored for 7 days. We'll create a **telegraf_1m** bucket to store
+data with 1 minute resolution (instead of 10 second) with a 14 day retention policy, and we'll create a **telegraf_5m**
+bucket to store data with 5 minute resolution with no retention policy. This last bucket will store our historical data
+indefinitely.
+
+In the InfluxDB web UI (http://localhost:18086) create your downsample buckets:
+
+1. Load Data
+1. Buckets
+1. Create Bucket
+    1. **Name**: telegraf_1m
+    1. **Delete Data** > Older Than: 14 days
+1. Create
+
+Repeat for **telegraf_5m** but instead of "Older Than" select "Never".
+
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/1-create-bucket.png
+    Creating the telegraf_1m bucket.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/1-create-buckets-done.png
+    After creating buckets you should see something like this.
+    :::
+```
+
+## Create Tasks
+
+```{warning}
+Due to an [InfluxDB bug](https://github.com/influxdata/influxdb/issues/26781) you should avoid cloning tasks and instead
+create each one from scratch as outlined here.
+```
+
+```{note}
+If you get the error "Failed to create new task: Invalid flux script. Please check your query text." when creating a task
+this is due to [another InfluxDB bug](https://github.com/influxdata/influxdb/issues/25197). The workaround I found was to
+create an empty task first (just put a space instead of the script), then edit it and paste the script you originally
+intended.
+```
+
+Each downsample bucket will need its own task. The task script below can be pasted without modification for both tasks
+because InfluxDB automatically updates the `option task` statement with whatever you put in the web UI form. Let's create the
+task for `telegraf_1m`:
+
+1. In your InfluxDB web UI (http://localhost:18086) go to Tasks > Create Task > New Task
+1. In the left pane/column you can name your task `dsTask-telegraf_1m`
+1. Set "Every" to `1m` (don't use CRON for this demo)
+1. For offset I use `15s` to give Telegraf enough time to finish writing data to InfluxDB for each iteration (this won't
+   affect data timestamps)
+1. On the right pane paste the entire script shown below unmodified
+1. Click save
+1. Repeat for `dsTask-telegraf_5m` with "Every" set to `5m`
+
+```{literalinclude} _static/dsTask.flux
+:language: koka
+```
+
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/2-create-tasks-done.png
+    After creating tasks you should see something like this.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/2-create-tasks-done-query.png
+    After 5 minutes the telegraf_1m bucket should start having data with `_time` every minute.
+    :::
+```
+
+## Set Grafana Variables
+
+In Grafana we will create two variables. The first variable will be where we define which buckets are queried for which time
+ranges. The second one will contain the Flux script that does the heavy lifting and decides which buckets need to be queried
+for the current time range.
+
+### dsBuckets Variable
+
+1. In the Grafana Dashboard (http://localhost:13000) click on "Edit" and then "Settings"
+1. Go to the "Variables" tab then click "New variable"
+1. The variable type is `Custom`, the variable name must be `dsBuckets`
+1. In the "Values separated by comma" text area paste the following code block shown below unmodified
+1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
+1. Click "Back to list"
+
+```bash
+telegraf_main=now:-20m|
+telegraf_1m=-20m:-40m|
+telegraf_5m=-40m:inf
+```
+
+### dsPost Variable
+
+1. In the "Variables" tab click "New variable"
+1. The variable type is `Query`, the variable name must be `dsPost`, the data source should be `influxdb`
+1. In the "Query options" text area paste the entire script shown below unmodified
+1. Scroll down and set the refresh setting to `On time range change`
+1. Uncheck "Multi-value", "Allow custom values", and "Include All option"
+1. Leave sorting disabled and leave Regex empty
+1. Click "Back to list" then "Back to dashboard"
+1. Click on "Save dashboard" to save these changes
+
+```{literalinclude} _static/dsPost.flux
+:language: koka
+```
+
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-ds-vars.png
+    Your "Variables" tab should look like this.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/3-grafana-ds-dashboard-vars-only.png
+    Your dashboard should now look like this.
+    :::
+```
+
+## Update Grafana Queries
+
+```{note}
+Wait 30 minutes for the tasks you created to downsample enough data to show up in the graphs.
+```
+
+It's time to tie everything together. For each of the four graphs edit the queries and make these changes:
+
+1. Insert `dsQuery = (bucket, start, stop) =>` as the first line
+1. Append `${dsPost}` as the last line
+1. Replace `"${BUCKET}"` with `bucket`
+1. Replace `v.timeRangeStart` with `start`
+1. Replace `v.timeRangeStop` with `stop`
+
+For example, the following is the before and after for the Memory graph:
+
+```koka
+// Before
+from(bucket: "${BUCKET}")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r.host == "${NAS_HOST}")
+  |> filter(fn: (r) => r._measurement == "mem" or r._measurement == "swap")
+  |> filter(fn: (r) => r._field == "used" or r._field == "active")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+
+// After
+dsQuery = (bucket, start, stop) =>
+from(bucket: bucket)
+  |> range(start: start, stop: stop)
+  |> filter(fn: (r) => r.host == "${NAS_HOST}")
+  |> filter(fn: (r) => r._measurement == "mem" or r._measurement == "swap")
+  |> filter(fn: (r) => r._field == "used" or r._field == "active")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+${dsPost}
+```
+
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/4-memory-graph.png
+    The Memory graph should look like this when you click on `Refresh`
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/4-grafana-ds-dashboard.png
+    Your dashboard should now look like this.
+    :::
+```
+
+:::{note}
+If you get the error "invalid: runtime error: schema collision detected: column "raw_value" is both of type int and float"
+you'll need to add `toFloat()` to cast integers from the main bucket to floats since that's the datatype used in downsample
+buckets.
+
+An example before and after of the fix:
+
+```koka
+// Before
+dsQuery = (bucket, start, stop) =>
+from(bucket)
+  |> range(start, stop)
+  |> filter(fn: (r) => r.host == "${NAS_HOST}")
+  |> filter(fn: (r) => r._measurement == "smart_attribute")
+  |> filter(fn: (r) => r._field == "raw_value")
+  |> filter(fn: (r) => r.name == "Temperature_Celsius")
+  |> drop(columns: ["device"])
+  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)
+  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+${dsPost}
+
+// After
+dsQuery = (bucket, start, stop) =>
+from(bucket)
+  |> range(start, stop)
+  |> filter(fn: (r) => r.host == "${NAS_HOST}")
+  |> filter(fn: (r) => r._measurement == "smart_attribute")
+  |> filter(fn: (r) => r._field == "raw_value")
+  |> filter(fn: (r) => r.name == "Temperature_Celsius")
+  |> drop(columns: ["device"])
+  |> toFloat()
+  |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)
+  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+${dsPost}
+```
+:::
+
+Don't forget to save your changes to the dashboard.
+
+## Backfill Data Guidance
+
+If you have existing data that you'd like to keep you'll need to backfill it into the newly created downsample buckets.
+
+Depending on how much data you have, backfilling may take a long time (days, weeks, maybe even months for everything), so
+it's advised to do it in chunks. Bigger chunks mean more memory usage in the InfluxDB container, so keeping chunks small
+avoids OOMKill. When I backfilled my homelab production data for a single telegraf host it took up to 16 minutes for 24 hours
+of data on an Intel N150.
+
+The [dsTask.flux](_static/dsTask.flux) file provided in the [Create Tasks](#create-tasks) section can also be used for
+backfilling from the command line. Below is a bash script that modifies the file to backfill a chunk (you can run it from the
+dsdemo-influxdb-1 container):
+
+```bash
+token="$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
+chunkstart="2025-08-25T02:00:00.000000000Z"
+
+# To avoid duplicate data chunkstop should not be more recent than the oldest
+# data point in the target bucket.
+resolution="1m"
+bucket="telegraf_${resolution}"
+query="from(bucket: \"$bucket\") |> range(start: 0) |> first() |> keep(columns: [\"_time\"]) |> limit(n: 1)"
+chunkstop="$(influx query --org homelab --token "$token" "$query" |grep -Pm1 '^2.+Z$')"
+sed \
+    -e '/bfEnabled:/s/:[^,]\+,/: true,/' \
+    -e '/bfEveryResolution:/s/:[^,]\+,/: '"$resolution"',/' \
+    -e '/bfChunkStart:/s/:[^,]\+,/: '"$chunkstart"',/' \
+    -e '/bfChunkStop:/s/:[^,]\+,/: '"$chunkstop"',/' \
+    ./dsTask.flux > backfill.flux
+
+# Backfill chunk.
+influx query --org homelab --token "$token" - < backfill.flux >> "backfill-$resolution.log"
+```
+
+## Main Bucket Retention Policy
+
+The last step is to set a retention policy on the `telegraf_main` bucket to drop old data, now that that data is downsampled to
+other buckets. I would advise you to make a backup or snapshot of your influxdb data before implementing this step as there's
+no going back.
+
+1. In your InfluxDB web UI (http://localhost:18086) go to Load Data > Buckets > `telegraf_main` > Settings
+1. Set "Delete Data" to "Older Than" 7 days
+1. Click "Save Changes"
+
+```{thumb-figure} /_images/pictures/influxdb-downsampling/5-rp.png
+Your buckets' retention policies should look like this.
+```
+
+## Performance
+
+The main benefits with downsampling are reduce disk space usage, reduced CPU load for expensive queries, and reduced query
+response times. Below you'll see some screenshots from my "production" homelab NAS. The total number of rows remains about
+the same due to my usage of `aggregateWindow()`, but you can see the massive improvements in the total request time metric.
+
+```{list-table-thumbs}
+:resize-width: 400
+:widths: 10 10
+
+* - :::{thumb-figure} /_images/pictures/influxdb-downsampling/6-performance-before.png
+    High request timings without downsampling.
+    :::
+  - :::{thumb-figure} /_images/pictures/influxdb-downsampling/6-performance-after.png
+    Queries are much less expensive with downsampling implemented.
+    :::
+```
+
+## Conclusion
+
+You should now have fully implemented downsampling in the TIG demo stack. While I've only tested it at a small scale, it's
+been working well for the past 6 months on my underpowered NAS running the stack in Docker containers under TrueNAS SCALE. If
+you ran into problems with this tutorial or encountered issues when scaling this up in production feel free to leave a
+comment below.
