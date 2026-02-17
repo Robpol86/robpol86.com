@@ -208,7 +208,7 @@ telegraf_5m=-40m:inf
 ## Update Grafana Queries
 
 ```{note}
-Wait for 30 minutes for the tasks you created to downsample enough data to show up in the graphs.
+Wait 30 minutes for the tasks you created to downsample enough data to show up in the graphs.
 ```
 
 It's time to tie everything together. For each of the four graphs edit the queries and make these changes:
