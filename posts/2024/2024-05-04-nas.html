@@ -1,0 +1,1265 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Travel NAS 2024" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/posts/2024/2024-05-04-nas.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content=",,,,,,, Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard drive. I wanted a portable NAS for resill..." />
+<meta property="og:image" content="http://localhost:8000/_images/final.400x300.25.jpeg" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content=",,,,,,, Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard drive. I wanted a portable NAS for resill..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>Travel NAS 2024 &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2024/2024-05-04-nas';</script>
+    <link rel="canonical" href="http://localhost:8000/posts/2024/2024-05-04-nas.html" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Desk Photos 2023" href="../2023/2023-02-08-desk.html" />
+    <link rel="prev" title="Desk Photos 2024" href="2024-07-24-desk.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>04 May 2024</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="../../blog/location/austin.html" style="display:inline">Austin</a>
+  
+  ,
+  
+  
+  
+  
+  <a href="../../blog/location/manhattan.html" style="display:inline">Manhattan</a>
+  
+  ,
+  
+  
+  
+  
+  <a href="../../blog/location/tokyo.html" style="display:inline">Tokyo</a>
+  
+  ,
+  
+  
+  
+  
+  <a href="../../blog/location/hong-kong.html" style="display:inline">Hong Kong</a>
+  
+  ,
+  
+  
+  
+  
+  <a href="../../blog/location/victoria.html" style="display:inline">Victoria</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="../../blog/category/photos.html" style="display:inline">Photos</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tags"></i>
+    
+    
+    </span>
+  
+  
+  <a href="../../blog/tag/homelab.html" style="display:inline">homelab</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/nas.html" style="display:inline">nas</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/gmktec.html" style="display:inline">gmktec</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/aiffro.html" style="display:inline">aiffro</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="Travel NAS 2024" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2026/2026-02-17-influxdb-downsampling.html">InfluxDB v2 Downsampling</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2026/2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2025/2025-07-23-truenas-scale-telegraf.html">TrueNAS Telegraf, Influx, Grafana</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2025/2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2025/2025-02-13-truenas-scale-aiffro-runbook.html">TrueNAS SCALE Runbook</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="../../_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/posts/2024/2024-05-04-nas.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Travel NAS 2024</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#items-used">Items Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-lid">Custom Lid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-the-field">In the Field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retirement">Retirement</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="travel-nas-2024">
+<h1>Travel NAS 2024<a class="headerlink" href="#travel-nas-2024" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/final.jpeg"><img alt="../../_images/final.400x300.25.jpeg" src="../../_images/final.400x300.25.jpeg" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/backup.jpeg"><img alt="../../_images/backup.400x300.25.jpeg" src="../../_images/backup.400x300.25.jpeg" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This
+included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard
+drive. I wanted a portable NAS for resilliency and I’ve grown to like TrueNAS.</p>
+<p>I searched for weeks for a NAS I could buy that had the following features:</p>
+<ul class="simple">
+<li><p>2.5 GbE ethernet</p></li>
+<li><p>Eight 2.5” drive bays</p></li>
+<li><p>Ability to plug in a 3.5” drive for backing up</p></li>
+<li><p>Run TrueNAS instead of a propriatery OS or propriatery filesystem</p></li>
+<li><p>Worldwide power support</p></li>
+</ul>
+<p>I looked at different NAS offerings of different brands but none had all of the features I was looking for so I decided to
+build a custom travel NAS. The plan was to build a NAS that I could pack in a suitcase, with 2.5 GbE ethernet and 8 2.5”
+drives.</p>
+<section id="items-used">
+<h2>Items Used<a class="headerlink" href="#items-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.gmktec.com/products/nucbox-g3-most-cost-effective-mini-pc-with-intel-n100-processor">GMKtec G3 Barebone</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B00TL4US8K">ICY DOCK 8x2.5 SATA MB998SP-B</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B08J2NDBWY">Flex ATX Power Supply 300W</a> I had laying around</p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B0BGJPDL8N">8 Port Non-RAID M.2 SATA Adapter</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B08K5H4HBQ">Kingston 32GB 3200MHz DDR4 Non-ECC KVR32S22D8/32</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B07CJF384F">KingSpec 128GB 2242 SATA III 6Gbps M.2 SSD</a> as the OS drive</p></li>
+<li><p><a class="reference external" href="https://www.aliexpress.us/item/3256805635452399.html">LONRIONSAS Mini SAS SFF-8087 Right Angle to 4x SATA</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B07JJK92DJ">Heatsinks 9mmx9mmx12mm</a> for additional cooling</p></li>
+<li><p><a class="reference external" href="https://www.aurga.com/products/aurga-viewer">AURGA Viewer</a> in case I need to recover/reinstall TrueNAS</p></li>
+<li><p>Seven 4TB SSDs bought used on eBay</p></li>
+</ul>
+</section>
+<section id="custom-lid">
+<h2>Custom Lid<a class="headerlink" href="#custom-lid" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/lid-top.jpeg"><img alt="../../_images/lid-top.300x225.25.jpeg" src="../../_images/lid-top.300x225.25.jpeg" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/lid-front.jpeg"><img alt="../../_images/lid-front.300x225.25.jpeg" src="../../_images/lid-front.300x225.25.jpeg" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/lid-overview.jpeg"><img alt="../../_images/lid-overview.300x225.25.jpeg" src="../../_images/lid-overview.300x225.25.jpeg" />
+</a>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/lid-support2.jpeg"><img alt="../../_images/lid-support2.300x225.25.jpeg" src="../../_images/lid-support2.300x225.25.jpeg" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/lid-support.jpeg"><img alt="../../_images/lid-support.300x225.25.jpeg" src="../../_images/lid-support.300x225.25.jpeg" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/lid-sata.jpeg"><img alt="../../_images/lid-sata.300x225.25.jpeg" src="../../_images/lid-sata.300x225.25.jpeg" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>While the M.2 SATA adapter works fine with the G3, and all 8 disks show up on TrueNAS with proper serial numbers, the
+connectors protrude too much for the original lid to be used. An even bigger problem is with the M.2 adapter: it’s flimsy and
+the form factor is not designed for the forces used when plugging in and unplugging the SFF-8087 cables. The instructions
+that came with the M.2 adapter state that you should remove the adapter from the PC before attempting to plug or unplug any
+cable. This works fine if you don’t mind running the mini PC without a lid.</p>
+<p>However I wanted to be able to easily and quickly plug and unplig the SFF cables. I designed a custom lid and support bracket
+to hold the SATA adapter in place with zero flexing. Great success!</p>
+<p>Download models:</p>
+<ul class="simple">
+<li><p>Prusa Printables: <a class="reference external" href="https://www.printables.com/model/810969-gmktec-g3-sff-sata-lid">https://www.printables.com/model/810969-gmktec-g3-sff-sata-lid</a></p></li>
+<li><p>Thingiverse: <a class="reference external" href="https://www.thingiverse.com/thing:6539226">https://www.thingiverse.com/thing:6539226</a></p></li>
+<li><p>Reddit post: <a class="reference external" href="https://www.reddit.com/r/3Dprinting/comments/1bi8ad4/custom_lid_for_my_gmktec_g3_mini_pc_with_8_sata/">https://www.reddit.com/r/3Dprinting/comments/1bi8ad4/custom_lid_for_my_gmktec_g3_mini_pc_with_8_sata/</a></p></li>
+</ul>
+</section>
+<section id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h2>
+<p>When I <a class="reference external" href="https://www.reddit.com/r/truenas/comments/1b51rj2/truenas_on_a_gmktec_g3/">posted this project in the TrueNAS subreddit</a>
+a lot of commenters said the chipset on the SATA adapter has poor performance and reliability. For for my single-client use
+case I don’t have many performance issues. When I’m at 90% capacity and try to do multiple simultaneous writes over 2.5 GbE
+ethernet I do run into big performance hits, but 99% of the time I get really good throughput. Actually I think most of the
+problems are caused by me using a WD Blue SSD.</p>
+<p>They also said the chipsets die randomly after some time. So far after months of use everything works fine. I did add little
+heatsinks to the chips on the SATA adapter just in case issues are caused by overheating.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id1">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/performance-read.png"><img alt="../../_images/performance-read.400x370.25.png" src="../../_images/performance-read.400x370.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">Read Performance</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<div class="legend">
+<p>Downloading a large file from the NAS to my laptop over 2.5 GbE ethernet.</p>
+</div>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id2">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/performance-write.png"><img alt="../../_images/performance-write.400x370.25.png" src="../../_images/performance-write.400x370.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">Write Performance</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<div class="legend">
+<p>Uploading a large file from my laptop to my NAS over 2.5 GbE ethernet.</p>
+</div>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Reddit post: <a class="reference external" href="https://www.reddit.com/r/truenas/comments/1b51rj2/truenas_on_a_gmktec_g3/">https://www.reddit.com/r/truenas/comments/1b51rj2/truenas_on_a_gmktec_g3/</a></p></li>
+</ul>
+</section>
+<section id="in-the-field">
+<h2>In the Field<a class="headerlink" href="#in-the-field" title="Link to this heading">#</a></h2>
+<p>Before moving to NYC I did upgrade the SSD enclosure to a Mini SAS connector for less cables/connectors:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amazon.com/ICY-DOCK-MB998IP-B-SATA-Backplane/dp/B07G46V2C5">ICY DOCK 8x2.5 SAS/SATA 2xMini-SAS MB998IP-B</a></p></li>
+<li><p><a class="reference external" href="https://www.aliexpress.us/item/3256805704953889.html">LONRIONSAS Mini SAS SFF-8643 to Right Angle SFF-8087 Cables</a></p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id3">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/nyc.jpeg"><img alt="../../_images/nyc.400x533.25.jpeg" src="../../_images/nyc.400x533.25.jpeg" />
+</a>
+<figcaption>
+<p><span class="caption-text">In my NYC furnished apartment connected to the WiFi router.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id4">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-zjjKej8.jpg"><img alt="../../_images/imgur-zjjKej8.400x300.25.jpg" src="../../_images/imgur-zjjKej8.400x300.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">In my Shibuya hotel in Tokyo.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+<tr class="row-even"><td><figure class="align-default" id="id5">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-uWfcb7Z.jpg"><img alt="../../_images/imgur-uWfcb7Z.400x312.25.jpg" src="../../_images/imgur-uWfcb7Z.400x312.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">In my Shinjuku hotel in Tokyo.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id6">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-wDA3z1V.jpg"><img alt="../../_images/imgur-wDA3z1V.400x300.25.jpg" src="../../_images/imgur-wDA3z1V.400x300.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">In my Central hotel in Hong Kong.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="retirement">
+<h2>Retirement<a class="headerlink" href="#retirement" title="Link to this heading">#</a></h2>
+<p>After going through several hotels in Asia I started to get tired of packing and unpacking the NAS. I ended up migrating to
+an all NVMe NAS. Other than the annoyance of packing the GMKtec NAS never let me down.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-MpVsGoF.jpg"><img alt="../../_images/imgur-MpVsGoF.300x225.25.jpg" src="../../_images/imgur-MpVsGoF.300x225.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">The NAS took up most of the space inside my backpack.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-UXudRpz.jpg"><img alt="../../_images/imgur-UXudRpz.300x225.25.jpg" src="../../_images/imgur-UXudRpz.300x225.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">I had to pack it in three separate padded bags.</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id9">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-kfXrAe6.jpg"><img alt="../../_images/imgur-kfXrAe6.300x225.25.jpg" src="../../_images/imgur-kfXrAe6.300x225.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">I included all the cables in the padded bags but I still broke one of the SFF cables. Still worked though.</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+<tr class="row-even"><td><figure class="align-default" id="id10">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-z4xXTRe.jpg"><img alt="../../_images/imgur-z4xXTRe.300x400.25.jpg" src="../../_images/imgur-z4xXTRe.300x400.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">My new <a class="reference external" href="https://www.aiffro.com/products/all-ssd-nas-k100">Aiffro K100</a> NAS next to my old GMKtec NAS.</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id11">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-qcGZKI2.jpg"><img alt="../../_images/imgur-qcGZKI2.300x400.25.jpg" src="../../_images/imgur-qcGZKI2.300x400.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">Look at how small it is!</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id12">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-gPBBpl0.jpg"><img alt="../../_images/imgur-gPBBpl0.300x400.25.jpg" src="../../_images/imgur-gPBBpl0.300x400.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">Since the Aiffro only has four NVMe slots I’m using a USB boot drive for the TrueNAS Scale OS.</span><a class="headerlink" href="#id12" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+<tr class="row-odd"><td><figure class="align-default" id="id13">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-lyYJGJa.jpg"><img alt="../../_images/imgur-lyYJGJa.300x225.25.jpg" src="../../_images/imgur-lyYJGJa.300x225.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">Four data SSDs in RAIDZ1.</span><a class="headerlink" href="#id13" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id14">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-gc4SRQp.jpg"><img alt="../../_images/imgur-gc4SRQp.300x225.25.jpg" src="../../_images/imgur-gc4SRQp.300x225.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">I used a Thermal Grizzly Minus Pad 8 (100x100x2.0mm), temps briefly peak at 64c during intense I/O.</span><a class="headerlink" href="#id14" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id15">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/2024/imgur-XPlVPAF.jpg"><img alt="../../_images/imgur-XPlVPAF.300x225.25.jpg" src="../../_images/imgur-XPlVPAF.300x225.25.jpg" />
+</a>
+<figcaption>
+<p><span class="caption-text">Much less bulky. I really like the USB-PD input power feature.</span><a class="headerlink" href="#id15" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="../2023/2023-02-08-desk.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Desk Photos 2023</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="2024-07-24-desk.html">
+      <span>Desk Photos 2024</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "Travel NAS 2024";
+      var disqus_title = "Travel NAS 2024";
+      var disqus_url = "http://localhost:8000/posts/2024/2024-05-04-nas";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2024-07-24-desk.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Desk Photos 2024</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2023/2023-02-08-desk.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Desk Photos 2023</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#items-used">Items Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-lid">Custom Lid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-the-field">In the Field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retirement">Retirement</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

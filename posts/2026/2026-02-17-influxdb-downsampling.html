@@ -1,0 +1,1590 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="InfluxDB v2 Downsampling" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/posts/2026/2026-02-17-influxdb-downsampling.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content="In this guide I will show you how I’ve implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal changes to queries. Integers and floats are downsampled with mean() and all other types are downsampled with last(). A three line change to Grafana queries will enable it to re..." />
+<meta property="og:image" content="http://localhost:8000/_images/7-downsample.800x300.25.png" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content="In this guide I will show you how I’ve implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal changes to queries. Integers and floats are downsampled with mean() and all other types are downsampled with last(). A three line change to Grafana queries will enable it to re..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>InfluxDB v2 Downsampling &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2026/2026-02-17-influxdb-downsampling';</script>
+    <link rel="canonical" href="http://localhost:8000/posts/2026/2026-02-17-influxdb-downsampling.html" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Desk Photo 2026" href="2026-02-01-desk.html" />
+    <link rel="prev" title="Robert Pooley" href="../../index.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>17 February 2026</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="../../blog/location/seoul.html" style="display:inline">Seoul</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="../../blog/category/tutorials.html" style="display:inline">Tutorials</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tags"></i>
+    
+    
+    </span>
+  
+  
+  <a href="../../blog/tag/homelab.html" style="display:inline">homelab</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/nas.html" style="display:inline">nas</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="InfluxDB v2 Downsampling" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2025/2025-07-23-truenas-scale-telegraf.html">TrueNAS Telegraf, Influx, Grafana</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2025/2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2025/2025-02-13-truenas-scale-aiffro-runbook.html">TrueNAS SCALE Runbook</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2025/2025-01-14-desk.html">Desk Photos 2025</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="../../_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/posts/2026/2026-02-17-influxdb-downsampling.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>InfluxDB v2 Downsampling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-buckets">Create Buckets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-tasks">Create Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-grafana-variables">Set Grafana Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dsbuckets-variable">dsBuckets Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dspost-variable">dsPost Variable</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-grafana-queries">Update Grafana Queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backfill-data-guidance">Backfill Data Guidance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-bucket-retention-policy">Main Bucket Retention Policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="influxdb-v2-downsampling">
+<h1>InfluxDB v2 Downsampling<a class="headerlink" href="#influxdb-v2-downsampling" title="Link to this heading">#</a></h1>
+<p>In this guide I will show you how I’ve implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal
+changes to queries. Integers and floats are downsampled with <code class="docutils literal notranslate"><span class="pre">mean()</span></code> and all other types are downsampled with <code class="docutils literal notranslate"><span class="pre">last()</span></code>.
+A three line change to Grafana queries will enable it to read narrowed down time ranges for each bucket and combine the
+output with <code class="docutils literal notranslate"><span class="pre">union()</span></code>. Below is an example Grafana panel query change:</p>
+<div class="highlight-koka notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;${BUCKET}&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="na">:</span><span class="w"> </span><span class="na">v.timeRangeStart</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="na">:</span><span class="w"> </span><span class="na">v.timeRangeStop</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="n">host</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;${HOST}&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_measurement</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;mem&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="na">v.windowPeriod</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">mean</span><span class="p">,</span><span class="w"> </span><span class="n">createEmpty</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">)</span>
+
+<span class="c1">// After</span>
+<span class="n">dsQuery</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="n">host</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;${HOST}&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_measurement</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;mem&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="na">v.windowPeriod</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">mean</span><span class="p">,</span><span class="w"> </span><span class="n">createEmpty</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">)</span>
+<span class="o">$</span><span class="p">{</span><span class="n">dsPost</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This implementation builds on the very brief
+<a class="reference external" href="https://docs.influxdata.com/influxdb/v2/process-data/common-tasks/downsample-data/">InfluxDB v2 example</a> and shows how
+to consume the downsampled data in Grafana. It turns out the latter was the hardest part to get right.</p>
+<p>This guide will walk you through implementing downsampling on a demo TIG stack (Telegraf, InfluxDB, Grafana) using
+<a class="reference external" href="https://docs.docker.com/compose/">Docker Compose</a>. We’ll implement the following buckets with these retention policies:</p>
+<ul class="simple">
+<li><p><strong>telegraf_main</strong>: 7 day retention policy, 10 second data resolution, main ingestion bucket</p></li>
+<li><p><strong>telegraf_1m</strong>: 14 day retention policy, 1 minute data resolution</p></li>
+<li><p><strong>telegraf_5m</strong>: no retention policy, 5 minute data resolution, keep historical data forever</p></li>
+</ul>
+<p>I’ll also cover backfilling existing data into the new downsample buckets.</p>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/7-downsample.png"><img alt="../../_images/7-downsample.800x300.25.png" src="../../_images/7-downsample.800x300.25.png" />
+</a>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>Before starting you’ll need to have Docker Compose installed. You can find those instructions here:
+<a class="reference external" href="https://docs.docker.com/compose/install">https://docs.docker.com/compose/install</a></p>
+<p>Next start the demo TIG stack. This is a basic example with an InfluxDB container, a Telegraf container to send it some data,
+and a Grafana container to show the data using four graphs. I’ve written a Docker Compose file that starts everything up with
+one command, pre-configured.</p>
+<ol class="arabic">
+<li><p>Download <a class="reference download internal" download="" href="../../_downloads/b9b25c7f565ad5f0f5055dfe9406db5b/docker-compose-dsdemo.yml"><span class="xref download myst">docker-compose-dsdemo.yml</span></a></p></li>
+<li><p>Start the apps by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose-dsdemo.yml<span class="w"> </span>-p<span class="w"> </span>dsdemo<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+</li>
+<li><p>Access the Grafana dashboard (username is <strong>admin</strong> and password is <strong>Stand&amp;Deliver</strong>): <a class="reference external" href="http://localhost:13000/">http://localhost:13000/</a></p></li>
+<li><p>Access the InfluxDB dashboard (username and password are the same as Grafana’s): <a class="reference external" href="http://localhost:18086/">http://localhost:18086/</a></p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id1">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/0-tig-demo-oob-grafana.png"><img alt="../../_images/0-tig-demo-oob-grafana.400x251.25.png" src="../../_images/0-tig-demo-oob-grafana.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">After 15 minutes you should see something like this.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id2">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/0-tig-demo-oob-influxdb.png"><img alt="../../_images/0-tig-demo-oob-influxdb.400x251.25.png" src="../../_images/0-tig-demo-oob-influxdb.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">You should also see something like this.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the demo we’ll be using InfluxDB 2.8 but this should work with InfluxDB 2.7 as well. The downsampling is implemented in
+the Flux language so unfortunately InfluxDB v3 and v1 are not supported.</p>
+</div>
+</section>
+<section id="create-buckets">
+<h2>Create Buckets<a class="headerlink" href="#create-buckets" title="Link to this heading">#</a></h2>
+<p>Currently Telegraf writes data to the <strong>telegraf_main</strong> bucket every 10 seconds, and this bucket stores those data
+indefinitely. Our goal is to create new buckets to downsample data into and then set a retention policy on the
+<strong>telegraf_main</strong> bucket so high resolution data is only stored for 7 days. We’ll create a <strong>telegraf_1m</strong> bucket to store
+data with 1 minute resolution (instead of 10 second) with a 14 day retention policy, and we’ll create a <strong>telegraf_5m</strong>
+bucket to store data with 5 minute resolution with no retention policy. This last bucket will store our historical data
+indefinitely.</p>
+<p>In the InfluxDB web UI (<a class="reference external" href="http://localhost:18086">http://localhost:18086</a>) create your downsample buckets:</p>
+<ol class="arabic simple">
+<li><p>Load Data</p></li>
+<li><p>Buckets</p></li>
+<li><p>Create Bucket</p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: telegraf_1m</p></li>
+<li><p><strong>Delete Data</strong> &gt; Older Than: 14 days</p></li>
+</ol>
+</li>
+<li><p>Create</p></li>
+</ol>
+<p>Repeat for <strong>telegraf_5m</strong> but instead of “Older Than” select “Never”.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id3">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/1-create-bucket.png"><img alt="../../_images/1-create-bucket.400x251.25.png" src="../../_images/1-create-bucket.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">Creating the telegraf_1m bucket.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id4">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/1-create-buckets-done.png"><img alt="../../_images/1-create-buckets-done.400x251.25.png" src="../../_images/1-create-buckets-done.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">After creating buckets you should see something like this.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="create-tasks">
+<h2>Create Tasks<a class="headerlink" href="#create-tasks" title="Link to this heading">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Due to an <a class="reference external" href="https://github.com/influxdata/influxdb/issues/26781">InfluxDB bug</a> you should avoid cloning tasks and instead
+create each one from scratch as outlined here.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get the error “Failed to create new task: Invalid flux script. Please check your query text.” when creating a task
+this is due to <a class="reference external" href="https://github.com/influxdata/influxdb/issues/25197">another InfluxDB bug</a>. The workaround I found was to
+create an empty task first (just put a space instead of the script), then edit it and paste the script you originally
+intended.</p>
+</div>
+<p>Each downsample bucket will need its own task. The task script below can be pasted without modification for both tasks
+because InfluxDB automatically updates the <code class="docutils literal notranslate"><span class="pre">option</span> <span class="pre">task</span></code> statement with whatever you put in the web UI form. Let’s create the
+task for <code class="docutils literal notranslate"><span class="pre">telegraf_1m</span></code>:</p>
+<ol class="arabic simple">
+<li><p>In your InfluxDB web UI (<a class="reference external" href="http://localhost:18086">http://localhost:18086</a>) go to Tasks &gt; Create Task &gt; New Task</p></li>
+<li><p>In the left pane/column you can name your task <code class="docutils literal notranslate"><span class="pre">dsTask-telegraf_1m</span></code></p></li>
+<li><p>Set “Every” to <code class="docutils literal notranslate"><span class="pre">1m</span></code> (don’t use CRON for this demo)</p></li>
+<li><p>For offset I use <code class="docutils literal notranslate"><span class="pre">15s</span></code> to give Telegraf enough time to finish writing data to InfluxDB for each iteration (this won’t
+affect data timestamps)</p></li>
+<li><p>On the right pane paste the entire script shown below unmodified</p></li>
+<li><p>Click save</p></li>
+<li><p>Repeat for <code class="docutils literal notranslate"><span class="pre">dsTask-telegraf_5m</span></code> with “Every” set to <code class="docutils literal notranslate"><span class="pre">5m</span></code></p></li>
+</ol>
+<div class="highlight-koka notranslate"><div class="highlight"><pre><span></span><span class="c1">// dsTask.flux: Flux task that downsamples one bucket into another.</span>
+<span class="c1">//</span>
+<span class="c1">// BSD 2-Clause License</span>
+<span class="c1">// Copyright (c) 2025, Robpol86</span>
+<span class="c1">// All rights reserved.</span>
+<span class="c1">// Redistribution and use in source and binary forms, with or without</span>
+<span class="c1">// modification, are permitted provided that the following conditions are met:</span>
+<span class="c1">// 1. Redistributions of source code must retain the above copyright notice, this</span>
+<span class="c1">//    list of conditions and the following disclaimer.</span>
+<span class="c1">// 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<span class="c1">//    this list of conditions and the following disclaimer in the documentation</span>
+<span class="c1">//    and/or other materials provided with the distribution.</span>
+<span class="c1">// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c1">// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c1">// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+<span class="c1">// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE</span>
+<span class="c1">// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</span>
+<span class="c1">// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span>
+<span class="c1">// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER</span>
+<span class="c1">// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,</span>
+<span class="c1">// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
+<span class="c1">// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;types&quot;</span>
+
+<span class="c1">// Options for InfluxDB task (will be automatically overridden by InfluxDB).</span>
+<span class="n">option</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">name</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="p">,</span>
+<span class="w">    </span><span class="n">offset</span><span class="na">:</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span>
+<span class="p">}</span>
+
+<span class="c1">// Set your main bucket name here.</span>
+<span class="n">option</span><span class="w"> </span><span class="n">bucketSourceName</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="s2">&quot;telegraf_main&quot;</span>
+<span class="n">option</span><span class="w"> </span><span class="n">bucketTargetPrefix</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="s2">&quot;telegraf_&quot;</span>
+
+<span class="c1">// Set backfill.enabled to true when backfilling a new downsample bucket with</span>
+<span class="c1">// &quot;influx query ...&quot;.</span>
+<span class="n">option</span><span class="w"> </span><span class="n">backfill</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">bfEnabled</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">bfEveryResolution</span><span class="na">:</span><span class="w"> </span><span class="mi">1</span><span class="n">m</span><span class="p">,</span>
+<span class="w">    </span><span class="n">bfChunkStart</span><span class="na">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">01</span><span class="ge">T00</span><span class="na">:</span><span class="mi">00</span><span class="na">:</span><span class="mf">00.000000000</span><span class="ge">Z</span><span class="p">,</span>
+<span class="w">    </span><span class="n">bfChunkStop</span><span class="na">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">01</span><span class="ge">T23</span><span class="na">:</span><span class="mi">59</span><span class="na">:</span><span class="mf">59.999999999</span><span class="ge">Z</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1">// No need to edit anything beyond this line.</span>
+
+<span class="n">resolution</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">backfill</span><span class="k">.</span><span class="n">bfEnabled</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">backfill</span><span class="k">.</span><span class="n">bfEveryResolution</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">task</span><span class="k">.</span><span class="n">every</span>
+<span class="n">buckets</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">source</span><span class="na">:</span><span class="w"> </span><span class="na">bucketSourceName</span><span class="p">,</span>
+<span class="w">    </span><span class="n">target</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;${bucketTargetPrefix}${resolution}&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">// Select all data into this variable.</span>
+<span class="n">dataAll</span><span class="w"> </span><span class="k">=</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">backfill</span><span class="k">.</span><span class="n">bfEnabled</span>
+<span class="w">    </span><span class="k">then</span><span class="w"> </span><span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="na">buckets.source</span><span class="p">)</span>
+<span class="w">        </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="na">:</span><span class="w"> </span><span class="na">backfill.bfChunkStart</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="na">:</span><span class="w"> </span><span class="na">backfill.bfChunkStop</span><span class="p">)</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="na">buckets.source</span><span class="p">)</span>
+<span class="w">        </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="na">:</span><span class="w"> </span><span class="o">-</span><span class="n">resolution</span><span class="p">)</span>
+
+<span class="c1">// Integers and floats will be averaged together with mean().</span>
+<span class="n">dataToMean</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">dataAll</span>
+<span class="w">    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">        </span><span class="n">types</span><span class="k">.</span><span class="n">isType</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">r.</span><span class="na na-Variable">_value</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">or</span>
+<span class="w">        </span><span class="n">types</span><span class="k">.</span><span class="n">isType</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">r.</span><span class="na na-Variable">_value</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;uint&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">or</span>
+<span class="w">        </span><span class="n">types</span><span class="k">.</span><span class="n">isType</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">r.</span><span class="na na-Variable">_value</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="c1">// For all other data types (e.g. strings) we&#39;ll select the last value within the time</span>
+<span class="c1">// range.</span>
+<span class="n">dataToLast</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">dataAll</span>
+<span class="w">    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">        </span><span class="n">not</span><span class="w"> </span><span class="n">types</span><span class="k">.</span><span class="n">isType</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">r.</span><span class="na na-Variable">_value</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">and</span>
+<span class="w">        </span><span class="n">not</span><span class="w"> </span><span class="n">types</span><span class="k">.</span><span class="n">isType</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">r.</span><span class="na na-Variable">_value</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;uint&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">and</span>
+<span class="w">        </span><span class="n">not</span><span class="w"> </span><span class="n">types</span><span class="k">.</span><span class="n">isType</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">r.</span><span class="na na-Variable">_value</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="c1">// Write aggregated data into the target bucket.</span>
+<span class="n">dataToMean</span>
+<span class="w">    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="na">resolution</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">mean</span><span class="p">,</span><span class="w"> </span><span class="n">createEmpty</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">)</span>
+<span class="w">    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">to</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="na">buckets.target</span><span class="p">)</span>
+<span class="n">dataToLast</span>
+<span class="w">    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="na">resolution</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">last</span><span class="p">,</span><span class="w"> </span><span class="n">createEmpty</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">)</span>
+<span class="w">    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">to</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="na">buckets.target</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id5">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/2-create-tasks-done.png"><img alt="../../_images/2-create-tasks-done.400x251.25.png" src="../../_images/2-create-tasks-done.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">After creating tasks you should see something like this.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id6">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/2-create-tasks-done-query.png"><img alt="../../_images/2-create-tasks-done-query.400x251.25.png" src="../../_images/2-create-tasks-done-query.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">After 5 minutes the telegraf_1m bucket should start having data with <code class="docutils literal notranslate"><span class="pre">_time</span></code> every minute.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="set-grafana-variables">
+<h2>Set Grafana Variables<a class="headerlink" href="#set-grafana-variables" title="Link to this heading">#</a></h2>
+<p>In Grafana we will create two variables. The first variable will be where we define which buckets are queried for which time
+ranges. The second one will contain the Flux script that does the heavy lifting and decides which buckets need to be queried
+for the current time range.</p>
+<section id="dsbuckets-variable">
+<h3>dsBuckets Variable<a class="headerlink" href="#dsbuckets-variable" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>In the Grafana Dashboard (<a class="reference external" href="http://localhost:13000">http://localhost:13000</a>) click on “Edit” and then “Settings”</p></li>
+<li><p>Go to the “Variables” tab then click “New variable”</p></li>
+<li><p>The variable type is <code class="docutils literal notranslate"><span class="pre">Custom</span></code>, the variable name must be <code class="docutils literal notranslate"><span class="pre">dsBuckets</span></code></p></li>
+<li><p>In the “Values separated by comma” text area paste the following code block shown below unmodified</p></li>
+<li><p>Uncheck “Multi-value”, “Allow custom values”, and “Include All option”</p></li>
+<li><p>Click “Back to list”</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">telegraf_main</span><span class="o">=</span>now:-20m<span class="p">|</span>
+<span class="nv">telegraf_1m</span><span class="o">=</span>-20m:-40m<span class="p">|</span>
+<span class="nv">telegraf_5m</span><span class="o">=</span>-40m:inf
+</pre></div>
+</div>
+</section>
+<section id="dspost-variable">
+<h3>dsPost Variable<a class="headerlink" href="#dspost-variable" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>In the “Variables” tab click “New variable”</p></li>
+<li><p>The variable type is <code class="docutils literal notranslate"><span class="pre">Query</span></code>, the variable name must be <code class="docutils literal notranslate"><span class="pre">dsPost</span></code>, the data source should be <code class="docutils literal notranslate"><span class="pre">influxdb</span></code></p></li>
+<li><p>In the “Query options” text area paste the entire script shown below unmodified</p></li>
+<li><p>Scroll down and set the refresh setting to <code class="docutils literal notranslate"><span class="pre">On</span> <span class="pre">time</span> <span class="pre">range</span> <span class="pre">change</span></code></p></li>
+<li><p>Uncheck “Multi-value”, “Allow custom values”, and “Include All option”</p></li>
+<li><p>Leave sorting disabled and leave Regex empty</p></li>
+<li><p>Click “Back to list” then “Back to dashboard”</p></li>
+<li><p>Click on “Save dashboard” to save these changes</p></li>
+</ol>
+<div class="highlight-koka notranslate"><div class="highlight"><pre><span></span><span class="c1">// dsPost.flux: Query one or more downsample buckets in Grafana.</span>
+<span class="c1">//</span>
+<span class="c1">// BSD 2-Clause License</span>
+<span class="c1">// Copyright (c) 2025, Robpol86</span>
+<span class="c1">// All rights reserved.</span>
+<span class="c1">// Redistribution and use in source and binary forms, with or without</span>
+<span class="c1">// modification, are permitted provided that the following conditions are met:</span>
+<span class="c1">// 1. Redistributions of source code must retain the above copyright notice, this</span>
+<span class="c1">//    list of conditions and the following disclaimer.</span>
+<span class="c1">// 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<span class="c1">//    this list of conditions and the following disclaimer in the documentation</span>
+<span class="c1">//    and/or other materials provided with the distribution.</span>
+<span class="c1">// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c1">// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c1">// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+<span class="c1">// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE</span>
+<span class="c1">// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</span>
+<span class="c1">// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span>
+<span class="c1">// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER</span>
+<span class="c1">// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,</span>
+<span class="c1">// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
+<span class="c1">// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;array&quot;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;date&quot;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;strings&quot;</span>
+
+<span class="c1">// Take in any string array and outputs it as a stream so Grafana can ingest it as a</span>
+<span class="c1">// single or multi-value variable.</span>
+<span class="n">exportAsStream</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">    </span><span class="n">array</span><span class="k">.</span><span class="n">from</span><span class="p">(</span><span class="n">rows</span><span class="na">:</span><span class="w"> </span><span class="na">array.map(</span><span class="n">arr</span><span class="na">:</span><span class="w"> </span><span class="na">arr,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(x)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nv">_value</span><span class="na">:</span><span class="w"> </span><span class="na">x</span><span class="w"> </span><span class="p">})))</span>
+
+<span class="c1">// Convert time strings (e.g. &quot;now&quot; or &quot;-3d&quot;) into time objects.</span>
+<span class="n">stringToTime</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;now&quot;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">now</span><span class="p">()</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;inf&quot;</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;-inf&quot;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">date</span><span class="k">.</span><span class="n">time</span><span class="p">(</span><span class="n">t</span><span class="na">:</span><span class="w"> </span><span class="na">inf</span><span class="p">)</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">date</span><span class="k">.</span><span class="n">time</span><span class="p">(</span><span class="n">t</span><span class="na">:</span><span class="w"> </span><span class="na">duration(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">s)</span><span class="p">)</span>
+
+<span class="c1">// Parse dsBuckets string into array of strings and stop/stop time objects bound within</span>
+<span class="c1">// the range of trStart/trStop.</span>
+<span class="n">parseBucketsString</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">buckets</span><span class="p">,</span><span class="w"> </span><span class="n">trStop</span><span class="p">,</span><span class="w"> </span><span class="n">trStart</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">    </span><span class="c1">// Split dsBuckets string with pipe delimiter.</span>
+<span class="w">    </span><span class="c1">// Valid string example: telegraf=now:-5m|telegraf_1m=-5m:-inf</span>
+<span class="w">    </span><span class="n">strings</span><span class="k">.</span><span class="n">split</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">buckets</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">array</span><span class="k">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(x)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">strings</span><span class="k">.</span><span class="n">trimSpace</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">x</span><span class="p">))</span>
+<span class="w">        </span><span class="c1">// Filter out invalid substrings.</span>
+<span class="w">        </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">array</span><span class="k">.</span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(x)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="o">/^</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="n">zA</span><span class="o">-</span><span class="ge">Z0</span><span class="o">-</span><span class="mi">9</span><span class="nv">_</span><span class="o">-</span><span class="p">]</span><span class="o">+=</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="n">z0</span><span class="o">-</span><span class="mi">9</span><span class="o">-</span><span class="p">]</span><span class="o">+:</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="n">z0</span><span class="o">-</span><span class="mi">9</span><span class="o">-</span><span class="p">]</span><span class="o">+$/</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// Get bucket names and convert start/stop to time objects.</span>
+<span class="w">        </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">array</span><span class="k">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(x)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Split and get the bucket name.</span>
+<span class="w">            </span><span class="n">splitEquals</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">strings</span><span class="k">.</span><span class="n">splitN</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;=&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="na">:</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">splitEquals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="w">            </span><span class="c1">// Split and get the bucket time range.</span>
+<span class="w">            </span><span class="n">splitColon</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">strings</span><span class="k">.</span><span class="n">splitN</span><span class="p">(</span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="na">splitEquals[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">t</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="na">:</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">            </span><span class="n">bStop</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">stringToTime</span><span class="p">(</span><span class="n">s</span><span class="na">:</span><span class="w"> </span><span class="na">splitColon[</span><span class="mi">0</span><span class="p">])</span>
+<span class="w">            </span><span class="n">bStart</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">stringToTime</span><span class="p">(</span><span class="n">s</span><span class="na">:</span><span class="w"> </span><span class="na">splitColon[</span><span class="mi">1</span><span class="p">])</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">bStop</span><span class="p">,</span><span class="w"> </span><span class="n">bStart</span><span class="p">}</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">        </span><span class="c1">// Filter out buckets outside of selected time range.</span>
+<span class="w">        </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">array</span><span class="k">.</span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(x)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="k">.</span><span class="n">bStart</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">trStop</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">x</span><span class="k">.</span><span class="n">bStop</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">trStart</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// Adjust start/stop time boundaries for outer buckets.</span>
+<span class="w">        </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">array</span><span class="k">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(x)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">x</span><span class="k">.</span><span class="n">name</span>
+<span class="w">            </span><span class="n">stop</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">trStop</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="k">.</span><span class="n">bStop</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">trStop</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">x</span><span class="k">.</span><span class="n">bStop</span>
+<span class="w">            </span><span class="n">start</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">trStart</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="k">.</span><span class="n">bStart</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">trStart</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">x</span><span class="k">.</span><span class="n">bStart</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">}</span>
+<span class="w">            </span><span class="p">})</span>
+
+<span class="c1">// Return the dsQuery() Flux function call that Grafana will execute for one bucket.</span>
+<span class="n">dsPostSingle</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">    </span><span class="s2">&quot;dsQuery(bucket: </span><span class="se">\&quot;</span><span class="s2">${bucket.name}</span><span class="se">\&quot;</span><span class="s2">, start: ${bucket.start}, stop: ${bucket.stop})&quot;</span>
+
+<span class="c1">// Return one dsQuery() call per bucket and route the outputs into union() to merge them</span>
+<span class="c1">// into one metric. Normalize start/stop boundary times so Grafana displays them as one</span>
+<span class="c1">// line.</span>
+<span class="n">dsPostMulti</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">parsedBuckets</span><span class="p">,</span><span class="w"> </span><span class="n">trStop</span><span class="p">,</span><span class="w"> </span><span class="n">trStart</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">dsQueryCalls</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">array</span><span class="k">.</span><span class="n">map</span><span class="p">(</span><span class="n">arr</span><span class="na">:</span><span class="w"> </span><span class="na">parsedBuckets</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(x)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">dsPostSingle</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="na">x</span><span class="p">))</span>
+<span class="w">    </span><span class="n">dsQueryArr</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="s2">&quot;[&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">strings</span><span class="k">.</span><span class="n">joinStr</span><span class="p">(</span><span class="n">arr</span><span class="na">:</span><span class="w"> </span><span class="na">dsQueryCalls</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;, &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;]&quot;</span>
+<span class="w">    </span><span class="n">dsQueryUnion</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="s2">&quot;union(tables: ${dsQueryArr})&quot;</span>
+<span class="w">    </span><span class="n">dsStartStop</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="s2">&quot;({ r with _start: ${trStart}, _stop: ${trStop} })&quot;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;map(tables: ${dsQueryUnion}, fn: (r) =&gt; ${dsStartStop})&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">// Main.</span>
+<span class="n">buckets</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="o">$</span><span class="p">{</span><span class="n">dsBuckets</span><span class="na">:doublequote</span><span class="p">}</span>
+<span class="n">dsPost</span><span class="w"> </span><span class="k">=</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">buckets</span><span class="w"> </span><span class="o">!~</span><span class="w"> </span><span class="o">/\</span><span class="n">b</span><span class="p">(</span><span class="n">now</span><span class="p">)</span><span class="o">\</span><span class="n">b</span><span class="o">/</span>
+<span class="w">    </span><span class="k">then</span><span class="w"> </span><span class="s2">&quot;error: &#39;now&#39; is missing&quot;</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">buckets</span><span class="w"> </span><span class="o">!~</span><span class="w"> </span><span class="o">/\</span><span class="n">b</span><span class="p">(</span><span class="n">inf</span><span class="p">)</span><span class="o">\</span><span class="n">b</span><span class="o">/</span>
+<span class="w">    </span><span class="k">then</span><span class="w"> </span><span class="s2">&quot;error: &#39;inf&#39; is missing&quot;</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">trStop</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">v</span><span class="k">.</span><span class="n">timeRangeStop</span>
+<span class="w">        </span><span class="n">trStart</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">v</span><span class="k">.</span><span class="n">timeRangeStart</span>
+<span class="w">        </span><span class="n">parsedBuckets</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="n">parseBucketsString</span><span class="p">(</span><span class="n">buckets</span><span class="p">,</span><span class="w"> </span><span class="n">trStop</span><span class="p">,</span><span class="w"> </span><span class="n">trStart</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">arr</span><span class="na">:</span><span class="w"> </span><span class="na">parsedBuckets</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="k">then</span><span class="w"> </span><span class="s2">&quot;error: no valid buckets&quot;</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">arr</span><span class="na">:</span><span class="w"> </span><span class="na">parsedBuckets</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="k">then</span><span class="w"> </span><span class="n">dsPostSingle</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="na">parsedBuckets[</span><span class="mi">0</span><span class="p">])</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="n">dsPostMulti</span><span class="p">(</span><span class="n">parsedBuckets</span><span class="p">,</span><span class="w"> </span><span class="n">trStop</span><span class="p">,</span><span class="w"> </span><span class="n">trStart</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}()</span>
+<span class="n">exportAsStream</span><span class="p">(</span><span class="n">arr</span><span class="na">:</span><span class="w"> </span><span class="na">[dsPost]</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/3-grafana-ds-vars.png"><img alt="../../_images/3-grafana-ds-vars.400x251.25.png" src="../../_images/3-grafana-ds-vars.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">Your “Variables” tab should look like this.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/3-grafana-ds-dashboard-vars-only.png"><img alt="../../_images/3-grafana-ds-dashboard-vars-only.400x251.25.png" src="../../_images/3-grafana-ds-dashboard-vars-only.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">Your dashboard should now look like this.</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="update-grafana-queries">
+<h2>Update Grafana Queries<a class="headerlink" href="#update-grafana-queries" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wait 30 minutes for the tasks you created to downsample enough data to show up in the graphs.</p>
+</div>
+<p>It’s time to tie everything together. For each of the four graphs edit the queries and make these changes:</p>
+<ol class="arabic simple">
+<li><p>Insert <code class="docutils literal notranslate"><span class="pre">dsQuery</span> <span class="pre">=</span> <span class="pre">(bucket,</span> <span class="pre">start,</span> <span class="pre">stop)</span> <span class="pre">=&gt;</span></code> as the first line</p></li>
+<li><p>Append <code class="docutils literal notranslate"><span class="pre">${dsPost}</span></code> as the last line</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">&quot;${BUCKET}&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">bucket</span></code></p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">v.timeRangeStart</span></code> with <code class="docutils literal notranslate"><span class="pre">start</span></code></p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">v.timeRangeStop</span></code> with <code class="docutils literal notranslate"><span class="pre">stop</span></code></p></li>
+</ol>
+<p>For example, the following is the before and after for the Memory graph:</p>
+<div class="highlight-koka notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;${BUCKET}&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="na">:</span><span class="w"> </span><span class="na">v.timeRangeStart</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="na">:</span><span class="w"> </span><span class="na">v.timeRangeStop</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="n">host</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;${NAS_HOST}&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_measurement</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;mem&quot;</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_measurement</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;swap&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_field</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;used&quot;</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_field</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="na">v.windowPeriod</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">mean</span><span class="p">,</span><span class="w"> </span><span class="n">createEmpty</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">pivot</span><span class="p">(</span><span class="n">rowKey</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;_time&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">columnKey</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;_field&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">valueColumn</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;_value&quot;</span><span class="p">)</span>
+
+<span class="c1">// After</span>
+<span class="n">dsQuery</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="na">:</span><span class="w"> </span><span class="na">bucket</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="na">:</span><span class="w"> </span><span class="na">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="na">:</span><span class="w"> </span><span class="na">stop</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="n">host</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;${NAS_HOST}&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_measurement</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;mem&quot;</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_measurement</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;swap&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_field</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;used&quot;</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_field</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="na">v.windowPeriod</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">mean</span><span class="p">,</span><span class="w"> </span><span class="n">createEmpty</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">pivot</span><span class="p">(</span><span class="n">rowKey</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;_time&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">columnKey</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;_field&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">valueColumn</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;_value&quot;</span><span class="p">)</span>
+<span class="o">$</span><span class="p">{</span><span class="n">dsPost</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id9">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/4-memory-graph.png"><img alt="../../_images/4-memory-graph.400x251.25.png" src="../../_images/4-memory-graph.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">The Memory graph should look like this when you click on <code class="docutils literal notranslate"><span class="pre">Refresh</span></code></span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id10">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/4-grafana-ds-dashboard.png"><img alt="../../_images/4-grafana-ds-dashboard.400x251.25.png" src="../../_images/4-grafana-ds-dashboard.400x251.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">Your dashboard should now look like this.</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get the error “invalid: runtime error: schema collision detected: column “raw_value” is both of type int and float”
+you’ll need to add <code class="docutils literal notranslate"><span class="pre">toFloat()</span></code> to cast integers from the main bucket to floats since that’s the datatype used in downsample
+buckets.</p>
+<p>An example before and after of the fix:</p>
+<div class="highlight-koka notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">dsQuery</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="n">host</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;${NAS_HOST}&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_measurement</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;smart_attribute&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_field</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;raw_value&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Temperature_Celsius&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;device&quot;</span><span class="p">])</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="na">v.windowPeriod</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">max</span><span class="p">,</span><span class="w"> </span><span class="n">createEmpty</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">pivot</span><span class="p">(</span><span class="n">rowKey</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;_time&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">columnKey</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;_field&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">valueColumn</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;_value&quot;</span><span class="p">)</span>
+<span class="o">$</span><span class="p">{</span><span class="n">dsPost</span><span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="n">dsQuery</span><span class="w"> </span><span class="k">=</span><span class="w"> </span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="n">host</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;${NAS_HOST}&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_measurement</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;smart_attribute&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="nv">_field</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;raw_value&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">(r)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="k">.</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Temperature_Celsius&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;device&quot;</span><span class="p">])</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">toFloat</span><span class="p">()</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="na">:</span><span class="w"> </span><span class="na">v.windowPeriod</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="na">:</span><span class="w"> </span><span class="na">max</span><span class="p">,</span><span class="w"> </span><span class="n">createEmpty</span><span class="na">:</span><span class="w"> </span><span class="na">false</span><span class="p">)</span>
+<span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">pivot</span><span class="p">(</span><span class="n">rowKey</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;_time&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">columnKey</span><span class="na">:</span><span class="w"> </span><span class="na">[</span><span class="s2">&quot;_field&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">valueColumn</span><span class="na">:</span><span class="w"> </span><span class="s2">&quot;_value&quot;</span><span class="p">)</span>
+<span class="o">$</span><span class="p">{</span><span class="n">dsPost</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Don’t forget to save your changes to the dashboard.</p>
+</section>
+<section id="backfill-data-guidance">
+<h2>Backfill Data Guidance<a class="headerlink" href="#backfill-data-guidance" title="Link to this heading">#</a></h2>
+<p>If you have existing data that you’d like to keep you’ll need to backfill it into the newly created downsample buckets.</p>
+<p>Depending on how much data you have, backfilling may take a long time (days, weeks, maybe even months for everything), so
+it’s advised to do it in chunks. Bigger chunks mean more memory usage in the InfluxDB container, so keeping chunks small
+avoids OOMKill. When I backfilled my homelab production data for a single telegraf host it took up to 16 minutes for 24 hours
+of data on an Intel N150.</p>
+<p>The <a class="reference download internal" download="" href="../../_downloads/03813478c69a28df936abb1467e96129/dsTask.flux"><span class="xref download myst">dsTask.flux</span></a> file provided in the <a class="reference internal" href="#create-tasks">Create Tasks</a> section can also be used for
+backfilling from the command line. Below is a bash script that modifies the file to backfill a chunk (you can run it from the
+dsdemo-influxdb-1 container):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">token</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN</span><span class="s2">&quot;</span>
+<span class="nv">chunkstart</span><span class="o">=</span><span class="s2">&quot;2025-08-25T02:00:00.000000000Z&quot;</span>
+
+<span class="c1"># To avoid duplicate data chunkstop should not be more recent than the oldest</span>
+<span class="c1"># data point in the target bucket.</span>
+<span class="nv">resolution</span><span class="o">=</span><span class="s2">&quot;1m&quot;</span>
+<span class="nv">bucket</span><span class="o">=</span><span class="s2">&quot;telegraf_</span><span class="si">${</span><span class="nv">resolution</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">query</span><span class="o">=</span><span class="s2">&quot;from(bucket: \&quot;</span><span class="nv">$bucket</span><span class="s2">\&quot;) |&gt; range(start: 0) |&gt; first() |&gt; keep(columns: [\&quot;_time\&quot;]) |&gt; limit(n: 1)&quot;</span>
+<span class="nv">chunkstop</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>influx<span class="w"> </span>query<span class="w"> </span>--org<span class="w"> </span>homelab<span class="w"> </span>--token<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$token</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$query</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>-Pm1<span class="w"> </span><span class="s1">&#39;^2.+Z$&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+sed<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="s1">&#39;/bfEnabled:/s/:[^,]\+,/: true,/&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="s1">&#39;/bfEveryResolution:/s/:[^,]\+,/: &#39;</span><span class="s2">&quot;</span><span class="nv">$resolution</span><span class="s2">&quot;</span><span class="s1">&#39;,/&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="s1">&#39;/bfChunkStart:/s/:[^,]\+,/: &#39;</span><span class="s2">&quot;</span><span class="nv">$chunkstart</span><span class="s2">&quot;</span><span class="s1">&#39;,/&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="s1">&#39;/bfChunkStop:/s/:[^,]\+,/: &#39;</span><span class="s2">&quot;</span><span class="nv">$chunkstop</span><span class="s2">&quot;</span><span class="s1">&#39;,/&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>./dsTask.flux<span class="w"> </span>&gt;<span class="w"> </span>backfill.flux
+
+<span class="c1"># Backfill chunk.</span>
+influx<span class="w"> </span>query<span class="w"> </span>--org<span class="w"> </span>homelab<span class="w"> </span>--token<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$token</span><span class="s2">&quot;</span><span class="w"> </span>-<span class="w"> </span>&lt;<span class="w"> </span>backfill.flux<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;backfill-</span><span class="nv">$resolution</span><span class="s2">.log&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="main-bucket-retention-policy">
+<h2>Main Bucket Retention Policy<a class="headerlink" href="#main-bucket-retention-policy" title="Link to this heading">#</a></h2>
+<p>The last step is to set a retention policy on the <code class="docutils literal notranslate"><span class="pre">telegraf_main</span></code> bucket to drop old data, now that that data is downsampled to
+other buckets. I would advise you to make a backup or snapshot of your influxdb data before implementing this step as there’s
+no going back.</p>
+<ol class="arabic simple">
+<li><p>In your InfluxDB web UI (<a class="reference external" href="http://localhost:18086">http://localhost:18086</a>) go to Load Data &gt; Buckets &gt; <code class="docutils literal notranslate"><span class="pre">telegraf_main</span></code> &gt; Settings</p></li>
+<li><p>Set “Delete Data” to “Older Than” 7 days</p></li>
+<li><p>Click “Save Changes”</p></li>
+</ol>
+<figure class="align-default" id="id11">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/5-rp.png"><img alt="../../_images/5-rp.800x502.25.png" src="../../_images/5-rp.800x502.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">Your buckets’ retention policies should look like this.</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h2>
+<p>The main benefits with downsampling are reduce disk space usage, reduced CPU load for expensive queries, and reduced query
+response times. Below you’ll see some screenshots from my “production” homelab NAS. The total number of rows remains about
+the same due to my usage of <code class="docutils literal notranslate"><span class="pre">aggregateWindow()</span></code>, but you can see the massive improvements in the total request time metric.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id12">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/6-performance-before.png"><img alt="../../_images/6-performance-before.400x219.25.png" src="../../_images/6-performance-before.400x219.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">High request timings without downsampling.</span><a class="headerlink" href="#id12" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id13">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/influxdb-downsampling/6-performance-after.png"><img alt="../../_images/6-performance-after.400x219.25.png" src="../../_images/6-performance-after.400x219.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">Queries are much less expensive with downsampling implemented.</span><a class="headerlink" href="#id13" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>You should now have fully implemented downsampling in the TIG demo stack. While I’ve only tested it at a small scale, it’s
+been working well for the past 6 months on my underpowered NAS running the stack in Docker containers under TrueNAS SCALE. If
+you ran into problems with this tutorial or encountered issues when scaling this up in production feel free to leave a
+comment below.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="2026-02-01-desk.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Desk Photo 2026</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "InfluxDB v2 Downsampling";
+      var disqus_title = "InfluxDB v2 Downsampling";
+      var disqus_url = "http://localhost:8000/posts/2026/2026-02-17-influxdb-downsampling";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Robert Pooley</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2026-02-01-desk.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Desk Photo 2026</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-buckets">Create Buckets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-tasks">Create Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-grafana-variables">Set Grafana Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dsbuckets-variable">dsBuckets Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dspost-variable">dsPost Variable</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-grafana-queries">Update Grafana Queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backfill-data-guidance">Backfill Data Guidance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-bucket-retention-policy">Main Bucket Retention Policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

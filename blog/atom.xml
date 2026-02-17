@@ -1,0 +1,1223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://localhost:8000/</id>
+  <title>Robpol86.com</title>
+  <updated>2026-02-17T06:23:51.920181+00:00</updated>
+  <link href="http://localhost:8000/"/>
+  <link href="http://localhost:8000/blog/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.13">ABlog</generator>
+  <entry>
+    <id>http://localhost:8000/posts/2026/2026-02-17-influxdb-downsampling.html</id>
+    <title>InfluxDB v2 Downsampling</title>
+    <updated>2026-02-17T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;In this guide I will show you how I’ve implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal
+changes to queries. Integers and floats are downsampled with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mean()&lt;/span&gt;&lt;/code&gt; and all other types are downsampled with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;last()&lt;/span&gt;&lt;/code&gt;.
+A three line change to Grafana queries will enable it to read narrowed down time ranges for each bucket and combine the
+output with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;union()&lt;/span&gt;&lt;/code&gt;. Below is an example Grafana panel query change:&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2026/2026-02-17-influxdb-downsampling.html"/>
+    <summary>In this guide I will show you how I’ve implemented InfluxDB 2.x downsampling that plays nicely with Grafana with minimal
+changes to queries. Integers and floats are downsampled with mean() and all other types are downsampled with last().
+A three line change to Grafana queries will enable it to read narrowed down time ranges for each bucket and combine the
+output with union(). Below is an example Grafana panel query change:</summary>
+    <category term="homelab" label="homelab"/>
+    <category term="nas" label="nas"/>
+    <published>2026-02-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2026/2026-02-01-desk.html</id>
+    <title>Desk Photo 2026</title>
+    <updated>2026-02-01T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Some hotels give you only a tiny desk. I got tired of these hotels preventing me from using my second monitor so I went and
+bought some LEGOs and invented my own monitor stand.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2026/2026-02-01-desk.html"/>
+    <summary>Some hotels give you only a tiny desk. I got tired of these hotels preventing me from using my second monitor so I went and
+bought some LEGOs and invented my own monitor stand.</summary>
+    <category term="beelink" label="beelink"/>
+    <category term="desk" label="desk"/>
+    <published>2026-02-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2025/2025-07-23-truenas-scale-telegraf.html</id>
+    <title>TrueNAS Telegraf, Influx, Grafana</title>
+    <updated>2025-09-01T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide will explain how to setup &lt;a class="reference external" href="https://www.influxdata.com/time-series-platform/telegraf/"&gt;Telegraf&lt;/a&gt;,
+&lt;a class="reference external" href="https://docs.influxdata.com/influxdb/v2/get-started/"&gt;InfluxDB&lt;/a&gt;, and &lt;a class="reference external" href="https://grafana.com/oss/grafana/"&gt;Grafana&lt;/a&gt; on
+&lt;a class="reference external" href="https://www.truenas.com/truenas-community-edition/"&gt;TrueNAS SCALE (Community Edition)&lt;/a&gt;. This is how I run all three apps on
+my &lt;a class="reference external" href="https://www.bee-link.com/products/beelink-me-mini-n150"&gt;Beelink ME Mini&lt;/a&gt; NAS. As of this writing I’m running TrueNAS
+SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2025/2025-07-23-truenas-scale-telegraf.html"/>
+    <summary>This guide will explain how to setup Telegraf,
+InfluxDB, and Grafana on
+TrueNAS SCALE (Community Edition). This is how I run all three apps on
+my Beelink ME Mini NAS. As of this writing I’m running TrueNAS
+SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.</summary>
+    <category term="homelab" label="homelab"/>
+    <category term="nas" label="nas"/>
+    <published>2025-09-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2025/2025-07-14-truenas-scale-beelink-slots-tool.html</id>
+    <title>TrueNAS Slots Tool for ME Mini</title>
+    <updated>2025-07-14T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I wrote a script that displays the slot number of each SSD in the TrueNAS web UI, since all the labels face inward. If an SSD
+needs to be replaced I’d rather not have to pull each one out to see if the serial matches. The script also shows the PCIe
+generation (by way of the link speed) and width (how many PCIe lanes the SSD is using). It also shows if the SSD is operating
+below its maximum capability.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2025/2025-07-14-truenas-scale-beelink-slots-tool.html"/>
+    <summary>I wrote a script that displays the slot number of each SSD in the TrueNAS web UI, since all the labels face inward. If an SSD
+needs to be replaced I’d rather not have to pull each one out to see if the serial matches. The script also shows the PCIe
+generation (by way of the link speed) and width (how many PCIe lanes the SSD is using). It also shows if the SSD is operating
+below its maximum capability.</summary>
+    <category term="beelink" label="beelink"/>
+    <category term="homelab" label="homelab"/>
+    <category term="nas" label="nas"/>
+    <published>2025-07-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html</id>
+    <title>TrueNAS SCALE Runbook</title>
+    <updated>2025-02-13T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This is the runbook I’ve been developing since 2022 for setting up and maintaining
+&lt;a class="reference external" href="https://www.truenas.com/truenas-scale/"&gt;TrueNAS SCALE&lt;/a&gt; on my portable/travel NAS as of this date. Originally developed for a
+more traditional 24/7 server, it’s now scoped to a NAS that is frequently powered off and no longer has access to the
+intenret.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html"/>
+    <summary>This is the runbook I’ve been developing since 2022 for setting up and maintaining
+TrueNAS SCALE on my portable/travel NAS as of this date. Originally developed for a
+more traditional 24/7 server, it’s now scoped to a NAS that is frequently powered off and no longer has access to the
+intenret.</summary>
+    <category term="aiffro" label="aiffro"/>
+    <category term="beelink" label="beelink"/>
+    <category term="homelab" label="homelab"/>
+    <category term="nas" label="nas"/>
+    <category term="runbook" label="runbook"/>
+    <published>2025-02-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2025/2025-01-14-desk.html</id>
+    <title>Desk Photos 2025</title>
+    <updated>2025-01-14T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I came across the &lt;a class="reference external" href="https://www.owc.com/solutions/thunderbolt-go-dock"&gt;OWC Thunderbolt Go Dock&lt;/a&gt; whilst staying in Japan. It
+replaced my USB-C power adapters and the StarTech USB-C hub. It also has a built-in power supply so no power brick. I use it
+to charge my MacBook and power my external monitor and even charge my USB-C thoothbrush/shaver/powerbank/phone/watch charger.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2025/2025-01-14-desk.html"/>
+    <summary>I came across the OWC Thunderbolt Go Dock whilst staying in Japan. It
+replaced my USB-C power adapters and the StarTech USB-C hub. It also has a built-in power supply so no power brick. I use it
+to charge my MacBook and power my external monitor and even charge my USB-C thoothbrush/shaver/powerbank/phone/watch charger.</summary>
+    <category term="aiffro" label="aiffro"/>
+    <category term="beelink" label="beelink"/>
+    <category term="desk" label="desk"/>
+    <published>2025-01-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2024/2024-07-24-desk.html</id>
+    <title>Desk Photos 2024</title>
+    <updated>2024-07-24T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Repurposed my laundry room table as my desk after selling everything I own. You can see my &lt;a class="reference internal" href="posts/2024/2024-05-04-nas.html"&gt;&lt;span class="std std-doc"&gt;travel NAS&lt;/span&gt;&lt;/a&gt;
+on top of my UPS in the corner on the floor.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2024/2024-07-24-desk.html"/>
+    <summary>Repurposed my laundry room table as my desk after selling everything I own. You can see my travel NAS
+on top of my UPS in the corner on the floor.</summary>
+    <category term="desk" label="desk"/>
+    <category term="gmktec" label="gmktec"/>
+    <published>2024-07-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2024/2024-05-04-nas.html</id>
+    <title>Travel NAS 2024</title>
+    <updated>2024-05-04T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This
+included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard
+drive. I wanted a portable NAS for resilliency and I’ve grown to like TrueNAS.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2024/2024-05-04-nas.html"/>
+    <summary>Last year I made up my mind to move away from Austin and sell all of my belongings, though I swear I’m not a minimalist. This
+included my homelab. However I still wanted to keep my data with me and ruled out cloud storage or a simple portable hard
+drive. I wanted a portable NAS for resilliency and I’ve grown to like TrueNAS.</summary>
+    <category term="aiffro" label="aiffro"/>
+    <category term="gmktec" label="gmktec"/>
+    <category term="homelab" label="homelab"/>
+    <category term="nas" label="nas"/>
+    <published>2024-05-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2023/2023-02-08-desk.html</id>
+    <title>Desk Photos 2023</title>
+    <updated>2023-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Temporary desk at my new job.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2023/2023-02-08-desk.html"/>
+    <summary>Temporary desk at my new job.</summary>
+    <category term="desk" label="desk"/>
+    <published>2023-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-12-11-alltrack-clutch-bleeder-block.html</id>
+    <title>Clutch Bleeder Block Replacement</title>
+    <updated>2022-12-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I opted to replace the stock plastic block with an all-metal block from ECS Tuning to get rid of the
+&lt;a class="reference external" href="https://www.vwvortex.com/threads/6-mt-owners-do-the-clutch-spring-mod.9119337/"&gt;clutch delay valve&lt;/a&gt;. After doing this mod I definitely felt a difference when pressing the clutch pedal. It
+feels lighter and now I understand what people meant when they say the stock clutch feels mushy.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-12-11-alltrack-clutch-bleeder-block.html"/>
+    <summary>I opted to replace the stock plastic block with an all-metal block from ECS Tuning to get rid of the
+clutch delay valve. After doing this mod I definitely felt a difference when pressing the clutch pedal. It
+feels lighter and now I understand what people meant when they say the stock clutch feels mushy.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2022-12-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-11-03-desk.html</id>
+    <title>Desk Photo 2022</title>
+    <updated>2022-11-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After moving back to Austin and settling in my big apartment.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-11-03-desk.html"/>
+    <summary>After moving back to Austin and settling in my big apartment.</summary>
+    <category term="desk" label="desk"/>
+    <published>2022-11-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-10-27-alltrack-jack-pads.html</id>
+    <title>Jack Pads</title>
+    <updated>2022-10-27T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This modification makes it easier to put my car on jack stands in my garage. It adds a second set of jacking points to the
+car so I don’t have to jack up the car from the opposite side when rotating my tires. It was really easy to install too. In
+fact I installed this kit without needing to jack up the car at all and removing the old trim pieces was really effortless.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-10-27-alltrack-jack-pads.html"/>
+    <summary>This modification makes it easier to put my car on jack stands in my garage. It adds a second set of jacking points to the
+car so I don’t have to jack up the car from the opposite side when rotating my tires. It was really easy to install too. In
+fact I installed this kit without needing to jack up the car at all and removing the old trim pieces was really effortless.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2022-10-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-10-24-snapmaker-reverse-door.html</id>
+    <title>Snapmaker Enclosure Door Reversal</title>
+    <updated>2022-10-24T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I recently moved my Snapmaker 2.0 A350T printer to another part of my home. The &lt;a class="reference external" href="https://us.snapmaker.com/products/enclosure-for-snapmaker-2-0"&gt;official enclosure&lt;/a&gt; has a solid
+panel on the left side, a large door on the right, and a smaller door on the front. These panels are only designed to be
+installed in one specific order and orientation.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-10-24-snapmaker-reverse-door.html"/>
+    <summary>I recently moved my Snapmaker 2.0 A350T printer to another part of my home. The official enclosure has a solid
+panel on the left side, a large door on the right, and a smaller door on the front. These panels are only designed to be
+installed in one specific order and orientation.</summary>
+    <category term="3d-printing" label="3d-printing"/>
+    <published>2022-10-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-08-23-oemtools-gauge.html</id>
+    <title>OEMTools 24938 Gauge Mod</title>
+    <updated>2022-08-23T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I change my own oil using the &lt;a class="reference external" href="https://www.youtube.com/watch?v=RakLAZIRgwU"&gt;extraction method&lt;/a&gt;. Since my oil filter is
+accessible from the the top of the engine bay there’s no need for me to get under the car for oil changes. One of my gripes
+about this method was that I didn’t know how much pumping I had to do to keep the oil flowing.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-08-23-oemtools-gauge.html"/>
+    <summary>I change my own oil using the extraction method. Since my oil filter is
+accessible from the the top of the engine bay there’s no need for me to get under the car for oil changes. One of my gripes
+about this method was that I didn’t know how much pumping I had to do to keep the oil flowing.</summary>
+    <category term="car" label="car"/>
+    <published>2022-08-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-07-15-snapmaker.html</id>
+    <title>Snapmaker 2.0 A350T Teflon Tube</title>
+    <updated>2022-07-15T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I recently upgraded from my cheap and finicky &lt;a class="reference internal" href="3d_printer_mpms2.html"&gt;&lt;span class="std std-doc"&gt;Monoprice 3D printer&lt;/span&gt;&lt;/a&gt; to an expensive and versatile
+one (it WAS the latest and greatest &lt;a class="reference external" href="https://snapmaker.com/snapmaker-artisan"&gt;for a few weeks 😭&lt;/a&gt;). After using it a few
+times I already got the modding itch.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-07-15-snapmaker.html"/>
+    <summary>I recently upgraded from my cheap and finicky Monoprice 3D printer to an expensive and versatile
+one (it WAS the latest and greatest for a few weeks 😭). After using it a few
+times I already got the modding itch.</summary>
+    <category term="3d-printing" label="3d-printing"/>
+    <published>2022-07-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-06-30-rack.html</id>
+    <title>Custom Fabricated Rack 2022</title>
+    <updated>2022-06-30T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I got a couple of items that warranted rewiring my TV cabinet rack: StarTech extenders and P-Link server rails. I inverted
+the extenders so I could recess the patch panel and switch, making room for the SFP modules and fiber cables. I can’t believe
+I can’t find any right angle adapters for the LC/UPC fiber patch cables!&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-06-30-rack.html"/>
+    <summary>I got a couple of items that warranted rewiring my TV cabinet rack: StarTech extenders and P-Link server rails. I inverted
+the extenders so I could recess the patch panel and switch, making room for the SFP modules and fiber cables. I can’t believe
+I can’t find any right angle adapters for the LC/UPC fiber patch cables!</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2022-06-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-06-05-alltrack-homelink-mirror.html</id>
+    <title>HomeLink Rearview Mirror</title>
+    <updated>2022-06-05T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My 2019 Golf Alltrack SE came with an auto-dimming mirror, but I wanted the one with garage door buttons integrated in it.
+Since my car had the rain sensor option installed I already had power available to my mirror, so this upgrade was super easy
+to do. No coding was required.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-06-05-alltrack-homelink-mirror.html"/>
+    <summary>My 2019 Golf Alltrack SE came with an auto-dimming mirror, but I wanted the one with garage door buttons integrated in it.
+Since my car had the rain sensor option installed I already had power available to my mirror, so this upgrade was super easy
+to do. No coding was required.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2022-06-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/mib2_comp_media.html</id>
+    <title>MIB2 Composition Media Hacking</title>
+    <updated>2022-01-04T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
+&lt;a class="reference external" href="https://www.qnx.com/developers/docs/6.5.0SP1.update/#./com.qnx.doc.momentics_quickstart/about.html"&gt;QNX 6.5.0&lt;/a&gt; (with firmware
+MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has
+GPS). Lucky for me, it’s possible to gain root access to the unit.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/mib2_comp_media.html"/>
+    <summary>My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
+QNX 6.5.0 (with firmware
+MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has
+GPS). Lucky for me, it’s possible to gain root access to the unit.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <published>2022-01-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2022/2022-01-02-alltrack-mib2-hack.html</id>
+    <title>MIB2 Developer Mode</title>
+    <updated>2022-01-02T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My Alltrack came with an MIB2 Composition Media infotainment system. These are the steps I took to enable development mode
+and get some information about it. Enabling development mode also lets me take screenshots by holding down the &lt;strong&gt;Media&lt;/strong&gt;
+button for 3 seconds and have them saved to the SD card. You’ll need an &lt;a class="reference external" href="https://obdeleven.com/en/"&gt;OBD11/OBDeleven&lt;/a&gt; or VCDS.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2022/2022-01-02-alltrack-mib2-hack.html"/>
+    <summary>My Alltrack came with an MIB2 Composition Media infotainment system. These are the steps I took to enable development mode
+and get some information about it. Enabling development mode also lets me take screenshots by holding down the Media
+button for 3 seconds and have them saved to the SD card. You’ll need an OBD11/OBDeleven or VCDS.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2022-01-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-12-23-alltrack-euro-tails.html</id>
+    <title>Euro Tail Lights</title>
+    <updated>2021-12-23T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I’ve always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack
+lacked the amber turn signals.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-12-23-alltrack-euro-tails.html"/>
+    <summary>I’ve always preferred amber turn signals over flashing brake lights in my vehicles. My 2010 JSW had them but my 2019 Alltrack
+lacked the amber turn signals.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-12-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/windows_11_mac.html</id>
+    <title>Install Windows 11 on an Intel Mac</title>
+    <updated>2021-12-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide lays out the steps I take to install Windows 11 on my Intel-based Apple computers using a custom ISO. This allows
+me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does not provide TPM 2.0 to Windows.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/windows_11_mac.html"/>
+    <summary>This guide lays out the steps I take to install Windows 11 on my Intel-based Apple computers using a custom ISO. This allows
+me to bypass the current TPM 2.0 requirement, since at this time Boot Camp does not provide TPM 2.0 to Windows.</summary>
+    <published>2021-12-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/franklin_t9.html</id>
+    <title>T-Mobile Franklin T9 Hacking</title>
+    <updated>2021-11-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
+data. I’m using it with &lt;a class="reference external" href="https://fi.google.com/about"&gt;Google Fi&lt;/a&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/franklin_t9.html"/>
+    <summary>My goal for this project is to have an LTE hotspot in my car that shuts off automatically when I get home to avoid wasting
+data. I’m using it with Google Fi.</summary>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <published>2021-11-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-10-25-alltrack-ecohitch.html</id>
+    <title>EcoHitch Install</title>
+    <updated>2021-10-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I decided to go with the &lt;a class="reference external" href="https://torkliftcentral.com/2015-2017-volkswagen-golf-sportwagen-alltrack-tsi-ecohitch"&gt;EcoHitch x7315&lt;/a&gt;.
+Installing was straight forward, but it ended up taking my entire Sunday to complete. Overall I’m very happy with how it
+turned out.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-10-25-alltrack-ecohitch.html"/>
+    <summary>I decided to go with the EcoHitch x7315.
+Installing was straight forward, but it ended up taking my entire Sunday to complete. Overall I’m very happy with how it
+turned out.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-10-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/3d_printer_mpms2.html</id>
+    <title>Monoprice Maker Select v2</title>
+    <updated>2021-10-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I bought my first 3D printer from &lt;a class="reference external" href="https://www.amazon.com/gp/product/B018GZBC3Y"&gt;Amazon&lt;/a&gt; in 2018 for $300. It’s on the
+cheaper end but there’s a large community behind it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/3d_printer_mpms2.html"/>
+    <summary>I bought my first 3D printer from Amazon in 2018 for $300. It’s on the
+cheaper end but there’s a large community behind it.</summary>
+    <category term="3d-printing" label="3d-printing"/>
+    <published>2021-10-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-09-08-alltrack-dashcam.html</id>
+    <title>Rear Dashcam Pair</title>
+    <updated>2021-09-08T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Installed a second pair of cameras to get a better view out of the rear of my car for read-end crashes as well as another IR
+camera pointed towards the front of the car. This way I have a sort of 360 view from both inside-pointing cameras. Like the
+front camera I also bought a tamper-proof case for the rear one. Similarly I also use BlackVue batteries to keep the camera
+powered overnight.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-09-08-alltrack-dashcam.html"/>
+    <summary>Installed a second pair of cameras to get a better view out of the rear of my car for read-end crashes as well as another IR
+camera pointed towards the front of the car. This way I have a sort of 360 view from both inside-pointing cameras. Like the
+front camera I also bought a tamper-proof case for the rear one. Similarly I also use BlackVue batteries to keep the camera
+powered overnight.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-09-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-31-alltrack-obd11.html</id>
+    <title>OBDeleven</title>
+    <updated>2021-08-31T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;These modifications are done with an &lt;a class="reference external" href="https://obdeleven.com"&gt;OBDeleven&lt;/a&gt; device.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-31-alltrack-obd11.html"/>
+    <summary>These modifications are done with an OBDeleven device.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-31T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/vw_alltrack_2019.html</id>
+    <title>Golf Alltrack SE</title>
+    <updated>2021-08-27T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This page lists all the modifications I’ve done to my 2019 Alltrack.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/vw_alltrack_2019.html"/>
+    <summary>This page lists all the modifications I’ve done to my 2019 Alltrack.</summary>
+    <published>2021-08-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-25-alltrack-drag-race.html</id>
+    <title>Drag Race</title>
+    <updated>2021-08-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Taken off of Shoreline Hwy in Stinson Beach CA.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-25-alltrack-drag-race.html"/>
+    <summary>Taken off of Shoreline Hwy in Stinson Beach CA.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-08-22-alltrack-vent-gauge.html</id>
+    <title>P3 Vent Gauge</title>
+    <updated>2021-08-22T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Installed this to have a boost gauge in my air vent:
+&lt;a class="reference external" href="https://www.p3cars.com/volkswagen/p3-v3-obd2-vw-mk7-mk7-5-gauge-2014-2019/"&gt;P3 V3 OBD2 - VW Mk7 / Mk7.5 Gauge (2014-2020)&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-08-22-alltrack-vent-gauge.html"/>
+    <summary>Installed this to have a boost gauge in my air vent:
+P3 V3 OBD2 - VW Mk7 / Mk7.5 Gauge (2014-2020)</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-08-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2021/2021-06-20-alltrack-fire-ext.html</id>
+    <title>Fire Extinguisher</title>
+    <updated>2021-06-20T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
+&lt;a class="reference external" href="https://www.amazon.com/gp/product/B001VXRYCM"&gt;Amerex Dry Chemical Fire Extinguisher B417T&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2021/2021-06-20-alltrack-fire-ext.html"/>
+    <summary>Bought a rechargeable 2.5 lb fire extinguisher from Amazon:
+Amerex Dry Chemical Fire Extinguisher B417T</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2021-06-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-06-06-rack.html</id>
+    <title>Custom Fabricated Rack 2020</title>
+    <updated>2020-06-06T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Having my equipment hidden in a TV cabinet was all fine and well but after a while I got the server rack itch. So during the pandemic I learned Fusion 360 and made my own custom 10u rack posts. It turned out nicer than I expected! 3D models are available here: &lt;a class="github reference external" href="https://github.com/Robpol86/TV-Cabinet-Rack-Posts"&gt;Robpol86/TV-Cabinet-Rack-Posts&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-06-06-rack.html"/>
+    <summary>Having my equipment hidden in a TV cabinet was all fine and well but after a while I got the server rack itch. So during the pandemic I learned Fusion 360 and made my own custom 10u rack posts. It turned out nicer than I expected! 3D models are available here: https://github.com/Robpol86/TV-Cabinet-Rack-Posts</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2020-06-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-02-21-alltrack-dashcam.html</id>
+    <title>Front Dashcam Pair</title>
+    <updated>2020-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
+parked. I live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street
+and after a year nobody has broken in to steal the camera.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-02-21-alltrack-dashcam.html"/>
+    <summary>I installed a BlackVue dashcam along with multiple batteries to get about 2 days of recording time while my vehicle is
+parked. I live in San Francisco and while my car is parked overnight in a garage, I occasionally park my car in the street
+and after a year nobody has broken in to steal the camera.</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-02-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-02-09-alltrack-drawer.html</id>
+    <title>Under-Seat Drawer</title>
+    <updated>2020-02-09T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
+seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
+with felt so things wouldn’t rattle. I’m using foil to eventually trace out the curve&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-02-09-alltrack-drawer.html"/>
+    <summary>Just like my old TDI I wanted the OEM drawer under the driver seat to store things. Unlike my old TDI there is no passenger
+seat drawer available for the Alltrack. While installing, I also lined the drawer and the dash cubby that came with the car
+with felt so things wouldn’t rattle. I’m using foil to eventually trace out the curve</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-02-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2020/2020-01-27-alltrack-trashcan.html</id>
+    <title>Trashcan</title>
+    <updated>2020-01-27T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Bought this from Amazon:
+&lt;a class="reference external" href="https://www.amazon.com/gp/product/B07TCT96SH"&gt;display4top Auto Car Trash Can Bin Waste Container&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2020/2020-01-27-alltrack-trashcan.html"/>
+    <summary>Bought this from Amazon:
+display4top Auto Car Trash Can Bin Waste Container</summary>
+    <category term="alltrack" label="alltrack"/>
+    <category term="car" label="car"/>
+    <published>2020-01-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2019/2019-05-29-desk.html</id>
+    <title>Desk Photos 2019</title>
+    <updated>2019-05-29T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Changed teams and finally got a corner cubicle.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2019/2019-05-29-desk.html"/>
+    <summary>Changed teams and finally got a corner cubicle.</summary>
+    <category term="desk" label="desk"/>
+    <published>2019-05-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2018/2018-01-14-desk.html</id>
+    <title>Desk Photo 2018</title>
+    <updated>2018-01-14T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;New apartment to cut down on my commute and new computer to take advantage of my 10 GbE home network and server. Upgraded from a Mac Pro to the new iMac Pro! 10 core Xeon + 4 TiB SSD + 128 GiB RAM - $3,000 employee discount = still a lot of money.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2018/2018-01-14-desk.html"/>
+    <summary>New apartment to cut down on my commute and new computer to take advantage of my 10 GbE home network and server. Upgraded from a Mac Pro to the new iMac Pro! 10 core Xeon + 4 TiB SSD + 128 GiB RAM - $3,000 employee discount = still a lot of money.</summary>
+    <category term="desk" label="desk"/>
+    <published>2018-01-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2017/2017-07-12-rack.html</id>
+    <title>TV Cabinet Rack 2017</title>
+    <updated>2017-07-12T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I replaced my super cool Dell rack recently with a more normal-looking setup in my living room. After countless weeks looking for the right TV cabinet I finally found one deep enough to house a couple of 2U rackmount cases and a rackmount switch. It turned out nicer than I had expected! Don’t ask me how much all this cost.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2017/2017-07-12-rack.html"/>
+    <summary>I replaced my super cool Dell rack recently with a more normal-looking setup in my living room. After countless weeks looking for the right TV cabinet I finally found one deep enough to house a couple of 2U rackmount cases and a rackmount switch. It turned out nicer than I had expected! Don’t ask me how much all this cost.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2017-07-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/raspberry_pi_luks.html</id>
+    <title>Raspberry Pi LUKS Root Encryption</title>
+    <updated>2017-02-12T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system
+&lt;strong&gt;without needing a second Linux computer&lt;/strong&gt; to run commands on. All you need is your Raspberry Pi running Raspbian and a
+USB flash drive.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/raspberry_pi_luks.html"/>
+    <summary>In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system
+without needing a second Linux computer to run commands on. All you need is your Raspberry Pi running Raspbian and a
+USB flash drive.</summary>
+    <category term="linux" label="linux"/>
+    <published>2017-02-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2017/2017-01-14-desk.html</id>
+    <title>Desk Photos 2017</title>
+    <updated>2017-01-14T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I’ve decided to get rid of my rack cabinet in my living room, so I started by moving my Mac Pro onto my desk and running ethernet cables through the wall. Also with my larger IKEA bed I had to rotate my desk 90 degrees to make everything fit.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2017/2017-01-14-desk.html"/>
+    <summary>I’ve decided to get rid of my rack cabinet in my living room, so I started by moving my Mac Pro onto my desk and running ethernet cables through the wall. Also with my larger IKEA bed I had to rotate my desk 90 degrees to make everything fit.</summary>
+    <category term="desk" label="desk"/>
+    <published>2017-01-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/postfix_gmail_forwarding.html</id>
+    <title>Postfix and Gmail Forwarding</title>
+    <updated>2016-12-18T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;You may be familiar with the &lt;a class="reference external" href="https://superuser.com/questions/306163/what-is-the-you-have-new-mail-message-in-linux-unix"&gt;local mail spool&lt;/a&gt; on your Linux system. Often error messages from failed cron jobs are
+sent there. However this isn’t much use if the server goes down or loses network connectivity. It would be nice to have
+it send those emails out to an external email inbox instead. That way you can be notified when disks fail in a RAID
+array or when applications/services fail or produce errors.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/postfix_gmail_forwarding.html"/>
+    <summary>You may be familiar with the local mail spool on your Linux system. Often error messages from failed cron jobs are
+sent there. However this isn’t much use if the server goes down or loses network connectivity. It would be nice to have
+it send those emails out to an external email inbox instead. That way you can be notified when disks fail in a RAID
+array or when applications/services fail or produce errors.</summary>
+    <category term="linux" label="linux"/>
+    <published>2016-12-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/raspberry_pi_project_fi.html</id>
+    <title>Raspberry Pi on Project Fi</title>
+    <updated>2016-12-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+&lt;a class="reference external" href="https://fi.google.com"&gt;Project Fi&lt;/a&gt; cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their &lt;a class="reference external" href="https://support.google.com/fi?p=data_only_SIM"&gt;data only SIM cards&lt;/a&gt; to get your
+Raspberry Pi online for relatively cheap depending on your use case.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/raspberry_pi_project_fi.html"/>
+    <summary>This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+Project Fi cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their data only SIM cards to get your
+Raspberry Pi online for relatively cheap depending on your use case.</summary>
+    <category term="cellular" label="cellular"/>
+    <category term="linux" label="linux"/>
+    <published>2016-12-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2016/2016-09-17-rack.html</id>
+    <title>Dell Rack 2016</title>
+    <updated>2016-09-17T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My server rack cabinet at home. Built my own router and zip tied a keystone panel so pulling out my rack doesn’t involve disconnecting my speaker wire. Listen to &lt;a class="reference external" href="https://youtu.be/WPDZoOKX8ag"&gt;https://youtu.be/WPDZoOKX8ag&lt;/a&gt; to hear how much noise this puts out (not really that much). For pix of the underside look at &lt;a class="reference internal" href="posts/2015/2015-07-13-rack.html"&gt;&lt;span class="std std-doc"&gt;last year’s gallery&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2016/2016-09-17-rack.html"/>
+    <summary>My server rack cabinet at home. Built my own router and zip tied a keystone panel so pulling out my rack doesn’t involve disconnecting my speaker wire. Listen to https://youtu.be/WPDZoOKX8ag to hear how much noise this puts out (not really that much). For pix of the underside look at last year’s gallery.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2016-09-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2016/2016-06-01-desk.html</id>
+    <title>Desk Photos 2016</title>
+    <updated>2016-06-01T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Right before I moved desks for the 6th time in 1.5 years. I lost my nice window desk, oh well.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2016/2016-06-01-desk.html"/>
+    <summary>Right before I moved desks for the 6th time in 1.5 years. I lost my nice window desk, oh well.</summary>
+    <category term="desk" label="desk"/>
+    <published>2016-06-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/bareos_tape_backup.html</id>
+    <title>Bareos Tape Backup on a 124T</title>
+    <updated>2015-08-23T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I use &lt;a class="reference external" href="https://www.bareos.org/en/"&gt;Bareos&lt;/a&gt; (a fork of &lt;a class="reference external" href="http://bacula.org/"&gt;Bacula&lt;/a&gt;) to backup my data at home from a
+Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it’s probably
+debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool!&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/bareos_tape_backup.html"/>
+    <summary>I use Bareos (a fork of Bacula) to backup my data at home from a
+Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it’s probably
+debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool!</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2015-08-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/root_certificate_authority.html</id>
+    <title>Setting Up a Home Root CA</title>
+    <updated>2015-08-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Tired of getting those SSL error pages when accessing your router’s admin interface? Sick of having to click three times
+to get to your IPMI web interface? Have I got a guide for you!&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/root_certificate_authority.html"/>
+    <summary>Tired of getting those SSL error pages when accessing your router’s admin interface? Sick of having to click three times
+to get to your IPMI web interface? Have I got a guide for you!</summary>
+    <category term="linux" label="linux"/>
+    <published>2015-08-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2015/2015-07-24-desk.html</id>
+    <title>Desk Photo 2015: Work @ Uber</title>
+    <updated>2015-07-24T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I really like standing desks and luckily Uber provides this contraption. Everyone seems to have one.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2015/2015-07-24-desk.html"/>
+    <summary>I really like standing desks and luckily Uber provides this contraption. Everyone seems to have one.</summary>
+    <category term="desk" label="desk"/>
+    <published>2015-07-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2015/2015-07-13-rack.html</id>
+    <title>Dell Rack 2015</title>
+    <updated>2015-07-13T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;My server rack cabinet at home. Removed everything from it, cleaned and dusted it, and installed only the things I’m using.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2015/2015-07-13-rack.html"/>
+    <summary>My server rack cabinet at home. Removed everything from it, cleaned and dusted it, and installed only the things I’m using.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2015-07-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2014/2014-04-25-desk.html</id>
+    <title>Desk Photos 2014</title>
+    <updated>2014-04-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Got back to having a standing desk. I stole this rolling desk since they moved us to a really cramped area and damned if I’m giving up one of my monitors.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2014/2014-04-25-desk.html"/>
+    <summary>Got back to having a standing desk. I stole this rolling desk since they moved us to a really cramped area and damned if I’m giving up one of my monitors.</summary>
+    <category term="desk" label="desk"/>
+    <published>2014-04-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/wireless_charging_car_dock.html</id>
+    <title>Wireless Charging Car Dock</title>
+    <updated>2013-11-16T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;So I was tired of having to hold my phone while plugging in a microusb cable after I’ve docked it in my car. I couldn’t
+find very many car docks out there with wireless charging, and I read that Nokia’s wireless charging car dock didn’t
+work very well on the Nexus 5.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/wireless_charging_car_dock.html"/>
+    <summary>So I was tired of having to hold my phone while plugging in a microusb cable after I’ve docked it in my car. I couldn’t
+find very many car docks out there with wireless charging, and I read that Nokia’s wireless charging car dock didn’t
+work very well on the Nexus 5.</summary>
+    <category term="car" label="car"/>
+    <category term="jsw" label="jsw"/>
+    <published>2013-11-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2013/2013-10-25-rack.html</id>
+    <title>Dell Rack 2013</title>
+    <updated>2013-10-25T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Taken after finally re-wiring it and setting it up after moving to San Francisco. I only took one photo of it :(&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2013/2013-10-25-rack.html"/>
+    <summary>Taken after finally re-wiring it and setting it up after moving to San Francisco. I only took one photo of it :(</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2013-10-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/photo_albums.html</id>
+    <title>Photo Albums</title>
+    <updated>2013-07-14T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Here are several of my random photo albums. As you can see, I am quite fond of taking pictures of my possessions.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/photo_albums.html"/>
+    <summary>Here are several of my random photo albums. As you can see, I am quite fond of taking pictures of my possessions.</summary>
+    <published>2013-07-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2013/2013-07-05-desk.html</id>
+    <title>Desk Photos 2013</title>
+    <updated>2013-07-05T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I took this picture shortly before leaving Symantec. The office kept shrinking, people leaving but nobody being hired. I managed to get a nice window cubicle for a few months in the end.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2013/2013-07-05-desk.html"/>
+    <summary>I took this picture shortly before leaving Symantec. The office kept shrinking, people leaving but nobody being hired. I managed to get a nice window cubicle for a few months in the end.</summary>
+    <category term="desk" label="desk"/>
+    <published>2013-07-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2012/2012-08-21-rack.html</id>
+    <title>Dell Rack 2012</title>
+    <updated>2012-08-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After over a whole year since receiving it I have finally made full use of my rack and transferred all of my computers and equipment to it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2012/2012-08-21-rack.html"/>
+    <summary>After over a whole year since receiving it I have finally made full use of my rack and transferred all of my computers and equipment to it.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2012-08-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/atrix_lapdock.html</id>
+    <title>Atrix Lapdock Other Uses</title>
+    <updated>2012-06-30T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I bought the Atrix Lapdock since I couldn’t find any sub $100 portable HDMI displays. The only affordable displays I
+could find were USB only. With the Atrix Lapdock and some adapters, I was able to use it as a portable display for
+several devices, which is great for traveling.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/atrix_lapdock.html"/>
+    <summary>I bought the Atrix Lapdock since I couldn’t find any sub $100 portable HDMI displays. The only affordable displays I
+could find were USB only. With the Atrix Lapdock and some adapters, I was able to use it as a portable display for
+several devices, which is great for traveling.</summary>
+    <published>2012-06-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2012/2012-01-03-desk.html</id>
+    <title>Desk Photos 2012</title>
+    <updated>2012-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I shamefully upgraded from my custom built dual core AMD FX-60 computer to a quad core Intel Core2 Dell computer I borrowed from work. I’ve had that FX-60 for too long and it was showing its age. Also that KVM was so horrible.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2012/2012-01-03-desk.html"/>
+    <summary>I shamefully upgraded from my custom built dual core AMD FX-60 computer to a quad core Intel Core2 Dell computer I borrowed from work. I’ve had that FX-60 for too long and it was showing its age. Also that KVM was so horrible.</summary>
+    <category term="desk" label="desk"/>
+    <published>2012-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/rns_510_vim.html</id>
+    <title>US RNS-510 Video In Motion</title>
+    <updated>2011-08-11T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I’ve been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/rns_510_vim.html"/>
+    <summary>After purchasing a VW 2010 Jetta SportWagen TDI with the DVD/Navigation option I’ve been searching for a way to get the
+head unit to play DVD video while driving so that my passengers can watch their DVDs while I drive on long road trips.
+I finally discovered a way to enable this feature. You will not need to purchase anything or make any prior changes.
+All you need is a CD-R and a CD burner.</summary>
+    <category term="car" label="car"/>
+    <category term="hacking" label="hacking"/>
+    <category term="jsw" label="jsw"/>
+    <published>2011-08-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2011/2011-06-10-rack.html</id>
+    <title>Dell Rack 2011</title>
+    <updated>2011-06-10T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Ever since I took a Cisco CCNA class back in high school in 2002 I’ve always wanted a rack at home. I even bought one on
+Craigslist in 2007 for $100 but it had round holes and it was very shallow. Turns out it was meant for music equipment.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2011/2011-06-10-rack.html"/>
+    <summary>Ever since I took a Cisco CCNA class back in high school in 2002 I’ve always wanted a rack at home. I even bought one on
+Craigslist in 2007 for $100 but it had round holes and it was very shallow. Turns out it was meant for music equipment.</summary>
+    <category term="homelab" label="homelab"/>
+    <published>2011-06-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2011/2011-05-13-desk.html</id>
+    <title>Desk Photos 2011</title>
+    <updated>2011-05-13T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;The same cubicle shortly before another office downsize.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2011/2011-05-13-desk.html"/>
+    <summary>The same cubicle shortly before another office downsize.</summary>
+    <category term="desk" label="desk"/>
+    <published>2011-05-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/flash_droid_cricket.html</id>
+    <title>Flashing Motorola Droid to Cricket</title>
+    <updated>2011-04-08T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This guide will explain how to flash a Motorola Droid from Verizon to Cricket based on my experiences. The two
+(similar) guides I followed had some inconsistencies and confused me until I pieced together clues from other sources.
+My guide will explain the exact steps I took to get my Droid working on &lt;strong&gt;Cricket’s $55 Android plan&lt;/strong&gt;.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/flash_droid_cricket.html"/>
+    <summary>This guide will explain how to flash a Motorola Droid from Verizon to Cricket based on my experiences. The two
+(similar) guides I followed had some inconsistencies and confused me until I pieced together clues from other sources.
+My guide will explain the exact steps I took to get my Droid working on Cricket’s $55 Android plan.</summary>
+    <category term="cellular" label="cellular"/>
+    <published>2011-04-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2010/2010-08-05-desk.html</id>
+    <title>Desk Photo 2010: Work @ Symantec</title>
+    <updated>2010-08-05T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After the office consolidated into one floor (instead of two), this was my new cubicle.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2010/2010-08-05-desk.html"/>
+    <summary>After the office consolidated into one floor (instead of two), this was my new cubicle.</summary>
+    <category term="desk" label="desk"/>
+    <published>2010-08-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/vw_jsw_2010.html</id>
+    <title>Jetta SportWagen TDI</title>
+    <updated>2010-07-03T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next car (I was then driving a 2000 F-150).
+On April 30th 2010 I finally committed to the vehicle and put down a deposit. On June 30th, I received my new car,
+special ordered the way I wanted it.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/vw_jsw_2010.html"/>
+    <summary>Sometime in September 2009, I set my eyes on a Jetta SportWagen TDI as my next car (I was then driving a 2000 F-150).
+On April 30th 2010 I finally committed to the vehicle and put down a deposit. On June 30th, I received my new car,
+special ordered the way I wanted it.</summary>
+    <category term="car" label="car"/>
+    <category term="jsw" label="jsw"/>
+    <published>2010-07-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2009/2009-03-05-desk.html</id>
+    <title>Desk Photos 2009</title>
+    <updated>2009-03-05T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;After moving buildings we didn’t have offices anymore, we had cubicles. These are actually really nice cubes!&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2009/2009-03-05-desk.html"/>
+    <summary>After moving buildings we didn’t have offices anymore, we had cubicles. These are actually really nice cubes!</summary>
+    <category term="desk" label="desk"/>
+    <published>2009-03-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2007/2007-02-21-desk.html</id>
+    <title>Desk Photos 2007</title>
+    <updated>2007-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;I shared this office with my coworker while I was a contractor at Symantec.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2007/2007-02-21-desk.html"/>
+    <summary>I shared this office with my coworker while I was a contractor at Symantec.</summary>
+    <category term="desk" label="desk"/>
+    <published>2007-02-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2006/2006-01-26-desk.html</id>
+    <title>Desk Photo 2006</title>
+    <updated>2006-01-26T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;First year in Austin after my computer died. I was stuck using that laptop for months.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2006/2006-01-26-desk.html"/>
+    <summary>First year in Austin after my computer died. I was stuck using that laptop for months.</summary>
+    <category term="desk" label="desk"/>
+    <published>2006-01-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2005/2005-08-19-desk.html</id>
+    <title>Desk Photo 2005: Work @ TISD</title>
+    <updated>2005-08-19T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;This was right before I left my first job for Austin. I loved that Dell Latitude C400 laptop (my first laptop) that I bought on eBay. I think it was a Pentium 3 866 MHz. And that’s a brownie.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2005/2005-08-19-desk.html"/>
+    <summary>This was right before I left my first job for Austin. I loved that Dell Latitude C400 laptop (my first laptop) that I bought on eBay. I think it was a Pentium 3 866 MHz. And that’s a brownie.</summary>
+    <category term="desk" label="desk"/>
+    <published>2005-08-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2004/2004-01-16-desk.html</id>
+    <title>Desk Photo 2004</title>
+    <updated>2004-01-16T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Got my kickass APC SUA1500 UPS! Weeks after getting it the house had a serious electrical problem and caused a brownout on my computer’s circuit. It would have been destroyed if it weren’t for my UPS. I also dabbled in the world of iptables and IP masquerading with my Linux router on a floppy.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2004/2004-01-16-desk.html"/>
+    <summary>Got my kickass APC SUA1500 UPS! Weeks after getting it the house had a serious electrical problem and caused a brownout on my computer’s circuit. It would have been destroyed if it weren’t for my UPS. I also dabbled in the world of iptables and IP masquerading with my Linux router on a floppy.</summary>
+    <category term="desk" label="desk"/>
+    <published>2004-01-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/posts/2003/2003-03-15-desk.html</id>
+    <title>Desk Photos 2003</title>
+    <updated>2003-03-15T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Started by a thread called “Where You Rock” on Big-O-Software Forums in early 2003, I began to take pictures of my desk to
+show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/posts/2003/2003-03-15-desk.html"/>
+    <summary>Started by a thread called “Where You Rock” on Big-O-Software Forums in early 2003, I began to take pictures of my desk to
+show off. Since then I have tried to take pictures of all my desks after significant changes for nostalgic purposes.</summary>
+    <category term="desk" label="desk"/>
+    <published>2003-03-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://localhost:8000/imagecfg.html</id>
+    <title>ImageCFG</title>
+    <updated>2002-11-30T00:00:00+00:00</updated>
+    <author>
+      <name>Robert Pooley</name>
+    </author>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;ImageCFG is a utility that probably does a lot of things (I cannot find any official documentation), but the only reason
+I use it is to fix old games (UT99 for example) which have problems on multicore/multicpu systems. It does so by
+assigning an executable to specific logical CPUs permanently (by modifying the .exe file, so backup the original in case
+you want to restore it).&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="http://localhost:8000/imagecfg.html"/>
+    <summary>ImageCFG is a utility that probably does a lot of things (I cannot find any official documentation), but the only reason
+I use it is to fix old games (UT99 for example) which have problems on multicore/multicpu systems. It does so by
+assigning an executable to specific logical CPUs permanently (by modifying the .exe file, so backup the original in case
+you want to restore it).</summary>
+    <published>2002-11-30T00:00:00+00:00</published>
+  </entry>
+</feed>

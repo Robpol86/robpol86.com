@@ -1,0 +1,1513 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Setting Up a Home Root CA" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/root_certificate_authority.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content="Tired of getting those SSL error pages when accessing your router’s admin interface? Sick of having to click three times to get to your IPMI web interface? Have I got a guide for you!,,,,,,,,,,,,, This guide will go over setting up an offline root certificate authority for your home network. It i..." />
+<meta property="og:image" content="http://localhost:8000/_images/01-keychain.400x226.25.png" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content="Tired of getting those SSL error pages when accessing your router’s admin interface? Sick of having to click three times to get to your IPMI web interface? Have I got a guide for you!,,,,,,,,,,,,, This guide will go over setting up an offline root certificate authority for your home network. It i..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>Setting Up a Home Root CA &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'root_certificate_authority';</script>
+    <link rel="canonical" href="http://localhost:8000/root_certificate_authority.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Golf Alltrack SE" href="vw_alltrack_2019.html" />
+    <link rel="prev" title="US RNS-510 Video In Motion" href="rns_510_vim.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>11 August 2015</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="blog/location/san-francisco.html" style="display:inline">San Francisco</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="blog/category/tutorials.html" style="display:inline">Tutorials</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tag"></i>
+    
+    </span>
+  
+  
+  <a href="blog/tag/linux.html" style="display:inline">linux</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="Setting Up a Home Root CA" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-17-influxdb-downsampling.html">InfluxDB v2 Downsampling</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-23-truenas-scale-telegraf.html">TrueNAS Telegraf, Influx, Grafana</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html">TrueNAS SCALE Runbook</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/root_certificate_authority.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Setting Up a Home Root CA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-host">Preparing the Host</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-date-prompt-on-raspberry-pi">Boot Date Prompt on Raspberry Pi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-the-openssl-config">Copy the OpenSSL Config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openssl-directory-structure">OpenSSL Directory Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Air Gap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finally-generate-the-pair">Finally Generate the Pair</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequent-tasks">Frequent Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bridging-the-air-gap">Bridging the Air Gap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstructing-data">Reconstructing Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issuing-server-certificates">Issuing Server Certificates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-to-java-certificate-store">Adding to Java Certificate Store</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="setting-up-a-home-root-ca">
+<h1>Setting Up a Home Root CA<a class="headerlink" href="#setting-up-a-home-root-ca" title="Link to this heading">#</a></h1>
+<p>Tired of getting those SSL error pages when accessing your router’s admin interface? Sick of having to click three times
+to get to your IPMI web interface? Have I got a guide for you!</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/root-ca/01-keychain.png"><img alt="_images/01-keychain.400x226.25.png" src="_images/01-keychain.400x226.25.png" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/root-ca/02-router.png"><img alt="_images/02-router.400x250.25.png" src="_images/02-router.400x250.25.png" />
+</a>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/root-ca/03-windows-10.png"><img alt="_images/03-windows-10.400x564.25.png" src="_images/03-windows-10.400x564.25.png" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/root-ca/04-bridge-the-gap-rpi.png"><img alt="_images/04-bridge-the-gap-rpi.400x225.25.png" src="_images/04-bridge-the-gap-rpi.400x225.25.png" />
+</a>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/root-ca/05-bridge-the-gap-android.png"><img alt="_images/05-bridge-the-gap-android.400x225.25.png" src="_images/05-bridge-the-gap-android.400x225.25.png" />
+</a>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This guide will go over setting up an offline root certificate authority for your home network. It is based on what I’ve
+learned from <a class="reference external" href="https://jamielinux.com/docs/openssl-certificate-authority/index.html">https://jamielinux.com/docs/openssl-certificate-authority/index.html</a> with a few differences:</p>
+<ol class="arabic simple">
+<li><p>We will not be creating an intermediate pair here. Since my intentions are just setting up SSL certs on a handful of
+internal web interfaces and maybe even WPA2 Enterprise one day, I didn’t think it was worth setting this up. It might
+make revoking certs not as quick, but I don’t see myself signing very many certs after my initial run.</p></li>
+<li><p>I’ll include steps on how to bridge the <a class="reference external" href="https://en.wikipedia.org/wiki/Air_gap_(networking)">air gap</a>. For maximum
+paranoid-tier security we will not be plugging in any USB flash drives (or USB anything excluding keyboards) or
+network cables. WiFi adapters are also obviously forbidden. For this we’ll be using
+<a class="reference external" href="https://fukuchi.org/works/qrencode/">qrencode</a>.</p></li>
+<li><p>I’ll be assuming the Linux computer you’re using has a GUI (desktop environment). This is to reduce the number of QR
+codes needed since you’ll have more resolution with a GUI than with a frame buffer so you can fit more data in each
+QR code.</p></li>
+<li><p>For additional paranoid-tier security we’ll generate a 8192-bit long RSA key for our root CA. 4096-bit keys are fine
+too but I’m crazy. We’ll also be creating 4096-bit SSL keys instead of the usual 2048-bit. If you’re using OS X and
+you get an error trying to install the root certificate, read:
+<a class="reference external" href="https://apple.stackexchange.com/questions/110261/mac-os-x-10-9-and-8192-bit-certificates-error-67762/">https://apple.stackexchange.com/questions/110261/mac-os-x-10-9-and-8192-bit-certificates-error-67762/</a></p></li>
+</ol>
+<p>While this guide should work fine with any Linux computer I’ll be focusing on Debian-based distributions. This guide has
+been tested on <strong>Debian Jessie</strong> on an old T60 Thinkpad and <strong>2017-01-11-raspbian-jessie.zip</strong> on a Raspberry Pi.</p>
+<p>The goal here is to setup an offline root CA. It will be online at first to get updates but right before generating the
+root pair we will remove any network connectivity from the host and never EVER connect it to any networks or USB
+devices. This will be an offline and air gapped root CA.</p>
+<section id="preparing-the-host">
+<h2>Preparing the Host<a class="headerlink" href="#preparing-the-host" title="Link to this heading">#</a></h2>
+<p>This section will go over preparing a newly-installed Debian/Raspbian system. For machines without a real time clock
+(e.g. Raspberry Pis) we’ll setup a script that runs during boot that prompts you for the current time.</p>
+<ol class="arabic simple">
+<li><p>Perform a clean install of Debian (or install the latest Raspbian PIXEL image on the Raspberry Pi) and boot up the
+host. It’s ok to have network access for now. For my Raspberry Pi I followed
+<a class="reference external" href="https://gist.github.com/Robpol86/3d4730818816f866452e">Raspbian Setup (Raspberry Pi)</a> (you don’t need to install
+any of those packages in that link, just upgrade).</p>
+<ol class="upperalpha simple">
+<li><p>If you’re using Debian be sure to create an <strong>encrypted</strong> LVM or partition.</p></li>
+<li><p>On a Raspberry Pi you can follow my guide to encrypt the main partition: <a class="reference internal" href="raspberry_pi_luks.html#raspberry_pi_luks"><span class="std std-ref">Raspberry Pi LUKS Root Encryption</span></a></p></li>
+</ol>
+</li>
+<li><p>Upgrade all of your packages since this will be the last time the system will have internet access:
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">upgrade</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">reboot</span></code> in case a new kernel was installed.</p></li>
+<li><p>Finally install these required packages: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">qrencode</span> <span class="pre">acl</span></code></p></li>
+</ol>
+<section id="boot-date-prompt-on-raspberry-pi">
+<h3>Boot Date Prompt on Raspberry Pi<a class="headerlink" href="#boot-date-prompt-on-raspberry-pi" title="Link to this heading">#</a></h3>
+<p>Raspberry Pis don’t have real time clocks so they don’t keep track of the time when powered off. Usually they handle
+this by getting the current time from the internet after booting up. However since our root CA will never have internet
+access again we need to always set the current time every time it boots up.</p>
+<p>Since time is very important for signing certificates we’ll want to avoid forgetting this. You can install this systemd
+file to have it prompt you for the current time before the Raspberry Pi finishes booting up, guaranteeing you won’t
+forget:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prompt for current date during boot.</span>
+<span class="c1">#</span>
+<span class="c1"># https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/date-prompt.service</span>
+<span class="c1">#</span>
+<span class="c1"># Stops the system from booting up to 2 minutes or until user enters the</span>
+<span class="c1"># current time in the console. Useful for Raspberry Pis and other systems</span>
+<span class="c1"># with no real time clocks.</span>
+<span class="c1">#</span>
+<span class="c1"># Save as: /etc/systemd/system/date-prompt.service</span>
+<span class="c1"># Enable with: systemctl enable date-prompt.service</span>
+
+<span class="k">[Unit]</span>
+<span class="na">After</span><span class="o">=</span><span class="s">fake-hwclock.service</span>
+<span class="na">After</span><span class="o">=</span><span class="s">systemd-fsck-root.service systemd-fsck@dev-mmcblk0p1.service</span>
+<span class="na">Before</span><span class="o">=</span><span class="s">sysinit.target plymouth-start.service</span>
+<span class="na">DefaultDependencies</span><span class="o">=</span><span class="s">no</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Prompt for current date during boot</span>
+
+<span class="k">[Service]</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">&quot;P=Enter the current date (e.g. Feb 11 5:17 PM): &quot;</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">-/bin/plymouth deactivate</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/bin/bash -c &#39;until read -ep &quot;$P&quot; R</span><span class="c1">; [ ! -z &quot;$R&quot; ] &amp;&amp; date -s &quot;$R&quot;; do :; done&#39;</span>
+<span class="na">ExecStartPost</span><span class="o">=</span><span class="s">-/bin/plymouth reactivate</span>
+<span class="na">ExecStopPost</span><span class="o">=</span><span class="s">-/bin/plymouth reactivate</span>
+<span class="na">RemainAfterExit</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">StandardError</span><span class="o">=</span><span class="s">inherit</span>
+<span class="na">StandardInput</span><span class="o">=</span><span class="s">tty</span>
+<span class="na">StandardOutput</span><span class="o">=</span><span class="s">inherit</span>
+<span class="na">TimeoutSec</span><span class="o">=</span><span class="s">120</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">oneshot</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">sysinit.target</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="copy-the-openssl-config">
+<h2>Copy the OpenSSL Config<a class="headerlink" href="#copy-the-openssl-config" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Based on a few <a class="reference external" href="http://www.mdmarra.com/2012/11/why-you-shouldnt-use-local-in-your.html">articles</a> I’ve
+<a class="reference external" href="https://serverfault.com/questions/71052/choosing-local-versus-public-domain-name-for-active-directory">found</a>
+while <a class="reference external" href="https://serverfault.com/questions/17255/top-level-domain-domain-suffix-for-private-network">considering</a>
+which domain to use at home, I thought I would mention it here even though it’s more of a
+network-related topic rather than an SSL/Certificate topic. I highly encourage you to either purchase a dedicated
+domain name for your home network or at least use a dedicated subdomain on a domain you already own.</p>
+<p>In the table below I’ll use <code class="docutils literal notranslate"><span class="pre">myhome.net</span></code> as an example. Org Name is just a name so in this case the value would be
+“MyHome.net”. If you used <code class="docutils literal notranslate"><span class="pre">home.mycooldomain.com</span></code> then the Org Name equivalent may be “Home.MyCoolDomain.com”. It
+can actually be set to anything but this is what I’ve done for my home network.</p>
+</div>
+<p>The first step is to configure OpenSSL. You’ll need to replace some values in the configuration file I’ll be providing
+to you. Refer to the table below for what you’ll be replacing.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>To Replace</p></th>
+<th class="head"><p>Replace With</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SUB_COUNTRY_NAME</p></td>
+<td><p>Two-letter ISO abbreviation for your country.</p></td>
+<td><p>US</p></td>
+</tr>
+<tr class="row-odd"><td><p>SUB_STATE_NAME</p></td>
+<td><p>State or province where you live. No abbreviations.</p></td>
+<td><p>California</p></td>
+</tr>
+<tr class="row-even"><td><p>SUB_LOCALITY</p></td>
+<td><p>City where you are located.</p></td>
+<td><p>San Francisco</p></td>
+</tr>
+<tr class="row-odd"><td><p>SUB_ORG_NAME</p></td>
+<td><p>Name of your organization.</p></td>
+<td><p>MyHome.net</p></td>
+</tr>
+<tr class="row-even"><td><p>SUB_UNIT_NAME</p></td>
+<td><p>Section of the organization.</p></td>
+<td><p>Home</p></td>
+</tr>
+<tr class="row-odd"><td><p>SUB_EMAIL</p></td>
+<td><p>Your contact email.</p></td>
+<td><p><a class="reference external" href="mailto:xx&#37;&#52;&#48;yy&#46;zz">xx<span>&#64;</span>yy<span>&#46;</span>zz</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Overwrite all of <code class="docutils literal notranslate"><span class="pre">/etc/ssl/openssl.cnf</span></code> with the following (it’s still ok to have network access for this part). Be
+sure to replace <code class="docutils literal notranslate"><span class="pre">SUB_</span></code> strings.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ssl/openssl.cnf</span>
+
+<span class="na">CN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">  </span><span class="c1"># Leave blank.</span>
+
+<span class="k">[ ca ]</span>
+<span class="na">default_ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CA_default</span>
+
+<span class="k">[ CA_default ]</span>
+<span class="c1"># Directory and file locations.</span>
+<span class="na">dir</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s">/root/ca</span>
+<span class="na">certs</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/certs</span>
+<span class="na">crl_dir</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/crl</span>
+<span class="na">new_certs_dir</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/newcerts</span>
+<span class="na">database</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/index.txt</span>
+<span class="na">serial</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/serial</span>
+<span class="na">RANDFILE</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/private/.rand</span>
+
+<span class="c1"># The root key and root certificate.</span>
+<span class="na">private_key</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/private/ca.key.pem</span>
+<span class="na">certificate</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/certs/ca.cert.pem</span>
+
+<span class="c1"># For certificate revocation lists.</span>
+<span class="na">crlnumber</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/crlnumber</span>
+<span class="na">crl</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/crl/ca.crl.pem</span>
+<span class="na">crl_extensions</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">crl_ext</span>
+<span class="na">default_crl_days</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">30</span>
+
+<span class="na">default_md</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">sha256</span>
+<span class="na">name_opt</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s">ca_default</span>
+<span class="na">cert_opt</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s">ca_default</span>
+<span class="na">default_days</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s">375</span>
+<span class="na">preserve</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="na">policy</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">policy_loose</span>
+
+<span class="k">[ policy_loose ]</span>
+<span class="c1"># See the POLICY FORMAT section of the `ca` man page.</span>
+<span class="na">countryName</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s">optional</span>
+<span class="na">stateOrProvinceName</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">optional</span>
+<span class="na">localityName</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">optional</span>
+<span class="na">organizationName</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">optional</span>
+<span class="na">organizationalUnitName</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">optional</span>
+<span class="na">commonName</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s">supplied</span>
+<span class="na">emailAddress</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">optional</span>
+
+<span class="k">[ req ]</span>
+<span class="c1"># Options for the `req` tool (`man req`).</span>
+<span class="na">default_bits</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">4096</span>
+<span class="na">distinguished_name</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">req_distinguished_name</span>
+<span class="na">string_mask</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s">utf8only</span>
+
+<span class="c1"># Extension to add when the -x509 option is used.</span>
+<span class="na">x509_extensions</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">v3_ca</span>
+
+<span class="k">[ req_distinguished_name ]</span>
+<span class="c1"># See &lt;https://en.wikipedia.org/wiki/Certificate_signing_request&gt;.</span>
+<span class="na">countryName</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="s">Country Name (2 letter code)</span>
+<span class="na">stateOrProvinceName</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s">State or Province Name</span>
+<span class="na">localityName</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="s">Locality Name</span>
+<span class="na">0.organizationName</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s">Organization Name</span>
+<span class="na">organizationalUnitName</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s">Organizational Unit Name</span>
+<span class="na">commonName</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="s">Common Name</span>
+<span class="na">emailAddress</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="s">Email Address</span>
+
+<span class="c1"># Optionally, specify some defaults.</span>
+<span class="na">countryName_default</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s">SUB_COUNTRY_NAME</span>
+<span class="na">stateOrProvinceName_default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">SUB_STATE_NAME</span>
+<span class="na">localityName_default</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">SUB_LOCALITY</span>
+<span class="na">0.organizationName_default</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s">SUB_ORG_NAME</span>
+<span class="na">organizationalUnitName_default</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">SUB_UNIT_NAME</span>
+<span class="na">commonName_default</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s">$ENV::CN</span>
+<span class="na">emailAddress_default</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">SUB_EMAIL</span>
+
+<span class="k">[ v3_ca ]</span>
+<span class="c1"># Extensions for a typical CA (`man x509v3_config`).</span>
+<span class="na">subjectAltName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">$ENV::SAN</span>
+<span class="na">subjectKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">hash</span>
+<span class="na">authorityKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">keyid:always,issuer</span>
+<span class="na">basicConstraints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, CA:true, pathlen:0</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, digitalSignature, cRLSign, keyCertSign</span>
+
+<span class="k">[ usr_cert ]</span>
+<span class="c1"># Extensions for client certificates (`man x509v3_config`).</span>
+<span class="na">basicConstraints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CA:FALSE</span>
+<span class="na">nsCertType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">client, email</span>
+<span class="na">nsComment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;OpenSSL Generated Client Certificate&quot;</span>
+<span class="na">subjectKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">hash</span>
+<span class="na">authorityKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">keyid,issuer</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, nonRepudiation, digitalSignature, keyEncipherment</span>
+<span class="na">extendedKeyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">clientAuth, emailProtection</span>
+
+<span class="k">[ server_cert ]</span>
+<span class="c1"># Extensions for server certificates (`man x509v3_config`).</span>
+<span class="na">basicConstraints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CA:FALSE</span>
+<span class="na">nsCertType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">server</span>
+<span class="na">nsComment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;OpenSSL Generated Server Certificate&quot;</span>
+<span class="na">subjectAltName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">$ENV::SAN</span>
+<span class="na">subjectKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">hash</span>
+<span class="na">authorityKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">keyid,issuer:always</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, digitalSignature, keyEncipherment</span>
+<span class="na">extendedKeyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">serverAuth</span>
+
+<span class="k">[ crl_ext ]</span>
+<span class="c1"># Extension for CRLs (`man x509v3_config`).</span>
+<span class="na">authorityKeyIdentifier</span><span class="o">=</span><span class="s">keyid:always</span>
+
+<span class="k">[ ocsp ]</span>
+<span class="c1"># Extension for OCSP signing certificates (`man ocsp`).</span>
+<span class="na">basicConstraints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CA:FALSE</span>
+<span class="na">subjectKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">hash</span>
+<span class="na">authorityKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">keyid,issuer</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, digitalSignature</span>
+<span class="na">extendedKeyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, OCSPSigning</span>
+</pre></div>
+</div>
+</section>
+<section id="openssl-directory-structure">
+<h2>OpenSSL Directory Structure<a class="headerlink" href="#openssl-directory-structure" title="Link to this heading">#</a></h2>
+<p>Everything will live in <code class="docutils literal notranslate"><span class="pre">/root/ca</span></code>. It will also all be owned by root. Remember this computer is a dedicated CA so it
+won’t be doing anything else at all except hosting your very important root certificate private key and the root
+certificate itself.</p>
+<p>Run these commands to setup directories and permissions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/root/ca/<span class="o">{</span>certs,crl,csr,newcerts,private<span class="o">}</span>
+sudo<span class="w"> </span>setfacl<span class="w"> </span>-d<span class="w"> </span>-m<span class="w"> </span>u::rx<span class="w"> </span>-m<span class="w"> </span>g::-<span class="w"> </span>-m<span class="w"> </span>o::-<span class="w"> </span>/root/ca/private
+sudo<span class="w"> </span>setfacl<span class="w"> </span>-d<span class="w"> </span>-m<span class="w"> </span>u::rx<span class="w"> </span>-m<span class="w"> </span>g::rx<span class="w"> </span>-m<span class="w"> </span>o::rx<span class="w"> </span>/root/ca/certs
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>/root/ca/private
+sudo<span class="w"> </span>touch<span class="w"> </span>/root/ca/index.txt
+sudo<span class="w"> </span>tee<span class="w"> </span>/root/ca/serial<span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span><span class="m">1000</span>
+</pre></div>
+</div>
+<p>Those <code class="docutils literal notranslate"><span class="pre">setfacl</span></code> commands set filesystem ACLs which enforce default maximum file permissions for new files/directories.
+A brief description for these directories:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Directory</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/root/ca/certs</span></code></p></td>
+<td><p>Certificates are dumped here.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/root/ca/crl</span></code></p></td>
+<td><p>Certificate revocation lists.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/root/ca/csr</span></code></p></td>
+<td><p>Certificate signing request.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/root/ca/newcerts</span></code></p></td>
+<td><p>Not used in this guide.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/root/ca/private</span></code></p></td>
+<td><p>Private keys. VERY SENSITIVE.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id1">
+<h2>Air Gap<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>This is the moment we’ve all been waiting for! Just copy one more file and then isolate the host from the world
+permanently.</p>
+<p>Place the following file into <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/airgap</span></code> and <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span></code> it. We’ll use this script to convert files into
+QR codes after compressing and encrypting them.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Tar up and encrypt specified files before encoding them to QR codes.</span>
+<span class="c1">#</span>
+<span class="c1"># https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/airgap.sh</span>
+<span class="c1">#</span>
+<span class="c1"># Using large QR codes to hop the air gap and transmit files out of this host</span>
+<span class="c1"># with no network connectivity.</span>
+<span class="c1"># Generate and print a temporary password used to encrypt the file contents.</span>
+<span class="c1"># Save as (chmod +x): /usr/local/bin/airgap</span>
+<span class="c1">#</span>
+<span class="c1"># Reconstruct data on OS X with the following:</span>
+<span class="c1"># 1. Read QR codes from this host&#39;s screen using phone app.</span>
+<span class="c1"># 2. Have phone save text data to Dropbox or local storage and transfer to PC.</span>
+<span class="c1"># 3. Save files as 1.txt, 2.txt, etc.</span>
+<span class="c1"># 4. cat [1-3].txt |base64 -D |openssl enc -aes-256-cfb -d |tar -xzv</span>
+
+<span class="nb">set</span><span class="w"> </span>-e<span class="w">  </span><span class="c1"># Exit script if a command fails.</span>
+<span class="nb">set</span><span class="w"> </span>-u<span class="w">  </span><span class="c1"># Treat unset variables as errors and exit immediately.</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>pipefail<span class="w">  </span><span class="c1"># Exit script if pipes fail instead of just the last program.</span>
+
+<span class="c1"># Handle no arguments specified.</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Must specify relative path to files to encode.&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="c1"># Handle bad arguments.</span>
+<span class="nb">declare</span><span class="w"> </span>-A<span class="w"> </span>visited
+<span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="si">${</span><span class="nv">visited</span><span class="p">[</span><span class="nv">$file</span><span class="p">]+true</span><span class="si">}</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: file </span><span class="nv">$file</span><span class="s2"> specified more than once.&quot;</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: file </span><span class="nv">$file</span><span class="s2"> does not exist.&quot;</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: file </span><span class="nv">$file</span><span class="s2"> is not a file.&quot;</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: file </span><span class="nv">$file</span><span class="s2"> is not readable.&quot;</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span>visited<span class="o">[</span><span class="nv">$file</span><span class="o">]=</span><span class="m">1</span>
+<span class="k">done</span>
+
+<span class="c1"># Generate random password 10 to 15 characters in length.</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PASSWORD</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-c<span class="w"> </span>-<span class="k">$((</span><span class="m">10</span><span class="o">+</span><span class="nv">RANDOM</span><span class="o">%</span><span class="m">6</span><span class="k">)))</span>
+
+<span class="c1"># Remove any previously created QR codes.</span>
+rm<span class="w"> </span>-vf<span class="w"> </span>/tmp/qr*.png
+
+<span class="c1"># Encode.</span>
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\x1b[1mCompressing, encrypting, and encoding </span><span class="nv">$#</span><span class="s2"> file(s)...\x1b[0m&quot;</span>
+tar<span class="w"> </span>-czv<span class="w"> </span><span class="nv">$@</span><span class="w"> </span><span class="p">|</span>
+<span class="w">    </span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cfb<span class="w"> </span>-salt<span class="w"> </span>-pass<span class="w"> </span>env:PASSWORD<span class="w"> </span><span class="p">|</span>
+<span class="w">    </span>base64<span class="w"> </span>-w0<span class="w"> </span><span class="p">|</span>
+<span class="w">    </span>qrencode<span class="w"> </span>-o<span class="w"> </span>/tmp/qr.png<span class="w"> </span>-Sv40
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\x1b[1mDone\x1b[0m&quot;</span>
+
+<span class="c1"># Print.</span>
+ls<span class="w"> </span>-l<span class="w"> </span>/tmp/qr*.png
+<span class="nb">echo</span><span class="w"> </span>-en<span class="w"> </span><span class="s2">&quot;\x1b[1mPassword:\x1b[0m &quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Now remove all USB devices (sans keyboard) and network cables/connections. If this is on a Raspberry Pi either swap it
+out with a Model A (the one without WiFi or ethernet ports), or fill in the ethernet port with hot glue. Do the same
+with all but one USB ports. Or just be super duper sure never to plug in things when using this SD card.</p>
+</section>
+<section id="finally-generate-the-pair">
+<h2>Finally Generate the Pair<a class="headerlink" href="#finally-generate-the-pair" title="Link to this heading">#</a></h2>
+<p>This is where we actually generate the root key and certificate. The root key is used to sign additional certificate
+pairs for specific devices/servers, and the root certificate is what you’ll export to clients that should trust any of
+these additional certificates.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The root key <code class="docutils literal notranslate"><span class="pre">ca.key.pem</span></code> you’ll be generating is the most sensitive file on this dedicated computer. Keep it as
+secure as possible. When <code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">genrsa</span></code> asks you for a password enter a unique and very secure password. Make
+sure <code class="docutils literal notranslate"><span class="pre">setfacl</span></code> worked and the permissions are: <code class="docutils literal notranslate"><span class="pre">-r--------</span> <span class="pre">1</span> <span class="pre">root</span> <span class="pre">root</span> <span class="pre">1.8K</span> <span class="pre">Aug</span> <span class="pre">15</span> <span class="pre">12:21</span> <span class="pre">private/ca.key.pem</span></code></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">req</span></code> command will prompt you for some information. The defaults you’ve specified in openssl.cnf will
+be fine. However double check that the <strong>Common Name</strong> is the fully qualified domain name of this certificate
+authority.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>su<span class="w"> </span>-<span class="w">  </span><span class="c1"># Become root.</span>
+<span class="nb">cd</span><span class="w"> </span>/root/ca
+<span class="nb">export</span><span class="w"> </span><span class="nv">CN</span><span class="o">=</span><span class="k">$(</span>hostname<span class="w"> </span>--fqdn<span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">SAN</span><span class="o">=</span>DNS:<span class="nv">$CN</span>
+openssl<span class="w"> </span>genrsa<span class="w"> </span>-aes256<span class="w"> </span>-out<span class="w"> </span>private/ca.key.pem<span class="w"> </span><span class="m">8192</span>
+openssl<span class="w"> </span>req<span class="w"> </span>-key<span class="w"> </span>private/ca.key.pem<span class="w"> </span>-new<span class="w"> </span>-x509<span class="w"> </span>-days<span class="w"> </span><span class="m">1827</span><span class="w"> </span>-extensions<span class="w"> </span>v3_ca<span class="w"> </span>-out<span class="w"> </span>certs/ca.cert.pem
+openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>certs/ca.cert.pem<span class="w"> </span><span class="p">|</span>more<span class="w">  </span><span class="c1"># Confirm everything looks good.</span>
+</pre></div>
+</div>
+<p>You’re done generating your root certificate and private key. You’re technically “done”. However you’ll probably want
+to do these two steps:</p>
+<ol class="arabic simple">
+<li><p>Install the public root certificate on client computers so they can trust your servers instead of getting SSL errors.</p></li>
+<li><p>Creating an SSL certificate to install on your web servers (router admin pages, IPMI interfaces, etc.). For more
+info see: <a class="reference internal" href="#issuing-server-certificates">Issuing Server Certificates</a></p></li>
+</ol>
+<p>For the former you’ll want to export the <code class="docutils literal notranslate"><span class="pre">certs/ca.cert.pem</span></code> file and install it on client computers/devices. For
+example:</p>
+<ul class="simple">
+<li><p>OS X: The <strong>Keychain Access</strong> app can install that file in the System keychain (not System Roots), an you’ll need to
+manually set the trust to “Always Trust” (ou may also have to restart web browsers or just reboot to get rid of SSL
+errors).</p></li>
+<li><p>Fedora/CentOS/RHEL: Copy that file to <code class="docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/anchors/</span></code> and then run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">update-ca-trust</span></code>.</p></li>
+</ul>
+<p>Instructions for exporting this file is available in the <a class="reference internal" href="#bridging-the-air-gap">Bridging the Air Gap</a> section below.</p>
+</section>
+<section id="frequent-tasks">
+<h2>Frequent Tasks<a class="headerlink" href="#frequent-tasks" title="Link to this heading">#</a></h2>
+<p>This section will contain additional sub sections with instructions on how to complete some tasks you may repeat for
+different use cases.</p>
+<section id="bridging-the-air-gap">
+<h3>Bridging the Air Gap<a class="headerlink" href="#bridging-the-air-gap" title="Link to this heading">#</a></h3>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">airgap</span></code> script we copied earlier to encode files into one or more QR codes to be scanned by your phone
+and reassembled on another computer. This is a one-way data transfer so your root CA host remains secure and air gapped.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">airgap</span></code> will print a password at the end of its run. Use this one-time password to decrypt the files on the
+receiving computer.</p>
+</div>
+<p>For example if you want to just export the <code class="docutils literal notranslate"><span class="pre">certs/ca.cert.pem</span></code> file you’ll do something like this (you can also
+specify multiple files for airgap to encode at once):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~ $ sudo su -
+root@raspberrypi:~# cd /root/ca
+root@raspberrypi:~/ca# airgap certs/ca.cert.pem
+Compressing, encrypting, and encoding 1 file(s)...
+certs/ca.cert.pem
+Done
+-rw-r--r-- 1 root root 7219 Feb 16 16:28 /tmp/qr-01.png
+-rw-r--r-- 1 root root 6816 Feb 16 16:28 /tmp/qr-02.png
+Password: 3SOD8voj8bT
+root@raspberrypi:~/ca#
+</pre></div>
+</div>
+<p>Then in the GUI open both of those files and scan them with your phone using a QR scanner app. If you’re scanning QR
+codes with an Android phone using
+<a class="reference external" href="https://play.google.com/store/apps/details?id=com.google.zxing.client.android">Barcode Scanner</a> you can “Share via
+email” which gives you the option to share to Dropbox (for some dumb reason) which makes it easy to get encrypted data
+on your computer.</p>
+<section id="reconstructing-data">
+<h4>Reconstructing Data<a class="headerlink" href="#reconstructing-data" title="Link to this heading">#</a></h4>
+<p>Once you’ve scanned the QR codes and saved the large strings of data somewhere on a Linux or OS X computer run these
+commands to reassemble and decrypt data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>~/inbound_certs
+cat<span class="w"> </span><span class="o">[</span><span class="m">1</span>-3<span class="o">]</span>.txt<span class="w"> </span><span class="p">|</span>base64<span class="w"> </span>-D<span class="w"> </span><span class="p">|</span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cfb<span class="w"> </span>-d<span class="w"> </span><span class="p">|</span>tar<span class="w"> </span>-xzvC<span class="w"> </span>~/inbound_certs
+</pre></div>
+</div>
+</section>
+</section>
+<section id="issuing-server-certificates">
+<h3>Issuing Server Certificates<a class="headerlink" href="#issuing-server-certificates" title="Link to this heading">#</a></h3>
+<p>This section covers issuing SSL certificates for web servers such as router admin pages. We will generate an SSL
+certificate and its private key. You’ll need to install both files on the web server. Keep in mind the private key is
+very sensitive and is used to sign SSL sessions to keep it secure as you transfer it to the web server!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When asked for a <strong>Common Name</strong> you’ll need to enter the web server’s FQDN. So instead of accessing your router
+admin page using <a class="reference external" href="http://192.168.0.1">http://192.168.0.1</a> you’ll instead be using <a class="reference external" href="https://router.myhome.net">https://router.myhome.net</a> for example. Common Name here
+will be <code class="docutils literal notranslate"><span class="pre">router.myhome.net</span></code>.</p>
+</div>
+<p>On the root CA host run these commands. Substitute <code class="docutils literal notranslate"><span class="pre">router.myhome.net</span></code> with whatever FQDN your target web server
+will use.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>date<span class="w">  </span><span class="c1"># Verify the date is correct. If not: sudo date -s &quot;Aug 15 18:10&quot;</span>
+sudo<span class="w"> </span>su<span class="w"> </span>-
+<span class="nb">cd</span><span class="w"> </span>/root/ca
+<span class="nb">export</span><span class="w"> </span><span class="nv">CN</span><span class="o">=</span>router.myhome.net
+<span class="nb">export</span><span class="w"> </span><span class="nv">SAN</span><span class="o">=</span>DNS:<span class="nv">$CN</span>
+openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>private/<span class="nv">$CN</span>.key.pem<span class="w"> </span><span class="m">4096</span>
+openssl<span class="w"> </span>req<span class="w"> </span>-key<span class="w"> </span>private/<span class="nv">$CN</span>.key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>csr/<span class="nv">$CN</span>.csr.pem<span class="w">  </span><span class="c1"># CN is FQDN.</span>
+openssl<span class="w"> </span>ca<span class="w"> </span>-extensions<span class="w"> </span>server_cert<span class="w"> </span>-notext<span class="w"> </span>-in<span class="w"> </span>csr/<span class="nv">$CN</span>.csr.pem<span class="w"> </span>-out<span class="w"> </span>certs/<span class="nv">$CN</span>.cert.pem
+rm<span class="w"> </span>csr/<span class="nv">$CN</span>.csr.pem
+openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>certs/<span class="nv">$CN</span>.cert.pem<span class="w"> </span><span class="p">|</span>more<span class="w">  </span><span class="c1"># Confirm everything looks good.</span>
+cat<span class="w"> </span>index.txt<span class="w">  </span><span class="c1"># Verify new cert is present.</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want to issue a certificate with multiple Subject Alternative Names (e.g. one cert for <code class="docutils literal notranslate"><span class="pre">server.myhome.net</span></code>
+and <code class="docutils literal notranslate"><span class="pre">sub.server.myhome.net</span></code>) you can set them in the <code class="docutils literal notranslate"><span class="pre">SAN</span></code> environment variable. Below is an example for a
+certificate valid for the main domain as well as all (single-level) wildcard sub-domains:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">CN</span><span class="o">=</span>server.myhome.net
+<span class="nb">export</span><span class="w"> </span><span class="nv">SAN</span><span class="o">=</span>DNS:<span class="nv">$CN</span>,DNS:*.<span class="nv">$CN</span>
+</pre></div>
+</div>
+</div>
+<p>Verify that the <strong>Issuer</strong> is the root CA and the <strong>Subject</strong> is the certificate itself. You will need to install both
+<code class="docutils literal notranslate"><span class="pre">certs/router.myhome.net.cert.pem</span></code> and <code class="docutils literal notranslate"><span class="pre">private/router.myhome.net.key.pem</span></code> on the web server. Read
+<a class="reference internal" href="#bridging-the-air-gap">Bridging the Air Gap</a> for instructions on how to do this securely.</p>
+</section>
+<section id="adding-to-java-certificate-store">
+<h3>Adding to Java Certificate Store<a class="headerlink" href="#adding-to-java-certificate-store" title="Link to this heading">#</a></h3>
+<p>Java seems to have its own certificate store separate from the Operating System’s. So in the case of IPMI you’ll have a
+valid HTTPS connection to the web interface but when trying to open the Console Redirection you’ll get certificate
+warnings.</p>
+<p>To fix this you’ll need to add the host’s (not root) certificate to Java’s certificate store. On OS X:</p>
+<ol class="arabic simple">
+<li><p>Open <strong>System Preferences</strong>. Click on the <strong>Java</strong> icon at the bottom.</p></li>
+<li><p>In the new window click on the <strong>Security</strong> tab and then the <strong>Manage Certificates</strong> button at the bottom.</p></li>
+<li><p>Set certificate type to <strong>Secure Site CA</strong>.</p></li>
+<li><p>Click Import, set File Format to <strong>All Files</strong>, and import <code class="docutils literal notranslate"><span class="pre">router.myhome.net.cert.pem</span></code>.</p></li>
+<li><p>Click Close and OK.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="posts/2015/2015-07-24-desk.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Desk Photo 2015: Work @ Uber</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="bareos_tape_backup.html">
+      <span>Bareos Tape Backup on a 124T</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "Setting Up a Home Root CA";
+      var disqus_title = "Setting Up a Home Root CA";
+      var disqus_url = "http://localhost:8000/root_certificate_authority";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="rns_510_vim.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">US RNS-510 Video In Motion</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="vw_alltrack_2019.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Golf Alltrack SE</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-host">Preparing the Host</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-date-prompt-on-raspberry-pi">Boot Date Prompt on Raspberry Pi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-the-openssl-config">Copy the OpenSSL Config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openssl-directory-structure">OpenSSL Directory Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Air Gap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finally-generate-the-pair">Finally Generate the Pair</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequent-tasks">Frequent Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bridging-the-air-gap">Bridging the Air Gap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstructing-data">Reconstructing Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issuing-server-certificates">Issuing Server Certificates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-to-java-certificate-store">Adding to Java Certificate Store</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
