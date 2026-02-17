@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026.2.17.62618]
+
+InfluxDB Downsample Post
+
+* b1d72f9 InfluxDB Downsample Post (#358)
+* b5444a6 Update dependencies. (#357)
+
 ## [2026.2.2.35316]
 
 Desk Hong Kong
