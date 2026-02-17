@@ -604,7 +604,7 @@ wheels = [
 
 [[package]]
 name = "robpol86-com"
-version = "2026.2.2.35316"
+version = "2026.2.17.62618"
 source = { editable = "." }
 dependencies = [
     { name = "ablog" },
