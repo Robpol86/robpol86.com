@@ -360,6 +360,13 @@ the same due to my usage of `aggregateWindow()`, but you can see the massive imp
     :::
 ```
 
+:::{thumb-figure} /_images/pictures/influxdb-downsampling/6-disk-space-usage.png
+My InfluxDB instance's disk space usage for one Telegraf node. On August 18th I changed Telegraf's interval from 60s to 10s
+and I migrated InfluxDB from v1 to v2. As you can see the disk space usage was on an unsustainable trajectory until I
+implemented downsampling on September 17th. The big spike was caused by the backfill process and afterwards my disk space
+usage graph is basically flat.
+:::
+
 ## Conclusion
 
 You should now have fully implemented downsampling in the TIG demo stack. While I've only tested it at a small scale, it's
