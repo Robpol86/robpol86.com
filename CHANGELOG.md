@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026.3.3.64345]
+
+Downsampling Disk Space Usage
+
+* e91188a Add space usage image to downsampling post. (#364)
+* 0f9dae4 Adding NSFN new site runbook. (#362)
+* 69b148e Update dependencies. (#363)
+
 ## [2026.2.17.62618]
 
 InfluxDB Downsample Post
