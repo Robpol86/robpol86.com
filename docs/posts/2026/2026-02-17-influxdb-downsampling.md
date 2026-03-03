@@ -360,6 +360,12 @@ the same due to my usage of `aggregateWindow()`, but you can see the massive imp
     :::
 ```
 
+TODO pix
+
+TODO aug 18th increase telegraf from 60s to 10s.
+
+TODO when did I upgrade prod to influxdb v2?
+
 ## Conclusion
 
 You should now have fully implemented downsampling in the TIG demo stack. While I've only tested it at a small scale, it's
