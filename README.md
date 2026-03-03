@@ -20,6 +20,18 @@ Google Analytics is enabled on my website.
 * [Google Analytics](https://analytics.google.com/analytics/web/#/p275999550/reports/intelligenthome)
 * [Google Search Console](https://search.google.com/search-console?resource_id=https%3A%2F%2Frobpol86.com%2F)
 
+## Create Stage
+
+TODO
+
+1. https://members.nearlyfreespeech.net/robpol86/sites
+1. Create a New Site > **Site Short Name**: rob86stage
+1. **Canonical Name**: rob86stage.robpol86.com
+1. **Setup DNS?**: No
+1. **Server Type**: Apache 2.4 Static Content
+
+No further action needed. SSH keys already pre-configured.
+
 ## Releases
 
 Releasing to stage is done automatically on every branch push.
