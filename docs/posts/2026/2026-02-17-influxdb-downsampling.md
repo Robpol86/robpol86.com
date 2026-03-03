@@ -364,7 +364,7 @@ the same due to my usage of `aggregateWindow()`, but you can see the massive imp
 My InfluxDB instance's disk space usage for one Telegraf node. On August 18th I increased Telegraf's interval from 60s to 10s
 and I migrated InfluxDB from v1 to v2. As you can see the disk space usage was on an unsustainable trajectory until I
 implemented downsampling on September 17th. The big spike was caused by the migration process and after the migration my disk
-space usage graph is almost flat.
+space usage graph is basically flat.
 :::
 
 ## Conclusion
