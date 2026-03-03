@@ -19,17 +19,3 @@ Google Analytics is enabled on my website.
 
 * [Google Analytics](https://analytics.google.com/analytics/web/#/p275999550/reports/intelligenthome)
 * [Google Search Console](https://search.google.com/search-console?resource_id=https%3A%2F%2Frobpol86.com%2F)
-
-## Releases
-
-Releasing to stage is done automatically on every branch push.
-
-To release to production:
-
-1. https://github.com/Robpol86/robpol86.com/actions/workflows/release.yml
-1. Run workflow > Fill out the release title
-    1. This will also be the section title in the [CHANGELOG.md](CHANGELOG.md) entry
-1. Run workflow
-1. When it completes a new git tag, GitHub release, and CHANGELOG.md entry will be created
-    1. The version will be auto-bumped in [pyproject.toml](pyproject.toml) as well
-1. The workflow will also deploy the HTML to production
