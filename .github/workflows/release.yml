@@ -87,12 +87,16 @@ jobs:
         uses: ./.github/actions/version_bump
         with:
           new_version: "${{ steps.new_version.outputs.NEW_VERSION }}"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - name: Update robpol86_com in lockfile
+        run: uv sync --package robpol86_com
       - name: Commit and Push
         id: commit
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "${{ steps.new_version.outputs.NEW_VERSION }}: ${{ inputs.release_title }}"
-          file_pattern: CHANGELOG.md pyproject.toml
+          file_pattern: CHANGELOG.md pyproject.toml uv.lock
     outputs:
       GIT_LOG: "${{ steps.git_log.outputs.GIT_LOG }}"
       NEW_COMMIT: "${{ steps.commit.outputs.commit_hash }}"
