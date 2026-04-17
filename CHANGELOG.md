@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026.4.17.41329]
+
+Grafana max-to-mean
+
+* aeb7a2d Change aggregate function from max() to mean() (#367)
+* 56615cf Bump robpol86_com package version in lockfile (#368)
+
 ## [2026.3.3.64345]
 
 Downsampling Disk Space Usage

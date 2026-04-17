@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "Robpol86.com"
-version = "2026.3.3.64345"
+version = "2026.4.17.41329"
 description = "My personal website."
 readme = "README.md"
 authors = [{name = "Robpol86", email = "robpol86@gmail.com"}]
