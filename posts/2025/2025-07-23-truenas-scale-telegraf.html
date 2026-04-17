@@ -1,0 +1,1437 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="TrueNAS Telegraf, Influx, Grafana" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/posts/2025/2025-07-23-truenas-scale-telegraf.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content=",,,,,,,,,, This guide will explain how to setup Telegraf, InfluxDB, and Grafana on TrueNAS SCALE (Community Edition). This is how I run all three apps on my Beelink ME Mini NAS. As of this writing I’m running TrueNAS SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier ..." />
+<meta property="og:image" content="http://localhost:8000/_images/grafana-panels-1-uptime-temps.400x196.25.png" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content=",,,,,,,,,, This guide will explain how to setup Telegraf, InfluxDB, and Grafana on TrueNAS SCALE (Community Edition). This is how I run all three apps on my Beelink ME Mini NAS. As of this writing I’m running TrueNAS SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier ..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>TrueNAS Telegraf, Influx, Grafana &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2025/2025-07-23-truenas-scale-telegraf';</script>
+    <link rel="canonical" href="http://localhost:8000/posts/2025/2025-07-23-truenas-scale-telegraf.html" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="TrueNAS Slots Tool for ME Mini" href="2025-07-14-truenas-scale-beelink-slots-tool.html" />
+    <link rel="prev" title="Desk Photo 2026" href="../2026/2026-02-01-desk.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>01 September 2025</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="../../blog/location/melbourne.html" style="display:inline">Melbourne</a>
+  
+  ,
+  
+  
+  
+  
+  <a href="../../blog/location/queenstown.html" style="display:inline">Queenstown</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="../../blog/category/tutorials.html" style="display:inline">Tutorials</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tags"></i>
+    
+    
+    </span>
+  
+  
+  <a href="../../blog/tag/homelab.html" style="display:inline">homelab</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/nas.html" style="display:inline">nas</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="TrueNAS Telegraf, Influx, Grafana" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2026/2026-02-17-influxdb-downsampling.html">InfluxDB v2 Downsampling</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2026/2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="2025-02-13-truenas-scale-aiffro-runbook.html">TrueNAS SCALE Runbook</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="2025-01-14-desk.html">Desk Photos 2025</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="../../_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/posts/2025/2025-07-23-truenas-scale-telegraf.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TrueNAS Telegraf, Influx, Grafana</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-pool">Choose a Pool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-datasets">Create Datasets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#influxdb">InfluxDB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-setup">Initial Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-tokens">Generate Tokens</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#telegraf">Telegraf</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-boot">Run on Boot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truenas-graphite-exporter">TrueNAS Graphite Exporter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alerts">Alerts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fan-speed">Fan Speed</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafana">Grafana</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafana-configuration">Grafana Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="truenas-telegraf-influx-grafana">
+<h1>TrueNAS Telegraf, Influx, Grafana<a class="headerlink" href="#truenas-telegraf-influx-grafana" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/grafana-panels-1-uptime-temps.png"><img alt="../../_images/grafana-panels-1-uptime-temps.400x196.25.png" src="../../_images/grafana-panels-1-uptime-temps.400x196.25.png" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/grafana-panels-2-ssd-faults.png"><img alt="../../_images/grafana-panels-2-ssd-faults.400x196.25.png" src="../../_images/grafana-panels-2-ssd-faults.400x196.25.png" />
+</a>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/grafana-panels-3-cpu.png"><img alt="../../_images/grafana-panels-3-cpu.400x196.25.png" src="../../_images/grafana-panels-3-cpu.400x196.25.png" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/grafana-panels-4-space-usage.png"><img alt="../../_images/grafana-panels-4-space-usage.400x196.25.png" src="../../_images/grafana-panels-4-space-usage.400x196.25.png" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This guide will explain how to setup <a class="reference external" href="https://www.influxdata.com/time-series-platform/telegraf/">Telegraf</a>,
+<a class="reference external" href="https://docs.influxdata.com/influxdb/v2/get-started/">InfluxDB</a>, and <a class="reference external" href="https://grafana.com/oss/grafana/">Grafana</a> on
+<a class="reference external" href="https://www.truenas.com/truenas-community-edition/">TrueNAS SCALE (Community Edition)</a>. This is how I run all three apps on
+my <a class="reference external" href="https://www.bee-link.com/products/beelink-me-mini-n150">Beelink ME Mini</a> NAS. As of this writing I’m running TrueNAS
+SCALE 25.04.1 (Fangtooth). The scope of this guide is to implement homelab-tier monitoring on a single node.</p>
+<p>Telegraf, InfluxDB, and Grafana are separate pieces of software that together allow you to graph metrics from
+your servers and devices. With these graphs, charts, and other visualization tools available in Grafana, you can see
+historical trends of space usage, CPU usage, and almost anything else. The three components make up the “TIG Stack”, where
+Telegraf collects the data, InfluxDB stores the data in a kind of database, and Grafana produces the graphs and alerts.</p>
+<p>Ever since I saw <a class="reference external" href="https://en.wikipedia.org/wiki/Multi_Router_Traffic_Grapher">MRTG</a> graphs at my first job at an ISP in 2003,
+I’ve always wanted to collect metrics and visualize them in graphs. Things like free disk space or CPU temperatures. I ran
+MRTG on my homelab file server for a few years, then tried <a class="reference external" href="https://en.wikipedia.org/wiki/RRDtool">RRDtool</a> for a bit. It was
+in 2015 at Uber where I learned about Grafana and fell in love with it. Not so much the Graphite backend they were using at
+the time. I first started running my own Grafana at home in 2017 with InfluxDB and Telegraf.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>This guide is written for InfluxDB v2, which is the version used by the latest TrueNAS app at this time. An earlier version
+of this guide was written for InfluxDB v1. You can access it here:
+<a class="github reference external" href="https://github.com/Robpol86/robpol86.com/blob/2025-07-29-064016/docs/posts/2025/2025-07-23-truenas-scale-telegraf.md">Robpol86/robpol86.com</a></p>
+</div>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>Before starting there are a few things we need to setup.</p>
+<section id="choose-a-pool">
+<h3>Choose a Pool<a class="headerlink" href="#choose-a-pool" title="Link to this heading">#</a></h3>
+<p>The first step for enabling apps on TrueNAS is to select a pool. In a typical home NAS you’ll probably only have one pool
+where you store all of your files; go ahead and select that pool. On my NAS I’ve named my pool <strong>Vault</strong>. Substitute that
+with your pool’s name.</p>
+<ol class="arabic simple">
+<li><p>In the TrueNAS UI go to ➡️ Apps</p></li>
+<li><p>Click on <strong>Configuration</strong> and then <strong>Choose Pool</strong></p></li>
+<li><p>Select a pool (e.g. Vault)</p></li>
+</ol>
+</section>
+<section id="create-datasets">
+<h3>Create Datasets<a class="headerlink" href="#create-datasets" title="Link to this heading">#</a></h3>
+<p>Next we’ll be creating a few datasets. We’ll create a dataset named <strong>Apps</strong> just for organization, and within it we’ll
+create datasets for each individual app. This is the structure we’ll be using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Vault (pool)
+└── Apps
+    ├── InfluxDB-Config
+    ├── InfluxDB-Data
+    ├── Grafana-Plugins
+    ├── Grafana-Data
+    └── Telegraf
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>In the TrueNAS UI go to ➡️ Datasets</p></li>
+<li><p>Click on <strong>Vault</strong> then <strong>Add Dataset</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: Apps</p></li>
+<li><p><strong>Dataset Preset</strong>: Apps</p></li>
+<li><p>Save</p></li>
+</ol>
+</li>
+<li><p>Click on the new <strong>Apps</strong> dataset then <strong>Add Dataset</strong> again</p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: InfluxDB-Config</p></li>
+<li><p><strong>Dataset Preset</strong>: Apps</p></li>
+<li><p>Save</p></li>
+<li><p>Return to Pool List</p></li>
+<li><p><em>Repeat for InfluxDB-Data, Grafana-Plugins, Grafana-Data and Telegraf</em></p></li>
+</ol>
+</li>
+</ol>
+<figure class="align-default" id="id1">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/datasets2.png"><img alt="../../_images/datasets2.800x537.25.png" src="../../_images/datasets2.800x537.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">You should now see something like this.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="influxdb">
+<h2>InfluxDB<a class="headerlink" href="#influxdb" title="Link to this heading">#</a></h2>
+<p>We’ll be using the official InfluxDB TrueNAS app as the timeseries database to store all of our metrics.</p>
+<ol class="arabic simple">
+<li><p>In the TrueNAS UI go to ➡️ Apps</p></li>
+<li><p>Click on <strong>Discover Apps</strong></p></li>
+<li><p>Search for <strong>InfluxDB</strong> and install it</p></li>
+<li><p>In the “Install InfluxDB” screen make these changes:</p>
+<ol class="arabic simple">
+<li><p>Network Configuration</p>
+<ol class="arabic simple">
+<li><p>WebUI Port</p>
+<ol class="arabic simple">
+<li><p><strong>Port Number</strong>: 8086</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Storage Configuration</p>
+<ol class="arabic simple">
+<li><p>InfluxDB Config Storage</p>
+<ol class="arabic simple">
+<li><p><strong>Type</strong>: Host Path</p></li>
+<li><p><strong>Host Path</strong>: /mnt/Vault/Apps/InfluxDB-Config</p></li>
+</ol>
+</li>
+<li><p>InfluxDB Data Storage</p>
+<ol class="arabic simple">
+<li><p><strong>Type</strong>: Host Path</p></li>
+<li><p><strong>Host Path</strong>: /mnt/Vault/Apps/InfluxDB-Data</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Then click <strong>Install</strong></p></li>
+</ol>
+<figure class="align-default" id="id2">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/influxdb-v2-running.png"><img alt="../../_images/influxdb-v2-running.800x414.25.png" src="../../_images/influxdb-v2-running.800x414.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">After you click “Install” you should see something like this.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="initial-setup">
+<h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Link to this heading">#</a></h3>
+<p>Once the application is “Running” click on it. Under “Application Info” click on <strong>Web UI</strong>. You’ll see a “Get Started”
+button. Click on it and then fill out the form with these values:</p>
+<ol class="arabic simple">
+<li><p><strong>Username</strong>: admin</p></li>
+<li><p><strong>Initial Organization Name</strong>: homelab</p></li>
+<li><p><strong>Initial Bucket Name</strong>: telegraf</p></li>
+<li><p>Click <strong>Continue</strong> then <strong>Quick Start</strong></p></li>
+</ol>
+</section>
+<section id="generate-tokens">
+<h3>Generate Tokens<a class="headerlink" href="#generate-tokens" title="Link to this heading">#</a></h3>
+<figure class="align-default">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/influxdb-v2-token.png"><img alt="../../_images/influxdb-v2-token.800x298.25.png" src="../../_images/influxdb-v2-token.800x298.25.png" />
+</a>
+</figure>
+<p>Next we need to create a token for Telegraf to use for writing, and another token for Grafana to use for reading. In the web
+UI expand the sidebar (there’s an icon in the lower left corner) and go to:</p>
+<ul class="simple">
+<li><p>Load Data</p>
+<ul>
+<li><p>API Tokens</p>
+<ul>
+<li><p>Generate API Token</p>
+<ul>
+<li><p>Custom API Token</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>For Telegraf:</p>
+<ol class="arabic simple">
+<li><p><strong>Description</strong>: telegraf-truenas</p></li>
+<li><p>Buckets &gt; telegraf &gt; <strong>Write</strong>: Check</p></li>
+<li><p>Generate</p></li>
+<li><p>Write down the presented token for later, you won’t be able to see it again</p></li>
+</ol>
+<p>Then repeat the process for Grafana:</p>
+<ol class="arabic simple">
+<li><p><strong>Description</strong>: grafana</p></li>
+<li><p>Buckets &gt; telegraf &gt; <strong>Read</strong>: Check</p></li>
+<li><p>Generate</p></li>
+<li><p>Write down the presented token for later, you won’t be able to see it again</p></li>
+</ol>
+</section>
+</section>
+<section id="telegraf">
+<h2>Telegraf<a class="headerlink" href="#telegraf" title="Link to this heading">#</a></h2>
+<p>Most guides and posts on the internet show how to run Telegraf from a Docker container with <code class="docutils literal notranslate"><span class="pre">/sys</span></code> and other filesystems
+mounted as well as running in privileged mode. I personally don’t like that approach, so instead I just run Telegraf as root
+on “bare metal” (as in not in a container or in a VM).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Running Telegraf on bare metal is not officially supported by TrueNAS. This implementation may stop working on future
+versions of TrueNAS SCALE if they stop including the commands we need.</p>
+</div>
+<p>To get started download three files and save them in <code class="docutils literal notranslate"><span class="pre">/mnt/Vault/Apps/Telegraf/</span></code>:</p>
+<ol class="arabic simple">
+<li><p><a class="reference download internal" download="" href="../../_downloads/e84aea9040f3246b12be683bc8f79146/telegraf.conf"><span class="xref download myst">telegraf.conf</span></a> unmodified</p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/c78b310e93e346733b5c7653c4b30f90/telegraf.env"><span class="xref download myst">telegraf.env</span></a> with “REPLACE_ME” replaced</p>
+<ul class="simple">
+<li><p><em>Use the telegraf-truenas token you generated in the <a class="reference internal" href="#generate-tokens">Generate Tokens</a> section</em></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/influxdata/telegraf/releases">telegraf</a> from the latest <strong>linux_amd64</strong> release</p>
+<ul class="simple">
+<li><p><em>Extract the tar.gz file and look for the <code class="docutils literal notranslate"><span class="pre">telegraf</span></code> file in <code class="docutils literal notranslate"><span class="pre">usr/bin</span></code></em></p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you run <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lah</span> <span class="pre">/mnt/Vault/Apps/Telegraf</span></code> you should see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="mi">120</span><span class="n">M</span>
+<span class="n">drwxrwx</span><span class="o">---</span> <span class="mi">2</span> <span class="n">root</span>          <span class="n">root</span>    <span class="mi">5</span> <span class="n">Aug</span> <span class="mi">31</span> <span class="mi">13</span><span class="p">:</span><span class="mi">37</span> <span class="o">.</span>
+<span class="n">drwxrwx</span><span class="o">---</span> <span class="mi">5</span> <span class="n">root</span>          <span class="n">root</span>    <span class="mi">5</span> <span class="n">Aug</span> <span class="mi">31</span> <span class="mi">12</span><span class="p">:</span><span class="mi">43</span> <span class="o">..</span>
+<span class="o">-</span><span class="n">rwxrwx</span><span class="o">---</span> <span class="mi">1</span> <span class="n">truenas_admin</span> <span class="n">root</span> <span class="mi">284</span><span class="n">M</span> <span class="n">Aug</span> <span class="mi">31</span> <span class="mi">13</span><span class="p">:</span><span class="mi">37</span> <span class="n">telegraf</span>
+<span class="o">-</span><span class="n">rwxrwx</span><span class="o">---</span> <span class="mi">1</span> <span class="n">truenas_admin</span> <span class="n">root</span> <span class="mf">2.2</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">31</span> <span class="mi">13</span><span class="p">:</span><span class="mi">37</span> <span class="n">telegraf</span><span class="o">.</span><span class="n">conf</span>
+<span class="o">-</span><span class="n">rwxrwx</span><span class="o">---</span> <span class="mi">1</span> <span class="n">truenas_admin</span> <span class="n">root</span>  <span class="mi">104</span> <span class="n">Aug</span> <span class="mi">31</span> <span class="mi">13</span><span class="p">:</span><span class="mi">37</span> <span class="n">telegraf</span><span class="o">.</span><span class="n">env</span>
+</pre></div>
+</div>
+</div>
+<section id="run-on-boot">
+<h3>Run on Boot<a class="headerlink" href="#run-on-boot" title="Link to this heading">#</a></h3>
+<p>Here we’ll configure TrueNAS to run Telegraf on boot by using a post-init command. This command will use <code class="docutils literal notranslate"><span class="pre">systemd-run</span></code> to
+launch Telegraf and handle things such as logging, restarting on failures, and environment variables.</p>
+<ol class="arabic">
+<li><p>In the TrueNAS UI go to ➡️ System &gt; Advanced Settings</p></li>
+<li><p>Add an Init/Shutdown script</p>
+<ol class="arabic">
+<li><p><strong>Description</strong>: Telegraf</p></li>
+<li><p><strong>Type</strong>: Command</p></li>
+<li><p><strong>When</strong>: Post Init</p></li>
+<li><p><strong>Command</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/bin/systemd-run<span class="w"> </span>--no-block<span class="w"> </span>--unit<span class="w"> </span>telegraf<span class="w"> </span>-p<span class="w"> </span><span class="nv">User</span><span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span><span class="nv">Restart</span><span class="o">=</span>always<span class="w"> </span>-p<span class="w"> </span><span class="nv">RestartSec</span><span class="o">=</span><span class="m">30</span><span class="w"> </span>-p<span class="w"> </span><span class="nv">EnvironmentFile</span><span class="o">=</span>/mnt/Vault/Apps/Telegraf/telegraf.env<span class="w"> </span>/mnt/Vault/Apps/Telegraf/telegraf<span class="w"> </span>--config<span class="w"> </span>/mnt/Vault/Apps/Telegraf/telegraf.conf
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<p>You can now reboot, or if you don’t want to you can run the command with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To view Telegraf logs run: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">journalctl</span> <span class="pre">-u</span> <span class="pre">telegraf</span></code></p>
+<p>To stop Telegraf run: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">stop</span> <span class="pre">telegraf</span></code></p>
+</div>
+</section>
+<section id="truenas-graphite-exporter">
+<h3>TrueNAS Graphite Exporter<a class="headerlink" href="#truenas-graphite-exporter" title="Link to this heading">#</a></h3>
+<p>TrueNAS supports exporting some metrics. Here we’ll tell it to export them to Telegraf. They’re not used in my dashboard but
+you might find a use for them.</p>
+<ol class="arabic simple">
+<li><p>In the TrueNAS UI go to ➡️ Reporting</p></li>
+<li><p>Click on <strong>Exporters</strong> then <strong>Add</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: Telegraf</p></li>
+<li><p><strong>Type</strong>: GRAPHITE</p></li>
+<li><p><strong>Destination IP</strong>: localhost</p></li>
+<li><p><strong>Destination Port</strong>: 2003</p></li>
+<li><p><strong>Prefix</strong>: graphite</p></li>
+<li><p><strong>Namespace</strong>: truenas_reporting</p></li>
+<li><p><strong>Update Every</strong>: 10</p></li>
+</ol>
+</li>
+</ol>
+<p>To confirm this works you can go into the InfluxDB web UI then click on <strong>Data Explorer</strong>:</p>
+<figure class="align-default" id="id3">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/influxdb-v2-graphite.png"><img alt="../../_images/influxdb-v2-graphite.800x470.25.png" src="../../_images/influxdb-v2-graphite.800x470.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">You should see a lot of <code class="docutils literal notranslate"><span class="pre">graphite.*</span></code> measurements in the telegraf bucket.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="alerts">
+<h3>Alerts<a class="headerlink" href="#alerts" title="Link to this heading">#</a></h3>
+<p>I’d like to be notified if InfluxDB isn’t recording metrics. We’ll accomplish this by reappropriating the built-in
+ApplicationsStartFailed alert.</p>
+<ol class="arabic">
+<li><p>In the TrueNAS UI go to ➡️ System &gt; Advanced Settings</p></li>
+<li><p>Add an Init/Shutdown script</p>
+<ol class="arabic">
+<li><p><strong>Description</strong>: Telegraf Health</p></li>
+<li><p><strong>Type</strong>: Command</p></li>
+<li><p><strong>When</strong>: Post Init</p></li>
+<li><p><strong>Command</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/bin/systemd-run<span class="w"> </span>--on-calendar<span class="o">=</span><span class="s1">&#39;*:*:00&#39;</span><span class="w"> </span>--unit<span class="w"> </span>telegraf-health<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;curl -sSf http://localhost:12121 -o /dev/null || midclt call alert.oneshot_create ApplicationsStartFailed &quot;{\&quot;error\&quot;: \&quot;telegraf unhealthy\&quot;}&quot;&#39;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every minute a systemd timer will poll the <code class="docutils literal notranslate"><span class="pre">outputs.health</span></code> endpoint in <a class="reference download internal" download="" href="../../_downloads/e84aea9040f3246b12be683bc8f79146/telegraf.conf"><span class="xref download myst">telegraf.conf</span></a> and fail if
+Telegraf isn’t running or if Telegraf hasn’t been sending metrics to InfluxDB.</p>
+<p>The way Telegraf’s health endpoint is implemented is a bit confusing. If Telegraf isn’t able to send metrics to InfluxDB,
+they pile up in its internal memory buffer. When the number of buffered metrics crosses a threshold (configured in
+<code class="docutils literal notranslate"><span class="pre">outputs.health.compares</span></code>) the health endpoint starts responding with an http 503 error (typically 5 minutes after InfluxDB
+has gone down). When InfluxDB is restored Telegraf will re-send these buffered metrics and the health check will return to an
+http 200 OK state.</p>
+</div>
+</section>
+<section id="fan-speed">
+<h3>Fan Speed<a class="headerlink" href="#fan-speed" title="Link to this heading">#</a></h3>
+<p>This step is optional and specific to the Beelink ME Mini. Out of the box the CPU fan speed isn’t reported because of a
+<a class="reference external" href="https://github.com/frankcrawford/it87/issues/3">missing kernel driver</a>. I wrote a workaround that compiles and installs the
+driver into TrueNAS to see the current fan RPM in the dashboard.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Do this at your own risk. Custom kernel drivers are 100% not officially supported by TrueNAS.</p>
+</div>
+<ol class="arabic">
+<li><p>In the TrueNAS UI go to ➡️ System &gt; Advanced Settings</p></li>
+<li><p>Add an Init/Shutdown script</p>
+<ol class="arabic">
+<li><p><strong>Description</strong>: Telegraf it87</p></li>
+<li><p><strong>Type</strong>: Command</p></li>
+<li><p><strong>When</strong>: Post Init</p></li>
+<li><p><strong>Command</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/bin/systemd-run<span class="w"> </span>--unit<span class="w"> </span>telegraf-it87<span class="w"> </span>-p<span class="w"> </span><span class="nv">User</span><span class="o">=</span>root<span class="w"> </span>sh<span class="w"> </span>-euxc<span class="w"> </span><span class="s1">&#39;if ! sensors |grep -P &quot;^fan.?:&quot;; then until systemctl is-active docker.service; do sleep 10; done; echo &quot;FROM ubuntu AS build\nRUN apt-get update &amp;&amp; apt-get install -y git make gcc\nWORKDIR /source\nRUN git clone https://github.com/frankcrawford/it87 .\nCOPY --from=usrlib modules /lib/modules\nCOPY --from=usrlib x86_64-linux-gnu/libelf.so.1 /usr/lib/x86_64-linux-gnu/\nCOPY --from=usrsrc . /usr/src\nRUN make\nFROM scratch\nCOPY --from=build /source/it87.ko .&quot; |docker build --build-context usrlib=/usr/lib --build-context usrsrc=/usr/src --output=/var/run/it87 -; mount -o remount,rw /usr; cp /var/run/it87/it87.ko &quot;/usr/lib/modules/$(uname -r)/kernel/drivers/hwmon/&quot;; mount -o remount,ro /usr; echo it87 |tee /etc/modules-load.d/it87.conf; modprobe it87; fi&#39;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<p>Reboot or run the command with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>.</p>
+</section>
+</section>
+<section id="grafana">
+<h2>Grafana<a class="headerlink" href="#grafana" title="Link to this heading">#</a></h2>
+<p>We can use the offical Grafana TrueNAS app to visualize our metrics and draw pretty graphs. It also supports alerting you
+through email, Discord, Slack, and other methods (however I won’t be covering Grafana alerts in this guide).</p>
+<ol class="arabic simple">
+<li><p>In the TrueNAS UI go to ➡️ Apps</p></li>
+<li><p>Click on <strong>Discover Apps</strong></p></li>
+<li><p>Search for <strong>Grafana</strong> and install it</p></li>
+<li><p>In the “Install Grafana” screen make these changes:</p>
+<ol class="arabic simple">
+<li><p>Storage Configuration</p>
+<ol class="arabic simple">
+<li><p>Grafana Data Storage</p>
+<ol class="arabic simple">
+<li><p><strong>Type</strong>: Host Path</p></li>
+<li><p><strong>Host Path</strong>: /mnt/Vault/Apps/Grafana-Data</p></li>
+</ol>
+</li>
+<li><p>Grafana Plugins Storage</p>
+<ol class="arabic simple">
+<li><p><strong>Type</strong>: Host Path</p></li>
+<li><p><strong>Host Path</strong>: /mnt/Vault/Apps/Grafana-Plugins</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Then click <strong>Install</strong></p></li>
+</ol>
+<figure class="align-default" id="id4">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/travel-nas/truenas-scale-telegraf/grafana2-running.png"><img alt="../../_images/grafana2-running.800x327.25.png" src="../../_images/grafana2-running.800x327.25.png" />
+</a>
+<figcaption>
+<p><span class="caption-text">After you click “Install” you should see something like this.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="grafana-configuration">
+<h3>Grafana Configuration<a class="headerlink" href="#grafana-configuration" title="Link to this heading">#</a></h3>
+<p>Once the application is “Running” click on it. Under “Application Info” click on <strong>Web UI</strong>. The default username and
+password are both “admin”.</p>
+<p>After you set a new admin password expand the sidebar (click on the Grafana logo in the upper left corner) and do the
+following to set up Grafana with our InfluxDB application:</p>
+<ol class="arabic simple">
+<li><p>Connections &gt; Data sources &gt; Add data source &gt; InfluxDB</p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: influxdb</p></li>
+<li><p><strong>Query language</strong>: Flux</p></li>
+<li><p><strong>URL</strong>: <code class="docutils literal notranslate"><span class="pre">http://172.16.0.1:8086</span></code></p>
+<ul class="simple">
+<li><p><em>This is the Docker network IP that InfluxDB runs in</em></p></li>
+</ul>
+</li>
+<li><p><strong>Auth</strong>: <em>Disable all</em></p></li>
+<li><p>InfluxDB Details</p>
+<ol class="arabic simple">
+<li><p><strong>Organization</strong>: homelab</p></li>
+<li><p><strong>Token</strong>: <em>Use the grafana token you generated in the <a class="reference internal" href="#generate-tokens">Generate Tokens</a> section</em></p></li>
+<li><p><strong>Default Bucket</strong>: telegraf</p></li>
+</ol>
+</li>
+<li><p>Save &amp; test</p>
+<ul class="simple">
+<li><p><em>It should say something like: datasource is working. 1 buckets found</em></p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p>You can now create a new dashboard or import mine and go from there. To import mine:</p>
+<ol class="arabic simple">
+<li><p>Dashboards &gt; New &gt; Import</p>
+<ol class="arabic simple">
+<li><p>Upload my <a class="reference download internal" download="" href="../../_downloads/c2d1c721e4485073c6a386f9c8331e24/grafana.json"><span class="xref download myst">grafana.json</span></a></p></li>
+<li><p>influxdb &gt; <strong>Select a InfluxDB data source</strong>: influxdb</p></li>
+<li><p><strong>NAS_HOST</strong>: <em>your NAS hostname</em></p>
+<ul class="simple">
+<li><p><em>Find this hostname in the main Dashboard page of the TrueNAS UI, under System Information</em></p></li>
+</ul>
+</li>
+<li><p>Import</p></li>
+</ol>
+</li>
+</ol>
+<p>I like to make this dashboard the default page for Grafana, so when I go to the Grafana web UI it takes me directly to my
+graphs. To do that in the Grafana web UI go to:</p>
+<ol class="arabic simple">
+<li><p>Upper right avatar icon &gt; Profile &gt; Preferences</p>
+<ol class="arabic simple">
+<li><p><strong>Home Dashboard</strong>: Dashboards/NAS</p></li>
+<li><p>Save</p></li>
+</ol>
+</li>
+</ol>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>You should now have the TIG Stack running on your NAS. Feel free to add or remove panels in the dashboard to see the
+metrics you’re interested in. You can also monitor additional components of your homelab by editing the <code class="docutils literal notranslate"><span class="pre">telegraf.conf</span></code> file.
+You can read more about Telegraf
+<a class="reference external" href="https://docs.influxdata.com/telegraf/v1/configure_plugins/input_plugins/">input plugins here</a>. If you have any questions or
+suggestions feel free to leave a comment below.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="2025-07-14-truenas-scale-beelink-slots-tool.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>TrueNAS Slots Tool for ME Mini</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="../2026/2026-02-01-desk.html">
+      <span>Desk Photo 2026</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "TrueNAS Telegraf, Influx, Grafana";
+      var disqus_title = "TrueNAS Telegraf, Influx, Grafana";
+      var disqus_url = "http://localhost:8000/posts/2025/2025-07-23-truenas-scale-telegraf";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../2026/2026-02-01-desk.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Desk Photo 2026</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2025-07-14-truenas-scale-beelink-slots-tool.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">TrueNAS Slots Tool for ME Mini</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-pool">Choose a Pool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-datasets">Create Datasets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#influxdb">InfluxDB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-setup">Initial Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-tokens">Generate Tokens</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#telegraf">Telegraf</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-boot">Run on Boot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truenas-graphite-exporter">TrueNAS Graphite Exporter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alerts">Alerts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fan-speed">Fan Speed</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafana">Grafana</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafana-configuration">Grafana Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

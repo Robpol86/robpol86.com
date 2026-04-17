@@ -1,0 +1,1197 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Raspberry Pi LUKS Root Encryption" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/raspberry_pi_luks.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content="In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system without needing a second Linux computer to run commands on. All you need is your Raspberry Pi running Raspbian and a USB flash drive. An overview of the process: Install softwa..." />
+<meta property="og:image" content="http://localhost:8000/_static/logo.png" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content="In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system without needing a second Linux computer to run commands on. All you need is your Raspberry Pi running Raspbian and a USB flash drive. An overview of the process: Install softwa..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>Raspberry Pi LUKS Root Encryption &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'raspberry_pi_luks';</script>
+    <link rel="canonical" href="http://localhost:8000/raspberry_pi_luks.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Raspberry Pi on Project Fi" href="raspberry_pi_project_fi.html" />
+    <link rel="prev" title="Postfix and Gmail Forwarding" href="postfix_gmail_forwarding.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>12 February 2017</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="blog/location/san-francisco.html" style="display:inline">San Francisco</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="blog/category/tutorials.html" style="display:inline">Tutorials</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tag"></i>
+    
+    </span>
+  
+  
+  <a href="blog/tag/linux.html" style="display:inline">linux</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="Raspberry Pi LUKS Root Encryption" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-17-influxdb-downsampling.html">InfluxDB v2 Downsampling</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-23-truenas-scale-telegraf.html">TrueNAS Telegraf, Influx, Grafana</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html">TrueNAS SCALE Runbook</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/raspberry_pi_luks.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Raspberry Pi LUKS Root Encryption</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-software">Install Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-boot-files">Prepare Boot Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shrink-and-encrypt">Shrink and Encrypt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pretty-password-prompt">Pretty Password Prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="raspberry-pi-luks-root-encryption">
+<h1>Raspberry Pi LUKS Root Encryption<a class="headerlink" href="#raspberry-pi-luks-root-encryption" title="Link to this heading">#</a></h1>
+<p>In this short guide I’ll go over how I implemented full disk encryption using LUKS on my Raspberry Pi’s root file system
+<strong>without needing a second Linux computer</strong> to run commands on. All you need is your Raspberry Pi running Raspbian and a
+USB flash drive.</p>
+<p>An overview of the process:</p>
+<ol class="arabic simple">
+<li><p>Install software on your Raspberry Pi’s Raspbian OS.</p></li>
+<li><p>Build a custom and boot into the <a class="reference external" href="https://pi-ltsp.net/advanced/kernels.html#initramfs">initramfs</a>.</p></li>
+<li><p>Shrink your main file system.</p></li>
+<li><p>Back up your main file system from the SD card to the USB drive.</p></li>
+<li><p>Wipe SD card and create an empty encrypted partition.</p></li>
+<li><p>Copy back your backed-up file system from USB on to your encrypted SD card.</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This guide involves backing up your data to a USB drive and destroying all data on your SD card. Though slim there
+is a possibility of failure. Be sure to have <strong>proper backups of your Raspberry Pi</strong> in case something goes wrong.
+Also note that <strong>all data on your USB drive will be destroyed</strong> during the process since it will temporarily hold
+all of your Raspberry Pi’s data.</p>
+</div>
+<p>At the time of this writing I’ve tested this guide against <em>2017-01-11-raspbian-jessie.zip</em> and
+<em>2017-01-11-raspbian-jessie-lite.zip</em> on a <em>Raspberry Pi 3 Model B V1.2</em> and a <em>Raspberry Pi Zero V1.3</em>.</p>
+<section id="install-software">
+<h2>Install Software<a class="headerlink" href="#install-software" title="Link to this heading">#</a></h2>
+<p>We’ll begin by installing software and creating a new initramfs for your Raspberry Pi. This new initramfs will have the
+<code class="docutils literal notranslate"><span class="pre">cryptsetup</span></code> program needed to unlock the encrypted partition on every boot. We’ll also include other tools to assist
+in the initial encryption of your existing data.</p>
+<p>First install some software:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>busybox<span class="w"> </span>cryptsetup<span class="w"> </span>initramfs-tools
+</pre></div>
+</div>
+<p>Next we’ll need to add a kernel post-install script. Since Raspbian doesn’t normally use an initrd/initramfs it doesn’t
+auto-update the one we’re about to create when a new kernel version comes out. Our initramfs holds kernel modules since
+they’re needed before the encrypted root file system can be mounted. When the kernel version changes it won’t be able to
+find its new modules. To fix this write the following to <code class="docutils literal notranslate"><span class="pre">/etc/kernel/postinst.d/initramfs-rebuild</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh -e</span>
+
+<span class="c1"># Rebuild initramfs.gz after kernel upgrade to include new kernel&#39;s modules.</span>
+<span class="c1"># https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/initramfs-rebuild.sh</span>
+<span class="c1"># Save as (chmod +x): /etc/kernel/postinst.d/initramfs-rebuild</span>
+
+<span class="c1"># Remove splash from cmdline.</span>
+<span class="k">if</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;\bsplash\b&#39;</span><span class="w"> </span>/boot/cmdline.txt<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/ \?splash \?/ /&#39;</span><span class="w"> </span>/boot/cmdline.txt
+<span class="k">fi</span>
+
+<span class="c1"># Exit if not building kernel for this Raspberry Pi&#39;s hardware version.</span>
+<span class="nv">version</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="nv">current_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">current_version</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span>*-v7+<span class="o">)</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">      </span>*-v7+<span class="o">)</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">      </span>*<span class="o">)</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="k">esac</span>
+<span class="w">  </span><span class="p">;;</span>
+<span class="w">  </span>*+<span class="o">)</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">      </span>*-v7+<span class="o">)</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span><span class="k">esac</span>
+<span class="w">  </span><span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="c1"># Exit if rebuild cannot be performed or not needed.</span>
+<span class="o">[</span><span class="w"> </span>-x<span class="w"> </span>/usr/sbin/mkinitramfs<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>/boot/initramfs.gz<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+lsinitramfs<span class="w"> </span>/boot/initramfs.gz<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;/</span><span class="nv">$version</span>$<span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="c1"># Already in initramfs.</span>
+
+<span class="c1"># Rebuild.</span>
+mkinitramfs<span class="w"> </span>-o<span class="w"> </span>/boot/initramfs.gz<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$version</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Now we want <code class="docutils literal notranslate"><span class="pre">resize2fs</span></code> and <code class="docutils literal notranslate"><span class="pre">fdisk</span></code> to be included in our initramfs so we’ll need to create a hook file. Write the
+following to <code class="docutils literal notranslate"><span class="pre">/etc/initramfs-tools/hooks/resize2fs</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh -e</span>
+
+<span class="c1"># Copy resize2fs, fdisk, and other kernel modules into initramfs image.</span>
+<span class="c1"># https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/resize2fs.sh</span>
+<span class="c1"># Save as (chmod +x): /etc/initramfs-tools/hooks/resize2fs</span>
+
+<span class="nv">COMPATIBILITY</span><span class="o">=</span><span class="nb">true</span><span class="w">  </span><span class="c1"># Set to false to skip copying other kernel&#39;s modules.</span>
+
+<span class="nv">PREREQ</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+prereqs<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PREREQ</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span>prereqs<span class="o">)</span>
+<span class="w">    </span>prereqs
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="w">  </span><span class="p">;;</span>
+<span class="k">esac</span>
+
+.<span class="w"> </span>/usr/share/initramfs-tools/hook-functions
+
+copy_exec<span class="w"> </span>/sbin/resize2fs<span class="w"> </span>/sbin
+copy_exec<span class="w"> </span>/sbin/fdisk<span class="w"> </span>/sbin
+
+<span class="c1"># Raspberry Pi 1 and 2+3 use different kernels. Include the other.</span>
+<span class="k">if</span><span class="w"> </span><span class="si">${</span><span class="nv">COMPATIBILITY</span><span class="si">}</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span>*-v7+<span class="o">)</span><span class="w"> </span><span class="nv">other_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="w"> </span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/-v7+$/+/&#39;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>*+<span class="o">)</span><span class="w"> </span><span class="nv">other_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="w"> </span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/+$/-v7+/&#39;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>*<span class="o">)</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Warning: kernel version doesn&#39;t end with +, ignoring.&quot;</span>
+<span class="w">      </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="w">  </span><span class="k">esac</span>
+<span class="w">  </span>cp<span class="w"> </span>-r<span class="w"> </span>/lib/modules/<span class="si">${</span><span class="nv">other_version</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DESTDIR</span><span class="si">}</span>/lib/modules/
+<span class="k">fi</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Raspbian ships with two Linux kernels: one for the Raspberry Pi 1 (including Pi Zero), and another for the Raspberry
+Pi 2 and 3. In order to keep the ability of using one SD card on all Raspberry Pis the above script will include the
+other kernel’s modules (the current kernel’s modules are the only ones included by default). This will double the
+size of the <code class="docutils literal notranslate"><span class="pre">initramfs.gz</span></code> file. If you don’t plan on using this SD card on a different Raspberry Pi you can set
+<code class="docutils literal notranslate"><span class="pre">COMPATIBILITY</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> and re-run <code class="docutils literal notranslate"><span class="pre">mkinitramfs</span></code> below.</p>
+</div>
+<p>Finally let’s build the new initramfs and make sure our utilities have been installed. The <code class="docutils literal notranslate"><span class="pre">mkinitramfs</span></code> command may
+print some WARNINGs from cryptsetup, but that should be fine since we’re using <code class="docutils literal notranslate"><span class="pre">CRYPTSETUP=y</span></code>. As long as cryptsetup
+itself is present in the initramfs it won’t be a problem.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/etc/kernel/postinst.d/initramfs-rebuild
+sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/etc/initramfs-tools/hooks/resize2fs
+sudo<span class="w"> </span>-E<span class="w"> </span><span class="nv">CRYPTSETUP</span><span class="o">=</span>y<span class="w"> </span>mkinitramfs<span class="w"> </span>-o<span class="w"> </span>/boot/initramfs.gz
+lsinitramfs<span class="w"> </span>/boot/initramfs.gz<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>-P<span class="w"> </span><span class="s2">&quot;sbin/(cryptsetup|resize2fs|fdisk)&quot;</span>
+</pre></div>
+</div>
+<p>Make sure you see <code class="docutils literal notranslate"><span class="pre">sbin/resize2fs</span></code>, <code class="docutils literal notranslate"><span class="pre">sbin/cryptsetup</span></code>, and <code class="docutils literal notranslate"><span class="pre">sbin/fdisk</span></code> in the output.</p>
+</section>
+<section id="prepare-boot-files">
+<h2>Prepare Boot Files<a class="headerlink" href="#prepare-boot-files" title="Link to this heading">#</a></h2>
+<p>Next step is to make some changes to some configuration files telling the Raspberry Pi to boot our soon-to-be-created
+encrypted partition. We’ll make these changes first since they’re relatively easily reversible if you mount your SD card
+on another computer, should you wish to abort this process. Edit these files with these changes:</p>
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">/boot/config.txt</span></span></dt>
+<dd><p>Append <code class="docutils literal notranslate"><span class="pre">initramfs</span> <span class="pre">initramfs.gz</span> <span class="pre">followkernel</span></code> to the end of the file.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">/boot/cmdline.txt</span></span></dt>
+<dd><ol class="arabic simple">
+<li><p>Append <code class="docutils literal notranslate"><span class="pre">cryptdevice=/dev/mmcblk0p2:sdcard</span></code> to the end of the line.</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">root=/dev/mmcblk0p2</span></code> with <code class="docutils literal notranslate"><span class="pre">root=/dev/mapper/sdcard</span></code></p></li>
+</ol>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">/etc/fstab</span></span></dt>
+<dd><p>Replace <code class="docutils literal notranslate"><span class="pre">/dev/mmcblk0p2</span></code> with <code class="docutils literal notranslate"><span class="pre">/dev/mapper/sdcard</span></code></p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">/etc/crypttab</span></span></dt>
+<dd><p>Append <code class="docutils literal notranslate"><span class="pre">sdcard</span>&#160; <span class="pre">/dev/mmcblk0p2</span>&#160; <span class="pre">none</span>&#160;&#160;&#160; <span class="pre">luks</span></code> to the end of the file.</p>
+</dd></dl>
+
+<p>Now run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">reboot</span></code>. The Raspberry Pi will fail to boot and drop you into the initramfs shell.</p>
+</section>
+<section id="shrink-and-encrypt">
+<h2>Shrink and Encrypt<a class="headerlink" href="#shrink-and-encrypt" title="Link to this heading">#</a></h2>
+<p>To speed up this process we’ll be shrinking the file system since all of this will be done on the Raspberry Pi. Long
+running commands should take around 9 minutes each on a Raspberry Pi 3 with a clean Raspbian PIXEL OS and a fast SD
+card.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When running <code class="docutils literal notranslate"><span class="pre">resize2fs</span></code> it will print out the new size of the file system. Keep track of the number of 4k blocks
+it tells you since you need to give that number to <code class="docutils literal notranslate"><span class="pre">dd</span></code>. For reference my resize2fs said:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The file system on /dev/mmcblk0p2 is now 1397823 (4k) blocks long.
+</pre></div>
+</div>
+<p>So “1397823” is my number of interest.</p>
+</div>
+<p>First we’ll shrink and copy to the USB drive. <strong>Insert your USB drive</strong> and run these commands.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>e2fsck<span class="w"> </span>-f<span class="w"> </span>/dev/mmcblk0p2<span class="w">  </span><span class="c1"># Check SD card for errors for safety.</span>
+resize2fs<span class="w"> </span>-fM<span class="w"> </span>/dev/mmcblk0p2<span class="w">  </span><span class="c1"># Shrink the file system on the SD card.</span>
+<span class="c1"># Write down the number of 4k blocks long in the resize2fs output.</span>
+<span class="c1"># Substitute &quot;1397823&quot; below with your number of interest.</span>
+dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>4k<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1397823</span><span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/mmcblk0p2<span class="w"> </span><span class="p">|</span>sha1sum<span class="w"> </span><span class="c1"># Write down the SHA1.</span>
+fdisk<span class="w"> </span>-l<span class="w"> </span>/dev/sda<span class="w">  </span><span class="c1"># Make sure /dev/sda is your USB drive. If not check dmesg.</span>
+dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>4k<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1397823</span><span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/mmcblk0p2<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sda<span class="w">  </span><span class="c1"># Copy data to USB drive.</span>
+dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>4k<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1397823</span><span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/sda<span class="w"> </span><span class="p">|</span>sha1sum<span class="w"> </span><span class="c1"># Make sure it&#39;s the same value!</span>
+</pre></div>
+</div>
+<p>Now it’s time to wipe your SD card’s main partition and create an empty encrypted one in its place. The first
+<code class="docutils literal notranslate"><span class="pre">cryptsetup</span></code> command will prompt you for the password you want to use for your encrypted partition. Make sure it’s a
+strong one.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While copying data back to the SD card I got a bunch of these messages:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[ 2280.148837] INFO: task kworker/u8:5:357 blocked for more than 120 seconds.
+                     Not tainted 4.4.38-v7+ #938
+</pre></div>
+</div>
+<p>I ignored these since the <code class="docutils literal notranslate"><span class="pre">sha1sum</span></code> command I ran afterward assured me the data was copied over correctly.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup<span class="w"> </span>--cipher<span class="w"> </span>aes-cbc-essiv:sha256<span class="w"> </span>luksFormat<span class="w"> </span>/dev/mmcblk0p2
+cryptsetup<span class="w"> </span>luksOpen<span class="w"> </span>/dev/mmcblk0p2<span class="w"> </span>sdcard<span class="w">  </span><span class="c1"># Mounts the encrypted file system.</span>
+dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>4k<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1397823</span><span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/sda<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/mapper/sdcard<span class="w"> </span><span class="c1"># Copy back your data.</span>
+dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>4k<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1397823</span><span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/mapper/sdcard<span class="w"> </span><span class="p">|</span>sha1sum<span class="w"> </span><span class="c1"># Make sure it&#39;s the same!</span>
+e2fsck<span class="w"> </span>-f<span class="w"> </span>/dev/mapper/sdcard<span class="w">  </span><span class="c1"># Check encrypted SD card for errors.</span>
+resize2fs<span class="w"> </span>-f<span class="w"> </span>/dev/mapper/sdcard<span class="w">  </span><span class="c1"># Expand back to full size.</span>
+<span class="c1"># Remove USB drive, no longer needed.</span>
+<span class="nb">exit</span><span class="w">  </span><span class="c1"># Continue to boot into your encrypted SD card.</span>
+</pre></div>
+</div>
+<p>Your Raspberry Pi should successfully boot into your desktop or command line (depending if you use Raspbian Lite or
+PIXEL). Test everything out by rebooting. You’ll need to run <code class="docutils literal notranslate"><span class="pre">cryptsetup</span> <span class="pre">luksOpen</span> <span class="pre">/dev/mmcblk0p2</span> <span class="pre">sdcard</span></code> on every boot
+from now on.</p>
+</section>
+<section id="pretty-password-prompt">
+<h2>Pretty Password Prompt<a class="headerlink" href="#pretty-password-prompt" title="Link to this heading">#</a></h2>
+<p>Everything should work fine now, except for the fact that every time the Raspberry Pi boots it drops you into the
+initramfs shell and you need to remember to type in the luksOpen command since there is no bash history. It would be
+nice to just have to enter your password.</p>
+<p>It’s actually really easy! The only drawback is that you’ll need to disable the pretty PIXEL splash screen (if you’re
+not using the Raspbian Lite image) in order to see the prompt. If you’re on the PIXEL image go ahead and disable the
+splash screen:</p>
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">/boot/cmdline.txt</span></span></dt>
+<dd><p>If you’re on the PIXEL image edit this file and remove <code class="docutils literal notranslate"><span class="pre">splash</span></code> from the line.</p>
+</dd></dl>
+
+<p>Now build a new initramfs. This time there should be no WARNINGs at all. Again make sure our three programs are present
+in our new initramfs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkinitramfs<span class="w"> </span>-o<span class="w"> </span>/tmp/initramfs.gz
+lsinitramfs<span class="w"> </span>/tmp/initramfs.gz<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>-P<span class="w"> </span><span class="s2">&quot;sbin/(cryptsetup|resize2fs|fdisk)&quot;</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>/tmp/initramfs.gz<span class="w"> </span>/boot/initramfs.gz
+sudo<span class="w"> </span>reboot
+</pre></div>
+</div>
+<p>And that’s it. It should prompt you with something like “Please unlock disk /dev/mmcblk0p2 (sdcard)”. If you’re running
+Raspbian Lite the password prompt may be lost with other start-up messages. Just press the Enter key once it calms down
+and you should see the prompt again.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://paxswill.com/blog/2013/11/04/encrypted-raspberry-pi/">http://paxswill.com/blog/2013/11/04/encrypted-raspberry-pi/</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/NicoHood/NicoHood.github.io/wiki/Raspberry-Pi-Encrypt-Root-Partition-Tutorial">NicoHood/NicoHood.github.io</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="posts/2017/2017-01-14-desk.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Desk Photos 2017</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="posts/2017/2017-07-12-rack.html">
+      <span>TV Cabinet Rack 2017</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "Raspberry Pi LUKS Root Encryption";
+      var disqus_title = "Raspberry Pi LUKS Root Encryption";
+      var disqus_url = "http://localhost:8000/raspberry_pi_luks";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="postfix_gmail_forwarding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Postfix and Gmail Forwarding</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="raspberry_pi_project_fi.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Raspberry Pi on Project Fi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-software">Install Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-boot-files">Prepare Boot Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shrink-and-encrypt">Shrink and Encrypt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pretty-password-prompt">Pretty Password Prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
