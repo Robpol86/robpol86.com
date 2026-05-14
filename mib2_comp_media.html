@@ -1,0 +1,1719 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="MIB2 Composition Media Hacking" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/mib2_comp_media.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content="My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running QNX 6.5.0(with firmware MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has GPS). Lucky for me, it’s possible to gain ..." />
+<meta property="og:image" content="http://localhost:8000/_images/enable_dev_mode.800x867.25.png" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content="My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running QNX 6.5.0(with firmware MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has GPS). Lucky for me, it’s possible to gain ..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>MIB2 Composition Media Hacking &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mib2_comp_media';</script>
+    <link rel="canonical" href="http://localhost:8000/mib2_comp_media.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Photo Albums" href="photo_albums.html" />
+    <link rel="prev" title="ImageCFG" href="imagecfg.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>04 January 2022</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="blog/location/san-francisco.html" style="display:inline">San Francisco</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="blog/category/projects.html" style="display:inline">Projects</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tags"></i>
+    
+    
+    </span>
+  
+  
+  <a href="blog/tag/car.html" style="display:inline">car</a>
+  
+  
+  
+  
+  
+  <a href="blog/tag/alltrack.html" style="display:inline">alltrack</a>
+  
+  
+  
+  
+  
+  <a href="blog/tag/hacking.html" style="display:inline">hacking</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="MIB2 Composition Media Hacking" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-17-influxdb-downsampling.html">InfluxDB v2 Downsampling</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-23-truenas-scale-telegraf.html">TrueNAS Telegraf, Influx, Grafana</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html">TrueNAS SCALE Runbook</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/mib2_comp_media.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MIB2 Composition Media Hacking</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-shell">Root Shell</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-development-mode">Enabling Development Mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-ethernet">Enabling Ethernet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#telnet-or-ftp">Telnet or FTP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dumps">Dumps</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filesystem">Filesystem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uname-a"><code class="docutils literal notranslate"><span class="pre">uname</span> <span class="pre">-a</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df-h"><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mount"><code class="docutils literal notranslate"><span class="pre">mount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#showmem-s"><code class="docutils literal notranslate"><span class="pre">showmem</span> <span class="pre">-S</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ls-lah-dev"><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lah</span> <span class="pre">/dev</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-i-1-d"><code class="docutils literal notranslate"><span class="pre">top</span> <span class="pre">-i</span> <span class="pre">1</span> <span class="pre">-d</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lsusb"><code class="docutils literal notranslate"><span class="pre">lsusb</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pidin-arguments"><code class="docutils literal notranslate"><span class="pre">pidin</span> <span class="pre">arguments</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pidin-env"><code class="docutils literal notranslate"><span class="pre">pidin</span> <span class="pre">env</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="mib2-composition-media-hacking">
+<h1>MIB2 Composition Media Hacking<a class="headerlink" href="#mib2-composition-media-hacking" title="Link to this heading">#</a></h1>
+<p>My US 2019 Golf Alltrack SE came with the MIB2 Composition Media infotainment system made by Delphi running
+<a class="reference external" href="https://www.qnx.com/developers/docs/6.5.0SP1.update/#./com.qnx.doc.momentics_quickstart/about.html">QNX 6.5.0</a> (with firmware
+MST2_US_VW_P0890D release 0890). This unit has CarPlay/Android Auto but lacks navigation or maps of its own (though it has
+GPS). Lucky for me, it’s possible to gain root access to the unit.</p>
+<p>I used these resources to learn about this:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=R9WlrkBioi8">https://www.youtube.com/watch?v=R9WlrkBioi8</a></p></li>
+<li><p><a class="reference external" href="https://mibsolution.one/#/1/9/MST2%20%20-%20DELPHI/Instruction">https://mibsolution.one/#/1/9/MST2  - DELPHI/Instruction</a></p></li>
+</ul>
+<section id="root-shell">
+<h2>Root Shell<a class="headerlink" href="#root-shell" title="Link to this heading">#</a></h2>
+<p>To get root access you’ll need to buy two items:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://obdeleven.com/en/">OBD11/OBDeleven</a> or <a class="reference external" href="https://www.ross-tech.com/vag-com/">VCDS/VAG-COM</a></p></li>
+<li><p>A <a class="reference external" href="https://wiki.mr-fix.info/index.php?title=MIB2#USB_to_RJ45">USB network adapter</a></p>
+<ol class="arabic simple">
+<li><p>I used an old <a class="reference external" href="https://plugable.com/products/usb2-otge100">ASIX AX88772A chipset based adapter</a> I had lying around</p></li>
+</ol>
+</li>
+<li><p>A laptop</p></li>
+</ol>
+<p>To access the root shell follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Enable development mode</p></li>
+<li><p>Enable ethernet support</p></li>
+<li><p>Reboot</p></li>
+<li><p>Telnet</p></li>
+</ol>
+<section id="enabling-development-mode">
+<h3>Enabling Development Mode<a class="headerlink" href="#enabling-development-mode" title="Link to this heading">#</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Accessing development features can irreversibly damage your infotainment system for your car, bricking it or physically
+damaging its electronics (voltage settings are exposed when in development mode).</p>
+<p>Proceed with caution at your own risk. Don’t do any of this if you’re not familiar with embedded devices or if you’re not
+familiar with Linux or Unix.</p>
+</div>
+<p>Using your OBD11 or VCDS enable development mode (I’ll be using OBD11):</p>
+<ol class="arabic simple">
+<li><p>5F Multimedia</p></li>
+<li><p>Change service</p>
+<ol class="arabic simple">
+<li><p>Set to <strong>Development mode</strong></p></li>
+</ol>
+</li>
+<li><p>Adaptation</p></li>
+<li><p>Developer mode</p>
+<ol class="arabic simple">
+<li><p>Set to <strong>Activated</strong></p></li>
+</ol>
+</li>
+<li><p>Write</p></li>
+</ol>
+<figure class="align-default">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/mib2-comp-media/enable_dev_mode.png"><img alt="_images/enable_dev_mode.800x867.25.png" src="_images/enable_dev_mode.800x867.25.png" />
+</a>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>After enabling development mode you can now take screenshots by holding down the <kbd class="kbd docutils literal notranslate">Media</kbd> button for 3 seconds. They’ll
+be saved to your SD card.</p>
+</div>
+</section>
+<section id="enabling-ethernet">
+<h3>Enabling Ethernet<a class="headerlink" href="#enabling-ethernet" title="Link to this heading">#</a></h3>
+<p>Next we need to enable ethernet mode, otherwise the USB network adapter will be ignored by the head unit.</p>
+<ol class="arabic simple">
+<li><p>Hold down the <kbd class="kbd docutils literal notranslate">Menu</kbd> button for 10 seconds</p>
+<ol class="arabic simple">
+<li><p>The <strong>Testmode Menue</strong> hidden menu will appear</p></li>
+</ol>
+</li>
+<li><p>Green Engineering Menu</p></li>
+<li><p>debugging mlp</p></li>
+<li><p>Using the tuning knob (not volume knob) select <strong>Ethernet</strong> and press the knob to enable it</p></li>
+<li><p>Reboot</p>
+<ol class="arabic simple">
+<li><p>Reboot by holding down the power/volume knob for 10 seconds. First the clock will appear, keep holding, then the screen
+will go black. Let go and wait for it to finish starting back up automatically.</p></li>
+</ol>
+</li>
+<li><p>Plug in the USB network adapter into the USB port you usually use for music or Android Auto/CarPlay</p></li>
+<li><p>Configure your laptop to use the static IP <code class="docutils literal notranslate"><span class="pre">192.168.1.10</span></code> with subnet mask <code class="docutils literal notranslate"><span class="pre">255.255.255.0</span></code> (no gateway or DNS needed)</p></li>
+<li><p>Connect your laptop to the USB network adapter’s ethernet port</p></li>
+<li><p>Ping <code class="docutils literal notranslate"><span class="pre">192.168.1.4</span></code> to confirm the head unit’s network is up</p>
+<ol class="arabic simple">
+<li><p>You can confirm this is the head unit’s IP by going back to the green menu debugging mlp screen</p></li>
+</ol>
+</li>
+</ol>
+<figure class="align-default">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/mib2-comp-media/green_menu.png"><img alt="_images/green_menu.800x480.25.png" src="_images/green_menu.800x480.25.png" />
+</a>
+</figure>
+</section>
+<section id="telnet-or-ftp">
+<h3>Telnet or FTP<a class="headerlink" href="#telnet-or-ftp" title="Link to this heading">#</a></h3>
+<p>The last step is to confirm you can telnet and/or FTP into the head unit.</p>
+<figure class="align-default">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/mib2-comp-media/rooting.jpg"><img alt="_images/rooting.800x600.25.jpg" src="_images/rooting.800x600.25.jpg" />
+</a>
+</figure>
+<p>My unit exposed three services over the network:</p>
+<ul class="simple">
+<li><p>21/tcp (FTP, user/pass both <em>ftpuser</em>)</p></li>
+<li><p>23/tcp (Telnet, user is <em>root</em> with no password)</p></li>
+<li><p>513/tcp (Rlogin, haven’t used it yet)</p></li>
+</ul>
+<p><a class="reference external" href="https://filezilla-project.org/">FTP</a> and <a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">telnet</a> both grant you full
+access to the running OS and filesystems. Some notes:</p>
+<ul class="simple">
+<li><p>SD card is mounted as read/write on <code class="docutils literal notranslate"><span class="pre">/sdc1</span></code></p></li>
+<li><p>You can keep Ethernet enabled, CarPlay still worked for me</p></li>
+<li><p>Files added to <code class="docutils literal notranslate"><span class="pre">/media</span></code> and <code class="docutils literal notranslate"><span class="pre">/persistence</span></code> survive reboots, together there’s about 542 MiB of free space available</p></li>
+<li><p>Looks like my unit has 1 GiB of RAM installed, with about half of it unused</p></li>
+<li><p>Use <a class="reference external" href="https://www.qnx.com/developers/docs/6.5.0SP1.update/com.qnx.doc.neutrino_utilities/p/pidin.html">pidin</a> instead of
+<code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">showmem</span></code> instead of <code class="docutils literal notranslate"><span class="pre">free</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="dumps">
+<h2>Dumps<a class="headerlink" href="#dumps" title="Link to this heading">#</a></h2>
+<p>This section is where I put a bunch of random outputs I got during my investigation.</p>
+<section id="filesystem">
+<h3>Filesystem<a class="headerlink" href="#filesystem" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://mega.nz/file/a4xTUIKa#do9uQA3p30hKfn-blXom4ff3-8uUah2O61z6IOdvtIY">https://mega.nz/file/a4xTUIKa#do9uQA3p30hKfn-blXom4ff3-8uUah2O61z6IOdvtIY</a></p>
+</section>
+<section id="uname-a">
+<h3><code class="docutils literal notranslate"><span class="pre">uname</span> <span class="pre">-a</span></code><a class="headerlink" href="#uname-a" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QNX localhost 6.5.0 2015/12/01-11:00:56EST TI-DRA74X-PG1.0 armle
+</pre></div>
+</div>
+</section>
+<section id="df-h">
+<h3><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-h</span></code><a class="headerlink" href="#df-h" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dev/sdc0t12                 30G       19G       11G      63%  /sdc1/
+/dev/fs1p0                   16M      1.0M       14M       8%  /ramdisk
+/dev/mmc0t179               400M       39M      361M      10%  /media/
+/dev/mmc0t178               2.0G      383M      1.6G      19%  /lng/
+/dev/mmc0t180               220M       39M      181M      18%  /persistence/
+/dev/mmc0t177               760M      428M      332M      57%  /extbin/
+/dev/fs0p3                  384K      4.5K      379K       2%  /home
+/dev/fs0p1                  9.5M      5.3M      4.1M      57%  /ffs
+/dev/sdc0                    30G       30G         0     100%
+/dev/cdd0                      0         0         0     100%
+/dev/mmc0                   3.3G      3.3G         0     100%
+</pre></div>
+</div>
+</section>
+<section id="mount">
+<h3><code class="docutils literal notranslate"><span class="pre">mount</span></code><a class="headerlink" href="#mount" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dev/sdc0t12 on /sdc1 type dos (fat32)
+/dev/fs1p0 on /ramdisk type flash
+/dev/mmc0t179 on /media type qnx6
+/dev/mmc0t178 on /lng type qnx6
+/dev/mmc0t180 on /persistence type qnx6
+/dev/mmc0t177 on /extbin type qnx6
+/dev/fs0p3 on /home type flash
+/dev/fs0p1 on /ffs type flash
+</pre></div>
+</div>
+</section>
+<section id="showmem-s">
+<h3><code class="docutils literal notranslate"><span class="pre">showmem</span> <span class="pre">-S</span></code><a class="headerlink" href="#showmem-s" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>System RAM:      896M (     939524096)
+Total Used:      406M (     426565660)
+ Used Private:   326M (     342616416)
+ Used Shared:     77M (      80973824)
+       Other:   2905K (       2975420) (includes IFS and reserved RAM)
+</pre></div>
+</div>
+</section>
+<section id="ls-lah-dev">
+<h3><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lah</span> <span class="pre">/dev</span></code><a class="headerlink" href="#ls-lah-dev" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>t-u--g--o- ln Owner     Group          Size Date         Filename
+total 147318760
+nrw-rw-rw-  1 root      root           2048 Feb 01 07:07 DbTrace
+crw-------  1 root      root         0,   1 Feb 01 07:08 bpf
+crw-------  1 root      root         0,   1 Feb 01 07:08 bpf0
+brw-------  1 root      root         9,   0 Feb 01 07:00 cdd0
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:00 console
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 cpumeter
+nrw-rw-rw-  1 root      root              0 Feb 01 07:08 crypto
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 d_carplay
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 d_ugzzf
+nrw-rw-rw-  1 root      root              0 Feb 01 07:00 dvfs
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:00 dvfs_client_1
+nrw-rw-rw-  1 root      root              0 Jan 01  1970 eide_bus
+nrw-rw-rw-  1 root      root              0 Jan 01  1970 emmc
+brw-r-----  1 root      root         4,   0 Feb 01 07:00 fs0
+brw-r-----  1 root      root         4,   1 Feb 01 07:08 fs0p0
+brw-r-----  1 root      root         4,   2 Feb 01 07:07 fs0p1
+brw-r-----  1 root      root         4,   3 Feb 01 07:08 fs0p2
+brw-r-----  1 root      root         4,   4 Feb 01 07:07 fs0p3
+brw-r-----  1 root      root         4,  32 Feb 01 07:08 fs1
+brw-r-----  1 root      root         4,   5 Feb 01 07:00 fs1p0
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:08 i2c4
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:07 i2c5
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:08 i2c_usb0
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 io-usb
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 io-usb1
+-rw-------  1 root      root      4294967295 Feb 01 07:08 mem
+brw-------  1 root      root         7,   0 Feb 01 07:01 mmc0
+brw-------  1 root      root         1,   8 Feb 01 07:00 mmc0t177
+brw-------  1 root      root         1,   9 Feb 01 07:00 mmc0t178
+brw-------  1 root      root         1,  10 Feb 01 07:00 mmc0t179
+brw-------  1 root      root         1,  11 Feb 01 07:00 mmc0t180
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 mqueue
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 name
+crw-rw-rw-  1 root      root         1,   0 Feb 01 07:08 null
+nrw-rw-rw-  1 root      root              1 Feb 01 07:08 pipe
+crw-rw-rw-  1 root      root         6, 512 Feb 01 07:08 ptyp0
+crw-rw-rw-  1 root      root         6, 513 Feb 01 07:07 ptyp1
+crw-rw-rw-  1 root      root         6, 514 Feb 01 07:07 ptyp2
+crw-rw-rw-  1 root      root         6, 515 Feb 01 07:07 ptyp3
+crw-rw-rw-  1 root      root         6, 516 Feb 01 07:07 ptyp4
+crw-rw-rw-  1 root      root         6, 517 Feb 01 07:07 ptyp5
+crw-rw-rw-  1 root      root         6, 518 Feb 01 07:07 ptyp6
+crw-rw-rw-  1 root      root         6, 519 Feb 01 07:07 ptyp7
+nrw-rw-rw-  1 root      root              0 Feb 01 07:00 random
+dr--r--r--  1 root      root              2 Feb 01 07:01 screen
+nrw-rw-rw-  1 root      root              0 Jan 01  1970 sd_bus
+brw-------  1 root      root        11,   0 Feb 01 07:00 sdc0
+brw-------  1 root      root         1,  12 Feb 01 07:00 sdc0t12
+drwxrwxrwt  2 root      root              1 Feb 01 07:07 sem
+crw-rw-rw-  1 root      root         3,   1 Feb 01 07:08 ser1
+crw-rw-rw-  1 root      root         3,  10 Feb 01 07:00 ser10
+crw-rw-rw-  1 root      root         3,   3 Feb 01 07:08 ser3
+crw-rw-rw-  1 root      root        12,   1 Feb 01 07:07 serdun1
+drwxrwxrwx  2 root      root              0 Feb 01 07:08 shmem
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:00 slog
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 socket
+crw-rw-rw-  1 root      root         1,   5 Feb 01 07:08 stderr
+crw-rw-rw-  1 root      root         1,   3 Feb 01 07:08 stdin
+crw-rw-rw-  1 root      root         1,   4 Feb 01 07:08 stdout
+crw-------  1 root      root         0,   1 Feb 01 07:08 tap
+crw-rw-rw-  1 root      root         1,   1 Feb 01 07:08 text
+crw-rw-rw-  1 root      root         1,   2 Feb 01 07:08 tty
+crw--w----  1 root      root         6,   0 Feb 01 07:08 ttyp0
+crw-rw-rw-  1 root      root         6,   1 Feb 01 07:07 ttyp1
+crw-rw-rw-  1 root      root         6,   2 Feb 01 07:07 ttyp2
+crw-rw-rw-  1 root      root         6,   3 Feb 01 07:07 ttyp3
+crw-rw-rw-  1 root      root         6,   4 Feb 01 07:07 ttyp4
+crw-rw-rw-  1 root      root         6,   5 Feb 01 07:07 ttyp5
+crw-rw-rw-  1 root      root         6,   6 Feb 01 07:07 ttyp6
+crw-rw-rw-  1 root      root         6,   7 Feb 01 07:07 ttyp7
+crw-------  1 root      root         0,   1 Feb 01 07:08 tun0
+crw-------  1 root      root         0,   1 Feb 01 07:08 tun1
+crw-------  1 root      root         0,   1 Feb 01 07:08 tun2
+crw-------  1 root      root         0,   1 Feb 01 07:08 tun3
+drwxrwxrwx  2 root      root              0 Feb 01 07:08 tymem
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:07 ugzzf
+nrw-rw-rw-  1 root      root              0 Feb 01 07:00 urandom
+crw-rw-rw-  1 root      root         1,   6 Feb 01 07:08 zero
+</pre></div>
+</div>
+</section>
+<section id="top-i-1-d">
+<h3><code class="docutils literal notranslate"><span class="pre">top</span> <span class="pre">-i</span> <span class="pre">1</span> <span class="pre">-d</span></code><a class="headerlink" href="#top-i-1-d" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.qnx.com/developers/docs/6.5.0SP1.update/com.qnx.doc.neutrino_utilities/t/top.html">https://www.qnx.com/developers/docs/6.5.0SP1.update/com.qnx.doc.neutrino_utilities/t/top.html</a></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Computing times...87 processes; 404 threads;
+CPU states: 90.4% idle, 7.8% user, 1.6% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:06   1.67% SensorHandler
+        1    11  12 Run       0:00:00   1.67% kernel
+   389151     4  57 Sem       0:00:02   1.27% ECD
+  1015892     1  12 Rply      0:00:00   0.78% top
+   389151     3  52 Rcv       0:00:01   0.58% ECD
+   442414     2  12 Sem       0:00:00   0.39% CarServices
+   413737     2  15 Sem       0:00:00   0.39% MostCanRouter
+    49163     3  20 Intr      0:00:00   0.29% EasyLinkMgr
+   430124     5  10 CdV       0:00:00   0.19% j9
+   495680    14  14 CdV       0:00:00   0.19% TunerManager_SDARS
+
+             Min        Max       Average
+CPU idle:     90%        90%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+# top -i 10 -d
+Computing times...87 processes; 404 threads;
+CPU states: 90.0% idle, 8.4% user, 1.4% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:06   2.35% SensorHandler
+        1    10  12 Run       0:00:00   1.47% kernel
+   389151     4  57 Sem       0:00:03   1.07% ECD
+  1024084     1  12 Rply      0:00:00   0.78% top
+   442414     2  12 Sem       0:00:00   0.49% CarServices
+   430124    19  13 CdV       0:00:05   0.39% j9
+   495680    16  10 CdV       0:00:01   0.39% TunerManager_SDARS
+   413737     2  15 Sem       0:00:00   0.29% MostCanRouter
+   389151     3  52 Rcv       0:00:01   0.19% ECD
+    49163     3  20 Intr      0:00:00   0.19% EasyLinkMgr
+
+             Min        Max       Average
+CPU idle:     90%        90%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 91.6% idle, 7.6% user, 0.6% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:06   2.25% SensorHandler
+   430124     4  13 CdV       0:00:03   0.69% j9
+        1    10  12 Run       0:00:00   0.65% kernel
+   389151     4  57 Sem       0:00:03   0.59% ECD
+   389151     3  52 Rcv       0:00:01   0.41% ECD
+   430124    19  13 CdV       0:00:05   0.31% j9
+    49163     3  20 Intr      0:00:00   0.29% EasyLinkMgr
+   655437     2  10 Rdy       0:00:00   0.23% AndroidAuto
+   495680    16  10 CdV       0:00:01   0.21% TunerManager_SDARS
+   430124    12  12 CdV       0:00:00   0.13% j9
+
+             Min        Max       Average
+CPU idle:     90%        91%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 92.6% idle, 6.6% user, 0.7% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.70% SensorHandler
+        1    10  12 Run       0:00:00   0.70% kernel
+   389151     4  57 Sem       0:00:03   0.60% ECD
+    49163     3  20 Intr      0:00:01   0.40% EasyLinkMgr
+   430124     4  13 CdV       0:00:03   0.28% j9
+   389151     3  52 Rcv       0:00:01   0.28% ECD
+   430124    19  13 CdV       0:00:05   0.22% j9
+   495680    16  10 CdV       0:00:01   0.20% TunerManager_SDARS
+   430124    10  16 Sem       0:00:00   0.20% j9
+  1024084     1  12 Rply      0:00:00   0.20% top
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 90.3% idle, 9.1% user, 0.4% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.88% SensorHandler
+   430124    19  13 CdV       0:00:05   1.36% j9
+   389151     4  57 Sem       0:00:03   1.00% ECD
+   389151     3  52 Rcv       0:00:01   0.60% ECD
+        1    10  12 Run       0:00:00   0.40% kernel
+   430124     4  13 CdV       0:00:03   0.38% j9
+   495680    16  10 CdV       0:00:01   0.22% TunerManager_SDARS
+    49163     3  20 Intr      0:00:01   0.22% EasyLinkMgr
+   442414     2  12 Sem       0:00:00   0.20% CarServices
+   487489     3  10 Sem       0:00:00   0.20% TunerManager
+
+             Min        Max       Average
+CPU idle:     90%        92%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 91.9% idle, 7.5% user, 0.5% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   2.12% SensorHandler
+   389151     4  57 Sem       0:00:03   0.84% ECD
+        1    10  12 Run       0:00:00   0.52% kernel
+   430124    19  13 CdV       0:00:05   0.46% j9
+   389151     3  52 Rcv       0:00:01   0.46% ECD
+   430124     4  13 CdV       0:00:03   0.42% j9
+    49163     3  20 Intr      0:00:01   0.30% EasyLinkMgr
+   495680    16  10 CdV       0:00:01   0.24% TunerManager_SDARS
+   413737     2  15 Sem       0:00:00   0.20% MostCanRouter
+   655437     2  10 Sem       0:00:00   0.18% AndroidAuto
+
+             Min        Max       Average
+CPU idle:     90%        92%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 92.8% idle, 6.4% user, 0.6% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.96% SensorHandler
+   389151     4  57 Sem       0:00:03   0.78% ECD
+        1    10  12 Run       0:00:00   0.68% kernel
+   389151     3  52 Rcv       0:00:01   0.46% ECD
+   430124     4  13 CdV       0:00:03   0.24% j9
+   430124    19  13 CdV       0:00:05   0.20% j9
+   430124    13  12 CdV       0:00:00   0.18% j9
+   413737     2  15 Sem       0:00:00   0.18% MostCanRouter
+   671823     2  10 Sem       0:00:00   0.18% CarPlay
+    49163     3  20 Intr      0:00:01   0.16% EasyLinkMgr
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 90.3% idle, 8.8% user, 0.7% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.79% SensorHandler
+   430124    19  13 CdV       0:00:05   1.37% j9
+   389151     4  57 Sem       0:00:03   0.99% ECD
+        1    10  12 Run       0:00:00   0.73% kernel
+   430124     4  13 CdV       0:00:03   0.47% j9
+   389151     3  52 Rcv       0:00:01   0.39% ECD
+    49163     3  20 Intr      0:00:01   0.37% EasyLinkMgr
+   495680    16  10 CdV       0:00:01   0.19% TunerManager_SDARS
+   430124     5  10 CdV       0:00:00   0.19% j9
+  1024084     1  12 Rply      0:00:00   0.19% top
+
+             Min        Max       Average
+CPU idle:     90%        92%        90%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 92.0% idle, 7.3% user, 0.5% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   2.07% SensorHandler
+   389151     4  57 Sem       0:00:03   0.79% ECD
+        1    10  12 Run       0:00:00   0.57% kernel
+   430124     4  13 CdV       0:00:03   0.47% j9
+   430124    19  13 CdV       0:00:05   0.41% j9
+   389151     3  52 Rcv       0:00:01   0.35% ECD
+  1024084     1  12 Rply      0:00:00   0.25% top
+    49163     3  20 Intr      0:00:01   0.23% EasyLinkMgr
+   655437     2  10 Rdy       0:00:00   0.23% AndroidAuto
+   413737     2  15 Sem       0:00:00   0.19% MostCanRouter
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 91.8% idle, 7.6% user, 0.5% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   2.09% SensorHandler
+   389151     4  57 Sem       0:00:03   0.97% ECD
+        1    10  12 Run       0:00:00   0.51% kernel
+   389151     3  52 Rcv       0:00:01   0.41% ECD
+   430124     4  13 CdV       0:00:03   0.37% j9
+   495680    16  10 CdV       0:00:01   0.29% TunerManager_SDARS
+    49163     3  20 Intr      0:00:01   0.27% EasyLinkMgr
+   430124    19  13 CdV       0:00:05   0.25% j9
+   442414     2  12 Sem       0:00:00   0.15% CarServices
+   430124    13  12 CdV       0:00:00   0.15% j9
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+
+87 processes; 404 threads;
+CPU states: 91.4% idle, 8.0% user, 0.5% kernel
+Memory: 0 total, 489M avail, page size 4K
+
+      PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND
+   442413     3  12 Sem       0:00:07   1.97% SensorHandler
+   430124    19  13 CdV       0:00:05   1.19% j9
+   389151     4  57 Sem       0:00:03   0.95% ECD
+   389151     3  52 Rcv       0:00:01   0.45% ECD
+        1    10  15 Rcv       0:00:00   0.35% kernel
+   430124     4  13 CdV       0:00:03   0.25% j9
+    49163     3  20 Intr      0:00:01   0.21% EasyLinkMgr
+        1    11  12 Run       0:00:00   0.19% kernel
+   413737     2  15 Sem       0:00:00   0.17% MostCanRouter
+   442413     6  52 Rcv       0:00:00   0.17% SensorHandler
+
+             Min        Max       Average
+CPU idle:     90%        92%        91%
+Mem Avail:   489MB      489MB      489MB
+Processes:    87         87         87
+Threads:     404        404        404
+</pre></div>
+</div>
+</section>
+<section id="lsusb">
+<h3><code class="docutils literal notranslate"><span class="pre">lsusb</span></code><a class="headerlink" href="#lsusb" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>USB 0 (XHCI) v1.10, v1.01 DDK, v1.01 HCD
+
+Device Address             : 1
+Vendor                     : 0x0424
+Product                    : 0x2640
+Class                      : 0x09 (Hub)
+Subclass                   : 0x00
+Protocol                   : 0x01
+Hub Number Ports           : 3
+Hub Characteristics        : 0x000d (Individual power, Compound, Individual over-current)
+Hub Power On-&gt;Good         : 100 ms
+Hub Power Requirements     : 1 mA
+
+Device Address             : 2
+Vendor                     : 0x0424 (Generic)
+Product                    : 0x4040 (Ultra Fast Media Reader)
+Class                      : 0x00 (Independent per interface)
+
+USB 0 (XHCI) v1.10, v1.01 DDK, v1.01 HCD
+
+Device Address             : 1
+Vendor                     : 0x0b95 (ASIX Elec. Corp.)
+Product                    : 0x7720 (AX88x72A)
+Class                      : 0xff (Vendor-specific)
+Subclass                   : 0xff
+Protocol                   : 0x00
+</pre></div>
+</div>
+</section>
+<section id="pidin-arguments">
+<h3><code class="docutils literal notranslate"><span class="pre">pidin</span> <span class="pre">arguments</span></code><a class="headerlink" href="#pidin-arguments" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     pid Arguments
+       1 procnto-smp-instr -mL -F 10000
+   16386 devc-seromap -T56 -O 262144 -opriority=26 -e -F -b115200 -u3 -c48000000/16 0x48020000^2,106
+   16387 slogger
+   16388 pipe
+   20485 devf-generic -r -x1 edma=8,clk=64000000,dc=0
+   20486 ksh
+   28681 devb-sd cam pnp,bounce=64k disk name=mmc blk noatime,cache=512K,commit=high qnx6 snapshot=0 sd d=sddriver_j6:if=2,name=emmc
+   36872 TimeStampDriver
+   49162 SlogPrinter
+   49163 EasyLinkMgr
+   49165 devc-pty
+   65551 io-usb -c -d omap5-xhci ioport=0x48890000,irq=108,verbose=0
+   65552 io-usb -c -d omap5-xhci ioport=0x488D0000,irq=110,verbose=0 -n/dev/io-usb1/io-usb
+  147468 screen-cda -a /persistence/splash/splash.xml -A /extbin/apps/splash/splash_default.xml -z
+  213010 pps
+  221203 dumper -m -d /tmp
+  237589 i2c_drax -p0x4807A000 -i94
+  241686 i2c_drax -p0x4807c000 -i92
+  245783 i2c_usb_bridge -opnp
+  266254 devf-ram -s0,16m,,,512k -i1
+  290833 MountIFS -f /extbin/apps/bin/vwjxe.ifs -T -m /ifs1
+  311320 MountIFS -f /extbin/apps/bin/delphibin.ifs -T -m /ifs2
+  327700 io-pkt-v6-hc -i1 –ptcpip
+  331801 io-pkt-v6-hc -i2 -ptcpip stacksize=294912,prefix=/dev/d_ugzzf
+  335898 io-pkt-v6-hc -i5 -ptcpip stacksize=16384,prefix=/dev/d_carplay
+  339995 devc-seromap -E -F -S -T56 -t14 -u1 -b57600 -c48000000/16 0x4806A000^2,104
+  344092 procman -f /etc/procman_core.cfg
+  389150 RearViewCam
+  389151 ECD
+  389152 CPUMonitor -c 5
+  389153 PrioWatchdog -n5 -m0x07729C00
+  389154 TraceServer
+  389155 VIPLogger -t
+  389156 SystemManager
+  389157 PersistenceManager -t
+  389158 DiagnosticsManager
+  409639 AudioManager -v1 -t
+  413736 Most -v0
+  413737 MostCanRouter -v0
+  413738 ThermalManager
+  430124 /ifs2/j9 -Xmca256k -Xmco128k -Xmo34m -Xmoi0 -Xmn2048k -Xmx36m -Xmjit:code=4096,singlecache -DLOG=all=2 -Dde.vw.mib.startup.order=TARGET -noverify -DuseStartupBootExtension -Dde.vw.mib.main.thread.prio=6 -DGenericEvents.queueOverloadThreshold=400 -Dde.vw.mib.installation.directory=/extbin/apps/hmi/HMI/ -Dde.vw.mib.configuration.directory=/extbin/apps/hmi/HMI/config/ -Dde.vw.mib.resources.directory=/extbin/apps/hmi/Resources/ -Dbundles.properties=/extbin/apps/hmi/HMI/config/bundles.properties -Dthreads.properties=/extbin/apps/hmi/HMI/config/threads.properties -Dlogging.properties=/extbin/apps/hmi/HMI/config/logging.properties -Dsystem.properties=/extbin/apps/hmi/HMI/config/system.properties -Ddebugprobes.config.path=/extbin/apps/hmi/HMI/config -Ddsiexclude.properties=/extbin/apps/hmi/HMI/config/dsiexclude.properties -DConfigurationManager.SdRoots=/sdc1;/sdc2 -Dviewhandler.format=zip -Dvw.mib.resources=/extbin/apps/hmi/HMI/res -DGenericEvents.activatePooling=true -DGenericEventPool.poolSize=2048 -DGenericEventPool.poolPreFill=512 -DdsiTimeout=20000 -DdomainTimeout=120000 -Dde.audi.gem.path.scriptfifo=/etc -Dde.audi.gem.path.esdfiles=/extbin/apps/GEM_PROD -DSTARTUP_LUM_READY=true -Dde.vw.mib.asl.internal.util.SystemKeyUtil.abtMaskSetting=255 -Dde.vw.mib.log4mib.watchdog.enabled=true -Dde.vw.mib.asl.media.startupListTimer=20000 -Dde.vw.mib.format.4asl.rulesets=/extbin/apps/hmi/HMI/config/locationformattingrules_en_US.properties -Dde.vw.mib.format.4asl.rulesets.directory=/extbin/apps/hmi/HMI/config -Dde.vw.mib.useNewScreenOff=true -Dde.vw.mib.asl.internal.system.updateGesture2TimeScaleFactor=10 -Dde.vw.mib.lsc.languagechangetimeout4language=60000 -Dde.vw.mib.lsc.languagechangetimeouttotal=60000 -Dde.vw.mib.log4mib.mlp.enabled=true -Dde.vw.mib.personalization.useDsiUpdates=true -Dde.vw.mib.driverdistraction.default=ALLOFF -Dde.vw.mib.runmode.is_normal -DheapDumpOnOOM=true -DErrorDumpDir=/extbin/apps/hmi/errlog/ -Dcom.delphi.vw.mib.spi.resourcespath=/extbin/apps/hmi/Resources -Dcom.delphi.vw.mib.spi.file.basedirectory=/extbin/apps/hmi/Resources -Dcom.delphi.vw.mib.spi.file.useobjectswapperjava=false -Dcom.delphi.vw.mib.spi.debug.enable.stdout=true -Dcom.delphi.vw.mib.spi.debug.enable.stderr=true -DJDSI_THREAD_POOL_TYPE=SIMPLE -DJDSI_THREAD_POOL_TYPE=ONE2ONEMAPPING -DJDSI_THREAD_POOL_NUM_THREADS=3 -DJDSI_THREAD_POOL_QUEUE_LIMIT=500 -DJDSI_POOL_THREAD_PRIO=7 -DJDSI_NOTIFIER_QUEUE_SIZE=300 -DJDSI_NOTIFIER_THREAD_PRIO=16 -DJDSI_PROCESS_CONFIG_FILE=/extbin/apps/cfg/apps.txt -DJDSI_DOMAIN_CONFIG_FILE=/extbin/apps/cfg/domains.txt -DJDSI_DEBUG=0 -DJSAL_DEBUG=0 -jcl:foun11 -Dcom.ibm.oti.vm.bootstrap.library.path=/ifs2:/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6:/extbin/apps/J9/bin:/extbin/apps/J9/lib:. -Djava.library.path=/ifs2:/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6:/extbin/apps/J9/bin:/extbin/apps/J9/lib:. -Xbootclasspath:/ifs1/delphi.jxe:/ifs1/MIBHMI.jxe:/extbin/apps/hmi/HMI/jar/TestInterface-H29.319.58.jar:/extbin/apps/J9/lib/charconv.zip:/extbin/apps/J9/lib/jclFoundation11/locale.zip:/extbin/apps/hmi/HMI/jar/GEM.jar:/extbin/apps/hmi/HMI/lib/bcprov-jdk14.jar:/extbin/apps/J9/lib/jclFoundation11/ext/j9jce.jar de.vw.mib.MIBMain
+  442411 SystemTimeApp -i3 -p15
+  442413 SensorHandler
+  442414 CarServices -p12 -t
+  442415 devb-cd cdrom name=cdd blk cache=1M,ra=0 cdd spin=300,verify,no_init
+  442416 MediaHandler -c../cfg/MHConfig.cfg
+  442417 PersistenceServices
+  446516 InfotainmentRecorder -n
+  446517 SysServices
+  454707 DisplayManagement -z
+  454710 WavePlayer -f/extbin/apps/cfg/wavePlayerCfg.xml
+  454711 ImageLoader
+  454713 PictureServices
+  454714 SWaP
+  454715 inetd -D /etc/inetd.conf
+  454717 devb-sd cam pnp,bounce=64k disk name=sdc blk noatime,cache=512K, dos exe=all sd d=sddriver_j6:if=0
+  475192 dvfsmgr-j6 -c /ramdisk/dvfs_j6.conf -o /ramdisk/dvfs_pwrtbl_j6.conf -Di2c_dev=5
+  475199 ClusterServices -v0
+  487489 TunerManager -v1 -g60002 -t
+  487490 devc-seromap -E -F -S -T56 -t16 -u10 -b19200 -c48000000/16 0x4AE2B000^2,113
+  495680 TunerManager_SDARS
+  512067 dvfs_client
+  548914 MediaServer -c/extbin/apps/cfg/MediaServerConfig.xml -t
+  548924 PhoneServer -v1 -t
+  561181 splash
+  561223 HKPLogger -t
+  561224 DSPLogger -t
+  561226 UnitInfo
+  634948 AppConnect -v1
+  634949 random -p
+  634953 mqueue
+  655435 MirrorLinkApp
+  655436 AndroidAutoServices
+  655437 AndroidAuto
+  671822 CarPlayServices
+  671823 CarPlay
+  671824 in.telnetd
+  671826 Exlap
+  696382 SpeechManager -fttspath=/lng/lng/tts -fasrpath=/lng/lng/asr -fdbname=/extbin/apps/cfg/SMConfig.db
+  708615 SpeechServices -fversion=/extbin/apps/hmi/Resources/skin1/Speech/nuance_res/target/version.txt
+  708678 -ksh
+  708689 InstallationServices
+  712789 InstallationManager
+  712790 DiagSwVersionMonitor
+  716889 MOSTUpdate -s
+  753747 ABTUpdate -s
+ 1286228 elvis
+ 1290327 /bin/ksh -c /bin/ksh
+ 1294424 /bin/ksh
+ 1445978 UnitInfo
+ 1572955 pidin arguments
+</pre></div>
+</div>
+</section>
+<section id="pidin-env">
+<h3><code class="docutils literal notranslate"><span class="pre">pidin</span> <span class="pre">env</span></code><a class="headerlink" href="#pidin-env" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     pid name               Environment
+       1 /procnto-smp-instr PATH=/proc/boot:/extbin/apps/bin:/ffs/sbin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:. LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6
+   16386 /boot/devc-seromap 
+   16387 proc/boot/slogger  
+   16388 proc/boot/pipe     
+   20485 /boot/devf-generic 
+   20486 proc/boot/ksh      SYSNAME=nto TERM=qansi SHELL=/bin/ksh ADAPTERTYPE=mcs7830 HOME=/home/delphi GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_ARENA_SIZE=65536 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:.
+   28681 proc/boot/devb-sd  _=/proc/boot/devb-sd PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+   36872 ot/TimeStampDriver _=/proc/boot/TimeStampDriver PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+   49162 c/boot/SlogPrinter _=/proc/boot/SlogPrinter PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+   49163 c/boot/EasyLinkMgr _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+   49165 ffs/sbin/devc-pty  _=/ffs/sbin/devc-pty PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+   65551 proc/boot/io-usb   _=/proc/boot/io-usb PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+   65552 proc/boot/io-usb   _=/proc/boot/io-usb PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  147468 oc/boot/screen-cda _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  213010 n/apps/usr/bin/pps _=/extbin/apps/usr/bin/pps PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  221203 pps/usr/bin/dumper _=/extbin/apps/usr/bin/dumper PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  237589 /apps/bin/i2c_drax _=/extbin/apps/bin/i2c_drax PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  241686 /apps/bin/i2c_drax _=/extbin/apps/bin/i2c_drax PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  245783 bin/i2c_usb_bridge _=/extbin/apps/bin/i2c_usb_bridge PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  266254 ffs/sbin/devf-ram  _=/ffs/sbin/devf-ram PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  290833 proc/boot/MountIFS _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  311320 proc/boot/MountIFS _=/proc/boot/MountIFS PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  327700 ifs2/io-pkt-v6-hc  _=/ifs2/io-pkt-v6-hc PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  331801 ifs2/io-pkt-v6-hc  _=/ifs2/io-pkt-v6-hc PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  335898 ifs2/io-pkt-v6-hc  _=/ifs2/io-pkt-v6-hc PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  339995 /boot/devc-seromap _=/proc/boot/devc-seromap PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  344092 proc/boot/procman  _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389150 ifs2/RearViewCam   _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389151 proc/boot/ECD      _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389152 ifs2/CPUMonitor    _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389153 s/bin/PrioWatchdog _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389154 ifs2/TraceServer   _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389155 apps/bin/VIPLogger _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389156 ifs2/SystemManager _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389157 PersistenceManager _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  389158 DiagnosticsManager _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  409639 ifs2/AudioManager  _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  413736 ifs2/Most          _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  413737 /bin/MostCanRouter _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  413738 bin/ThermalManager _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  430124 ifs2/j9            _=/ifs2/on PATH=/ifs2:/extbin/apps/J9/bin:/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_BOOTLIBRARY_PATH=/ifs2:/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6:/extbin/apps/J9/bin:/extbin/apps/J9/lib:. J9VM=on -Xaps=System  /ifs2/j9 LD_LIBRARY_PATH=/ifs2:/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6:/extbin/apps/J9/bin:/extbin/apps/J9/lib:. HOME=/home/delphi JAVA_HOME2=/extbin/apps/J9 JAVA_HOME=/ifs2 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi J9=on -Xaps=System  /ifs2/j9 ADAPTERTYPE=mcs7830 SYSNAME=nto
+  442411 /bin/SystemTimeApp _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  442413 /bin/SensorHandler _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  442414 ifs2/CarServices   _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  442415 n/apps/bin/devb-cd _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  442416 s/bin/MediaHandler _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  442417 ersistenceServices _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  446516 fotainmentRecorder _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  446517 ps/bin/SysServices _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  454707 /DisplayManagement _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  454710 ifs2/WavePlayer    _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  454711 ifs2/ImageLoader   _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  454713 s2/PictureServices _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  454714 ifs2/SWaP          _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  454715 apps/usr/bin/inetd _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  454717 proc/boot/devb-sd  _=/proc/boot/devb-sd PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  475192 usr/bin/dvfsmgr-j6 _=/extbin/apps/usr/bin/dvfsmgr-j6 PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_ARENA_SIZE=65536 SHELL=/bin/ksh TERM=qansi LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  475199 in/ClusterServices _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  487489 s/bin/TunerManager _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  487490 /boot/devc-seromap _=/proc/boot/devc-seromap PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_ARENA_SIZE=65536 SHELL=/bin/ksh TERM=qansi LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  495680 TunerManager_SDARS _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  512067 sr/bin/dvfs_client _=/extbin/apps/usr/bin/dvfs_client PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_ARENA_SIZE=65536 SHELL=/bin/ksh TERM=qansi LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  548914 ps/bin/MediaServer _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  548924 ps/bin/PhoneServer _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  561181 in/apps/bin/splash _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  561223 apps/bin/HKPLogger _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  561224 apps/bin/DSPLogger _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  561226 ffs/sbin/UnitInfo  _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  634948 pps/bin/AppConnect _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  634949 pps/usr/bin/random _=/extbin/apps/usr/bin/random PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_ARENA_SIZE=65536 SHELL=/bin/ksh TERM=qansi LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  634953 pps/usr/bin/mqueue _=/extbin/apps/usr/bin/mqueue PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 MALLOC_ARENA_SIZE=65536 SHELL=/bin/ksh TERM=qansi LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  655435 /bin/MirrorLinkApp _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  655436 ndroidAutoServices _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  655437 ps/bin/AndroidAuto _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  671822 in/CarPlayServices _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  671823 n/apps/bin/CarPlay _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  671824 ps/usr/bin/telnetd _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  671826 bin/apps/bin/Exlap _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  696382 /bin/SpeechManager _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  708615 bin/SpeechServices _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  708678 bin/ksh            DISPLAY=Vandelay.localdomain:0 TERM=xterm-256color SHELL=/bin/ksh HOME=/ LOGNAME=root USER=root PATH=/proc/boot:/extbin/apps/bin:/ffs/sbin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:.
+  708689 stallationServices _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  712789 nstallationManager _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  712790 agSwVersionMonitor _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  716889 pps/bin/MOSTUpdate _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+  753747 apps/bin/ABTUpdate _=/proc/boot/on PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh MALLOC_ARENA_SIZE=65536 LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 HOME=/home/delphi MALLOC_BAND_CONFIG_STR=8:16,32,0:24,32,0:32,32,0:48,24,0:64,24,0:80,24,0:96,16,0:128,8,0 GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 SYSNAME=nto
+ 1605716 proc/boot/pidin    _=/proc/boot/pidin PATH=/proc/boot:/extbin/apps/bin:/ifs2:/extbin/apps/usr/bin:/extbin/apps/usr/bin/graphics:/ffs/sbin:. SHELL=/bin/ksh USER=root LD_LIBRARY_PATH=/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6 DISPLAY=Vandelay.localdomain:0 HOME=/home/delphi GRAPHICS_ROOT=/extbin/apps/usr/lib/graphics/jacinto6 TERM=qansi ADAPTERTYPE=mcs7830 LOGNAME=root SYSNAME=nto
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="posts/2022/2022-01-02-alltrack-mib2-hack.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>MIB2 Developer Mode</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="posts/2022/2022-06-05-alltrack-homelink-mirror.html">
+      <span>HomeLink Rearview Mirror</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "MIB2 Composition Media Hacking";
+      var disqus_title = "MIB2 Composition Media Hacking";
+      var disqus_url = "http://localhost:8000/mib2_comp_media";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="imagecfg.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ImageCFG</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="photo_albums.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Photo Albums</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-shell">Root Shell</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-development-mode">Enabling Development Mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-ethernet">Enabling Ethernet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#telnet-or-ftp">Telnet or FTP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dumps">Dumps</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filesystem">Filesystem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uname-a"><code class="docutils literal notranslate"><span class="pre">uname</span> <span class="pre">-a</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df-h"><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mount"><code class="docutils literal notranslate"><span class="pre">mount</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#showmem-s"><code class="docutils literal notranslate"><span class="pre">showmem</span> <span class="pre">-S</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ls-lah-dev"><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lah</span> <span class="pre">/dev</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-i-1-d"><code class="docutils literal notranslate"><span class="pre">top</span> <span class="pre">-i</span> <span class="pre">1</span> <span class="pre">-d</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lsusb"><code class="docutils literal notranslate"><span class="pre">lsusb</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pidin-arguments"><code class="docutils literal notranslate"><span class="pre">pidin</span> <span class="pre">arguments</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pidin-env"><code class="docutils literal notranslate"><span class="pre">pidin</span> <span class="pre">env</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

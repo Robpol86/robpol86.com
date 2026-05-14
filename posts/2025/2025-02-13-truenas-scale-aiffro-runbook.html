@@ -1,0 +1,1790 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="TrueNAS SCALE Runbook" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content="This is the runbook I’ve been developing since 2022 for setting up and maintaining TrueNAS SCALE on my portable/travel NAS as of this date. Originally developed for a more traditional 24/7 server, it’s now scoped to a NAS that is frequently powered off and no longer has access to the intenret. As..." />
+<meta property="og:image" content="http://localhost:8000/_static/logo.png" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content="This is the runbook I’ve been developing since 2022 for setting up and maintaining TrueNAS SCALE on my portable/travel NAS as of this date. Originally developed for a more traditional 24/7 server, it’s now scoped to a NAS that is frequently powered off and no longer has access to the intenret. As..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>TrueNAS SCALE Runbook &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2025/2025-02-13-truenas-scale-aiffro-runbook';</script>
+    <link rel="canonical" href="http://localhost:8000/posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Desk Photos 2025" href="2025-01-14-desk.html" />
+    <link rel="prev" title="TrueNAS Slots Tool for ME Mini" href="2025-07-14-truenas-scale-beelink-slots-tool.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>13 February 2025</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="../../blog/location/el-calafate.html" style="display:inline">El Calafate</a>
+  
+  ,
+  
+  
+  
+  
+  <a href="../../blog/location/sydney.html" style="display:inline">Sydney</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="../../blog/category/tutorials.html" style="display:inline">Tutorials</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tags"></i>
+    
+    
+    </span>
+  
+  
+  <a href="../../blog/tag/homelab.html" style="display:inline">homelab</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/nas.html" style="display:inline">nas</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/runbook.html" style="display:inline">runbook</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/aiffro.html" style="display:inline">aiffro</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/beelink.html" style="display:inline">beelink</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="TrueNAS SCALE Runbook" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2026/2026-02-17-influxdb-downsampling.html">InfluxDB v2 Downsampling</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../2026/2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="2025-07-23-truenas-scale-telegraf.html">TrueNAS Telegraf, Influx, Grafana</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="2025-01-14-desk.html">Desk Photos 2025</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="../../_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="../../blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="../../blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="../../blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/posts/2025/2025-02-13-truenas-scale-aiffro-runbook.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TrueNAS SCALE Runbook</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-procedure">1.0.0 Installation Procedure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1.1.0 Prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-usb-installer">1.2.0 Prepare USB Installer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-bios">1.3.0 Configure BIOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-to-installer">1.4.0 Boot to Installer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-truenas">1.5.0 Install TrueNAS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-truenas">2.0.0 Configure TrueNAS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#console-setup">2.1.0 Console Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-ui-general-config">2.2.0 Web UI General Config</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronizing-time">2.3.0 Synchronizing Time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-storage">2.4.0 Setup Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-pool">2.4.1 Create Pool</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-top-dataset">2.4.2 Create Top Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scrubbing-and-snapshots">2.5.0 Scrubbing and Snapshots</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scrub-task">2.5.1 Scrub Task</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#snapshot-task">2.5.2 Snapshot Task</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#snapshot-on-shutdown">2.5.3 Snapshot on Shutdown</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-samba-shares">2.6.0 Datasets and Samba Shares</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-user-account">2.6.1 Add User Account</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-umbrella-dataset">2.6.2 Add Umbrella Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-leaf-datasets">2.6.3 Add Leaf Datasets</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-samba-shares">2.6.4 Update Samba Shares</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-procedure">3.0.0 Backup Procedure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external-usb-hard-drive">3.1.0 External USB Hard Drive</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-pool">3.1.1 Activate Pool</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-run-task">3.1.2 Create and Run Task</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#export-backup-pool">3.1.3 Export Backup Pool</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-configuration">3.1.4 Save Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disaster-recovery">4.0.0 Disaster Recovery</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#failed-boot-pool">4.1.0 Failed Boot Pool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replace-storage-device">4.2.0 Replace Storage Device</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-new-ssd">4.2.1 Validate New SSD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#replace">4.2.2 Replace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wipe-old-drive">4.2.3 Wipe Old Drive</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expand">4.2.4 Expand</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restore-from-backup">4.3.0 Restore from Backup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-new-system">4.3.1 Prepare New System</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restore">4.3.2 Restore</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-steps">4.3.3 Final Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-playbook">5.0.0 Troubleshooting Playbook</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invalid-argument-during-seek">5.1.0 Invalid argument during seek</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">5.1.1 Solution</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum-error-1">5.2.0 Checksum Error: 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.2.1 Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="truenas-scale-runbook">
+<h1>TrueNAS SCALE Runbook<a class="headerlink" href="#truenas-scale-runbook" title="Link to this heading">#</a></h1>
+<p>This is the runbook I’ve been developing since 2022 for setting up and maintaining
+<a class="reference external" href="https://www.truenas.com/truenas-scale/">TrueNAS SCALE</a> on my portable/travel NAS as of this date. Originally developed for a
+more traditional 24/7 server, it’s now scoped to a NAS that is frequently powered off and no longer has access to the
+intenret.</p>
+<p>As of this writing my NAS is an <a class="reference external" href="https://www.aiffro.com/products/all-ssd-nas-k100">Aiffro K100</a> (photos of it are available
+<a class="reference internal" href="2025-01-14-desk.html"><span class="std std-doc">here</span></a>). The machine only has 8 GiB of RAM with no ECC so I had to make some consessions. The no ECC part
+is a gamble but so far I haven’t run into any data corruption issues, and my use case does not require running apps on
+TrueNAS so 8 GiB of RAM is sufficient (I still hit near-2.5Gbps speeds consistently). This is purely for data storage and
+access over Samba with my macOS single client.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Update July 2025</strong>: I’ve since upgraded to the <a class="reference external" href="https://www.bee-link.com/products/beelink-me-mini-n150">Beelink ME Mini</a>. I
+was able to install the SSDs from the Aiffro to this and everything works without reinstalling or reconfiguring.</p>
+</div>
+<hr class="docutils" />
+<section id="installation-procedure">
+<h2>1.0.0 Installation Procedure<a class="headerlink" href="#installation-procedure" title="Link to this heading">#</a></h2>
+<p>This section will go over listing the prerequisites, preparing the installation media, and installing TrueNAS on the Aiffro.
+Avoid using the USB-A ports on the Aiffro since they’re limited to USB 2.0 speeds.</p>
+<section id="prerequisites">
+<h3>1.1.0 Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.aiffro.com/products/all-ssd-nas-k100">Aiffro K100</a></p></li>
+<li><p>One <strong>16 GiB</strong> or greater SSD on a <a class="reference external" href="https://www.amazon.com/ORICO-Enclosure-10Gbps-Adapter-Supports/dp/B0CQ4NXK7Q">USB-C to M.2 adapter</a></p>
+<ul>
+<li><p>This will be called the <strong>OS drive</strong> in this runbook</p></li>
+<li><p>This will be TrueNAS boot pool</p></li>
+<li><p>TrueNAS <a class="reference external" href="https://www.reddit.com/r/truenas/comments/16yg23m/truenas_recommends_against_using_a_usb_key_for/">recommends against</a>
+using regular USB flash drives as the boot pool</p></li>
+<li><p>We’re using a USB drive for the OS since the Aiffro only has four NVMe slots</p></li>
+</ul>
+</li>
+<li><p>One <strong>2 GiB</strong> or greater USB-C flash drive</p>
+<ul>
+<li><p>This will be called the <strong>USB installer drive</strong> in this runbook</p></li>
+<li><p>This will be the installation media with the ISO “burned” onto it</p></li>
+</ul>
+</li>
+<li><p>Four NVMe SSDs for storage</p></li>
+<li><p>An <a class="reference external" href="https://www.aurga.com/products/aurga-viewer">AURGA Viewer</a></p>
+<ul>
+<li><p>You can also use a regular USB keyboard and HDMI display, however this runbook is written with the AURGA in mind since
+that’s what I bring with me whilst traveling</p></li>
+</ul>
+</li>
+<li><p>The AURGA Viewer app on your laptop/workstation</p></li>
+</ul>
+</section>
+<section id="prepare-usb-installer">
+<h3>1.2.0 Prepare USB Installer<a class="headerlink" href="#prepare-usb-installer" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Download TrueNAS SCALE ISO:</strong></p>
+<ul class="simple">
+<li><p>Get the latest stable ISO from <a class="reference external" href="https://www.truenas.com/download-truenas-scale/">https://www.truenas.com/download-truenas-scale/</a></p></li>
+</ul>
+</li>
+<li><p><strong>Create Bootable USB:</strong></p>
+<ul class="simple">
+<li><p>Plug the <strong>USB installer drive</strong> into your laptop/workstation</p></li>
+<li><p>If you’re using Windows:</p>
+<ul>
+<li><p>Use <a class="reference external" href="https://rufus.ie/en/">Rufus</a> in <code class="docutils literal notranslate"><span class="pre">dd</span></code> mode (it will prompt you when you click START)</p></li>
+</ul>
+</li>
+<li><p>If you’re using macOS or Linux:</p>
+<ul>
+<li><p>Find the device name of the USB drive (using Disk Utility on macOS or looking in <code class="docutils literal notranslate"><span class="pre">/dev</span></code> on Linux) e.g. <code class="docutils literal notranslate"><span class="pre">disk6</span></code> or <code class="docutils literal notranslate"><span class="pre">sdb</span></code>.</p></li>
+<li><p>Run in Terminal: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">if=TrueNAS-SCALE-24.10.1.iso</span> <span class="pre">of=/dev/disk6</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="configure-bios">
+<h3>1.3.0 Configure BIOS<a class="headerlink" href="#configure-bios" title="Link to this heading">#</a></h3>
+<p>Enable auto power on in the BIOS so the NAS boots up automatically when power is plugged in.</p>
+<ol class="arabic simple">
+<li><p><strong>Setup AURGA:</strong></p>
+<ul class="simple">
+<li><p>Plug in AURGA and power on the Aiffro</p>
+<ul>
+<li><p>Wait for AURGA LED to turn from red to amber</p></li>
+</ul>
+</li>
+<li><p>Connect to AURGA via WiFi and open the viewer app</p>
+<ul>
+<li><p>On the viewer Welcome screen click “Skip Sign In”</p></li>
+</ul>
+</li>
+<li><p>Click on the auto-detected AURGA-XXXXXX device, you should now see the HDMI output (LED should turn solid green)</p></li>
+<li><p>The BIOS should be displayed</p>
+<ul>
+<li><p>If not send Ctrl+Alt+Del via the AURGA right click menu, then choose Input -&gt; Absolute Mouse, then press ESC until you’re in the BIOS</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>BIOS Settings:</strong></p>
+<ul class="simple">
+<li><p>Aiffro</p>
+<ul>
+<li><p><strong>Insert Adapter Auto Power On</strong>: Enabled</p></li>
+</ul>
+</li>
+<li><p>Beelink</p>
+<ul>
+<li><p>Chipset &gt; PCH-IO Configuration &gt; <strong>State After G3</strong>: S0 State</p></li>
+<li><p>Advanced &gt; Hardware Monitor &gt; Smart Fan Function &gt; <strong>CPU Smart Fan Mode</strong>: Automatic Mode</p>
+<ul>
+<li><p><strong>Fan off temperature limit</strong>: 25</p></li>
+<li><p><strong>Fan start temperature limit</strong>: 28</p></li>
+<li><p><strong>Fan full speed temperature limit</strong>: 50</p></li>
+<li><p><strong>PWM SLOPE SETTING</strong>: 8</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="boot-to-installer">
+<h3>1.4.0 Boot to Installer<a class="headerlink" href="#boot-to-installer" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Power off the Aiffro</p></li>
+<li><p>Do not plug in the <strong>OS drive</strong> yet</p></li>
+<li><p>Plug in AURGA, the <strong>USB installer drive</strong>, and power cable</p></li>
+<li><p>Connect to AURGA</p></li>
+<li><p>Installer should have booted up</p></li>
+<li><p>Plug in the <strong>OS drive</strong></p></li>
+</ol>
+</section>
+<section id="install-truenas">
+<h3>1.5.0 Install TrueNAS<a class="headerlink" href="#install-truenas" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>AURGA will not apply a keypress until the SHIFT key is released, so don’t hold it for consecutive capital letters.</p>
+</div>
+<p>Once the installer has booted up the following should be true:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/dev/sda</span></code> is the <strong>USB installer drive</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/dev/sdb</span></code> is the <strong>OS drive</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/dev/nvme?n1</span></code> are the four storage NVMe devices</p></li>
+</ul>
+<p>Install TrueNAS with the following options:</p>
+<ul class="simple">
+<li><p><strong>Console setup</strong>: Install/Upgrade</p></li>
+<li><p><strong>Destination media</strong>: sdb</p></li>
+<li><p><strong>Authentication method</strong>: Configure using Web UI</p></li>
+</ul>
+<p>After installation is complete select <strong>Shutdown System</strong> and unplug the <strong>USB installer drive</strong> after it powers down.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="configure-truenas">
+<h2>2.0.0 Configure TrueNAS<a class="headerlink" href="#configure-truenas" title="Link to this heading">#</a></h2>
+<p>This section will cover all relevant TrueNAS settings, creating pools and datasets, and setting up the Samba shares.</p>
+<section id="console-setup">
+<h3>2.1.0 Console Setup<a class="headerlink" href="#console-setup" title="Link to this heading">#</a></h3>
+<p>Power on the Aiffro and wait for the TrueNAS console setup menu to appear. We’ll be setting the static IP for the NAS.</p>
+<ol class="arabic simple">
+<li><p><strong>Configure network interfaces:</strong></p>
+<ul class="simple">
+<li><p>enp2s0 &gt; Edit</p>
+<ul>
+<li><p><strong>ipv4_dhcp</strong>: No</p></li>
+<li><p><strong>ipv6_auto</strong>: No</p></li>
+<li><p><strong>aliases</strong>: 192.168.27.1/24</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When password console is enabled run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">cli_console</span></code> to get to this menu. To exit you have to start a Linux shell and then
+<code class="docutils literal notranslate"><span class="pre">killall</span> <span class="pre">cli_console</span></code>.</p>
+</div>
+</section>
+<section id="web-ui-general-config">
+<h3>2.2.0 Web UI General Config<a class="headerlink" href="#web-ui-general-config" title="Link to this heading">#</a></h3>
+<p>Remember to set your laptop/workstation to a static IP address within the same subnet as the NAS.</p>
+<ol class="arabic simple">
+<li><p>Network &gt; Global Configuration &gt; Settings</p>
+<ol class="arabic simple">
+<li><p><strong>Hostname</strong>: anas</p></li>
+</ol>
+</li>
+<li><p>Credentials &gt; Users &gt; truenas_admin &gt; Edit</p>
+<ol class="arabic simple">
+<li><p><em>Change password</em></p></li>
+</ol>
+</li>
+<li><p>System &gt; General Settings &gt; Localization &gt; Settings</p>
+<ol class="arabic simple">
+<li><p><strong>Timezone</strong>: <em>current time zone</em></p></li>
+<li><p><strong>Time Format</strong>: dd:dd:dd AM</p></li>
+</ol>
+</li>
+<li><p>System &gt; Advanced Settings &gt; Console &gt; Configure</p>
+<ol class="arabic simple">
+<li><p><strong>Show Text Console without Password Prompt</strong>: Uncheck</p></li>
+</ol>
+</li>
+<li><p>System &gt; Services &gt; SMB &gt; Edit</p>
+<ol class="arabic simple">
+<li><p><strong>NetBIOS Name</strong>: anas</p></li>
+<li><p><strong>Description</strong>: AiffroNAS</p></li>
+<li><p>Advanced Options</p>
+<ol class="arabic simple">
+<li><p><strong>Enable Apple SMB2/3 Protocol Extensions</strong>: Check</p></li>
+</ol>
+</li>
+<li><p>Save</p></li>
+<li><p>Start the service and enable on boot</p></li>
+</ol>
+</li>
+<li><p>System &gt; Services &gt; SSH &gt; Edit</p>
+<ol class="arabic simple">
+<li><p><strong>Password Login Groups</strong>: truenas_admin</p></li>
+<li><p><strong>Allow TCP Port Forwarding</strong>: Check</p></li>
+<li><p>Save</p></li>
+<li><p>Start the service</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="synchronizing-time">
+<h3>2.3.0 Synchronizing Time<a class="headerlink" href="#synchronizing-time" title="Link to this heading">#</a></h3>
+<p>Because the NAS is permanently offline, NTP services do nothing and the clock will inevitably drift. Here is a workaround
+using Google as the time source over an SSH reverse proxy. Your laptop/workstation must be connected to the internet over
+WiFi and simultaneously be connected to the NAS over wired ethernet.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On your laptop/workstation:</span>
+ssh<span class="w"> </span>-R<span class="w"> </span><span class="m">8443</span>:google.com:443<span class="w"> </span>truenas_admin@192.168.27.1
+
+<span class="c1"># Run three times for sudo password prompt time delay</span>
+curl<span class="w"> </span>-sI<span class="w"> </span>--connect-to<span class="w"> </span>google.com:443:localhost:8443<span class="w"> </span>https://google.com<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>-Pom1<span class="w"> </span><span class="s2">&quot;^date: \K.*&quot;</span><span class="w"> </span><span class="p">|</span>xargs<span class="w"> </span>-I<span class="o">{}</span><span class="w"> </span>sudo<span class="w"> </span>date<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;{}&quot;</span>
+
+<span class="c1"># Finally update the hardware clock</span>
+sudo<span class="w"> </span>/sbin/hwclock<span class="w"> </span>-w
+</pre></div>
+</div>
+<p>You’ll need to repeat this step periodically as the click drifts (about once a month).</p>
+</section>
+<section id="setup-storage">
+<h3>2.4.0 Setup Storage<a class="headerlink" href="#setup-storage" title="Link to this heading">#</a></h3>
+<p>The NAS will use a regular key-encrypted pool with a passphrase-encrypted “top” dataset under which all other datasets will
+reside with inherited encryption. This way the NAS wil boot up without a password, but in order to access the data a password
+will need to be entered through the web UI.</p>
+<p>Because NVMe SSDs don’t fail as often as mechanical hard drives, we’ll be using RAIDZ1. The Aiffro only has four NVMe slots
+after all.</p>
+<section id="create-pool">
+<h4>2.4.1 Create Pool<a class="headerlink" href="#create-pool" title="Link to this heading">#</a></h4>
+<p>➡️ Storage &gt; Create Pool</p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: Vault</p></li>
+<li><p><strong>Encryption</strong>: Check</p></li>
+<li><p><strong>Layout</strong>: RAIDZ1</p></li>
+<li><p>Manual Disk Selection</p>
+<ol class="arabic simple">
+<li><p>Add (creates one RAIDZ1)</p></li>
+<li><p>Drag all drives from left to RAIDZ1</p></li>
+<li><p>Save Selection</p></li>
+</ol>
+</li>
+<li><p>Save And Go To Review &gt; Create Pool</p></li>
+<li><p>Download encryption key and store in a secure location</p></li>
+</ol>
+</section>
+<section id="create-top-dataset">
+<h4>2.4.2 Create Top Dataset<a class="headerlink" href="#create-top-dataset" title="Link to this heading">#</a></h4>
+<p>➡️ Datasets &gt; Add Dataset</p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: Lockbox</p></li>
+<li><p><strong>Inherit (encrypted)</strong>: Uncheck</p></li>
+<li><p><strong>Encryption Type</strong>: Passphrase</p></li>
+</ol>
+</section>
+</section>
+<section id="scrubbing-and-snapshots">
+<h3>2.5.0 Scrubbing and Snapshots<a class="headerlink" href="#scrubbing-and-snapshots" title="Link to this heading">#</a></h3>
+<p>Scrubbing will be done every 60 days and snapshots will be taken every night at 5 AM. Because this is a portable NAS it may
+not be powered on at that time. The workaround is to add a shutdown script to create snapshots on poweroff.</p>
+<section id="scrub-task">
+<h4>2.5.1 Scrub Task<a class="headerlink" href="#scrub-task" title="Link to this heading">#</a></h4>
+<p>➡️ Data Protection &gt; Scrub Tasks &gt; Vault (click to edit)</p>
+<ol class="arabic simple">
+<li><p><strong>Threshold Days</strong>: 60</p></li>
+<li><p><strong>Schedule</strong>: Hourly</p></li>
+</ol>
+</section>
+<section id="snapshot-task">
+<h4>2.5.2 Snapshot Task<a class="headerlink" href="#snapshot-task" title="Link to this heading">#</a></h4>
+<p>➡️ Data Protection &gt; Periodic Snapshot Tasks &gt; Add</p>
+<ol class="arabic simple">
+<li><p><strong>Dataset</strong>: Vault</p></li>
+<li><p><strong>Snapshot Lifetime</strong>: 24 MONTH</p></li>
+<li><p><strong>Recursive</strong>: Check</p></li>
+<li><p><strong>Schedule</strong>: Custom</p>
+<ol class="arabic simple">
+<li><p><strong>Presets</strong>: Daily</p></li>
+<li><p><strong>Hours</strong>: 5</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="snapshot-on-shutdown">
+<h4>2.5.3 Snapshot on Shutdown<a class="headerlink" href="#snapshot-on-shutdown" title="Link to this heading">#</a></h4>
+<p>➡️ System &gt; Advanced Settings &gt; Init/Shutdown Scripts</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Description: Snapshot on Shutdown</span>
+
+<span class="c1"># Command:</span>
+cli<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;storage snapshot create dataset=&quot;Vault&quot; naming_schema=&quot;shutdown-%Y-%m-%d_%H-%M&quot; recursive=true&#39;</span>
+
+<span class="c1"># When: Shutdown</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="datasets-and-samba-shares">
+<h3>2.6.0 Datasets and Samba Shares<a class="headerlink" href="#datasets-and-samba-shares" title="Link to this heading">#</a></h3>
+<p>For each user there will be three datasets: an umbrella dataset and two leaf datasets of which will also be Samba shares.
+Each user will have a “main” Samba share and a “temporary” share, the latter being excluded from backups. The parent dataset
+is the umbrella dataset for the user and is there just to organize the two leaf datasets. Below is a graph of all the
+datasets in a three user example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Vault (pool)
+└── Lockbox
+    ├── Robpol86
+    │   ├── Robpol86 (Samba share)
+    │   └── TemporaryR (Samba share)
+    ├── User2
+    │   ├── User2 (Samba share)
+    │   └── TemporaryU2 (Samba share)
+    └── User3
+        ├── User3 (Samba share)
+        └── TemporaryU3 (Samba share)
+</pre></div>
+</div>
+<p>Below are the steps for the user “Robpol86”.</p>
+<section id="add-user-account">
+<h4>2.6.1 Add User Account<a class="headerlink" href="#add-user-account" title="Link to this heading">#</a></h4>
+<p>➡️ Credentials &gt; Users &gt; Add</p>
+<ol class="arabic simple">
+<li><p><strong>Full Name</strong>: Robpol86</p></li>
+</ol>
+</section>
+<section id="add-umbrella-dataset">
+<h4>2.6.2 Add Umbrella Dataset<a class="headerlink" href="#add-umbrella-dataset" title="Link to this heading">#</a></h4>
+<p>➡️ Datasets &gt; Vault/Lockbox &gt; Add Dataset</p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: Robpol86</p></li>
+<li><p><strong>Dataset Preset</strong>: SMB</p></li>
+<li><p><strong>Create SMB Share</strong>: Uncheck</p></li>
+</ol>
+</section>
+<section id="add-leaf-datasets">
+<h4>2.6.3 Add Leaf Datasets<a class="headerlink" href="#add-leaf-datasets" title="Link to this heading">#</a></h4>
+<p>➡️ Datasets &gt; Vault/Lockbox/Robpol86 &gt; Add Dataset</p>
+<ol class="arabic simple">
+<li><p><strong>Name</strong>: Robpol86</p></li>
+<li><p><strong>Dataset Preset</strong>: SMB</p></li>
+<li><p>Save &gt; Return to Pool List</p></li>
+<li><p><em>Repeat for Name:TemporaryR</em></p></li>
+</ol>
+</section>
+<section id="update-samba-shares">
+<h4>2.6.4 Update Samba Shares<a class="headerlink" href="#update-samba-shares" title="Link to this heading">#</a></h4>
+<p>➡️ Shares &gt; SMB &gt; <em>Name</em> &gt; Edit</p>
+<ol class="arabic simple">
+<li><p><strong>Purpose</strong>: No presets</p></li>
+<li><p>Advanced Options</p>
+<ol class="arabic simple">
+<li><p><strong>Access Based Share Enumeration</strong>: Check</p></li>
+<li><p><strong>Export Recycle Bin</strong>: Check</p></li>
+</ol>
+</li>
+<li><p>Save</p></li>
+<li><p>Repeat for all</p></li>
+<li><p>Edit <strong>Share</strong> ACL for each:</p>
+<ol class="arabic simple">
+<li><p><strong>Who</strong>: User</p></li>
+<li><p><strong>User</strong>: robpol86</p></li>
+</ol>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="backup-procedure">
+<h2>3.0.0 Backup Procedure<a class="headerlink" href="#backup-procedure" title="Link to this heading">#</a></h2>
+<p>All non-temporary datasets are included in backups. After every backup the <strong>TrueNAS configuration file</strong> is also saved to a
+secure location such as a password manager.</p>
+<section id="external-usb-hard-drive">
+<h3>3.1.0 External USB Hard Drive<a class="headerlink" href="#external-usb-hard-drive" title="Link to this heading">#</a></h3>
+<p>This section will cover backing up to an external USB hard drive.</p>
+<section id="activate-pool">
+<h4>3.1.1 Activate Pool<a class="headerlink" href="#activate-pool" title="Link to this heading">#</a></h4>
+<p>Hot plug the USB backup drive and wait 15 seconds for it to show up.</p>
+<ol class="arabic simple">
+<li><p>If it’s a new drive create a new pool</p>
+<ol class="arabic simple">
+<li><p>Storage &gt; Create Pool</p></li>
+<li><p><strong>Name</strong>: Backup-YYYY-MM-DD</p></li>
+<li><p><strong>Encryption</strong>: <em>leave unchecked</em></p></li>
+<li><p><strong>Layout</strong>: Stripe</p></li>
+<li><p>Save and Go To Review &gt; Create Pool</p></li>
+</ol>
+</li>
+<li><p>If it’s an old drive import the pool</p>
+<ol class="arabic simple">
+<li><p>Storage &gt; Import Pool</p></li>
+<li><p><strong>Pool</strong>: <em>select Backup-YYYY-MM-DD|…</em></p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="create-and-run-task">
+<h4>3.1.2 Create and Run Task<a class="headerlink" href="#create-and-run-task" title="Link to this heading">#</a></h4>
+<p>➡️ Data Protection &gt; Replication Tasks &gt; Add</p>
+<ol class="arabic simple">
+<li><p>What and Where</p>
+<ol class="arabic simple">
+<li><p><strong>Source/Destination Location</strong>: On this System</p></li>
+<li><p><strong>Source</strong>: check <code class="docutils literal notranslate"><span class="pre">Lockbox</span></code> and all child datasets except <code class="docutils literal notranslate"><span class="pre">Temporary*</span></code></p></li>
+<li><p><strong>Destination</strong>: Backup-YYYY-MM-DD/Lockbox (manually type <code class="docutils literal notranslate"><span class="pre">/Lockbox</span></code> for new drives)</p></li>
+<li><p><strong>Encryption</strong>: <em>leave unchecked</em></p></li>
+<li><p><strong>Recursive</strong>: <em>leave unchecked</em></p></li>
+<li><p><strong>Replicate Custom Snapshots</strong>: Check</p></li>
+<li><p><strong>Snapshot Name Regular Expression</strong>: <code class="docutils literal notranslate"><span class="pre">.*</span></code></p></li>
+<li><p>Next</p></li>
+</ol>
+</li>
+<li><p>When</p>
+<ol class="arabic simple">
+<li><p><strong>Replication Schedule</strong>: Run Once</p></li>
+<li><p>Save (replication will start immediately)</p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can monitor the backup drive’s I/O using this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>watch<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;S_COLORS=always iostat -m -y /dev/sdb 1 1&quot;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="export-backup-pool">
+<h4>3.1.3 Export Backup Pool<a class="headerlink" href="#export-backup-pool" title="Link to this heading">#</a></h4>
+<p>When done export the pool and eject the drive. The replication task will be automatically deleted.</p>
+<ol class="arabic simple">
+<li><p>Visit Jobs History to confirm replication.run task succeeded and confirm elapsed time is sane</p></li>
+<li><p>Storage &gt; Backup-YYYY-MM-DD</p>
+<ol class="arabic simple">
+<li><p>Note space usage, confirm it’s not 0</p></li>
+<li><p>Export/Disconnect</p></li>
+<li><p><strong>Delete saved configurations from TrueNAS</strong>: <em>leave checked</em></p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If middleware and other processes are using this pool either wait or reboot.</p>
+</div>
+</section>
+<section id="save-configuration">
+<h4>3.1.4 Save Configuration<a class="headerlink" href="#save-configuration" title="Link to this heading">#</a></h4>
+<p>Save TrueNAS configuration to a secure location in case of failed boot-pool scenario.</p>
+<p>➡️ System &gt; General Settings &gt; Manage Configuration &gt; Download File</p>
+<ol class="arabic simple">
+<li><p><strong>Export Password Secret Seed</strong>: Check</p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="disaster-recovery">
+<h2>4.0.0 Disaster Recovery<a class="headerlink" href="#disaster-recovery" title="Link to this heading">#</a></h2>
+<p>This section will cover known disaster events and their recovery steps.</p>
+<section id="failed-boot-pool">
+<h3>4.1.0 Failed Boot Pool<a class="headerlink" href="#failed-boot-pool" title="Link to this heading">#</a></h3>
+<p>In this scenario the boot SSD is lost but not the NAS itself or the storage SSDs.</p>
+<ol class="arabic simple">
+<li><p>Have the saved <a class="reference internal" href="#backup-procedure">TrueNAS configuration file</a> from the secure location handy</p></li>
+<li><p>Reinstall TrueNAS</p>
+<ol class="arabic simple">
+<li><p>Stop before the <a class="reference internal" href="#web-ui-general-config">Web UI General Config</a> section</p></li>
+</ol>
+</li>
+<li><p>System &gt; General Settings &gt; Manage Configuration &gt; Upload File</p>
+<ol class="arabic simple">
+<li><p>Upload the TrueNAS configuration file</p></li>
+<li><p>Wait for the automatic reboot</p></li>
+</ol>
+</li>
+<li><p>Confirm everything looks good</p></li>
+</ol>
+</section>
+<section id="replace-storage-device">
+<h3>4.2.0 Replace Storage Device<a class="headerlink" href="#replace-storage-device" title="Link to this heading">#</a></h3>
+<p>Steps for replacing failed or failing storage SSDs. You’ll need another USB-C to NVMe adapter (do not use the adapter used by
+the <strong>OS drive</strong>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The steps involve power cycling instead of hot swapping for a couple of reasons:</p>
+<ul class="simple">
+<li><p>The NVMe slots are probably not hot swappable</p></li>
+<li><p>This is a portable NAS that is frequently turned off</p></li>
+</ul>
+</div>
+<section id="validate-new-ssd">
+<h4>4.2.1 Validate New SSD<a class="headerlink" href="#validate-new-ssd" title="Link to this heading">#</a></h4>
+<p>Power off and move the failed drive to a USB-C NVMe adapter and install the new drive in the now-open M.2 slot. Boot the
+system and then:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On your laptop/workstation:</span>
+wget<span class="w"> </span>ftp://ftp.us.debian.org/debian/pool/main/f/f3/f3_8.0-2_amd64.deb
+ar<span class="w"> </span>x<span class="w"> </span>f3_8.0-2_amd64.deb
+tar<span class="w"> </span>-xf<span class="w"> </span>data.tar.xz
+scp<span class="w"> </span>./usr/bin/f3probe<span class="w"> </span>truenas_admin@192.168.27.1:~
+ssh<span class="w"> </span>truenas_admin@192.168.27.1
+
+<span class="c1"># New drive</span>
+sudo<span class="w"> </span>smartctl<span class="w"> </span>-a<span class="w"> </span>/dev/nvmeXn1
+sudo<span class="w"> </span>smartctl<span class="w"> </span>-x<span class="w"> </span>/dev/nvmeXn1
+sudo<span class="w"> </span>fdisk<span class="w"> </span>-l<span class="w"> </span>/dev/nvmeXn1
+
+cp<span class="w"> </span>~/f3probe<span class="w"> </span>/dev/shm/
+sudo<span class="w"> </span>/dev/shm/f3probe<span class="w"> </span>--destructive<span class="w"> </span>--time-ops<span class="w"> </span>/dev/nvmeXn1
+</pre></div>
+</div>
+</section>
+<section id="replace">
+<h4>4.2.2 Replace<a class="headerlink" href="#replace" title="Link to this heading">#</a></h4>
+<p>➡️ Storage &gt; Topology &gt; Manage Devices &gt; RAIDZ1</p>
+<ol class="arabic simple">
+<li><p>Select the device to be replaced (old drive, e.g. sdb)</p></li>
+<li><p><strong>Replace</strong> &gt; Member Disk: <em>new drive’s name</em> &gt; Replace Disk</p>
+<ol class="arabic simple">
+<li><p>If an error occurs reboot and try again</p></li>
+</ol>
+</li>
+<li><p>View the resilvering process in the upper right animated 🔄️ icon</p></li>
+</ol>
+</section>
+<section id="wipe-old-drive">
+<h4>4.2.3 Wipe Old Drive<a class="headerlink" href="#wipe-old-drive" title="Link to this heading">#</a></h4>
+<p>➡️ Storage &gt; Disks</p>
+<p>Verify old drive Pool column is <strong>N/A</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nvme<span class="w"> </span>format<span class="w"> </span>-s2<span class="w"> </span>/dev/nvmeXn1<span class="w">  </span><span class="c1"># if it fails try -s1</span>
+sudo<span class="w"> </span>blkdiscard<span class="w"> </span>/dev/nvmeXn1
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">smartctl</span> <span class="pre">-a</span> <span class="pre">/dev/nvmeXn1</span></code> on the old drive for RMA purposes</p>
+</section>
+<section id="expand">
+<h4>4.2.4 Expand<a class="headerlink" href="#expand" title="Link to this heading">#</a></h4>
+<p>➡️ Storage &gt; Vault &gt; Expand</p>
+<ol class="arabic simple">
+<li><p>After replacing smaller drives with larger ones click this to enable the new free space</p></li>
+</ol>
+</section>
+</section>
+<section id="restore-from-backup">
+<h3>4.3.0 Restore from Backup<a class="headerlink" href="#restore-from-backup" title="Link to this heading">#</a></h3>
+<p>In this scenario the entire NAS is lost but we still have access to a backup hard drive.</p>
+<section id="prepare-new-system">
+<h4>4.3.1 Prepare New System<a class="headerlink" href="#prepare-new-system" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Have the saved <a class="reference internal" href="#backup-procedure">TrueNAS configuration file</a> from the secure location handy</p></li>
+<li><p>Reinstall TrueNAS</p>
+<ol class="arabic simple">
+<li><p>Stop before the <a class="reference internal" href="#web-ui-general-config">Web UI General Config</a> section</p></li>
+</ol>
+</li>
+<li><p>System &gt; General Settings &gt; Manage Configuration &gt; Upload File</p>
+<ol class="arabic simple">
+<li><p>Upload the TrueNAS configuration file</p></li>
+<li><p>Wait for the automatic reboot</p></li>
+</ol>
+</li>
+<li><p>Ensure SSDs are all wiped</p></li>
+<li><p>Storage &gt; Vault &gt; Export/Disconnect</p>
+<ol class="arabic simple">
+<li><p><strong>Delete saved configurations from TrueNAS</strong>: Uncheck</p></li>
+</ol>
+</li>
+<li><p>Create pool but no datasets</p></li>
+</ol>
+</section>
+<section id="restore">
+<h4>4.3.2 Restore<a class="headerlink" href="#restore" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Insert backup HDD</p></li>
+<li><p>Storage &gt; Import Pool &gt; “Backup-XXXX”</p></li>
+<li><p>Data Protection &gt; Replication Tasks &gt; Add</p>
+<ol class="arabic simple">
+<li><p><strong>Source/Destination Location</strong>: On this System</p></li>
+<li><p><strong>Source</strong>: check <code class="docutils literal notranslate"><span class="pre">Lockbox</span></code> only</p></li>
+<li><p><strong>Destination</strong>: Vault/Lockbox (manually type <code class="docutils literal notranslate"><span class="pre">/Lockbox</span></code>)</p></li>
+<li><p><strong>Encryption</strong>: <em>leave unchecked</em></p></li>
+<li><p><strong>Recursive</strong>: Check</p></li>
+<li><p><strong>Replicate Custom Snapshots</strong>: Check</p></li>
+<li><p><strong>Snapshot Name Regular Expression</strong>: <code class="docutils literal notranslate"><span class="pre">.*</span></code></p></li>
+<li><p>Next</p></li>
+<li><p><strong>Replication Schedule</strong>: Run Once</p></li>
+<li><p><strong>Make Destination Dataset Read-only</strong>: Uncheck</p></li>
+<li><p><strong>Destination Snapshot Lifetime</strong> Same as Source</p></li>
+<li><p>Save (replication will start immediately)</p></li>
+</ol>
+</li>
+<li><p>Export and remove backup HDD</p></li>
+</ol>
+</section>
+<section id="final-steps">
+<h4>4.3.3 Final Steps<a class="headerlink" href="#final-steps" title="Link to this heading">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get user/group quota errors try rebooting.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Unlock Lockbox and all child datasets</p></li>
+<li><p>Datasets &gt; Vault/Lockbox/Robpol86 &gt; ZFS Encryption &gt; Edit</p>
+<ol class="arabic simple">
+<li><p><strong>Inherit encryption properties from parent</strong>: Check</p></li>
+<li><p><em>Repeat for all other child datasets</em></p></li>
+</ol>
+</li>
+<li><p>Datasets &gt; Vault/Lockbox &gt; Dataset Details &gt; Edit &gt; Advanced Options</p>
+<ol class="arabic simple">
+<li><p><strong>Read-only</strong>: Inherit</p></li>
+<li><p><em>Repeat for all other child datasets</em></p></li>
+</ol>
+</li>
+<li><p>System &gt; Shell &gt; <code class="docutils literal notranslate"><span class="pre">rmdir</span> <span class="pre">-v</span> <span class="pre">/mnt/Vault/Lockbox/*/Temporary*</span></code></p></li>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">Temporary*</span></code> datasets</p></li>
+<li><p>Reapply SMB ACLs</p></li>
+<li><p>Reboot</p></li>
+<li><p>Run through runbooks again to confirm settings</p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting-playbook">
+<h2>5.0.0 Troubleshooting Playbook<a class="headerlink" href="#troubleshooting-playbook" title="Link to this heading">#</a></h2>
+<p>Common or occasional issues and their solutions. Includes notes if the issue resolved itself (which is never a good thing
+because the root cause is not fixed and the issue may reoccur).</p>
+<section id="invalid-argument-during-seek">
+<h3>5.1.0 Invalid argument during seek<a class="headerlink" href="#invalid-argument-during-seek" title="Link to this heading">#</a></h3>
+<p>This error appeared when creating a pool on a single drive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">argument</span> <span class="n">during</span> <span class="n">seek</span> <span class="k">for</span> <span class="n">write</span> <span class="n">on</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdh</span>
+</pre></div>
+</div>
+<p>Happened even when one drive was removed and another was installed.</p>
+<section id="solution">
+<h4>5.1.1 Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h4>
+<p>Solution was to reboot.</p>
+</section>
+</section>
+<section id="checksum-error-1">
+<h3>5.2.0 Checksum Error: 1<a class="headerlink" href="#checksum-error-1" title="Link to this heading">#</a></h3>
+<p>This happened when the NVMe SSDs dissappeared on boot. This happened the first time I installed the four WD Black SSDs back
+in late December 2024, all four were missing from <code class="docutils literal notranslate"><span class="pre">/dev</span></code>. A power cycle fixed it that time.</p>
+<p>It appeared to have happened again. On February 8th 2025 on boot my main pool was missing. In my haste I didn’t check if any
+SSD was in <code class="docutils literal notranslate"><span class="pre">/dev</span></code>. I powercycled (gracefully) the Aiffro and only three SSDs showed up in the UI’s Disks section. A second
+powercycle restored the fourth SSD but the TrueNAS UI showed the ZFS Pool with an error (yet its state was Online).</p>
+<p>In the Dashboard screen it said Disks with Errors: 1. In <code class="docutils literal notranslate"><span class="pre">/ui/storage/1/devices/</span></code> one of the devices showed 1 checksum error.
+I put off fixing the issue for the next day and used the NAS like normal and powered it off at night. The next morning the
+error was gone and everything was healthy with no manual intervention.</p>
+<section id="id1">
+<h4>5.2.1 Solution<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Solution was to power cycle multiple times.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="2025-01-14-desk.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Desk Photos 2025</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="2025-07-14-truenas-scale-beelink-slots-tool.html">
+      <span>TrueNAS Slots Tool for ME Mini</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "TrueNAS SCALE Runbook";
+      var disqus_title = "TrueNAS SCALE Runbook";
+      var disqus_url = "http://localhost:8000/posts/2025/2025-02-13-truenas-scale-aiffro-runbook";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2025-07-14-truenas-scale-beelink-slots-tool.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">TrueNAS Slots Tool for ME Mini</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2025-01-14-desk.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Desk Photos 2025</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-procedure">1.0.0 Installation Procedure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1.1.0 Prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-usb-installer">1.2.0 Prepare USB Installer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-bios">1.3.0 Configure BIOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-to-installer">1.4.0 Boot to Installer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-truenas">1.5.0 Install TrueNAS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-truenas">2.0.0 Configure TrueNAS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#console-setup">2.1.0 Console Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-ui-general-config">2.2.0 Web UI General Config</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronizing-time">2.3.0 Synchronizing Time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-storage">2.4.0 Setup Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-pool">2.4.1 Create Pool</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-top-dataset">2.4.2 Create Top Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scrubbing-and-snapshots">2.5.0 Scrubbing and Snapshots</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scrub-task">2.5.1 Scrub Task</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#snapshot-task">2.5.2 Snapshot Task</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#snapshot-on-shutdown">2.5.3 Snapshot on Shutdown</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-samba-shares">2.6.0 Datasets and Samba Shares</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-user-account">2.6.1 Add User Account</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-umbrella-dataset">2.6.2 Add Umbrella Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-leaf-datasets">2.6.3 Add Leaf Datasets</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-samba-shares">2.6.4 Update Samba Shares</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-procedure">3.0.0 Backup Procedure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external-usb-hard-drive">3.1.0 External USB Hard Drive</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-pool">3.1.1 Activate Pool</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-run-task">3.1.2 Create and Run Task</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#export-backup-pool">3.1.3 Export Backup Pool</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-configuration">3.1.4 Save Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disaster-recovery">4.0.0 Disaster Recovery</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#failed-boot-pool">4.1.0 Failed Boot Pool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replace-storage-device">4.2.0 Replace Storage Device</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-new-ssd">4.2.1 Validate New SSD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#replace">4.2.2 Replace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wipe-old-drive">4.2.3 Wipe Old Drive</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expand">4.2.4 Expand</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restore-from-backup">4.3.0 Restore from Backup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-new-system">4.3.1 Prepare New System</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restore">4.3.2 Restore</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-steps">4.3.3 Final Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-playbook">5.0.0 Troubleshooting Playbook</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invalid-argument-during-seek">5.1.0 Invalid argument during seek</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">5.1.1 Solution</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum-error-1">5.2.0 Checksum Error: 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.2.1 Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

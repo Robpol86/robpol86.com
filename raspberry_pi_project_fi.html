@@ -1,0 +1,1346 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Raspberry Pi on Project Fi" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/raspberry_pi_project_fi.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content="This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s Project Fi cellular service. If you already use Project Fi as your main cellphone service provider then you can use their data only SIM cards to get your Raspberry Pi online for relatively cheap depending o..." />
+<meta property="og:image" content="http://localhost:8000/_images/PmqSPyj.400x300.25.jpg" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content="This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s Project Fi cellular service. If you already use Project Fi as your main cellphone service provider then you can use their data only SIM cards to get your Raspberry Pi online for relatively cheap depending o..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>Raspberry Pi on Project Fi &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'raspberry_pi_project_fi';</script>
+    <link rel="canonical" href="http://localhost:8000/raspberry_pi_project_fi.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="US RNS-510 Video In Motion" href="rns_510_vim.html" />
+    <link rel="prev" title="Raspberry Pi LUKS Root Encryption" href="raspberry_pi_luks.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>03 December 2016</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="blog/location/san-francisco.html" style="display:inline">San Francisco</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="blog/category/tutorials.html" style="display:inline">Tutorials</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tags"></i>
+    
+    
+    </span>
+  
+  
+  <a href="blog/tag/linux.html" style="display:inline">linux</a>
+  
+  
+  
+  
+  
+  <a href="blog/tag/cellular.html" style="display:inline">cellular</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="Raspberry Pi on Project Fi" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-17-influxdb-downsampling.html">InfluxDB v2 Downsampling</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-23-truenas-scale-telegraf.html">TrueNAS Telegraf, Influx, Grafana</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html">TrueNAS SCALE Runbook</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/raspberry_pi_project_fi.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Raspberry Pi on Project Fi</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-on-linux">Installing on Linux</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usb-mode-switch">USB Mode Switch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permanent-modem-mode">Permanent Modem Mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialing">Dialing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wvdial">WvDial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndisdup">NDISDUP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="raspberry-pi-on-project-fi">
+<h1>Raspberry Pi on Project Fi<a class="headerlink" href="#raspberry-pi-on-project-fi" title="Link to this heading">#</a></h1>
+<p>This guide will go over how to get a Raspberry Pi (or really any Linux system) on Google’s
+<a class="reference external" href="https://fi.google.com">Project Fi</a> cellular service. If you already use Project Fi as your main cellphone service
+provider then you can use their <a class="reference external" href="https://support.google.com/fi?p=data_only_SIM">data only SIM cards</a> to get your
+Raspberry Pi online for relatively cheap depending on your use case.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/raspberry-pi-project-fi/PmqSPyj.jpg"><img alt="_images/PmqSPyj.400x300.25.jpg" src="_images/PmqSPyj.400x300.25.jpg" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/raspberry-pi-project-fi/dE4GgBg.jpg"><img alt="_images/dE4GgBg.400x300.25.jpg" src="_images/dE4GgBg.400x300.25.jpg" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>I was able to power the 3G modem directly from the USB port on my Pi Zero. You’ll probably need a good USB power supply
+to power everything.</p>
+<p>I’ll be covering a couple of different ways to get all of this working. You will need:</p>
+<ol class="arabic simple">
+<li><p>Raspberry Pi running Raspbian (I used a Pi Zero version 1.3).</p></li>
+<li><p>Project Fi data only SIM card (I’ve previously activated mine on a Nexus 5).</p></li>
+<li><p>T-Mobile locked or unlocked USB 3G modem (I used a Jet 2.0 HSPA+ USB stick).</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Jet 2.0 is basically a <strong>Huawei UMG366</strong>, similar to the <strong>Huawei E366</strong> modem. I’m only able to get EDGE speeds
+on it (both on Linux and on a Windows XP laptop with T-Mobile software) so I wouldn’t recommend getting it.</p>
+</div>
+<section id="installing-on-linux">
+<h2>Installing on Linux<a class="headerlink" href="#installing-on-linux" title="Link to this heading">#</a></h2>
+<p>The first step is getting the OS to recognize the modem. There is a problem with some 3G USB modems in that they
+simulate a virtual CD-ROM drive (ZeroCD mode). This drive has drivers and software needed by Windows and OS X to control
+the modem, and once installed and running that software takes care of switching the device into modem mode. However this
+trick doesn’t work well on Linux since we don’t (and can’t) use that software to do the switch. So we only see the
+virtual CD-ROM drive (or SD card if it has one) and not the modem.</p>
+<p>You can see this for yourself: plug in the modem into a USB port on the Raspberry Pi and run <code class="docutils literal notranslate"><span class="pre">lsusb</span></code>. You should see
+something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~ $ lsusb |grep Huawei
+Bus 001 Device 007: ID 12d1:1446 Huawei Technologies Co., Ltd. E1552/E1800/E173 (HSPA modem)
+</pre></div>
+</div>
+<p>The above is <strong>NOT</strong> what we want. Even though it says “HSPA modem” it is in fact in ZeroCD mode. You won’t have wwan0
+in <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> and you won’t see any <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB*</span></code> devices.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you do see <code class="docutils literal notranslate"><span class="pre">wwan0</span></code> in ifconfig or have <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB*</span></code> devices then you can probably skip following
+sub-sections and head on over to the <a class="reference internal" href="#dialing">Dialing</a> section below. On Raspbian Lite I had to use usb_modeswitch but on
+Raspbian with PIXEL I didn’t need it.</p>
+</div>
+<p>There are two solutions to this: using <a class="reference internal" href="#usb-mode-switch">USB Mode Switch</a> software to switch to modem mode on Linux or the
+“software-free” <a class="reference internal" href="#permanent-modem-mode">Permanent Modem Mode</a> approach. I’ll explain both below:</p>
+<section id="usb-mode-switch">
+<h3>USB Mode Switch<a class="headerlink" href="#usb-mode-switch" title="Link to this heading">#</a></h3>
+<p>A very common and safe solution is to use <code class="docutils literal notranslate"><span class="pre">usb_modeswitch</span></code>. Luckily it comes pre-installed on Raspbian. If for some
+reason you don’t have it you can just run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">usb-modeswitch</span></code>.</p>
+<p>First cherry pick the correct file from configPack.tar.gz and put it in /etc/usb_modeswitch.d. Remember that if you had
+something other than “12d1:1446” in your <code class="docutils literal notranslate"><span class="pre">lsusb</span></code> output you’ll want to use that device ID instead in the command
+below.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/etc/usb_modeswitch.d/
+sudo<span class="w"> </span>tar<span class="w"> </span>-xzvf<span class="w"> </span>/usr/share/usb_modeswitch/configPack.tar.gz<span class="w"> </span><span class="s2">&quot;12d1:1446&quot;</span>
+</pre></div>
+</div>
+<p>Now we need to open <code class="docutils literal notranslate"><span class="pre">/etc/usb_modeswitch.d/12d1:1446</span></code> in a text editor and put “DefaultVendor=0x12d1” and
+“DefaultProduct=0x1446” at the top. It’ll end up looking something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DefaultVendor</span><span class="o">=</span><span class="mh">0x12d1</span>
+<span class="n">DefaultProduct</span><span class="o">=</span><span class="mh">0x1446</span>
+<span class="c1"># Huawei, newer modems, and rebrandings</span>
+<span class="n">TargetVendor</span><span class="o">=</span><span class="mh">0x12d1</span>
+<span class="n">TargetProductList</span><span class="o">=</span><span class="s2">&quot;1001,1404,1406,140b,140c,1412,1417,141b,1429,1432,1433,1436,14ac,1506,150c,1511&quot;</span>
+<span class="n">HuaweiNewMode</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Now we can test it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~ $ sudo usb_modeswitch -c /etc/usb_modeswitch.d/12d1:1446
+Look for target devices ...
+ No devices in target mode or class found
+Look for default devices ...
+   product ID matched
+ Found devices in default mode (1)
+Access device 014 on bus 001
+Current configuration number is 1
+Use interface number 0
+Use endpoints 0x01 (out) and 0x81 (in)
+
+USB description data (for identification)
+-------------------------
+Manufacturer: Huawei Technologies
+     Product: HUAWEI Mobile
+  Serial No.: not provided
+-------------------------
+Using standard Huawei switching message
+Looking for active driver ...
+ OK, driver detached
+Set up interface 0
+Use endpoint 0x01 for message sending ...
+Trying to send message 1 to endpoint 0x01 ...
+ OK, message successfully sent
+Reset response endpoint 0x81
+ Could not reset endpoint (probably harmless): -99
+Reset message endpoint 0x01
+ Could not reset endpoint (probably harmless): -99
+-&gt; Run lsusb to note any changes. Bye!
+</pre></div>
+</div>
+<p>And now we’ve got <code class="docutils literal notranslate"><span class="pre">wwan0</span></code> and <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB*</span></code> files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~ $ ifconfig wwan0
+wwan0     Link encap:Ethernet  HWaddr a2:6e:8e:8e:6e:a2
+          inet addr:169.254.198.80  Bcast:169.254.255.255  Mask:255.255.0.0
+          inet6 addr: fe80::e30f:63c4:d2f4:52c2/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:41 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:8393 (8.1 KiB)
+
+pi@raspberrypi:~ $ ls /dev/ttyUSB*
+/dev/ttyUSB0  /dev/ttyUSB1  /dev/ttyUSB2
+</pre></div>
+</div>
+<p>If you don’t see wwan0 but do see ttyUSB* files then you should be fine. <a class="reference internal" href="#wvdial">WvDial</a> only needs those ttyUSB* files.</p>
+</section>
+<section id="permanent-modem-mode">
+<h3>Permanent Modem Mode<a class="headerlink" href="#permanent-modem-mode" title="Link to this heading">#</a></h3>
+<p>This is a more risky yet robust solution. Unfortunately in my experience <code class="docutils literal notranslate"><span class="pre">usb_modeswitch</span></code> wasn’t very reliable between
+reboots. I kept having to run the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">usb_modeswitch</span></code> command to manually do the switch to modem mode. Since I plan
+on keeping my Raspberry Pi unattended for weeks/months at a time I can’t be there to do the mode switch myself, nor do
+I want to setup an ugly cronjob to do it (feels like a band-aid solution to me).</p>
+<p>There is a way to disable this “switch” feature on my 3G modem using the <code class="docutils literal notranslate"><span class="pre">SETPORT</span></code> AT command (other Huawei modems
+support the <code class="docutils literal notranslate"><span class="pre">U2DIAG</span></code> AT command but mine didn’t seem to have it). You can always reverse this change if you keep the
+original values written down somewhere.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be <strong>VERY</strong> careful with the SETPORT command. If you omit one of the modes you could accidentally lock yourself out
+of the modem forever (e.g. excluding PCUI mode may cause /dev/ttyUSB0 to never come back).</p>
+</div>
+<p>We’ll need to issue AT commands to the modem. I’ll be using <code class="docutils literal notranslate"><span class="pre">screen</span></code>. You’ll need to have the <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code> file
+present so if you don’t have it you’ll need to run through the <a class="reference internal" href="#usb-mode-switch">USB Mode Switch</a> section or run
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">sg_raw</span> <span class="pre">/dev/sr0</span> <span class="pre">11</span> <span class="pre">06</span> <span class="pre">20</span> <span class="pre">00</span> <span class="pre">00</span> <span class="pre">00</span> <span class="pre">00</span> <span class="pre">00</span> <span class="pre">01</span> <span class="pre">00</span></code> to temporarily switch to the modem.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>screen
+screen<span class="w"> </span>/dev/ttyUSB0
+<span class="c1"># Test by typing &quot;AT&quot; (without quotes) and pressing enter. It should reply &quot;OK&quot;.</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Exit screen with <code class="docutils literal notranslate"><span class="pre">ctrl+a</span></code> and then press <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+</div>
+<p>First get the current settings from the modem (AT^SETPORT?) and also what values correspond to which settings
+(AT^SETPORT=?):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AT^SETPORT?
+A1,A2:1,2,3,7,A1,A2
+
+OK
+AT^SETPORT=?
+1:MODEM
+2:PCUI
+3:DIAG
+4:PCSC
+5:GPS
+6:GPS CONTROL
+7:NDIS
+A:BLUE TOOTH
+B:FINGER PRINT
+D:MMS
+E:PC VOICE
+A1:CDROM
+A2:SD
+
+
+OK
+</pre></div>
+</div>
+<p>Values before the colon are initial modes and values after the colon are post-switch modes. As you can see only the
+CDROM and SD card modes are enabled by default until usb_modeswitch is run, which then includes the modem. We can use
+the undocumented “FF” mode as a noop to just disable the special “initial” mode and always start off with the modem.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AT^SETPORT=&quot;FF;1,2,3,7&quot;
+OK
+AT^SETPORT?
+ff:1,2,3,7
+
+OK
+</pre></div>
+</div>
+<p>Exit screen, pull out the modem, and plug it back in. You should get wwan0 instantly.</p>
+</section>
+</section>
+<section id="dialing">
+<h2>Dialing<a class="headerlink" href="#dialing" title="Link to this heading">#</a></h2>
+<p>You may currently have wwan0 present, but it doesn’t have a public IP address (you’ll have a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Link-local_address">link-local address</a> instead). We’ll need to issue “dial” commands
+to the modem to get it connected (just like the old 56k days!). I’ve found a couple of different ways to do this: the
+“easy” software-ppp approach <a class="reference internal" href="#wvdial">WvDial</a> and the Huawei-specific (but still safe) non-ppp approach <a class="reference internal" href="#ndisdup">NDISDUP</a>.</p>
+<section id="wvdial">
+<h3>WvDial<a class="headerlink" href="#wvdial" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">wvdial</span></code> should theoretically handle auto-redialing on disconnect and other edge-cases, though I haven’t tested it.
+We’ll have it dial up with the Project Fi APN <code class="docutils literal notranslate"><span class="pre">h2g2</span></code>. Other cellular providers require a username and password to dial
+but Project Fi doesn’t need that.</p>
+<p>First install wvdial:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>wvdial
+</pre></div>
+</div>
+<p>Then open <code class="docutils literal notranslate"><span class="pre">/etc/wvdial.conf</span></code> and make it look like this:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Dialer Defaults]</span>
+<span class="na">Init1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ATZ</span>
+<span class="na">Init2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</span>
+<span class="na">Init3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">AT+CGDCONT=1,&quot;IP&quot;,&quot;h2g2&quot;</span>
+<span class="na">Modem Type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Analog Modem</span>
+<span class="na">Baud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">460800</span>
+<span class="na">New PPPD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">Modem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyUSB0</span>
+<span class="na">ISDN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
+<span class="na">Phone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">*99</span><span class="c1">#</span>
+<span class="na">Password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{ }</span>
+<span class="na">Username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{ }</span>
+<span class="na">Stupid Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+</pre></div>
+</div>
+<p>Now dial into to Project Fi. You should see something like this:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">vwdial</span></code> will hang at the end if it works. When you ctrl+c it will hang up the modem. This is fine for now. On
+success you will also see a new interface <code class="docutils literal notranslate"><span class="pre">ppp0</span></code> whilst <code class="docutils literal notranslate"><span class="pre">wwan0</span></code> keeps its current useless IP.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~ $ sudo wvdial defaults
+--&gt; WvDial: Internet dialer version 1.61
+--&gt; Initializing modem.
+--&gt; Sending: ATZ
+ATZ
+OK
+--&gt; Sending: ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0
+ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0
+OK
+--&gt; Sending: AT+CGDCONT=1,&quot;IP&quot;,&quot;h2g2&quot;
+AT+CGDCONT=1,&quot;IP&quot;,&quot;h2g2&quot;
+OK
+--&gt; Modem initialized.
+--&gt; Sending: ATDT*99#
+--&gt; Waiting for carrier.
+ATDT*99#
+CONNECT
+--&gt; Carrier detected.  Starting PPP immediately.
+--&gt; Starting pppd at Fri Dec  2 20:43:24 2016
+--&gt; Pid of pppd: 3600
+--&gt; Using interface ppp0
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; local  IP address 25.9.82.116
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; remote IP address 10.64.64.64
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; primary   DNS address 10.177.0.34
+--&gt; pppd: 8??[01]p??[01]h??[01]
+--&gt; secondary DNS address 10.177.0.210
+--&gt; pppd: 8??[01]p??[01]h??[01]
+</pre></div>
+</div>
+<p>Once it hangs with no errors you can open another terminal (or re-run wvdial in the background) and ping out:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~ $ ping -I ppp0 4.2.2.1
+PING 4.2.2.1 (4.2.2.1) from 33.250.225.165 ppp0: 56(84) bytes of data.
+64 bytes from 4.2.2.1: icmp_seq=1 ttl=55 time=961 ms
+64 bytes from 4.2.2.1: icmp_seq=2 ttl=55 time=603 ms
+64 bytes from 4.2.2.1: icmp_seq=3 ttl=55 time=341 ms
+64 bytes from 4.2.2.1: icmp_seq=4 ttl=55 time=221 ms
+^C
+--- 4.2.2.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3001ms
+rtt min/avg/max/mdev = 221.998/532.237/961.983/283.804 ms
+pi@raspberrypi:~ $
+</pre></div>
+</div>
+<p>It is pretty slow though (I get around 15 KiB/s). Good enough for my use case however.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/raspberry-pi-project-fi/zTRT6Ja.jpg"><img alt="_images/zTRT6Ja.400x300.25.jpg" src="_images/zTRT6Ja.400x300.25.jpg" />
+</a>
+</td>
+<td><a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/raspberry-pi-project-fi/87aSM89.jpg"><img alt="_images/87aSM89.400x300.25.jpg" src="_images/87aSM89.400x300.25.jpg" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="ndisdup">
+<h3>NDISDUP<a class="headerlink" href="#ndisdup" title="Link to this heading">#</a></h3>
+<p>There is a way to skip needing <code class="docutils literal notranslate"><span class="pre">wvdial</span></code> altogether and let the modem handle it for us. Apparently though this only
+works for Huawei modems (lucky for me). This isn’t a permanent solution so we’ll be automatically running this every
+time the wwan0 interface is brought up.</p>
+<p>If you read through the <a class="reference internal" href="#wvdial">WvDial</a> section, you’ll notice that network traffic goes through <code class="docutils literal notranslate"><span class="pre">ppp0</span></code> instead of <code class="docutils literal notranslate"><span class="pre">wwan0</span></code>
+and indeed wwan0 is never even used. It looks like wwan0 is a virtual NDIS ethernet adapter that the modem provides, yet
+is usually unused. We’ll be using it here.</p>
+<p>Before making changes lets try manually enabling it. Log into the serial console with a tty program (I’ll be using
+<code class="docutils literal notranslate"><span class="pre">screen</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>screen
+screen<span class="w"> </span>/dev/ttyUSB0
+<span class="c1"># Test by typing &quot;AT&quot; (without quotes) and pressing enter. It should reply &quot;OK&quot;.</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Exit screen with <code class="docutils literal notranslate"><span class="pre">ctrl+a</span></code> and then press <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+</div>
+<p>Now issue the <code class="docutils literal notranslate"><span class="pre">NDISDUP</span></code> AT command (h2g2 is the Project Fi APN):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">^</span><span class="n">NDISDUP</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;h2g2&quot;</span>
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Now run the DHCP client to get an IP address:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi:~ $ sudo dhclient -v wwan0
+Internet Systems Consortium DHCP Client 4.3.1
+Copyright 2004-2014 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wwan0/f6:0a:21:71:c9:56
+Sending on   LPF/wwan0/f6:0a:21:71:c9:56
+Sending on   Socket/fallback
+DHCPDISCOVER on wwan0 to 255.255.255.255 port 67 interval 8
+DHCPREQUEST on wwan0 to 255.255.255.255 port 67
+DHCPOFFER from 25.39.9.157
+DHCPACK from 25.39.9.157
+bound to 25.39.9.158 -- renewal in 3110 seconds.
+</pre></div>
+</div>
+<p>You should have internet access now. To automate all of this we can create a pre-up rule for the network interface.
+We’ll need the <code class="docutils literal notranslate"><span class="pre">qmicli</span></code> utility to check if we have cell service before trying to dial in with NDISDUP. It’ll also be
+easier to use than issuing AT command with echo and not being able to find out if the command failed or succeeded.
+Install it with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">libqmi-utils</span></code>.  Edit <code class="docutils literal notranslate"><span class="pre">/etc/network/interfaces.d/wwan0</span></code> with the following file
+contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>allow-hotplug wwan0
+iface wwan0 inet dhcp
+     pre-up for _ in $(seq 1 10); do /usr/bin/test -c /dev/cdc-wdm0 &amp;&amp; break; /bin/sleep 1; done
+     pre-up for _ in $(seq 1 10); do /usr/bin/qmicli -d /dev/cdc-wdm0 --nas-get-signal-strength &amp;&amp; break; /bin/sleep 1; done
+     pre-up APN=h2g2 /usr/bin/qmi-network /dev/cdc-wdm0 start
+     post-down /usr/bin/qmi-network /dev/cdc-wdm0 stop
+</pre></div>
+</div>
+<p>Now run the following to test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ifup<span class="w"> </span>wwan0<span class="w">  </span><span class="c1"># Needed for ifdown to work.</span>
+sudo<span class="w"> </span>ifdown<span class="w"> </span>wwan0
+sudo<span class="w"> </span>ifup<span class="w"> </span>wwan0
+</pre></div>
+</div>
+<p>You should still have network access. Reboot to make sure it works. Unplug and plug back in while the system is running.
+If it still re-connects just fine feel free to uninstall <code class="docutils literal notranslate"><span class="pre">wvdial</span></code> if you’ve previously installed it.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If the modem doesn’t auto-connect on boot but does after <code class="docutils literal notranslate"><span class="pre">ifup</span></code> try editing <code class="docutils literal notranslate"><span class="pre">/etc/network/interfaces</span></code> and
+changing <code class="docutils literal notranslate"><span class="pre">source-directory</span> <span class="pre">/etc/network/interfaces.d</span></code> to <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/etc/network/interfaces.d/*</span></code>.</p>
+</div>
+<p>In my experience this setup seems pretty robust. I tried different reboot/power cycle/unplug/replug scenarios and I even
+placed my Raspberry Pi in my microwave (poor-man’s grounded faraday cage) to block out cellular signals for a few
+minutes. Every time the Raspberry Pi managed to re-connect automatically.</p>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/raspberry-pi-project-fi/ZfQYQF9.jpg"><img alt="_images/ZfQYQF9.800x600.25.jpg" src="_images/ZfQYQF9.800x600.25.jpg" />
+</a>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.thefanclub.co.za/how-to/how-setup-usb-3g-modem-raspberry-pi-using-usbmodeswitch-and-wvdial">https://www.thefanclub.co.za/how-to/how-setup-usb-3g-modem-raspberry-pi-using-usbmodeswitch-and-wvdial</a></p></li>
+<li><p><a class="reference external" href="https://www.instructables.com/id/Raspberry-Pi-as-a-3g-Huawei-E303-wireless-Edima/">https://www.instructables.com/id/Raspberry-Pi-as-a-3g-Huawei-E303-wireless-Edima/</a></p></li>
+<li><p><a class="reference external" href="http://www.frank-d.info/cellular-backup-again-via-googles-project-fi-a-cisco-3825-and-an-hwic-3g-gsm">http://www.frank-d.info/cellular-backup-again-via-googles-project-fi-a-cisco-3825-and-an-hwic-3g-gsm</a></p></li>
+<li><p><a class="reference external" href="http://knilluz.buurnet.nl/?p=1327">http://knilluz.buurnet.nl/?p=1327</a></p></li>
+<li><p><a class="reference external" href="http://blog.yolo.pro/permanently-disable-mode-switching-on-huawei-e3372s/">http://blog.yolo.pro/permanently-disable-mode-switching-on-huawei-e3372s/</a></p></li>
+<li><p><a class="reference external" href="https://www.raspberrypi.org/forums/viewtopic.php?t=18996">https://www.raspberrypi.org/forums/viewtopic.php?t=18996</a></p></li>
+<li><p><a class="reference external" href="https://askubuntu.com/questions/853615/files-in-etc-network-interfaces-d-ignored-but-not-etc-network-interfaces-itse">https://askubuntu.com/questions/853615/files-in-etc-network-interfaces-d-ignored-but-not-etc-network-interfaces-itse</a></p></li>
+<li><p><a class="reference external" href="https://www.linuxquestions.org/questions/linux-wireless-networking-41/help-using-3g-usb-dongle-4175537653/#post5337637">https://www.linuxquestions.org/questions/linux-wireless-networking-41/help-using-3g-usb-dongle-4175537653/#post5337637</a></p></li>
+<li><p><a class="reference external" href="https://lists.freedesktop.org/archives/modemmanager-devel/2014-December/001706.html">https://lists.freedesktop.org/archives/modemmanager-devel/2014-December/001706.html</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="posts/2016/2016-09-17-rack.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Dell Rack 2016</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="postfix_gmail_forwarding.html">
+      <span>Postfix and Gmail Forwarding</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "Raspberry Pi on Project Fi";
+      var disqus_title = "Raspberry Pi on Project Fi";
+      var disqus_url = "http://localhost:8000/raspberry_pi_project_fi";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="raspberry_pi_luks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Raspberry Pi LUKS Root Encryption</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="rns_510_vim.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">US RNS-510 Video In Motion</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-on-linux">Installing on Linux</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usb-mode-switch">USB Mode Switch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permanent-modem-mode">Permanent Modem Mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialing">Dialing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wvdial">WvDial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndisdup">NDISDUP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
