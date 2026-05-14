@@ -33,7 +33,8 @@ Notes for project maintainers.
 1. **Canonical Name**: rob86stage.robpol86.com
 1. **Setup DNS?**: No
 1. **Server Type**: Apache 2.4 Static Content
-1. Create
+1. **Site Plan**: Non-Production
+1. Create This Site
 1. Site Information > **HTTPS Redirection**: Off
 1. Wait 10 minutes for Cloudflare to catch up
 
