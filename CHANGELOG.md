@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2026.5.14.141519]
+
+Removing resume from website
+
+* 9bab7fe Removing resume from website. (#369)
+
 ## [2026.4.17.41329]
 
 Grafana max-to-mean
