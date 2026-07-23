@@ -64,10 +64,11 @@ mount -o subvolid=5 /dev/mmcblk0p4 /mnt
 mv /mnt/@ /mnt/@_old
 btrfs subvolume snapshot /mnt/@_old/s/root-p /mnt/@
 btrfs subvolume set-default /mnt/@
-btrfs subvolume delete /mnt/@_old
 umount /mnt
 reboot
 ```
+
+TODO clean @_old
 
 ## TODO next:
 
