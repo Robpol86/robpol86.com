@@ -68,16 +68,8 @@ umount /mnt
 reboot
 ```
 
-TODO clean @_old
-
-## TODO next:
-
-1. echo one > ~/log.log;; take another snapshot;; cat ~/log.log (confirm one)
-1. echo two > ~/log.log;; restore snapshot;; cat ~/log.log (confirm one)
-1. Create scripts, insert into rd as per rob86.com/rpi-luks instructions
-1. Maybe put this on my website instead.
-    1. If I do this I'll need to add a migration step (into root subvolume)
-
 ## TODO
 
+- TODO better name for @_old? Or maybe keep name for easy walkthrough, and use a dated name for scripts.
+- Create scripts, insert into rd as per rob86.com/rpi-luks instructions
 - Automate mmcblk0p4. Test on install that uses mmcblk0p3 (no swap), maybe also sda (USB)
