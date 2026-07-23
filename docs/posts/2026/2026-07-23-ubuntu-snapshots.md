@@ -85,3 +85,4 @@ snapshot-restore name
 - Test with Ubuntu Desktop
 - Test without zfs
 - Test cleanup with large file and compare `df` or `btrfs df` before/after `rm -rf`
+- Test with a lot of snapshots, revert, make more snapshots, revert. How does this complex tree look?
