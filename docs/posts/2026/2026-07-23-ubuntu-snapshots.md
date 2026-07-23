@@ -19,6 +19,19 @@ ubuntu-26.04-live-server-amd64.iso
 
 Your Ubuntu must be installed on a btrfs fileystem.
 
+If `sudo btrfs subvolume list /` is empty you must migrate to a subvolume.
+
+In `rd.break`:
+
+```bash
+mkdir /mnt
+mount /dev/mmcblk0p4 /mnt
+btrfs subvolume snapshot /mnt /mnt/@
+btrfs subvolume set-default /mnt/@
+umount /mnt
+reboot
+```
+
 ### Fresh Install
 
 TODO
