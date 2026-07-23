@@ -51,7 +51,7 @@ TODO
 ```bash
 mkdir /mnt
 mount /dev/mmcblk0p4 /mnt
-btrfs subvolume snapshot -r /mnt /mnt/snapshots/root-pristine2
+btrfs subvolume snapshot -r /mnt /mnt/s/root-p2
 umount /mnt
 reboot
 ```
@@ -60,8 +60,11 @@ reboot
 
 ```bash
 mkdir /mnt
-mount /dev/mmcblk0p4 /mnt
-btrfs subvolume snapshot /mnt/snapshots/root-pristine2 /mnt/@
+mount -o subvolid=5 /dev/mmcblk0p4 /mnt
+mv /mnt/@ /mnt/@_old
+btrfs subvolume snapshot /mnt/@_old/s/root-p2 /mnt/@
+btrfs subvolume set-default /mnt/@
+btrfs subvolume delete /mnt/@_old
 umount /mnt
 reboot
 ```
@@ -73,3 +76,7 @@ reboot
 1. Create scripts, insert into rd as per rob86.com/rpi-luks instructions
 1. Maybe put this on my website instead.
     1. If I do this I'll need to add a migration step (into root subvolume)
+
+## TODO
+
+- Automate mmcblk0p4. Test on install that uses mmcblk0p3 (no swap), maybe also sda (USB)
