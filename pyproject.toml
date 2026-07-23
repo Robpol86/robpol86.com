@@ -17,7 +17,7 @@ dependencies = [
     "ablog",
     "myst-parser[linkify]",
     "sphinx",
-    "sphinx-book-theme==1.1.4",  # TODO unpin
+    "sphinx-book-theme",
     "sphinx-copybutton",
     "sphinx-notfound-page",
     "sphinx-sitemap",
