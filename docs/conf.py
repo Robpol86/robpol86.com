@@ -170,6 +170,7 @@ blog_locations = {
     "Melbourne": ("Melbourne", "https://en.wikipedia.org/wiki/Melbourne"),
     "Queenstown": ("Queenstown", "https://en.wikipedia.org/wiki/Queenstown,_New_Zealand"),
     "Seoul": ("Seoul", "https://en.wikipedia.org/wiki/Seoul"),
+    "Helsinki": ("Helsinki", "https://en.wikipedia.org/wiki/Helsinki"),
 }
 blog_title = project
 disqus_pages = False
