@@ -32,31 +32,13 @@ umount /mnt
 reboot
 ```
 
-### Fresh Install
+To clean the top-level filesystem do this (no need for rd.break):
 
-TODO
-
+```bash
+sudo mount -o subvolid=5 /dev/mmcblk0p4 /mnt
+sudo rm -rf /mnt/[a-z]*
+sudo umount /mnt
 ```
-sudo su -
-
-sfdisk /dev/mmcblk0 <<EOF
-label: gpt
-,1G,U
-,2G,L
-,2G,S
-,,L
-EOF
-
-mkfs.btrfs --label=ubuntu /dev/mmcblk0p4
-mount /dev/mmcblk0p4 /mnt
-btrfs subvolume create /mnt/@
-btrfs subvolume set-default /mnt/@
-umount /mnt
-```
-
-### Migrate
-
-TODO
 
 ## Taking Snapshots
 
@@ -95,3 +77,5 @@ reboot
 - Test with @home and @root fs setup?
 - Test with Ubuntu Server (non-minimized)
 - Test with Ubuntu Desktop
+- Test without zfs
+- Test cleanup with large file and compare `df` or `btrfs df` before/after `rm -rf`
