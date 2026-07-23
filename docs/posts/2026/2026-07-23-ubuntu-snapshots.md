@@ -15,6 +15,10 @@ TODO like a virtual machine.
 
 TODO
 
+ubuntu-26.04-live-server-amd64.iso
+
+Your Ubuntu must be installed on a btrfs fileystem.
+
 ### Fresh Install
 
 TODO
@@ -71,6 +75,10 @@ reboot
 ## TODO
 
 - Revisit fresh insall: get migrate-only working
+- Test with non-custom partitions, but then replace xfs with btrfs
 - TODO better name for @_old? Or maybe keep name for easy walkthrough, and use a dated name for scripts.
 - Create scripts, insert into rd as per rob86.com/rpi-luks instructions
 - Automate mmcblk0p4. Test on install that uses mmcblk0p3 (no swap), maybe also sda (USB)
+- Test with @home and @root fs setup?
+- Test with Ubuntu Server (non-minimized)
+- Test with Ubuntu Desktop
