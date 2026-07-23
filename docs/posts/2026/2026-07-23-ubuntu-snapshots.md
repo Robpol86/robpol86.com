@@ -13,6 +13,12 @@ TODO like a virtual machine.
 
 ## Prerequisits
 
+```{tip}
+TODO vim grub
+
+From: https://medium.com/@leijerry888/get-grub-menu-back-after-installing-ubuntu-20-04-alongside-windows-dab5de5afc37
+```
+
 TODO
 
 ubuntu-26.04-live-server-amd64.iso
