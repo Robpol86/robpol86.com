@@ -51,7 +51,7 @@ TODO
 ```bash
 mkdir /mnt
 mount /dev/mmcblk0p4 /mnt
-btrfs subvolume snapshot -r /mnt /mnt/s/root-p2
+btrfs subvolume snapshot -r /mnt /mnt/s/root-p
 umount /mnt
 reboot
 ```
@@ -62,7 +62,7 @@ reboot
 mkdir /mnt
 mount -o subvolid=5 /dev/mmcblk0p4 /mnt
 mv /mnt/@ /mnt/@_old
-btrfs subvolume snapshot /mnt/@_old/s/root-p2 /mnt/@
+btrfs subvolume snapshot /mnt/@_old/s/root-p /mnt/@
 btrfs subvolume set-default /mnt/@
 btrfs subvolume delete /mnt/@_old
 umount /mnt
