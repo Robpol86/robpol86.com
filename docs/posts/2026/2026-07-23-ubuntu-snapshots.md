@@ -67,6 +67,13 @@ umount /mnt
 reboot
 ```
 
+## Script
+
+```bash
+snapshot-take name
+snapshot-restore name
+```
+
 ## TODO
 
 - Revisit fresh insall: get migrate-only working
