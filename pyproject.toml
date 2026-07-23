@@ -22,7 +22,7 @@ dependencies = [
     "sphinx-notfound-page",
     "sphinx-sitemap",
     "sphinx-thumb-image",
-    "sphinxcontrib-youtube==1.4.1",  # TODO unpin
+    "sphinxcontrib-youtube",
     "sphinxext-opengraph",
 ]
 
