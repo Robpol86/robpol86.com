@@ -19,6 +19,24 @@ TODO
 
 TODO
 
+```
+sudo su -
+
+sfdisk /dev/mmcblk0 <<EOF
+label: gpt
+,1G,U
+,2G,L
+,2G,S
+,,L
+EOF
+
+mkfs.btrfs --label=ubuntu /dev/mmcblk0p4
+mount /dev/mmcblk0p4 /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume set-default /mnt/@
+umount /mnt
+```
+
 ### Migrate
 
 TODO
@@ -33,14 +51,20 @@ TODO
 ```bash
 mkdir /mnt
 mount /dev/mmcblk0p4 /mnt
-btrfs subvolume snapshot -r /mnt "/mnt/snapshots/root-whatever"
+btrfs subvolume snapshot -r /mnt /mnt/snapshots/root-pristine2
 umount /mnt
 reboot
 ```
 
 ## Restoring Snapshots
 
-TODO
+```bash
+mkdir /mnt
+mount /dev/mmcblk0p4 /mnt
+btrfs subvolume snapshot /mnt/snapshots/root-pristine2 /mnt/@
+umount /mnt
+reboot
+```
 
 ## TODO next:
 
