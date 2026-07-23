@@ -76,7 +76,6 @@ snapshot-restore name
 
 ## TODO
 
-- Revisit fresh insall: get migrate-only working
 - Test with non-custom partitions, but then replace xfs with btrfs
 - TODO better name for @_old? Or maybe keep name for easy walkthrough, and use a dated name for scripts.
 - Create scripts, insert into rd as per rob86.com/rpi-luks instructions
