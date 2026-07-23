@@ -15,14 +15,14 @@ classifiers = [
 requires-python = ">=3.14"
 dependencies = [
     "ablog",
-    "myst-parser[linkify]",
+    "myst-parser[linkify]==5.0.0",  # TODO unpin
     "sphinx",
-    "sphinx-book-theme",
+    "sphinx-book-theme==1.1.4",  # TODO unpin
     "sphinx-copybutton",
     "sphinx-notfound-page",
     "sphinx-sitemap",
     "sphinx-thumb-image",
-    "sphinxcontrib-youtube",
+    "sphinxcontrib-youtube==1.4.1",  # TODO unpin
     "sphinxext-opengraph",
 ]
 
