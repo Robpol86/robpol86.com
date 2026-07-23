@@ -15,7 +15,7 @@ classifiers = [
 requires-python = ">=3.14"
 dependencies = [
     "ablog",
-    "myst-parser[linkify]==5.0.0",  # TODO unpin
+    "myst-parser[linkify]",
     "sphinx",
     "sphinx-book-theme==1.1.4",  # TODO unpin
     "sphinx-copybutton",
