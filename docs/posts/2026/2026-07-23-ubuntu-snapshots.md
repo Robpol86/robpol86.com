@@ -70,6 +70,7 @@ reboot
 
 ## TODO
 
+- Revisit fresh insall: get migrate-only working
 - TODO better name for @_old? Or maybe keep name for easy walkthrough, and use a dated name for scripts.
 - Create scripts, insert into rd as per rob86.com/rpi-luks instructions
 - Automate mmcblk0p4. Test on install that uses mmcblk0p3 (no swap), maybe also sda (USB)
