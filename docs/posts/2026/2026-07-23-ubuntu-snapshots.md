@@ -29,6 +29,41 @@ If `sudo btrfs subvolume list /` is empty you must migrate to a subvolume.
 
 In `rd.break`:
 
+::::{tab-set}
+:sync-group: category
+
+:::{tab-item} With LVM
+:sync: with-lvm
+
+Content 1
+:::
+
+:::{tab-item} No LVM
+:sync: no-lvm
+
+Content 2
+:::
+
+::::
+
+::::{tab-set}
+:sync-group: category
+
+:::{tab-item} With LVM
+:sync: with-lvm
+
+Content 1
+:::
+
+:::{tab-item} No LVM
+:sync: no-lvm
+
+Content 2
+:::
+
+::::
+
+
 ```bash
 mkdir /mnt
 mount /dev/mmcblk0p4 /mnt

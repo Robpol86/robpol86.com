@@ -19,6 +19,7 @@ dependencies = [
     "sphinx",
     "sphinx-book-theme==1.1.4",  # TODO unpin
     "sphinx-copybutton",
+    "sphinx-design",
     "sphinx-notfound-page",
     "sphinx-sitemap",
     "sphinx-thumb-image",
