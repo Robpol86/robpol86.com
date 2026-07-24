@@ -23,7 +23,35 @@ TODO
 
 ubuntu-26.04-live-server-amd64.iso
 
-Your Ubuntu must be installed on a btrfs fileystem.
+If you don't know which one you have:
+
+::::{tab-set}
+:::{tab-item} With LVM
+:sync: with-lvm
+```shell
+$ sudo lvm vgs
+  VG        #PV #LV #SN Attr   VSize   VFree
+  ubuntu-vg   1   1   0 wz--n- <55.19g    0
+$ sudo lvm lvs
+  LV        VG        Attr       LSize   Pool Origin Data%  Meta%  Move Log
+  ubuntu-lv ubuntu-vg -wi-ao---- <55.19g
+$ sudo btrfs filesystem show
+Label: none  uuid: fb5a711e-1f82-42fe-8ce8-1349acc7448d
+	Total devices 1 FS bytes used 7.06GiB
+	devid    1 size 55.19GiB used 11.02GiB path /dev/mapper/ubuntu--vg-ubuntu--lv
+```
+:::
+:::{tab-item} No LVM
+:sync: no-lvm
+```shell
+echo TODO
+```
+:::
+::::
+
+### Migrate Root to a Subvolume
+
+Your Ubuntu must be installed on a BTRFS fileystem.
 
 If `sudo btrfs subvolume list /` is empty you must migrate to a subvolume.
 
@@ -33,7 +61,13 @@ In `rd.break`:
 :::{tab-item} With LVM
 :sync: with-lvm
 ```bash
-echo TODO
+mkdir /mnt
+# TODO mount lvm mapper
+mount /dev/mapper/ubuntu--vg-ubuntu--lv /mnt
+btrfs subvolume snapshot /mnt /mnt/@
+btrfs subvolume set-default /mnt/@
+umount /mnt
+reboot
 ```
 :::
 :::{tab-item} No LVM
