@@ -109,7 +109,19 @@ reboot
 :::
 ::::
 
-## Script
+## Scripts
+
+```{literalinclude} _static/snapshot-take.sh
+:language: bash
+```
+
+```{literalinclude} _static/snapshot-restore.sh
+:language: bash
+```
+
+```{literalinclude} _static/snapshot-hook.sh
+:language: bash
+```
 
 ::::{tab-set}
 :::{tab-item} rd.break
