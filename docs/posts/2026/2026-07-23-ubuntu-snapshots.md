@@ -78,7 +78,7 @@ ID 256 gen 71 top level 5 path @
 To clean the top-level filesystem do this (no need for rd.break):
 
 ```bash
-sudo mount -o subvolid=5 "$(findmnt -nvo SOURCE --target /)" /mnt
+sudo mount -o subvolid=5 "$(findmnt -nvo SOURCE /)" /mnt
 sudo rm -rf /mnt/[a-z]*
 sudo umount /mnt
 ```
@@ -104,21 +104,14 @@ reboot
 ## Restoring Snapshots
 
 ::::{tab-set}
-:::{tab-item} With LVM
-:sync: with-lvm
+:::{tab-item} rd.break
 ```bash
-echo TODO
-```
-:::
-:::{tab-item} No LVM
-:sync: no-lvm
-```bash
-mkdir /mnt
-mount -o subvolid=5 /dev/mmcblk0p4 /mnt
-mv /mnt/@ /mnt/@_old
-btrfs subvolume snapshot /mnt/@_old/s/root-p /mnt/@
-btrfs subvolume set-default /mnt/@
-umount /mnt
+findmnt -nvo SOURCE /sysroot
+umount /sysroot
+mount -o subvolid=5 /dev/FINDMNT_PATH /sysroot  # Replace FINDMNT_PATH
+mv /sysroot/@ /sysroot/@_old
+btrfs subvolume snapshot /sysroot/@_old/s/root-p /sysroot/@
+btrfs subvolume set-default /sysroot/@
 reboot
 ```
 :::
