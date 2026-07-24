@@ -30,40 +30,14 @@ If `sudo btrfs subvolume list /` is empty you must migrate to a subvolume.
 In `rd.break`:
 
 ::::{tab-set}
-:sync-group: category
-
 :::{tab-item} With LVM
 :sync: with-lvm
-
-Content 1
+```bash
+echo TODO
+```
 :::
-
 :::{tab-item} No LVM
 :sync: no-lvm
-
-Content 2
-:::
-
-::::
-
-::::{tab-set}
-:sync-group: category
-
-:::{tab-item} With LVM
-:sync: with-lvm
-
-Content 1
-:::
-
-:::{tab-item} No LVM
-:sync: no-lvm
-
-Content 2
-:::
-
-::::
-
-
 ```bash
 mkdir /mnt
 mount /dev/mmcblk0p4 /mnt
@@ -72,14 +46,27 @@ btrfs subvolume set-default /mnt/@
 umount /mnt
 reboot
 ```
+:::
+::::
 
 To clean the top-level filesystem do this (no need for rd.break):
 
+::::{tab-set}
+:::{tab-item} With LVM
+:sync: with-lvm
+```bash
+echo TODO
+```
+:::
+:::{tab-item} No LVM
+:sync: no-lvm
 ```bash
 sudo mount -o subvolid=5 /dev/mmcblk0p4 /mnt
 sudo rm -rf /mnt/[a-z]*
 sudo umount /mnt
 ```
+:::
+::::
 
 ## Taking Snapshots
 
@@ -88,6 +75,15 @@ sudo umount /mnt
 1. Append `rd.break` to the `linux` boot line and press `Ctrl-X`
 1. To create a snapshot
 
+::::{tab-set}
+:::{tab-item} With LVM
+:sync: with-lvm
+```bash
+echo TODO
+```
+:::
+:::{tab-item} No LVM
+:sync: no-lvm
 ```bash
 mkdir /mnt
 mount /dev/mmcblk0p4 /mnt
@@ -95,9 +91,20 @@ btrfs subvolume snapshot -r /mnt /mnt/s/root-p
 umount /mnt
 reboot
 ```
+:::
+::::
 
 ## Restoring Snapshots
 
+::::{tab-set}
+:::{tab-item} With LVM
+:sync: with-lvm
+```bash
+echo TODO
+```
+:::
+:::{tab-item} No LVM
+:sync: no-lvm
 ```bash
 mkdir /mnt
 mount -o subvolid=5 /dev/mmcblk0p4 /mnt
@@ -107,6 +114,8 @@ btrfs subvolume set-default /mnt/@
 umount /mnt
 reboot
 ```
+:::
+::::
 
 ## Script
 
