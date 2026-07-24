@@ -77,22 +77,11 @@ ID 256 gen 71 top level 5 path @
 
 To clean the top-level filesystem do this (no need for rd.break):
 
-::::{tab-set}
-:::{tab-item} With LVM
-:sync: with-lvm
 ```bash
-echo TODO
-```
-:::
-:::{tab-item} No LVM
-:sync: no-lvm
-```bash
-sudo mount -o subvolid=5 /dev/mmcblk0p4 /mnt
+sudo mount -o subvolid=5 "$(findmnt -nvo SOURCE --target /)" /mnt
 sudo rm -rf /mnt/[a-z]*
 sudo umount /mnt
 ```
-:::
-::::
 
 ## Taking Snapshots
 
@@ -161,5 +150,10 @@ snapshot-restore name
 - Test with Ubuntu Desktop
 - Test without zfs
 - Test cleanup with large file and compare `df` or `btrfs df` before/after `rm -rf`
+  - Copy large file to system before migration
+  - Migrate but don't clean
+  - `df`; delete large file from mounted fs; `df` should remain the same
+  - Clean; `df` should now shrink
 - Test with a lot of snapshots, revert, make more snapshots, revert. How does this complex tree look?
 - Test with LUKS
+- Test with fresh install, no apt-get from gist
