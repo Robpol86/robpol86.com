@@ -129,6 +129,7 @@ snapshot-restore name
 - Test with LUKS
 - Create scripts, insert into rd as per rob86.com/rpi-luks instructions
 - Test with @home and @root fs setup?
+  - Find a popular guide on Ubuntu and btrfs
 - Test with Ubuntu Server (non-minimized)
 - Test with Ubuntu Desktop
 - Test cleanup with large file and compare `df` or `btrfs df` before/after `rm -rf`
