@@ -16,5 +16,6 @@ depends() {
 }
 
 install() {
-    inst_multiple /sbin/snapshot-take /sbin/snapshot-restore
+    inst "/sbin/snapshot-take" "/sbin/snapshot-take"
+    inst "$moddir/snapshot-restore.sh" "/sbin/snapshot-restore"
 }
