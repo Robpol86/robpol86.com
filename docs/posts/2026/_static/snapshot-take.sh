@@ -5,3 +5,9 @@
 # Save as (chmod +x): /sbin/snapshot-take
 
 echo "Hello World Take"
+
+# TODO:
+# - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
+#   - Also store date
+#   - Allow EOF for multi-line comment. Maybe stdin?
+# - cli: confirm by default, cli --force to just do it (what about collisions)
