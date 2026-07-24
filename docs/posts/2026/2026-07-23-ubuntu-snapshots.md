@@ -143,7 +143,7 @@ snapshot-restore name
 
 ## TODO
 
-- Create scripts, insert into rd as per rob86.com/rpi-luks instructions
+- Create scripts, insert into rd as per rob86_com/rpi-luks instructions
   - snapshot-take should work from initfs and normal environment with sudo
 - Install ubuntu without btrfs and run `sudo btrfs subvolume list -t /`
 - Test with @home and @root fs setup?
