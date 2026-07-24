@@ -111,6 +111,8 @@ reboot
 
 ## Scripts
 
+Install scripts:
+
 ```{literalinclude} _static/snapshot-take.sh
 :language: bash
 ```
@@ -121,6 +123,13 @@ reboot
 
 ```{literalinclude} _static/snapshot-hook.sh
 :language: bash
+```
+
+Then run:
+
+```bash
+sudo update-initramfs -u
+sudo lsinitramfs /boot/initrd.img |grep snap
 ```
 
 ::::{tab-set}
