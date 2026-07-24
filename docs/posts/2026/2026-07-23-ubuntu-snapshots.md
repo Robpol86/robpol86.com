@@ -111,10 +111,14 @@ reboot
 
 ## Script
 
+::::{tab-set}
+:::{tab-item} rd.break
 ```bash
 snapshot-take name
 snapshot-restore name
 ```
+:::
+::::
 
 ## TODO
 
