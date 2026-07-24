@@ -17,7 +17,7 @@ dependencies = [
     "ablog",
     "myst-parser[linkify]",
     "sphinx",
-    "sphinx-book-theme==1.1.4",  # TODO unpin
+    "sphinx-book-theme==1.1.4",  # TODO unpin https://github.com/Robpol86/robpol86.com/issues/374
     "sphinx-copybutton",
     "sphinx-design",
     "sphinx-notfound-page",
