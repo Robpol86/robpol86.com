@@ -58,30 +58,22 @@ If `sudo btrfs subvolume list /` is empty you must migrate to a subvolume.
 In `rd.break`:
 
 ::::{tab-set}
-:::{tab-item} With LVM
-:sync: with-lvm
+:::{tab-item} rd.break
 ```bash
-mkdir /mnt
-# TODO mount lvm mapper
-mount /dev/mapper/ubuntu--vg-ubuntu--lv /mnt
-btrfs subvolume snapshot /mnt /mnt/@
-btrfs subvolume set-default /mnt/@
-umount /mnt
-reboot
-```
-:::
-:::{tab-item} No LVM
-:sync: no-lvm
-```bash
-mkdir /mnt
-mount /dev/mmcblk0p4 /mnt
-btrfs subvolume snapshot /mnt /mnt/@
-btrfs subvolume set-default /mnt/@
-umount /mnt
+mount -oremount,rw /sysroot
+btrfs subvolume snapshot /sysroot /sysroot/@
+btrfs subvolume set-default /sysroot/@
 reboot
 ```
 :::
 ::::
+
+Now you should see:
+
+```shell
+$ sudo btrfs subvolume list /
+ID 256 gen 71 top level 5 path @
+```
 
 To clean the top-level filesystem do this (no need for rd.break):
 
