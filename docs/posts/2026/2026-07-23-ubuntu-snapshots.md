@@ -94,7 +94,7 @@ ID	gen	top level	path
 To clean the top-level filesystem do this (no need for rd.break):
 
 ```bash
-sudo mount -o subvolid=5 "$(findmnt -nvo SOURCE /)" /mnt
+sudo mount -osubvolid=5 "$(findmnt -nvo SOURCE /)" /mnt
 sudo rm -rf /mnt/[a-z]*
 sudo umount /mnt
 ```
@@ -124,7 +124,7 @@ reboot
 ```bash
 findmnt -nvo SOURCE /sysroot
 umount /sysroot
-mount -o subvolid=5 /dev/FINDMNT_PATH /sysroot  # Replace FINDMNT_PATH
+mount -osubvolid=5 /dev/FINDMNT_PATH /sysroot  # Replace FINDMNT_PATH
 mv /sysroot/@ /sysroot/@_old
 btrfs subvolume snapshot /sysroot/@_old/s/root-p /sysroot/@
 btrfs subvolume set-default /sysroot/@
