@@ -156,3 +156,4 @@ snapshot-restore name
   - `df`; delete large file from mounted fs; `df` should remain the same
   - Clean; `df` should now shrink
 - Test with a lot of snapshots, revert, make more snapshots, revert. How does this complex tree look?
+- Support other distros besides Ubuntu? Focus on those that officially support btrfs in their installers.
