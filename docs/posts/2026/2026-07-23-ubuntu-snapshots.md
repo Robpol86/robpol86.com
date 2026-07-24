@@ -11,6 +11,8 @@ tags: linux
 
 TODO like a virtual machine.
 
+Works with btrfs bare metal, LVM, and LVM with LUKS.
+
 ## Prerequisits
 
 :::{tip}
@@ -142,7 +144,7 @@ snapshot-restore name
 
 ## TODO
 
-- Test with LUKS
+- Install ubuntu without btrfs and run `sudo btrfs subvolume list -t /`
 - Create scripts, insert into rd as per rob86.com/rpi-luks instructions
 - Test with @home and @root fs setup?
   - Find a popular guide on Ubuntu and btrfs
@@ -154,5 +156,3 @@ snapshot-restore name
   - `df`; delete large file from mounted fs; `df` should remain the same
   - Clean; `df` should now shrink
 - Test with a lot of snapshots, revert, make more snapshots, revert. How does this complex tree look?
-- Test with fresh install, no apt-get from gist, no zfs
-- Install ubuntu without btrfs and run `sudo btrfs subvolume list -t /`
