@@ -85,25 +85,17 @@ sudo umount /mnt
 
 ## Taking Snapshots
 
+1. `sudo mkdir /s`
 1. Reboot and enter grub
 1. Select **Ubuntu** and press `e`
 1. Append `rd.break` to the `linux` boot line and press `Ctrl-X`
 1. To create a snapshot
 
 ::::{tab-set}
-:::{tab-item} With LVM
-:sync: with-lvm
+:::{tab-item} rd.break
 ```bash
-echo TODO
-```
-:::
-:::{tab-item} No LVM
-:sync: no-lvm
-```bash
-mkdir /mnt
-mount /dev/mmcblk0p4 /mnt
-btrfs subvolume snapshot -r /mnt /mnt/s/root-p
-umount /mnt
+mount -oremount,rw /sysroot
+btrfs subvolume snapshot -r /sysroot /sysroot/s/root-p
 reboot
 ```
 :::
