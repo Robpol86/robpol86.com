@@ -13,11 +13,19 @@ TODO like a virtual machine.
 
 ## Prerequisits
 
-```{tip}
-TODO vim grub
+:::{tip}
+If you're having trouble getting into the GRUB menu on boot you can set the timeout to be 3 seconds, giving you the
+opportunity to enter the ramdisk environment on boot.
 
-From: https://medium.com/@leijerry888/get-grub-menu-back-after-installing-ubuntu-20-04-alongside-windows-dab5de5afc37
+Run these commands:
+
+```bash
+sudo sed -i.bak \
+  -e '/GRUB_TIMEOUT/s/=[0-9]\+/=3/' \
+  -e '/GRUB_TIMEOUT_STYLE/s/=[a-z]\+/=menu/' /etc/default/grub
+sudo update-grub
 ```
+:::
 
 TODO
 
@@ -49,6 +57,12 @@ echo TODO
 :::
 ::::
 
+```shell
+$ sudo btrfs subvolume list -t /
+ID	gen	top level	path
+--	---	---------	----
+```
+
 ### Migrate Root to a Subvolume
 
 Your Ubuntu must be installed on a BTRFS fileystem.
@@ -71,8 +85,10 @@ reboot
 Now you should see:
 
 ```shell
-$ sudo btrfs subvolume list /
-ID 256 gen 71 top level 5 path @
+$ sudo btrfs subvolume list -t /
+ID	gen	top level	path
+--	---	---------	----
+256	41	5		@
 ```
 
 To clean the top-level filesystem do this (no need for rd.break):
@@ -139,3 +155,4 @@ snapshot-restore name
   - Clean; `df` should now shrink
 - Test with a lot of snapshots, revert, make more snapshots, revert. How does this complex tree look?
 - Test with fresh install, no apt-get from gist, no zfs
+- Install ubuntu without btrfs and run `sudo btrfs subvolume list -t /`
