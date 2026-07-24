@@ -126,19 +126,15 @@ snapshot-restore name
 
 ## TODO
 
-- Test with non-custom partitions, but then replace xfs with btrfs
-- TODO better name for @_old? Or maybe keep name for easy walkthrough, and use a dated name for scripts.
+- Test with LUKS
 - Create scripts, insert into rd as per rob86.com/rpi-luks instructions
-- Automate mmcblk0p4. Test on install that uses mmcblk0p3 (no swap), maybe also sda (USB)
 - Test with @home and @root fs setup?
 - Test with Ubuntu Server (non-minimized)
 - Test with Ubuntu Desktop
-- Test without zfs
 - Test cleanup with large file and compare `df` or `btrfs df` before/after `rm -rf`
   - Copy large file to system before migration
   - Migrate but don't clean
   - `df`; delete large file from mounted fs; `df` should remain the same
   - Clean; `df` should now shrink
 - Test with a lot of snapshots, revert, make more snapshots, revert. How does this complex tree look?
-- Test with LUKS
-- Test with fresh install, no apt-get from gist
+- Test with fresh install, no apt-get from gist, no zfs
