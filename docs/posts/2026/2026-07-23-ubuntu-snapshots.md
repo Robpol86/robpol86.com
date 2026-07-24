@@ -121,7 +121,7 @@ Install scripts:
 :language: bash
 ```
 
-```{literalinclude} _static/snapshot-hook.sh
+```{literalinclude} _static/snapshot-module-setup.sh
 :language: bash
 ```
 
