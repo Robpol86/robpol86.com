@@ -13,6 +13,7 @@ INTERVAL=1m  # Sleep between scans.
 START_GRACE_PERIOD=5m  # Sleep at the start of this script.
 
 if [ -f /etc/default/wifi_toggle ]; then
+        # shellcheck disable=SC1091
         . /etc/default/wifi_toggle
 fi
 

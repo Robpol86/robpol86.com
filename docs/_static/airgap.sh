@@ -45,14 +45,15 @@ for file in "$@"; do
 done
 
 # Generate random password 10 to 15 characters in length.
-export PASSWORD=$(openssl rand -base64 25 |cut -c -$((10+RANDOM%6)))
+PASSWORD="$(openssl rand -base64 25 |cut -c -$((10+RANDOM%6)))"
+export PASSWORD
 
 # Remove any previously created QR codes.
 rm -vf /tmp/qr*.png
 
 # Encode.
 echo -e "\x1b[1mCompressing, encrypting, and encoding $# file(s)...\x1b[0m"
-tar -czv $@ |
+tar -czv "$@" |
     openssl enc -aes-256-cfb -salt -pass env:PASSWORD |
     base64 -w0 |
     qrencode -o /tmp/qr.png -Sv40

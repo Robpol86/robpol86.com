@@ -12,13 +12,14 @@ PING_TIMEOUT_SECONDS=5  # Abort ping command if it takes too long.
 PING_HOSTS=()  # Populate in /etc/default/auto_reboot.
 
 if [ -f /etc/default/auto_reboot ]; then
+        # shellcheck disable=SC1091
         . /etc/default/auto_reboot
 fi
 
 # Main loop.
 while sleep "$INTERVAL"; do
     for ip in "${PING_HOSTS[@]}"; do
-        if timeout -t $PING_TIMEOUT_SECONDS ping -c1 $ip; then
+        if timeout -t $PING_TIMEOUT_SECONDS ping -c1 "$ip"; then
             continue 2
         fi
     done
