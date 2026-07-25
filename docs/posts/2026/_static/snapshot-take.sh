@@ -23,14 +23,24 @@
 #               already exist.
 #   -s dir      Mounted subvolume directory.
 #               Default: ${SUBVOLUME_DIR}
-#   -v          Enable verbose output.
+#   -v          Enable verbose/debug output.
 
 SNAPSHOTS_DIR=snapshots
 SUBVOLUME_DIR=/sysroot
+VERBOSE=false
+
+# TODO if -h: print and exit
+
+# TODO if -v: set -x and enable debug() output
+
+# TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
+
+# TODO if -l: print and exit
 
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
 echo "SUBVOLUME_DIR=$SUBVOLUME_DIR"
+echo "VERBOSE=$VERBOSE"
 
 # TODO:
 # - Manual (from .md):
