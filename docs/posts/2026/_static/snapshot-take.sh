@@ -51,6 +51,7 @@ echo "VERBOSE=$VERBOSE"
 #   - date
 # - @root and @home: can snapshots live in other subvols? Probably not.
 #   - Support non-root (arbitrary) subvolumes
+# - Support rd.break and running environment with sudo/su.
 # - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
 #   - Also store date
 #   - Allow EOF for multi-line comment. Maybe stdin?
@@ -59,6 +60,7 @@ echo "VERBOSE=$VERBOSE"
 # - Allow module-setup to override defaults (/sysoot/ and ./snapshots/)
 #   - How can user specify overrides in dracut?
 # - Checks:
+#   - sudo or write access to btrfs paths?
 #   - is subvolume path btrfs?
 #   - is subvolume path a btrfs subvolume?
 #   - if snapshots-dir has a leading / is it the same as subvolume?
