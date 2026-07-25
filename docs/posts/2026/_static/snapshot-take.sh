@@ -29,6 +29,8 @@ set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SNAPSHOTS_DIR=snapshots
+FLAG_L=false
+FLAG_P=false
 SUBVOLUME_DIR=/sysroot
 VERBOSE=false
 
@@ -44,8 +46,26 @@ VERBOSE=false
 
 # TODO badargs error on argv != 1
 
+# Parse command line arguments.
+while getopts :c:d:hlps:v OPT; do
+  case "$OPT" in
+    \?) echo bad_arg "unknown flag: '$OPTARG'" ;;
+    :) echo bad_arg "flag needs an argument: '$OPTARG'" ;;
+    c) echo "comment arg: $OPTARG" ;;
+    d) SNAPSHOTS_DIR="$OPTARG" ;;
+    h) echo TODO usage
+       exit 0 ;;
+    l) FLAG_L=true ;;
+    p) FLAG_P=true ;;
+    s) SUBVOLUME_DIR="$OPTARG" ;;
+    v) VERBOSE=true ;;
+  esac
+done
+
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
+echo "FLAG_L=$FLAG_L"
+echo "FLAG_P=$FLAG_P"
 echo "SUBVOLUME_DIR=$SUBVOLUME_DIR"
 echo "VERBOSE=$VERBOSE"
 
