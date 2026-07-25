@@ -8,7 +8,7 @@
 # Take named BTRFS snapshots with comments.
 #
 # TODO Long description goes here. Explain SNAPSHOT_NAME will become
-# /sysroot/snapshots/SNAPSHOT_NAME.
+# /sysroot/snapshots/SNAPSHOT_NAME. TODO also show examples.
 #
 # Options:
 #   -c comment  Snapshot description. If comment is '-' then comment will be
@@ -21,13 +21,16 @@
 #   -p          Create snapshots directories as required. If this option is not
 #               specified, the full path prefix of the snapshots directory must
 #               already exist.
-#   -s          TODO.
+#   -s dir      Mounted subvolume directory.
+#               Default: ${SUBVOLUME_DIR}
 #   -v          Enable verbose output.
 
 SNAPSHOTS_DIR=snapshots
+SUBVOLUME_DIR=/sysroot
 
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
+echo "SUBVOLUME_DIR=$SUBVOLUME_DIR"
 
 # TODO:
 # - Manual (from .md):
