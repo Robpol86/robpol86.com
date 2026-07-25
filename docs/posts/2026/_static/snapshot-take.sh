@@ -33,9 +33,13 @@ VERBOSE=false
 
 # TODO if -v: set -x and enable debug() output
 
+# TODO badargs error on unknown args
+
 # TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
 
 # TODO if -l: print and exit
+
+# TODO badargs error on argv != 1
 
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
