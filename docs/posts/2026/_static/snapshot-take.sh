@@ -7,13 +7,14 @@
 #
 # Take named BTRFS snapshots with comments.
 #
-# TODO Long description goes here. Usually you explain what each of the
-# positional arguments do.
+# TODO Long description goes here. Explain SNAPSHOT_NAME will become
+# /sysroot/snapshots/SNAPSHOT_NAME.
 #
 # Options:
 #   -c comment  Snapshot description. If comment is '-' then comment will be
 #               read from stdin.
-#   -d          TODO.
+#   -d dir      Snapshots directory, relative to the subvolume.
+#               Default: ${SNAPSHOTS_DIR}
 #   -h          Display this help and exit.
 #   -l          List existing snapshots and exit. SNAPSHOT_NAME argument will be
 #               ignored.
@@ -23,12 +24,18 @@
 #   -s          TODO.
 #   -v          Enable verbose output.
 
+SNAPSHOTS_DIR=snapshots
+
 echo "Hello World Take"
+echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
 
 # TODO:
 # - Manual (from .md):
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
+# - Include in rd.break:
+#   - envsubst
+#   - date
 # - @root and @home: can snapshots live in other subvols? Probably not.
 #   - Support non-root (arbitrary) subvolumes
 # - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
