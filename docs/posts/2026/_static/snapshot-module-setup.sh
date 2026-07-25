@@ -17,5 +17,6 @@ depends() {
 
 install() {
     inst "/sbin/snapshot-take" "/sbin/snapshot-take"
+    # shellcheck disable=SC2154
     inst "$moddir/snapshot-restore.sh" "/sbin/snapshot-restore"
 }
