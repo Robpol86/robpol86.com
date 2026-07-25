@@ -15,8 +15,7 @@
 #               read from stdin.
 #   -d dir      Snapshots directory, relative to the subvolume.
 #   -h          Display this help and exit.
-#   -l          List existing snapshots and exit. SNAPSHOT_NAME argument will be
-#               ignored.
+#   -l          List existing snapshots and exit.
 #   -p          Create snapshots directories as required. If this option is not
 #               specified, the full path prefix of the snapshots directory must
 #               already exist.
@@ -31,12 +30,7 @@ FLAG_L=false
 FLAG_P=false
 SUBVOLUME_DIR=/sysroot
 VERBOSE=false
-
-# TODO if -v: set -x and enable debug() output
-
-# TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
-
-# TODO if -l: print and exit
+SNAPSHOT_NAME=
 
 # Parse command line arguments.
 while getopts :c:d:hlps:v OPT; do
@@ -62,6 +56,13 @@ if [ $# != 1 ] && [ $FLAG_L = false ]; then
   exit 1
   # TODO test this.
 fi
+SNAPSHOT_NAME="$1"
+
+# TODO if -v: set -x and enable debug() output
+
+# TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
+
+# TODO if -l: print and exit
 
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
@@ -69,6 +70,7 @@ echo "FLAG_L=$FLAG_L"
 echo "FLAG_P=$FLAG_P"
 echo "SUBVOLUME_DIR=$SUBVOLUME_DIR"
 echo "VERBOSE=$VERBOSE"
+echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 
 # TODO:
 # - Manual (from .md):
