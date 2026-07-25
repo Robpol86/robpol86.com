@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh
 
 # https://github.com/Robpol86/robpol86.com/blob/main/docs/posts/2026/_static/snapshot-take.sh
 # Save as (chmod +x): /sbin/snapshot-take
@@ -24,6 +24,9 @@
 #   -s dir      Mounted subvolume directory.
 #               Default: ${SUBVOLUME_DIR}
 #   -v          Enable verbose/debug output.
+
+set -o errexit  # Exit script if a command fails.
+set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SNAPSHOTS_DIR=snapshots
 SUBVOLUME_DIR=/sysroot
