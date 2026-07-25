@@ -51,7 +51,7 @@ while getopts :c:d:hlps:v OPT; do
     :) echo bad_arg "flag needs an argument: '$OPTARG'" ;;
     c) echo "comment arg: $OPTARG" ;;
     d) SNAPSHOTS_DIR="$OPTARG" ;;
-    h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |cut -c3-
+    h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |sed 's/^# //'
        exit 0 ;;
     l) FLAG_L=true ;;
     p) FLAG_P=true ;;
