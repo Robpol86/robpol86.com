@@ -76,6 +76,7 @@ echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 # - Manual (from .md):
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
+# - Try btrfs snapshot /tmp/
 # - Include in rd.break:
 #   - date
 # - @root and @home: can snapshots live in other subvols? Probably not.
