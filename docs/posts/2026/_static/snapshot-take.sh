@@ -56,11 +56,11 @@ while getopts :c:d:hlps:v OPT; do
   esac
 done
 shift "$((OPTIND-1))"
-# TODO if -l then $# must be 0.
-if [ $# != 1 ]; then
+if [ $# != 1 ] && [ $FLAG_L = false ]; then
   echo "'snapshot-take' requires exactly 1 argument." 2>&1
   echo "See 'snapshot-take -h'." 2>&1
   exit 1
+  # TODO test this.
 fi
 
 echo "Hello World Take"
