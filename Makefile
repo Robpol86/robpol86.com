@@ -25,6 +25,7 @@ deps:
 lint: _HELP = Run linters
 lint:
 	uv run ruff check
+	git ls-files -z ':(glob)**/*.sh' |xargs -0 shellcheck
 
 .PHONY: format
 format: _HELP = Apply format/lint fixes
