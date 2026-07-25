@@ -29,7 +29,7 @@ SNAPSHOTS_DIR=snapshots
 SUBVOLUME_DIR=/sysroot
 VERBOSE=false
 
-# TODO if -h: print and exit
+# TODO if -h: print and exit. Avoid getopts while loop?
 
 # TODO if -v: set -x and enable debug() output
 
