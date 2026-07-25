@@ -17,6 +17,7 @@ case "${1}" in
   ;;
 esac
 
+# shellcheck disable=SC1091
 . /usr/share/initramfs-tools/hook-functions
 
 copy_exec /sbin/resize2fs /sbin
@@ -24,12 +25,13 @@ copy_exec /sbin/fdisk /sbin
 
 # Raspberry Pi 1 and 2+3 use different kernels. Include the other.
 if ${COMPATIBILITY}; then
+  # shellcheck disable=SC2154
   case "${version}" in
-    *-v7+) other_version="$(echo ${version} |sed 's/-v7+$/+/')" ;;
-    *+) other_version="$(echo ${version} |sed 's/+$/-v7+/')" ;;
+    *-v7+) other_version="$(echo "${version}" |sed 's/-v7+$/+/')" ;;
+    *+) other_version="$(echo "${version}" |sed 's/+$/-v7+/')" ;;
     *)
       echo "Warning: kernel version doesn't end with +, ignoring."
       exit 0
   esac
-  cp -r /lib/modules/${other_version} ${DESTDIR}/lib/modules/
+  cp -r "/lib/modules/${other_version}" "${DESTDIR}/lib/modules/"
 fi
