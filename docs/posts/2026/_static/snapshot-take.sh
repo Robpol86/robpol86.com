@@ -14,7 +14,6 @@
 #   -c comment  Snapshot description. If comment is '-' then comment will be
 #               read from stdin.
 #   -d dir      Snapshots directory, relative to the subvolume.
-#               Default: ${SNAPSHOTS_DIR}
 #   -h          Display this help and exit.
 #   -l          List existing snapshots and exit. SNAPSHOT_NAME argument will be
 #               ignored.
@@ -22,7 +21,6 @@
 #               specified, the full path prefix of the snapshots directory must
 #               already exist.
 #   -s dir      Mounted subvolume directory.
-#               Default: ${SUBVOLUME_DIR}
 #   -v          Enable verbose/debug output.
 
 set -o errexit  # Exit script if a command fails.
@@ -53,7 +51,7 @@ while getopts :c:d:hlps:v OPT; do
     :) echo bad_arg "flag needs an argument: '$OPTARG'" ;;
     c) echo "comment arg: $OPTARG" ;;
     d) SNAPSHOTS_DIR="$OPTARG" ;;
-    h) echo TODO usage
+    h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |cut -c3-
        exit 0 ;;
     l) FLAG_L=true ;;
     p) FLAG_P=true ;;
