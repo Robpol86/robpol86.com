@@ -47,8 +47,10 @@ VERBOSE=false
 # Parse command line arguments.
 while getopts :c:d:hlps:v OPT; do
   case "$OPT" in
-    \?) echo bad_arg "unknown flag: '$OPTARG'" ;;
-    :) echo bad_arg "flag needs an argument: '$OPTARG'" ;;
+    \?) echo "unknown flag: '$OPTARG'" >&2
+        exit 1 ;;
+    :) echo "flag needs an argument: '$OPTARG'" >&2
+       exit 1 ;;
     c) echo "comment arg: $OPTARG" ;;
     d) SNAPSHOTS_DIR="$OPTARG" ;;
     h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |sed 's/^# //'
@@ -59,6 +61,12 @@ while getopts :c:d:hlps:v OPT; do
     v) VERBOSE=true ;;
   esac
 done
+shift "$((OPTIND-1))"
+if [ $# != 1 ]; then
+  echo "'snapshot-take' requires exactly 1 argument." 2>&1
+  echo "See 'snapshot-take -h'." 2>&1
+  exit 1
+fi
 
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
