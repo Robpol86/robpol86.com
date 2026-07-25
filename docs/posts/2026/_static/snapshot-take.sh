@@ -32,17 +32,11 @@ FLAG_P=false
 SUBVOLUME_DIR=/sysroot
 VERBOSE=false
 
-# TODO if -h: print and exit. Avoid getopts while loop?
-
 # TODO if -v: set -x and enable debug() output
-
-# TODO badargs error on unknown args
 
 # TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
 
 # TODO if -l: print and exit
-
-# TODO badargs error on argv != 1
 
 # Parse command line arguments.
 while getopts :c:d:hlps:v OPT; do
@@ -62,6 +56,7 @@ while getopts :c:d:hlps:v OPT; do
   esac
 done
 shift "$((OPTIND-1))"
+# TODO if -l then $# must be 0.
 if [ $# != 1 ]; then
   echo "'snapshot-take' requires exactly 1 argument." 2>&1
   echo "See 'snapshot-take -h'." 2>&1
@@ -80,7 +75,6 @@ echo "VERBOSE=$VERBOSE"
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
 # - Include in rd.break:
-#   - envsubst
 #   - date
 # - @root and @home: can snapshots live in other subvols? Probably not.
 #   - Support non-root (arbitrary) subvolumes
