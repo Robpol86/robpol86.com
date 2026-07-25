@@ -1,0 +1,26 @@
+USB 0 (XHCI) v1.10, v1.01 DDK, v1.01 HCD
+
+Device Address             : 1
+Vendor                     : 0x0424
+Product                    : 0x2640
+Class                      : 0x09 (Hub)
+Subclass                   : 0x00
+Protocol                   : 0x01
+Hub Number Ports           : 3
+Hub Characteristics        : 0x000d (Individual power, Compound, Individual over-current)
+Hub Power On->Good         : 100 ms
+Hub Power Requirements     : 1 mA
+
+Device Address             : 2
+Vendor                     : 0x0424 (Generic)
+Product                    : 0x4040 (Ultra Fast Media Reader)
+Class                      : 0x00 (Independent per interface)
+
+USB 0 (XHCI) v1.10, v1.01 DDK, v1.01 HCD
+
+Device Address             : 1
+Vendor                     : 0x0b95 (ASIX Elec. Corp.)
+Product                    : 0x7720 (AX88x72A)
+Class                      : 0xff (Vendor-specific)
+Subclass                   : 0xff
+Protocol                   : 0x00

@@ -1,0 +1,80 @@
+t-u--g--o- ln Owner     Group          Size Date         Filename
+total 147318760
+nrw-rw-rw-  1 root      root           2048 Feb 01 07:07 DbTrace
+crw-------  1 root      root         0,   1 Feb 01 07:08 bpf
+crw-------  1 root      root         0,   1 Feb 01 07:08 bpf0
+brw-------  1 root      root         9,   0 Feb 01 07:00 cdd0
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:00 console
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 cpumeter
+nrw-rw-rw-  1 root      root              0 Feb 01 07:08 crypto
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 d_carplay
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 d_ugzzf
+nrw-rw-rw-  1 root      root              0 Feb 01 07:00 dvfs
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:00 dvfs_client_1
+nrw-rw-rw-  1 root      root              0 Jan 01  1970 eide_bus
+nrw-rw-rw-  1 root      root              0 Jan 01  1970 emmc
+brw-r-----  1 root      root         4,   0 Feb 01 07:00 fs0
+brw-r-----  1 root      root         4,   1 Feb 01 07:08 fs0p0
+brw-r-----  1 root      root         4,   2 Feb 01 07:07 fs0p1
+brw-r-----  1 root      root         4,   3 Feb 01 07:08 fs0p2
+brw-r-----  1 root      root         4,   4 Feb 01 07:07 fs0p3
+brw-r-----  1 root      root         4,  32 Feb 01 07:08 fs1
+brw-r-----  1 root      root         4,   5 Feb 01 07:00 fs1p0
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:08 i2c4
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:07 i2c5
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:08 i2c_usb0
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 io-usb
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 io-usb1
+-rw-------  1 root      root      4294967295 Feb 01 07:08 mem
+brw-------  1 root      root         7,   0 Feb 01 07:01 mmc0
+brw-------  1 root      root         1,   8 Feb 01 07:00 mmc0t177
+brw-------  1 root      root         1,   9 Feb 01 07:00 mmc0t178
+brw-------  1 root      root         1,  10 Feb 01 07:00 mmc0t179
+brw-------  1 root      root         1,  11 Feb 01 07:00 mmc0t180
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 mqueue
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 name
+crw-rw-rw-  1 root      root         1,   0 Feb 01 07:08 null
+nrw-rw-rw-  1 root      root              1 Feb 01 07:08 pipe
+crw-rw-rw-  1 root      root         6, 512 Feb 01 07:08 ptyp0
+crw-rw-rw-  1 root      root         6, 513 Feb 01 07:07 ptyp1
+crw-rw-rw-  1 root      root         6, 514 Feb 01 07:07 ptyp2
+crw-rw-rw-  1 root      root         6, 515 Feb 01 07:07 ptyp3
+crw-rw-rw-  1 root      root         6, 516 Feb 01 07:07 ptyp4
+crw-rw-rw-  1 root      root         6, 517 Feb 01 07:07 ptyp5
+crw-rw-rw-  1 root      root         6, 518 Feb 01 07:07 ptyp6
+crw-rw-rw-  1 root      root         6, 519 Feb 01 07:07 ptyp7
+nrw-rw-rw-  1 root      root              0 Feb 01 07:00 random
+dr--r--r--  1 root      root              2 Feb 01 07:01 screen
+nrw-rw-rw-  1 root      root              0 Jan 01  1970 sd_bus
+brw-------  1 root      root        11,   0 Feb 01 07:00 sdc0
+brw-------  1 root      root         1,  12 Feb 01 07:00 sdc0t12
+drwxrwxrwt  2 root      root              1 Feb 01 07:07 sem
+crw-rw-rw-  1 root      root         3,   1 Feb 01 07:08 ser1
+crw-rw-rw-  1 root      root         3,  10 Feb 01 07:00 ser10
+crw-rw-rw-  1 root      root         3,   3 Feb 01 07:08 ser3
+crw-rw-rw-  1 root      root        12,   1 Feb 01 07:07 serdun1
+drwxrwxrwx  2 root      root              0 Feb 01 07:08 shmem
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:00 slog
+dr-xr-xr-x  2 root      root              0 Feb 01 07:08 socket
+crw-rw-rw-  1 root      root         1,   5 Feb 01 07:08 stderr
+crw-rw-rw-  1 root      root         1,   3 Feb 01 07:08 stdin
+crw-rw-rw-  1 root      root         1,   4 Feb 01 07:08 stdout
+crw-------  1 root      root         0,   1 Feb 01 07:08 tap
+crw-rw-rw-  1 root      root         1,   1 Feb 01 07:08 text
+crw-rw-rw-  1 root      root         1,   2 Feb 01 07:08 tty
+crw--w----  1 root      root         6,   0 Feb 01 07:08 ttyp0
+crw-rw-rw-  1 root      root         6,   1 Feb 01 07:07 ttyp1
+crw-rw-rw-  1 root      root         6,   2 Feb 01 07:07 ttyp2
+crw-rw-rw-  1 root      root         6,   3 Feb 01 07:07 ttyp3
+crw-rw-rw-  1 root      root         6,   4 Feb 01 07:07 ttyp4
+crw-rw-rw-  1 root      root         6,   5 Feb 01 07:07 ttyp5
+crw-rw-rw-  1 root      root         6,   6 Feb 01 07:07 ttyp6
+crw-rw-rw-  1 root      root         6,   7 Feb 01 07:07 ttyp7
+crw-------  1 root      root         0,   1 Feb 01 07:08 tun0
+crw-------  1 root      root         0,   1 Feb 01 07:08 tun1
+crw-------  1 root      root         0,   1 Feb 01 07:08 tun2
+crw-------  1 root      root         0,   1 Feb 01 07:08 tun3
+drwxrwxrwx  2 root      root              0 Feb 01 07:08 tymem
+crw-rw-rw-  1 root      root         0,   1 Feb 01 07:07 ugzzf
+nrw-rw-rw-  1 root      root              0 Feb 01 07:00 urandom
+crw-rw-rw-  1 root      root         1,   6 Feb 01 07:08 zero

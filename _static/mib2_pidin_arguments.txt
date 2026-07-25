@@ -1,0 +1,92 @@
+     pid Arguments
+       1 procnto-smp-instr -mL -F 10000
+   16386 devc-seromap -T56 -O 262144 -opriority=26 -e -F -b115200 -u3 -c48000000/16 0x48020000^2,106
+   16387 slogger
+   16388 pipe
+   20485 devf-generic -r -x1 edma=8,clk=64000000,dc=0
+   20486 ksh
+   28681 devb-sd cam pnp,bounce=64k disk name=mmc blk noatime,cache=512K,commit=high qnx6 snapshot=0 sd d=sddriver_j6:if=2,name=emmc
+   36872 TimeStampDriver
+   49162 SlogPrinter
+   49163 EasyLinkMgr
+   49165 devc-pty
+   65551 io-usb -c -d omap5-xhci ioport=0x48890000,irq=108,verbose=0
+   65552 io-usb -c -d omap5-xhci ioport=0x488D0000,irq=110,verbose=0 -n/dev/io-usb1/io-usb
+  147468 screen-cda -a /persistence/splash/splash.xml -A /extbin/apps/splash/splash_default.xml -z
+  213010 pps
+  221203 dumper -m -d /tmp
+  237589 i2c_drax -p0x4807A000 -i94
+  241686 i2c_drax -p0x4807c000 -i92
+  245783 i2c_usb_bridge -opnp
+  266254 devf-ram -s0,16m,,,512k -i1
+  290833 MountIFS -f /extbin/apps/bin/vwjxe.ifs -T -m /ifs1
+  311320 MountIFS -f /extbin/apps/bin/delphibin.ifs -T -m /ifs2
+  327700 io-pkt-v6-hc -i1 –ptcpip
+  331801 io-pkt-v6-hc -i2 -ptcpip stacksize=294912,prefix=/dev/d_ugzzf
+  335898 io-pkt-v6-hc -i5 -ptcpip stacksize=16384,prefix=/dev/d_carplay
+  339995 devc-seromap -E -F -S -T56 -t14 -u1 -b57600 -c48000000/16 0x4806A000^2,104
+  344092 procman -f /etc/procman_core.cfg
+  389150 RearViewCam
+  389151 ECD
+  389152 CPUMonitor -c 5
+  389153 PrioWatchdog -n5 -m0x07729C00
+  389154 TraceServer
+  389155 VIPLogger -t
+  389156 SystemManager
+  389157 PersistenceManager -t
+  389158 DiagnosticsManager
+  409639 AudioManager -v1 -t
+  413736 Most -v0
+  413737 MostCanRouter -v0
+  413738 ThermalManager
+  430124 /ifs2/j9 -Xmca256k -Xmco128k -Xmo34m -Xmoi0 -Xmn2048k -Xmx36m -Xmjit:code=4096,singlecache -DLOG=all=2 -Dde.vw.mib.startup.order=TARGET -noverify -DuseStartupBootExtension -Dde.vw.mib.main.thread.prio=6 -DGenericEvents.queueOverloadThreshold=400 -Dde.vw.mib.installation.directory=/extbin/apps/hmi/HMI/ -Dde.vw.mib.configuration.directory=/extbin/apps/hmi/HMI/config/ -Dde.vw.mib.resources.directory=/extbin/apps/hmi/Resources/ -Dbundles.properties=/extbin/apps/hmi/HMI/config/bundles.properties -Dthreads.properties=/extbin/apps/hmi/HMI/config/threads.properties -Dlogging.properties=/extbin/apps/hmi/HMI/config/logging.properties -Dsystem.properties=/extbin/apps/hmi/HMI/config/system.properties -Ddebugprobes.config.path=/extbin/apps/hmi/HMI/config -Ddsiexclude.properties=/extbin/apps/hmi/HMI/config/dsiexclude.properties -DConfigurationManager.SdRoots=/sdc1;/sdc2 -Dviewhandler.format=zip -Dvw.mib.resources=/extbin/apps/hmi/HMI/res -DGenericEvents.activatePooling=true -DGenericEventPool.poolSize=2048 -DGenericEventPool.poolPreFill=512 -DdsiTimeout=20000 -DdomainTimeout=120000 -Dde.audi.gem.path.scriptfifo=/etc -Dde.audi.gem.path.esdfiles=/extbin/apps/GEM_PROD -DSTARTUP_LUM_READY=true -Dde.vw.mib.asl.internal.util.SystemKeyUtil.abtMaskSetting=255 -Dde.vw.mib.log4mib.watchdog.enabled=true -Dde.vw.mib.asl.media.startupListTimer=20000 -Dde.vw.mib.format.4asl.rulesets=/extbin/apps/hmi/HMI/config/locationformattingrules_en_US.properties -Dde.vw.mib.format.4asl.rulesets.directory=/extbin/apps/hmi/HMI/config -Dde.vw.mib.useNewScreenOff=true -Dde.vw.mib.asl.internal.system.updateGesture2TimeScaleFactor=10 -Dde.vw.mib.lsc.languagechangetimeout4language=60000 -Dde.vw.mib.lsc.languagechangetimeouttotal=60000 -Dde.vw.mib.log4mib.mlp.enabled=true -Dde.vw.mib.personalization.useDsiUpdates=true -Dde.vw.mib.driverdistraction.default=ALLOFF -Dde.vw.mib.runmode.is_normal -DheapDumpOnOOM=true -DErrorDumpDir=/extbin/apps/hmi/errlog/ -Dcom.delphi.vw.mib.spi.resourcespath=/extbin/apps/hmi/Resources -Dcom.delphi.vw.mib.spi.file.basedirectory=/extbin/apps/hmi/Resources -Dcom.delphi.vw.mib.spi.file.useobjectswapperjava=false -Dcom.delphi.vw.mib.spi.debug.enable.stdout=true -Dcom.delphi.vw.mib.spi.debug.enable.stderr=true -DJDSI_THREAD_POOL_TYPE=SIMPLE -DJDSI_THREAD_POOL_TYPE=ONE2ONEMAPPING -DJDSI_THREAD_POOL_NUM_THREADS=3 -DJDSI_THREAD_POOL_QUEUE_LIMIT=500 -DJDSI_POOL_THREAD_PRIO=7 -DJDSI_NOTIFIER_QUEUE_SIZE=300 -DJDSI_NOTIFIER_THREAD_PRIO=16 -DJDSI_PROCESS_CONFIG_FILE=/extbin/apps/cfg/apps.txt -DJDSI_DOMAIN_CONFIG_FILE=/extbin/apps/cfg/domains.txt -DJDSI_DEBUG=0 -DJSAL_DEBUG=0 -jcl:foun11 -Dcom.ibm.oti.vm.bootstrap.library.path=/ifs2:/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6:/extbin/apps/J9/bin:/extbin/apps/J9/lib:. -Djava.library.path=/ifs2:/proc/boot:/extbin/apps/lib:/ifs2:/extbin/apps/usr/lib/graphics:/extbin/apps/usr/lib/graphics/jacinto6:/extbin/apps/J9/bin:/extbin/apps/J9/lib:. -Xbootclasspath:/ifs1/delphi.jxe:/ifs1/MIBHMI.jxe:/extbin/apps/hmi/HMI/jar/TestInterface-H29.319.58.jar:/extbin/apps/J9/lib/charconv.zip:/extbin/apps/J9/lib/jclFoundation11/locale.zip:/extbin/apps/hmi/HMI/jar/GEM.jar:/extbin/apps/hmi/HMI/lib/bcprov-jdk14.jar:/extbin/apps/J9/lib/jclFoundation11/ext/j9jce.jar de.vw.mib.MIBMain
+  442411 SystemTimeApp -i3 -p15
+  442413 SensorHandler
+  442414 CarServices -p12 -t
+  442415 devb-cd cdrom name=cdd blk cache=1M,ra=0 cdd spin=300,verify,no_init
+  442416 MediaHandler -c../cfg/MHConfig.cfg
+  442417 PersistenceServices
+  446516 InfotainmentRecorder -n
+  446517 SysServices
+  454707 DisplayManagement -z
+  454710 WavePlayer -f/extbin/apps/cfg/wavePlayerCfg.xml
+  454711 ImageLoader
+  454713 PictureServices
+  454714 SWaP
+  454715 inetd -D /etc/inetd.conf
+  454717 devb-sd cam pnp,bounce=64k disk name=sdc blk noatime,cache=512K, dos exe=all sd d=sddriver_j6:if=0
+  475192 dvfsmgr-j6 -c /ramdisk/dvfs_j6.conf -o /ramdisk/dvfs_pwrtbl_j6.conf -Di2c_dev=5
+  475199 ClusterServices -v0
+  487489 TunerManager -v1 -g60002 -t
+  487490 devc-seromap -E -F -S -T56 -t16 -u10 -b19200 -c48000000/16 0x4AE2B000^2,113
+  495680 TunerManager_SDARS
+  512067 dvfs_client
+  548914 MediaServer -c/extbin/apps/cfg/MediaServerConfig.xml -t
+  548924 PhoneServer -v1 -t
+  561181 splash
+  561223 HKPLogger -t
+  561224 DSPLogger -t
+  561226 UnitInfo
+  634948 AppConnect -v1
+  634949 random -p
+  634953 mqueue
+  655435 MirrorLinkApp
+  655436 AndroidAutoServices
+  655437 AndroidAuto
+  671822 CarPlayServices
+  671823 CarPlay
+  671824 in.telnetd
+  671826 Exlap
+  696382 SpeechManager -fttspath=/lng/lng/tts -fasrpath=/lng/lng/asr -fdbname=/extbin/apps/cfg/SMConfig.db
+  708615 SpeechServices -fversion=/extbin/apps/hmi/Resources/skin1/Speech/nuance_res/target/version.txt
+  708678 -ksh
+  708689 InstallationServices
+  712789 InstallationManager
+  712790 DiagSwVersionMonitor
+  716889 MOSTUpdate -s
+  753747 ABTUpdate -s
+ 1286228 elvis
+ 1290327 /bin/ksh -c /bin/ksh
+ 1294424 /bin/ksh
+ 1445978 UnitInfo
+ 1572955 pidin arguments

@@ -1,0 +1,33 @@
+# Prompt for current date during boot.
+#
+# https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/date-prompt.service
+#
+# Stops the system from booting up to 2 minutes or until user enters the
+# current time in the console. Useful for Raspberry Pis and other systems
+# with no real time clocks.
+#
+# Save as: /etc/systemd/system/date-prompt.service
+# Enable with: systemctl enable date-prompt.service
+
+[Unit]
+After=fake-hwclock.service
+After=systemd-fsck-root.service systemd-fsck@dev-mmcblk0p1.service
+Before=sysinit.target plymouth-start.service
+DefaultDependencies=no
+Description=Prompt for current date during boot
+
+[Service]
+Environment="P=Enter the current date (e.g. Feb 11 5:17 PM): "
+ExecStartPre=-/bin/plymouth deactivate
+ExecStart=/bin/bash -c 'until read -ep "$P" R; [ ! -z "$R" ] && date -s "$R"; do :; done'
+ExecStartPost=-/bin/plymouth reactivate
+ExecStopPost=-/bin/plymouth reactivate
+RemainAfterExit=yes
+StandardError=inherit
+StandardInput=tty
+StandardOutput=inherit
+TimeoutSec=120
+Type=oneshot
+
+[Install]
+WantedBy=sysinit.target

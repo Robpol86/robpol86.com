@@ -1,0 +1,1673 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Bareos Tape Backup on a 124T" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:8000/bareos_tape_backup.html" />
+<meta property="og:site_name" content="Robpol86.com" />
+<meta property="og:description" content="I use Bareos(a fork of Bacula) to backup my data at home from a Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it’s probably debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool! Equipme..." />
+<meta property="og:image" content="http://localhost:8000/_images/imgur-7DZQt.800x1067.25.jpg" />
+<meta property="og:image:alt" content="Robpol86.com" />
+<meta name="description" content="I use Bareos(a fork of Bacula) to backup my data at home from a Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it’s probably debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool! Equipme..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="localhost:8000">
+
+    <title>Bareos Tape Backup on a 124T &#8212; Robpol86.com</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/aside_margin.css?v=5932322e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=528dc5d9"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-EJSD449CRH"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-EJSD449CRH');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bareos_tape_backup';</script>
+    <link rel="canonical" href="http://localhost:8000/bareos_tape_backup.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Flashing Motorola Droid to Cricket" href="flash_droid_cricket.html" />
+    <link rel="prev" title="Atrix Lapdock Other Uses" href="atrix_lapdock.html" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=210604">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=210604">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=210604">
+    <link rel="manifest" href="/site.webmanifest?v=210604">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=210604" color="#7c7c7c">
+    <link rel="shortcut icon" href="/favicon.ico?v=210604">
+    <meta name="apple-mobile-web-app-title" content="Robpol86.com">
+    <meta name="application-name" content="Robpol86.com">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="blog/atom.xml"
+  title="Robpol86.com"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-dark" alt="Robpol86.com - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-light" alt="Robpol86.com - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__postcard bd-toc-item navbar-nav active">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>23 August 2015</span>
+  
+</h2>
+<ul class="nav bd-sidenav">
+  
+
+<li class="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="blog/location/san-francisco.html" style="display:inline">San Francisco</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="blog/category/tutorials.html" style="display:inline">Tutorials</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tag"></i>
+    
+    </span>
+  
+  
+  <a href="blog/tag/homelab.html" style="display:inline">homelab</a>
+  
+  
+  
+</li>
+
+
+<li class="ablog-sidebar-item comments ablog__comments">
+  <script type="text/javascript">
+    var disqus_shortname = "rob86wiki";
+
+    (function () {
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
+      (
+        document.getElementsByTagName("HEAD")[0] ||
+        document.getElementsByTagName("BODY")[0]
+      ).appendChild(s);
+    })();
+  </script>
+  
+  <i class="fa-fw fa fa-comments"></i>
+  
+  <a href="#disqus_thread" data-disqus-identifier="Bareos Tape Backup on a 124T" style="display:inline">
+    
+  </a >
+</li>
+
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__recentposts">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog.html"><span class="caption-text">Recent Posts</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-17-influxdb-downsampling.html">InfluxDB v2 Downsampling</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2026/2026-02-01-desk.html">Desk Photo 2026</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-23-truenas-scale-telegraf.html">TrueNAS Telegraf, Influx, Grafana</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-07-14-truenas-scale-beelink-slots-tool.html">TrueNAS Slots Tool for ME Mini</a>
+  </li>
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="posts/2025/2025-02-13-truenas-scale-aiffro-runbook.html">TrueNAS SCALE Runbook</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<link rel="stylesheet" href="_static/ablog/tagcloud.css" type="text/css" />
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__tags bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/tag.html"><span class="caption-text">Tags</span></a>
+</p>
+<ul class="ablog-cloud nav bd-sidenav">
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/3d-printing.html">3d-printing</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/aiffro.html">aiffro</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/alltrack.html">alltrack</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/beelink.html">beelink</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-4 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/car.html">car</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/cellular.html">cellular</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-5 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/desk.html">desk</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/gmktec.html">gmktec</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/hacking.html">hacking</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-3 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/homelab.html">homelab</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/jsw.html">jsw</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/linux.html">linux</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/nas.html">nas</a>
+  </li>
+  
+  
+  
+  <li class="ablog-cloud ablog-cloud-1 toctree-l1" style="height: 24pt;">
+    <a class="reference internal" href="blog/tag/runbook.html">runbook</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__category bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/category.html"><span class="caption-text">Categories</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/photos.html">Photos (30)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/projects.html">Projects (18)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/category/tutorials.html">Tutorials (18)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__archive bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/archive.html"><span class="caption-text">Archives</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2026.html">2026 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2025.html">2025 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2024.html">2024 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2023.html">2023 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2022.html">2022 (10)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2021.html">2021 (11)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2020.html">2020 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2019.html">2019 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2018.html">2018 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2017.html">2017 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2016.html">2016 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2015.html">2015 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2014.html">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2013.html">2013 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2012.html">2012 (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2011.html">2011 (4)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2010.html">2010 (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2009.html">2009 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2007.html">2007 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2006.html">2006 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2005.html">2005 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2004.html">2004 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2003.html">2003 (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/2002.html">2002 (1)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+<div class="ablog-sidebar-item ablog__locations bd-toc-item navbar-nav active">
+<p aria-level="2" class="caption" role="heading">
+  <a class="reference internal" href="blog/location.html"><span class="caption-text">Locations</span></a>
+</p>
+<ul class="nav bd-sidenav">
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/austin.html">Austin (24)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/el-calafate.html">El Calafate (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/hong-kong.html">Hong Kong (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/manhattan.html">Manhattan (2)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/melbourne.html">Melbourne (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/mexico-city.html">Mexico City (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/queenstown.html">Queenstown (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/san-francisco.html">San Francisco (34)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/seoul.html">Seoul (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/sydney.html">Sydney (3)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/tokyo.html">Tokyo (1)</a>
+  </li>
+  
+  
+  
+  <li class="toctree-l1">
+    <a class="reference internal" href="blog/location/victoria.html">Victoria (4)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</nav>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Robpol86/robpol86.com/blob/__diff__html_old/docs/bareos_tape_backup.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button"
+   title="Show source"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+
+</a>
+
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bareos Tape Backup on a 124T</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-used">Equipment Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-tape-drive-autoloader">Verify Tape Drive/Autoloader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-bareos">Install Bareos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-storage-daemon-config">File/Storage Daemon Config</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-storage-config">Verify Storage Config</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#director-daemon-config">Director Daemon Config</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-services">Start Services</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-everything">Test Everything</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-old-tapes">Reusing Old Tapes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backing-up-data">Backing Up Data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="bareos-tape-backup-on-a-124t">
+<h1>Bareos Tape Backup on a 124T<a class="headerlink" href="#bareos-tape-backup-on-a-124t" title="Link to this heading">#</a></h1>
+<p>I use <a class="reference external" href="https://www.bareos.org/en/">Bareos</a> (a fork of <a class="reference external" href="http://bacula.org/">Bacula</a>) to backup my data at home from a
+Linux computer to tape. Backing up to tape is a lot more convenient that backing up to DVD-R/BD-R, though it’s probably
+debatable when compared to backing up to an external hard drive. But having a tape autoloader is so cool!</p>
+<figure class="align-default">
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Robpol86/robpol86.com-pictures/refs/heads/main/bareos-tape-backup/imgur-7DZQt.jpg"><img alt="_images/imgur-7DZQt.800x1067.25.jpg" src="_images/imgur-7DZQt.800x1067.25.jpg" />
+</a>
+</figure>
+<section id="equipment-used">
+<h2>Equipment Used<a class="headerlink" href="#equipment-used" title="Link to this heading">#</a></h2>
+<p>This guide should work with other pieces of equipment but it has been written with these devices in mind:</p>
+<ul class="simple">
+<li><p>CentOS 7.1</p></li>
+<li><p><a class="reference external" href="http://www.dell.com/us/business/p/powervault-124t-lto4hh/pd">Dell PowerVault 124T Tape Autoloader</a></p></li>
+<li><p><a class="reference external" href="http://www-01.ibm.com/support/docview.wss?uid=swg21193425">IBM Ultrium-TD3 Tape Drive</a> (inside the autoloader).</p></li>
+</ul>
+<p>The plan is to rsync data from my OS X client to a directory on my Linux server, and to run all Bareos software on just
+the server. I didn’t like the idea of having some process running as root on OS X and trust that it only accessed a
+specific volume, which isn’t even configured on OS X (it’s set in the Bareos director config on the Linux server).</p>
+<p>I’ll be running backups manually. I won’t have any running schedules in Bareos and I’ll have MariaDB (MySQL on CentOS)
+and Bareos not start on boot. After every backup I’ll stop those services.</p>
+<p>I’ll also only be defining full backups. I won’t be defining any differential/incremental jobs in this guide.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>We’ll be installing Bareos and its dependencies from scratch on a new CentOS install. Some things I’d like to point out:</p>
+<ol class="arabic simple">
+<li><p>The giant <code class="docutils literal notranslate"><span class="pre">bareos-dir.conf</span></code> will be split up into 3 files for easier manageability.</p></li>
+<li><p>I won’t be using any kind of monitoring, emailing, or any sort of notifications. I’ll just manually check the
+progress through the <code class="docutils literal notranslate"><span class="pre">bconsole</span></code>. Since my CentOS server doesn’t run a GUI I don’t have a tray-monitor.</p></li>
+</ol>
+<section id="verify-tape-drive-autoloader">
+<h3>Verify Tape Drive/Autoloader<a class="headerlink" href="#verify-tape-drive-autoloader" title="Link to this heading">#</a></h3>
+<p>First we need to make sure the tape drive and autoloader have been detected by the OS. Do this by running <code class="docutils literal notranslate"><span class="pre">lsscsi</span> <span class="pre">-g</span></code>
+(don’t need to be root). You should see something like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ lsscsi -g
+[0:0:6:0]    tape    IBM      ULTRIUM-TD3      93GM  /dev/st0   /dev/sg2
+[0:0:6:1]    mediumx DELL     PV-124T          0085  /dev/sch0  /dev/sg3
+</pre></div>
+</div>
+<p>If you don’t see any <code class="docutils literal notranslate"><span class="pre">sg</span></code> devices you can try these commands, I had to run them on my CentOS installation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>su<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;sg&quot; &gt; /etc/modules-load.d/sg.conf&#39;</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>systemd-modules-load.service
+</pre></div>
+</div>
+</section>
+<section id="install-bareos">
+<h3>Install Bareos<a class="headerlink" href="#install-bareos" title="Link to this heading">#</a></h3>
+<p>We’ll be using MariaDB as the backend database. Install it and secure it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>mariadb-server
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>mariadb.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>mariadb.service
+mysql_secure_installation<span class="w">  </span><span class="c1"># Ignore find_mysql_client error.</span>
+</pre></div>
+</div>
+<p>Next install Bareos.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span><span class="s2">&quot;http://download.bareos.org/bareos/release/latest/CentOS_7/bareos.repo&quot;</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>bareos.repo<span class="w"> </span>/etc/yum.repos.d/
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>bareos<span class="w"> </span>bareos-database-mysql<span class="w"> </span>bareos-storage-tape
+sudo<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>bareos-dir.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>bareos-sd.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>bareos-fd.service
+sudo<span class="w"> </span>/usr/lib/bareos/scripts/create_bareos_database<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
+sudo<span class="w"> </span>/usr/lib/bareos/scripts/make_bareos_tables<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
+<span class="nv">dbpw</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">45</span><span class="k">)</span>
+sudo<span class="w"> </span><span class="nv">db_password</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$dbpw</span><span class="s2">&quot;</span><span class="w"> </span>/usr/lib/bareos/scripts/grant_bareos_privileges<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
+sudo<span class="w"> </span>sed<span class="w"> </span>-i.bak<span class="w"> </span><span class="s1">&#39;s@\(dbpassword =\) &quot;&quot;@\1 &quot;&#39;</span><span class="nv">$dbpw</span><span class="s1">&#39;&quot;@g&#39;</span><span class="w"> </span>/etc/bareos/bareos-dir.conf
+<span class="nb">unset</span><span class="w"> </span>dbpw
+</pre></div>
+</div>
+<p>I’ll be using <code class="docutils literal notranslate"><span class="pre">/home/bareos</span></code> to rsync files to. I’ll need to grant the <code class="docutils literal notranslate"><span class="pre">bareos</span></code> user access to this so it may backup
+and restore files there, and I’ll also need to grant another user (e.g. <code class="docutils literal notranslate"><span class="pre">support</span></code>) access to login through rsync (it’s
+a bad idea to grant login privileges to bareos).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-m0700<span class="w"> </span>/home/bareos
+sudo<span class="w"> </span>chown<span class="w"> </span>bareos:bareos<span class="w"> </span>/home/bareos
+sudo<span class="w"> </span>setfacl<span class="w"> </span>-d<span class="w"> </span>-m<span class="w"> </span>u:bareos:rwx<span class="w"> </span>-m<span class="w"> </span>g:support:rwx<span class="w"> </span>/home/bareos
+sudo<span class="w"> </span>setfacl<span class="w"> </span>-m<span class="w"> </span>u:bareos:rwx<span class="w"> </span>-m<span class="w"> </span>g:support:rwx<span class="w"> </span>/home/bareos
+</pre></div>
+</div>
+</section>
+<section id="file-storage-daemon-config">
+<h3>File/Storage Daemon Config<a class="headerlink" href="#file-storage-daemon-config" title="Link to this heading">#</a></h3>
+<p>Overwrite these two files. Make sure to substitute <code class="docutils literal notranslate"><span class="pre">moops</span></code> with the original setting. Omit the PKI lines if you do
+not plan on
+<a class="reference external" href="http://doc.bareos.org/master/html/bareos-manual-main-reference.html#x1-30500027.2">encrypting your backup file data</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While Bareos does support encryption, <code class="docutils literal notranslate"><span class="pre">bscan</span></code> and <code class="docutils literal notranslate"><span class="pre">bextract</span></code> do not! This means if you ever lose your Bareos
+server and you do not have a clear-text backup of your MySQL database, you won’t be able to restore the catalog
+from tape (even if you have your encryption keys) without a lot of manual and unsupported work.</p>
+</div>
+<div class="highlight-kconfig notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/bareos/bareos-fd.conf</span>
+Director<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-dir
+<span class="w">  </span>Password<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span>
+}
+
+FileDaemon<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-fd
+<span class="w">  </span>Maximum<span class="w"> </span>Concurrent<span class="w"> </span>Jobs<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">  </span>PKI<span class="w"> </span>Signatures<span class="w"> </span><span class="o">=</span><span class="w"> </span>Yes<span class="w">  </span><span class="c1"># Enable Data Signing</span>
+<span class="w">  </span>PKI<span class="w"> </span>Encryption<span class="w"> </span><span class="o">=</span><span class="w"> </span>Yes<span class="w">  </span><span class="c1"># Enable Data Encryption</span>
+<span class="w">  </span>PKI<span class="w"> </span>Keypair<span class="w"> </span><span class="o">=</span><span class="w"> </span>/etc/bareos/moops-fd.pem<span class="w">  </span><span class="c1"># Public and Private Keys</span>
+<span class="w">  </span>PKI<span class="w"> </span>Master<span class="w"> </span>Key<span class="w"> </span><span class="o">=</span><span class="w"> </span>/etc/bareos/master.cert<span class="w">  </span><span class="c1"># ONLY the Public Key</span>
+}
+
+Messages<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Standard
+<span class="w">  </span>director<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-dir<span class="w"> </span><span class="o">=</span><span class="w"> </span>all,<span class="w"> </span><span class="o">!</span>skipped,<span class="w"> </span><span class="o">!</span>restored
+}
+</pre></div>
+</div>
+<p>For the storage daemon substitute <code class="docutils literal notranslate"><span class="pre">/dev/sg3</span></code> and <code class="docutils literal notranslate"><span class="pre">/dev/nst0</span></code> below with the device files found on your system. We’ll
+be verifying them in the next section.</p>
+<div class="highlight-kconfig notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/bareos/bareos-sd.conf</span>
+Storage<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-sd
+<span class="w">  </span>Maximum<span class="w"> </span>Concurrent<span class="w"> </span>Jobs<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+}
+
+Director<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-dir
+<span class="w">  </span>Password<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span>
+}
+
+Autochanger<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>PV-124T
+<span class="w">  </span>Device<span class="w"> </span><span class="o">=</span><span class="w"> </span>ULTRIUM-TD3
+<span class="w">  </span>Changer<span class="w"> </span>Device<span class="w"> </span><span class="o">=</span><span class="w"> </span>/dev/sg3
+<span class="w">  </span>Changer<span class="w"> </span>Command<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/usr/lib/bareos/scripts/mtx-changer %c %o %S %a %d&quot;</span>
+}
+
+Device<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>ULTRIUM-TD3
+<span class="w">  </span>Media<span class="w"> </span>Type<span class="w"> </span><span class="o">=</span><span class="w"> </span>LTO-3
+<span class="w">  </span>Archive<span class="w"> </span>Device<span class="w"> </span><span class="o">=</span><span class="w"> </span>/dev/nst0
+<span class="w">  </span>Autochanger<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">  </span>AutomaticMount<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">  </span>AlwaysOpen<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+}
+
+Device<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>FileStorage
+<span class="w">  </span>Media<span class="w"> </span>Type<span class="w"> </span><span class="o">=</span><span class="w"> </span>File
+<span class="w">  </span>Archive<span class="w"> </span>Device<span class="w"> </span><span class="o">=</span><span class="w"> </span>/home/bareos/tmp
+<span class="w">  </span>LabelMedia<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes;
+<span class="w">  </span>Random<span class="w"> </span>Access<span class="w"> </span><span class="o">=</span><span class="w"> </span>Yes;
+<span class="w">  </span>AutomaticMount<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes;
+<span class="w">  </span>RemovableMedia<span class="w"> </span><span class="o">=</span><span class="w"> </span>no;
+<span class="w">  </span>AlwaysOpen<span class="w"> </span><span class="o">=</span><span class="w"> </span>no;
+}
+
+Messages<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Standard
+<span class="w">  </span>director<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-dir<span class="w"> </span><span class="o">=</span><span class="w"> </span>all
+}
+</pre></div>
+</div>
+</section>
+<section id="verify-storage-config">
+<h3>Verify Storage Config<a class="headerlink" href="#verify-storage-config" title="Link to this heading">#</a></h3>
+<p>Before we go any further we should make sure the storage daemon configuration file is valid. We can easily test this
+with the commands below. Load up a tape inside the <strong>tape drive</strong> and another tape in <strong>slot 1</strong> in your autoloader. I
+did this using my autoloader’s web interface.</p>
+<p>First we make sure the tape drive works. Substitute <code class="docutils literal notranslate"><span class="pre">/dev/nst0</span></code> with what you have in the storage daemon config:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mt<span class="w"> </span>-f<span class="w"> </span>/dev/nst0<span class="w"> </span>rewind
+mkdir<span class="w"> </span>src<span class="w"> </span>dst<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>date<span class="w"> </span>&gt;<span class="w"> </span>./src/date.txt
+sudo<span class="w"> </span>tar<span class="w"> </span>-cvf<span class="w"> </span>/dev/nst0<span class="w"> </span>src
+sudo<span class="w"> </span>mt<span class="w"> </span>-f<span class="w"> </span>/dev/nst0<span class="w"> </span>rewind
+sudo<span class="w"> </span>tar<span class="w"> </span>-xvf<span class="w"> </span>/dev/nst0<span class="w"> </span>-C<span class="w"> </span>dst
+ls<span class="w"> </span>-lah<span class="w"> </span>src/<span class="w"> </span>dst/src/<span class="p">;</span><span class="w"> </span>cat<span class="w"> </span>src/date.txt<span class="w"> </span>dst/src/date.txt
+</pre></div>
+</div>
+<p>Next we’ll test the autoloader as well as the storage daemon config:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mtx<span class="w"> </span>-f<span class="w"> </span>/dev/sg3<span class="w"> </span>inquiry<span class="w">  </span><span class="c1"># Test autoloader.</span>
+sudo<span class="w"> </span>btape<span class="w"> </span>/dev/nst0<span class="w">  </span><span class="c1"># Run &quot;test&quot; in the console.</span>
+</pre></div>
+</div>
+<p>This is what I got when I ran those two commands:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo mtx -f /dev/sg3 inquiry
+Product Type: Medium Changer
+Vendor ID: &#39;DELL    &#39;
+Product ID: &#39;PV-124T         &#39;
+Revision: &#39;0085&#39;
+Attached Changer API: No
+$ sudo btape /dev/nst0
+Tape block granularity is 1024 bytes.
+btape: butil.c:301-0 Using device: &quot;/dev/nst0&quot; for writing.
+btape: btape.c:484-0 open device &quot;ULTRIUM-TD3&quot; (/dev/nst0): OK
+*test
+
+=== Write, rewind, and re-read test ===
+
+I&#39;m going to write 10000 records and an EOF
+then write 10000 records and an EOF, then rewind,
+and re-read the data to verify that it is correct.
+
+This is an *essential* feature ...
+
+btape: btape.c:1171-0 Wrote 10000 blocks of 64412 bytes.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1187-0 Wrote 10000 blocks of 64412 bytes.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1229-0 Rewind OK.
+10000 blocks re-read correctly.
+Got EOF on tape.
+10000 blocks re-read correctly.
+=== Test Succeeded. End Write, rewind, and re-read test ===
+
+btape: btape.c:1297-0 Block position test
+btape: btape.c:1309-0 Rewind OK.
+Reposition to file:block 0:4
+Block 5 re-read correctly.
+Reposition to file:block 0:200
+Block 201 re-read correctly.
+Reposition to file:block 0:9999
+Block 10000 re-read correctly.
+Reposition to file:block 1:0
+Block 10001 re-read correctly.
+Reposition to file:block 1:600
+Block 10601 re-read correctly.
+Reposition to file:block 1:9999
+Block 20000 re-read correctly.
+=== Test Succeeded. End Write, rewind, and re-read test ===
+
+
+
+=== Append files test ===
+
+This test is essential to Bareos.
+
+I&#39;m going to write one record  in file 0,
+                   two records in file 1,
+             and three records in file 2
+
+btape: btape.c:586-0 Rewound &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:484-0 open device &quot;ULTRIUM-TD3&quot; (/dev/nst0): OK
+btape: btape.c:586-0 Rewound &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1441-0 Now moving to end of medium.
+btape: btape.c:637-0 Moved to end of medium.
+We should be in file 3. I am at file 3. This is correct!
+
+Now the important part, I am going to attempt to append to the tape.
+
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:586-0 Rewound &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+Done appending, there should be no I/O errors
+
+Doing Bareos scan of blocks:
+1 block of 64448 bytes in file 1
+End of File mark.
+2 blocks of 64448 bytes in file 2
+End of File mark.
+3 blocks of 64448 bytes in file 3
+End of File mark.
+1 block of 64448 bytes in file 4
+End of File mark.
+Total files=4, blocks=7, bytes = 451,136
+End scanning the tape.
+We should be in file 4. I am at file 4. This is correct!
+
+The above Bareos scan should have output identical to what follows.
+Please double check it ...
+=== Sample correct output ===
+1 block of 64448 bytes in file 1
+End of File mark.
+2 blocks of 64448 bytes in file 2
+End of File mark.
+3 blocks of 64448 bytes in file 3
+End of File mark.
+1 block of 64448 bytes in file 4
+End of File mark.
+Total files=4, blocks=7, bytes = 451,136
+=== End sample correct output ===
+
+If the above scan output is not identical to the
+sample output, you MUST correct the problem
+or Bareos will not be able to write multiple Jobs to
+the tape.
+
+
+=== Write, backup, and re-read test ===
+
+I&#39;m going to write three records and an EOF
+then backup over the EOF and re-read the last record.
+Bareos does this after writing the last block on the
+tape to verify that the block was written correctly.
+
+This is not an *essential* feature ...
+
+btape: btape.c:586-0 Rewound &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:823-0 Wrote first record of 64412 bytes.
+btape: btape.c:834-0 Wrote second record of 64412 bytes.
+btape: btape.c:845-0 Wrote third record of 64412 bytes.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:861-0 Backspaced over EOF OK.
+btape: btape.c:866-0 Backspace record OK.
+btape: btape.c:884-0
+Block re-read correct. Test succeeded!
+=== End Write, backup, and re-read test ===
+
+
+
+=== Forward space files test ===
+
+This test is essential to Bareos.
+
+I&#39;m going to write five files then test forward spacing
+
+btape: btape.c:586-0 Rewound &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1928-0 Wrote one record of 64412 bytes.
+btape: btape.c:1930-0 Wrote block to device.
+btape: btape.c:616-0 Wrote 1 EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:586-0 Rewound &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1655-0 Now forward spacing 1 file.
+We should be in file 1. I am at file 1. This is correct!
+btape: btape.c:1667-0 Now forward spacing 2 files.
+We should be in file 3. I am at file 3. This is correct!
+btape: btape.c:586-0 Rewound &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1680-0 Now forward spacing 4 files.
+We should be in file 4. I am at file 4. This is correct!
+
+btape: btape.c:1698-0 Now forward spacing 1 more file.
+We should be in file 5. I am at file 5. This is correct!
+
+=== End Forward space files test ===
+
+
+Ah, I see you have an autochanger configured.
+To test the autochanger you must have a blank tape
+ that I can write on in Slot 1.
+
+Do you wish to continue with the Autochanger test? (y/n): y
+
+
+=== Autochanger test ===
+
+3301 Issuing autochanger &quot;loaded&quot; command.
+Slot 1 loaded. I am going to unload it.
+3302 Issuing autochanger &quot;unload 1 0&quot; command.
+unload status=OK 0
+3303 Issuing autochanger &quot;load 1 0&quot; command.
+3303 Autochanger &quot;load 1 0&quot; status is OK.
+btape: btape.c:484-0 open device &quot;ULTRIUM-TD3&quot; (/dev/nst0): OK
+btape: btape.c:1585-0 Rewound &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+btape: btape.c:1592-0 Wrote EOF to &quot;ULTRIUM-TD3&quot; (/dev/nst0)
+
+The test autochanger worked!!
+
+*q
+</pre></div>
+</div>
+</section>
+<section id="director-daemon-config">
+<h3>Director Daemon Config<a class="headerlink" href="#director-daemon-config" title="Link to this heading">#</a></h3>
+<p>Finally we configure the Bareos director. I’ll be defining three separate directories to backup. You may substitute this
+for one directory or however many you need. These directories will be owned by <code class="docutils literal notranslate"><span class="pre">bareos:bareos</span></code> and will be populated
+remotely using <code class="docutils literal notranslate"><span class="pre">rsync</span></code> (e.g. pushed from my OS X desktop computer).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference external" href="http://doc.bareos.org/master/html/bareos-manual-main-reference.html#x1-730005.12">Bareos documentation</a>
+encourages you not to use <code class="docutils literal notranslate"><span class="pre">localhost</span></code> in your configuration. Instead use the FQDN and make sure you can resolve it
+properly.</p>
+</div>
+<p>We’ll be splitting up the director configuration into a few files since otherwise it would be pretty big. If you don’t
+like that you can just merge these into <code class="docutils literal notranslate"><span class="pre">bareos-dir.conf</span></code> and it’ll work just the same.</p>
+<div class="highlight-kconfig notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/bareos/bareos-dir.d/filesets.conf  # chown bareos:bareos; chmod 0640</span>
+
+<span class="c1"># Optional for testing the config.</span>
+FileSet<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>SelfTest
+<span class="w">  </span>Include<span class="w"> </span>{
+<span class="w">    </span>Options<span class="w"> </span>{
+<span class="w">      </span>CheckFileChanges<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">      </span>NoATime<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">      </span>Signature<span class="w"> </span><span class="o">=</span><span class="w"> </span>SHA1
+<span class="w">      </span>Verify<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span>}
+<span class="w">    </span>File<span class="w"> </span><span class="o">=</span><span class="w"> </span>/home/bareos/selftest
+<span class="w">  </span>}
+}
+
+<span class="c1"># Required for the Bareos catalog backup.</span>
+FileSet<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Catalog
+<span class="w">  </span>Include<span class="w"> </span>{
+<span class="w">    </span>Options<span class="w"> </span>{
+<span class="w">      </span>signature<span class="w"> </span><span class="o">=</span><span class="w"> </span>SHA1
+<span class="w">    </span>}
+<span class="w">    </span>File<span class="w"> </span><span class="o">=</span><span class="w"> </span>/var/lib/bareos/bareos.sql
+<span class="w">    </span>File<span class="w"> </span><span class="o">=</span><span class="w"> </span>/etc/bareos
+<span class="w">  </span>}
+}
+
+<span class="c1"># Where I store my files.</span>
+FileSet<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>BoscoMain
+<span class="w">  </span>Include<span class="w"> </span>{
+<span class="w">    </span>Options<span class="w"> </span>{
+<span class="w">      </span>CheckFileChanges<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">      </span>NoATime<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">      </span>Signature<span class="w"> </span><span class="o">=</span><span class="w"> </span>SHA1
+<span class="w">      </span>Verify<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span>}
+<span class="w">    </span>File<span class="w"> </span><span class="o">=</span><span class="w"> </span>/home/bareos/bosco/Main
+<span class="w">  </span>}
+}
+
+<span class="c1"># Other files to backup.</span>
+FileSet<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>BoscoOld
+<span class="w">  </span>Include<span class="w"> </span>{
+<span class="w">    </span>Options<span class="w"> </span>{
+<span class="w">      </span>CheckFileChanges<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">      </span>NoATime<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">      </span>Signature<span class="w"> </span><span class="o">=</span><span class="w"> </span>SHA1
+<span class="w">      </span>Verify<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span>}
+<span class="w">    </span>File<span class="w"> </span><span class="o">=</span><span class="w"> </span>/home/bareos/bosco/Old
+<span class="w">  </span>}
+}
+</pre></div>
+</div>
+<div class="highlight-kconfig notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/bareos/bareos-dir.d/jobs.conf  # chown bareos:bareos; chmod 0640</span>
+
+<span class="c1"># Default settings for a job.</span>
+JobDefs<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>DefaultJob
+<span class="w">  </span>Type<span class="w"> </span><span class="o">=</span><span class="w"> </span>Backup
+<span class="w">  </span>Level<span class="w"> </span><span class="o">=</span><span class="w"> </span>Full
+<span class="w">  </span>Client<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-fd
+<span class="w">  </span>Storage<span class="w"> </span><span class="o">=</span><span class="w"> </span>Tape
+<span class="w">  </span>Messages<span class="w"> </span><span class="o">=</span><span class="w"> </span>Standard
+<span class="w">  </span>Pool<span class="w"> </span><span class="o">=</span><span class="w"> </span>Full
+<span class="w">  </span>Write<span class="w"> </span>Bootstrap<span class="w"> </span><span class="o">=</span><span class="w"> </span>/var/lib/bareos/%c.bsr
+}
+
+Job<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>BackupSelfTest
+<span class="w">  </span>FileSet<span class="w"> </span><span class="o">=</span><span class="w"> </span>SelfTest
+<span class="w">  </span>JobDefs<span class="w"> </span><span class="o">=</span><span class="w"> </span>DefaultJob
+}
+
+Job<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>BackupCatalog
+<span class="w">  </span>FileSet<span class="w"> </span><span class="o">=</span><span class="w"> </span>Catalog
+<span class="w">  </span>JobDefs<span class="w"> </span><span class="o">=</span><span class="w"> </span>DefaultJob
+<span class="w">  </span>RunBeforeJob<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/usr/lib/bareos/scripts/make_catalog_backup.pl Catalog&quot;</span>
+<span class="w">  </span><span class="c1"># RunAfterJob  = /usr/lib/bareos/scripts/delete_catalog_backup</span>
+<span class="w">  </span>Priority<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span>
+}
+
+Job<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>BackupBoscoMain
+<span class="w">  </span>FileSet<span class="w"> </span><span class="o">=</span><span class="w"> </span>BoscoMain
+<span class="w">  </span>JobDefs<span class="w"> </span><span class="o">=</span><span class="w"> </span>DefaultJob
+<span class="w">  </span>Priority<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span>
+}
+
+Job<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>BackupBoscoOld
+<span class="w">  </span>FileSet<span class="w"> </span><span class="o">=</span><span class="w"> </span>BoscoOld
+<span class="w">  </span>JobDefs<span class="w"> </span><span class="o">=</span><span class="w"> </span>DefaultJob
+<span class="w">  </span>Priority<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+}
+
+<span class="c1"># Only one restore job is needed for all Jobs/Clients/Storage.</span>
+Job<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>RestoreFiles
+<span class="w">  </span>Type<span class="w"> </span><span class="o">=</span><span class="w"> </span>Restore
+<span class="w">  </span>Client<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-fd
+<span class="w">  </span>FileSet<span class="w"> </span><span class="o">=</span><span class="w"> </span>BoscoMain
+<span class="w">  </span>Storage<span class="w"> </span><span class="o">=</span><span class="w"> </span>File
+<span class="w">  </span>Pool<span class="w"> </span><span class="o">=</span><span class="w"> </span>Full
+<span class="w">  </span>Messages<span class="w"> </span><span class="o">=</span><span class="w"> </span>Standard
+<span class="w">  </span>Where<span class="w"> </span><span class="o">=</span><span class="w"> </span>/home/bareos/tmp/restores
+}
+</pre></div>
+</div>
+<div class="highlight-kconfig notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/bareos/bareos-dir.conf</span>
+@/etc/bareos/bareos-dir.d/filesets.conf
+@/etc/bareos/bareos-dir.d/jobs.conf
+
+Director<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-dir
+<span class="w">  </span>QueryFile<span class="w"> </span><span class="o">=</span><span class="w"> </span>/usr/lib/bareos/scripts/query.sql
+<span class="w">  </span>Maximum<span class="w"> </span>Concurrent<span class="w"> </span>Jobs<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">  </span>Password<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span><span class="w">  </span><span class="c1"># Console password</span>
+<span class="w">  </span>Messages<span class="w"> </span><span class="o">=</span><span class="w"> </span>Daemon
+<span class="w">  </span>Auditing<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+}
+
+Client<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops-fd
+<span class="w">  </span>Address<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops.myhome.net
+<span class="w">  </span>Password<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span>
+}
+
+Storage<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Tape
+<span class="w">  </span>Address<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops.myhome.net
+<span class="w">  </span>Auto<span class="w"> </span>Changer<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">  </span>Password<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span>
+<span class="w">  </span>Device<span class="w"> </span><span class="o">=</span><span class="w"> </span>PV-124T
+<span class="w">  </span>Media<span class="w"> </span>Type<span class="w"> </span><span class="o">=</span><span class="w"> </span>LTO-3
+}
+
+Storage<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>File
+<span class="w">  </span>Address<span class="w"> </span><span class="o">=</span><span class="w"> </span>moops.myhome.net
+<span class="w">  </span>Password<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span>
+<span class="w">  </span>Device<span class="w"> </span><span class="o">=</span><span class="w"> </span>FileStorage
+<span class="w">  </span>Media<span class="w"> </span>Type<span class="w"> </span><span class="o">=</span><span class="w"> </span>File
+}
+
+Catalog<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Catalog
+<span class="w">  </span>dbdriver<span class="w"> </span><span class="o">=</span><span class="w"> </span>mysql
+<span class="w">  </span>dbname<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span>
+<span class="w">  </span>dbuser<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span>
+<span class="w">  </span>dbpassword<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PUT_ORIGINAL_VALUE_HERE&quot;</span>
+}
+
+Messages<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Standard
+<span class="w">  </span>console<span class="w"> </span><span class="o">=</span><span class="w"> </span>all,<span class="w"> </span><span class="o">!</span>skipped,<span class="w"> </span><span class="o">!</span>saved,<span class="w"> </span><span class="o">!</span>audit
+<span class="w">  </span>append<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/log/bareos/bareos.log&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>all,<span class="w"> </span><span class="o">!</span>skipped,<span class="w"> </span><span class="o">!</span>audit
+<span class="w">  </span>catalog<span class="w"> </span><span class="o">=</span><span class="w"> </span>all,<span class="w"> </span><span class="o">!</span>audit
+}
+
+Messages<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Daemon
+<span class="w">  </span>console<span class="w"> </span><span class="o">=</span><span class="w"> </span>all,<span class="w"> </span><span class="o">!</span>skipped,<span class="w"> </span><span class="o">!</span>saved,<span class="w"> </span><span class="o">!</span>audit
+<span class="w">  </span>append<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/log/bareos/bareos.log&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>all,<span class="w"> </span><span class="o">!</span>skipped,<span class="w"> </span><span class="o">!</span>audit
+<span class="w">  </span>append<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/log/bareos/bareos-audit.log&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>audit
+}
+
+Pool<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Full
+<span class="w">  </span>AutoPrune<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">  </span>Label<span class="w"> </span>Format<span class="w"> </span><span class="o">=</span><span class="w"> </span>Full-
+<span class="w">  </span>Pool<span class="w"> </span>Type<span class="w"> </span><span class="o">=</span><span class="w"> </span>Backup
+<span class="w">  </span>Recycle<span class="w"> </span><span class="o">=</span><span class="w"> </span>yes
+<span class="w">  </span>VolumeRetention<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>d
+<span class="w">  </span>VolumeUseDuration<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>d
+}
+
+Pool<span class="w"> </span>{
+<span class="w">  </span>Name<span class="w"> </span><span class="o">=</span><span class="w"> </span>Scratch
+<span class="w">  </span>Pool<span class="w"> </span>Type<span class="w"> </span><span class="o">=</span><span class="w"> </span>Backup
+}
+</pre></div>
+</div>
+</section>
+<section id="start-services">
+<h3>Start Services<a class="headerlink" href="#start-services" title="Link to this heading">#</a></h3>
+<p>Everything should work.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>bareos-fd.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>bareos-sd.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>bareos-dir.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>bareos-fd.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>bareos-sd.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>bareos-dir.service
+</pre></div>
+</div>
+</section>
+<section id="test-everything">
+<h3>Test Everything<a class="headerlink" href="#test-everything" title="Link to this heading">#</a></h3>
+<p>Here we’ll do a quick test. We’ll create a bunch of files in <code class="docutils literal notranslate"><span class="pre">/home/bareos/selftest</span></code> (defined in
+<code class="docutils literal notranslate"><span class="pre">/etc/bareos/bareos-dir.d/filesets.conf</span></code>) and back them up to one or two
+tapes. Then we’ll restore them to <code class="docutils literal notranslate"><span class="pre">/home/bareos/tmp/restores</span></code> (defined in <code class="docutils literal notranslate"><span class="pre">/etc/bareos/bareos-dir.d/jobs.conf</span></code>).
+We’ll compare them with <code class="docutils literal notranslate"><span class="pre">sha1sum</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Since we’re starting with an empty Bareos database, it will consider all tapes empty. Remove any tapes from the
+autoloader that you don’t want overridden. You can use my
+<a class="reference external" href="https://github.com/Robpol86/tape_bulk_eject">tape_bulk_eject.py</a> tool to automate this.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create files.</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>/home/bareos/selftest<span class="p">;</span><span class="w"> </span>mkdir<span class="w"> </span>/home/bareos/selftest
+date<span class="w"> </span><span class="p">|</span>tee<span class="w"> </span>/home/bareos/selftest/current_date.txt
+openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="m">2</span><span class="o">**</span><span class="m">30</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">3</span><span class="o">/</span><span class="m">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="w"> </span>-out<span class="w"> </span>/home/bareos/selftest/2_gb_random.bin
+mkdir<span class="w"> </span>-p<span class="w"> </span>/home/bareos/selftest/subdir1/subdir2
+<span class="o">(</span><span class="nb">cd</span><span class="w"> </span>/home/bareos/selftest<span class="p">;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..15<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>cat<span class="w"> </span>2_gb_random.bin<span class="w"> </span>&gt;&gt;<span class="w"> </span>subdir1/subdir2/30_gb_random.bin<span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="o">)</span>
+find<span class="w"> </span>/home/bareos/selftest<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>sha1sum<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\+</span>
+
+<span class="c1"># Backup through bconsole.</span>
+sudo<span class="w"> </span>bconsole
+</pre></div>
+</div>
+<p>In the Bareos console we’ll type these commands to backup the above files and then restore them to a separate directory.
+Remove any tapes from the drive.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>update<span class="w"> </span>slots<span class="w">  </span><span class="c1"># Read the status of all slots in the autoloader.</span>
+label<span class="w"> </span>barcodes<span class="w">  </span><span class="c1"># Initialize all tapes. Select Full pool. ETA 30 mins for 16 tapes.</span>
+list<span class="w"> </span>volumes<span class="w">  </span><span class="c1"># Verify all tapes have been detected.</span>
+run<span class="w"> </span>BackupSelfTest
+status<span class="w"> </span>client<span class="w">  </span><span class="c1"># Check the status of the job. You can also run &quot;messages&quot;.</span>
+restore<span class="w">  </span><span class="c1"># After backup is done do this. Follow the directions.</span>
+q
+</pre></div>
+</div>
+<p>Finally run <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">/home/bareos/tmp/restores/home/bareos/selftest/</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">-exec</span> <span class="pre">sha1sum</span> <span class="pre">{}</span> <span class="pre">\+</span></code> and compare sha sums.
+You can test if your data is actually encrypted by temporarily removing the PKI lines from <code class="docutils literal notranslate"><span class="pre">bareos-fd.conf</span></code> and
+running the <code class="docutils literal notranslate"><span class="pre">restore</span></code> command again.</p>
+</section>
+</section>
+<section id="reusing-old-tapes">
+<h2>Reusing Old Tapes<a class="headerlink" href="#reusing-old-tapes" title="Link to this heading">#</a></h2>
+<p>Several years ago before Bareos I used Bacula. I consider the data on my old tapes as disposable and I want to start
+fresh. Unfortunately Bareos (and Bacula) doesn’t have an easy way to reuse tapes. The best method I’ve found was to
+manually wipe them. I run these commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stop Bareos services.</span>
+<span class="k">for</span><span class="w"> </span>s<span class="w"> </span><span class="k">in</span><span class="w"> </span>dir<span class="w"> </span>sd<span class="w"> </span>fd<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>bareos-<span class="nv">$s</span>.service<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<span class="c1"># Make sure drive is unlocked and unloaded. Also which slots tapes are in.</span>
+sudo<span class="w"> </span>mtx<span class="w"> </span>-f<span class="w"> </span>/dev/sg3<span class="w"> </span>status
+<span class="c1"># Wipe selected tapes. Here {1..16} expands to all 16 slots.</span>
+<span class="k">for</span><span class="w"> </span>t<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..16<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>sudo<span class="w"> </span>mtx<span class="w"> </span>-f<span class="w"> </span>/dev/sg3<span class="w"> </span>load<span class="w"> </span><span class="nv">$t</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>sudo<span class="w"> </span>mt<span class="w"> </span>-f<span class="w"> </span>/dev/nst0<span class="w"> </span>weof
+<span class="w">    </span>sudo<span class="w"> </span>mtx<span class="w"> </span>-f<span class="w"> </span>/dev/sg3<span class="w"> </span>unload<span class="w"> </span><span class="nv">$t</span><span class="w"> </span><span class="m">0</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="backing-up-data">
+<h2>Backing Up Data<a class="headerlink" href="#backing-up-data" title="Link to this heading">#</a></h2>
+<p>These are the commands I run to backup my data.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On the client.</span>
+rsync<span class="w"> </span>-irtv<span class="w"> </span>--delete<span class="w"> </span>Main<span class="w"> </span>Old<span class="w"> </span>moops:/home/bareos/bosco
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On the server.</span>
+sudo<span class="w"> </span>su<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;for f in /sys/class/scsi_host/host*/scan; do echo &quot;- - -&quot; &gt; $f; done&#39;</span>
+lsscsi<span class="w"> </span>-g<span class="w">  </span><span class="c1"># Verify autoloader and tape drive are present.</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>mariadb.service
+<span class="k">for</span><span class="w"> </span>s<span class="w"> </span><span class="k">in</span><span class="w"> </span>fd<span class="w"> </span>sd<span class="w"> </span>dir<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>bareos-<span class="nv">$s</span>.service<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+sudo<span class="w"> </span>mtx<span class="w"> </span>-f<span class="w"> </span>/dev/sg3<span class="w"> </span>status<span class="w">  </span><span class="c1"># Verify tape drive (element 0) is empty.</span>
+sudo<span class="w"> </span>bconsole
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># In bconsole on the server.</span>
+update<span class="w"> </span>slots
+<span class="c1"># New tapes: label slot=8,12,14-16 barcodes</span>
+list<span class="w"> </span>volumes
+run<span class="w"> </span><span class="nv">job</span><span class="o">=</span>BackupBoscoMain
+run<span class="w"> </span><span class="nv">job</span><span class="o">=</span>BackupBoscoOld
+run<span class="w"> </span><span class="nv">job</span><span class="o">=</span>BackupCatalog
+status<span class="w"> </span>client
+</pre></div>
+</div>
+<p>Once all three jobs finish (you can queue them up at the same time) you’re done. I always eject all tapes and store them
+off-site, so I run these commands within <code class="docutils literal notranslate"><span class="pre">bconsole</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unmount<span class="w"> </span>Tape<span class="w">  </span><span class="c1"># Unloads the last tape from the drive.</span>
+list<span class="w"> </span><span class="nb">jobs</span>
+list<span class="w"> </span>volumes<span class="w"> </span><span class="nv">jobid</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">jobid</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">jobid</span><span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Finally you’ll want to backup your Bareos database somewhere in case you need to restore the catalog on another machine
+or if you lose your Bareos/MySQL server. You only need to do this if you encrypt your tapes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cat<span class="w"> </span>/var/lib/bareos/bareos.sql<span class="w"> </span><span class="p">|</span>gzip<span class="w"> </span>-9<span class="w"> </span>&gt;<span class="w"> </span>~/bareos.sql.gz
+sudo<span class="w"> </span>rm<span class="w"> </span>/var/lib/bareos/bareos.sql
+</pre></div>
+</div>
+<p>Then I use my <a class="reference external" href="https://github.com/Robpol86/tape_bulk_eject">tape_bulk_eject.py</a> tool to eject all those tapes. I also
+stop all services since I don’t leave my autoloader running all the time (it’s too loud for my living room).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>s<span class="w"> </span><span class="k">in</span><span class="w"> </span>dir<span class="w"> </span>sd<span class="w"> </span>fd<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>bareos-<span class="nv">$s</span>.service<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>mariadb.service
+./tape_bulk_eject.py<span class="w"> </span><span class="s2">&quot;000039L3|000031L3&quot;</span><span class="w"> </span><span class="s2">&quot;000031L3|000021L3|000032L3|000033L3|000030L3&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="root_certificate_authority.html">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Setting Up a Home Root CA</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="posts/2016/2016-06-01-desk.html">
+      <span>Desk Photos 2016</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "rob86wiki";
+      var disqus_identifier = "Bareos Tape Backup on a 124T";
+      var disqus_title = "Bareos Tape Backup on a 124T";
+      var disqus_url = "http://localhost:8000/bareos_tape_backup";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a
+      ></noscript
+    >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="atrix_lapdock.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Atrix Lapdock Other Uses</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="flash_droid_cricket.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Flashing Motorola Droid to Cricket</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-used">Equipment Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-tape-drive-autoloader">Verify Tape Drive/Autoloader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-bareos">Install Bareos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-storage-daemon-config">File/Storage Daemon Config</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-storage-config">Verify Storage Config</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#director-daemon-config">Director Daemon Config</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-services">Start Services</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-everything">Test Everything</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-old-tapes">Reusing Old Tapes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backing-up-data">Backing Up Data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robpol86
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Robpol86.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
