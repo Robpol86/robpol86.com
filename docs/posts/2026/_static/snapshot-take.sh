@@ -53,7 +53,7 @@ while getopts :c:d:hlps:v OPT; do
        exit 1 ;;
     c) echo "comment arg: $OPTARG" ;;
     d) SNAPSHOTS_DIR="$OPTARG" ;;
-    h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |sed 's/^# //'
+    h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |sed 's/^# \?//'
        exit 0 ;;
     l) FLAG_L=true ;;
     p) FLAG_P=true ;;
