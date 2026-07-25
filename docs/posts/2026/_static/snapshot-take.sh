@@ -10,4 +10,5 @@ echo "Hello World Take"
 # - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
 #   - Also store date
 #   - Allow EOF for multi-line comment. Maybe stdin?
+#   - Store wether snapshot was taken from initramfs or from running system
 # - cli: confirm by default, cli --force to just do it (what about collisions)
