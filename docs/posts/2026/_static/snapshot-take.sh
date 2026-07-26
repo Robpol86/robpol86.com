@@ -26,7 +26,7 @@ set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SNAPSHOTS_DIR=snapshots
-FLAG_L=
+LIST_ONLY=
 FLAG_P=
 SUBVOLUME_DIR=/sysroot
 VERBOSE=
@@ -43,21 +43,24 @@ while getopts :c:d:hlps:v OPT; do
     d) SNAPSHOTS_DIR="$OPTARG" ;;
     h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |sed 's/^# \?//'
        exit 0 ;;
-    l) FLAG_L=true ;;
+    l) LIST_ONLY=true ;;
     p) FLAG_P=true ;;
     s) SUBVOLUME_DIR="$OPTARG" ;;
     v) VERBOSE=true ;;
   esac
 done
 shift "$((OPTIND-1))"
-if [ $# != 1 ] && [ ${FLAG_L:-false} = false ]; then
+if [ $# != 1 ] && [ ${LIST_ONLY:-false} = false ]; then
   echo "'snapshot-take' requires exactly 1 argument." 2>&1
   echo "See 'snapshot-take -h'." 2>&1
   exit 1
 fi
 SNAPSHOT_NAME="${1:-}"
 
-# TODO if -v: set -x and enable debug() output
+# Enable verbose/debug.
+if [ ${VERBOSE:-false} = true ]; then
+  set -o xtrace  # Print commands before executing them.
+fi
 
 # TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
 
@@ -67,7 +70,7 @@ SNAPSHOT_NAME="${1:-}"
 
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
-echo "FLAG_L=$FLAG_L"
+echo "LIST_ONLY=$LIST_ONLY"
 echo "FLAG_P=$FLAG_P"
 echo "SUBVOLUME_DIR=$SUBVOLUME_DIR"
 echo "VERBOSE=$VERBOSE"
@@ -78,6 +81,7 @@ echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
 # - envsubst? Or sed instead?
+# - Default tab size 2 using that strange comment I saw in another dracut module-setup script.
 # - Try btrfs snapshot /tmp/
 # - Include in rd.break:
 #   - date
