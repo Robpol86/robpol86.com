@@ -73,7 +73,14 @@ if [ ${LIST_ONLY:-false} = true ]; then
   exit 1
 fi
 
-# TODO if name exists error and suggest -l
+SNAPSHOT_PATH="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}/${SNAPSHOT_NAME}"
+
+# Fail if snapshot already exists.
+if [ -e "$SNAPSHOT_PATH" ]; then
+  echo "Snapshot '$SNAPSHOT_NAME' already exists." >&2
+  echo "Run 'snapshot-take -l' to list existing snapshots." >&2
+  exit 1
+fi
 
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
