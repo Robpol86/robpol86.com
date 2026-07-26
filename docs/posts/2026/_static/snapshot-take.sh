@@ -26,10 +26,10 @@ set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SNAPSHOTS_DIR=snapshots
-FLAG_L=false
-FLAG_P=false
+FLAG_L=
+FLAG_P=
 SUBVOLUME_DIR=/sysroot
-VERBOSE=false
+VERBOSE=
 SNAPSHOT_NAME=
 
 # Parse command line arguments.
@@ -50,7 +50,7 @@ while getopts :c:d:hlps:v OPT; do
   esac
 done
 shift "$((OPTIND-1))"
-if [ $# != 1 ] && [ $FLAG_L = false ]; then
+if [ $# != 1 ] && [ ${FLAG_L:-false} = false ]; then
   echo "'snapshot-take' requires exactly 1 argument." 2>&1
   echo "See 'snapshot-take -h'." 2>&1
   exit 1
@@ -62,6 +62,8 @@ SNAPSHOT_NAME="${1:-}"
 # TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
 
 # TODO if -l: print and exit
+
+# TODO if name exists error and suggest -l
 
 echo "Hello World Take"
 echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
@@ -75,6 +77,7 @@ echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 # - Manual (from .md):
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
+# - envsubst? Or sed instead?
 # - Try btrfs snapshot /tmp/
 # - Include in rd.break:
 #   - date
