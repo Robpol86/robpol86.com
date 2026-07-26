@@ -83,7 +83,8 @@ if [ ${LIST_ONLY:-false} = true ]; then
   exit 1
 fi
 
-SNAPSHOT_PATH="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}/${SNAPSHOT_NAME}"
+SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
+SNAPSHOT_PATH="$SNAPSHOTS_DIR_FULL/$SNAPSHOT_NAME"
 
 # Fail if snapshot already exists.
 if [ -e "$SNAPSHOT_PATH" ]; then
@@ -93,9 +94,13 @@ if [ -e "$SNAPSHOT_PATH" ]; then
 fi
 
 # Create parent direcotries if requested.
-if [ ${PARENTS_CREATE:-false} = true ]; then
-  if [ ! -d "${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}" ]; then
-    mkdir -p "${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
+if [ ! -d "$SNAPSHOTS_DIR_FULL" ]; then
+  if [ ${PARENTS_CREATE:-false} = true ]; then
+    mkdir -p "$SNAPSHOTS_DIR_FULL"
+  else
+    echo "Snapshots directory '$SNAPSHOTS_DIR_FULL' does not exist." >&2
+    echo "See 'snapshot-take -h'." >&2
+    exit 1
   fi
 fi
 
@@ -110,6 +115,7 @@ fi
 # - @root and @home: can snapshots live in other subvols? Probably not.
 #   - Support non-root (arbitrary) subvolumes
 # - Support rd.break and running environment with sudo/su.
+# - Test with subvol_dir=.
 # - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
 #   - Also store date
 #   - Allow EOF for multi-line comment. Maybe stdin?
