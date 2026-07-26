@@ -17,6 +17,8 @@ depends() {
 
 install() {
     inst "/sbin/snapshot-take" "/sbin/snapshot-take"
-    sed -i -e '0,/^SUBVOLUME_DIR=/ s|=.*|=/sysroot|' "${initdir:?}/sbin/snapshot-take"
+    sed -i \
+        -e '/^SUBVOLUME_DIR=.*@MODULE-SETUP-REPLACE@/ s|=.*|=/sysroot|' \
+        "${initdir:?}/sbin/snapshot-take"
     inst "${moddir:?}/snapshot-restore.sh" "/sbin/snapshot-restore"
 }

@@ -30,7 +30,7 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 SNAPSHOTS_DIR=snapshots
 LIST_ONLY=
 PARENTS_CREATE=
-SUBVOLUME_DIR=/
+SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
 SNAPSHOT_NAME=
 
@@ -127,6 +127,7 @@ fi
 # - if VERBOSE==true use verbose options in all commands, may need VERBOSE_NOT=false
 # - Test -l with no /snapshots
 #   - Name collisions won't happen with snapshots outside of that dir. How to display them? Maybe -l and -L?
+# - Strip leading / in snapshots dir. Looks ugly.
 # - Support rd.break and running environment with sudo/su.
 # - Test with subvol_dir=.
 # - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
