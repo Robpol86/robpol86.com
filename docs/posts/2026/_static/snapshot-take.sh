@@ -41,7 +41,7 @@ while getopts :c:d:hlps:v OPT; do
         exit 1 ;;
     :) echo "flag needs an argument: '$OPTARG'" >&2
        exit 1 ;;
-    c) echo "comment arg: $OPTARG" ;;
+    c) echo "comment arg: $OPTARG" ;;  # TODO
     d) SNAPSHOTS_DIR="$OPTARG" ;;
     h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |
         sed -e 's/^# \?//' -e "s|@SNAPSHOTS_DIR|$SNAPSHOTS_DIR|" -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"
@@ -88,6 +88,11 @@ if [ ${PARENTS_CREATE:-false} = true ]; then
     mkdir -p "${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
   fi
 fi
+
+# TODO if subvol is not mounted fail
+# TODO if subvol is ro, remount,rw and set flag
+# TODO btrfs snapshot
+# TODO if flag, remount,ro
 
 # TODO:
 # - Manual (from .md):
