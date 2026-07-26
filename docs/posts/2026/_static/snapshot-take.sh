@@ -116,7 +116,11 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
   mkdir -p "$SNAPSHOTS_DIR_FULL"
 fi
 
+# TODO create metadata file with was_running:bool and comment (multiline similar to RSA block?)
+
 # TODO btrfs snapshot
+
+# TODO remove metadata file
 
 # Remount subvolume as readonly if it was originally in that state.
 if [ ${IS_READONLY:-false} = true ]; then
