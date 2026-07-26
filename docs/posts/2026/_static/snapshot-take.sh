@@ -29,7 +29,7 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SNAPSHOTS_DIR=snapshots
 LIST_ONLY=
-FLAG_P=
+PARENTS_CREATE=
 SUBVOLUME_DIR=/
 VERBOSE=
 SNAPSHOT_NAME=
@@ -47,7 +47,7 @@ while getopts :c:d:hlps:v OPT; do
         sed -e 's/^# \?//' -e "s|@SNAPSHOTS_DIR|$SNAPSHOTS_DIR|" -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"
        exit 0 ;;
     l) LIST_ONLY=true ;;
-    p) FLAG_P=true ;;
+    p) PARENTS_CREATE=true ;;
     s) SUBVOLUME_DIR="$OPTARG" ;;
     v) VERBOSE=true ;;
   esac
@@ -82,13 +82,12 @@ if [ -e "$SNAPSHOT_PATH" ]; then
   exit 1
 fi
 
-echo "Hello World Take"
-echo "SNAPSHOTS_DIR=$SNAPSHOTS_DIR"
-echo "LIST_ONLY=$LIST_ONLY"
-echo "FLAG_P=$FLAG_P"
-echo "SUBVOLUME_DIR=$SUBVOLUME_DIR"
-echo "VERBOSE=$VERBOSE"
-echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
+# Create parent direcotries if requested.
+if [ ${PARENTS_CREATE:-false} = true ]; then
+  if [ ! -d "${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}" ]; then
+    mkdir -p "${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
+  fi
+fi
 
 # TODO:
 # - Manual (from .md):
