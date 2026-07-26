@@ -67,7 +67,15 @@ if [ ${VERBOSE:-false} = true ]; then
   set -o xtrace  # Print commands before executing them.
 fi
 
-# TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
+# Check if SUBVOLUME_DIR is a BTRFS fs and subvolume.
+if ! stat -f --format=%T "$SUBVOLUME_DIR" |grep -q '^btrfs$'; then
+  echo "Path '$SUBVOLUME_DIR' is not a BTRFS filesystem." >&2
+  exit 1
+fi
+if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
+  echo "Path '$SUBVOLUME_DIR' is not a BTRFS subvolume." >&2
+  exit 1
+fi
 
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
@@ -91,7 +99,6 @@ if [ ${PARENTS_CREATE:-false} = true ]; then
   fi
 fi
 
-# TODO if subvol is not mounted fail
 # TODO if subvol is ro, remount,rw and set flag
 # TODO btrfs snapshot
 # TODO if flag, remount,ro
