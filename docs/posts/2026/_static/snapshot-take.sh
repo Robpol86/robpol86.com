@@ -44,7 +44,9 @@ while getopts :c:d:hlps:v OPT; do
     c) echo "comment arg: $OPTARG" ;;  # TODO
     d) SNAPSHOTS_DIR="$OPTARG" ;;
     h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |
-        sed -e 's/^# \?//' -e "s|@SNAPSHOTS_DIR|$SNAPSHOTS_DIR|" -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"
+        sed -e 's/^# \?//' \
+            -e "s|@SNAPSHOTS_DIR|$SNAPSHOTS_DIR|" \
+            -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"
        exit 0 ;;
     l) LIST_ONLY=true ;;
     p) PARENTS_CREATE=true ;;
