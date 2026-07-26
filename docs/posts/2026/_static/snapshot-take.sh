@@ -93,10 +93,10 @@ if [ -e "$SNAPSHOT_PATH" ]; then
   exit 1
 fi
 
-# Create parent directories if requested.
+# Check if snapshots parent directories exist.
 if [ ! -d "$SNAPSHOTS_DIR_FULL" ]; then
   if [ ${PARENTS_CREATE:-false} = true ]; then
-    mkdir -p "$SNAPSHOTS_DIR_FULL"
+    :  # TODO improve conditional.
   else
     echo "Snapshots directory '$SNAPSHOTS_DIR_FULL' does not exist." >&2
     echo "See 'snapshot-take -h'." >&2
@@ -109,6 +109,11 @@ IS_READONLY=
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
   mount -oremount,rw "$SUBVOLUME_DIR"
+fi
+
+# Create snapshots parent directories if requested.
+if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
+  mkdir -p "$SNAPSHOTS_DIR_FULL"
 fi
 
 # TODO btrfs snapshot
