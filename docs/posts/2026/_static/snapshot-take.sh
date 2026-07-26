@@ -106,12 +106,18 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ]; then
   fi
 fi
 
+METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
+
+# Check if metadata file already exists.
+# TODO fail if exists
+# TODO check if path writable
+
 # Remount subvolume as readwrite if it is mounted as readonly.
 IS_READONLY=
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
   mount -oremount,rw "$SUBVOLUME_DIR"
-  # TODO atexit ro?
+  # TODO atexit ro? Or move remount,ro to function then: || { unmount; exit 1; }
 fi
 
 # Create snapshots parent directories if requested.
@@ -119,13 +125,10 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
   mkdir -p "$SNAPSHOTS_DIR_FULL"
 fi
 
-METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
-
 # Create snapshot metadata file.
-# TODO if file exists fail.
 touch "$METADATA_FILE_FULL"  # TODO create metadata file with was_running:bool and comment (multiline similar to RSA block?)
 
-# TODO btrfs snapshot
+# TODO btrfs snapshot (echo Created snapshot name)
 
 # Remove snapshot metadata file.
 rm -f "$METADATA_FILE_FULL"
