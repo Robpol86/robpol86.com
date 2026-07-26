@@ -14,12 +14,14 @@
 #   -c comment  Snapshot description. If comment is '-' then comment will be
 #               read from stdin.
 #   -d dir      Snapshots directory, relative to the subvolume.
+#               Default: @SNAPSHOTS_DIR
 #   -h          Display this help and exit.
 #   -l          List existing snapshots and exit.
 #   -p          Create snapshots directories as required. If this option is not
 #               specified, the full path prefix of the snapshots directory must
 #               already exist.
 #   -s dir      Mounted subvolume directory.
+#               Default: @SUBVOLUME_DIR
 #   -v          Enable verbose/debug output.
 
 set -o errexit  # Exit script if a command fails.
@@ -41,7 +43,8 @@ while getopts :c:d:hlps:v OPT; do
        exit 1 ;;
     c) echo "comment arg: $OPTARG" ;;
     d) SNAPSHOTS_DIR="$OPTARG" ;;
-    h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |sed 's/^# \?//'
+    h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |
+        sed -e 's/^# \?//' -e "s|@SNAPSHOTS_DIR|$SNAPSHOTS_DIR|" -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"
        exit 0 ;;
     l) LIST_ONLY=true ;;
     p) FLAG_P=true ;;
@@ -80,7 +83,6 @@ echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 # - Manual (from .md):
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
-# - envsubst? Or sed instead?
 # - Default tab size 2 using that strange comment I saw in another dracut module-setup script.
 # - Try btrfs snapshot /tmp/
 # - Include in rd.break:
