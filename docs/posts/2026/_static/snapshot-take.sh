@@ -54,9 +54,8 @@ if [ $# != 1 ] && [ $FLAG_L = false ]; then
   echo "'snapshot-take' requires exactly 1 argument." 2>&1
   echo "See 'snapshot-take -h'." 2>&1
   exit 1
-  # TODO test this.
 fi
-SNAPSHOT_NAME="$1"
+SNAPSHOT_NAME="${1:-}"
 
 # TODO if -v: set -x and enable debug() output
 
