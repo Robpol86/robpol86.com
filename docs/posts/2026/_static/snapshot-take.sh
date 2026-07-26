@@ -104,9 +104,19 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ]; then
   fi
 fi
 
-# TODO if subvol is ro, remount,rw and set flag
+# Remount subvolume as readwrite if it is mounted as readonly.
+IS_READONLY=
+if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
+  IS_READONLY=true
+  mount -oremount,rw "$SUBVOLUME_DIR"
+fi
+
 # TODO btrfs snapshot
-# TODO if flag, remount,ro
+
+# Remount subvolume as readonly if it was originally in that state.
+if [ ${IS_READONLY:-false} = true ]; then
+  mount -oremount,ro "$SUBVOLUME_DIR"
+fi
 
 # TODO:
 # - Manual (from .md):
@@ -114,6 +124,7 @@ fi
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
 # - @root and @home: can snapshots live in other subvols? Probably not.
 #   - Support non-root (arbitrary) subvolumes
+# - if VERBOSE==true use verbose options in all commands, may need VERBOSE_NOT=false
 # - Support rd.break and running environment with sudo/su.
 # - Test with subvol_dir=.
 # - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
