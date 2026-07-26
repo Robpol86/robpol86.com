@@ -54,8 +54,8 @@ while getopts :c:d:hlps:v OPT; do
 done
 shift "$((OPTIND-1))"
 if [ $# != 1 ] && [ ${LIST_ONLY:-false} = false ]; then
-  echo "'snapshot-take' requires exactly 1 argument." 2>&1
-  echo "See 'snapshot-take -h'." 2>&1
+  echo "'snapshot-take' requires exactly 1 argument." >&2
+  echo "See 'snapshot-take -h'." >&2
   exit 1
 fi
 SNAPSHOT_NAME="${1:-}"
@@ -67,7 +67,11 @@ fi
 
 # TODO check btrfs, SNAPSHOTS_DIR, and SUBVOLUME_DIR
 
-# TODO if -l: print and exit
+# List only.
+if [ ${LIST_ONLY:-false} = true ]; then
+  echo NotImplementedError >&2  # TODO
+  exit 1
+fi
 
 # TODO if name exists error and suggest -l
 
@@ -83,9 +87,6 @@ echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 # - Manual (from .md):
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
-# - Default tab size 2 using that strange comment I saw in another dracut module-setup script.
-# - Include in rd.break:
-#   - date
 # - @root and @home: can snapshots live in other subvols? Probably not.
 #   - Support non-root (arbitrary) subvolumes
 # - Support rd.break and running environment with sudo/su.
@@ -94,8 +95,6 @@ echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 #   - Allow EOF for multi-line comment. Maybe stdin?
 #   - Store wether snapshot was taken from initramfs or from running system
 # - Name collisions?
-# - Allow module-setup to override defaults (/sysoot/ and ./snapshots/)
-#   - How can user specify overrides in dracut?
 # - Checks:
 #   - sudo or write access to btrfs paths?
 #   - is subvolume path btrfs?
