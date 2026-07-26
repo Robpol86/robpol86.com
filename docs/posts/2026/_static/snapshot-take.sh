@@ -30,7 +30,7 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 SNAPSHOTS_DIR=snapshots
 LIST_ONLY=
 FLAG_P=
-SUBVOLUME_DIR=/sysroot
+SUBVOLUME_DIR=/
 VERBOSE=
 SNAPSHOT_NAME=
 
@@ -84,7 +84,6 @@ echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
 # - Default tab size 2 using that strange comment I saw in another dracut module-setup script.
-# - Try btrfs snapshot /tmp/
 # - Include in rd.break:
 #   - date
 # - @root and @home: can snapshots live in other subvols? Probably not.
@@ -102,6 +101,7 @@ echo "SNAPSHOT_NAME=$SNAPSHOT_NAME"
 #   - is subvolume path btrfs?
 #   - is subvolume path a btrfs subvolume?
 #   - if snapshots-dir has a leading / is it the same as subvolume?
+#     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
 #   - does snapshots-dir exist sans -p?
 # - cli examples:
 #       snapshot-take [-h|--help]
