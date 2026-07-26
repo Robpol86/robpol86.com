@@ -93,7 +93,7 @@ if [ -e "$SNAPSHOT_PATH" ]; then
   exit 1
 fi
 
-# Create parent direcotries if requested.
+# Create parent directories if requested.
 if [ ! -d "$SNAPSHOTS_DIR_FULL" ]; then
   if [ ${PARENTS_CREATE:-false} = true ]; then
     mkdir -p "$SNAPSHOTS_DIR_FULL"
