@@ -27,6 +27,8 @@
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
+METADATA_FILE=.snapshot.nfo
+
 SNAPSHOTS_DIR=snapshots
 LIST_ONLY=
 PARENTS_CREATE=
@@ -109,6 +111,7 @@ IS_READONLY=
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
   mount -oremount,rw "$SUBVOLUME_DIR"
+  # TODO atexit ro?
 fi
 
 # Create snapshots parent directories if requested.
@@ -116,11 +119,16 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
   mkdir -p "$SNAPSHOTS_DIR_FULL"
 fi
 
-# TODO create metadata file with was_running:bool and comment (multiline similar to RSA block?)
+METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
+
+# Create snapshot metadata file.
+# TODO if file exists fail.
+touch "$METADATA_FILE_FULL"  # TODO create metadata file with was_running:bool and comment (multiline similar to RSA block?)
 
 # TODO btrfs snapshot
 
-# TODO remove metadata file
+# Remove snapshot metadata file.
+rm -f "$METADATA_FILE_FULL"
 
 # Remount subvolume as readonly if it was originally in that state.
 if [ ${IS_READONLY:-false} = true ]; then
