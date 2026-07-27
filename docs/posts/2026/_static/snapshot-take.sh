@@ -96,14 +96,11 @@ if [ -e "$SNAPSHOT_PATH" ]; then
 fi
 
 # Check if snapshots parent directories exist.
-if [ ! -d "$SNAPSHOTS_DIR_FULL" ]; then
-  if [ ${PARENTS_CREATE:-false} = true ]; then
-    :  # TODO improve conditional.
-  else
-    echo "Snapshots directory '$SNAPSHOTS_DIR_FULL' does not exist." >&2
-    echo "See 'snapshot-take -h'." >&2
-    exit 1
-  fi
+if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = false ]; then
+  echo "Snapshots directory '$SNAPSHOTS_DIR_FULL' does not exist." >&2
+  echo "See 'snapshot-take -h'." >&2
+  exit 1
+  # TODO confirm conditional works
 fi
 
 METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
