@@ -106,8 +106,14 @@ fi
 METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
 
 # Check if metadata file already exists.
-# TODO fail if exists
-# TODO check if path writable
+if [ -s "$METADATA_FILE_FULL" ]; then
+  echo "Stale file '$METADATA_FILE_FULL' found." >&2
+  echo "File must be removed before trying again." >&2
+  exit 1
+elif ! touch "$METADATA_FILE_FULL"; then
+  echo "File '$METADATA_FILE_FULL' not writable." >&2
+  exit 1
+fi
 
 # Remount subvolume as readwrite if it is mounted as readonly.
 IS_READONLY=
