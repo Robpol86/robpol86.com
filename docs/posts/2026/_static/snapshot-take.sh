@@ -82,7 +82,7 @@ fi
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
   echo NotImplementedError >&2  # TODO
-  exit 1
+  exit 0
 fi
 
 SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
@@ -143,6 +143,7 @@ fi
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
 # - @root and @home: can snapshots live in other subvols? Probably not.
+# - After take is done, unify? btrfs-snapshot [take|restore]
 #   - Support non-root (arbitrary) subvolumes
 # - if VERBOSE==true use verbose options in all commands, may need VERBOSE_NOT=false
 # - Test -l with no /snapshots
