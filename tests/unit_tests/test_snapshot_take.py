@@ -173,6 +173,11 @@ def test_metadata_file(running: bool):
     pytest.skip()
 
 
+def test_metadata_multiline_comment():
+    """TODO."""
+    pytest.skip()
+
+
 def test_bad_metadata_file():
     """TODO."""
     pytest.skip()
