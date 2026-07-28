@@ -4,6 +4,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
+from textwrap import dedent
 
 import pytest
 
@@ -26,17 +27,29 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     bin_dir.mkdir()
     monkeypatch.setenv("PATH", str(bin_dir), prepend=os.pathsep)
 
+    # macOS GNU alternatives.
+    if ggrep := shutil.which("ggrep"):
+        (bin_dir / "grep").symlink_to(ggrep)
+    if gsed := shutil.which("gsed"):
+        (bin_dir / "sed").symlink_to(gsed)
+
     # No-op mount.
     if true_ := shutil.which("true"):
         (bin_dir / "mount").symlink_to(true_)
     else:
         raise RuntimeError
 
-    # macOS GNU alternatives.
-    if ggrep := shutil.which("ggrep"):
-        (bin_dir / "grep").symlink_to(ggrep)
-    if gsed := shutil.which("gsed"):
-        (bin_dir / "sed").symlink_to(gsed)
+    # Mock stat.
+    fake_stat_script = dedent("""\
+        #!/bin/bash
+        set -ux
+        [[ "$*" == *"%T"* ]] && echo "${MOCK_STAT_BIG_T:-btrfs}"
+        [[ "$*" == *"%i"* ]] && echo "${MOCK_STAT_LITTLE_I:-256}"
+        exit 0
+    """)
+    fake_stat = bin_dir / "stat"
+    fake_stat.write_text(fake_stat_script)
+    fake_stat.chmod(0o755)
 
     return bin_dir
 
@@ -90,28 +103,26 @@ def test_overide_defaults():
     assert "Default: /altroot\n" in output
 
 
-def test_btrfs_sanity_checks(subvolume: Path, bin_dir: Path):
+def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     """Test sanity checks related to BTRFS before making changes to the filesystem."""
     snapshots_dir = "snapshots"
     snapshot_name = "name"
 
     # Test not BTRFS.
+    monkeypatch.setenv("MOCK_STAT_BIG_T", "fat32")
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS filesystem." in exc.value.output.decode("utf8")
+    monkeypatch.delenv("MOCK_STAT_BIG_T")
 
     # Test not a subvolume.
-    fake_stat_script = '#!/bin/bash\n[[ "$*" == *"%T"* ]] && echo btrfs\n'
-    fake_stat = bin_dir / "stat"
-    fake_stat.write_text(fake_stat_script)
-    fake_stat.chmod(0o755)
+    monkeypatch.setenv("MOCK_STAT_LITTLE_I", "123")
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
+    monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
     # Test snapshot already exists.
-    fake_stat_script += '[[ "$*" == *"%i"* ]] && echo 256\n'
-    fake_stat.write_text(fake_stat_script)
     (subvolume / snapshots_dir / snapshot_name).mkdir(parents=True)
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
@@ -125,12 +136,6 @@ def test_happy_path(subvolume: Path, bin_dir: Path):
     snapshot_name = "test_name"
     expected_snapshot_path = (subvolume / snapshots_dir / snapshot_name)
     assert not expected_snapshot_path.exists()
-
-    # Mock.
-    fake_stat_script = '#!/bin/bash\n[[ "$*" == *"%T"* ]] && echo btrfs\n[[ "$*" == *"%i"* ]] && echo 256\n'
-    fake_stat = bin_dir / "stat"
-    fake_stat.write_text(fake_stat_script)
-    fake_stat.chmod(0o755)
 
     # Run.
     output = run_snapshot_take(["-v", snapshot_name])
