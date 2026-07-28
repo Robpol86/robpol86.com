@@ -166,4 +166,13 @@ def test_happy_path(subvolume: Path, parents_create: bool):
     assert f"Created snapshot {expected_snapshot_path}\n" in output
     assert expected_snapshot_path.is_dir()
 
-    # TODO metadata file.
+
+@pytest.mark.parametrize("running", [False, True])
+def test_metadata_file(running: bool):
+    """TODO."""
+    pytest.skip()
+
+
+def test_bad_metadata_file():
+    """TODO."""
+    pytest.skip()
