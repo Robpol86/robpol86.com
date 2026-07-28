@@ -194,17 +194,37 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
     assert metadata_file_contents == metadata_file_contents_expected
 
 
-@pytest.mark.parametrize("multiline", [False, True])
-def test_metadata_comment(multiline: bool):
+def test_metadata_comment(subvolume: Path):
+    """TODO."""
+    snapshots_dir = "snapshots"
+    snapshot_name = "test_name"
+    comment = "This is a test."
+
+    # Run.
+    output = run_snapshot_take(["-vp", "-d", snapshots_dir, "-s", str(subvolume), "-c", comment, snapshot_name])
+    assert "Created snapshot " in output
+
+    # Check.
+    metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"
+    metadata_file_contents = metadata_file.read_text()
+    metadata_file_contents_expected = dedent(f"""\
+        :running:false
+        :comment:{comment}
+        :comment-end:
+    """)
+    assert metadata_file_contents == metadata_file_contents_expected
+
+
+def test_metadata_comment_multiline(subvolume: Path):
     """TODO."""
     pytest.skip()
 
 
-def test_bad_metadata_file():
+def test_bad_metadata_file(subvolume: Path):
     """TODO."""
     pytest.skip()
 
 
-def test_list_snapshots():
+def test_list_snapshots(subvolume: Path, bin_dir: Path):
     """TODO."""
     pytest.skip()
