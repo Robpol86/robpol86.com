@@ -9,14 +9,14 @@ from textwrap import dedent
 import pytest
 
 
-def run_snapshot_take(argv) -> str:
+def run_snapshot_take(argv, **kwargs) -> str:
     """Run snapshot-take script with arguments passed to it.
 
     Output is converted to string and returned.
     """
     root = Path(__file__).parent / ".." / ".."
     snapshot_take_path = root / "docs" / "posts" / "2026" / "_static" / "snapshot-take.sh"
-    output = subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT)  # noqa: S603
+    output = subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT, **kwargs)  # noqa: S603
     return output.decode("utf8")
 
 
@@ -219,7 +219,27 @@ def test_metadata_comment(subvolume: Path):
 
 def test_metadata_comment_multiline(subvolume: Path):
     """TODO."""
-    pytest.skip()
+    snapshots_dir = "snapshots"
+    snapshot_name = "test_name"
+
+    # Run.
+    output = run_snapshot_take(
+        ["-vp", "-d", snapshots_dir, "-s", str(subvolume), "-c-", snapshot_name],
+        input="Multiline\ncomment.\n".encode("utf8"),
+    )
+    assert "Created snapshot " in output
+
+    # Check.
+    metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"
+    metadata_file_contents = metadata_file.read_text()
+    metadata_file_contents_expected = dedent("""\
+        :running:false
+        :comment:-
+        Multiline
+        comment.
+        :comment-end:
+    """)
+    assert metadata_file_contents == metadata_file_contents_expected
 
 
 def test_bad_metadata_file(subvolume: Path):
