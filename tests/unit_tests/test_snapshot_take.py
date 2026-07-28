@@ -96,7 +96,7 @@ def test_btrfs_sanity_checks(subvolume, bin_dir):
 
     # Test not a subvolume.
     fake_stat_script = '#!/bin/bash\n[[ "$*" == *"%T"* ]] && echo btrfs\n'
-    fake_stat = (bin_dir / "stat")
+    fake_stat = bin_dir / "stat"
     fake_stat.write_text(fake_stat_script)
     fake_stat.chmod(0o755)
     with pytest.raises(subprocess.CalledProcessError) as exc:
