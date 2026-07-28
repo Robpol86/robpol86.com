@@ -29,6 +29,7 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 
 METADATA_FILE=.snapshot.nfo
 
+COMMENT=
 SNAPSHOTS_DIR=snapshots
 LIST_ONLY=
 PARENTS_CREATE=
@@ -43,7 +44,7 @@ while getopts :c:d:hlps:v OPT; do
         exit 1 ;;
     :) echo "flag needs an argument: '$OPTARG'" >&2
        exit 1 ;;
-    c) echo "comment arg: $OPTARG" ;;  # TODO
+    c) COMMENT="$OPTARG" ;;
     d) SNAPSHOTS_DIR="$OPTARG" ;;
     h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |
         sed -e 's/^# \?//' \
@@ -129,9 +130,12 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
 fi
 
 # Create snapshot metadata file.
-touch "$METADATA_FILE_FULL"  # TODO create metadata file with was_running:bool and comment (multiline similar to RSA block?)
+echo ":running:false" > "$METADATA_FILE_FULL"  # TODO
+echo ":comment:$COMMENT" >> "$METADATA_FILE_FULL"
 
-# TODO btrfs snapshot (echo Created snapshot name)
+# Create snapshot
+btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"
+echo "Created snapshot $SNAPSHOT_PATH"
 
 # Remove snapshot metadata file.
 rm -f "$METADATA_FILE_FULL"
@@ -146,6 +150,8 @@ fi
 #       mount -oremount,rw /sysroot
 #       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
 # - @root and @home: can snapshots live in other subvols? Probably not.
+# - Implement - comment.
+# - Implement was_running in metadata file.
 # - After take is done, unify? btrfs-snapshot [take|restore]
 #   - Support non-root (arbitrary) subvolumes
 # - if VERBOSE==true use verbose options in all commands, may need VERBOSE_NOT=false
