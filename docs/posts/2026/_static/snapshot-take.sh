@@ -139,6 +139,7 @@ fi
 echo ":comment:$COMMENT" >> "$METADATA_FILE_FULL"
 if [ "${COMMENT:-}" = "-" ]; then
   cat >> "$METADATA_FILE_FULL"
+  # TODO Ctrl+D to finish (but don't print that if file piped)
 fi
 echo ":comment-end:" >> "$METADATA_FILE_FULL"
 
