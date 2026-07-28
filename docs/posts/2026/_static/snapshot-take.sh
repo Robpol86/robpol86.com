@@ -121,6 +121,7 @@ IS_READONLY=
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
   mount -oremount,rw "$SUBVOLUME_DIR"
+  echo "Remounted '$SUBVOLUME_DIR' as read-write"
   # TODO atexit ro? Or move remount,ro to function then: || { unmount; exit 1; }
 fi
 
@@ -143,6 +144,7 @@ rm -f "$METADATA_FILE_FULL"
 # Remount subvolume as readonly if it was originally in that state.
 if [ ${IS_READONLY:-false} = true ]; then
   mount -oremount,ro "$SUBVOLUME_DIR"
+  echo "Remounted '$SUBVOLUME_DIR' as read-only"
 fi
 
 # TODO:

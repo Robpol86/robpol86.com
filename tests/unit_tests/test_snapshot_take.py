@@ -22,7 +22,7 @@ def run_snapshot_take(argv) -> str:
 
 @pytest.fixture(autouse=True, name="bin_dir")
 def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
-    """Create a bin directory to mock out shell commands."""
+    """Create a bin directory and mock out shell commands for the happy path."""
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
     monkeypatch.setenv("PATH", str(bin_dir), prepend=os.pathsep)
@@ -33,9 +33,10 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     if gsed := shutil.which("gsed"):
         (bin_dir / "sed").symlink_to(gsed)
 
-    # No-op mount.
+    # No-op mount and findmnt.
     if true_ := shutil.which("true"):
         (bin_dir / "mount").symlink_to(true_)
+        (bin_dir / "findmnt").symlink_to(true_)
     else:
         raise RuntimeError
 
@@ -50,6 +51,20 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     fake_stat = bin_dir / "stat"
     fake_stat.write_text(fake_stat_script)
     fake_stat.chmod(0o755)
+
+    # Mock btrfs.
+    fake_btrfs_script = dedent("""\
+        #!/bin/bash
+        set -eux
+        if [[ "$*" == *"subvolume snapshot"* ]]; then
+            mkdir "${@: -1}"
+            exit 0
+        fi
+        exit 1
+    """)
+    fake_btrfs = bin_dir / "btrfs"
+    fake_btrfs.write_text(fake_btrfs_script)
+    fake_btrfs.chmod(0o755)
 
     return bin_dir
 
@@ -129,16 +144,16 @@ def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     assert f"Snapshot '{snapshot_name}' already exists" in exc.value.output.decode("utf8")
 
 
-def test_happy_path(subvolume: Path, bin_dir: Path):
+def test_happy_path(subvolume: Path):
     """Test creating a snapshot."""
-    pytest.skip()  # TODO
     snapshots_dir = "snapshots"
+    (subvolume / snapshots_dir).mkdir()
     snapshot_name = "test_name"
     expected_snapshot_path = (subvolume / snapshots_dir / snapshot_name)
     assert not expected_snapshot_path.exists()
 
     # Run.
-    output = run_snapshot_take(["-v", snapshot_name])
+    output = run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
     assert f"Created snapshot {expected_snapshot_path}\n" in output
     assert expected_snapshot_path.is_dir()
 
