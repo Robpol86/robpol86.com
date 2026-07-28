@@ -9,7 +9,10 @@ import pytest
 
 
 def run_snapshot_take(argv) -> str:
-    """Run snapshot-take script with arguments passed to it."""
+    """Run snapshot-take script with arguments passed to it.
+
+    Output is converted to string and returned.
+    """
     root = Path(__file__).parent / ".." / ".."
     snapshot_take_path = root / "docs" / "posts" / "2026" / "_static" / "snapshot-take.sh"
     output = subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT)  # noqa: S603
@@ -30,6 +33,14 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
         (bin_dir / "sed").symlink_to(gsed)
 
     return bin_dir
+
+
+@pytest.fixture(name="subvolume")
+def _subvolume(tmp_path: Path):
+    """Create an empty directory to serve as a fake btrfs subvolume."""
+    subvolume = tmp_path / "subvolume"
+    subvolume.mkdir()
+    return subvolume
 
 
 def test_help():
@@ -71,3 +82,21 @@ def test_overide_defaults():
     output = run_snapshot_take(["-dSNAPSHOTS", "-s/altroot", "-h"])
     assert "Default: SNAPSHOTS\n" in output
     assert "Default: /altroot\n" in output
+
+
+def test_btrfs_sanity_checks(subvolume, bin_dir):
+    """Test sanity checks related to BTRFS."""
+    # Test not BTRFS.
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(["-v", "-s", str(subvolume), "name"])
+    assert "is not a BTRFS filesystem." in exc.value.output.decode("utf8")
+
+    # Test not a subvolume.
+    fake_stat = (bin_dir / "stat")
+    fake_stat.write_text('#!/bin/bash\n[[ "$*" == *"%T"* ]] && echo btrfs\n')
+    fake_stat.chmod(0o755)
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(["-v", "-s", str(subvolume), "name"])
+    assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
+
+    # TODO
