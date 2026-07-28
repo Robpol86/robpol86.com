@@ -57,7 +57,9 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
         #!/bin/bash
         set -eux
         if [[ "$*" == *"subvolume snapshot"* ]]; then
-            cp -vr "${@:(-2):1}" "${@: -1}"
+            intermediate="$(mktemp -d)/intermediate"
+            cp -vr "${@:(-2):1}" "$intermediate"
+            mv "$intermediate" "${@: -1}"
             exit 0
         fi
         exit 1
