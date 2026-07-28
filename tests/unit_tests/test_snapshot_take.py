@@ -34,25 +34,27 @@ def test_help_args():
     # Test -h.
     output = run_snapshot_take(["-h"])
     lines = output.splitlines()
-    assert lines[0].startswith(b"Usage:")
+    assert lines[0].startswith(b"Usage: ")
     assert lines[-2].startswith(b"  -v ")
     assert lines[-1] == b""
-    # assert b'\nDefault: snapshots\n' in output
-    # assert b'\nDefault: /\n' in output
+    assert b"Default: snapshots\n" in output
+    assert b"Default: /\n" in output
 
     # Test bad args.
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take([])
-    assert b'requires exactly 1 argument' in exc.value.output
+    assert b"requires exactly 1 argument" in exc.value.output
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(['a', 'b', 'c'])
-    assert b'requires exactly 1 argument' in exc.value.output
+        run_snapshot_take(["a", "b", "c"])
+    assert b"requires exactly 1 argument" in exc.value.output
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(['-z'])
+        run_snapshot_take(["-z"])
     assert b"unknown flag: 'z'" in exc.value.output
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(['-c'])
+        run_snapshot_take(["-c"])
     assert b"flag needs an argument: 'c'" in exc.value.output
 
     # Test override defaults.
-    # TODO
+    output = run_snapshot_take(["-dSNAPSHOTS", "-s/altroot", "-h"])
+    assert b"Default: SNAPSHOTS\n" in output
+    assert b"Default: /altroot\n" in output
