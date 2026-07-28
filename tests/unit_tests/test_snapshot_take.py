@@ -7,7 +7,12 @@ from pathlib import Path
 
 import pytest
 
-SNAPSHOT_TAKE_PATH = Path(__file__).parent / ".." / ".." / "docs" / "posts" / "2026" / "_static" / "snapshot-take.sh"
+
+def run_snapshot_take(argv) -> bytes:
+    """Run snapshot-take script with arguments passed to it."""
+    root = Path(__file__).parent / ".." / ".."
+    snapshot_take_path = root / "docs" / "posts" / "2026" / "_static" / "snapshot-take.sh"
+    return subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT)  # noqa: S603
 
 
 @pytest.fixture(autouse=True)
@@ -27,7 +32,7 @@ def setup(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
 def test_help_and_no_or_bad_args():
     """Test script's handling of -h and bad CLI arguments."""
     # Test -h.
-    output = subprocess.check_output([SNAPSHOT_TAKE_PATH, "-h"], stderr=subprocess.STDOUT)  # noqa: S603
+    output = run_snapshot_take(["-h"])
     lines = output.splitlines()
     assert lines[0].startswith(b"Usage:")
     assert lines[-2].startswith(b"  -v ")
