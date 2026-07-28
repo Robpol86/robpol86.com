@@ -15,18 +15,20 @@ def run_snapshot_take(argv) -> bytes:
     return subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT)  # noqa: S603
 
 
-@pytest.fixture(autouse=True)
-def setup(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
-    """Mock out environment and commands with fake scripts."""
-    mock_bin_dir = tmp_path / "bin"
-    mock_bin_dir.mkdir()
-    monkeypatch.setenv("PATH", str(mock_bin_dir), prepend=os.pathsep)
+@pytest.fixture(autouse=True, name="bin_dir")
+def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
+    """Create a bin directory to mock out shell commands."""
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    monkeypatch.setenv("PATH", str(bin_dir), prepend=os.pathsep)
 
     # macOS GNU alternatives.
     if ggrep := shutil.which("ggrep"):
-        (mock_bin_dir / "grep").symlink_to(ggrep)
+        (bin_dir / "grep").symlink_to(ggrep)
     if gsed := shutil.which("gsed"):
-        (mock_bin_dir / "sed").symlink_to(gsed)
+        (bin_dir / "sed").symlink_to(gsed)
+
+    return bin_dir
 
 
 def test_help_args():
