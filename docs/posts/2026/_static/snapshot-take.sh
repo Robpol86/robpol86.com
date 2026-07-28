@@ -138,8 +138,10 @@ else
 fi
 echo ":comment:$COMMENT" >> "$METADATA_FILE_FULL"
 if [ "${COMMENT:-}" = "-" ]; then
+  if [ -t 0 ]; then
+    echo "Press Ctrl+D to finish" >&2
+  fi
   cat >> "$METADATA_FILE_FULL"
-  # TODO Ctrl+D to finish (but don't print that if file piped)
 fi
 echo ":comment-end:" >> "$METADATA_FILE_FULL"
 
