@@ -131,8 +131,16 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
 fi
 
 # Create snapshot metadata file.
-echo ":running:false" > "$METADATA_FILE_FULL"  # TODO
+if [ ${IS_READONLY:-false} = true ]; then
+  echo ":running:false" > "$METADATA_FILE_FULL"
+else
+  echo ":running:true" > "$METADATA_FILE_FULL"
+fi
 echo ":comment:$COMMENT" >> "$METADATA_FILE_FULL"
+if [ "${COMMENT:-}" = "-" ]; then
+  echo "TODO STDIN cat" >> "$METADATA_FILE_FULL"
+fi
+echo ":comment-end:" >> "$METADATA_FILE_FULL"
 
 # Create snapshot
 btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"
