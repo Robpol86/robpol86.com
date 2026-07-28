@@ -137,6 +137,11 @@ def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
+    # Test snapshot parent directory not exists.
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+    assert f"Snapshots directory '{subvolume / snapshots_dir}' does not exist." in exc.value.output.decode("utf8")
+
     # Test snapshot already exists.
     (subvolume / snapshots_dir / snapshot_name).mkdir(parents=True)
     with pytest.raises(subprocess.CalledProcessError) as exc:
@@ -144,16 +149,20 @@ def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     assert f"Snapshot '{snapshot_name}' already exists" in exc.value.output.decode("utf8")
 
 
-def test_happy_path(subvolume: Path):
+@pytest.mark.parametrize("parents_create", [True, False])
+def test_happy_path(subvolume: Path, parents_create: bool):
     """Test creating a snapshot."""
     snapshots_dir = "snapshots"
-    (subvolume / snapshots_dir).mkdir()
+    if not parents_create:
+        (subvolume / snapshots_dir).mkdir()
     snapshot_name = "test_name"
-    expected_snapshot_path = (subvolume / snapshots_dir / snapshot_name)
+    expected_snapshot_path = subvolume / snapshots_dir / snapshot_name
     assert not expected_snapshot_path.exists()
 
     # Run.
-    output = run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+    output = run_snapshot_take(
+        (["-p"] if parents_create else []) + ["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name]
+    )
     assert f"Created snapshot {expected_snapshot_path}\n" in output
     assert expected_snapshot_path.is_dir()
 

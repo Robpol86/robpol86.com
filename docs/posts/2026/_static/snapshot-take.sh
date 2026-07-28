@@ -148,9 +148,6 @@ if [ ${IS_READONLY:-false} = true ]; then
 fi
 
 # TODO:
-# - Manual (from .md):
-#       mount -oremount,rw /sysroot
-#       btrfs subvolume snapshot -r /sysroot /sysroot/snapshots/root-p
 # - @root and @home: can snapshots live in other subvols? Probably not.
 # - Implement - comment.
 # - Implement was_running in metadata file.
