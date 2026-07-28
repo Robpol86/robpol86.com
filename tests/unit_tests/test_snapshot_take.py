@@ -176,3 +176,8 @@ def test_metadata_file(running: bool):
 def test_bad_metadata_file():
     """TODO."""
     pytest.skip()
+
+
+def test_list_snapshots():
+    """TODO."""
+    pytest.skip()
