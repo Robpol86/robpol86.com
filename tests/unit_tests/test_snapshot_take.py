@@ -57,7 +57,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
         #!/bin/bash
         set -eux
         if [[ "$*" == *"subvolume snapshot"* ]]; then
-            mkdir "${@: -1}"
+            cp -vr "${@:(-2):1}" "${@: -1}"
             exit 0
         fi
         exit 1
@@ -168,12 +168,35 @@ def test_happy_path(subvolume: Path, parents_create: bool):
 
 
 @pytest.mark.parametrize("running", [False, True])
-def test_metadata_file(running: bool):
+def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
     """TODO."""
-    pytest.skip()
+    pytest.skip()  # TODO
+    snapshots_dir = "snapshots"
+    snapshot_name = "test_name"
+
+    # Mock.
+    if running:
+        (bin_dir / "findmnt").unlink()
+        assert (false_ := shutil.which("false"))
+        (bin_dir / "findmnt").symlink_to(false_)
+
+    # Run.
+    output = run_snapshot_take(["-vp", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+    assert "Created snapshot " in output
+
+    # Check.
+    metadata_file = subvolume / snapshots_dir / ".snapshot.nfo"
+    metadata_file_contents = metadata_file.read_text()
+    metadata_file_contents_expected = dedent(f"""\
+        :running:{"true" if running else "false"}
+        :comment:
+        :comment-end:
+    """)
+    assert metadata_file_contents == metadata_file_contents_expected
 
 
-def test_metadata_multiline_comment():
+@pytest.mark.parametrize("multiline", [False, True])
+def test_metadata_comment(multiline: bool):
     """TODO."""
     pytest.skip()
 

@@ -138,7 +138,7 @@ else
 fi
 echo ":comment:$COMMENT" >> "$METADATA_FILE_FULL"
 if [ "${COMMENT:-}" = "-" ]; then
-  echo "TODO STDIN cat" >> "$METADATA_FILE_FULL"
+  cat >> "$METADATA_FILE_FULL"
 fi
 echo ":comment-end:" >> "$METADATA_FILE_FULL"
 
