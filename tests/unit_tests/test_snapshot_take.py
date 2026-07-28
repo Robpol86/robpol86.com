@@ -29,7 +29,7 @@ def setup(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
         (mock_bin_dir / "sed").symlink_to(gsed)
 
 
-def test_help_and_no_or_bad_args():
+def test_help_args():
     """Test script's handling of -h and bad CLI arguments."""
     # Test -h.
     output = run_snapshot_take(["-h"])
@@ -37,3 +37,22 @@ def test_help_and_no_or_bad_args():
     assert lines[0].startswith(b"Usage:")
     assert lines[-2].startswith(b"  -v ")
     assert lines[-1] == b""
+    # assert b'\nDefault: snapshots\n' in output
+    # assert b'\nDefault: /\n' in output
+
+    # Test bad args.
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take([])
+    assert b'requires exactly 1 argument' in exc.value.output
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(['a', 'b', 'c'])
+    assert b'requires exactly 1 argument' in exc.value.output
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(['-z'])
+    assert b"unknown flag: 'z'" in exc.value.output
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(['-c'])
+    assert b"flag needs an argument: 'c'" in exc.value.output
+
+    # Test override defaults.
+    # TODO
