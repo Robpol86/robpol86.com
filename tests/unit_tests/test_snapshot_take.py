@@ -85,18 +85,28 @@ def test_overide_defaults():
 
 
 def test_btrfs_sanity_checks(subvolume, bin_dir):
-    """Test sanity checks related to BTRFS."""
+    """Test sanity checks related to BTRFS before making changes to the filesystem."""
+    snapshots_dir = "snapshots"
+    snapshot_name = "name"
+
     # Test not BTRFS.
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-s", str(subvolume), "name"])
+        run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS filesystem." in exc.value.output.decode("utf8")
 
     # Test not a subvolume.
+    fake_stat_script = '#!/bin/bash\n[[ "$*" == *"%T"* ]] && echo btrfs\n'
     fake_stat = (bin_dir / "stat")
-    fake_stat.write_text('#!/bin/bash\n[[ "$*" == *"%T"* ]] && echo btrfs\n')
+    fake_stat.write_text(fake_stat_script)
     fake_stat.chmod(0o755)
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-s", str(subvolume), "name"])
+        run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
+    fake_stat_script += '[[ "$*" == *"%i"* ]] && echo 256\n'
+    fake_stat.write_text(fake_stat_script)  # Greenlight for subsequent checks.
 
-    # TODO
+    # Test snapshot already exists.
+    (subvolume / snapshots_dir / snapshot_name).mkdir(parents=True)
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+    assert f"Snapshot '{snapshot_name}' already exists" in exc.value.output.decode("utf8")
