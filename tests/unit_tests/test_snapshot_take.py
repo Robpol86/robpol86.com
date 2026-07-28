@@ -26,6 +26,12 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     bin_dir.mkdir()
     monkeypatch.setenv("PATH", str(bin_dir), prepend=os.pathsep)
 
+    # No-op mount.
+    if true_ := shutil.which("true"):
+        (bin_dir / "mount").symlink_to(true_)
+    else:
+        raise RuntimeError
+
     # macOS GNU alternatives.
     if ggrep := shutil.which("ggrep"):
         (bin_dir / "grep").symlink_to(ggrep)
@@ -84,7 +90,7 @@ def test_overide_defaults():
     assert "Default: /altroot\n" in output
 
 
-def test_btrfs_sanity_checks(subvolume, bin_dir):
+def test_btrfs_sanity_checks(subvolume: Path, bin_dir: Path):
     """Test sanity checks related to BTRFS before making changes to the filesystem."""
     snapshots_dir = "snapshots"
     snapshot_name = "name"
@@ -102,11 +108,33 @@ def test_btrfs_sanity_checks(subvolume, bin_dir):
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
-    fake_stat_script += '[[ "$*" == *"%i"* ]] && echo 256\n'
-    fake_stat.write_text(fake_stat_script)  # Greenlight for subsequent checks.
 
     # Test snapshot already exists.
+    fake_stat_script += '[[ "$*" == *"%i"* ]] && echo 256\n'
+    fake_stat.write_text(fake_stat_script)
     (subvolume / snapshots_dir / snapshot_name).mkdir(parents=True)
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
     assert f"Snapshot '{snapshot_name}' already exists" in exc.value.output.decode("utf8")
+
+
+def test_happy_path(subvolume: Path, bin_dir: Path):
+    """Test creating a snapshot."""
+    pytest.skip()  # TODO
+    snapshots_dir = "snapshots"
+    snapshot_name = "test_name"
+    expected_snapshot_path = (subvolume / snapshots_dir / snapshot_name)
+    assert not expected_snapshot_path.exists()
+
+    # Mock.
+    fake_stat_script = '#!/bin/bash\n[[ "$*" == *"%T"* ]] && echo btrfs\n[[ "$*" == *"%i"* ]] && echo 256\n'
+    fake_stat = bin_dir / "stat"
+    fake_stat.write_text(fake_stat_script)
+    fake_stat.chmod(0o755)
+
+    # Run.
+    output = run_snapshot_take(["-v", snapshot_name])
+    assert f"Created snapshot {expected_snapshot_path}\n" in output
+    assert expected_snapshot_path.is_dir()
+
+    # TODO metadata file.
