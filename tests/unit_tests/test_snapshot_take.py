@@ -170,7 +170,6 @@ def test_happy_path(subvolume: Path, parents_create: bool):
 @pytest.mark.parametrize("running", [False, True])
 def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
     """TODO."""
-    pytest.skip()  # TODO
     snapshots_dir = "snapshots"
     snapshot_name = "test_name"
 
@@ -185,7 +184,7 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
     assert "Created snapshot " in output
 
     # Check.
-    metadata_file = subvolume / snapshots_dir / ".snapshot.nfo"
+    metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
         :running:{"true" if running else "false"}
