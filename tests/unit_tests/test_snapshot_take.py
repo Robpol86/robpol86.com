@@ -8,11 +8,12 @@ from pathlib import Path
 import pytest
 
 
-def run_snapshot_take(argv) -> bytes:
+def run_snapshot_take(argv) -> str:
     """Run snapshot-take script with arguments passed to it."""
     root = Path(__file__).parent / ".." / ".."
     snapshot_take_path = root / "docs" / "posts" / "2026" / "_static" / "snapshot-take.sh"
-    return subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT)  # noqa: S603
+    output = subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT)  # noqa: S603
+    return output.decode("utf8")
 
 
 @pytest.fixture(autouse=True, name="bin_dir")
@@ -31,32 +32,42 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     return bin_dir
 
 
-def test_help_args():
-    """Test script's handling of -h and bad CLI arguments."""
-    # Test -h.
+def test_help():
+    """Test script's handling of -h."""
     output = run_snapshot_take(["-h"])
     lines = output.splitlines()
-    assert lines[0].startswith(b"Usage: ")
-    assert lines[-2].startswith(b"  -v ")
-    assert lines[-1] == b""
-    assert b"Default: snapshots\n" in output
-    assert b"Default: /\n" in output
+    assert lines[0].startswith("Usage: ")
+    assert lines[-2].startswith("  -v ")
+    assert lines[-1] == ""
+    assert "Default: snapshots\n" in output
+    assert "Default: /\n" in output
 
-    # Test bad args.
+
+def test_bad_args():
+    """Test script's handling of bad CLI arguments."""
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take([])
-    assert b"requires exactly 1 argument" in exc.value.output
+    output = exc.value.output.decode("utf8")
+    assert "requires exactly 1 argument" in output
+
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["a", "b", "c"])
-    assert b"requires exactly 1 argument" in exc.value.output
+    output = exc.value.output.decode("utf8")
+    assert "requires exactly 1 argument" in output
+
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-z"])
-    assert b"unknown flag: 'z'" in exc.value.output
+    output = exc.value.output.decode("utf8")
+    assert "unknown flag: 'z'" in output
+
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-c"])
-    assert b"flag needs an argument: 'c'" in exc.value.output
+    output = exc.value.output.decode("utf8")
+    assert "flag needs an argument: 'c'" in output
 
-    # Test override defaults.
+
+def test_overide_defaults():
+    """Make sure Usage string replacement for displaying defaults works."""
     output = run_snapshot_take(["-dSNAPSHOTS", "-s/altroot", "-h"])
-    assert b"Default: SNAPSHOTS\n" in output
-    assert b"Default: /altroot\n" in output
+    assert "Default: SNAPSHOTS\n" in output
+    assert "Default: /altroot\n" in output
