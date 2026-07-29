@@ -118,16 +118,16 @@ fi
 # when the script starts making changes.
 #
 
-read UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
+read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 METADATA_FILE_TEMP="/tmp/$METADATA_FILE.$UUID"
 IS_READONLY=
 
 # Create snapshot metadata file in a temporary location.
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
-  echo ":running:false" > "$METADATA_FILE_TEMP"
+  (umask 022; echo ":running:false" > "$METADATA_FILE_TEMP")
 else
-  echo ":running:true" > "$METADATA_FILE_TEMP"
+  (umask 022; echo ":running:true" > "$METADATA_FILE_TEMP")
 fi
 echo ":comment:$COMMENT" >> "$METADATA_FILE_TEMP"
 if [ "${COMMENT:-}" = "-" ]; then
