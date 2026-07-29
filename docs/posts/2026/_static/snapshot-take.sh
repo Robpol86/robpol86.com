@@ -104,6 +104,11 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = false ]; then
   # TODO confirm conditional works
 fi
 
+#
+# Done with checks. Above here nothing changed in the filesystem. Below here is
+# when the script starts making changes.
+#
+
 METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
 
 # Check if metadata file already exists.
@@ -113,13 +118,9 @@ if [ -s "$METADATA_FILE_FULL" ]; then
   exit 1
 elif ! touch "$METADATA_FILE_FULL"; then
   echo "File '$METADATA_FILE_FULL' not writable." >&2
+  echo "Are you running this as root or with sudo?" >&2
   exit 1
 fi
-
-#
-# Done with checks. Above here nothing changed in the filesystem. Below here is
-# when the script starts making changes.
-#
 
 METADATA_FILE_TEMP="$(mktemp)"
 IS_READONLY=
