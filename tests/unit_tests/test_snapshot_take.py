@@ -60,6 +60,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
             intermediate="$(mktemp -d)/intermediate"
             cp -vr "${@:(-2):1}" "$intermediate"
             mv "$intermediate" "${@: -1}"
+            echo "Create readonly snapshot of '${@:(-2):1}' in '${@: -1}'"
             exit 0
         fi
         exit 1
@@ -165,7 +166,7 @@ def test_happy_path(subvolume: Path, parents_create: bool):
     output = run_snapshot_take(
         (["-p"] if parents_create else []) + ["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name]
     )
-    assert f"Created snapshot {expected_snapshot_path}\n" in output
+    assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
     assert expected_snapshot_path.is_dir()
 
 
@@ -183,7 +184,7 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
 
     # Run.
     output = run_snapshot_take(["-vp", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
-    assert "Created snapshot " in output
+    assert "Create readonly snapshot " in output
 
     # Check.
     metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"
@@ -204,7 +205,7 @@ def test_metadata_comment(subvolume: Path):
 
     # Run.
     output = run_snapshot_take(["-vp", "-d", snapshots_dir, "-s", str(subvolume), "-c", comment, snapshot_name])
-    assert "Created snapshot " in output
+    assert "Create readonly snapshot " in output
 
     # Check.
     metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"
@@ -227,7 +228,7 @@ def test_metadata_comment_multiline(subvolume: Path):
         ["-vp", "-d", snapshots_dir, "-s", str(subvolume), "-c-", snapshot_name],
         input="Multiline\ncomment.\n".encode("utf8"),
     )
-    assert "Created snapshot " in output
+    assert "Create readonly snapshot " in output
 
     # Check.
     metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"

@@ -158,7 +158,6 @@ mv "$METADATA_FILE_TEMP" "$METADATA_FILE_FULL"
 
 # Create snapshot
 btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"
-echo "Created snapshot $SNAPSHOT_PATH"
 
 # Remove snapshot metadata file.
 rm -f "$METADATA_FILE_FULL"
