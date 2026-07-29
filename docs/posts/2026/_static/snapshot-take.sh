@@ -180,14 +180,12 @@ fi
 
 # TODO:
 # - @root and @home: can snapshots live in other subvols? Probably not.
-# - Implement - comment.
-# - Implement was_running in metadata file.
 # - After take is done, unify? btrfs-snapshot [take|restore]
+# - Running snapshot has permissions of 600. umask it to 644.
 #   - Support non-root (arbitrary) subvolumes
 # - if VERBOSE==true use verbose options in all commands, may need VERBOSE_NOT=false
 # - Test -l with no /snapshots
 #   - Name collisions won't happen with snapshots outside of that dir. How to display them? Maybe -l and -L?
-# - Strip leading / in snapshots dir. Looks ugly.
 # - Support rd.break and running environment with sudo/su.
 # - Test with subvol_dir=.
 # - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
