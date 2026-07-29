@@ -181,29 +181,12 @@ fi
 # TODO:
 # - @root and @home: can snapshots live in other subvols? Probably not.
 # - After take is done, unify? btrfs-snapshot [take|restore]
-# - Running snapshot has permissions of 600. umask it to 644.
 #   - Support non-root (arbitrary) subvolumes
 # - if VERBOSE==true use verbose options in all commands, may need VERBOSE_NOT=false
 # - Test -l with no /snapshots
 #   - Name collisions won't happen with snapshots outside of that dir. How to display them? Maybe -l and -L?
-# - Support rd.break and running environment with sudo/su.
 # - Test with subvol_dir=.
-# - Metadata: maybe let users specify a comment like in VMware? Save it in a file before snapshotting?
-#   - Also store date
-#   - Allow EOF for multi-line comment. Maybe stdin?
-#   - Store wether snapshot was taken from initramfs or from running system
 # - Name collisions?
 # - Checks:
-#   - sudo or write access to btrfs paths?
-#   - is subvolume path btrfs?
-#   - is subvolume path a btrfs subvolume?
 #   - if snapshots-dir has a leading / is it the same as subvolume?
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
-#   - does snapshots-dir exist sans -p?
-# - cli examples:
-#       snapshot-take [-h|--help]
-#       snapshot-take [-l|--list-only]
-#       snapshot-take [-v|--verbose][-p|--create-parents] name
-#       snapshot-take [-s|--subvolume=/sysroot] [-d|--snapshots-dir=snapshots] name
-#       snapshot-take -c|--comment="comment" name
-#       snapshot-take -c- name < comment.txt
