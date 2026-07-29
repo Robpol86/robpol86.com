@@ -121,10 +121,27 @@ fi
 # when the script starts making changes.
 #
 
-# Remount subvolume as readwrite if it is mounted as readonly.
+METADATA_FILE_TEMP="$(mktemp)"
 IS_READONLY=
+
+# Create snapshot metadata file in a temporary location.
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
+  echo ":running:false" > "$METADATA_FILE_TEMP"
+else
+  echo ":running:true" > "$METADATA_FILE_TEMP"
+fi
+echo ":comment:$COMMENT" >> "$METADATA_FILE_TEMP"
+if [ "${COMMENT:-}" = "-" ]; then
+  if [ -t 0 ]; then
+    echo "Press Ctrl+D to finish" >&2
+  fi
+  cat >> "$METADATA_FILE_TEMP"
+fi
+echo ":comment-end:" >> "$METADATA_FILE_TEMP"
+
+# Remount subvolume as readwrite if it is mounted as readonly.
+if [ ${IS_READONLY:-false} = true ]; then
   mount -oremount,rw "$SUBVOLUME_DIR"
   echo "Remounted '$SUBVOLUME_DIR' as read-write"
   # TODO atexit ro? Or move remount,ro to function then: || { unmount; exit 1; }
@@ -135,20 +152,8 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
   mkdir -p "$SNAPSHOTS_DIR_FULL"
 fi
 
-# Create snapshot metadata file.
-if [ ${IS_READONLY:-false} = true ]; then
-  echo ":running:false" > "$METADATA_FILE_FULL"
-else
-  echo ":running:true" > "$METADATA_FILE_FULL"
-fi
-echo ":comment:$COMMENT" >> "$METADATA_FILE_FULL"
-if [ "${COMMENT:-}" = "-" ]; then
-  if [ -t 0 ]; then
-    echo "Press Ctrl+D to finish" >&2
-  fi
-  cat >> "$METADATA_FILE_FULL"
-fi
-echo ":comment-end:" >> "$METADATA_FILE_FULL"
+# Move metadata file into subvolume before snapshot.
+mv "$METADATA_FILE_TEMP" "$METADATA_FILE_FULL"
 
 # Create snapshot
 btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"
