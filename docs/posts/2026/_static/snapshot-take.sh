@@ -104,11 +104,6 @@ if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = false ]; then
   # TODO confirm conditional works
 fi
 
-#
-# Done with checks. Above here nothing changed in the filesystem. Below here is
-# when the script starts making changes.
-#
-
 METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
 
 # Check if metadata file already exists.
@@ -116,13 +111,15 @@ if [ -s "$METADATA_FILE_FULL" ]; then
   echo "Stale file '$METADATA_FILE_FULL' found." >&2
   echo "File must be removed before trying again." >&2
   exit 1
-elif ! touch "$METADATA_FILE_FULL"; then
-  echo "File '$METADATA_FILE_FULL' not writable." >&2
-  echo "Are you running this as root or with sudo?" >&2
-  exit 1
 fi
 
-METADATA_FILE_TEMP="$(mktemp)"
+#
+# Done with checks. Above here nothing changed in the filesystem. Below here is
+# when the script starts making changes.
+#
+
+read UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
+METADATA_FILE_TEMP="/tmp/$METADATA_FILE.$UUID"
 IS_READONLY=
 
 # Create snapshot metadata file in a temporary location.
@@ -143,18 +140,31 @@ echo ":comment-end:" >> "$METADATA_FILE_TEMP"
 
 # Remount subvolume as readwrite if it is mounted as readonly.
 if [ ${IS_READONLY:-false} = true ]; then
-  mount -oremount,rw "$SUBVOLUME_DIR"
-  echo "Remounted '$SUBVOLUME_DIR' as read-write"
+  if ! mount -oremount,rw "$SUBVOLUME_DIR"; then
+    echo "Failed to remount '$SUBVOLUME_DIR' as read-write." >&2
+    echo "Are you running this as root or with sudo?" >&2
+    exit 1
+  else
+    echo "Remounted '$SUBVOLUME_DIR' as read-write"
+  fi
   # TODO atexit ro? Or move remount,ro to function then: || { unmount; exit 1; }
 fi
 
 # Create snapshots parent directories if requested.
 if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
-  mkdir -p "$SNAPSHOTS_DIR_FULL"
+  if ! mkdir -p "$SNAPSHOTS_DIR_FULL"; then
+    echo "Failed to create directory '$SNAPSHOTS_DIR_FULL'." >&2
+    echo "Are you running this as root or with sudo?" >&2
+    exit 1
+  fi
 fi
 
 # Move metadata file into subvolume before snapshot.
-mv "$METADATA_FILE_TEMP" "$METADATA_FILE_FULL"
+if ! mv "$METADATA_FILE_TEMP" "$METADATA_FILE_FULL"; then
+  echo "Failed to create file '$METADATA_FILE_FULL'." >&2
+  echo "Are you running this as root or with sudo?" >&2
+  exit 1
+fi
 
 # Create snapshot
 btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"

@@ -69,6 +69,11 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     fake_btrfs.write_text(fake_btrfs_script)
     fake_btrfs.chmod(0o755)
 
+    # Mock UUID file for macOS.
+    mock_uuid_file = tmp_path / "uuid.txt"
+    mock_uuid_file.write_text("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\n")
+    monkeypatch.setenv("KERNEL_UUID_FILE", str(mock_uuid_file))
+
     return bin_dir
 
 
