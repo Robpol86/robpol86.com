@@ -171,7 +171,7 @@ def test_happy_path(subvolume: Path, parents_create: bool):
 
 @pytest.mark.parametrize("running", [False, True])
 def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
-    """TODO."""
+    """Test snapshot metadata file."""
     snapshots_dir = "snapshots"
     snapshot_name = "test_name"
 
@@ -197,7 +197,7 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
 
 
 def test_metadata_comment(subvolume: Path):
-    """TODO."""
+    """Test user comments in the snapshot metadata file.."""
     snapshots_dir = "snapshots"
     snapshot_name = "test_name"
     comment = "This is a test."
@@ -218,7 +218,7 @@ def test_metadata_comment(subvolume: Path):
 
 
 def test_metadata_comment_multiline(subvolume: Path):
-    """TODO."""
+    """Test user comments from stdin in the snapshot metadata file."""
     snapshots_dir = "snapshots"
     snapshot_name = "test_name"
 
