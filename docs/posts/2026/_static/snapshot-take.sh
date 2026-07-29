@@ -116,6 +116,11 @@ elif ! touch "$METADATA_FILE_FULL"; then
   exit 1
 fi
 
+#
+# Done with checks. Above here nothing changed in the filesystem. Below here is
+# when the script starts making changes.
+#
+
 # Remount subvolume as readwrite if it is mounted as readonly.
 IS_READONLY=
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
