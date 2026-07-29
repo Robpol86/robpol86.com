@@ -90,12 +90,16 @@ if [ ${LIST_ONLY:-false} = true ]; then
   stat -c '%y %n' "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE" > "$stat_output_file"
   awk '
     NR==FNR {
+      # TODO store in array: [filepath]=date
+      # mtimes["/snapshots/snapshot name with space/.snapshot.nfo"]="2026-07-29 10:36:22"
+      filedate=$1 " " $2
+      filepath=
       # First file.
-      print  # TODO
+      printf("%s @ %s %s\n", $4, $1, $2)
       next
     }
     {
-      print "Wed Jul 29 13:16:58 UTC 2026    test-name (running)    This is a comment."  # TODO
+      print "2026-07-29 10:36:22    test-name (running)    This is a comment."  # TODO
     }
   ' "$stat_output_file" "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"
   exit 0
@@ -198,6 +202,8 @@ fi
 #   - Name collisions won't happen with snapshots outside of that dir. How to display them? Maybe -l and -L?
 # - Test with subvol_dir=.
 # - Name collisions?
+# - Test with spaces in snapshot names (taking and listing).
 # - Checks:
 #   - if snapshots-dir has a leading / is it the same as subvolume?
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
+# - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
