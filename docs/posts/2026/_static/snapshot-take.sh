@@ -87,6 +87,7 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
   stat_output_file="/tmp/nfo_mtimes.$UUID.txt"
+  # TODO if no snapshot files print error and exit.
   stat -c '%y %n' "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE" > "$stat_output_file"
   awk '
     NR==FNR {
