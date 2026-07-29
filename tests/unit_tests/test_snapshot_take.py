@@ -123,7 +123,7 @@ def test_overide_defaults():
 def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     """Test sanity checks related to BTRFS before making changes to the filesystem."""
     snapshots_dir = "snapshots"
-    snapshot_name = "name"
+    snapshot_name = "test_name"
 
     # Test not BTRFS.
     monkeypatch.setenv("MOCK_STAT_BIG_T", "fat32")
@@ -242,9 +242,16 @@ def test_metadata_comment_multiline(subvolume: Path):
     assert metadata_file_contents == metadata_file_contents_expected
 
 
-def test_bad_metadata_file(subvolume: Path):
-    """TODO."""
-    pytest.skip()
+def test_stale_metadata_file(subvolume: Path):
+    """Test handling when stale metadata file is present."""
+    snapshots_dir = "snapshots"
+    snapshot_name = "test_name"
+    metadata_file = subvolume / ".snapshot.nfo"  # Stale file in subvolume from previous attempt.
+
+    metadata_file.write_text("stale")
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(["-vp", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+    assert f"Stale file '{metadata_file}' found." in exc.value.output.decode("utf8")
 
 
 def test_list_snapshots(subvolume: Path, bin_dir: Path):
