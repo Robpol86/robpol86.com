@@ -27,11 +27,13 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     bin_dir.mkdir()
     monkeypatch.setenv("PATH", str(bin_dir), prepend=os.pathsep)
 
-    # macOS GNU alternatives.
+    # macOS GNU alternatives (brew installed).
     if ggrep := shutil.which("ggrep"):
         (bin_dir / "grep").symlink_to(ggrep)
     if gsed := shutil.which("gsed"):
         (bin_dir / "sed").symlink_to(gsed)
+    if gawk := shutil.which("gawk"):
+        (bin_dir / "awk").symlink_to(gawk)
 
     # No-op mount and findmnt.
     if true_ := shutil.which("true"):
@@ -44,6 +46,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     fake_stat_script = dedent("""\
         #!/bin/bash
         set -ux
+        # TODO echo and exit. Handle list using other formatters.
         [[ "$*" == *"%T"* ]] && echo "${MOCK_STAT_BIG_T:-btrfs}"
         [[ "$*" == *"%i"* ]] && echo "${MOCK_STAT_LITTLE_I:-256}"
         exit 0

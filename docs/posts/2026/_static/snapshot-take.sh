@@ -82,12 +82,17 @@ fi
 
 SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
 SNAPSHOT_PATH="$SNAPSHOTS_DIR_FULL/$SNAPSHOT_NAME"
+read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
-  for _ in "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"; do
-    echo "Wed Jul 29 13:16:58 UTC 2026    test-name (running)    This is a comment."  # TODO
-  done
+  stat_output_file="/tmp/nfo_mtimes.$UUID.txt"
+  stat -c '%y %n' "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE" > "$stat_output_file"
+  awk '
+    {
+      print "Wed Jul 29 13:16:58 UTC 2026    test-name (running)    This is a comment."  # TODO
+    }
+  ' "$stat_output_file" "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"
   exit 0
 fi
 
@@ -120,7 +125,6 @@ fi
 # when the script starts making changes.
 #
 
-read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 METADATA_FILE_TEMP="/tmp/$METADATA_FILE.$UUID"
 IS_READONLY=
 
