@@ -89,6 +89,11 @@ if [ ${LIST_ONLY:-false} = true ]; then
   stat_output_file="/tmp/nfo_mtimes.$UUID.txt"
   stat -c '%y %n' "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE" > "$stat_output_file"
   awk '
+    NR==FNR {
+      # First file.
+      print  # TODO
+      next
+    }
     {
       print "Wed Jul 29 13:16:58 UTC 2026    test-name (running)    This is a comment."  # TODO
     }
