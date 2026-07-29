@@ -16,6 +16,8 @@ depends() {
 }
 
 install() {
+    inst_multiple /usr/bin/awk
+
     inst "/sbin/snapshot-take" "/sbin/snapshot-take"
     sed -i \
         -e '/^SUBVOLUME_DIR=.*@MODULE-SETUP-REPLACE@/ s|=.*|=/sysroot|' \
