@@ -80,14 +80,16 @@ if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
   exit 1
 fi
 
-# List only.
-if [ ${LIST_ONLY:-false} = true ]; then
-  echo NotImplementedError >&2  # TODO
-  exit 0
-fi
-
 SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
 SNAPSHOT_PATH="$SNAPSHOTS_DIR_FULL/$SNAPSHOT_NAME"
+
+# List only.
+if [ ${LIST_ONLY:-false} = true ]; then
+  for _ in "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"; do
+    echo "Wed Jul 29 13:16:58 UTC 2026    test-name (running)    This is a comment."  # TODO
+  done
+  exit 0
+fi
 
 # Fail if snapshot already exists.
 if [ -e "$SNAPSHOT_PATH" ]; then
