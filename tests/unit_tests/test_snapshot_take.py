@@ -26,6 +26,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     """Create a bin directory and mock out shell commands for the happy path."""
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
+    monkeypatch.setenv("OLDPATH", os.environ["PATH"])
     monkeypatch.setenv("PATH", str(bin_dir), prepend=os.pathsep)
 
     # macOS GNU alternatives (brew installed).
@@ -63,7 +64,8 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
         if command -v gstat &>/dev/null; then
             command gstat "$@"
         else
-            command stat "$@"
+            export PATH="$OLDPATH"
+            stat "$@"
         fi
     """)
     fake_stat = bin_dir / "stat"
