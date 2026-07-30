@@ -104,19 +104,13 @@ if [ ${LIST_ONLY:-false} = true ]; then
       next
     }
     FNR==1 {
-      # Reset state for new file.
+      # Reset state when reading the next file.
       running = 0
     }
     /^:running:t/ { running = 1; next }
-    /^:comment:/ {
-      #in_comment = 1
-      #comment[FILENAME] =
-      #comment_line = substr($0, 9)
-      #if (comment_line != "-")
+    {
       print "2026-07-29 10:36:22    test-name (running)    This is a comment."  # TODO
-      next
     }
-    #/^:comment-end:/ { in_comment = 0; next }
   ' "$stat_output_file"
   exit 0
 fi
