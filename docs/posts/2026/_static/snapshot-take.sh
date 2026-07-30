@@ -98,11 +98,15 @@ if [ ${LIST_ONLY:-false} = true ]; then
       mtimes[filepath] = filedate
       next
     }
-    /^:running:t/ { running = 1; next }
-    /^:running:f/ { running = 0; next }
+    # TODO reset state on new files.
+    # TODO use find|sort to order by mtime before xargs to awk, avoid storing comments in awk memory.
+    /^:running:t/ { running[FILENAME] = 1; next }
+    /^:running:f/ { running[FILENAME] = 0; next }
     /^:comment:/ {
       in_comment = 1
-      # TODO
+      comment[FILENAME] =
+      comment_line = substr($0, 9)
+      if (comment_line != "-")
       next
     }
     /^:comment-end:/ { in_comment = 1; next }
