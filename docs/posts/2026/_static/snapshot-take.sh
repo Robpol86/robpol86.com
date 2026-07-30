@@ -150,7 +150,12 @@ if [ ${LIST_ONLY:-false} = true ]; then
       next
     }
     /^:comment-end:/ { nextfile }
-    in_comment {
+    in_comment==1 {
+      in_comment = 2
+      printf("%-"col_padding_mtime"s %-"col_padding_running"s %-"col_padding_name"s   %s\n", mtime, running, snapshot_name, $0)
+      next
+    }
+    in_comment==2 {
       printf("%*s", col_padding_mtime+col_padding_running+col_padding_name+5, "")
       print
     }

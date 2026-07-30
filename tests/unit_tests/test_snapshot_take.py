@@ -310,7 +310,6 @@ def test_list_snapshots(subvolume: Path):
     output = run_snapshot_take(["-l", "-d", snapshots_dir, "-s", str(subvolume)])
 
     # Check.
-    pytest.skip()  # TODO
     expected = dedent("""\
         Date          Running? Name              Comment
         -------------------------------------------------------------------------------
