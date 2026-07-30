@@ -93,13 +93,13 @@ if [ ${LIST_ONLY:-false} = true ]; then
   fi
   stat_output_file="/tmp/nfo_mtimes.$UUID.txt"
   stat -c "%y %n" "$@" |sort > "$stat_output_file"
-  y_col_width="$(stat -c "%y" "$1" |wc -c)"
-  cut -c"$((y_col_width+1))"- "$stat_output_file" |xargs awk '
+  y_col_width="$(stat -c "%y " "$1" |wc -c)"
+  cut -c"$y_col_width"- "$stat_output_file" |xargs awk -v y_col_width="$y_col_width" '
     NR==FNR {
       # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
       # out e.g. mtimes["/snapshots/snapshot-name/.snapshot.nfo"]="2026-07-29 10:36:22"
       filedate = gensub(/(^[0-9 :-]+).*/, "\\1", "1")
-      filepath = substr($0, length($1$2$3)+4)
+      filepath = substr($0, y_col_width)
       mtimes[filepath] = filedate
       next
     }
