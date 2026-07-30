@@ -86,11 +86,15 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
+  set -- "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"
+  if [ ! -e "$1" ]; then
+    echo "No snapshots found." >&2
+    exit 1
+  fi
   stat_output_file="/tmp/nfo_mtimes.$UUID.txt"
-  # TODO if no snapshot files print error and exit.
-  stat -c '%y %n' "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE" |sort > "$stat_output_file"
-  # TODO cut -c37- /tmp/nfo.sorted.txt |xargs awk 'FNR==1{print FILENAME}' /tmp/nfo.sorted.txt
-  awk '
+  stat -c "%y %n" "$@" |sort > "$stat_output_file"
+  y_col_width="$(stat -c "%y" "$1" |wc -c)"
+  cut -c"$((y_col_width+1))"- "$stat_output_file" |xargs |awk '
     NR==FNR {
       # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
       # out e.g. mtimes["/snapshots/snapshot-name/.snapshot.nfo"]="2026-07-29 10:36:22"
@@ -114,7 +118,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
     {
       print "2026-07-29 10:36:22    test-name (running)    This is a comment."  # TODO
     }
-  ' "$stat_output_file" "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"
+  ' "$stat_output_file"
   exit 0
 fi
 
