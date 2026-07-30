@@ -102,6 +102,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
       col_padding_name = 20  # TODO dynamic
     }
     NR==FNR {
+      # Process first file.
       # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
       # out e.g. mtimes["/snapshots/snapshot-name/.snapshot.nfo"]="2026-07-29 10:36:22"
       filedate = gensub(/(^[0-9 :-]+).*/, "\\1", "1")
@@ -109,7 +110,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
       mtimes[filepath] = filedate
       next
     }
-    FNR==1 {
+    BEGINFILE {
       # Start of file.
       split(FILENAME, arr, "/")
       snapshot_name = arr[length(arr)-1]
