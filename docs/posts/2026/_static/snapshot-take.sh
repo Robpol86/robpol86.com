@@ -94,6 +94,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
   stat_output_file="/tmp/nfo_mtimes.$UUID.txt"
   stat -c "%y %n" "$@" |sort > "$stat_output_file"
   y_col_width="$(stat -c "%y " "$1" |wc -c)"
+  # shellcheck disable=SC2016
   cut -c"$y_col_width"- "$stat_output_file" |xargs awk -v y_col_width="$y_col_width" '
     NR==FNR {
       # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
