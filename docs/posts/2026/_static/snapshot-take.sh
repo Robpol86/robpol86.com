@@ -254,7 +254,6 @@ fi
 # - @root and @home: can snapshots live in other subvols? Probably not.
 # - After take is done, unify? btrfs-snapshot [take|restore]
 #   - Support non-root (arbitrary) subvolumes
-# - Test -l with no /snapshots
 # - Test with subvol_dir=.
 # - Test with spaces in snapshot names (taking and listing).
 # - Handle special characters in "snapshot name" e.g. *.
