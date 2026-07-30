@@ -263,6 +263,16 @@ def test_stale_metadata_file(subvolume: Path):
     assert f"Stale file '{metadata_file}' found." in exc.value.output.decode("utf8")
 
 
+def test_list_snapshots_no_snapshots(subvolume: Path, bin_dir: Path):
+    """TODO."""
+    snapshots_dir = "snapshots"
+
+    # Run.
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run_snapshot_take(["-vl", "-d", snapshots_dir, "-s", str(subvolume)])
+    assert "No snapshots found." in exc.value.output.decode("utf8")
+
+
 def test_list_snapshots(subvolume: Path, bin_dir: Path):
     """TODO."""
     pytest.skip()
