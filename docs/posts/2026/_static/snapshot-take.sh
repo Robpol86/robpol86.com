@@ -106,11 +106,16 @@ if [ ${LIST_ONLY:-false} = true ]; then
     FNR==1 {
       # Reset state when reading the next file.
       running = 0
+      in_comment = 0
     }
     /^:running:t/ { running = 1; next }
-    {
+    /^:comment-end:/ { nextfile }
+    /^:comment:/ {
+      in_comment = 1  # TODO only if -
+      # TODO if -: next; else print
       print "2026-07-29 10:36:22    test-name (running)    This is a comment."  # TODO
     }
+    in_comment { print }  # TODO prefix whitespace
   ' "$stat_output_file"
   exit 0
 fi
