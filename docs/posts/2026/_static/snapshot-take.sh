@@ -98,6 +98,14 @@ if [ ${LIST_ONLY:-false} = true ]; then
       mtimes[filepath] = filedate
       next
     }
+    /^:running:t/ { running = 1; next }
+    /^:running:f/ { running = 0; next }
+    /^:comment:/ {
+      in_comment = 1
+      # TODO
+      next
+    }
+    /^:comment-end:/ { in_comment = 1; next }
     {
       print "2026-07-29 10:36:22    test-name (running)    This is a comment."  # TODO
     }
