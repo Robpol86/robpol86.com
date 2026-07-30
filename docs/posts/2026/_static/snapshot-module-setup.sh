@@ -16,11 +16,11 @@ depends() {
 }
 
 install() {
-    inst_multiple /usr/bin/awk
+    inst_multiple /usr/bin/awk /usr/bin/cut /usr/bin/sort /usr/bin/wc /usr/bin/xargs
 
-    inst "/sbin/snapshot-take" "/sbin/snapshot-take"
+    inst /sbin/snapshot-take /sbin/snapshot-take
     sed -i \
         -e '/^SUBVOLUME_DIR=.*@MODULE-SETUP-REPLACE@/ s|=.*|=/sysroot|' \
         "${initdir:?}/sbin/snapshot-take"
-    inst "${moddir:?}/snapshot-restore.sh" "/sbin/snapshot-restore"
+    inst "${moddir:?}/snapshot-restore.sh" /sbin/snapshot-restore
 }
