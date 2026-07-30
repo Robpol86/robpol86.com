@@ -99,7 +99,11 @@ if [ ${LIST_ONLY:-false} = true ]; then
     BEGIN {
       col_padding_mtime = 20
       col_padding_running = 1
-      col_padding_name = 20  # TODO dynamic
+      col_padding_name = 15  # TODO dynamic with ARGV and ARGC.
+      printf("%-"col_padding_mtime-7"s %-"col_padding_running+7"s %-"col_padding_name"s %s\n", "Date", "Running?", "Name", "Comment")
+      hr = sprintf("%*s", 79, "-")
+      gsub(/ /, "-", hr)
+      print(hr)
     }
     NR==FNR {
       # Process first file.
@@ -137,7 +141,10 @@ if [ ${LIST_ONLY:-false} = true ]; then
       next
     }
     /^:comment-end:/ { nextfile }
-    in_comment { print }  # TODO prefix whitespace
+    in_comment {
+      printf("%*s", col_padding_mtime+col_padding_running+col_padding_name+3, "")
+      print
+    }
   ' "$stat_output_file"
   exit 0
 fi
