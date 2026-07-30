@@ -96,17 +96,28 @@ if [ ${LIST_ONLY:-false} = true ]; then
   y_col_width="$(stat -c "%y " "$1" |wc -c)"
   # shellcheck disable=SC2016
   cut -c"$y_col_width"- "$stat_output_file" |xargs awk -v y_col_width="$y_col_width" '
+    function get_snapshot_name(filepath) {
+      split(filepath, arr, "/")
+      return arr[length(arr)-1]
+    }
     BEGIN {
       col_padding_mtime = 20
       col_padding_running = 1
-      col_padding_name = 15  # TODO dynamic with ARGV and ARGC.
-      printf("%-"col_padding_mtime-7"s %-"col_padding_running+7"s %-"col_padding_name"s %s\n", "Date", "Running?", "Name", "Comment")
+      col_padding_name = 15
+      # Dynamic name column.
+      max_padding = 30
+      for (i=2; i<ARGC; i++) {
+        col_length = length(get_snapshot_name(ARGV[i]))
+        if (col_length > max_padding) col_padding_name = max_padding
+        else if (col_length > col_padding_name) col_padding_name = col_length
+      }
+      # Print header.
+      printf("%-"col_padding_mtime-7"s %-"col_padding_running+7"s %-"col_padding_name"s   %s\n", "Date", "Running?", "Name", "Comment")
       hr = sprintf("%*s", 79, "-")
       gsub(/ /, "-", hr)
       print(hr)
     }
-    NR==FNR {
-      # Process first file.
+    NR==FNR {  # First file.
       # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
       # out e.g. mtimes["/snapshots/snapshot-name/.snapshot.nfo"]="2026-07-29 10:36:22"
       filedate = gensub(/(^[0-9 :-]+).*/, "\\1", "1")
@@ -115,9 +126,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
       next
     }
     BEGINFILE {
-      # Start of file.
-      split(FILENAME, arr, "/")
-      snapshot_name = arr[length(arr)-1]
+      snapshot_name = get_snapshot_name(FILENAME)
       mtime = mtimes[FILENAME]
       running = ""
       in_comment = 0
@@ -132,7 +141,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
       # Single-line commment.
       match($0, /:comment:(.+)/, arr)
       comment = arr[1]
-      printf("%-"col_padding_mtime"s %-"col_padding_running"s %-"col_padding_name"s %s\n", mtime, running, snapshot_name, comment)
+      printf("%-"col_padding_mtime"s %-"col_padding_running"s %-"col_padding_name"s   %s\n", mtime, running, snapshot_name, comment)
       nextfile
     }
     /^:comment:-/ {
@@ -142,7 +151,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
     }
     /^:comment-end:/ { nextfile }
     in_comment {
-      printf("%*s", col_padding_mtime+col_padding_running+col_padding_name+3, "")
+      printf("%*s", col_padding_mtime+col_padding_running+col_padding_name+5, "")
       print
     }
   ' "$stat_output_file"
