@@ -88,7 +88,8 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 if [ ${LIST_ONLY:-false} = true ]; then
   stat_output_file="/tmp/nfo_mtimes.$UUID.txt"
   # TODO if no snapshot files print error and exit.
-  stat -c '%y %n' "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE" > "$stat_output_file"
+  stat -c '%y %n' "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE" |sort > "$stat_output_file"
+  # TODO cut -c37- /tmp/nfo.sorted.txt |xargs awk 'FNR==1{print FILENAME}' /tmp/nfo.sorted.txt
   awk '
     NR==FNR {
       # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
@@ -98,7 +99,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
       mtimes[filepath] = filedate
       next
     }
-    # TODO reset state on new files.
+    # TODO reset state on new files. (FNR==1)
     # TODO use find|sort to order by mtime before xargs to awk, avoid storing comments in awk memory.
     /^:running:t/ { running[FILENAME] = 1; next }
     /^:running:f/ { running[FILENAME] = 0; next }
