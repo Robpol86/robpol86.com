@@ -215,7 +215,6 @@ if [ ${IS_READONLY:-false} = true ]; then
   else
     echo "Remounted '$SUBVOLUME_DIR' as read-write"
   fi
-  # TODO atexit ro? Or move remount,ro to function then: || { unmount; exit 1; }
 fi
 
 # Create snapshots parent directories if requested.
@@ -250,17 +249,11 @@ fi
 # - @root and @home: can snapshots live in other subvols? Probably not.
 # - After take is done, unify? btrfs-snapshot [take|restore]
 #   - Support non-root (arbitrary) subvolumes
-# - if VERBOSE==true use verbose options in all commands, may need VERBOSE_NOT=false
 # - Test -l with no /snapshots
-#   - Name collisions won't happen with snapshots outside of that dir. How to display them? Maybe -l and -L?
 # - Test with subvol_dir=.
-# - Name collisions?
 # - Test with spaces in snapshot names (taking and listing).
+# - Handle special characters in "snapshot name" e.g. *.
 # - Checks:
 #   - if snapshots-dir has a leading / is it the same as subvolume?
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
-# - Ensure most runs output less than 80chars per line.
-# - Wrap comments. Unwrap too?
-# - Todo avoid trailing whitespace. sprintf and trim (sub())
-# - Handle special characters in "snapshot name" e.g. *.
