@@ -91,12 +91,11 @@ if [ ${LIST_ONLY:-false} = true ]; then
   stat -c '%y %n' "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE" > "$stat_output_file"
   awk '
     NR==FNR {
-      # TODO store in array: [filepath]=date
-      # mtimes["/snapshots/snapshot name with space/.snapshot.nfo"]="2026-07-29 10:36:22"
-      filedate=$1 " " $2
-      filepath=
-      # First file.
-      printf("%s @ %s %s\n", $4, $1, $2)
+      # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
+      # out e.g. mtimes["/snapshots/snapshot-name/.snapshot.nfo"]="2026-07-29 10:36:22"
+      filedate = gensub(/(^[0-9 :-]+).*/, "\\1", "1")
+      filepath = substr($0, length($1$2$3)+4)
+      mtimes[filepath] = filedate
       next
     }
     {
@@ -130,11 +129,6 @@ if [ -s "$METADATA_FILE_FULL" ]; then
   exit 1
 fi
 
-#
-# Done with checks. Above here nothing changed in the filesystem. Below here is
-# when the script starts making changes.
-#
-
 METADATA_FILE_TEMP="/tmp/$METADATA_FILE.$UUID"
 IS_READONLY=
 
@@ -153,6 +147,11 @@ if [ "${COMMENT:-}" = "-" ]; then
   cat >> "$METADATA_FILE_TEMP"
 fi
 echo ":comment-end:" >> "$METADATA_FILE_TEMP"
+
+#
+# Done with checks. Above here nothing changed in the BTRFS filesystem. Below
+# here is when the script starts making changes.
+#
 
 # Remount subvolume as readwrite if it is mounted as readonly.
 if [ ${IS_READONLY:-false} = true ]; then
