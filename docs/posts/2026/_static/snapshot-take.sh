@@ -96,6 +96,11 @@ if [ ${LIST_ONLY:-false} = true ]; then
   y_col_width="$(stat -c "%y " "$1" |wc -c)"
   # shellcheck disable=SC2016
   cut -c"$y_col_width"- "$stat_output_file" |xargs awk -v y_col_width="$y_col_width" '
+    BEGIN {
+      col_padding_mtime = 20
+      col_padding_running = 1
+      col_padding_name = 20  # TODO dynamic
+    }
     NR==FNR {
       # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
       # out e.g. mtimes["/snapshots/snapshot-name/.snapshot.nfo"]="2026-07-29 10:36:22"
@@ -109,19 +114,20 @@ if [ ${LIST_ONLY:-false} = true ]; then
       split(FILENAME, arr, "/")
       snapshot_name = arr[length(arr)-1]
       mtime = mtimes[FILENAME]
+      running = ""
       in_comment = 0
     }
-    /^:running:t/ { snapshot_name = snapshot_name " (running)"; next }
+    /^:running:t/ { running = "*"; next }
     /^:comment:$/ {
       # No comment.
-      printf("%-25s %-20s\n", mtime, snapshot_name)
+      printf("%-"col_padding_mtime"s %-"col_padding_running"s %s\n", mtime, running, snapshot_name)
       nextfile
     }
     /^:comment:[^-]/ {
       # Single-line commment.
       match($0, /:comment:(.+)/, arr)
       comment = arr[1]
-      printf("%-25s %-20s %s\n", mtime, snapshot_name, comment)
+      printf("%-"col_padding_mtime"s %-"col_padding_running"s %-"col_padding_name"s %s\n", mtime, running, snapshot_name, comment)
       nextfile
     }
     /^:comment:-/ {
@@ -240,3 +246,4 @@ fi
 # - Ensure most runs output less than 80chars per line.
 # - Wrap comments. Unwrap too?
 # - Todo avoid trailing whitespace. sprintf and trim (sub())
+# - Handle special characters in "snapshot name" e.g. *.
