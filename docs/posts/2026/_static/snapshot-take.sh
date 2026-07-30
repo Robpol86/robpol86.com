@@ -105,17 +105,31 @@ if [ ${LIST_ONLY:-false} = true ]; then
       next
     }
     FNR==1 {
-      # Reset state when reading the next file.
-      running = 0
+      # Start of file.
+      split(FILENAME, arr, "/")
+      snapshot_name = arr[length(arr)-1]
+      mtime = mtimes[FILENAME]
       in_comment = 0
     }
-    /^:running:t/ { running = 1; next }
-    /^:comment-end:/ { nextfile }
-    /^:comment:/ {
-      in_comment = 1  # TODO only if -
-      # TODO if -: next; else print
-      print "2026-07-29 10:36:22    test-name (running)    This is a comment."  # TODO
+    /^:running:t/ { snapshot_name = snapshot_name " (running)"; next }
+    /^:comment:$/ {
+      # No comment.
+      printf("%-25s %-20s\n", mtime, snapshot_name)
+      nextfile
     }
+    /^:comment:[^-]/ {
+      # Single-line commment.
+      match($0, /:comment:(.+)/, arr)
+      comment = arr[1]
+      printf("%-25s %-20s %s\n", mtime, snapshot_name, comment)
+      nextfile
+    }
+    /^:comment:-/ {
+      # Multil-line comment begin.
+      in_comment = 1
+      next
+    }
+    /^:comment-end:/ { nextfile }
     in_comment { print }  # TODO prefix whitespace
   ' "$stat_output_file"
   exit 0
@@ -224,3 +238,5 @@ fi
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 # - Ensure most runs output less than 80chars per line.
+# - Wrap comments. Unwrap too?
+# - Todo avoid trailing whitespace. sprintf and trim (sub())
