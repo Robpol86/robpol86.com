@@ -3,6 +3,7 @@
 import os
 import shutil
 import subprocess
+from datetime import datetime
 from pathlib import Path
 from textwrap import dedent
 
@@ -34,6 +35,10 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
         (bin_dir / "sed").symlink_to(gsed)
     if gawk := shutil.which("gawk"):
         (bin_dir / "awk").symlink_to(gawk)
+    if gcut := shutil.which("gcut"):
+        (bin_dir / "cut").symlink_to(gcut)
+    if gwc := shutil.which("gwc"):
+        (bin_dir / "wc").symlink_to(gwc)
 
     # No-op mount and findmnt.
     if true_ := shutil.which("true"):
@@ -45,11 +50,21 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     # Mock stat.
     fake_stat_script = dedent("""\
         #!/bin/bash
-        set -ux
-        # TODO echo and exit. Handle list using other formatters.
-        [[ "$*" == *"%T"* ]] && echo "${MOCK_STAT_BIG_T:-btrfs}"
-        [[ "$*" == *"%i"* ]] && echo "${MOCK_STAT_LITTLE_I:-256}"
-        exit 0
+        set -u
+        if [[ "$*" == *"%T"* ]]; then
+            echo "${MOCK_STAT_BIG_T:-btrfs}"
+            exit 0
+        fi
+        if [[ "$*" == *"%i"* ]]; then
+            echo "${MOCK_STAT_LITTLE_I:-256}"
+            exit 0
+        fi
+        # macOS
+        if command -v gstat &>/dev/null; then
+            command gstat "$@"
+        else
+            command stat "$@"
+        fi
     """)
     fake_stat = bin_dir / "stat"
     fake_stat.write_text(fake_stat_script)
@@ -58,7 +73,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     # Mock btrfs.
     fake_btrfs_script = dedent("""\
         #!/bin/bash
-        set -eux
+        set -eu
         if [[ "$*" == *"subvolume snapshot"* ]]; then
             intermediate="$(mktemp -d)/intermediate"
             cp -vr "${@:(-2):1}" "$intermediate"
@@ -263,8 +278,8 @@ def test_stale_metadata_file(subvolume: Path):
     assert f"Stale file '{metadata_file}' found." in exc.value.output.decode("utf8")
 
 
-def test_list_snapshots_no_snapshots(subvolume: Path, bin_dir: Path):
-    """TODO."""
+def test_list_snapshots_no_snapshots(subvolume: Path):
+    """Test list with no snapshots."""
     snapshots_dir = "snapshots"
 
     # Run.
@@ -273,6 +288,37 @@ def test_list_snapshots_no_snapshots(subvolume: Path, bin_dir: Path):
     assert "No snapshots found." in exc.value.output.decode("utf8")
 
 
-def test_list_snapshots(subvolume: Path, bin_dir: Path):
-    """TODO."""
-    pytest.skip()
+def test_list_snapshots(subvolume: Path):
+    """Test listing snapshots."""
+    snapshots_dir = "snapshots"
+
+    # Create mock snapshots.
+    def create_mock_snapshot(date: datetime, name: str, running: bool, comment: str):
+        _snapshot_dir = subvolume / snapshots_dir / name
+        _snapshot_dir.mkdir(parents=True)
+        _snapshot_metadata = _snapshot_dir / ".snapshot.nfo"
+        _snapshot_metadata.write_text(f":running:{str(running).lower()}\n:comment:{comment}\n:comment-end:\n")
+        timestamp = date.timestamp()
+        os.utime(_snapshot_metadata, (timestamp, timestamp))
+
+    create_mock_snapshot(datetime.fromisoformat("2026-07-29 13:00:00"), "one", False, "")
+    create_mock_snapshot(datetime.fromisoformat("2026-07-29 14:00:00"), "two", True, "")
+    create_mock_snapshot(datetime.fromisoformat("2026-07-29 15:00:00"), "three", False, "Single line comment.")
+    create_mock_snapshot(datetime.fromisoformat("2026-07-29 16:00:00"), "four", False, "-\nMulti\nline\ncomment.")
+
+    # Run.
+    output = run_snapshot_take(["-l", "-d", snapshots_dir, "-s", str(subvolume)])
+
+    # Check.
+    pytest.skip()  # TODO
+    expected = dedent("""\
+        Date          Running? Name              Comment
+        -------------------------------------------------------------------------------
+        2026-07-29 13:00:00    one
+        2026-07-29 14:00:00  * two
+        2026-07-29 15:00:00    three             Single line comment.
+        2026-07-29 16:00:00    four              Multi
+                                                 line
+                                                 comment.
+    """)
+    assert output == expected
