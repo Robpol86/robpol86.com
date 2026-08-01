@@ -17,7 +17,7 @@ Works with btrfs bare metal, LVM, and LVM with LUKS.
 
 Snapper: rollback makes old snapshots "orphaned".
 
-Timeshift: TODO
+Timeshift: too many dependencies for Ubuntu Server minimal.
 
 ## Prerequisits
 
@@ -177,15 +177,6 @@ From:
 
 ## TODO
 
-Snapper:
-
-- Fix ambit.
-- Are snapshots read-only? Where do they live? Can config make them read-only by default?
-- /.snapshots vs /snapshots
-- After rollback try to display other snapshots.
-
-Old:
-
 - Create scripts, insert into rd as per rob86_com/rpi-luks instructions
   - snapshot-take should work from initfs and normal environment with sudo
 - Install ubuntu without btrfs and run `sudo btrfs subvolume list -t /`
@@ -200,3 +191,4 @@ Old:
   - Clean; `df` should now shrink
 - Test with a lot of snapshots, revert, make more snapshots, revert. How does this complex tree look?
 - Support other distros besides Ubuntu? Focus on those that officially support btrfs in their installers.
+- Snapper and Timeshfit compatibility?

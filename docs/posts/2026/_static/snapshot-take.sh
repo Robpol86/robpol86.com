@@ -253,7 +253,7 @@ fi
 
 # TODO:
 # - @root and @home: can snapshots live in other subvols? Probably not.
-# - After take is done, unify? btrfs-snapshot [take|restore]
+# - After take is done, unify? btrfs-snapshot [take|restore|delete|revert]
 #   - Support non-root (arbitrary) subvolumes
 #   - If restore uses the same list and unify not good, break out into own script: snapshot-list
 # - Test with subvol_dir=.
@@ -263,3 +263,4 @@ fi
 #   - if snapshots-dir has a leading / is it the same as subvolume?
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
+# - Redesign: /snapshots/uuid/.snapshot.nfo: :name:Name

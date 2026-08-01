@@ -12,3 +12,16 @@ echo "Hello World Restore"
 # - Test take+restore multiple times, creating complex nesting.
 # - Restore: mv nfo to .restored.17234567899
 #   - If user makes a new snapshot from a restored one we don’t want a collision.
+# - When run from mounted:
+#       Restore 0:"name"?
+#       Y
+#       Restored 0 to default.
+#       Reboot for changes to take effect.
+#       Run "..." to revert.
+# - When run from rd.break:
+#       Restore 0:"name"?
+#       Y
+#       Remounted ... rw
+#       Restored 0 to default.
+#       Remounted ... ro
+#       Run "..." to revert.
