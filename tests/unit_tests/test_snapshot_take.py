@@ -171,10 +171,11 @@ def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     assert f"Snapshots directory '{subvolume / snapshots_dir}' does not exist." in exc.value.output.decode("utf8")
 
     # Test snapshot already exists.
-    (subvolume / snapshots_dir / snapshot_name).mkdir(parents=True)
+    snapshot_path = subvolume / snapshots_dir / snapshot_name
+    snapshot_path.mkdir(parents=True)
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
-    assert f"Snapshot '{snapshot_name}' already exists" in exc.value.output.decode("utf8")
+    assert f"Snapshot '{snapshot_path}' already exists" in exc.value.output.decode("utf8")
 
 
 @pytest.mark.parametrize("parents_create", [True, False])

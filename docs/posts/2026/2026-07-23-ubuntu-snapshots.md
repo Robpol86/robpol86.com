@@ -13,6 +13,12 @@ TODO like a virtual machine.
 
 Works with btrfs bare metal, LVM, and LVM with LUKS.
 
+## Snapper and Timeshift
+
+Snapper: rollback makes old snapshots "orphaned".
+
+Timeshift: TODO
+
 ## Prerequisits
 
 :::{tip}

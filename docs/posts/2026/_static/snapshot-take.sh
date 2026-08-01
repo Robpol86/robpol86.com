@@ -30,7 +30,7 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 METADATA_FILE=.snapshot.nfo
 
 COMMENT=
-SNAPSHOTS_DIR=snapshots
+SNAPSHOTS_DIR=snapshots  # TODO .btrfs-snapshots
 LIST_ONLY=
 PARENTS_CREATE=
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
@@ -160,12 +160,13 @@ if [ ${LIST_ONLY:-false} = true ]; then
       print
     }
   ' "$stat_output_file"
+  # TODO for more snapshots run: snapshot-restore -l
   exit 0
 fi
 
 # Fail if snapshot already exists.
 if [ -e "$SNAPSHOT_PATH" ]; then
-  echo "Snapshot '$SNAPSHOT_NAME' already exists." >&2
+  echo "Snapshot '$SNAPSHOT_PATH' already exists." >&2
   echo "Run 'snapshot-take -l' to list existing snapshots." >&2
   exit 1
 fi
