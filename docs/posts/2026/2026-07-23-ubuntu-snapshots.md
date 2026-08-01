@@ -141,6 +141,27 @@ snapshot-restore name
 :::
 ::::
 
+## Snapper
+
+Install:
+
+```bash
+sudo apt-get update && sudo apt-get install snapper
+```
+
+Use:
+
+```bash
+sudo snapper -c root create-config /
+sudo snapper -c root create --description "Fresh_Install_Before_Installing_New_Softwares"
+sudo snapper -c root list
+```
+
+From:
+
+- https://www.reddit.com/r/Ubuntu/comments/1dtfgbd/btrfs_snapper_very_simple_instructions_for/
+- https://www.reddit.com/r/archlinux/comments/1ayqsqs/noob_to_btrfs_how_do_i_restore_from_a_snapshot/
+
 ## TODO
 
 - Create scripts, insert into rd as per rob86_com/rpi-luks instructions
