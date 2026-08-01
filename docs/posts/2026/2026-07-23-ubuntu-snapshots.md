@@ -13,6 +13,10 @@ TODO like a virtual machine.
 
 Works with btrfs bare metal, LVM, and LVM with LUKS.
 
+```{danger}
+This post and its scripts are still under development and may drastically change.
+```
+
 ## Snapper and Timeshift
 
 Snapper: rollback makes old snapshots "orphaned".
