@@ -193,3 +193,4 @@ From:
 - Support other distros besides Ubuntu? Focus on those that officially support btrfs in their installers.
   - openSUSE, Fedora, Debian, Arch, Slackware, Raspberry Pi OS (qemu)
 - Snapper and Timeshfit compatibility?
+- Rename post to drop Ubuntu (btrfs specific, not distro specific)

@@ -253,9 +253,10 @@ fi
 
 # TODO:
 # - @root and @home: can snapshots live in other subvols? Probably not.
-# - After take is done, unify? btrfs-snapshot [take|restore|delete|revert]
+# - Unify with other scripts? btrfs-snapshot [take|restore|delete|revert]
 #   - Support non-root (arbitrary) subvolumes
 #   - If restore uses the same list and unify not good, break out into own script: snapshot-list
+#   - alias in rd.break as `bss`
 # - Test with subvol_dir=.
 # - Test with spaces in snapshot names (taking and listing).
 # - Handle special characters in "snapshot name" e.g. *.
