@@ -302,7 +302,7 @@ def test_list_snapshots(subvolume: Path, alternative: bool):
     """Test listing snapshots."""
     if alternative:
         pytest.skip()
-    snapshots_dir = "snapshots"
+    snapshots_dir = "snapshots"  # TODO module variable
 
     # Create mock snapshots.
     def create_mock_snapshot(date: datetime, uuid_letter: str, name: str, running: bool, comment: str):
@@ -334,12 +334,16 @@ def test_list_snapshots(subvolume: Path, alternative: bool):
                                                      comment.
         """)
     else:
-        expected = dedent("""\
-            Date          Running? Name              Path
+        expected = dedent(f"""\
+            Date          Running? Name              Path v
             -------------------------------------------------------------------------------
-            2026-07-29 13:00:00    one               /todo/uuid
-            2026-07-29 14:00:00  * two               /todo/uuid
-            2026-07-29 15:00:00    three             /todo/uuid
-            2026-07-29 16:00:00    four              /todo/uuid
+            2026-07-29 13:00:00    one
+                {subvolume / snapshots_dir}/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+            2026-07-29 14:00:00  * two
+                {subvolume / snapshots_dir}/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+            2026-07-29 15:00:00    three
+                {subvolume / snapshots_dir}/cccccccc-cccc-cccc-cccc-cccccccccccc
+            2026-07-29 16:00:00    four
+                {subvolume / snapshots_dir}/dddddddd-dddd-dddd-dddd-dddddddddddd
         """)
     assert output == expected
