@@ -249,6 +249,12 @@ if [ ${IS_READONLY:-false} = true ]; then
 fi
 
 # TODO:
+# - Rename script from snapshot-take.sh to btrfs-snapshot.sh.
+#   - Move TODOs from restore script here and then delete restore script
+#   - Add bss alias in module-setup.
+#   - Delete all snapshots on me-mini and create four new ones with latest script.
+#   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
+#   - Create a new snapshot from the restored middle. Now there should be one more in -l.
 # - @root and @home: can snapshots live in other subvols? Probably not.
 # - Unify with other scripts? btrfs-snapshot [list|take|restore|delete|revert]
 #   - Support non-root (arbitrary) subvolumes
