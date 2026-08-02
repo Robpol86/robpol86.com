@@ -17,9 +17,6 @@
 #               Default: @SNAPSHOTS_DIR
 #   -h          Display this help and exit.
 #   -l          List existing snapshots and exit.
-#   -p          Create snapshots directories as required. If this option is not
-#               specified, the full path prefix of the snapshots directory must
-#               already exist.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
 #   -v          Enable verbose/debug output.
@@ -27,18 +24,15 @@
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
-METADATA_FILE=.snapshot.nfo
-
 COMMENT=
 SNAPSHOTS_DIR=.bsnaps
 LIST_ONLY=
-PARENTS_CREATE=
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
 SNAPSHOT_NAME=
 
 # Parse command line arguments.
-while getopts :c:d:hlps:v OPT; do
+while getopts :c:d:hls:v OPT; do
   case "$OPT" in
     \?) echo "unknown flag: '$OPTARG'" >&2
         exit 1 ;;
@@ -52,7 +46,6 @@ while getopts :c:d:hlps:v OPT; do
             -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"
        exit 0 ;;
     l) LIST_ONLY=true ;;
-    p) PARENTS_CREATE=true ;;
     s) SUBVOLUME_DIR="$OPTARG" ;;
     v) VERBOSE=true ;;
   esac
@@ -82,7 +75,6 @@ fi
 
 SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
-SNAPSHOT_PATH="$SNAPSHOTS_DIR_FULL/$UUID"
 
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
@@ -160,48 +152,42 @@ if [ ${LIST_ONLY:-false} = true ]; then
   exit 0
 fi
 
+# Check if snapshot name has invalid characters.
+# TODO
+
+COMMENT_B64=
+
+# Encode comment.
+if [ "${COMMENT:-}" = "-" ]; then
+  if [ -t 0 ]; then
+    echo "Press Ctrl+D to finish" >&2
+  fi
+  COMMENT_B64="$(base64)"
+elif [ -n "${COMMENT:-}" ]; then
+  COMMENT_B64="$(echo "$COMMENT" |base64)"
+fi
+# TODO if comment > limit: fail.
+# TODO make base64 path-safe
+
+DATE=
+IS_READONLY=
+SNAPSHOT_PATH=
+
+# Determine snapshot path.
+DATE="$(date -u '+%FT%TZ')"
+SNAPSHOT_PATH_MKDIR="$SNAPSHOTS_DIR_FULL/$DATE/$SNAPSHOT_NAME"
+if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
+  IS_READONLY=true
+  SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/0$COMMENT_B64"
+else
+  SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/1$COMMENT_B64"
+fi
+
 # Fail if snapshot already exists.
 if [ -e "$SNAPSHOT_PATH" ]; then
   echo "Snapshot '$SNAPSHOT_PATH' already exists." >&2
   exit 1
 fi
-
-# Check if snapshots parent directories exist.
-if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = false ]; then
-  echo "Snapshots directory '$SNAPSHOTS_DIR_FULL' does not exist." >&2
-  echo "See 'btrfs-snapshot -h'." >&2
-  exit 1
-  # TODO confirm conditional works
-fi
-
-METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
-
-# Check if metadata file already exists.
-if [ -e "$METADATA_FILE_FULL" ]; then
-  echo "Stale file '$METADATA_FILE_FULL' found." >&2
-  echo "File must be removed before trying again." >&2
-  exit 1
-fi
-
-METADATA_FILE_TEMP="/tmp/$METADATA_FILE.$UUID"
-IS_READONLY=
-
-# Create snapshot metadata file in a temporary location.
-(umask 022; echo ":name:$SNAPSHOT_NAME" > "$METADATA_FILE_TEMP")
-if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
-  IS_READONLY=true
-  echo ":running:false" >> "$METADATA_FILE_TEMP"
-else
-  echo ":running:true" >> "$METADATA_FILE_TEMP"
-fi
-echo ":comment:$COMMENT" >> "$METADATA_FILE_TEMP"
-if [ "${COMMENT:-}" = "-" ]; then
-  if [ -t 0 ]; then
-    echo "Press Ctrl+D to finish" >&2
-  fi
-  cat >> "$METADATA_FILE_TEMP"
-fi
-echo ":comment-end:" >> "$METADATA_FILE_TEMP"
 
 #
 # Done with checks. Above here nothing changed in the BTRFS filesystem. Below
@@ -219,27 +205,15 @@ if [ ${IS_READONLY:-false} = true ]; then
   fi
 fi
 
-# Create snapshots parent directories if requested.
-if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = true ]; then
-  if ! mkdir -p "$SNAPSHOTS_DIR_FULL"; then
-    echo "Failed to create directory '$SNAPSHOTS_DIR_FULL'." >&2
-    echo "Are you running this as root or with sudo?" >&2
-    exit 1
-  fi
-fi
-
-# Move metadata file into subvolume before snapshot.
-if ! mv "$METADATA_FILE_TEMP" "$METADATA_FILE_FULL"; then
-  echo "Failed to create file '$METADATA_FILE_FULL'." >&2
+# Create snapshots parent directories.
+if ! mkdir -p "$SNAPSHOT_PATH_MKDIR"; then
+  echo "Failed to create directory '$SNAPSHOT_PATH_MKDIR'." >&2
   echo "Are you running this as root or with sudo?" >&2
   exit 1
 fi
 
 # Create snapshot
 btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"
-
-# Remove snapshot metadata file.
-rm -f "$METADATA_FILE_FULL"
 
 # Remount subvolume as readonly if it was originally in that state.
 if [ ${IS_READONLY:-false} = true ]; then
@@ -254,6 +228,7 @@ fi
 #   - No metadata file, instead: .bsnaps/2026-08-02T10:48:01Z/snapshot-name/0MWNvbW1lbnQK
 #     - dir/date/name/runningComment (0this-is-a-comment == not running, 1 = running with no comment)
 #     - running is not b64 encoded, comment is, and that's catted to 0/1 prefix.
+# - Snapshot name validation (no nl, / *, etc)
 # - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
 #   - Create a new snapshot from the restored middle. Now there should be one more in -l.
