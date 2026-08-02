@@ -248,6 +248,12 @@ if [ ${IS_READONLY:-false} = true ]; then
 fi
 
 # TODO:
+# - Refactor AGAIN:
+#   - No need to mount before snapshot.
+#   - Restore: use btrfs subvol ID: "ID 257 gen 251 top level 5 path snapshots/three-run"
+#   - No metadata file, instead: .bsnaps/2026-08-02T10:48:01Z/snapshot-name/0MWNvbW1lbnQK
+#     - dir/date/name/runningComment (0this-is-a-comment == not running, 1 = running with no comment)
+#     - running is not b64 encoded, comment is, and that's catted to 0/1 prefix.
 # - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
 #   - Create a new snapshot from the restored middle. Now there should be one more in -l.
