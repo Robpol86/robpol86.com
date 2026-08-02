@@ -123,11 +123,11 @@ reboot
 
 Install scripts:
 
-```{literalinclude} _static/snapshot-take.sh
+```{literalinclude} _static/btrfs-snapshot.sh
 :language: bash
 ```
 
-```{literalinclude} _static/snapshot-module-setup.sh
+```{literalinclude} _static/btrfs-snapshot-module-setup.sh
 :language: bash
 ```
 
@@ -141,7 +141,7 @@ sudo lsinitramfs /boot/initrd.img |grep snap
 ::::{tab-set}
 :::{tab-item} rd.break
 ```bash
-snapshot-take name
+btrfs-snapshot name
 ```
 :::
 ::::
@@ -176,8 +176,6 @@ From:
 
 ## TODO
 
-- Create scripts, insert into rd as per rob86_com/rpi-luks instructions
-  - snapshot-take should work from initfs and normal environment with sudo
 - Install ubuntu without btrfs and run `sudo btrfs subvolume list -t /`
 - Test with @home and @root fs setup?
   - Find a popular guide on Ubuntu and btrfs

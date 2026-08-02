@@ -1,4 +1,4 @@
-"""Test snapshot-take.sh."""
+"""Test btrfs-snapshot.sh."""
 
 import os
 import re
@@ -14,13 +14,13 @@ MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 SNAPSHOTS_DIR = ".bsnaps"
 
 
-def run_snapshot_take(argv, **kwargs) -> str:
-    """Run snapshot-take script with arguments passed to it.
+def run(argv, **kwargs) -> str:
+    """Run btrfs-snapshot script with arguments passed to it.
 
     Output is converted to string and returned.
     """
     root = Path(__file__).parent / ".." / ".."
-    snapshot_take_path = root / "docs" / "posts" / "2026" / "_static" / "snapshot-take.sh"
+    snapshot_take_path = root / "docs" / "posts" / "2026" / "_static" / "btrfs-snapshot.sh"
     output = subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT, **kwargs)  # noqa: S603
     return output.decode("utf8")
 
@@ -111,7 +111,7 @@ def _subvolume(tmp_path: Path):
 
 def test_help():
     """Test script's handling of -h."""
-    output = run_snapshot_take(["-h"])
+    output = run(["-h"])
     lines = output.splitlines()
     assert lines[0].startswith("Usage: ")
     assert lines[-2].startswith("  -v ")
@@ -123,29 +123,29 @@ def test_help():
 def test_bad_args():
     """Test script's handling of bad CLI arguments."""
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take([])
+        run([])
     output = exc.value.output.decode("utf8")
     assert "requires exactly 1 argument" in output
 
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["a", "b", "c"])
+        run(["a", "b", "c"])
     output = exc.value.output.decode("utf8")
     assert "requires exactly 1 argument" in output
 
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-z"])
+        run(["-z"])
     output = exc.value.output.decode("utf8")
     assert "unknown flag: 'z'" in output
 
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-c"])
+        run(["-c"])
     output = exc.value.output.decode("utf8")
     assert "flag needs an argument: 'c'" in output
 
 
 def test_overide_defaults():
     """Make sure Usage string replacement for displaying defaults works."""
-    output = run_snapshot_take(["-dSNAPSHOTS", "-s/altroot", "-h"])
+    output = run(["-dSNAPSHOTS", "-s/altroot", "-h"])
     assert "Default: SNAPSHOTS\n" in output
     assert "Default: /altroot\n" in output
 
@@ -157,27 +157,27 @@ def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     # Test not BTRFS.
     monkeypatch.setenv("MOCK_STAT_BIG_T", "fat32")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS filesystem." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_BIG_T")
 
     # Test not a subvolume.
     monkeypatch.setenv("MOCK_STAT_LITTLE_I", "123")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
     # Test snapshot parent directory not exists.
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), snapshot_name])
     assert f"Snapshots directory '{subvolume / SNAPSHOTS_DIR}' does not exist." in exc.value.output.decode("utf8")
 
     # Test snapshot already exists.
     snapshot_path = subvolume / SNAPSHOTS_DIR / MOCK_UUID
     snapshot_path.mkdir(parents=True)
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), snapshot_name])
     assert f"Snapshot '{snapshot_path}' already exists" in exc.value.output.decode("utf8")
 
 
@@ -191,7 +191,7 @@ def test_happy_path(subvolume: Path, parents_create: bool):
     assert not expected_snapshot_path.exists()
 
     # Run.
-    output = run_snapshot_take((["-p"] if parents_create else []) + ["-v", "-s", str(subvolume), snapshot_name])
+    output = run((["-p"] if parents_create else []) + ["-v", "-s", str(subvolume), snapshot_name])
     assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
     assert expected_snapshot_path.is_dir()
 
@@ -208,7 +208,7 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
         (bin_dir / "findmnt").symlink_to(false_)
 
     # Run.
-    output = run_snapshot_take(["-vp", "-s", str(subvolume), snapshot_name])
+    output = run(["-vp", "-s", str(subvolume), snapshot_name])
     assert "Create readonly snapshot " in output
 
     # Check.
@@ -229,7 +229,7 @@ def test_metadata_comment(subvolume: Path):
     comment = "This is a test."
 
     # Run.
-    output = run_snapshot_take(["-vp", "-s", str(subvolume), "-c", comment, snapshot_name])
+    output = run(["-vp", "-s", str(subvolume), "-c", comment, snapshot_name])
     assert "Create readonly snapshot " in output
 
     # Check.
@@ -249,7 +249,7 @@ def test_metadata_comment_multiline(subvolume: Path):
     snapshot_name = "test_name"
 
     # Run.
-    output = run_snapshot_take(
+    output = run(
         ["-vp", "-s", str(subvolume), "-c-", snapshot_name],
         input="Multiline\ncomment.\n".encode("utf8"),
     )
@@ -276,7 +276,7 @@ def test_stale_metadata_file(subvolume: Path):
 
     metadata_file.write_text("stale")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-vp", "-s", str(subvolume), snapshot_name])
+        run(["-vp", "-s", str(subvolume), snapshot_name])
     assert f"Stale file '{metadata_file}' found." in exc.value.output.decode("utf8")
 
 
@@ -284,7 +284,7 @@ def test_list_snapshots_no_snapshots(subvolume: Path):
     """Test list with no snapshots."""
     # Run.
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-vl", "-s", str(subvolume)])
+        run(["-vl", "-s", str(subvolume)])
     assert "No snapshots found." in exc.value.output.decode("utf8")
 
 
@@ -309,7 +309,7 @@ def test_list_snapshots(subvolume: Path, alternative: bool):
     create_mock_snapshot(datetime.fromisoformat("2026-07-29 16:00:00"), "d", "four", False, "-\nMulti\nline\ncomment.")
 
     # Run.
-    output = run_snapshot_take(["-L" if alternative else "-l", "-s", str(subvolume)])
+    output = run(["-L" if alternative else "-l", "-s", str(subvolume)])
 
     # Check.
     if not alternative:

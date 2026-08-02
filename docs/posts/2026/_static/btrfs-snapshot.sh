@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# https://github.com/Robpol86/robpol86.com/blob/main/docs/posts/2026/_static/snapshot-take.sh
-# Save as (chmod +x): /sbin/snapshot-take
+# https://github.com/Robpol86/robpol86.com/blob/main/docs/posts/2026/_static/btrfs-snapshot.sh
+# Save as (chmod +x): /sbin/btrfs-snapshot
 
-# Usage: snapshot-take [OPTIONS] SNAPSHOT_NAME
+# Usage: btrfs-snapshot [OPTIONS] SNAPSHOT_NAME
 #
 # Take named BTRFS snapshots with comments.
 #
@@ -59,8 +59,8 @@ while getopts :c:d:hlps:v OPT; do
 done
 shift "$((OPTIND-1))"
 if [ $# != 1 ] && [ ${LIST_ONLY:-false} = false ]; then
-  echo "'snapshot-take' requires exactly 1 argument." >&2
-  echo "See 'snapshot-take -h'." >&2
+  echo "'btrfs-snapshot' requires exactly 1 argument." >&2
+  echo "See 'btrfs-snapshot -h'." >&2
   exit 1
 fi
 SNAPSHOT_NAME="${1:-}"
@@ -169,7 +169,7 @@ fi
 # Check if snapshots parent directories exist.
 if [ ! -d "$SNAPSHOTS_DIR_FULL" ] && [ ${PARENTS_CREATE:-false} = false ]; then
   echo "Snapshots directory '$SNAPSHOTS_DIR_FULL' does not exist." >&2
-  echo "See 'snapshot-take -h'." >&2
+  echo "See 'btrfs-snapshot -h'." >&2
   exit 1
   # TODO confirm conditional works
 fi
@@ -248,8 +248,7 @@ if [ ${IS_READONLY:-false} = true ]; then
 fi
 
 # TODO:
-# - Rename script from snapshot-take.sh to btrfs-snapshot.sh.
-#   - Delete all snapshots on me-mini and create four new ones with latest script.
+# - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
 #   - Create a new snapshot from the restored middle. Now there should be one more in -l.
 # - @root and @home: can snapshots live in other subvols? Probably not.
