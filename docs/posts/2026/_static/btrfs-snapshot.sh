@@ -165,12 +165,11 @@ if [ "${COMMENT:-}" = "-" ]; then
   if [ -t 0 ]; then
     echo "Press Ctrl+D to finish" >&2
   fi
-  COMMENT_B64="$(base64)"
+  COMMENT_B64="$(base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g')"  # Y64.
 elif [ -n "${COMMENT:-}" ]; then
-  COMMENT_B64="$(echo "$COMMENT" |base64)"
+  COMMENT_B64="$(echo "$COMMENT" |base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g')"  # Y64.
 fi
 # TODO if comment > limit: fail.
-# TODO make base64 path-safe
 
 IS_READONLY=
 SNAPSHOT_PATH=
