@@ -157,7 +157,6 @@ if [ ${LIST_ONLY:-false} = true ]; then
       print
     }
   ' "$stat_output_file"
-  # TODO for more snapshots run: snapshot-restore -l
   exit 0
 fi
 
@@ -250,7 +249,6 @@ fi
 
 # TODO:
 # - Rename script from snapshot-take.sh to btrfs-snapshot.sh.
-#   - Move TODOs from restore script here and then delete restore script
 #   - Add bss alias in module-setup.
 #   - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
@@ -271,3 +269,22 @@ fi
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 # - Cleanup tmp files.
 # - Test missing snapshot name in nfo file
+# TODOs restore:
+# - No no args or bad name list available snapshots
+#   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
+# - Test take+restore multiple times, creating complex nesting.
+# - Restore: mv nfo to .restored.17234567899
+#   - If user makes a new snapshot from a restored one we don’t want a collision.
+# - When run from mounted:
+#       Restore 0:"name"?
+#       Y
+#       Restored 0 to default.
+#       Reboot for changes to take effect.
+#       Run "..." to revert.
+# - When run from rd.break:
+#       Restore 0:"name"?
+#       Y
+#       Remounted ... rw
+#       Restored 0 to default.
+#       Remounted ... ro
+#       Run "..." to revert.

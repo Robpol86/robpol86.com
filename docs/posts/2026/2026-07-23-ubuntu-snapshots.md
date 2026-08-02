@@ -127,10 +127,6 @@ Install scripts:
 :language: bash
 ```
 
-```{literalinclude} _static/snapshot-restore.sh
-:language: bash
-```
-
 ```{literalinclude} _static/snapshot-module-setup.sh
 :language: bash
 ```
@@ -146,7 +142,6 @@ sudo lsinitramfs /boot/initrd.img |grep snap
 :::{tab-item} rd.break
 ```bash
 snapshot-take name
-snapshot-restore name
 ```
 :::
 ::::

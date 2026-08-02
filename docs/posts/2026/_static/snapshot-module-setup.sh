@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Copy snapshot-take and snapshot-restore into initramfs image.
+# Copy snapshot-take into initramfs image.
 # https://github.com/Robpol86/robpol86.com/blob/main/docs/posts/2026/_static/snapshot-module-setup.sh
 # Save as (chmod +x): /usr/lib/dracut/modules.d/82snapshot/module-setup.sh
 #
@@ -22,5 +22,4 @@ install() {
     sed -i \
         -e '/^SUBVOLUME_DIR=.*@MODULE-SETUP-REPLACE@/ s|=.*|=/sysroot|' \
         "${initdir:?}/sbin/snapshot-take"
-    inst "${moddir:?}/snapshot-restore.sh" /sbin/snapshot-restore
 }
