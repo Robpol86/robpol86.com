@@ -16,7 +16,14 @@ depends() {
 }
 
 install() {
-    inst_multiple /usr/bin/awk /usr/bin/cut /usr/bin/sort /usr/bin/wc /usr/bin/xargs
+    inst_multiple \
+        /usr/bin/awk \
+        /usr/bin/base64 \
+        /usr/bin/cut \
+        /usr/bin/date \
+        /usr/bin/sort \
+        /usr/bin/wc \
+        /usr/bin/xargs
 
     inst /sbin/btrfs-snapshot /sbin/btrfs-snapshot
     sed -i \
