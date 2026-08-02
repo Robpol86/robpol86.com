@@ -273,6 +273,7 @@ fi
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 # - Cleanup tmp files.
 # - Test missing snapshot name in nfo file
+# - Optimize: drop Dracut dependencies for POSIX shell tricks
 # TODOs restore:
 # - No no args or bad name list available snapshots
 #   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
