@@ -11,7 +11,7 @@ from textwrap import dedent
 import pytest
 
 MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-SNAPSHOTS_DIR = "snapshots"
+SNAPSHOTS_DIR = ".bsnaps"
 
 
 def run_snapshot_take(argv, **kwargs) -> str:
@@ -116,7 +116,7 @@ def test_help():
     assert lines[0].startswith("Usage: ")
     assert lines[-2].startswith("  -v ")
     assert lines[-1] == ""
-    assert "Default: snapshots\n" in output
+    assert "Default: .bsnaps\n" in output
     assert "Default: /\n" in output
 
 

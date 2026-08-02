@@ -30,7 +30,7 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 METADATA_FILE=.snapshot.nfo
 
 COMMENT=
-SNAPSHOTS_DIR=snapshots  # TODO .btrfs-snapshots
+SNAPSHOTS_DIR=.bsnaps
 LIST_ONLY=
 PARENTS_CREATE=
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
