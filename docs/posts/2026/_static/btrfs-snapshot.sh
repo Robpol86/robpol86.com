@@ -78,6 +78,9 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
+  btrfs subv list -rs / |grep " path .bsnaps/"  # TODO if fail need sudo?
+
+
   set -- "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"
   if [ ! -e "$1" ]; then
     echo "No snapshots found." >&2
@@ -169,13 +172,11 @@ fi
 # TODO if comment > limit: fail.
 # TODO make base64 path-safe
 
-DATE=
 IS_READONLY=
 SNAPSHOT_PATH=
 
 # Determine snapshot path.
-DATE="$(date -u '+%FT%TZ')"
-SNAPSHOT_PATH_MKDIR="$SNAPSHOTS_DIR_FULL/$DATE/$SNAPSHOT_NAME"
+SNAPSHOT_PATH_MKDIR="$SNAPSHOTS_DIR_FULL/$SNAPSHOT_NAME"
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
   SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/0$COMMENT_B64"
@@ -249,6 +250,7 @@ fi
 # - Cleanup tmp files.
 # - Test missing snapshot name in nfo file
 # - Optimize: drop Dracut dependencies for POSIX shell tricks
+# - Test different locales, does btrfs and other command outputs change (e.g. btrfs subv l otime timestamp)
 # TODOs restore:
 # - No no args or bad name list available snapshots
 #   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
