@@ -22,4 +22,5 @@ install() {
     sed -i \
         -e '/^SUBVOLUME_DIR=.*@MODULE-SETUP-REPLACE@/ s|=.*|=/sysroot|' \
         "${initdir:?}/sbin/snapshot-take"
+    ln -s snapshot-take "${initdir:?}/sbin/bss"
 }

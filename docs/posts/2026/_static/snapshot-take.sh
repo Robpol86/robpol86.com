@@ -249,7 +249,6 @@ fi
 
 # TODO:
 # - Rename script from snapshot-take.sh to btrfs-snapshot.sh.
-#   - Add bss alias in module-setup.
 #   - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
 #   - Create a new snapshot from the restored middle. Now there should be one more in -l.
