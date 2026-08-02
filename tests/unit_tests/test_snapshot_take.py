@@ -1,6 +1,7 @@
 """Test snapshot-take.sh."""
 
 import os
+import re
 import shutil
 import subprocess
 from datetime import datetime
@@ -296,36 +297,49 @@ def test_list_snapshots_no_snapshots(subvolume: Path):
     assert "No snapshots found." in exc.value.output.decode("utf8")
 
 
-def test_list_snapshots(subvolume: Path):
+@pytest.mark.parametrize("alternative", [False, True])
+def test_list_snapshots(subvolume: Path, alternative: bool):
     """Test listing snapshots."""
+    if alternative:
+        pytest.skip()
     snapshots_dir = "snapshots"
 
     # Create mock snapshots.
-    def create_mock_snapshot(date: datetime, name: str, running: bool, comment: str):
-        _snapshot_dir = subvolume / snapshots_dir / name
+    def create_mock_snapshot(date: datetime, uuid_letter: str, name: str, running: bool, comment: str):
+        _snapshot_dir = subvolume / snapshots_dir / re.sub(r"[a-z]", uuid_letter, MOCK_UUID)
         _snapshot_dir.mkdir(parents=True)
         _snapshot_metadata = _snapshot_dir / ".snapshot.nfo"
-        _snapshot_metadata.write_text(f":running:{str(running).lower()}\n:comment:{comment}\n:comment-end:\n")
+        _snapshot_metadata.write_text(f":name:{name}\n:running:{str(running).lower()}\n:comment:{comment}\n:comment-end:\n")
         timestamp = date.timestamp()
         os.utime(_snapshot_metadata, (timestamp, timestamp))
 
-    create_mock_snapshot(datetime.fromisoformat("2026-07-29 13:00:00"), "one", False, "")
-    create_mock_snapshot(datetime.fromisoformat("2026-07-29 14:00:00"), "two", True, "")
-    create_mock_snapshot(datetime.fromisoformat("2026-07-29 15:00:00"), "three", False, "Single line comment.")
-    create_mock_snapshot(datetime.fromisoformat("2026-07-29 16:00:00"), "four", False, "-\nMulti\nline\ncomment.")
+    create_mock_snapshot(datetime.fromisoformat("2026-07-29 13:00:00"), "a", "one", False, "")
+    create_mock_snapshot(datetime.fromisoformat("2026-07-29 14:00:00"), "b", "two", True, "")
+    create_mock_snapshot(datetime.fromisoformat("2026-07-29 15:00:00"), "c", "three", False, "Single line comment.")
+    create_mock_snapshot(datetime.fromisoformat("2026-07-29 16:00:00"), "d", "four", False, "-\nMulti\nline\ncomment.")
 
     # Run.
-    output = run_snapshot_take(["-l", "-d", snapshots_dir, "-s", str(subvolume)])
+    output = run_snapshot_take(["-L" if alternative else "-l", "-d", snapshots_dir, "-s", str(subvolume)])
 
     # Check.
-    expected = dedent("""\
-        Date          Running? Name              Comment
-        -------------------------------------------------------------------------------
-        2026-07-29 13:00:00    one
-        2026-07-29 14:00:00  * two
-        2026-07-29 15:00:00    three             Single line comment.
-        2026-07-29 16:00:00    four              Multi
-                                                 line
-                                                 comment.
-    """)
+    if not alternative:
+        expected = dedent("""\
+            Date          Running? Name              Comment
+            -------------------------------------------------------------------------------
+            2026-07-29 13:00:00    one
+            2026-07-29 14:00:00  * two
+            2026-07-29 15:00:00    three             Single line comment.
+            2026-07-29 16:00:00    four              Multi
+                                                     line
+                                                     comment.
+        """)
+    else:
+        expected = dedent("""\
+            Date          Running? Name              Path
+            -------------------------------------------------------------------------------
+            2026-07-29 13:00:00    one               /todo/uuid
+            2026-07-29 14:00:00  * two               /todo/uuid
+            2026-07-29 15:00:00    three             /todo/uuid
+            2026-07-29 16:00:00    four              /todo/uuid
+        """)
     assert output == expected

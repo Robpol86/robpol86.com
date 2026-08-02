@@ -94,23 +94,17 @@ if [ ${LIST_ONLY:-false} = true ]; then
   stat_output_file="/tmp/nfo_mtimes.$UUID.txt"
   stat -c "%y %n" "$@" |sort > "$stat_output_file"
   y_col_width="$(stat -c "%y " "$1" |wc -c)"
+  name_col_width="$(grep -hPo ":name:\K.+" "$@" |wc -L)"  # TODO -L is GNU, avoid
   # shellcheck disable=SC2016
-  cut -c"$y_col_width"- "$stat_output_file" |xargs awk -v y_col_width="$y_col_width" '
-    function get_snapshot_name(filepath) {
-      split(filepath, arr, "/")
-      return arr[length(arr)-1]
-    }
+  cut -c"$y_col_width"- "$stat_output_file" |xargs awk -v y_col_width="$y_col_width" -v name_col_width="$name_col_width" '
     BEGIN {
       col_padding_mtime = 20
       col_padding_running = 1
       col_padding_name = 15
       # Dynamic name column.
       max_padding = 30
-      for (i=2; i<ARGC; i++) {
-        col_length = length(get_snapshot_name(ARGV[i]))
-        if (col_length > max_padding) col_padding_name = max_padding
-        else if (col_length > col_padding_name) col_padding_name = col_length
-      }
+      if (name_col_width > max_padding) col_padding_name = max_padding
+      else if (name_col_width > col_padding_name) col_padding_name = col_length
       # Print header.
       printf("%-"col_padding_mtime-7"s %-"col_padding_running+7"s %-"col_padding_name"s   %s\n", "Date", "Running?", "Name", "Comment")
       hr = sprintf("%*s", 79, "-")
@@ -118,18 +112,21 @@ if [ ${LIST_ONLY:-false} = true ]; then
       print(hr)
     }
     NR==FNR {  # First file.
-      # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/snapshot-name/.snapshot.nfo
-      # out e.g. mtimes["/snapshots/snapshot-name/.snapshot.nfo"]="2026-07-29 10:36:22"
+      # in e.g.  2026-07-29 10:36:22.135998514 +0000 /snapshots/uuiduuid-uuid-uuiduuid/.snapshot.nfo
+      # out e.g. mtimes["/snapshots/uuiduuid-uuid-uuiduuid/.snapshot.nfo"]="2026-07-29 10:36:22"
       filedate = gensub(/(^[0-9 :-]+).*/, "\\1", "1")
       filepath = substr($0, y_col_width)
       mtimes[filepath] = filedate
       next
     }
     BEGINFILE {
-      snapshot_name = get_snapshot_name(FILENAME)
       mtime = mtimes[FILENAME]
+      snapshot_name = ""
       running = ""
       in_comment = 0
+    }
+    match($0, /^:name:(.+)/, arr) {
+      snapshot_name = arr[1]
     }
     /^:running:t/ { running = "*"; next }
     /^:comment:$/ {
@@ -139,7 +136,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
     }
     /^:comment:[^-]/ {
       # Single-line commment.
-      match($0, /:comment:(.+)/, arr)
+      match($0, /^:comment:(.+)/, arr)
       comment = arr[1]
       printf("%-"col_padding_mtime"s %-"col_padding_running"s %-"col_padding_name"s   %s\n", mtime, running, snapshot_name, comment)
       nextfile
@@ -265,3 +262,5 @@ fi
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
 # - Don't use awk.
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
+# - Cleanup tmp files.
+# - Test missing snapshot name in nfo file
