@@ -81,8 +81,8 @@ if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
 fi
 
 SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
-SNAPSHOT_PATH="$SNAPSHOTS_DIR_FULL/$SNAPSHOT_NAME"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
+SNAPSHOT_PATH="$SNAPSHOTS_DIR_FULL/$UUID"
 
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
@@ -167,7 +167,6 @@ fi
 # Fail if snapshot already exists.
 if [ -e "$SNAPSHOT_PATH" ]; then
   echo "Snapshot '$SNAPSHOT_PATH' already exists." >&2
-  echo "Run 'snapshot-take -l' to list existing snapshots." >&2
   exit 1
 fi
 
@@ -182,7 +181,7 @@ fi
 METADATA_FILE_FULL="${SUBVOLUME_DIR%/}/$METADATA_FILE"
 
 # Check if metadata file already exists.
-if [ -s "$METADATA_FILE_FULL" ]; then
+if [ -e "$METADATA_FILE_FULL" ]; then
   echo "Stale file '$METADATA_FILE_FULL' found." >&2
   echo "File must be removed before trying again." >&2
   exit 1
@@ -192,11 +191,12 @@ METADATA_FILE_TEMP="/tmp/$METADATA_FILE.$UUID"
 IS_READONLY=
 
 # Create snapshot metadata file in a temporary location.
+(umask 022; echo ":name:$SNAPSHOT_NAME" > "$METADATA_FILE_TEMP")
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
-  (umask 022; echo ":running:false" > "$METADATA_FILE_TEMP")
+  echo ":running:false" >> "$METADATA_FILE_TEMP"
 else
-  (umask 022; echo ":running:true" > "$METADATA_FILE_TEMP")
+  echo ":running:true" >> "$METADATA_FILE_TEMP"
 fi
 echo ":comment:$COMMENT" >> "$METADATA_FILE_TEMP"
 if [ "${COMMENT:-}" = "-" ]; then
@@ -263,5 +263,5 @@ fi
 # - Checks:
 #   - if snapshots-dir has a leading / is it the same as subvolume?
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
+# - Don't use awk.
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
-# - Redesign: /snapshots/uuid/.snapshot.nfo: :name:Name

@@ -9,6 +9,8 @@ from textwrap import dedent
 
 import pytest
 
+MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+
 
 def run_snapshot_take(argv, **kwargs) -> str:
     """Run snapshot-take script with arguments passed to it.
@@ -91,7 +93,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
 
     # Mock UUID file for macOS.
     mock_uuid_file = tmp_path / "uuid.txt"
-    mock_uuid_file.write_text("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\n")
+    mock_uuid_file.write_text(f"{MOCK_UUID}\n")
     monkeypatch.setenv("KERNEL_UUID_FILE", str(mock_uuid_file))
 
     return bin_dir
@@ -171,7 +173,7 @@ def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     assert f"Snapshots directory '{subvolume / snapshots_dir}' does not exist." in exc.value.output.decode("utf8")
 
     # Test snapshot already exists.
-    snapshot_path = subvolume / snapshots_dir / snapshot_name
+    snapshot_path = subvolume / snapshots_dir / MOCK_UUID
     snapshot_path.mkdir(parents=True)
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
@@ -185,7 +187,7 @@ def test_happy_path(subvolume: Path, parents_create: bool):
     if not parents_create:
         (subvolume / snapshots_dir).mkdir()
     snapshot_name = "test_name"
-    expected_snapshot_path = subvolume / snapshots_dir / snapshot_name
+    expected_snapshot_path = subvolume / snapshots_dir / MOCK_UUID
     assert not expected_snapshot_path.exists()
 
     # Run.
@@ -213,9 +215,10 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
     assert "Create readonly snapshot " in output
 
     # Check.
-    metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"
+    metadata_file = subvolume / snapshots_dir / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
+        :name:{snapshot_name}
         :running:{"true" if running else "false"}
         :comment:
         :comment-end:
@@ -234,9 +237,10 @@ def test_metadata_comment(subvolume: Path):
     assert "Create readonly snapshot " in output
 
     # Check.
-    metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"
+    metadata_file = subvolume / snapshots_dir / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
+        :name:{snapshot_name}
         :running:false
         :comment:{comment}
         :comment-end:
@@ -257,9 +261,10 @@ def test_metadata_comment_multiline(subvolume: Path):
     assert "Create readonly snapshot " in output
 
     # Check.
-    metadata_file = subvolume / snapshots_dir / snapshot_name / ".snapshot.nfo"
+    metadata_file = subvolume / snapshots_dir / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
-    metadata_file_contents_expected = dedent("""\
+    metadata_file_contents_expected = dedent(f"""\
+        :name:{snapshot_name}
         :running:false
         :comment:-
         Multiline
