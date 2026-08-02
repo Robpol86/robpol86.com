@@ -11,6 +11,7 @@ from textwrap import dedent
 import pytest
 
 MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+SNAPSHOTS_DIR = "snapshots"
 
 
 def run_snapshot_take(argv, **kwargs) -> str:
@@ -151,50 +152,46 @@ def test_overide_defaults():
 
 def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     """Test sanity checks related to BTRFS before making changes to the filesystem."""
-    snapshots_dir = "snapshots"
     snapshot_name = "test_name"
 
     # Test not BTRFS.
     monkeypatch.setenv("MOCK_STAT_BIG_T", "fat32")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+        run_snapshot_take(["-v", "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS filesystem." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_BIG_T")
 
     # Test not a subvolume.
     monkeypatch.setenv("MOCK_STAT_LITTLE_I", "123")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+        run_snapshot_take(["-v", "-s", str(subvolume), snapshot_name])
     assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
     # Test snapshot parent directory not exists.
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
-    assert f"Snapshots directory '{subvolume / snapshots_dir}' does not exist." in exc.value.output.decode("utf8")
+        run_snapshot_take(["-v", "-s", str(subvolume), snapshot_name])
+    assert f"Snapshots directory '{subvolume / SNAPSHOTS_DIR}' does not exist." in exc.value.output.decode("utf8")
 
     # Test snapshot already exists.
-    snapshot_path = subvolume / snapshots_dir / MOCK_UUID
+    snapshot_path = subvolume / SNAPSHOTS_DIR / MOCK_UUID
     snapshot_path.mkdir(parents=True)
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+        run_snapshot_take(["-v", "-s", str(subvolume), snapshot_name])
     assert f"Snapshot '{snapshot_path}' already exists" in exc.value.output.decode("utf8")
 
 
 @pytest.mark.parametrize("parents_create", [True, False])
 def test_happy_path(subvolume: Path, parents_create: bool):
     """Test creating a snapshot."""
-    snapshots_dir = "snapshots"
     if not parents_create:
-        (subvolume / snapshots_dir).mkdir()
+        (subvolume / SNAPSHOTS_DIR).mkdir()
     snapshot_name = "test_name"
-    expected_snapshot_path = subvolume / snapshots_dir / MOCK_UUID
+    expected_snapshot_path = subvolume / SNAPSHOTS_DIR / MOCK_UUID
     assert not expected_snapshot_path.exists()
 
     # Run.
-    output = run_snapshot_take(
-        (["-p"] if parents_create else []) + ["-v", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name]
-    )
+    output = run_snapshot_take((["-p"] if parents_create else []) + ["-v", "-s", str(subvolume), snapshot_name])
     assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
     assert expected_snapshot_path.is_dir()
 
@@ -202,7 +199,6 @@ def test_happy_path(subvolume: Path, parents_create: bool):
 @pytest.mark.parametrize("running", [False, True])
 def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
     """Test snapshot metadata file."""
-    snapshots_dir = "snapshots"
     snapshot_name = "test_name"
 
     # Mock.
@@ -212,11 +208,11 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
         (bin_dir / "findmnt").symlink_to(false_)
 
     # Run.
-    output = run_snapshot_take(["-vp", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+    output = run_snapshot_take(["-vp", "-s", str(subvolume), snapshot_name])
     assert "Create readonly snapshot " in output
 
     # Check.
-    metadata_file = subvolume / snapshots_dir / MOCK_UUID / ".snapshot.nfo"
+    metadata_file = subvolume / SNAPSHOTS_DIR / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
         :name:{snapshot_name}
@@ -229,16 +225,15 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
 
 def test_metadata_comment(subvolume: Path):
     """Test user comments in the snapshot metadata file.."""
-    snapshots_dir = "snapshots"
     snapshot_name = "test_name"
     comment = "This is a test."
 
     # Run.
-    output = run_snapshot_take(["-vp", "-d", snapshots_dir, "-s", str(subvolume), "-c", comment, snapshot_name])
+    output = run_snapshot_take(["-vp", "-s", str(subvolume), "-c", comment, snapshot_name])
     assert "Create readonly snapshot " in output
 
     # Check.
-    metadata_file = subvolume / snapshots_dir / MOCK_UUID / ".snapshot.nfo"
+    metadata_file = subvolume / SNAPSHOTS_DIR / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
         :name:{snapshot_name}
@@ -251,18 +246,17 @@ def test_metadata_comment(subvolume: Path):
 
 def test_metadata_comment_multiline(subvolume: Path):
     """Test user comments from stdin in the snapshot metadata file."""
-    snapshots_dir = "snapshots"
     snapshot_name = "test_name"
 
     # Run.
     output = run_snapshot_take(
-        ["-vp", "-d", snapshots_dir, "-s", str(subvolume), "-c-", snapshot_name],
+        ["-vp", "-s", str(subvolume), "-c-", snapshot_name],
         input="Multiline\ncomment.\n".encode("utf8"),
     )
     assert "Create readonly snapshot " in output
 
     # Check.
-    metadata_file = subvolume / snapshots_dir / MOCK_UUID / ".snapshot.nfo"
+    metadata_file = subvolume / SNAPSHOTS_DIR / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
         :name:{snapshot_name}
@@ -277,23 +271,20 @@ def test_metadata_comment_multiline(subvolume: Path):
 
 def test_stale_metadata_file(subvolume: Path):
     """Test handling when stale metadata file is present."""
-    snapshots_dir = "snapshots"
     snapshot_name = "test_name"
     metadata_file = subvolume / ".snapshot.nfo"  # Stale file in subvolume from previous attempt.
 
     metadata_file.write_text("stale")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-vp", "-d", snapshots_dir, "-s", str(subvolume), snapshot_name])
+        run_snapshot_take(["-vp", "-s", str(subvolume), snapshot_name])
     assert f"Stale file '{metadata_file}' found." in exc.value.output.decode("utf8")
 
 
 def test_list_snapshots_no_snapshots(subvolume: Path):
     """Test list with no snapshots."""
-    snapshots_dir = "snapshots"
-
     # Run.
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run_snapshot_take(["-vl", "-d", snapshots_dir, "-s", str(subvolume)])
+        run_snapshot_take(["-vl", "-s", str(subvolume)])
     assert "No snapshots found." in exc.value.output.decode("utf8")
 
 
@@ -302,11 +293,10 @@ def test_list_snapshots(subvolume: Path, alternative: bool):
     """Test listing snapshots."""
     if alternative:
         pytest.skip()
-    snapshots_dir = "snapshots"  # TODO module variable
 
     # Create mock snapshots.
     def create_mock_snapshot(date: datetime, uuid_letter: str, name: str, running: bool, comment: str):
-        _snapshot_dir = subvolume / snapshots_dir / re.sub(r"[a-z]", uuid_letter, MOCK_UUID)
+        _snapshot_dir = subvolume / SNAPSHOTS_DIR / re.sub(r"[a-z]", uuid_letter, MOCK_UUID)
         _snapshot_dir.mkdir(parents=True)
         _snapshot_metadata = _snapshot_dir / ".snapshot.nfo"
         _snapshot_metadata.write_text(f":name:{name}\n:running:{str(running).lower()}\n:comment:{comment}\n:comment-end:\n")
@@ -319,7 +309,7 @@ def test_list_snapshots(subvolume: Path, alternative: bool):
     create_mock_snapshot(datetime.fromisoformat("2026-07-29 16:00:00"), "d", "four", False, "-\nMulti\nline\ncomment.")
 
     # Run.
-    output = run_snapshot_take(["-L" if alternative else "-l", "-d", snapshots_dir, "-s", str(subvolume)])
+    output = run_snapshot_take(["-L" if alternative else "-l", "-s", str(subvolume)])
 
     # Check.
     if not alternative:
@@ -338,12 +328,12 @@ def test_list_snapshots(subvolume: Path, alternative: bool):
             Date          Running? Name              Path v
             -------------------------------------------------------------------------------
             2026-07-29 13:00:00    one
-                {subvolume / snapshots_dir}/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                {subvolume / SNAPSHOTS_DIR}/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
             2026-07-29 14:00:00  * two
-                {subvolume / snapshots_dir}/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+                {subvolume / SNAPSHOTS_DIR}/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
             2026-07-29 15:00:00    three
-                {subvolume / snapshots_dir}/cccccccc-cccc-cccc-cccc-cccccccccccc
+                {subvolume / SNAPSHOTS_DIR}/cccccccc-cccc-cccc-cccc-cccccccccccc
             2026-07-29 16:00:00    four
-                {subvolume / snapshots_dir}/dddddddd-dddd-dddd-dddd-dddddddddddd
+                {subvolume / SNAPSHOTS_DIR}/dddddddd-dddd-dddd-dddd-dddddddddddd
         """)
     assert output == expected
