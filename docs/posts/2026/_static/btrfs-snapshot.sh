@@ -136,7 +136,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
       date = $5
       split($6, arr, "/")
       name = arr[2]
-      running = substr(arr[3], 1, 1)
+      running = substr(arr[3], 1, 1) == "1" ? "*" : ""
       comment = y64_decode(substr(arr[3], 2))
 
       # Print row.
