@@ -239,18 +239,6 @@ def test_metadata_comment_multiline(subvolume: Path):
     assert metadata_file_contents == metadata_file_contents_expected
 
 
-def test_stale_metadata_file(subvolume: Path):
-    """Test handling when stale metadata file is present."""
-    pytest.skip()  # TODO remove this test
-
-    metadata_file = subvolume / ".snapshot.nfo"  # Stale file in subvolume from previous attempt.
-
-    metadata_file.write_text("stale")
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
-    assert f"Stale file '{metadata_file}' found." in exc.value.output.decode("utf8")
-
-
 def test_list_snapshots_no_snapshots(subvolume: Path):
     """Test list with no snapshots."""
     # Run.
