@@ -248,6 +248,7 @@ fi
 
 # TODO:
 # - Abandon Y64, use safer characters, avoid '-'.
+#   - Sed only one char: / with _
 # - Running/not flag: r or _
 # - Strip head/tail newlines/spaces in comment.
 # - Refactor AGAIN:
