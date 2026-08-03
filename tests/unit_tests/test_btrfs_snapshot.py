@@ -175,21 +175,11 @@ def test_take_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     assert f"Snapshot '{snapshot_path}' already exists" in exc.value.output.decode("utf8")
 
 
-def test_take_happy_path(subvolume: Path):
-    """Test creating a snapshot."""
-    expected_snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / "0"
-    assert not expected_snapshot_path.exists()
-
-    # Run.
-    output = run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
-    assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
-    assert expected_snapshot_path.is_dir()
-
-
 @pytest.mark.parametrize("running", [False, True])
-def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
-    """Test snapshot metadata file."""
-    pytest.skip()  # TODO remove this test
+def test_take_happy_path(subvolume: Path, bin_dir: Path, running: bool):
+    """Test creating a snapshot."""
+    expected_snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / ("1" if running else "0")
+    assert not expected_snapshot_path.exists()
 
     # Mock.
     if running:
@@ -199,18 +189,8 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
 
     # Run.
     output = run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
-    assert "Create readonly snapshot " in output
-
-    # Check.
-    metadata_file = subvolume / SNAPSHOTS_DIR / MOCK_UUID / ".snapshot.nfo"
-    metadata_file_contents = metadata_file.read_text()
-    metadata_file_contents_expected = dedent(f"""\
-        :name:{SNAPSHOT_NAME}
-        :running:{"true" if running else "false"}
-        :comment:
-        :comment-end:
-    """)
-    assert metadata_file_contents == metadata_file_contents_expected
+    assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
+    assert expected_snapshot_path.is_dir()
 
 
 def test_metadata_comment(subvolume: Path):
