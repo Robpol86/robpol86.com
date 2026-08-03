@@ -157,8 +157,13 @@ if [ ${LIST_ONLY:-false} = true ]; then
                id, date, running, name, comment)
       } else {
         # Multi-line comment.
-        # TODO split nl.
-        print "TODO"
+        split(comment, arr, "\n")
+        printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %-"padding_name"s   %s\n",
+               id, date, running, name, arr[1])
+        for (i=2; i<length(arr); i++) {
+          printf("%*s", padding_id+padding_date+padding_running+padding_name+7, "")
+          print arr[i]
+        }
       }
     }
   ' "$snapshot_list_file" "$snapshot_list_file"
@@ -307,8 +312,7 @@ if [ ${IS_READONLY:-false} = true ]; then
 fi
 
 # TODO:
-# - y64_encode() and y64_decode()
-#   - Name and Comment automatically y64 encoded on regex. Prefix with b or _
+# - Abandon Y64, use safer characters, avoid '-'.
 # - Running/not flag: r or _
 # - Strip head/tail newlines/spaces in comment.
 # - Refactor AGAIN:
