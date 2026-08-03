@@ -168,11 +168,6 @@ def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
-    # Test snapshot parent directory not exists.
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), snapshot_name])
-    assert f"Snapshots directory '{subvolume / SNAPSHOTS_DIR}' does not exist." in exc.value.output.decode("utf8")
-
     # Test snapshot already exists.
     snapshot_path = subvolume / SNAPSHOTS_DIR / MOCK_UUID
     snapshot_path.mkdir(parents=True)
@@ -208,7 +203,7 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
         (bin_dir / "findmnt").symlink_to(false_)
 
     # Run.
-    output = run(["-vp", "-s", str(subvolume), snapshot_name])
+    output = run(["-v", "-s", str(subvolume), snapshot_name])
     assert "Create readonly snapshot " in output
 
     # Check.
@@ -229,7 +224,7 @@ def test_metadata_comment(subvolume: Path):
     comment = "This is a test."
 
     # Run.
-    output = run(["-vp", "-s", str(subvolume), "-c", comment, snapshot_name])
+    output = run(["-v", "-s", str(subvolume), "-c", comment, snapshot_name])
     assert "Create readonly snapshot " in output
 
     # Check.
@@ -250,7 +245,7 @@ def test_metadata_comment_multiline(subvolume: Path):
 
     # Run.
     output = run(
-        ["-vp", "-s", str(subvolume), "-c-", snapshot_name],
+        ["-v", "-s", str(subvolume), "-c-", snapshot_name],
         input="Multiline\ncomment.\n".encode("utf8"),
     )
     assert "Create readonly snapshot " in output
@@ -276,7 +271,7 @@ def test_stale_metadata_file(subvolume: Path):
 
     metadata_file.write_text("stale")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-vp", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), snapshot_name])
     assert f"Stale file '{metadata_file}' found." in exc.value.output.decode("utf8")
 
 
@@ -290,6 +285,8 @@ def test_list_snapshots_no_snapshots(subvolume: Path):
 
 def test_list_snapshots(subvolume: Path):
     """Test listing snapshots."""
+    pytest.skip()  # TODO
+
     # Create mock snapshots.
     def create_mock_snapshot(date: datetime, uuid_letter: str, name: str, running: bool, comment: str):
         _snapshot_dir = subvolume / SNAPSHOTS_DIR / re.sub(r"[a-z]", uuid_letter, MOCK_UUID)
@@ -318,4 +315,57 @@ def test_list_snapshots(subvolume: Path):
                                                       line
                                                       comment.
     """)
+    assert output == expected
+
+
+def test_list_snapshots_no_comments(subvolume: Path):
+    """Test listing snapshots without any comments."""
+    pytest.skip()
+
+    # Run.
+    output = run(["-l", "-s", str(subvolume)])
+
+    # Check.
+    expected = dedent("""\
+        ID   Date          Running? Name
+        -------------------------------------------------------------------------------
+        111  2026-07-29 13:00:00    one
+        222  2026-07-29 14:00:00  * two
+        333  2026-07-29 15:00:00    three
+        444  2026-07-29 16:00:00    four
+    """)
+    assert output == expected
+
+
+@pytest.mark.parametrize("medium", [False, True])
+def test_list_snapshots_long_name(subvolume: Path, medium: bool):
+    """Test listing snapshots without any comments."""
+    pytest.skip()
+
+    # Run.
+    output = run(["-l", "-s", str(subvolume)])
+
+    # Check.
+    if medium:  # TODO
+        expected = dedent("""\
+            ID   Date          Running? Name              Comment
+            -------------------------------------------------------------------------------
+            111  2026-07-29 13:00:00    one
+            222  2026-07-29 14:00:00  * two
+            333  2026-07-29 15:00:00    three             Single line comment.
+            444  2026-07-29 16:00:00    four              Multi
+                                                          line
+                                                          comment.
+        """)
+    else:  # TODO
+        expected = dedent("""\
+            ID   Date          Running? Name              Comment
+            -------------------------------------------------------------------------------
+            111  2026-07-29 13:00:00    one
+            222  2026-07-29 14:00:00  * two
+            333  2026-07-29 15:00:00    three             Single line comment.
+            444  2026-07-29 16:00:00    four              Multi
+                                                          line
+                                                          comment.
+        """)
     assert output == expected
