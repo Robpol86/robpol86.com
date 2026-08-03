@@ -126,7 +126,14 @@ if [ ${LIST_ONLY:-false} = true ]; then
 
     # Y64 decode function.
     function y64_decode(encoded) {
-      return encoded  # TODO.
+      gsub(/\./, "+", encoded)
+      gsub(/_/, "/", encoded)
+      gsub(/-/, "=", encoded)
+      # TODO avoid getline.
+      cmd = "printf %s " "\"" encoded "\" | base64 -d"
+      cmd | getline decoded
+      close(cmd)
+      return decoded
     }
 
     # Second pass.
