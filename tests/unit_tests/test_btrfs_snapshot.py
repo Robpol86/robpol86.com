@@ -12,6 +12,7 @@ import pytest
 
 MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 SNAPSHOTS_DIR = ".bsnaps"
+SNAPSHOT_NAME = "test_name"
 
 
 def run(argv, **kwargs) -> str:
@@ -152,27 +153,25 @@ def test_overide_defaults():
 
 def test_btrfs_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     """Test sanity checks related to BTRFS before making changes to the filesystem."""
-    snapshot_name = "test_name"
-
     # Test not BTRFS.
     monkeypatch.setenv("MOCK_STAT_BIG_T", "fat32")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert "is not a BTRFS filesystem." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_BIG_T")
 
     # Test not a subvolume.
     monkeypatch.setenv("MOCK_STAT_LITTLE_I", "123")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
     # Test snapshot already exists.
-    snapshot_path = subvolume / SNAPSHOTS_DIR / MOCK_UUID
+    snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / "0"
     snapshot_path.mkdir(parents=True)
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert f"Snapshot '{snapshot_path}' already exists" in exc.value.output.decode("utf8")
 
 
@@ -181,12 +180,11 @@ def test_happy_path(subvolume: Path, parents_create: bool):
     """Test creating a snapshot."""
     if not parents_create:
         (subvolume / SNAPSHOTS_DIR).mkdir()
-    snapshot_name = "test_name"
     expected_snapshot_path = subvolume / SNAPSHOTS_DIR / MOCK_UUID
     assert not expected_snapshot_path.exists()
 
     # Run.
-    output = run((["-p"] if parents_create else []) + ["-v", "-s", str(subvolume), snapshot_name])
+    output = run((["-p"] if parents_create else []) + ["-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
     assert expected_snapshot_path.is_dir()
 
@@ -194,7 +192,6 @@ def test_happy_path(subvolume: Path, parents_create: bool):
 @pytest.mark.parametrize("running", [False, True])
 def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
     """Test snapshot metadata file."""
-    snapshot_name = "test_name"
 
     # Mock.
     if running:
@@ -203,14 +200,14 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
         (bin_dir / "findmnt").symlink_to(false_)
 
     # Run.
-    output = run(["-v", "-s", str(subvolume), snapshot_name])
+    output = run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert "Create readonly snapshot " in output
 
     # Check.
     metadata_file = subvolume / SNAPSHOTS_DIR / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
-        :name:{snapshot_name}
+        :name:{SNAPSHOT_NAME}
         :running:{"true" if running else "false"}
         :comment:
         :comment-end:
@@ -220,18 +217,17 @@ def test_metadata_file(subvolume: Path, bin_dir: Path, running: bool):
 
 def test_metadata_comment(subvolume: Path):
     """Test user comments in the snapshot metadata file.."""
-    snapshot_name = "test_name"
     comment = "This is a test."
 
     # Run.
-    output = run(["-v", "-s", str(subvolume), "-c", comment, snapshot_name])
+    output = run(["-v", "-s", str(subvolume), "-c", comment, SNAPSHOT_NAME])
     assert "Create readonly snapshot " in output
 
     # Check.
     metadata_file = subvolume / SNAPSHOTS_DIR / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
-        :name:{snapshot_name}
+        :name:{SNAPSHOT_NAME}
         :running:false
         :comment:{comment}
         :comment-end:
@@ -241,11 +237,10 @@ def test_metadata_comment(subvolume: Path):
 
 def test_metadata_comment_multiline(subvolume: Path):
     """Test user comments from stdin in the snapshot metadata file."""
-    snapshot_name = "test_name"
 
     # Run.
     output = run(
-        ["-v", "-s", str(subvolume), "-c-", snapshot_name],
+        ["-v", "-s", str(subvolume), "-c-", SNAPSHOT_NAME],
         input="Multiline\ncomment.\n".encode("utf8"),
     )
     assert "Create readonly snapshot " in output
@@ -254,7 +249,7 @@ def test_metadata_comment_multiline(subvolume: Path):
     metadata_file = subvolume / SNAPSHOTS_DIR / MOCK_UUID / ".snapshot.nfo"
     metadata_file_contents = metadata_file.read_text()
     metadata_file_contents_expected = dedent(f"""\
-        :name:{snapshot_name}
+        :name:{SNAPSHOT_NAME}
         :running:false
         :comment:-
         Multiline
@@ -266,12 +261,11 @@ def test_metadata_comment_multiline(subvolume: Path):
 
 def test_stale_metadata_file(subvolume: Path):
     """Test handling when stale metadata file is present."""
-    snapshot_name = "test_name"
     metadata_file = subvolume / ".snapshot.nfo"  # Stale file in subvolume from previous attempt.
 
     metadata_file.write_text("stale")
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), snapshot_name])
+        run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert f"Stale file '{metadata_file}' found." in exc.value.output.decode("utf8")
 
 
