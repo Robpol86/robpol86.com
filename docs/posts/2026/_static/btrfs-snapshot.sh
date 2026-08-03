@@ -76,12 +76,9 @@ fi
 SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
-# Y64 encode/decode functions.
+# Y64 encode function.
 y64_encode() {
   base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g'
-}
-y64_decode() {
-  sed -e 's/./+/g' -e 's|_|/|g' -e 's/-/=/g' |base64 -d
 }
 
 # List only.
@@ -101,7 +98,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
   awk -v FS='\t+' '
     BEGIN {
       padding_id = 3
-      padding_mtime = 20
+      padding_date = 20
       padding_running = 1
       padding_name = 15
     }
@@ -119,19 +116,40 @@ if [ ${LIST_ONLY:-false} = true ]; then
     # Print header.
     BEGINFILE {
       if (NR!=FNR) {
-        printf("%-"padding_id"s %-"padding_mtime-7"s %-"padding_running+7"s %-"padding_name"s   %s\n",
-              "ID", "Date", "Running?", "Name", "Comment")
+        printf("%-"padding_id"s %-"padding_date-7"s %-"padding_running+7"s %-"padding_name"s   %s\n",
+               "ID", "Date", "Running?", "Name", "Comment")
         hr = sprintf("%*s", 79, "-")
         gsub(/ /, "-", hr)
         print(hr)
       }
     }
 
+    # Y64 decode function.
+    function y64_decode(encoded) {
+      return encoded  # TODO.
+    }
+
     # Second pass.
     NR!=FNR {
-      print "ID:      " $1
-      print "Date:    " $5
-      print "Path:    " $6
+      # Extract fields.
+      id = $1
+      date = $5
+      split($6, arr, "/")
+      name = arr[2]
+      running = substr(arr[3], 1, 1)
+      comment = y64_decode(substr(arr[3], 2))
+
+      # Print row.
+      if (!comment) {
+        # No comment.
+        printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %s\n",
+               id, date, running, name)
+      } else {
+        # Single-line comment.
+        printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %-"padding_name"s   %s\n",
+               id, date, running, name, comment)
+      }
+      # TODO multiline.
     }
   ' "$snapshot_list_file" "$snapshot_list_file"
 
