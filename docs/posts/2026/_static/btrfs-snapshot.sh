@@ -131,7 +131,11 @@ if [ ${LIST_ONLY:-false} = true ]; then
       gsub(/-/, "=", encoded)
       # TODO avoid getline.
       cmd = "printf %s " "\"" encoded "\" | base64 -d"
-      cmd | getline decoded
+      first = 1
+      while ((cmd | getline line) > 0) {
+        if (first) { decoded = line; first = 0 }
+        else       { decoded = decoded "\n" line }
+      }
       close(cmd)
       return decoded
     }
@@ -160,8 +164,8 @@ if [ ${LIST_ONLY:-false} = true ]; then
         split(comment, arr, "\n")
         printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %-"padding_name"s   %s\n",
                id, date, running, name, arr[1])
-        for (i=2; i<length(arr); i++) {
-          printf("%*s", padding_id+padding_date+padding_running+padding_name+7, "")
+        for (i=2; i<=length(arr); i++) {
+          printf("%*s", padding_id+padding_date+padding_running+padding_name+6, "")
           print arr[i]
         }
       }
