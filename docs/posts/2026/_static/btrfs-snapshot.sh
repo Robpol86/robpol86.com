@@ -151,12 +151,15 @@ if [ ${LIST_ONLY:-false} = true ]; then
         # No comment.
         printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %s\n",
                id, date, running, name)
-      } else {
+      } else if (comment !~ /\n/) {
         # Single-line comment.
         printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %-"padding_name"s   %s\n",
                id, date, running, name, comment)
+      } else {
+        # Multi-line comment.
+        # TODO split nl.
+        print "TODO"
       }
-      # TODO multiline.
     }
   ' "$snapshot_list_file" "$snapshot_list_file"
 
@@ -307,6 +310,7 @@ fi
 # - y64_encode() and y64_decode()
 #   - Name and Comment automatically y64 encoded on regex. Prefix with b or _
 # - Running/not flag: r or _
+# - Strip head/tail newlines/spaces in comment.
 # - Refactor AGAIN:
 #   - No need to mount before snapshot.
 #   - Restore: use btrfs subvol ID: "ID 257 gen 251 top level 5 path snapshots/three-run"
