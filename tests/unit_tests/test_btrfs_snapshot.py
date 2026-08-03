@@ -288,12 +288,8 @@ def test_list_snapshots_no_snapshots(subvolume: Path):
     assert "No snapshots found." in exc.value.output.decode("utf8")
 
 
-@pytest.mark.parametrize("alternative", [False, True])
-def test_list_snapshots(subvolume: Path, alternative: bool):
+def test_list_snapshots(subvolume: Path):
     """Test listing snapshots."""
-    if alternative:
-        pytest.skip()
-
     # Create mock snapshots.
     def create_mock_snapshot(date: datetime, uuid_letter: str, name: str, running: bool, comment: str):
         _snapshot_dir = subvolume / SNAPSHOTS_DIR / re.sub(r"[a-z]", uuid_letter, MOCK_UUID)
@@ -309,31 +305,17 @@ def test_list_snapshots(subvolume: Path, alternative: bool):
     create_mock_snapshot(datetime.fromisoformat("2026-07-29 16:00:00"), "d", "four", False, "-\nMulti\nline\ncomment.")
 
     # Run.
-    output = run(["-L" if alternative else "-l", "-s", str(subvolume)])
+    output = run(["-l", "-s", str(subvolume)])
 
     # Check.
-    if not alternative:
-        expected = dedent("""\
-            ID   Date          Running? Name              Comment
-            -------------------------------------------------------------------------------
-            111  2026-07-29 13:00:00    one
-            222  2026-07-29 14:00:00  * two
-            333  2026-07-29 15:00:00    three             Single line comment.
-            444  2026-07-29 16:00:00    four              Multi
-                                                          line
-                                                          comment.
-        """)
-    else:
-        expected = dedent(f"""\
-            Date          Running? Name              Path v
-            -------------------------------------------------------------------------------
-            2026-07-29 13:00:00    one
-                {subvolume / SNAPSHOTS_DIR}/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-            2026-07-29 14:00:00  * two
-                {subvolume / SNAPSHOTS_DIR}/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
-            2026-07-29 15:00:00    three
-                {subvolume / SNAPSHOTS_DIR}/cccccccc-cccc-cccc-cccc-cccccccccccc
-            2026-07-29 16:00:00    four
-                {subvolume / SNAPSHOTS_DIR}/dddddddd-dddd-dddd-dddd-dddddddddddd
-        """)
+    expected = dedent("""\
+        ID   Date          Running? Name              Comment
+        -------------------------------------------------------------------------------
+        111  2026-07-29 13:00:00    one
+        222  2026-07-29 14:00:00  * two
+        333  2026-07-29 15:00:00    three             Single line comment.
+        444  2026-07-29 16:00:00    four              Multi
+                                                      line
+                                                      comment.
+    """)
     assert output == expected
