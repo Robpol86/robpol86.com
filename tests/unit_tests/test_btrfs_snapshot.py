@@ -314,14 +314,14 @@ def test_list_snapshots(subvolume: Path, alternative: bool):
     # Check.
     if not alternative:
         expected = dedent("""\
-            Date          Running? Name              Comment
+            ID   Date          Running? Name              Comment
             -------------------------------------------------------------------------------
-            2026-07-29 13:00:00    one
-            2026-07-29 14:00:00  * two
-            2026-07-29 15:00:00    three             Single line comment.
-            2026-07-29 16:00:00    four              Multi
-                                                     line
-                                                     comment.
+            111  2026-07-29 13:00:00    one
+            222  2026-07-29 14:00:00  * two
+            333  2026-07-29 15:00:00    three             Single line comment.
+            444  2026-07-29 16:00:00    four              Multi
+                                                          line
+                                                          comment.
         """)
     else:
         expected = dedent(f"""\

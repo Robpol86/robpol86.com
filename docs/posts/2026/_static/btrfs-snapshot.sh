@@ -76,9 +76,30 @@ fi
 SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
+# Y64 encode/decode functions.
+y64_encode() {
+  base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g'
+}
+y64_decode() {
+  sed -e 's/./+/g' -e 's|_|/|g' -e 's/-/=/g' |base64 -d
+}
+
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
-  btrfs subv list -rs / |grep " path .bsnaps/"  # TODO if fail need sudo?
+  # Get list of snapshots.
+  snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
+  if ! btrfs subvolume list -rst / > "$snapshot_list_file"; then  # TODO test with no snapshots, exits 0?
+    echo "Failed to get list of snapshots." >&2
+    echo "Are you running this as root or with sudo?" >&2
+    exit 1
+  fi
+
+  # Filter out irrelevant snapshots.
+  snapshot_list_filtered_file="/tmp/bsnaps-snapshot_list_filtered.$UUID.txt"
+  if ! grep -P "\t.bsnaps/" "$snapshot_list_file" > "$snapshot_list_filtered_file"; then
+    echo "No snapshots found." >&2
+    exit 1
+  fi
 
 
   set -- "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"
@@ -165,9 +186,9 @@ if [ "${COMMENT:-}" = "-" ]; then
   if [ -t 0 ]; then
     echo "Press Ctrl+D to finish" >&2
   fi
-  COMMENT_B64="$(base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g')"  # Y64.
+  COMMENT_B64="$(y64_encode)"
 elif [ -n "${COMMENT:-}" ]; then
-  COMMENT_B64="$(echo "$COMMENT" |base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g')"  # Y64.
+  COMMENT_B64="$(echo "$COMMENT" |y64_encode)"
 fi
 # TODO if comment > limit: fail.
 
@@ -223,7 +244,8 @@ fi
 
 # TODO:
 # - y64_encode() and y64_decode()
-#   - Name and Comment automatically y64 encoded on regex. Prefix with b or c
+#   - Name and Comment automatically y64 encoded on regex. Prefix with b or _
+# - Running/not flag: r or _
 # - Refactor AGAIN:
 #   - No need to mount before snapshot.
 #   - Restore: use btrfs subvol ID: "ID 257 gen 251 top level 5 path snapshots/three-run"
