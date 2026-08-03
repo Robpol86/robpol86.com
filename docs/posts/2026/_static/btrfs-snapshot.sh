@@ -88,20 +88,55 @@ y64_decode() {
 if [ ${LIST_ONLY:-false} = true ]; then
   # Get list of snapshots.
   snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
-  if ! btrfs subvolume list -rst / > "$snapshot_list_file"; then  # TODO test with no snapshots, exits 0?
+  if ! btrfs subvolume list -rst / > "$snapshot_list_file"; then  # TODO test with no snapshots, still exit 0?
     echo "Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
     exit 1
   fi
-
-  # Filter out irrelevant snapshots.
-  snapshot_list_filtered_file="/tmp/bsnaps-snapshot_list_filtered.$UUID.txt"
-  if ! grep -P "\t.bsnaps/" "$snapshot_list_file" > "$snapshot_list_filtered_file"; then
+  if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # TODO antipattern, move into awk, echo stderr and exit.
     echo "No snapshots found." >&2
     exit 1
   fi
 
+  awk -v FS='\t+' '
+    BEGIN {
+      padding_id = 3
+      padding_mtime = 20
+      padding_running = 1
+      padding_name = 15
+    }
 
+    # Skip irrelevant snapshots.
+    !/\t.bsnaps\// { next }
+
+    # First pass.
+    NR==FNR {
+      # Dynamic name column.
+      # TODO.
+      next
+    }
+
+    # Print header.
+    BEGINFILE {
+      if (NR!=FNR) {
+        printf("%-"padding_id"s %-"padding_mtime-7"s %-"padding_running+7"s %-"padding_name"s   %s\n",
+              "ID", "Date", "Running?", "Name", "Comment")
+        hr = sprintf("%*s", 79, "-")
+        gsub(/ /, "-", hr)
+        print(hr)
+      }
+    }
+
+    # Second pass.
+    NR!=FNR {
+      print "ID:      " $1
+      print "Date:    " $5
+      print "Path:    " $6
+    }
+  ' "$snapshot_list_file" "$snapshot_list_file"
+
+
+  exit 0
   set -- "$SNAPSHOTS_DIR_FULL"/*/"$METADATA_FILE"
   if [ ! -e "$1" ]; then
     echo "No snapshots found." >&2
@@ -207,6 +242,7 @@ fi
 # Fail if snapshot already exists.
 if [ -e "$SNAPSHOT_PATH" ]; then
   echo "Snapshot '$SNAPSHOT_PATH' already exists." >&2
+  # TODO like before, suggest -l
   exit 1
 fi
 
