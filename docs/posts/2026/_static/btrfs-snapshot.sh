@@ -273,6 +273,8 @@ fi
 # - Test missing snapshot name in nfo file
 # - Optimize: drop Dracut dependencies for POSIX shell tricks
 # - Test different locales, does btrfs and other command outputs change (e.g. btrfs subv l otime timestamp)
+# - Reformat ubuntu and test all subcommands with no snapshots.
+# - bss not a symlink, sed PROGRAM name to bss.
 # TODOs restore:
 # - No no args or bad name list available snapshots
 #   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
