@@ -222,6 +222,8 @@ if [ ${IS_READONLY:-false} = true ]; then
 fi
 
 # TODO:
+# - y64_encode() and y64_decode()
+#   - Name and Comment automatically y64 encoded on regex. Prefix with b or c
 # - Refactor AGAIN:
 #   - No need to mount before snapshot.
 #   - Restore: use btrfs subvol ID: "ID 257 gen 251 top level 5 path snapshots/three-run"
