@@ -197,7 +197,7 @@ def test_take_happy_path(subvolume: Path, bin_dir: Path, running: bool):
 def test_take_comment(subvolume: Path):
     """Test creating snapshots with comments."""
     comment = "This is a test."
-    encoded = base64.b64encode(bytes(comment, "utf8")).decode("utf8").replace("+", ".").replace("/", "_").replace("=", "-")
+    encoded = base64.b64encode(comment.encode("utf8")).decode("utf8").replace("+", ".").replace("/", "_").replace("=", "-")
     expected_snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / f"0{encoded}"
     assert not expected_snapshot_path.exists()
 
@@ -207,29 +207,17 @@ def test_take_comment(subvolume: Path):
     assert expected_snapshot_path.is_dir()
 
 
-def test_metadata_comment_multiline(subvolume: Path):
-    """Test user comments from stdin in the snapshot metadata file."""
-    pytest.skip()  # TODO remove this test
+def test_take_comment_multiline(subvolume: Path):
+    """Test user comments from stdin."""
+    comment = "Multiline\ncomment.\n"
+    encoded = base64.b64encode(comment.encode("utf8")).decode("utf8").replace("+", ".").replace("/", "_").replace("=", "-")
+    expected_snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / f"0{encoded}"
+    assert not expected_snapshot_path.exists()
 
     # Run.
-    output = run(
-        ["-v", "-s", str(subvolume), "-c-", SNAPSHOT_NAME],
-        input="Multiline\ncomment.\n".encode("utf8"),
-    )
-    assert "Create readonly snapshot " in output
-
-    # Check.
-    metadata_file = subvolume / SNAPSHOTS_DIR / MOCK_UUID / ".snapshot.nfo"
-    metadata_file_contents = metadata_file.read_text()
-    metadata_file_contents_expected = dedent(f"""\
-        :name:{SNAPSHOT_NAME}
-        :running:false
-        :comment:-
-        Multiline
-        comment.
-        :comment-end:
-    """)
-    assert metadata_file_contents == metadata_file_contents_expected
+    output = run(["-v", "-s", str(subvolume), "-c-", SNAPSHOT_NAME], input=comment.encode("utf8"))
+    assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
+    assert expected_snapshot_path.is_dir()
 
 
 def test_list_snapshots_no_snapshots(subvolume: Path):
