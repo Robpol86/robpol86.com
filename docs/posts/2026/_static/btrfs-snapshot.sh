@@ -210,7 +210,7 @@ fi
 # Fail if snapshot already exists.
 if [ -e "$SNAPSHOT_PATH" ]; then
   echo "Snapshot '$SNAPSHOT_PATH' already exists." >&2
-  # TODO like before, suggest -l
+  echo "Run 'btrfs-snapshot -l' to list existing snapshots." >&2
   exit 1
 fi
 
