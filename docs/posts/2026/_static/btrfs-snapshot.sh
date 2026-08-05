@@ -86,7 +86,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
     rm -f "$snapshot_list_file"
     exit 1
   fi
-  if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # Anti-pattern, I know.
+  if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # Anti-pattern, I know.  # TODO HARDCODED
     echo "No snapshots found." >&2
     rm -f "$snapshot_list_file"
     exit 1
@@ -117,7 +117,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
     # Print header.
     BEGINFILE {
       if (NR!=FNR) {
-        printf("%-"padding_id"s %-"padding_date-7"s %-"padding_running+7"s %-"padding_name"s   %s\n",
+        printf("%-"padding_id"s  %-"padding_date-7"s %-"padding_running+7"s %-"padding_name"s  %s\n",
                "ID", "Date", "Running?", "Name", "Comment")
         hr = sprintf("%*s", 79, "-")
         gsub(/ /, "-", hr)
@@ -127,6 +127,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
 
     # Y64 decode function.
     function y64_decode(encoded) {
+      if (!encoded) return encoded
       gsub(/\./, "+", encoded)
       gsub(/_/, "/", encoded)
       gsub(/-/, "=", encoded)
@@ -189,16 +190,16 @@ if [ ${LIST_ONLY:-false} = true ]; then
       # Print row.
       if (!comment) {
         # No comment.
-        printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %s\n",
+        printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %s\n",
                id, date, running, name)
       } else if (comment !~ /\n/) {
         # Single-line comment.
-        printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %-"padding_name"s   %s\n",
+        printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  %s\n",
                id, date, running, name, comment)
       } else {
         # Multi-line comment.
         split(comment, arr, "\n")
-        printf("%-"padding_id"s %-"padding_date"s %-"padding_running"s %-"padding_name"s   %s\n",
+        printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  %s\n",
                id, date, running, name, arr[1])
         for (i=2; i<=length(arr); i++) {
           printf("%*s", padding_id+padding_date+padding_running+padding_name+6, "")
@@ -283,9 +284,11 @@ fi
 
 # TODO:
 # - Strip head/tail newlines/spaces in comment.
+# - awk y64_encode/decode function defs in env variables set by shell script
 # - Snapshot name validation (no nl, / *, etc)
 # - Test with LC_ALL=C and other values.
 # - Test with malformed b64: warn and keep decoded in output
+#   - Prefix/postifx magic string?
 # - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
 #   - Create a new snapshot from the restored middle. Now there should be one more in -l.
