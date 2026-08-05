@@ -80,13 +80,13 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 if [ ${LIST_ONLY:-false} = true ]; then
   # Get list of snapshots.
   snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
-  if ! btrfs subvolume list -rst / > "$snapshot_list_file"; then  # TODO test with no snapshots, still exit 0?
+  if ! btrfs subvolume list -rst / > "$snapshot_list_file"; then
     echo "Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
     rm -f "$snapshot_list_file"
     exit 1
   fi
-  if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # TODO antipattern, move into awk, echo stderr and exit.
+  if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # Anti-pattern, I know.
     echo "No snapshots found." >&2
     rm -f "$snapshot_list_file"
     exit 1
