@@ -3,18 +3,19 @@
 # https://github.com/Robpol86/robpol86.com/blob/main/docs/posts/2026/_static/btrfs-snapshot.sh
 # Save as (chmod +x): /sbin/btrfs-snapshot
 
-# Usage: btrfs-snapshot [OPTIONS] <command> [<args>]
+# Usage: btrfs-snapshot <command> [OPTIONS] [<args>]
 #
 # These are the available commands:
 #   take        Create a btrfs snapshot of the subvolume.
-#   restore
-#   list
-#   delete
-#   revert
+#   list        TODO
+#   restore     TODO
+#   delete      TODO
+#   revert      TODO
+#
+# Each command has its own -h. For example, see 'btrfs-snapshot take -h' for
+# more information on creating snapshots.
 
-
-
-
+# Usage: btrfs-snapshot take [OPTIONS] <snapshot-name>
 #
 # Take named btrfs snapshots with comments.
 #
@@ -33,6 +34,8 @@
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
 #   -v          Enable verbose/debug output.
+
+# Usage: btrfs-snapshot list [OPTIONS]
 
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
