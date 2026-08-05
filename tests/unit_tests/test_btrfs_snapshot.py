@@ -281,16 +281,27 @@ def test_list_snapshots(subvolume: Path, bin_dir: Path):
     assert output == expected
 
 
-def test_list_snapshots_no_comments(subvolume: Path):
+def test_list_snapshots_no_comments(subvolume: Path, bin_dir: Path):
     """Test listing snapshots without any comments."""
-    pytest.skip()
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	path
+        --	---	----	---------	-----	----
+        111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
+        222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
+        333	93	93	5		2026-07-29 15:00:00	.bsnaps/three/0
+        444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0
+    """)
+    )
 
     # Run.
-    output = run(["-l", "-s", str(subvolume)])
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    output = run(["-l", "-s", str(subvolume)], env=env)
 
     # Check.
     expected = dedent("""\
-        ID   Date          Running? Name
+        ID   Date          Running? Name             Comment
         -------------------------------------------------------------------------------
         111  2026-07-29 13:00:00    one
         222  2026-07-29 14:00:00  * two
@@ -309,7 +320,6 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
             dedent(f"""\
             ID	gen	cgen	top level	otime	path
             --	---	----	---------	-----	----
-            000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
             111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
             222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
             333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-medium-name/0{y64_encode("Single line comment.")}
@@ -321,7 +331,6 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
             dedent(f"""\
             ID	gen	cgen	top level	otime	path
             --	---	----	---------	-----	----
-            000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
             111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
             222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
             333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-a-very-long-name-indeed/0{y64_encode("Single line comment.")}
