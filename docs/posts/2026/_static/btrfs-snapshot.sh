@@ -170,7 +170,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
       # Concat result array.
       decoded = ""
       for (i=1; i in result; i++) {
-        decoded = decoded sprintf("\\%03o", result[i])
+        decoded = decoded sprintf("%c", result[i])
         delete result[i]
       }
       return decoded
@@ -284,6 +284,7 @@ fi
 # TODO:
 # - Strip head/tail newlines/spaces in comment.
 # - Snapshot name validation (no nl, / *, etc)
+# - Test with LC_ALL=C and other values.
 # - Test with malformed b64: warn and keep decoded in output
 # - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
