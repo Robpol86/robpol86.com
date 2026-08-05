@@ -300,35 +300,60 @@ def test_list_snapshots_no_comments(subvolume: Path):
     assert output == expected
 
 
-@pytest.mark.parametrize("medium", [False, True])
-def test_list_snapshots_long_name(subvolume: Path, medium: bool):
-    """Test listing snapshots without any comments."""
-    pytest.skip()
+@pytest.mark.parametrize("medium", [True, False])
+def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
+    """Test table with snapshots that have long names."""
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    if medium:
+        mock_btrfs_output_file.write_text(
+            dedent(f"""\
+            ID	gen	cgen	top level	otime	path
+            --	---	----	---------	-----	----
+            000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
+            111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
+            222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
+            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-medium-name/0{y64_encode("Single line comment.")}
+            444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0{y64_encode("Multi\nline\ncomment.")}
+            """)
+        )
+    else:
+        mock_btrfs_output_file.write_text(
+            dedent(f"""\
+            ID	gen	cgen	top level	otime	path
+            --	---	----	---------	-----	----
+            000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
+            111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
+            222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
+            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-a-very-long-name-indeed/0{y64_encode("Single line comment.")}
+            444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0{y64_encode("Multi\nline\ncomment.")}
+            """)
+        )
 
     # Run.
-    output = run(["-l", "-s", str(subvolume)])
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    output = run(["-l", "-s", str(subvolume)], env=env)
 
     # Check.
-    if medium:  # TODO
+    if medium:
         expected = dedent("""\
-            ID   Date          Running? Name              Comment
+            ID   Date          Running? Name                  Comment
             -------------------------------------------------------------------------------
             111  2026-07-29 13:00:00    one
             222  2026-07-29 14:00:00  * two
-            333  2026-07-29 15:00:00    three             Single line comment.
-            444  2026-07-29 16:00:00    four              Multi
-                                                          line
-                                                          comment.
+            333  2026-07-29 15:00:00    snapshot-medium-name  Single line comment.
+            444  2026-07-29 16:00:00    four                  Multi
+                                                              line
+                                                              comment.
         """)
-    else:  # TODO
+    else:
         expected = dedent("""\
-            ID   Date          Running? Name              Comment
+            ID   Date          Running? Name                            Comment
             -------------------------------------------------------------------------------
             111  2026-07-29 13:00:00    one
             222  2026-07-29 14:00:00  * two
-            333  2026-07-29 15:00:00    three             Single line comment.
-            444  2026-07-29 16:00:00    four              Multi
-                                                          line
-                                                          comment.
+            333  2026-07-29 15:00:00    snapshot-a-very-long-name-indeed  Single line comment.
+            444  2026-07-29 16:00:00    four                            Multi
+                                                                        line
+                                                                        comment.
         """)
     assert output == expected
