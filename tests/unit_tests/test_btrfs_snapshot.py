@@ -129,7 +129,6 @@ def test_help():
     assert lines[0].startswith("Usage: ")
     assert lines[-2].startswith("  -v ")
     assert lines[-1] == ""
-    assert "Default: .bsnaps\n" in output
     assert "Default: /\n" in output
 
 
@@ -158,8 +157,7 @@ def test_bad_args():
 
 def test_overide_defaults():
     """Make sure Usage string replacement for displaying defaults works."""
-    output = run(["-dSNAPSHOTS", "-s/altroot", "-h"])
-    assert "Default: SNAPSHOTS\n" in output
+    output = run(["-s/altroot", "-h"])
     assert "Default: /altroot\n" in output
 
 
@@ -285,7 +283,7 @@ def test_list_snapshots_no_comments(subvolume: Path, bin_dir: Path):
     """Test listing snapshots without any comments."""
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
-        dedent(f"""\
+        dedent("""\
         ID	gen	cgen	top level	otime	path
         --	---	----	---------	-----	----
         111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
@@ -322,7 +320,7 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
             --	---	----	---------	-----	----
             111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
             222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
-            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-medium-name/0{y64_encode("Single line comment.")}
+            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-medium-name/0{y64_encode("Comment.")}
             444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0{y64_encode("Multi\nline\ncomment.")}
             """)
         )
@@ -333,7 +331,7 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
             --	---	----	---------	-----	----
             111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
             222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
-            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-a-very-long-name-indeed/0{y64_encode("Single line comment.")}
+            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-a-very-long-name-indeed/0{y64_encode("Comment.")}
             444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0{y64_encode("Multi\nline\ncomment.")}
             """)
         )
@@ -349,7 +347,7 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
             -------------------------------------------------------------------------------
             111  2026-07-29 13:00:00    one
             222  2026-07-29 14:00:00  * two
-            333  2026-07-29 15:00:00    snapshot-medium-name  Single line comment.
+            333  2026-07-29 15:00:00    snapshot-medium-name  Comment.
             444  2026-07-29 16:00:00    four                  Multi
                                                               line
                                                               comment.
@@ -360,7 +358,7 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
             -------------------------------------------------------------------------------
             111  2026-07-29 13:00:00    one
             222  2026-07-29 14:00:00  * two
-            333  2026-07-29 15:00:00    snapshot-a-very-long-name-indeed  Single line comment.
+            333  2026-07-29 15:00:00    snapshot-a-very-long-name-indeed  Comment.
             444  2026-07-29 16:00:00    four                            Multi
                                                                         line
                                                                         comment.

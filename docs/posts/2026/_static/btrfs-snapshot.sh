@@ -13,8 +13,6 @@
 # Options:
 #   -c comment  Snapshot description. If comment is '-' then comment will be
 #               read from stdin.
-#   -d dir      Snapshots directory, relative to the subvolume.
-#               Default: @SNAPSHOTS_DIR
 #   -h          Display this help and exit.
 #   -l          List existing snapshots and exit.
 #   -s dir      Mounted subvolume directory.
@@ -25,24 +23,21 @@ set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
 COMMENT=
-SNAPSHOTS_DIR=.bsnaps
 LIST_ONLY=
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
 SNAPSHOT_NAME=
 
 # Parse command line arguments.
-while getopts :c:d:hls:v OPT; do
+while getopts :c:hls:v OPT; do
   case "$OPT" in
     \?) echo "unknown flag: '$OPTARG'" >&2
         exit 1 ;;
     :) echo "flag needs an argument: '$OPTARG'" >&2
        exit 1 ;;
     c) COMMENT="$OPTARG" ;;
-    d) SNAPSHOTS_DIR="$OPTARG" ;;
     h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |
         sed -e 's/^# \?//' \
-            -e "s|@SNAPSHOTS_DIR|$SNAPSHOTS_DIR|" \
             -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"
        exit 0 ;;
     l) LIST_ONLY=true ;;
@@ -73,7 +68,7 @@ if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
   exit 1
 fi
 
-SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
+SNAPSHOTS_DIR="${SUBVOLUME_DIR%/}/.bsnaps"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
 # List only.
@@ -86,7 +81,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
     rm -f "$snapshot_list_file"
     exit 1
   fi
-  if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # Anti-pattern, I know.  # TODO HARDCODED
+  if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # TODO eliminate anti-pattern.
     echo "No snapshots found." >&2
     rm -f "$snapshot_list_file"
     exit 1
@@ -235,7 +230,7 @@ IS_READONLY=
 SNAPSHOT_PATH=
 
 # Determine snapshot path.
-SNAPSHOT_PATH_MKDIR="$SNAPSHOTS_DIR_FULL/$SNAPSHOT_NAME"
+SNAPSHOT_PATH_MKDIR="$SNAPSHOTS_DIR/$SNAPSHOT_NAME"
 if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
   IS_READONLY=true
   SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/0$COMMENT_B64"
@@ -290,6 +285,7 @@ fi
 # - Test with LC_ALL=C and other values.
 # - Test with malformed b64: warn and keep decoded in output
 #   - Prefix/postifx magic string?
+#   - \0 not supported in awk strings. How to handle?
 # - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
 #   - Create a new snapshot from the restored middle. Now there should be one more in -l.
