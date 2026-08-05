@@ -65,11 +65,11 @@ fi
 
 # Check if SUBVOLUME_DIR is a BTRFS fs and subvolume.
 if ! stat -f --format=%T "$SUBVOLUME_DIR" |grep -q '^btrfs$'; then
-  echo "Path '$SUBVOLUME_DIR' is not a BTRFS filesystem." >&2
+  echo "ERROR: Path '$SUBVOLUME_DIR' is not a BTRFS filesystem." >&2
   exit 1
 fi
 if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
-  echo "Path '$SUBVOLUME_DIR' is not a BTRFS subvolume." >&2
+  echo "ERROR: Path '$SUBVOLUME_DIR' is not a BTRFS subvolume." >&2
   exit 1
 fi
 
@@ -81,7 +81,7 @@ if [ ${LIST_ONLY:-false} = true ]; then
   # Get list of snapshots.
   snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
   if ! btrfs subvolume list -rst / > "$snapshot_list_file"; then
-    echo "Failed to get list of snapshots." >&2
+    echo "ERROR: Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
     rm -f "$snapshot_list_file"
     exit 1
@@ -209,7 +209,7 @@ fi
 
 # Fail if snapshot already exists.
 if [ -e "$SNAPSHOT_PATH" ]; then
-  echo "Snapshot '$SNAPSHOT_PATH' already exists." >&2
+  echo "ERROR: Snapshot '$SNAPSHOT_PATH' already exists." >&2
   echo "Run 'btrfs-snapshot -l' to list existing snapshots." >&2
   exit 1
 fi
@@ -222,7 +222,7 @@ fi
 # Remount subvolume as readwrite if it is mounted as readonly.
 if [ ${IS_READONLY:-false} = true ]; then
   if ! mount -oremount,rw "$SUBVOLUME_DIR"; then
-    echo "Failed to remount '$SUBVOLUME_DIR' as read-write." >&2
+    echo "ERROR: Failed to remount '$SUBVOLUME_DIR' as read-write." >&2
     echo "Are you running this as root or with sudo?" >&2
     exit 1
   else
@@ -232,7 +232,7 @@ fi
 
 # Create snapshots parent directories.
 if ! mkdir -p "$SNAPSHOT_PATH_MKDIR"; then
-  echo "Failed to create directory '$SNAPSHOT_PATH_MKDIR'." >&2
+  echo "ERROR: Failed to create directory '$SNAPSHOT_PATH_MKDIR'." >&2
   echo "Are you running this as root or with sudo?" >&2
   exit 1
 fi
