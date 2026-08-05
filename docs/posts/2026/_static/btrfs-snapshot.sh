@@ -7,8 +7,12 @@
 #
 # Take named BTRFS snapshots with comments.
 #
-# TODO Long description goes here. Explain SNAPSHOT_NAME will become
-# /sysroot/snapshots/SNAPSHOT_NAME. TODO also show examples.
+# Comments are Y64 encoded to make them path friendly. Snapshot names and comments
+# are encoded into the snapshot directory path. An example:
+#   .bsnaps/snapshot-name/0U2luZ2xlIGxpbmUgY29tbWVudC4-
+# If the snapshot is taken when the BTRFS subvolume is mounted it is considered
+# a "running" snapshot, and this is recorded as a 1 in the snapshot directory
+# path (e.g. .bsnaps/snapshot-name/1).
 #
 # Options:
 #   -c comment  Snapshot description. If comment is '-' then comment will be
