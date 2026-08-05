@@ -162,19 +162,19 @@ def test_overide_defaults():
 
 
 def test_take_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
-    """Test sanity checks related to BTRFS before making changes to the filesystem."""
+    """Test sanity checks related to btrfs before making changes to the filesystem."""
     # Test not BTRFS.
     monkeypatch.setenv("MOCK_STAT_BIG_T", "fat32")
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
-    assert "is not a BTRFS filesystem." in exc.value.output.decode("utf8")
+    assert "is not a btrfs filesystem." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_BIG_T")
 
     # Test not a subvolume.
     monkeypatch.setenv("MOCK_STAT_LITTLE_I", "123")
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
-    assert "is not a BTRFS subvolume." in exc.value.output.decode("utf8")
+    assert "is not a btrfs subvolume." in exc.value.output.decode("utf8")
     monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
     # Test snapshot already exists.

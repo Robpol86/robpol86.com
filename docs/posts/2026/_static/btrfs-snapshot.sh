@@ -5,12 +5,12 @@
 
 # Usage: btrfs-snapshot [OPTIONS] SNAPSHOT_NAME
 #
-# Take named BTRFS snapshots with comments.
+# Take named btrfs snapshots with comments.
 #
 # Comments are Y64 encoded to make them path friendly. Snapshot names and comments
 # are encoded into the snapshot directory path. An example:
 #   .bsnaps/snapshot-name/0U2luZ2xlIGxpbmUgY29tbWVudC4-
-# If the snapshot is taken when the BTRFS subvolume is mounted it is considered
+# If the snapshot is taken when the btrfs subvolume is mounted it is considered
 # a "running" snapshot, and this is recorded as a 1 in the snapshot directory
 # path (e.g. .bsnaps/snapshot-name/1).
 #
@@ -62,13 +62,13 @@ if [ ${VERBOSE:-false} = true ]; then
   set -o xtrace  # Print commands before executing them.
 fi
 
-# Check if SUBVOLUME_DIR is a BTRFS fs and subvolume.
+# Check if SUBVOLUME_DIR is a btrfs fs and subvolume.
 if ! stat -f --format=%T "$SUBVOLUME_DIR" |grep -q '^btrfs$'; then
-  echo "ERROR: Path '$SUBVOLUME_DIR' is not a BTRFS filesystem." >&2
+  echo "ERROR: Path '$SUBVOLUME_DIR' is not a btrfs filesystem." >&2
   exit 1
 fi
 if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
-  echo "ERROR: Path '$SUBVOLUME_DIR' is not a BTRFS subvolume." >&2
+  echo "ERROR: Path '$SUBVOLUME_DIR' is not a btrfs subvolume." >&2
   exit 1
 fi
 
@@ -251,7 +251,7 @@ if [ -e "$SNAPSHOT_PATH" ]; then
 fi
 
 #
-# Done with checks. Above here nothing changed in the BTRFS filesystem. Below
+# Done with checks. Above here nothing changed in the btrfs filesystem. Below
 # here is when the script starts making changes.
 #
 
