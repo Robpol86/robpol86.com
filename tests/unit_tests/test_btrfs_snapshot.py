@@ -196,7 +196,6 @@ def test_take_happy_path(subvolume: Path, bin_dir: Path, running: bool):
 
 def test_take_comment(subvolume: Path):
     """Test creating snapshots with comments."""
-    pytest.skip()  # TODO why is base64 encoding different?
     comment = "This is a test."
     encoded = base64.b64encode(bytes(comment, "utf8")).decode("utf8").replace("+", ".").replace("/", "_").replace("=", "-")
     expected_snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / f"0{encoded}"

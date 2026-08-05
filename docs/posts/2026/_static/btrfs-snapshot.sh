@@ -191,7 +191,7 @@ if [ "${COMMENT:-}" = "-" ]; then
   fi
   COMMENT_B64="$(y64_encode)"
 elif [ -n "${COMMENT:-}" ]; then
-  COMMENT_B64="$(echo "$COMMENT" |y64_encode)"
+  COMMENT_B64="$(printf "%s" "$COMMENT" |y64_encode)"
 fi
 # TODO if comment > limit: fail.
 
