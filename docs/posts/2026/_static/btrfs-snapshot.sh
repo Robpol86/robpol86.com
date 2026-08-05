@@ -3,7 +3,18 @@
 # https://github.com/Robpol86/robpol86.com/blob/main/docs/posts/2026/_static/btrfs-snapshot.sh
 # Save as (chmod +x): /sbin/btrfs-snapshot
 
-# Usage: btrfs-snapshot [OPTIONS] SNAPSHOT_NAME
+# Usage: btrfs-snapshot [OPTIONS] <command> [<args>]
+#
+# These are the available commands:
+#   take        Create a btrfs snapshot of the subvolume.
+#   restore
+#   list
+#   delete
+#   revert
+
+
+
+
 #
 # Take named btrfs snapshots with comments.
 #
