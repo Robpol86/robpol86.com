@@ -284,6 +284,7 @@ fi
 
 # TODO:
 # - Strip head/tail newlines/spaces in comment.
+#   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
 # - awk y64_encode/decode function defs in env variables set by shell script
 # - Snapshot name validation (no nl, / *, etc)
 # - Test with LC_ALL=C and other values.
