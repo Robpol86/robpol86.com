@@ -27,6 +27,14 @@ def run(argv, **kwargs) -> str:
     return output.decode("utf8")
 
 
+def run_failed(argv, **kwargs) -> str:
+    """Call run() with expected failure and return the output."""
+    with pytest.raises(subprocess.CalledProcessError) as exc:
+        run(argv, **kwargs)
+    output = exc.value.output
+    return output.decode("utf8")
+
+
 def y64_encode(input) -> str:
     """Encode input string into Yahoo 64 format."""
     b64_encoded = base64.b64encode(input.encode("utf8")).decode("utf8")
@@ -134,24 +142,16 @@ def test_help():
 
 def test_bad_args():
     """Test script's handling of bad CLI arguments."""
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run([])
-    output = exc.value.output.decode("utf8")
+    output = run_failed([])
     assert "requires exactly 1 argument" in output
 
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["a", "b", "c"])
-    output = exc.value.output.decode("utf8")
+    output = run_failed(["a", "b", "c"])
     assert "requires exactly 1 argument" in output
 
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-z"])
-    output = exc.value.output.decode("utf8")
+    output = run_failed(["-z"])
     assert "unknown flag: 'z'" in output
 
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-c"])
-    output = exc.value.output.decode("utf8")
+    output = run_failed(["-c"])
     assert "flag needs an argument: 'c'" in output
 
 
@@ -165,24 +165,21 @@ def test_take_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     """Test sanity checks related to btrfs before making changes to the filesystem."""
     # Test not BTRFS.
     monkeypatch.setenv("MOCK_STAT_BIG_T", "fat32")
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
-    assert "is not a btrfs filesystem." in exc.value.output.decode("utf8")
+    output = run_failed(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
+    assert "is not a btrfs filesystem." in output
     monkeypatch.delenv("MOCK_STAT_BIG_T")
 
     # Test not a subvolume.
     monkeypatch.setenv("MOCK_STAT_LITTLE_I", "123")
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
-    assert "is not a btrfs subvolume." in exc.value.output.decode("utf8")
+    output = run_failed(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
+    assert "is not a btrfs subvolume." in output
     monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
     # Test snapshot already exists.
     snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / "0"
     snapshot_path.mkdir(parents=True)
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
-    assert f"Snapshot '{snapshot_path}' already exists" in exc.value.output.decode("utf8")
+    output = run_failed(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
+    assert f"Snapshot '{snapshot_path}' already exists" in output
 
 
 @pytest.mark.parametrize("running", [False, True])
@@ -241,9 +238,8 @@ def test_list_no_snapshots(subvolume: Path, bin_dir: Path):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-vl", "-s", str(subvolume)], env=env)
-    assert "No snapshots found." in exc.value.output.decode("utf8")
+    output = run_failed(["-vl", "-s", str(subvolume)], env=env)
+    assert "No snapshots found." in output
 
 
 def test_list_snapshots(subvolume: Path, bin_dir: Path):
