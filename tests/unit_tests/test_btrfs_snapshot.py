@@ -2,16 +2,14 @@
 
 import base64
 import os
-import re
 import shutil
 import subprocess
-from datetime import datetime
 from pathlib import Path
 from textwrap import dedent
 
 import pytest
 
-MOCK_BTRFS_OUTPUT_FILE = "btrfs_fake_output.txt"
+MOCK_BTRFS_OUTPUT_FILENAME = "btrfs_fake_output.txt"
 MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 SNAPSHOTS_DIR = ".bsnaps"
 SNAPSHOT_NAME = "test_name"
@@ -24,8 +22,16 @@ def run(argv, **kwargs) -> str:
     """
     root = Path(__file__).parent / ".." / ".."
     snapshot_take_path = root / "docs" / "posts" / "2026" / "_static" / "btrfs-snapshot.sh"
-    output = subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT, **kwargs)  # noqa: S603
+    env = dict(os.environ, **kwargs.pop("env", {}))
+    output = subprocess.check_output([snapshot_take_path] + argv, stderr=subprocess.STDOUT, env=env, **kwargs)  # noqa: S603
     return output.decode("utf8")
+
+
+def y64_encode(input) -> str:
+    """Encode input string into Yahoo 64 format."""
+    b64_encoded = base64.b64encode(input.encode("utf8")).decode("utf8")
+    y64_encoded = b64_encoded.replace("+", ".").replace("/", "_").replace("=", "-")
+    return y64_encoded
 
 
 @pytest.fixture(autouse=True, name="bin_dir")
@@ -80,19 +86,18 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     fake_stat.chmod(0o755)
 
     # Mock btrfs.
-    fake_btrfs_output = bin_dir / MOCK_BTRFS_OUTPUT_FILE
-    fake_btrfs_script = dedent(f"""\
+    fake_btrfs_script = dedent("""\
         #!/bin/bash
         set -eu
         if [[ "$*" == *"subvolume snapshot -r"* ]]; then
             intermediate="$(mktemp -d)/intermediate"
-            cp -vr "${{@:(-2):1}}" "$intermediate"
-            mv "$intermediate" "${{@: -1}}"
-            echo "Create readonly snapshot of '${{@:(-2):1}}' in '${{@: -1}}'"
+            cp -vr "${@:(-2):1}" "$intermediate"
+            mv "$intermediate" "${@: -1}"
+            echo "Create readonly snapshot of '${@:(-2):1}' in '${@: -1}'"
             exit 0
         fi
         if [[ "$*" == *"subvolume list"* ]]; then
-            [ -e "{fake_btrfs_output}" ] && cat "$_" || true
+            cat "$MOCK_BTRFS_OUTPUT_FILE"
             exit 0
         fi
         exit 1
@@ -203,7 +208,7 @@ def test_take_happy_path(subvolume: Path, bin_dir: Path, running: bool):
 def test_take_comment(subvolume: Path):
     """Test creating snapshots with comments."""
     comment = "This is a test."
-    encoded = base64.b64encode(comment.encode("utf8")).decode("utf8").replace("+", ".").replace("/", "_").replace("=", "-")
+    encoded = y64_encode(comment)
     expected_snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / f"0{encoded}"
     assert not expected_snapshot_path.exists()
 
@@ -216,7 +221,7 @@ def test_take_comment(subvolume: Path):
 def test_take_comment_multiline(subvolume: Path):
     """Test user comments from stdin."""
     comment = "Multiline\ncomment.\n"
-    encoded = base64.b64encode(comment.encode("utf8")).decode("utf8").replace("+", ".").replace("/", "_").replace("=", "-")
+    encoded = y64_encode(comment)
     expected_snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / f"0{encoded}"
     assert not expected_snapshot_path.exists()
 
@@ -226,34 +231,43 @@ def test_take_comment_multiline(subvolume: Path):
     assert expected_snapshot_path.is_dir()
 
 
-def test_list_no_snapshots(subvolume: Path):
+def test_list_no_snapshots(subvolume: Path, bin_dir: Path):
     """Test list with no snapshots."""
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent("""\
+        ID	gen	cgen	top level	otime	path
+        --	---	----	---------	-----	----
+    """)
+    )
+
     # Run.
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
     with pytest.raises(subprocess.CalledProcessError) as exc:
-        run(["-vl", "-s", str(subvolume)])
+        run(["-vl", "-s", str(subvolume)], env=env)
     assert "No snapshots found." in exc.value.output.decode("utf8")
 
 
-def test_list_snapshots(subvolume: Path):
+def test_list_snapshots(subvolume: Path, bin_dir: Path):
     """Test listing snapshots."""
     pytest.skip()  # TODO
 
     # Create mock snapshots.
-    def create_mock_snapshot(date: datetime, uuid_letter: str, name: str, running: bool, comment: str):
-        _snapshot_dir = subvolume / SNAPSHOTS_DIR / re.sub(r"[a-z]", uuid_letter, MOCK_UUID)
-        _snapshot_dir.mkdir(parents=True)
-        _snapshot_metadata = _snapshot_dir / ".snapshot.nfo"
-        _snapshot_metadata.write_text(f":name:{name}\n:running:{str(running).lower()}\n:comment:{comment}\n:comment-end:\n")
-        timestamp = date.timestamp()
-        os.utime(_snapshot_metadata, (timestamp, timestamp))
-
-    create_mock_snapshot(datetime.fromisoformat("2026-07-29 13:00:00"), "a", "one", False, "")
-    create_mock_snapshot(datetime.fromisoformat("2026-07-29 14:00:00"), "b", "two", True, "")
-    create_mock_snapshot(datetime.fromisoformat("2026-07-29 15:00:00"), "c", "three", False, "Single line comment.")
-    create_mock_snapshot(datetime.fromisoformat("2026-07-29 16:00:00"), "d", "four", False, "-\nMulti\nline\ncomment.")
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	path
+        --	---	----	---------	-----	----
+        111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
+        222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
+        333	93	93	5		2026-07-29 15:00:00	.bsnaps/three/{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/{y64_encode("Multi\nline\ncomment.\n")}
+    """)
+    )
 
     # Run.
-    output = run(["-l", "-s", str(subvolume)])
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    output = run(["-l", "-s", str(subvolume)], env=env)
 
     # Check.
     expected = dedent("""\
