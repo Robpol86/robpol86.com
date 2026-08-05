@@ -83,10 +83,12 @@ if [ ${LIST_ONLY:-false} = true ]; then
   if ! btrfs subvolume list -rst / > "$snapshot_list_file"; then  # TODO test with no snapshots, still exit 0?
     echo "Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
+    rm -f "$snapshot_list_file"
     exit 1
   fi
   if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # TODO antipattern, move into awk, echo stderr and exit.
     echo "No snapshots found." >&2
+    rm -f "$snapshot_list_file"
     exit 1
   fi
 
@@ -245,9 +247,6 @@ if [ ${IS_READONLY:-false} = true ]; then
 fi
 
 # TODO:
-# - Abandon Y64, use safer characters, avoid '-'.
-#   - Sed only one char: / with _
-# - Running/not flag: r or _
 # - Strip head/tail newlines/spaces in comment.
 # - Snapshot name validation (no nl, / *, etc)
 # - Delete all snapshots on me-mini and create four new ones with latest script.

@@ -11,6 +11,7 @@ from textwrap import dedent
 
 import pytest
 
+MOCK_BTRFS_OUTPUT_FILE = "btrfs_fake_output.txt"
 MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 SNAPSHOTS_DIR = ".bsnaps"
 SNAPSHOT_NAME = "test_name"
@@ -79,14 +80,19 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     fake_stat.chmod(0o755)
 
     # Mock btrfs.
-    fake_btrfs_script = dedent("""\
+    fake_btrfs_output = bin_dir / MOCK_BTRFS_OUTPUT_FILE
+    fake_btrfs_script = dedent(f"""\
         #!/bin/bash
         set -eu
-        if [[ "$*" == *"subvolume snapshot"* ]]; then
+        if [[ "$*" == *"subvolume snapshot -r"* ]]; then
             intermediate="$(mktemp -d)/intermediate"
-            cp -vr "${@:(-2):1}" "$intermediate"
-            mv "$intermediate" "${@: -1}"
-            echo "Create readonly snapshot of '${@:(-2):1}' in '${@: -1}'"
+            cp -vr "${{@:(-2):1}}" "$intermediate"
+            mv "$intermediate" "${{@: -1}}"
+            echo "Create readonly snapshot of '${{@:(-2):1}}' in '${{@: -1}}'"
+            exit 0
+        fi
+        if [[ "$*" == *"subvolume list"* ]]; then
+            [ -e "{fake_btrfs_output}" ] && cat "$_" || true
             exit 0
         fi
         exit 1
@@ -220,10 +226,9 @@ def test_take_comment_multiline(subvolume: Path):
     assert expected_snapshot_path.is_dir()
 
 
-def test_list_snapshots_no_snapshots(subvolume: Path):
+def test_list_no_snapshots(subvolume: Path):
     """Test list with no snapshots."""
     # Run.
-    pytest.skip()  # TODO
     with pytest.raises(subprocess.CalledProcessError) as exc:
         run(["-vl", "-s", str(subvolume)])
     assert "No snapshots found." in exc.value.output.decode("utf8")
