@@ -47,6 +47,42 @@
 #               Default: @SUBVOLUME_DIR
 #   -v          Enable verbose/debug output.
 
+# Usage: btrfs-snapshot restore [OPTIONS] <snapshot-name|snapshot-id>
+#
+# TODO
+#
+# TODO long
+#
+# Options:
+#   -h          Display this help and exit.
+#   -s dir      Mounted subvolume directory.
+#               Default: @SUBVOLUME_DIR
+#   -v          Enable verbose/debug output.
+
+# Usage: btrfs-snapshot delete [OPTIONS] <snapshot-name|snapshot-id>
+#
+# TODO
+#
+# TODO long
+#
+# Options:
+#   -h          Display this help and exit.
+#   -s dir      Mounted subvolume directory.
+#               Default: @SUBVOLUME_DIR
+#   -v          Enable verbose/debug output.
+
+# Usage: btrfs-snapshot revert [OPTIONS]
+#
+# TODO
+#
+# TODO long
+#
+# Options:
+#   -h          Display this help and exit.
+#   -s dir      Mounted subvolume directory.
+#               Default: @SUBVOLUME_DIR
+#   -v          Enable verbose/debug output.
+
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
