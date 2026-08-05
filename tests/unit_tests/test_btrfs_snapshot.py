@@ -255,6 +255,7 @@ def test_list_snapshots(subvolume: Path, bin_dir: Path):
         dedent(f"""\
         ID	gen	cgen	top level	otime	path
         --	---	----	---------	-----	----
+        000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
         111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
         222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
         333	93	93	5		2026-07-29 15:00:00	.bsnaps/three/0{y64_encode("Single line comment.")}
