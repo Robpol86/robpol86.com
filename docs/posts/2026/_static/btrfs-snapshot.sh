@@ -36,6 +36,16 @@
 #   -v          Enable verbose/debug output.
 
 # Usage: btrfs-snapshot list [OPTIONS]
+#
+# TODO
+#
+# TODO long
+#
+# Options:
+#   -h          Display this help and exit.
+#   -s dir      Mounted subvolume directory.
+#               Default: @SUBVOLUME_DIR
+#   -v          Enable verbose/debug output.
 
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
@@ -93,7 +103,7 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 if [ ${LIST_ONLY:-false} = true ]; then
   # Get list of snapshots.
   snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
-  if ! btrfs subvolume list -rst / > "$snapshot_list_file"; then
+  if ! btrfs subvolume list -rst "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
     echo "ERROR: Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
     rm -f "$snapshot_list_file"
