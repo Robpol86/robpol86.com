@@ -76,11 +76,6 @@ fi
 SNAPSHOTS_DIR_FULL="${SUBVOLUME_DIR%/}/${SNAPSHOTS_DIR%/}"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
-# Y64 encode function.
-y64_encode() {
-  base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g'
-}
-
 # List only.
 if [ ${LIST_ONLY:-false} = true ]; then
   # Get list of snapshots.
@@ -185,6 +180,9 @@ fi
 COMMENT_B64=
 
 # Encode comment.
+y64_encode() {
+  base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g'
+}
 if [ "${COMMENT:-}" = "-" ]; then
   if [ -t 0 ]; then
     echo "Press Ctrl+D to finish" >&2
