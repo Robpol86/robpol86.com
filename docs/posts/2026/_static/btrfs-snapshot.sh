@@ -107,9 +107,17 @@ if [ "$1" = "--help" ]; then
 fi
 
 # Read subcommand and handle aliases.
-SUBCOMMAND="${1}"
+case "$1" in
+  create) SUBCOMMAND="take" ;;
+  ls) SUBCOMMAND="list" ;;
+  undo) SUBCOMMAND="revert" ;;
+  take|list|restore|delete|revert) SUBCOMMAND="$1" ;;
+  *) echo "unknown subcommand: '$1'" >&2
+     echo "See 'btrfs-snapshot -h'." >&2
+     exit 1 ;;
+esac
 shift
-echo "$SUBCOMMAND"  # TODO
+echo "$SUBCOMMAND"  # TODO remove
 
 # Parse command line arguments.
 while getopts :c:hls:v OPT; do

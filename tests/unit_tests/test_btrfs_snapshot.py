@@ -195,20 +195,20 @@ def test_take_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     """Test sanity checks related to btrfs before making changes to the filesystem."""
     # Test not BTRFS.
     monkeypatch.setenv("MOCK_STAT_BIG_T", "fat32")
-    output = run_failed(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
+    output = run_failed(["take", "-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert "is not a btrfs filesystem." in output
     monkeypatch.delenv("MOCK_STAT_BIG_T")
 
     # Test not a subvolume.
     monkeypatch.setenv("MOCK_STAT_LITTLE_I", "123")
-    output = run_failed(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
+    output = run_failed(["take", "-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert "is not a btrfs subvolume." in output
     monkeypatch.delenv("MOCK_STAT_LITTLE_I")
 
     # Test snapshot already exists.
     snapshot_path = subvolume / SNAPSHOTS_DIR / SNAPSHOT_NAME / "0"
     snapshot_path.mkdir(parents=True)
-    output = run_failed(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
+    output = run_failed(["take", "-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert f"Snapshot '{snapshot_path}' already exists" in output
 
 
@@ -225,7 +225,7 @@ def test_take_happy_path(subvolume: Path, bin_dir: Path, running: bool):
         (bin_dir / "findmnt").symlink_to(false_)
 
     # Run.
-    output = run(["-v", "-s", str(subvolume), SNAPSHOT_NAME])
+    output = run(["take", "-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
     assert expected_snapshot_path.is_dir()
 
@@ -238,7 +238,7 @@ def test_take_comment(subvolume: Path):
     assert not expected_snapshot_path.exists()
 
     # Run.
-    output = run(["-v", "-s", str(subvolume), "-c", comment, SNAPSHOT_NAME])
+    output = run(["take", "-v", "-s", str(subvolume), "-c", comment, SNAPSHOT_NAME])
     assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
     assert expected_snapshot_path.is_dir()
 
@@ -251,7 +251,7 @@ def test_take_comment_multiline(subvolume: Path):
     assert not expected_snapshot_path.exists()
 
     # Run.
-    output = run(["-v", "-s", str(subvolume), "-c-", SNAPSHOT_NAME], input=comment.encode("utf8"))
+    output = run(["take", "-v", "-s", str(subvolume), "-c-", SNAPSHOT_NAME], input=comment.encode("utf8"))
     assert f"Create readonly snapshot of '{subvolume}' in '{expected_snapshot_path}'" in output
     assert expected_snapshot_path.is_dir()
 
@@ -268,7 +268,7 @@ def test_list_no_snapshots(subvolume: Path, bin_dir: Path):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run_failed(["-vl", "-s", str(subvolume)], env=env)
+    output = run_failed(["list", "-vl", "-s", str(subvolume)], env=env)
     assert "No snapshots found." in output
 
 
@@ -289,7 +289,7 @@ def test_list_snapshots(subvolume: Path, bin_dir: Path):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["-l", "-s", str(subvolume)], env=env)
+    output = run(["list", "-l", "-s", str(subvolume)], env=env)
 
     # Check.
     expected = dedent("""\
@@ -321,7 +321,7 @@ def test_list_snapshots_no_comments(subvolume: Path, bin_dir: Path):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["-l", "-s", str(subvolume)], env=env)
+    output = run(["list", "-l", "-s", str(subvolume)], env=env)
 
     # Check.
     expected = dedent("""\
@@ -364,7 +364,7 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["-l", "-s", str(subvolume)], env=env)
+    output = run(["list", "-l", "-s", str(subvolume)], env=env)
 
     # Check.
     if medium:
