@@ -95,7 +95,11 @@ SNAPSHOT_NAME=
 
 # Handle top level help (no args == -h).
 if [ $# -eq 0 ] || [ "$1" = "-h" ]; then
-  grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |sed -e 's/^# \?//'
+  awk '
+    /^# Usage:/ {doit=1}
+    !/^#/ && doit==1 {exit}
+    doit==1 {print substr($0, 3)}
+  ' "$0"
   exit 0
 fi
 

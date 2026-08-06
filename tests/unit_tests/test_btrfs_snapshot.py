@@ -134,7 +134,6 @@ def _subvolume(tmp_path: Path):
 @pytest.mark.parametrize("no_args", [True, False])
 def test_cli_help_top(no_args: bool):
     """Test help output without subcommands."""
-    pytest.skip()  # TODO
     if no_args:
         output = run([])
     else:
