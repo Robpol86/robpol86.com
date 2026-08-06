@@ -310,77 +310,83 @@ if [ "$SUBCOMMAND" = "list" ]; then
     }
   ' "$snapshot_list_file" "$snapshot_list_file"
   rm -f "$snapshot_list_file"
+  
   exit 0
 fi
 
-# Check if snapshot name has invalid characters.
-# TODO
+# Subcommand take.
+if [ "$SUBCOMMAND" = "take" ]; then
+  # Check if snapshot name has invalid characters.
+  # TODO
 
-COMMENT_B64=
+  COMMENT_B64=
 
-# Encode comment.
-y64_encode() {
-  base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g'
-}
-if [ "${COMMENT:-}" = "-" ]; then
-  if [ -t 0 ]; then
-    echo "Press Ctrl+D to finish" >&2
+  # Encode comment.
+  y64_encode() {
+    base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g'
+  }
+  if [ "${COMMENT:-}" = "-" ]; then
+    if [ -t 0 ]; then
+      echo "Press Ctrl+D to finish" >&2
+    fi
+    COMMENT_B64="$(y64_encode)"
+  elif [ -n "${COMMENT:-}" ]; then
+    COMMENT_B64="$(printf "%s" "$COMMENT" |y64_encode)"
   fi
-  COMMENT_B64="$(y64_encode)"
-elif [ -n "${COMMENT:-}" ]; then
-  COMMENT_B64="$(printf "%s" "$COMMENT" |y64_encode)"
-fi
-# TODO if comment > limit: fail.
+  # TODO if comment > limit: fail.
 
-IS_READONLY=
-SNAPSHOT_PATH=
+  IS_READONLY=
+  SNAPSHOT_PATH=
 
-# Determine snapshot path.
-SNAPSHOT_PATH_MKDIR="$SNAPSHOTS_DIR/$SNAPSHOT_NAME"
-if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
-  IS_READONLY=true
-  SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/0$COMMENT_B64"
-else
-  SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/1$COMMENT_B64"
-fi
+  # Determine snapshot path.
+  SNAPSHOT_PATH_MKDIR="$SNAPSHOTS_DIR/$SNAPSHOT_NAME"
+  if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
+    IS_READONLY=true
+    SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/0$COMMENT_B64"
+  else
+    SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/1$COMMENT_B64"
+  fi
 
-# Fail if snapshot already exists.
-if [ -e "$SNAPSHOT_PATH" ]; then
-  echo "ERROR: Snapshot '$SNAPSHOT_PATH' already exists." >&2
-  echo "Run 'btrfs-snapshot -l' to list existing snapshots." >&2
-  exit 1
-fi
+  # Fail if snapshot already exists.
+  if [ -e "$SNAPSHOT_PATH" ]; then
+    echo "ERROR: Snapshot '$SNAPSHOT_PATH' already exists." >&2
+    echo "Run 'btrfs-snapshot -l' to list existing snapshots." >&2
+    exit 1
+  fi
 
-#
-# Done with checks. Above here nothing changed in the btrfs filesystem. Below
-# here is when the script starts making changes.
-#
+  #
+  # Done with checks. Above here nothing changed in the btrfs filesystem. Below
+  # here is when the script starts making changes.
+  #
 
-# Remount subvolume as readwrite if it is mounted as readonly.
-if [ ${IS_READONLY:-false} = true ]; then
-  if ! mount -oremount,rw "$SUBVOLUME_DIR"; then
-    echo "ERROR: Failed to remount '$SUBVOLUME_DIR' as read-write." >&2
+  # Remount subvolume as readwrite if it is mounted as readonly.
+  if [ ${IS_READONLY:-false} = true ]; then
+    if ! mount -oremount,rw "$SUBVOLUME_DIR"; then
+      echo "ERROR: Failed to remount '$SUBVOLUME_DIR' as read-write." >&2
+      echo "Are you running this as root or with sudo?" >&2
+      exit 1
+    else
+      echo "Remounted '$SUBVOLUME_DIR' as read-write"
+    fi
+  fi
+
+  # Create snapshots parent directories.
+  if ! mkdir -p "$SNAPSHOT_PATH_MKDIR"; then
+    echo "ERROR: Failed to create directory '$SNAPSHOT_PATH_MKDIR'." >&2
     echo "Are you running this as root or with sudo?" >&2
     exit 1
-  else
-    echo "Remounted '$SUBVOLUME_DIR' as read-write"
   fi
-fi
 
-# Create snapshots parent directories.
-if ! mkdir -p "$SNAPSHOT_PATH_MKDIR"; then
-  echo "ERROR: Failed to create directory '$SNAPSHOT_PATH_MKDIR'." >&2
-  echo "Are you running this as root or with sudo?" >&2
-  exit 1
-fi
+  # Create snapshot
+  btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"
 
-# Create snapshot
-btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"
+  # Remount subvolume as readonly if it was originally in that state.
+  if [ ${IS_READONLY:-false} = true ]; then
+    mount -oremount,ro "$SUBVOLUME_DIR"
+    echo "Remounted '$SUBVOLUME_DIR' as read-only"
+  fi
 
-# Remount subvolume as readonly if it was originally in that state.
-if [ ${IS_READONLY:-false} = true ]; then
-  mount -oremount,ro "$SUBVOLUME_DIR"
-  echo "Remounted '$SUBVOLUME_DIR' as read-only"
+  exit 0
 fi
 
 # TODO:
