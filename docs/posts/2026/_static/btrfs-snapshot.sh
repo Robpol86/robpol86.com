@@ -396,7 +396,7 @@ fi
 # - Checks:
 #   - if snapshots-dir has a leading / is it the same as subvolume?
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
-# - Don't use awk.
+# - Replace grep/sed/etc with awk.
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 # - Cleanup tmp files.
 # - Test missing snapshot name in nfo file
