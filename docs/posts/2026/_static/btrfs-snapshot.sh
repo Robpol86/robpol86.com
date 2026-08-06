@@ -30,7 +30,6 @@
 #   -c comment  Snapshot description. If comment is '-' then comment will be
 #               read from stdin.
 #   -h          Display this help and exit.
-#   -l          List existing snapshots and exit.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
 #   -v          Enable verbose/debug output.
@@ -88,7 +87,6 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SUBCOMMAND=
 COMMENT=
-LIST_ONLY=
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
 SNAPSHOT_NAME=
@@ -121,36 +119,42 @@ case "$1" in
      exit 1 ;;
 esac
 shift
-: "$SUBCOMMAND"  # TODO remove
-
-
-# TODO how to handle different getopts per subcommand. case "$SUBCOMMAND_$OPT"? Need *) echo "BUG"?
-
 
 # Parse command line arguments.
-while getopts :c:hls:v OPT; do
-  case "$OPT" in
-    \?) echo "unknown flag: '$OPTARG'" >&2
-        exit 1 ;;
-    :) echo "flag needs an argument: '$OPTARG'" >&2
+case "$SUBCOMMAND" in
+  take) GETOPTS=":c:hs:v" ;;
+  *) GETOPTS=":hs:v" ;;
+esac
+while getopts "$GETOPTS" OPT; do
+  case "$SUBCOMMAND-$OPT" in
+    *-\?) echo "unknown flag: '$OPTARG'" >&2
+          exit 1 ;;
+    *-:) echo "flag needs an argument: '$OPTARG'" >&2
+         exit 1 ;;
+    *-h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |
+         sed -e 's/^# \?//' \
+             -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"  # TODO
+         exit 0 ;;
+    *-s) SUBVOLUME_DIR="$OPTARG" ;;
+    *-v) VERBOSE=true ;;
+    take-c) COMMENT="$OPTARG" ;;
+    *) echo "BUG" >&2
        exit 1 ;;
-    c) COMMENT="$OPTARG" ;;
-    h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |
-        sed -e 's/^# \?//' \
-            -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"
-       exit 0 ;;
-    l) LIST_ONLY=true ;;
-    s) SUBVOLUME_DIR="$OPTARG" ;;
-    v) VERBOSE=true ;;
   esac
 done
 shift "$((OPTIND-1))"
-if [ $# != 1 ] && [ ${LIST_ONLY:-false} = false ]; then
-  echo "'btrfs-snapshot' requires exactly 1 argument." >&2
-  echo "See 'btrfs-snapshot -h'." >&2
-  exit 1
+
+# Parse subcommand arguments.
+if [ "$SUBCOMMAND" = "take" ]; then
+  if [ $# != 1 ]; then
+    echo "'btrfs-snapshot take' requires exactly 1 argument." >&2
+    echo "See 'btrfs-snapshot take -h'." >&2
+    exit 1
+  else
+    SNAPSHOT_NAME="$1"
+    shift
+  fi
 fi
-SNAPSHOT_NAME="${1:-}"
 
 # Enable verbose/debug.
 if [ ${VERBOSE:-false} = true ]; then
@@ -170,8 +174,8 @@ fi
 SNAPSHOTS_DIR="${SUBVOLUME_DIR%/}/.bsnaps"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
-# List only.
-if [ ${LIST_ONLY:-false} = true ]; then
+# Subcommand list.
+if [ "$SUBCOMMAND" = "list" ]; then
   # Get list of snapshots.
   snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
   if ! btrfs subvolume list -rst "$SUBVOLUME_DIR" > "$snapshot_list_file"; then

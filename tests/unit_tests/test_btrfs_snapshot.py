@@ -267,7 +267,7 @@ def test_list_no_snapshots(subvolume: Path, bin_dir: Path):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run_failed(["list", "-vl", "-s", str(subvolume)], env=env)
+    output = run_failed(["list", "-v", "-s", str(subvolume)], env=env)
     assert "No snapshots found." in output
 
 
@@ -288,7 +288,7 @@ def test_list_snapshots(subvolume: Path, bin_dir: Path):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["list", "-l", "-s", str(subvolume)], env=env)
+    output = run(["list", "-s", str(subvolume)], env=env)
 
     # Check.
     expected = dedent("""\
@@ -320,7 +320,7 @@ def test_list_snapshots_no_comments(subvolume: Path, bin_dir: Path):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["list", "-l", "-s", str(subvolume)], env=env)
+    output = run(["list", "-s", str(subvolume)], env=env)
 
     # Check.
     expected = dedent("""\
@@ -363,7 +363,7 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["list", "-l", "-s", str(subvolume)], env=env)
+    output = run(["list", "-s", str(subvolume)], env=env)
 
     # Check.
     if medium:
