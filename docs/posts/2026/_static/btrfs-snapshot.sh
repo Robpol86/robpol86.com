@@ -127,19 +127,21 @@ case "$SUBCOMMAND" in
 esac
 while getopts "$GETOPTS" OPT; do
   case "$SUBCOMMAND-$OPT" in
-    *-\?) echo "unknown flag: '$OPTARG'" >&2
-          exit 1 ;;
-    *-:) echo "flag needs an argument: '$OPTARG'" >&2
-         exit 1 ;;
-    *-h) grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |
-         sed -e 's/^# \?//' \
-             -e "s|@SUBVOLUME_DIR|$SUBVOLUME_DIR|"  # TODO
-         exit 0 ;;
-    *-s) SUBVOLUME_DIR="$OPTARG" ;;
-    *-v) VERBOSE=true ;;
+    *-\?)   echo "unknown flag: '$OPTARG'" >&2
+            exit 1 ;;
+    *-:)    echo "flag needs an argument: '$OPTARG'" >&2
+            exit 1 ;;
+    *-h)    awk -v SUBCOMMAND="$SUBCOMMAND" '
+              /^# Usage:/ && $4==SUBCOMMAND {doit=1}
+              !/^#/ && doit==1 {exit}
+              doit==1 {print substr($0, 3)}
+            ' "$0"
+            exit 0 ;;
+    *-s)    SUBVOLUME_DIR="$OPTARG" ;;
+    *-v)    VERBOSE=true ;;
     take-c) COMMENT="$OPTARG" ;;
-    *) echo "BUG" >&2
-       exit 1 ;;
+    *)      echo "BUG" >&2
+            exit 1 ;;
   esac
 done
 shift "$((OPTIND-1))"

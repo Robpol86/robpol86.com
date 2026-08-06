@@ -144,10 +144,9 @@ def test_cli_help_top(no_args: bool):
     assert lines[-1].startswith("more information on creating snapshots")
 
 
-@pytest.mark.parametrize("subcommand", ["take", "create", "list", "ls", "restor", "delete", "revert", "undo"])
+@pytest.mark.parametrize("subcommand", ["take", "create", "list", "ls", "restore", "delete", "revert", "undo"])
 def test_cli_help_sub(subcommand: str):
     """Test help output for subcommands."""
-    pytest.skip()  # TODO
     output = run([subcommand, "-h"])
 
     # Handle aliases, usage is static.
