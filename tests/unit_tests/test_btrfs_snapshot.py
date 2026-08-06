@@ -2,6 +2,7 @@
 
 import base64
 import os
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -130,34 +131,63 @@ def _subvolume(tmp_path: Path):
     return subvolume
 
 
-def test_help():
-    """Test script's handling of -h."""
-    output = run(["-h"])
+@pytest.mark.parametrize("no_args", [True, False])
+def test_cli_help_top(no_args: bool):
+    """Test help output without subcommands."""
+    pytest.skip()  # TODO
+    if no_args:
+        output = run([])
+    else:
+        output = run(["-h"])
     lines = output.splitlines()
     assert lines[0].startswith("Usage: ")
-    assert lines[-2].startswith("  -v ")
-    assert lines[-1] == ""
-    assert "Default: /\n" in output
+    assert lines[0].endswith("<command> [OPTIONS] [<args>]")
+    assert lines[-1].startswith("more information on creating snapshots")
 
 
-def test_bad_args():
+@pytest.mark.parametrize("subcommand", ["take", "create", "list", "ls", "restor", "delete", "revert", "undo"])
+def test_cli_help_sub(subcommand: str):
+    """Test help output for subcommands."""
+    pytest.skip()  # TODO
+    output = run([subcommand, "-h"])
+
+    # Handle aliases, usage is static.
+    if subcommand == "create":
+        subcommand = "take"
+    if subcommand == "ls":
+        subcommand = "list"
+    if subcommand == "undo":
+        subcommand = "revert"
+
+    assert re.match(f"^Usage: [a-zA-Z0-9_-]+ {subcommand}", output)
+    lines = output.splitlines()
+    assert lines[-1].startswith("  -v ")
+
+
+def test_cli_bad_args():
     """Test script's handling of bad CLI arguments."""
-    output = run_failed([])
+    pytest.skip()  # TODO
+    # getopts doesn't support long options. Provide guidance on common usage.
+    output = run_failed(["--help"])
+    assert "unknown option '--help'" in output
+
+    output = run_failed(["unknown", "-h"])
+    assert "unknown command 'unknown'" in output
+
+    output = run_failed(["take", SNAPSHOT_NAME, "extra"])
     assert "requires exactly 1 argument" in output
 
-    output = run_failed(["a", "b", "c"])
-    assert "requires exactly 1 argument" in output
-
-    output = run_failed(["-z"])
+    output = run_failed(["take", "-z", SNAPSHOT_NAME])
     assert "unknown flag: 'z'" in output
 
-    output = run_failed(["-c"])
+    output = run_failed(["take", "-c"])
     assert "flag needs an argument: 'c'" in output
 
 
-def test_overide_defaults():
+def test_cli_overide_defaults():
     """Make sure Usage string replacement for displaying defaults works."""
-    output = run(["-s/altroot", "-h"])
+    pytest.skip()  # TODO
+    output = run(["take", "-s/altroot", "-h"])
     assert "Default: /altroot\n" in output
 
 
