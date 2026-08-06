@@ -95,7 +95,7 @@ SNAPSHOT_NAME=
 
 # Handle top level help (no args == -h).
 if [ $# -eq 0 ] || [ "$1" = "-h" ]; then
-  grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$'
+  grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$' |sed -e 's/^# \?//'
   exit 0
 fi
 
@@ -117,7 +117,10 @@ case "$1" in
      exit 1 ;;
 esac
 shift
-echo "$SUBCOMMAND"  # TODO remove
+: "$SUBCOMMAND"  # TODO remove
+
+
+
 
 # Parse command line arguments.
 while getopts :c:hls:v OPT; do
