@@ -124,6 +124,7 @@ shift
 : "$SUBCOMMAND"  # TODO remove
 
 
+# TODO how to handle different getopts per subcommand. case "$SUBCOMMAND_$OPT"? Need *) echo "BUG"?
 
 
 # Parse command line arguments.
