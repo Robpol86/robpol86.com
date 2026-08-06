@@ -86,11 +86,30 @@
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
+SUBCOMMAND=
 COMMENT=
 LIST_ONLY=
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
 SNAPSHOT_NAME=
+
+# Handle top level help (no args == -h).
+if [ $# -eq 0 ] || [ "$1" = "-h" ]; then
+  grep -A40 -m1 "^# Usage:" "$0" |grep -B40 -m1 '^ *$'
+  exit 0
+fi
+
+# Handle "--help" special case.
+if [ "$1" = "--help" ]; then
+  echo "unknown flag: '--help'" >&2
+  echo "See 'btrfs-snapshot -h'." >&2
+  exit 1
+fi
+
+# Read subcommand and handle aliases.
+SUBCOMMAND="${1}"
+shift
+echo "$SUBCOMMAND"  # TODO
 
 # Parse command line arguments.
 while getopts :c:hls:v OPT; do
