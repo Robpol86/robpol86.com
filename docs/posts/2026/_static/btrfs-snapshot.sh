@@ -389,6 +389,27 @@ if [ "$SUBCOMMAND" = "take" ]; then
   exit 0
 fi
 
+# Subcommand restore.
+if [ "$SUBCOMMAND" = "restore" ]; then
+  echo "TODO"
+  exit 0
+fi
+
+# Subcommand delete.
+if [ "$SUBCOMMAND" = "delete" ]; then
+  echo "TODO"
+  exit 0
+fi
+
+# Subcommand revert.
+if [ "$SUBCOMMAND" = "revert" ]; then
+  echo "TODO"
+  exit 0
+fi
+
+echo "BUG" >&2
+exit 1
+
 # TODO:
 # - Strip head/tail newlines/spaces in comment.
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
@@ -402,11 +423,8 @@ fi
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
 #   - Create a new snapshot from the restored middle. Now there should be one more in -l.
 # - @root and @home: can snapshots live in other subvols? Probably not.
-# - Unify with other scripts? btrfs-snapshot [list|take|restore|delete|revert]
-#   - Support non-root (arbitrary) subvolumes
-#   - If restore uses the same list and unify not good, break out into own script: snapshot-list
-#   - alias in rd.break as `bss`
-#   - btrfs-snapshot list -p  # show paths instead of comments
+# - Support non-root (arbitrary) subvolumes
+# - Alias in rd.break as `bss`
 # - Test with subvol_dir=.
 # - Test with spaces in snapshot names (taking and listing).
 # - Handle special characters in "snapshot name" e.g. *.
