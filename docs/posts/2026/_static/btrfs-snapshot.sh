@@ -146,18 +146,6 @@ while getopts "$GETOPTS" OPT; do
 done
 shift "$((OPTIND-1))"
 
-# Parse subcommand arguments.
-if [ "$SUBCOMMAND" = "take" ]; then
-  if [ $# != 1 ]; then
-    echo "'btrfs-snapshot take' requires exactly 1 argument." >&2
-    echo "See 'btrfs-snapshot take -h'." >&2
-    exit 1
-  else
-    SNAPSHOT_NAME="$1"
-    shift
-  fi
-fi
-
 # Enable verbose/debug.
 if [ ${VERBOSE:-false} = true ]; then
   set -o xtrace  # Print commands before executing them.
@@ -316,6 +304,16 @@ fi
 
 # Subcommand take.
 if [ "$SUBCOMMAND" = "take" ]; then
+  # Parse subcommand arguments.
+  if [ $# != 1 ]; then
+    echo "'btrfs-snapshot take' requires exactly 1 argument." >&2
+    echo "See 'btrfs-snapshot take -h'." >&2
+    exit 1
+  else
+    SNAPSHOT_NAME="$1"
+    shift
+  fi
+
   # Check if snapshot name has invalid characters.
   # TODO
 
