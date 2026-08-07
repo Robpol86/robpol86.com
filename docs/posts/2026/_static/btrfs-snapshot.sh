@@ -390,6 +390,15 @@ fi
 
 # Subcommand restore.
 if [ "$SUBCOMMAND" = "restore" ]; then
+  ## if initrd
+  mount -oremount,rw "$SUBVOLUME_DIR"
+  btrfs subvolume set-default 256 "$SUBVOLUME_DIR"  # TODO NO, then root is ro.
+  TODO_DEV="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
+  umount "$SUBVOLUME_DIR"
+  mount -osubvolid=5 /dev/FINDMNT_PATH "$SUBVOLUME_DIR"
+  mount -oremount,ro "$SUBVOLUME_DIR"
+  findmnt -nvo SOURCE "$SUBVOLUME_DIR"
+
   findmnt -nvo SOURCE /sysroot
   umount /sysroot
   mount -osubvolid=5 /dev/FINDMNT_PATH /sysroot  # Replace FINDMNT_PATH
