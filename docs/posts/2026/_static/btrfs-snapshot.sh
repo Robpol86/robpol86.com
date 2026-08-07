@@ -84,6 +84,7 @@
 
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
+set -o pipefail  # TODO
 
 SUBCOMMAND=
 COMMENT=
@@ -398,7 +399,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   mount -o "subvolid=$SNAPSHOT_ID,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR/.bsnaps/restore-from"
   btrfs subvolume snapshot "$SUBVOLUME_DIR/.bsnaps/restore-from" "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
   btrfs subvolume set-default "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
-  NEW_ID="$(btrfs subv get-default / |awk '/^ID /{print $2}')"
+  NEW_ID="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
   umount "$SUBVOLUME_DIR/.bsnaps/restore-from"
   umount "$SUBVOLUME_DIR"
   mount -o "subvolid=$NEW_ID,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR"
