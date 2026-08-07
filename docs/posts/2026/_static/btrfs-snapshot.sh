@@ -391,20 +391,22 @@ fi
 # Subcommand restore.
 if [ "$SUBCOMMAND" = "restore" ]; then
   ## if initrd
+  set -x
   mount -oremount,rw "$SUBVOLUME_DIR"
-  btrfs subvolume set-default 256 "$SUBVOLUME_DIR"  # TODO NO, then root is ro.
-  TODO_DEV="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
+  mkdir -p "$SUBVOLUME_DIR/.bsnaps"
+  btrfs subvolume snapshot "$TODO_SNAPSHOT_ID" "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
+  btrfs subvolume set-default "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
+  NEW_ID="$(btrfs subv get-default / |awk '/^ID /{print $2}')"
+  SUBVOLUME_DEV="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   umount "$SUBVOLUME_DIR"
-  mount -osubvolid=5 /dev/FINDMNT_PATH "$SUBVOLUME_DIR"
-  mount -oremount,ro "$SUBVOLUME_DIR"
-  findmnt -nvo SOURCE "$SUBVOLUME_DIR"
+  mount -o "subvolid=$NEW_ID,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR"
 
-  findmnt -nvo SOURCE /sysroot
-  umount /sysroot
-  mount -osubvolid=5 /dev/FINDMNT_PATH /sysroot  # Replace FINDMNT_PATH
-  mv /sysroot/@ /sysroot/@_old
-  btrfs subvolume snapshot /sysroot/@_old/s/root-p /sysroot/@
-  btrfs subvolume set-default /sysroot/@
+  # findmnt -nvo SOURCE /sysroot
+  # umount /sysroot
+  # mount -osubvolid=5 /dev/FINDMNT_PATH /sysroot  # Replace FINDMNT_PATH
+  # mv /sysroot/@ /sysroot/@_old
+  # btrfs subvolume snapshot /sysroot/@_old/s/root-p /sysroot/@
+  # btrfs subvolume set-default /sysroot/@
   exit 0
 fi
 
