@@ -131,7 +131,8 @@ while getopts "$GETOPTS" OPT; do
             exit 1 ;;
     *-:)    echo "flag needs an argument: '$OPTARG'" >&2
             exit 1 ;;
-    *-h)    awk -v SUBCOMMAND="$SUBCOMMAND" '
+    *-h)    awk -v SUBCOMMAND="$SUBCOMMAND" -v SUBVOLUME_DIR="$SUBVOLUME_DIR" '
+              /@SUBVOLUME_DIR/ {gsub(/@SUBVOLUME_DIR/, SUBVOLUME_DIR)}
               /^# Usage:/ && $4==SUBCOMMAND {doit=1}
               !/^#/ && doit==1 {exit}
               doit==1 {print substr($0, 3)}

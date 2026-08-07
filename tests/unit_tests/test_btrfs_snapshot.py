@@ -183,7 +183,6 @@ def test_cli_bad_args():
 
 def test_cli_overide_defaults():
     """Make sure Usage string replacement for displaying defaults works."""
-    pytest.skip()  # TODO
     output = run(["take", "-s/altroot", "-h"])
     assert "Default: /altroot\n" in output
 
