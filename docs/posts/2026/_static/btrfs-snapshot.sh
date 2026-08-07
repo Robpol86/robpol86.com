@@ -403,13 +403,6 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   umount "$SUBVOLUME_DIR/.bsnaps/restore-from"
   umount "$SUBVOLUME_DIR"
   mount -o "subvolid=$NEW_ID,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR"
-
-  # findmnt -nvo SOURCE /sysroot
-  # umount /sysroot
-  # mount -osubvolid=5 /dev/FINDMNT_PATH /sysroot  # Replace FINDMNT_PATH
-  # mv /sysroot/@ /sysroot/@_old
-  # btrfs subvolume snapshot /sysroot/@_old/s/root-p /sysroot/@
-  # btrfs subvolume set-default /sysroot/@
   exit 0
 fi
 
