@@ -390,7 +390,12 @@ fi
 
 # Subcommand restore.
 if [ "$SUBCOMMAND" = "restore" ]; then
-  echo "TODO"
+  findmnt -nvo SOURCE /sysroot
+  umount /sysroot
+  mount -osubvolid=5 /dev/FINDMNT_PATH /sysroot  # Replace FINDMNT_PATH
+  mv /sysroot/@ /sysroot/@_old
+  btrfs subvolume snapshot /sysroot/@_old/s/root-p /sysroot/@
+  btrfs subvolume set-default /sysroot/@
   exit 0
 fi
 

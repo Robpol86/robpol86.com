@@ -4,6 +4,7 @@
 # Copy btrfs-snapshot into initramfs image.
 # https://github.com/Robpol86/robpol86.com/blob/main/docs/posts/2026/_static/btrfs-snapshot-module-setup.sh
 # Save as (chmod +x): /usr/lib/dracut/modules.d/82btrfs-snapshot/module-setup.sh
+# Install in initramfs with: update-initramfs -u
 #
 
 check() {
