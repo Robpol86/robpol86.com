@@ -103,7 +103,7 @@ fi
 
 # Handle "--help" special case.
 if [ "$1" = "--help" ]; then
-  echo "unknown flag: '--help'" >&2
+  echo "unknown option: '--help'" >&2
   echo "See 'btrfs-snapshot -h'." >&2
   exit 1
 fi

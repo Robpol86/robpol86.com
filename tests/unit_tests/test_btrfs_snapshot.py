@@ -164,13 +164,12 @@ def test_cli_help_sub(subcommand: str):
 
 def test_cli_bad_args():
     """Test script's handling of bad CLI arguments."""
-    pytest.skip()  # TODO
     # getopts doesn't support long options. Provide guidance on common usage.
     output = run_failed(["--help"])
-    assert "unknown option '--help'" in output
+    assert "unknown option: '--help'" in output
 
     output = run_failed(["unknown", "-h"])
-    assert "unknown command 'unknown'" in output
+    assert "unknown subcommand: 'unknown'" in output
 
     output = run_failed(["take", SNAPSHOT_NAME, "extra"])
     assert "requires exactly 1 argument" in output
