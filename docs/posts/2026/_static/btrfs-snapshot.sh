@@ -176,13 +176,8 @@ if [ "$SUBCOMMAND" = "list" ]; then
     rm -f "$snapshot_list_file"
     exit 1
   fi
-  if ! grep -q -P "\t.bsnaps/" "$snapshot_list_file"; then  # TODO eliminate anti-pattern.
-    echo "No snapshots found." >&2
-    rm -f "$snapshot_list_file"
-    exit 1
-  fi
 
-  awk -v FS='\t+' '
+  if ! awk -v FS='\t+' '
     BEGIN {
       padding_id = 3
       padding_date = 20
@@ -193,6 +188,15 @@ if [ "$SUBCOMMAND" = "list" ]; then
 
     # Skip irrelevant snapshots.
     !/\t.bsnaps\// { next }  # TODO .bsnaps/snapshots/...
+
+    # Exit 1 if no relevant snapshots found.
+    {snapshots_found++}
+    END{
+      if (!snapshots_found) {
+        print "No snapshots found." >> "/dev/stderr"
+        exit 1
+      }
+    }
 
     # First pass.
     NR==FNR {
@@ -298,7 +302,10 @@ if [ "$SUBCOMMAND" = "list" ]; then
         }
       }
     }
-  ' "$snapshot_list_file" "$snapshot_list_file"
+  ' "$snapshot_list_file" "$snapshot_list_file"; then
+    rm -f "$snapshot_list_file"
+    exit 1
+  fi
   rm -f "$snapshot_list_file"
   
   exit 0
