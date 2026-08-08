@@ -391,13 +391,13 @@ fi
 
 # Subcommand restore.
 if [ "$SUBCOMMAND" = "restore" ]; then
-  set -x
   SNAPSHOT_ID="$1"  # TODO
   SUBVOLUME_DEV="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   mount -oremount,rw "$SUBVOLUME_DIR"
   mkdir -p "$SUBVOLUME_DIR/.bsnaps/restore-from"
   mount -o "subvolid=$SNAPSHOT_ID,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR/.bsnaps/restore-from"
   btrfs subvolume snapshot "$SUBVOLUME_DIR/.bsnaps/restore-from" "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
+  # TODO: prompt user before making changes
   btrfs subvolume set-default "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
   NEW_ID="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
   umount "$SUBVOLUME_DIR/.bsnaps/restore-from"

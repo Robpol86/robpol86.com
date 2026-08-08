@@ -30,5 +30,5 @@ install() {
     sed -i \
         -e '/^SUBVOLUME_DIR=.*@MODULE-SETUP-REPLACE@/ s|=.*|=/sysroot|' \
         "${initdir:?}/sbin/btrfs-snapshot"
-    ln -s btrfs-snapshot "${initdir:?}/sbin/bss"
+    ln -s btrfs-snapshot "${initdir:?}/sbin/bss"  # TODO sed instead of symlink.
 }
