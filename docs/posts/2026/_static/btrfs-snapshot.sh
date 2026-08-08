@@ -84,8 +84,6 @@
 
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
-# shellcheck disable=SC3040  # TODO remove in ++v0.11.0 https://github.com/koalaman/shellcheck/pull/3305
-set -o pipefail  # Exit script if pipes fail instead of just the last program.
 
 SUBCOMMAND=
 COMMENT=  # TODO s/^/TAKE_/
