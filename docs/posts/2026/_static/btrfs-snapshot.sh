@@ -313,7 +313,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
     echo "See 'btrfs-snapshot take -h'." >&2
     exit 1
   else
-    SNAPSHOT_NAME="$1"  # TODO lowercase.
+    SNAPSHOT_NAME="$1"  # TODO lowercase this and all other "block-scoped" variables
     shift
   fi
 
@@ -402,17 +402,17 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     shift
   fi
 
-  SUBVOLUME_DEV="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
+  subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   mount -oremount,rw "$SUBVOLUME_DIR"
   mkdir -p "$SUBVOLUME_DIR/.bsnaps/restore-from"
-  mount -o "subvolid=$snapshot_id,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR/.bsnaps/restore-from"
+  mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$SUBVOLUME_DIR/.bsnaps/restore-from"
   btrfs subvolume snapshot "$SUBVOLUME_DIR/.bsnaps/restore-from" "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
   # TODO: prompt user before making changes
   btrfs subvolume set-default "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
-  NEW_ID="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
+  new_id="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
   umount "$SUBVOLUME_DIR/.bsnaps/restore-from"
   umount "$SUBVOLUME_DIR"
-  mount -o "subvolid=$NEW_ID,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR"
+  mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"
   exit 0
 fi
 
