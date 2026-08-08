@@ -227,7 +227,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
       gsub(/-/, "=", encoded)
       # https://dnshane.wordpress.com/2017/03/10/decoding-base64-in-awk/
       # https://github.com/shane-kerr/AWK-base64decode
-      # TODO abandon AGPL code, find another way to decode b64.
+      # TODO abandon AGPL code, go back to getlines.
       # Initialize base64 decoder.
       for (i=0; i<26; i++) { BASE64[sprintf("%c", i+65)] = i; BASE64[sprintf("%c", i+97)] = i+26 }
       for (i=0; i<10; i++) BASE64[sprintf("%c", i+48)] = i+52
