@@ -413,7 +413,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Get the btrfs subvolume's device.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
-  # TODO validate dir_restore_from and dir_restore_to.
+  # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
   # Prompt user before making changes
   echo "About to restore this snapshot:" >&2
