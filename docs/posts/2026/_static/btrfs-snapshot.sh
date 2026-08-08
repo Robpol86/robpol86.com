@@ -409,17 +409,26 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   # Get the btrfs subvolume's device.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
 
-
-  mount -oremount,rw "$SUBVOLUME_DIR"
-  mkdir -p "$SUBVOLUME_DIR/.bsnaps/restore-from"
-  mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$SUBVOLUME_DIR/.bsnaps/restore-from"
-  btrfs subvolume snapshot "$SUBVOLUME_DIR/.bsnaps/restore-from" "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
   # TODO: prompt user before making changes
-  btrfs subvolume set-default "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
+
+  # Mount the snapshot as read-only.
+  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restore-from-$UUID"
+  mount -oremount,rw "$SUBVOLUME_DIR"
+  mkdir -p "$dir_restore_from"
+  mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
+
+  # Clone the snapshot as read-write and set-default it.
+  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
+  btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
+  btrfs subvolume set-default "$dir_restore_to"
+  umount "$dir_restore_from"
+  rmdir "$dir_restore_from"
+
+  # Remount $SUBVOLUME_DIR using the now-restored subvolume.
   new_id="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
-  umount "$SUBVOLUME_DIR/.bsnaps/restore-from"
   umount "$SUBVOLUME_DIR"
-  mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"
+  mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"  # TODO if was rw don't ro.
+
   exit 0
 fi
 
