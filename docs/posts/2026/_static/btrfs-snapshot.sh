@@ -21,10 +21,10 @@
 #
 # Comments are Y64 encoded to make them path friendly. Snapshot names and comments
 # are encoded into the snapshot directory path. An example:
-#   .bsnaps/snapshot-name/0U2luZ2xlIGxpbmUgY29tbWVudC4-
+#   .bsnaps/snapshots/snapshot-name/0U2luZ2xlIGxpbmUgY29tbWVudC4-
 # If the snapshot is taken when the btrfs subvolume is mounted it is considered
 # a "running" snapshot, and this is recorded as a 1 in the snapshot directory
-# path (e.g. .bsnaps/snapshot-name/1).
+# path (e.g. .bsnaps/snapshots/snapshot-name/1).
 #
 # Options:
 #   -c comment  Snapshot description. If comment is '-' then comment will be
@@ -187,7 +187,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
     }
 
     # Skip irrelevant snapshots.
-    !/\t.bsnaps\// { next }  # TODO .bsnaps/snapshots/...
+    !/\t.bsnaps\/snapshots\// { next }
 
     # Exit 1 if no relevant snapshots found.
     {snapshots_found++}
@@ -202,7 +202,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
     NR==FNR {
       # Dynamic name column.
       split($6, arr, "/")
-      name_width = length(arr[2])
+      name_width = length(arr[3])
       if (name_width > padding_name_max) padding_name = padding_name_max
       else if (name_width > padding_name) padding_name = name_width
       next
@@ -278,9 +278,9 @@ if [ "$SUBCOMMAND" = "list" ]; then
       id = $1
       date = $5
       split($6, arr, "/")
-      name = arr[2]
-      running = substr(arr[3], 1, 1) == "1" ? "*" : ""
-      comment = y64_decode(substr(arr[3], 2))
+      name = arr[3]
+      running = substr(arr[4], 1, 1) == "1" ? "*" : ""
+      comment = y64_decode(substr(arr[4], 2))
 
       # Print row.
       if (!comment) {
@@ -343,7 +343,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
   # TODO if comment > limit: fail.
 
   # Determine snapshot path.
-  snapshots_dir="${SUBVOLUME_DIR%/}/.bsnaps"  # TODO .bsnaps/snapshots/...  # TODO merge into snapshot_path_mkdir.
+  snapshots_dir="${SUBVOLUME_DIR%/}/.bsnaps/snapshots"  # TODO merge into snapshot_path_mkdir.
   snapshot_path_mkdir="$snapshots_dir/$snapshot_name"
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
     is_readonly=true
@@ -429,8 +429,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   fi
 
   # Mount the snapshot as read-only.
-  # TODO SUBVOLUME_DIR/.bsnaps/restore/...
-  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restore-from-$UUID"  # TODO use snapshot name
+  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restored/restore-from-$UUID"  # TODO use snapshot name
   if [ ${is_readonly:-false} = true ]; then
     mount -oremount,rw "$SUBVOLUME_DIR"
   fi
@@ -438,7 +437,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
 
   # Clone the snapshot as read-write and set-default it.
-  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored-$UUID"  # TODO use snapshot name
+  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored/restored-$UUID"  # TODO use snapshot name
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
   btrfs subvolume set-default "$dir_restore_to"
   umount "$dir_restore_from"

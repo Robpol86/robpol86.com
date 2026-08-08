@@ -12,7 +12,7 @@ import pytest
 
 MOCK_BTRFS_OUTPUT_FILENAME = "btrfs_fake_output.txt"
 MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-SNAPSHOTS_DIR = ".bsnaps"
+SNAPSHOTS_DIR = ".bsnaps/snapshots"
 SNAPSHOT_NAME = "test_name"
 
 
@@ -285,10 +285,10 @@ def test_list_snapshots(subvolume: Path, bin_dir: Path):
         ID	gen	cgen	top level	otime	path
         --	---	----	---------	-----	----
         000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
-        111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
-        222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
-        333	93	93	5		2026-07-29 15:00:00	.bsnaps/three/0{y64_encode("Single line comment.")}
-        444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0{y64_encode("Multi\nline\ncomment.")}
+        111	93	93	5		2026-07-29 13:00:00	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
     """)
     )
 
@@ -317,10 +317,10 @@ def test_list_snapshots_no_comments(subvolume: Path, bin_dir: Path):
         dedent("""\
         ID	gen	cgen	top level	otime	path
         --	---	----	---------	-----	----
-        111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
-        222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
-        333	93	93	5		2026-07-29 15:00:00	.bsnaps/three/0
-        444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0
+        111	93	93	5		2026-07-29 13:00:00	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/three/0
+        444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0
     """)
     )
 
@@ -349,10 +349,10 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
             dedent(f"""\
             ID	gen	cgen	top level	otime	path
             --	---	----	---------	-----	----
-            111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
-            222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
-            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-medium-name/0{y64_encode("Comment.")}
-            444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0{y64_encode("Multi\nline\ncomment.")}
+            111	93	93	5		2026-07-29 13:00:00	.bsnaps/snapshots/one/0
+            222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
+            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/snapshot-medium-name/0{y64_encode("Comment.")}
+            444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
             """)
         )
     else:
@@ -360,11 +360,11 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
             dedent(f"""\
             ID	gen	cgen	top level	otime	path
             --	---	----	---------	-----	----
-            111	93	93	5		2026-07-29 13:00:00	.bsnaps/one/0
-            222	93	93	5		2026-07-29 14:00:00	.bsnaps/two/1
-            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshot-a-very-long-name-indeed/0{y64_encode("Comment.")}
-            444	93	93	5		2026-07-29 16:00:00	.bsnaps/four/0{y64_encode("Multi\nline\ncomment.")}
-            """)
+            111	93	93	5		2026-07-29 13:00:00	.bsnaps/snapshots/one/0
+            222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
+            333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/snapshot-a-very-long-name-indeed/0{y64_encode("Comment.")}
+            444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+            """)  # noqa: E501
         )
 
     # Run.
