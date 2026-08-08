@@ -351,7 +351,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
   # Fail if snapshot already exists.
   if [ -e "$SNAPSHOT_PATH" ]; then
     echo "ERROR: Snapshot '$SNAPSHOT_PATH' already exists." >&2
-    echo "Run 'btrfs-snapshot -l' to list existing snapshots." >&2
+    echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
     exit 1
   fi
 
@@ -397,12 +397,19 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     echo "'btrfs-snapshot $SUBCOMMAND' requires exactly 1 argument." >&2
     echo "See 'btrfs-snapshot $SUBCOMMAND -h'." >&2
     exit 1
+  elif ! btrfs subvolume list -rs "$SUBVOLUME_DIR" |awk -v ID="$1" '/^ID /{if ($2==ID) exit 0} ENDFILE{exit 1}'; then
+    echo "ERROR: Cannot find btrfs snapshot ID '$1'." >&2
+    echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
+    exit 1
   else
     snapshot_id="$1"
     shift
   fi
 
+  # Get the btrfs subvolume's device.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
+
+
   mount -oremount,rw "$SUBVOLUME_DIR"
   mkdir -p "$SUBVOLUME_DIR/.bsnaps/restore-from"
   mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$SUBVOLUME_DIR/.bsnaps/restore-from"
