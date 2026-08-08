@@ -22,6 +22,7 @@ install() {
         /usr/bin/base64 \
         /usr/bin/cut \
         /usr/bin/date \
+        /usr/bin/rmdir \
         /usr/bin/sort \
         /usr/bin/wc \
         /usr/bin/xargs

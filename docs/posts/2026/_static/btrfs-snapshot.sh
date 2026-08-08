@@ -151,6 +151,9 @@ if [ ${VERBOSE:-false} = true ]; then
   set -o xtrace  # Print commands before executing them.
 fi
 
+# TODO check dependencies (e.g. command -v rmdir, ...)
+# TODO in ci: `bash --rpm-requires`?
+
 # Check if SUBVOLUME_DIR is a btrfs fs and subvolume.
 if ! stat -f --format=%T "$SUBVOLUME_DIR" |grep -q '^btrfs$'; then
   echo "ERROR: Path '$SUBVOLUME_DIR' is not a btrfs filesystem." >&2
