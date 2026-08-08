@@ -91,7 +91,6 @@ SUBCOMMAND=
 COMMENT=  # TODO s/^/TAKE_/
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
-SNAPSHOT_NAME=  # TODO remove from here.
 
 # Handle top level help (no args == -h).
 if [ $# -eq 0 ] || [ "$1" = "-h" ]; then
@@ -313,14 +312,12 @@ if [ "$SUBCOMMAND" = "take" ]; then
     echo "See 'btrfs-snapshot take -h'." >&2
     exit 1
   else
-    SNAPSHOT_NAME="$1"  # TODO lowercase this and all other "block-scoped" variables
+    snapshot_name="$1"
     shift
   fi
 
   # Check if snapshot name has invalid characters.
   # TODO
-
-  COMMENT_B64=
 
   # Encode comment.
   y64_encode() {
@@ -330,27 +327,27 @@ if [ "$SUBCOMMAND" = "take" ]; then
     if [ -t 0 ]; then
       echo "Press Ctrl+D to finish" >&2
     fi
-    COMMENT_B64="$(y64_encode)"
+    comment_b64="$(y64_encode)"
   elif [ -n "${COMMENT:-}" ]; then
-    COMMENT_B64="$(printf "%s" "$COMMENT" |y64_encode)"
+    comment_b64="$(printf "%s" "$COMMENT" |y64_encode)"
+  else
+    comment_b64=
   fi
   # TODO if comment > limit: fail.
 
-  IS_READONLY=
-  SNAPSHOT_PATH=
-
   # Determine snapshot path.
-  SNAPSHOT_PATH_MKDIR="$SNAPSHOTS_DIR/$SNAPSHOT_NAME"
+  snapshot_path_mkdir="$SNAPSHOTS_DIR/$snapshot_name"
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
-    IS_READONLY=true
-    SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/0$COMMENT_B64"
+    is_readonly=true
+    snapshot_path="$snapshot_path_mkdir/0$comment_b64"
   else
-    SNAPSHOT_PATH="$SNAPSHOT_PATH_MKDIR/1$COMMENT_B64"
+    is_readonly=
+    snapshot_path="$snapshot_path_mkdir/1$comment_b64"
   fi
 
   # Fail if snapshot already exists.
-  if [ -e "$SNAPSHOT_PATH" ]; then
-    echo "ERROR: Snapshot '$SNAPSHOT_PATH' already exists." >&2
+  if [ -e "$snapshot_path" ]; then
+    echo "ERROR: Snapshot '$snapshot_path' already exists." >&2
     echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
     exit 1
   fi
@@ -361,7 +358,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
   #
 
   # Remount subvolume as readwrite if it is mounted as readonly.
-  if [ ${IS_READONLY:-false} = true ]; then
+  if [ ${is_readonly:-false} = true ]; then
     if ! mount -oremount,rw "$SUBVOLUME_DIR"; then
       echo "ERROR: Failed to remount '$SUBVOLUME_DIR' as read-write." >&2
       echo "Are you running this as root or with sudo?" >&2
@@ -372,17 +369,17 @@ if [ "$SUBCOMMAND" = "take" ]; then
   fi
 
   # Create snapshots parent directories.
-  if ! mkdir -p "$SNAPSHOT_PATH_MKDIR"; then
-    echo "ERROR: Failed to create directory '$SNAPSHOT_PATH_MKDIR'." >&2
+  if ! mkdir -p "$snapshot_path_mkdir"; then
+    echo "ERROR: Failed to create directory '$snapshot_path_mkdir'." >&2
     echo "Are you running this as root or with sudo?" >&2
     exit 1
   fi
 
   # Create snapshot
-  btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$SNAPSHOT_PATH"
+  btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$snapshot_path"
 
   # Remount subvolume as readonly if it was originally in that state.
-  if [ ${IS_READONLY:-false} = true ]; then
+  if [ ${is_readonly:-false} = true ]; then
     mount -oremount,ro "$SUBVOLUME_DIR"
     echo "Remounted '$SUBVOLUME_DIR' as read-only"
   fi
@@ -422,7 +419,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
   btrfs subvolume set-default "$dir_restore_to"
   umount "$dir_restore_from"
-  rmdir "$dir_restore_from"
+  rmdir "$dir_restore_from"  # TODO || true
 
   # Remount $SUBVOLUME_DIR using the now-restored subvolume.
   new_id="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
@@ -451,6 +448,7 @@ exit 1
 # - Strip head/tail newlines/spaces in comment.
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
 # - awk y64_encode/decode function defs in env variables set by shell script
+# - All "block-scoped" variables should be lowercase
 # - Snapshot name validation (no nl, / *, etc)
 # - Test with LC_ALL=C and other values.
 # - Test with malformed b64: warn and keep decoded in output
