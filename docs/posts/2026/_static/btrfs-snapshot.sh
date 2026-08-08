@@ -86,7 +86,7 @@ set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SUBCOMMAND=
-COMMENT=  # TODO s/^/TAKE_/
+COMMENT=
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
 
