@@ -404,7 +404,11 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   # Get the btrfs subvolume's device.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
 
-  # TODO: prompt user before making changes
+  # Prompt user before making changes
+  echo "About to restore this snapshot:" >&2
+  echo TODO  # TODO decode comments. Maybe print multi-lines instead of list single-row?
+  echo "Press enter to continue" >&2
+  read -r _
 
   # Determine if subvolume is mounted as read-only (e.g. "not running").
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
