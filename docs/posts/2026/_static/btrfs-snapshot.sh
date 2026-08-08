@@ -230,19 +230,22 @@ if [ "$SUBCOMMAND" = "list" ]; then
     # Y64 decode function.
     function y64_decode(encoded,          cmd, line, decoded, ret) {
       if (!encoded) return encoded
+      # Convert Y64 to base64.
       gsub(/\./, "+", encoded)
       gsub(/_/, "/", encoded)
       gsub(/-/, "=", encoded)
+      # Launch base64 decoder.
       cmd = "base64 -d"
       print encoded |& cmd
       close(cmd, "to")  # Send EOF to base64 stdin.
+      # Read base64 output.
       while ((cmd |& getline line) > 0) {
         decoded = (decoded == "" ? line : decoded "\n" line)
       }
       ret = close(cmd)
       if (ret != 0) {
         printf("WARNING: Failed to decode base64 string '%s'.\n", encoded) >> "/dev/stderr"
-        return encoded
+        return encoded  # Note: returns base64 string on failed decode, not original Y64 string.
       }
       return decoded
     }
