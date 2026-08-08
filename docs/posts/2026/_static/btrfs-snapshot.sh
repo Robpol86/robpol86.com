@@ -87,8 +87,9 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SUBCOMMAND=
 COMMENT=
-SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
+
+SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 
 # Handle top level help (no args == -h).
 if [ $# -eq 0 ] || [ "$1" = "-h" ]; then
