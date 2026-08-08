@@ -152,7 +152,7 @@ if [ ${VERBOSE:-false} = true ]; then
 fi
 
 # TODO check dependencies (e.g. command -v rmdir, ...)
-# TODO in ci: `bash --rpm-requires`?
+# TODO in ci w/ fedora docker image: `bash --rpm-requires`?
 
 # Check if SUBVOLUME_DIR is a btrfs fs and subvolume.
 if ! stat -f --format=%T "$SUBVOLUME_DIR" |grep -q '^btrfs$'; then
@@ -164,7 +164,6 @@ if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
   exit 1
 fi
 
-SNAPSHOTS_DIR="${SUBVOLUME_DIR%/}/.bsnaps"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
 # Subcommand list.
@@ -193,7 +192,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
     }
 
     # Skip irrelevant snapshots.
-    !/\t.bsnaps\// { next }
+    !/\t.bsnaps\// { next }  # TODO .bsnaps/snapshots/...
 
     # First pass.
     NR==FNR {
@@ -337,7 +336,8 @@ if [ "$SUBCOMMAND" = "take" ]; then
   # TODO if comment > limit: fail.
 
   # Determine snapshot path.
-  snapshot_path_mkdir="$SNAPSHOTS_DIR/$snapshot_name"
+  snapshots_dir="${SUBVOLUME_DIR%/}/.bsnaps"  # TODO .bsnaps/snapshots/...  # TODO merge into snapshot_path_mkdir.
+  snapshot_path_mkdir="$snapshots_dir/$snapshot_name"
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
     is_readonly=true
     snapshot_path="$snapshot_path_mkdir/0$comment_b64"
@@ -406,6 +406,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Get the btrfs subvolume's device.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
+  # TODO validate dir_restore_from and dir_restore_to.
 
   # Prompt user before making changes
   echo "About to restore this snapshot:" >&2
@@ -421,7 +422,8 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   fi
 
   # Mount the snapshot as read-only.
-  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restore-from-$UUID"
+  # TODO SUBVOLUME_DIR/.bsnaps/restore/...
+  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restore-from-$UUID"  # TODO use snapshot name
   if [ ${is_readonly:-false} = true ]; then
     mount -oremount,rw "$SUBVOLUME_DIR"
   fi
@@ -429,7 +431,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
 
   # Clone the snapshot as read-write and set-default it.
-  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
+  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored-$UUID"  # TODO use snapshot name
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
   btrfs subvolume set-default "$dir_restore_to"
   umount "$dir_restore_from"
@@ -440,6 +442,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     new_id="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
     umount "$SUBVOLUME_DIR"
     mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"
+    echo "Remounted $SUBVOLUME_DIR with TODO_SNAPSHOT_NAME"  # TODO grammar
   else
     echo "Reboot for changes to take effect."
   fi
