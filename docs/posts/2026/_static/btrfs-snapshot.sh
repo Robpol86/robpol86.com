@@ -228,54 +228,21 @@ if [ "$SUBCOMMAND" = "list" ]; then
     }
 
     # Y64 decode function.
-    function y64_decode(encoded) {
+    function y64_decode(encoded,          cmd, line, decoded, ret) {
       if (!encoded) return encoded
       gsub(/\./, "+", encoded)
       gsub(/_/, "/", encoded)
       gsub(/-/, "=", encoded)
-      # https://dnshane.wordpress.com/2017/03/10/decoding-base64-in-awk/
-      # https://github.com/shane-kerr/AWK-base64decode
-      # TODO abandon AGPL code, go back to getlines.
-      # Initialize base64 decoder.
-      for (i=0; i<26; i++) { BASE64[sprintf("%c", i+65)] = i; BASE64[sprintf("%c", i+97)] = i+26 }
-      for (i=0; i<10; i++) BASE64[sprintf("%c", i+48)] = i+52
-      BASE64["+"] = 62; BASE64["/"] = 63; BASE64["="] = -1
-      result[1]=""
-      n = 1
-      # Decode base64.
-      while (length(encoded) >= 4) {
-        g0 = BASE64[substr(encoded, 1, 1)]
-        g1 = BASE64[substr(encoded, 2, 1)]
-        g2 = BASE64[substr(encoded, 3, 1)]
-        g3 = BASE64[substr(encoded, 4, 1)]
-        if (g0 == "") {
-          printf("Unrecognized character %c in Base 64 encoded string\n", g0) >> "/dev/stderr"
-          exit 1
-        }
-        if (g1 == "") {
-          printf("Unrecognized character %c in Base 64 encoded string\n", g1) >> "/dev/stderr"
-          exit 1
-        }
-        if (g2 == "") {
-          printf("Unrecognized character %c in Base 64 encoded string\n", g2) >> "/dev/stderr"
-          exit 1
-        }
-        if (g3 == "") {
-          printf("Unrecognized character %c in Base 64 encoded string\n", g3) >> "/dev/stderr"
-          exit 1
-        }
-        result[n++] = (g0 * 4) + int(g1 / 16)
-        if (g2 != -1) {
-          result[n++] = ((g1 * 16) % 256) + int(g2 / 4)
-          if (g3 != -1) result[n++] = ((g2 * 64) % 256) + g3
-        }
-        encoded = substr(encoded, 5)
+      cmd = "base64 -d"
+      print encoded |& cmd
+      close(cmd, "to")  # Send EOF to base64 stdin.
+      while ((cmd |& getline line) > 0) {
+        decoded = (decoded == "" ? line : decoded "\n" line)
       }
-      # Concat result array.
-      decoded = ""
-      for (i=1; i in result; i++) {
-        decoded = decoded sprintf("%c", result[i])
-        delete result[i]
+      ret = close(cmd)
+      if (ret != 0) {
+        printf("WARNING: Failed to decode base64 string '%s'.\n", encoded) >> "/dev/stderr"
+        return encoded
       }
       return decoded
     }
@@ -482,12 +449,13 @@ exit 1
 # TODO:
 # - Strip head/tail newlines/spaces in comment.
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
+#   - Also when decoding. Just in case. Return encoded on failed salt check.
 # - awk y64_encode/decode function defs in env variables set by shell script
 # - All "block-scoped" variables should be lowercase
 # - Snapshot name validation (no nl, / *, etc)
 # - Test with LC_ALL=C and other values.
 # - Test with malformed b64: warn and keep decoded in output
-#   - Prefix/postifx magic string?
+#   - Prefix/postifx magic/salt string?
 #   - \0 not supported in awk strings. How to handle?
 # - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
