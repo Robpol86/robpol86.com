@@ -91,6 +91,16 @@ VERBOSE=
 
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 
+# Check dependencies.
+#   bash --rpm-requires ./btrfs-snapshot.sh  |sort -u |awk -F '[()]' '/^executable/{printf("%s ", $2)} END{print ""}'
+#   Above command works in the Fedora Docker image.
+(for cmd in awk base64 btrfs findmnt grep mkdir mount rm rmdir sed stat umount; do
+  if ! command -v "$cmd" > /dev/null; then
+    echo "ERROR: Missing command '$cmd'" >&2
+    exit 1
+  fi
+done)
+
 # Handle top level help (no args == -h).
 if [ $# -eq 0 ] || [ "$1" = "-h" ]; then
   awk '
@@ -151,9 +161,6 @@ shift "$((OPTIND-1))"
 if [ ${VERBOSE:-false} = true ]; then
   set -o xtrace  # Print commands before executing them.
 fi
-
-# TODO check dependencies (e.g. command -v rmdir, ...)
-# TODO in ci w/ fedora docker image: `bash --rpm-requires`?
 
 # Check if SUBVOLUME_DIR is a btrfs fs and subvolume.
 if ! stat -f --format=%T "$SUBVOLUME_DIR" |grep -q '^btrfs$'; then
