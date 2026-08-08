@@ -481,6 +481,7 @@ exit 1
 # - Reformat ubuntu and test all subcommands with no snapshots.
 # - bss not a symlink, sed PROGRAM name to bss.
 # - Go through usage/comments to ensure nothing is stale.
+# - Dumb down awk to work with mawk/busybox awk.
 # TODOs restore:
 # - No no args or bad name list available snapshots
 #   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
