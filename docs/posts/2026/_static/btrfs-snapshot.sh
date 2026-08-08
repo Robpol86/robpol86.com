@@ -408,9 +408,18 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # TODO: prompt user before making changes
 
+  # Determine if subvolume is mounted as read-only (e.g. "not running").
+  if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
+    is_readonly=true
+  else
+    is_readonly=
+  fi
+
   # Mount the snapshot as read-only.
   dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restore-from-$UUID"
-  mount -oremount,rw "$SUBVOLUME_DIR"
+  if [ ${is_readonly:-false} = true ]; then
+    mount -oremount,rw "$SUBVOLUME_DIR"
+  fi
   mkdir -p "$dir_restore_from"
   mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
 
@@ -419,12 +428,16 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
   btrfs subvolume set-default "$dir_restore_to"
   umount "$dir_restore_from"
-  rmdir "$dir_restore_from"  # TODO || true
+  rmdir --ignore-fail-on-non-empty "$dir_restore_from"
 
   # Remount $SUBVOLUME_DIR using the now-restored subvolume.
-  new_id="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
-  umount "$SUBVOLUME_DIR"
-  mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"  # TODO if was rw don't ro.
+  if [ ${is_readonly:-false} = true ]; then
+    new_id="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
+    umount "$SUBVOLUME_DIR"
+    mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"
+  else
+    echo "Reboot for changes to take effect."
+  fi
 
   exit 0
 fi
