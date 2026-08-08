@@ -171,8 +171,17 @@ def test_cli_bad_args():
     output = run_failed(["unknown", "-h"])
     assert "unknown subcommand: 'unknown'" in output
 
+    output = run_failed(["take"])
+    assert "take' requires exactly 1 argument" in output
+
     output = run_failed(["take", SNAPSHOT_NAME, "extra"])
-    assert "requires exactly 1 argument" in output
+    assert "take' requires exactly 1 argument" in output
+
+    output = run_failed(["restore"])
+    assert "restore' requires exactly 1 argument" in output
+
+    output = run_failed(["restore", "123", "extra"])
+    assert "restore' requires exactly 1 argument" in output
 
     output = run_failed(["take", "-z", SNAPSHOT_NAME])
     assert "unknown flag: 'z'" in output

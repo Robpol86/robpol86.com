@@ -84,13 +84,14 @@
 
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
-set -o pipefail  # TODO
+# shellcheck disable=SC3040  # TODO remove in ++v0.11.0 https://github.com/koalaman/shellcheck/pull/3305
+set -o pipefail  # Exit script if pipes fail instead of just the last program.
 
 SUBCOMMAND=
-COMMENT=
+COMMENT=  # TODO s/^/TAKE_/
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
 VERBOSE=
-SNAPSHOT_NAME=
+SNAPSHOT_NAME=  # TODO remove from here.
 
 # Handle top level help (no args == -h).
 if [ $# -eq 0 ] || [ "$1" = "-h" ]; then
@@ -312,7 +313,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
     echo "See 'btrfs-snapshot take -h'." >&2
     exit 1
   else
-    SNAPSHOT_NAME="$1"
+    SNAPSHOT_NAME="$1"  # TODO lowercase.
     shift
   fi
 
@@ -391,11 +392,20 @@ fi
 
 # Subcommand restore.
 if [ "$SUBCOMMAND" = "restore" ]; then
-  SNAPSHOT_ID="$1"  # TODO
+  # Parse subcommand arguments.
+  if [ $# != 1 ]; then
+    echo "'btrfs-snapshot $SUBCOMMAND' requires exactly 1 argument." >&2
+    echo "See 'btrfs-snapshot $SUBCOMMAND -h'." >&2
+    exit 1
+  else
+    snapshot_id="$1"
+    shift
+  fi
+
   SUBVOLUME_DEV="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   mount -oremount,rw "$SUBVOLUME_DIR"
   mkdir -p "$SUBVOLUME_DIR/.bsnaps/restore-from"
-  mount -o "subvolid=$SNAPSHOT_ID,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR/.bsnaps/restore-from"
+  mount -o "subvolid=$snapshot_id,ro" "$SUBVOLUME_DEV" "$SUBVOLUME_DIR/.bsnaps/restore-from"
   btrfs subvolume snapshot "$SUBVOLUME_DIR/.bsnaps/restore-from" "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
   # TODO: prompt user before making changes
   btrfs subvolume set-default "$SUBVOLUME_DIR/.bsnaps/restored-$UUID"
