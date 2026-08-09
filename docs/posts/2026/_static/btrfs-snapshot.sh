@@ -380,25 +380,48 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     echo "'btrfs-snapshot $SUBCOMMAND' requires exactly 1 argument." >&2
     echo "See 'btrfs-snapshot $SUBCOMMAND -h'." >&2
     exit 1
-  elif ! btrfs subvolume list -rs "$SUBVOLUME_DIR" |awk -v ID="$1" '/^ID /{if ($2==ID) exit 0} ENDFILE{exit 1}'; then
+  fi
+  snapshot_id="$1"
+  shift
+
+  # Get list of snapshots.
+  snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
+  if ! btrfs subvolume list -rstu "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
+    echo "ERROR: Failed to get list of snapshots." >&2
+    echo "Are you running this as root or with sudo?" >&2
+    rm -f "$snapshot_list_file"
+    exit 1
+  elif awk -v FS='\t+' -v ID="$1" '/^[0-9]/{if ($1==ID) exit 0} ENDFILE{exit 1}' "$snapshot_list_file"; then
+    # Also verifies $1 is [0-9]+.
     echo "ERROR: Cannot find btrfs snapshot ID '$1'." >&2
     echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
+    rm -f "$snapshot_list_file"
     exit 1
-  else
-    snapshot_id="$1"
-    shift
   fi
 
-  # Get the btrfs subvolume's device.
+  # Get various btrfs information.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
+  snapshot_date=""  # TODO
+  snapshot_uuid=""  # TODO
   snapshot_name="TODO_NAME_$UUID"  # TODO
+  snapshot_running=""  # TODO
+  snapshot_comment=""  # TODO
   # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
   # Prompt user before making changes
   echo "Restoring snapshot ID $snapshot_id:" >&2
   echo "-------------------------------------------------------------------------------" >&2
-  # TODO ask if sudo when btrfs command fails.
-  echo TODO  # TODO decode comments. Maybe print multi-lines instead of list single-row?
+  echo "Subvolume:  $SUBVOLUME_DIR"
+  echo "Device:     $subvolume_device"
+  echo "Name:       $snapshot_name"
+  echo "UUID:       $snapshot_uuid"
+  echo "Date:       $snapshot_date"
+  echo "Running:    $snapshot_running"
+  if [ -n "$snapshot_comment" ]; then
+    echo "Comment:    $snapshot_comment"
+  else
+    echo "Comment:"
+  fi
   echo "-------------------------------------------------------------------------------" >&2
   echo "Press enter to continue..." >&2
   read -r _
