@@ -446,3 +446,61 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
             Reboot for changes to take effect.
         """)
     assert output == expected
+
+
+@pytest.mark.parametrize("no_comment", [False, True])
+def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
+    """Test formatting of single-line and no comments."""
+    pytest.skip()  # TODO remove
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	path
+        --	---	----	---------	-----	----
+        000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
+        111	93	93	5		2026-07-29 13:00:00	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+    """)
+    )
+
+    # Run.
+    snapshot_id = "222" if no_comment else "333"
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    output = run(["restore", "-s", str(subvolume), snapshot_id], env=env, input="\n")
+
+    # Check.
+    if no_comment:
+        expected = dedent(f"""\
+            Restoring snapshot ID 222:
+            -------------------------------------------------------------------------------
+            Subvolume:  {subvolume}
+            Name:       two
+            UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+            Date:       2026-07-29 14:00:00 +0000
+            Running:    Yes
+            Comment:
+            -------------------------------------------------------------------------------
+            Press enter to continue...
+        """)
+    else:
+        expected = dedent(f"""\
+            Restoring snapshot ID 333:
+            -------------------------------------------------------------------------------
+            Subvolume:  {subvolume}
+            Name:       three
+            UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+            Date:       2026-07-29 14:00:00 +0000
+            Running:    No
+            Comment:    Single line comment.
+            -------------------------------------------------------------------------------
+            Press enter to continue...
+        """)
+    expected += dedent(f"""\
+        Remounted '{subvolume}' as read-write.
+        Create snapshot of '{subvolume}/.bsnaps/restored/ro-four' in '{subvolume}/.bsnaps/restored/rw-four'
+        Remounted '{subvolume}' as read-only.
+        Changes are now in effect.
+    """)
+    assert output == expected
