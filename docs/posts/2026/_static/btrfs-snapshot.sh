@@ -165,7 +165,7 @@ run_awk() {
   cat > "$awk_program_file" <<-'EOF'
     # TODO.
     function get_name(path) {
-      return "todo"
+      return "todoName"
     }
     # TODO.
     function get_running(path, true_val, false_val) {
