@@ -459,6 +459,7 @@ exit 1
 # - Finish restore tests.
 # - Prune old/irrelevant TODOs.
 # - Write integration_tests with .img file in CI.
+# - Restore UUID instead of volid?
 # - subvolid=5 for dir_restore_to.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
 # TODO:
