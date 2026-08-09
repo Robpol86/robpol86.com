@@ -90,6 +90,7 @@ COMMENT=
 VERBOSE=
 
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
+read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
 # Check dependencies.
 #   bash --rpm-requires ./btrfs-snapshot.sh  |sort -u |awk -F '[()]' '/^executable/{printf("%s ", $2)} END{print ""}'
@@ -157,6 +158,55 @@ while getopts "$GETOPTS" OPT; do
 done
 shift "$((OPTIND-1))"
 
+# Define function that runs awk without polluting 'set -x' stderr.
+run_awk() {
+  awk_program_file="/tmp/bsnaps-run_awk.$UUID.txt"
+  # Write shared awk functions into file.
+  cat > "$awk_program_file" <<-'EOF'
+    # TODO.
+    function get_name(path) {
+      return "todo"
+    }
+    # TODO.
+    function get_running(path, true_val, false_val) {
+      return true_val
+    }
+    # TODO.
+    function get_encoded_comment(path) {
+      return "T3JpZ2luYWwgU3RyaW5n"
+    }
+    # Y64 decode function.
+    function y64_decode(encoded,          cmd, line, decoded, ret) {
+      if (!encoded) return encoded
+      # Convert Y64 to base64.
+      gsub(/\./, "+", encoded)
+      gsub(/_/, "/", encoded)
+      gsub(/-/, "=", encoded)
+      # Launch base64 decoder.
+      cmd = "base64 -d"
+      print encoded |& cmd
+      close(cmd, "to")  # Send EOF to base64 stdin.
+      # Read base64 output.
+      while ((cmd |& getline line) > 0) {
+        decoded = (decoded == "" ? line : decoded "\n" line)
+      }
+      ret = close(cmd)
+      if (ret != 0) {
+        printf("WARNING: Failed to decode base64 string '%s'.\n", encoded) >> "/dev/stderr"
+        return encoded  # Note: returns base64 string on failed decode, not original Y64 string.
+      }
+      return decoded
+    }
+EOF
+  # Write caller's awk program into file via fd3.
+  cat >> "$awk_program_file" <&3
+  # Run awk.
+  ret=0
+  awk -f "$awk_program_file" "$@" || ret=1
+  rm -f "$awk_program_file"
+  return $ret
+}
+
 # Enable verbose/debug.
 if [ ${VERBOSE:-false} = true ]; then
   set -o xtrace  # Print commands before executing them.
@@ -171,8 +221,6 @@ if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
   echo "ERROR: Path '$SUBVOLUME_DIR' is not a btrfs subvolume." >&2
   exit 1
 fi
-
-read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
 # Subcommand list.
 if [ "$SUBCOMMAND" = "list" ]; then
@@ -416,7 +464,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     }
 EOF
   read -r snapshot_date snapshot_uuid snapshot_name snapshot_running <<-EOF
-  $(awk -v FS='\t+' -v ID="$snapshot_id" -f "$awk_program_file" "$snapshot_list_file")
+  $(run_awk -v FS='\t+' -v ID="$snapshot_id" -f "$awk_program_file" "$snapshot_list_file")
 EOF
   rm -f "$awk_program_file"
   snapshot_comment="$(
