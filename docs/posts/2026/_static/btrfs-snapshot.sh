@@ -423,16 +423,15 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   # Clone the snapshot as read-write and set-default it.
   dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored/restored-$snapshot_name"
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"  # TODO nesting path, PATH_MAX?
-  btrfs subvolume set-default "$dir_restore_to"
+  btrfs subvolume set-default "$dir_restore_to"  # TODO what about distros that hard-code volid in fstab?
   umount "$dir_restore_from"
   rmdir --ignore-fail-on-non-empty "$dir_restore_from"
 
   # Remount $SUBVOLUME_DIR using the now-restored subvolume.
   if [ ${is_readonly:-false} = true ]; then
-    new_id="$(btrfs subvolume get-default "$SUBVOLUME_DIR" |awk '/^ID /{print $2}')"
     umount "$SUBVOLUME_DIR"
-    mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"
-    echo "Remounted $SUBVOLUME_DIR with TODO_SNAPSHOT_NAME"  # TODO grammar
+    mount -oro "$subvolume_device" "$SUBVOLUME_DIR"
+    echo "Remounted $SUBVOLUME_DIR with $snapshot_name"  # TODO grammar
   else
     echo "Reboot for changes to take effect."
   fi
@@ -456,11 +455,12 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
-# - subvolid=5 for dir_restore_to.
 # - Finish restore prompt
 # - Finish restore tests.
 # - Prune old/irrelevant TODOs.
 # - Write integration_tests with .img file in CI.
+# - subvolid=5 for dir_restore_to.
+# - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
 # TODO:
 # - Strip head/tail newlines/spaces in comment.
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
