@@ -456,6 +456,12 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
+# - Finish restore prompt, don't worry about nesting for now.
+# - Finish restore tests.
+# - Prune old/irrelevant TODOs.
+# - Write integration_tests with .img file in CI.
+# - Try to reproduce nesting issue in IT. Then decide if nesting can stay with mitigations, or if subvolid=5 is the future.
+# TODO:
 # - Strip head/tail newlines/spaces in comment.
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
 #   - Also when decoding. Just in case. Return encoded on failed salt check.
