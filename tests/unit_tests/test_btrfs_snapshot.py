@@ -425,7 +425,7 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
         Subvolume:  {subvolume}
         Name:       four
         UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
-        Date:       2026-07-29 16:00:00 +0000
+        Date:       2026-07-29 16:00:00
         Running:    No
         Comment:    Multi
                     line
@@ -478,7 +478,7 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
             Subvolume:  {subvolume}
             Name:       two
             UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
-            Date:       2026-07-29 14:00:00 +0000
+            Date:       2026-07-29 14:00:00
             Running:    Yes
             Comment:
             -------------------------------------------------------------------------------
@@ -491,7 +491,7 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
             Subvolume:  {subvolume}
             Name:       three
             UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
-            Date:       2026-07-29 14:00:00 +0000
+            Date:       2026-07-29 14:00:00
             Running:    No
             Comment:    Single line comment.
             -------------------------------------------------------------------------------
