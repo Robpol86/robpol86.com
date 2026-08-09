@@ -391,12 +391,15 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Get the btrfs subvolume's device.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
+  snapshot_name="TODO_NAME_$UUID"  # TODO
   # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
   # Prompt user before making changes
-  echo "About to restore this snapshot:" >&2
+  echo "Restoring snapshot ID $snapshot_id:" >&2
+  echo "-------------------------------------------------------------------------------" >&2
   # TODO ask if sudo when btrfs command fails.
   echo TODO  # TODO decode comments. Maybe print multi-lines instead of list single-row?
+  echo "-------------------------------------------------------------------------------" >&2
   echo "Press enter to continue..." >&2
   read -r _
   [ -t 0 ] || echo  # Print newline when input is not a TTY.
@@ -409,7 +412,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   fi
 
   # Mount the snapshot as read-only.
-  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restored/restore-from-$UUID"  # TODO use snapshot name
+  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restored/restore-from-$snapshot_name"
   if [ ${is_readonly:-false} = true ]; then
     mount -oremount,rw "$SUBVOLUME_DIR"
     echo "Remounted '$SUBVOLUME_DIR' as read-write"
@@ -418,8 +421,8 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
 
   # Clone the snapshot as read-write and set-default it.
-  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored/restored-$UUID"  # TODO use snapshot name
-  btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
+  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored/restored-$snapshot_name"
+  btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"  # TODO nesting path, PATH_MAX?
   btrfs subvolume set-default "$dir_restore_to"
   umount "$dir_restore_from"
   rmdir --ignore-fail-on-non-empty "$dir_restore_from"
