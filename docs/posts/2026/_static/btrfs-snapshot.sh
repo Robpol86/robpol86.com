@@ -403,26 +403,25 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   awk_program_file="/tmp/bsnaps-awk_program.$UUID.txt"
   cat > "$awk_program_file" <<-'EOF'
-    BEGIN {
-      snapshot_comment=""
-    }
     # TODO define functions.
     $1==ID {
       snapshot_date=$5
       snapshot_uuid=$6
       snapshot_name=get_name($7)
       snapshot_running=get_running($7, "Yes", "No")
-      snapshot_comment=y64_decode(get_encoded_comment($7))  # TODO how to handle newlines?
     }
     END {
       printf("%s\t%s\t%s\t%s\t%s\n",
-             snapshot_date, snapshot_uuid, snapshot_name, snapshot_running, snapshot_comment)
+             snapshot_date, snapshot_uuid, snapshot_name, snapshot_running)
     }
 EOF
-  read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_comment <<-EOF
+  read -r snapshot_date snapshot_uuid snapshot_name snapshot_running <<-EOF
   $(awk -v FS='\t+' -v ID="$snapshot_id" -f "$awk_program_file" "$snapshot_list_file")
 EOF
   rm -f "$awk_program_file"
+  snapshot_comment="$(
+    awk -v FS='\t+' -v ID="$snapshot_id" '$1==ID{print y64_decode(get_encoded_comment($7))}' "$snapshot_list_file"
+  )"
   # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
   # Prompt user before making changes
