@@ -456,6 +456,8 @@ exit 1
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
 #   - Also when decoding. Just in case. Return encoded on failed salt check.
 # - awk y64_encode/decode function defs in env variables set by shell script
+# - bss list -v: outputs entire awk program. Hide awk program from set -x.
+# - Consistent punctuation in echos.
 # - Test non-root error messages for all subcommands.
 # - All "block-scoped" variables should be lowercase
 # - Snapshot name validation (no nl, / *, etc)

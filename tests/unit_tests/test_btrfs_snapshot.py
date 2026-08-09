@@ -398,7 +398,7 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
 
 
 @pytest.mark.parametrize("running", [False])  # TODO ,True
-def test_restore(subvolume: Path, bin_dir: Path, running: bool):
+def test_restore_happy_path(subvolume: Path, bin_dir: Path, running: bool):
     """Test restoring a snapshot by snapshot ID."""
     pytest.skip()  # TODO remove
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
@@ -432,8 +432,10 @@ def test_restore(subvolume: Path, bin_dir: Path, running: bool):
                     comment.
         -------------------------------------------------------------------------------
         Press enter to continue...
-        Remounted '{subvolume}' as read-write
-        Create snapshot of '...' in '...'
-        #TODO
+
+        Remounted '{subvolume}' as read-write.
+        Create snapshot of '{subvolume}/.bsnaps/restored/ro-four' in '{subvolume}/.bsnaps/restored/rw-four'
+        Remounted '{subvolume}' as read-only.
+        Changes are now in effect.
     """)
     assert output == expected
