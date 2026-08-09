@@ -412,7 +412,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
       snapshot_uuid=$6
       snapshot_name=get_name($7)
       snapshot_running=get_running($7, "Yes", "No")
-      snapshot_comment=y64_decode(get_encoded_comment($7))
+      snapshot_comment=y64_decode(get_encoded_comment($7))  # TODO how to handle newlines?
     }
     END {
       printf("%s\t%s\t%s\t%s\t%s\n",
