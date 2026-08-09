@@ -203,7 +203,7 @@ EOF
   # Run awk.
   ret=0
   awk -f "$awk_program_file" "$@" || ret=1
-  rm -f "$awk_program_file"
+  if [ ${VERBOSE:-false} = false ]; then rm -f "$awk_program_file"; fi
   return $ret
 }
 
@@ -437,39 +437,34 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   if ! btrfs subvolume list -rstu "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
     echo "ERROR: Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
-    rm -f "$snapshot_list_file"
+    if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
     exit 1
-  elif awk -v FS='\t+' -v ID="$snapshot_id" '/^[0-9]/{if ($1==ID) exit 0} ENDFILE{exit 1}' "$snapshot_list_file"; then
+  elif ! awk -v FS='\t+' -v ID="$snapshot_id" '/^[0-9]/{if ($1==ID) exit 0} ENDFILE{exit 1}' "$snapshot_list_file"; then
     # Also verifies $snapshot_id is [0-9]+.
     echo "ERROR: Cannot find btrfs snapshot ID '$snapshot_id'." >&2
     echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
-    rm -f "$snapshot_list_file"
+    if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
     exit 1
   fi
 
   # Get various btrfs information.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
-  awk_program_file="/tmp/bsnaps-awk_program.$UUID.txt"
-  cat > "$awk_program_file" <<-'EOF'
-    # TODO define functions.
-    $1==ID {
-      snapshot_date=$5
-      snapshot_uuid=$6
-      snapshot_name=get_name($7)
-      snapshot_running=get_running($7, "Yes", "No")
-    }
-    END {
-      printf("%s\t%s\t%s\t%s\t%s\n",
-             snapshot_date, snapshot_uuid, snapshot_name, snapshot_running)
-    }
-EOF
   read -r snapshot_date snapshot_uuid snapshot_name snapshot_running <<-EOF
-  $(run_awk -v FS='\t+' -v ID="$snapshot_id" -f "$awk_program_file" "$snapshot_list_file")
+    $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOAWK'
+      $1==ID {
+        snapshot_date=$5
+        snapshot_uuid=$6
+        snapshot_name=get_name($7)
+        snapshot_running=get_running($7, "Yes", "No")
+      }
+      END {
+        printf("%s\t%s\t%s\t%s\n",
+              snapshot_date, snapshot_uuid, snapshot_name, snapshot_running)
+      }
+EOAWK
+    )
 EOF
-  rm -f "$awk_program_file"
-  snapshot_comment="$(
-    awk -v FS='\t+' -v ID="$snapshot_id" '$1==ID{print y64_decode(get_encoded_comment($7))}' "$snapshot_list_file"
-  )"
+  snapshot_comment="TODO"
   # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
   # Prompt user before making changes
