@@ -395,3 +395,45 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
                                                                         comment.
         """)
     assert output == expected
+
+
+@pytest.mark.parametrize("running", [False])  # TODO ,True
+def test_restore(subvolume: Path, bin_dir: Path, running: bool):
+    """Test restoring a snapshot by snapshot ID."""
+    pytest.skip()  # TODO remove
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	path
+        --	---	----	---------	-----	----
+        000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
+        111	93	93	5		2026-07-29 13:00:00	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+    """)
+    )
+
+    # Run.
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    output = run(["restore", "-s", str(subvolume), "444"], env=env, input="\n")  # TODO parametrize ID
+
+    # Check.
+    expected = dedent(f"""\
+        Restoring snapshot ID 444:
+        -------------------------------------------------------------------------------
+        Subvolume:  {subvolume}
+        Name:       four
+        UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        Date:       2026-07-29 16:00:00 +0000
+        Running:    No
+        Comment:    Multi
+                    line
+                    comment.
+        -------------------------------------------------------------------------------
+        Press enter to continue...
+        Remounted '{subvolume}' as read-write
+        Create snapshot of '...' in '...'
+        #TODO
+    """)
+    assert output == expected

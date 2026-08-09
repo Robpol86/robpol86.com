@@ -395,8 +395,9 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Prompt user before making changes
   echo "About to restore this snapshot:" >&2
+  # TODO ask if sudo when btrfs command fails.
   echo TODO  # TODO decode comments. Maybe print multi-lines instead of list single-row?
-  echo "Press enter to continue" >&2
+  echo "Press enter to continue..." >&2
   read -r _
 
   # Determine if subvolume is mounted as read-only (e.g. "not running").
@@ -410,6 +411,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restored/restore-from-$UUID"  # TODO use snapshot name
   if [ ${is_readonly:-false} = true ]; then
     mount -oremount,rw "$SUBVOLUME_DIR"
+    echo "Remounted '$SUBVOLUME_DIR' as read-write"
   fi
   mkdir -p "$dir_restore_from"
   mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
@@ -454,6 +456,7 @@ exit 1
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
 #   - Also when decoding. Just in case. Return encoded on failed salt check.
 # - awk y64_encode/decode function defs in env variables set by shell script
+# - Test non-root error messages for all subcommands.
 # - All "block-scoped" variables should be lowercase
 # - Snapshot name validation (no nl, / *, etc)
 # - Test with LC_ALL=C and other values.
@@ -483,6 +486,10 @@ exit 1
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
 # TODOs restore:
+# - `sudo btrfs subv show /` showed this:
+#   - Snapshot(s):
+#   - restored-c3f72add-a1b4-4d82-8cde-b46f.../.bsnaps/restored-ac7f4fd8-f8a9-41a7-a025-7838.../.bsnaps/restore-draft--two/1
+#   - Might be vestigial.
 # - No no args or bad name list available snapshots
 #   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
 # - Test take+restore multiple times, creating complex nesting.
