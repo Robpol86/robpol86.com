@@ -397,8 +397,8 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
     assert output == expected
 
 
-@pytest.mark.parametrize("running", [False])  # TODO ,True
-def test_restore_happy_path(subvolume: Path, bin_dir: Path, running: bool):
+@pytest.mark.parametrize("from_rdbreak", [True, False])
+def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     """Test restoring a snapshot by snapshot ID."""
     pytest.skip()  # TODO remove
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
@@ -416,7 +416,7 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, running: bool):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["restore", "-s", str(subvolume), "444"], env=env, input="\n")  # TODO parametrize ID
+    output = run(["restore", "-s", str(subvolume), "444"], env=env, input="\n")
 
     # Check.
     expected = dedent(f"""\
@@ -432,10 +432,17 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, running: bool):
                     comment.
         -------------------------------------------------------------------------------
         Press enter to continue...
-
-        Remounted '{subvolume}' as read-write.
-        Create snapshot of '{subvolume}/.bsnaps/restored/ro-four' in '{subvolume}/.bsnaps/restored/rw-four'
-        Remounted '{subvolume}' as read-only.
-        Changes are now in effect.
     """)
+    if from_rdbreak:
+        expected += dedent(f"""\
+            Remounted '{subvolume}' as read-write.
+            Create snapshot of '{subvolume}/.bsnaps/restored/ro-four' in '{subvolume}/.bsnaps/restored/rw-four'
+            Remounted '{subvolume}' as read-only.
+            Changes are now in effect.
+        """)
+    else:
+        expected += dedent(f"""\
+            Create snapshot of '{subvolume}/.bsnaps/restored/ro-four' in '{subvolume}/.bsnaps/restored/rw-four'
+            Reboot for changes to take effect.
+        """)
     assert output == expected
