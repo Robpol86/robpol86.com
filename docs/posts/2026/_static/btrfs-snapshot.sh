@@ -391,9 +391,9 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     echo "Are you running this as root or with sudo?" >&2
     rm -f "$snapshot_list_file"
     exit 1
-  elif awk -v FS='\t+' -v ID="$1" '/^[0-9]/{if ($1==ID) exit 0} ENDFILE{exit 1}' "$snapshot_list_file"; then
-    # Also verifies $1 is [0-9]+.
-    echo "ERROR: Cannot find btrfs snapshot ID '$1'." >&2
+  elif awk -v FS='\t+' -v ID="$snapshot_id" '/^[0-9]/{if ($1==ID) exit 0} ENDFILE{exit 1}' "$snapshot_list_file"; then
+    # Also verifies $snapshot_id is [0-9]+.
+    echo "ERROR: Cannot find btrfs snapshot ID '$snapshot_id'." >&2
     echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
     rm -f "$snapshot_list_file"
     exit 1
@@ -401,11 +401,28 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Get various btrfs information.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
-  snapshot_date=""  # TODO
-  snapshot_uuid=""  # TODO
-  snapshot_name="TODO_NAME_$UUID"  # TODO
-  snapshot_running=""  # TODO
-  snapshot_comment=""  # TODO
+  awk_program_file="/tmp/bsnaps-awk_program.$UUID.txt"
+  cat > "$awk_program_file" <<-'EOF'
+    BEGIN {
+      snapshot_comment=""
+    }
+    # TODO define functions.
+    $1==ID {
+      snapshot_date=$5
+      snapshot_uuid=$6
+      snapshot_name=get_name($7)
+      snapshot_running=get_running($7, "Yes", "No")
+      snapshot_comment=y64_decode(get_encoded_comment($7))
+    }
+    END {
+      printf("%s\t%s\t%s\t%s\t%s\n",
+             snapshot_date, snapshot_uuid, snapshot_name, snapshot_running, snapshot_comment)
+    }
+EOF
+  read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_comment <<-EOF
+  $(awk -v FS='\t+' -v ID="$snapshot_id" -f "$awk_program_file" "$snapshot_list_file")
+EOF
+  rm -f "$awk_program_file"
   # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
   # Prompt user before making changes
