@@ -502,26 +502,28 @@ EOF
   fi
 
   # Mount the snapshot as read-only.
-  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restored/restore-from-$snapshot_name"
+  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restored/ro-$snapshot_name"
   if [ ${is_readonly:-false} = true ]; then
     mount -oremount,rw "$SUBVOLUME_DIR"
     echo "Remounted '$SUBVOLUME_DIR' as read-write"
   fi
   mkdir -p "$dir_restore_from"
   mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
+  echo "Mounted snapshot '$snapshot_name' as read-only"
 
   # Clone the snapshot as read-write and set-default it.
-  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored/restored-$snapshot_name"
+  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored/rw-$snapshot_name"
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"  # TODO nesting path, PATH_MAX?
   btrfs subvolume set-default "$dir_restore_to"  # TODO what about distros that hard-code volid in fstab?
   umount "$dir_restore_from"
+  echo "Unmounted read-only '$snapshot_name'."
   rmdir --ignore-fail-on-non-empty "$dir_restore_from"
 
   # Remount $SUBVOLUME_DIR using the now-restored subvolume.
   if [ ${is_readonly:-false} = true ]; then
     umount "$SUBVOLUME_DIR"
     mount -oro "$subvolume_device" "$SUBVOLUME_DIR"
-    echo "Remounted $SUBVOLUME_DIR with $snapshot_name"  # TODO grammar
+    echo "Remounted '$SUBVOLUME_DIR' using snapshot '$snapshot_name'."
   else
     echo "Reboot for changes to take effect."
   fi
@@ -588,6 +590,7 @@ exit 1
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
 # - Paramertirze /tmp for unit test isolation.
+# - Fix double slash when subvol is / in non-rd.break: "Create snapshot of '//.bsnaps/restored/ro-multiSnap'"
 # TODOs restore:
 # - `sudo btrfs subv show /` showed this:
 #   - Snapshot(s):
