@@ -449,8 +449,8 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Get various btrfs information.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
-  read -r snapshot_date snapshot_uuid snapshot_name snapshot_running <<-EOF
-    $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOAWK'
+  read -r snapshot_date snapshot_uuid snapshot_name snapshot_running <<-EOREAD
+    $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
       $1==ID {
         snapshot_date=$5
         snapshot_uuid=$6
@@ -461,9 +461,9 @@ if [ "$SUBCOMMAND" = "restore" ]; then
         printf("%s\t%s\t%s\t%s\n",
               snapshot_date, snapshot_uuid, snapshot_name, snapshot_running)
       }
-EOAWK
-    )
 EOF
+    )
+EOREAD
   snapshot_comment="TODO"
   # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
