@@ -454,7 +454,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     exit 1
   fi
 
-  # Get various btrfs information.
+  # Parse btrfs list command output.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
@@ -546,7 +546,6 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
-# - Finish restore prompt
 # - Finish restore tests.
 # - Prune old/irrelevant TODOs.
 # - Write integration_tests with .img file in CI.
