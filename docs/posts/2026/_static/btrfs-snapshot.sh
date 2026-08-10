@@ -437,8 +437,12 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Get various btrfs information.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
-  IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running <<EOREAD
+  IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
+      # TODO.
+      function is_id_line(line_first_col, id) {
+        return id~/^[0-9]+$/ && line_first_col==id
+      }
       # TODO.
       function get_name(path) {
         return "todoName"
@@ -452,21 +456,21 @@ $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
         return "T3JpZ2luYWwgU3RyaW5n"
       }
       ##########################################################
-      $1==ID {
-        snapshot_date=$5
-        snapshot_uuid=$6
-        snapshot_name=get_name($7)
-        snapshot_running=get_running($7, "Yes", "No")
-        # TODO snapshot_has_comment
+      # TODO validate header line.
+      is_id_line($1, ID) {
+        snapshot_date = $5
+        snapshot_uuid = $6
+        snapshot_name = get_name($7)
+        snapshot_running = get_running($7, "Yes", "No")
+        snapshot_has_comment = get_encoded_comment($7) ? "true" : ""
       }
       END {
-        printf("%s\t%s\t%s\t%s\n",
-              snapshot_date, snapshot_uuid, snapshot_name, snapshot_running)
+        printf("%s\t%s\t%s\t%s\t%s\n",
+              snapshot_date, snapshot_uuid, snapshot_name, snapshot_running, snapshot_has_comment)
       }
 EOF
     )
 EOREAD
-  snapshot_comment="TODO"
   # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
   # Prompt user before making changes
@@ -478,8 +482,8 @@ EOREAD
   echo "UUID:       $snapshot_uuid"
   echo "Date:       $snapshot_date"
   echo "Running:    $snapshot_running"
-  if [ -n "$snapshot_comment" ]; then
-    echo "Comment:    $snapshot_comment"
+  if [ -n "$snapshot_has_comment" ]; then
+    echo "Comment:    TODO"
   else
     echo "Comment:"
   fi
