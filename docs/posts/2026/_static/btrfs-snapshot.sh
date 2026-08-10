@@ -484,9 +484,9 @@ EOREAD
   echo "Running:    $snapshot_running"
   if [ -n "$snapshot_has_comment" ]; then
     printf "Comment:    "
-    run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
-      is_id_line($1, ID) { print y64_decode(get_encoded_comment($7)); exit }
-EOF
+    # shellcheck disable=SC2016
+    echo 'is_id_line($1, ID) { print y64_decode(get_encoded_comment($7)); exit }' |
+      run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<&0 0<&-
   else
     echo "Comment:"
   fi
