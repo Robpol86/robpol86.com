@@ -102,7 +102,9 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
   fi
 done)
 
-# Function that runs awk without polluting 'set -x' stderr. Deduplicates shared awk functions too.
+# Function that runs awk without polluting 'set -x' stderr.
+# Deduplicates shared awk functions too.
+# Awk program is read from input on fd3.
 awk_shared() {
   awk_program_file="/tmp/bsnaps-awk_shared.$UUID.txt"
   # Write shared awk functions into file.
@@ -461,9 +463,30 @@ EOREAD
   echo "Running:    $snapshot_running"
   if [ -n "$snapshot_has_comment" ]; then
     printf "Comment:    "
-    # shellcheck disable=SC2016
-    echo 'is_id_line($1, ID) { print y64_decode(get_encoded_comment($7)); exit }' |
-      awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<&0 0<&-
+    awk_shared -v FS='\t+' -v ID="$snapshot_id" -v PREFIX="            " "$snapshot_list_file" 3<<'EOF'
+      is_id_line($1, ID) {
+        comment = y64_decode(get_encoded_comment($7))
+        # Trim (TODO move to shared).
+        sub(/^[ \t\n]+/, "", comment)
+        sub(/[ \t\n]+$/, "", comment)
+        # Print single-line.
+        if (!index(comment, "\n")) {
+          print(comment)
+          exit
+        }
+        # Print multi-line.
+        split(comment, line, "\n")
+        for (line in lines) {
+          if (!first_line_printed) {
+            print line
+            first_line_printed=1
+          } else {
+            print PREFIX line
+          }
+        }
+        exit
+      }
+EOF
   else
     echo "Comment:"
   fi
@@ -529,6 +552,7 @@ exit 1
 # - Restore UUID instead of volid?
 # - subvolid=5 for dir_restore_to.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
+# - awk: dedupe with awk_shared, update list, move single-used out of shared and into call site.
 # TODO:
 # - Strip head/tail newlines/spaces in comment.
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
@@ -564,6 +588,7 @@ exit 1
 # - bss not a symlink, sed PROGRAM name to bss.
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
+# - Paramertirze /tmp for unit test isolation.
 # TODOs restore:
 # - `sudo btrfs subv show /` showed this:
 #   - Snapshot(s):
