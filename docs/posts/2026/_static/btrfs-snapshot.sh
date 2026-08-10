@@ -32,7 +32,7 @@
 #   -h          Display this help and exit.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
-#   -v          Enable verbose/debug output.
+#   -v          Enable verbose/debug output and don't remove temporary files.
 
 # Usage: btrfs-snapshot list [OPTIONS]
 #
@@ -44,7 +44,7 @@
 #   -h          Display this help and exit.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
-#   -v          Enable verbose/debug output.
+#   -v          Enable verbose/debug output and don't remove temporary files.
 
 # Usage: btrfs-snapshot restore [OPTIONS] <snapshot-name|snapshot-id>
 #
@@ -56,7 +56,7 @@
 #   -h          Display this help and exit.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
-#   -v          Enable verbose/debug output.
+#   -v          Enable verbose/debug output and don't remove temporary files.
 
 # Usage: btrfs-snapshot delete [OPTIONS] <snapshot-name|snapshot-id>
 #
@@ -68,7 +68,7 @@
 #   -h          Display this help and exit.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
-#   -v          Enable verbose/debug output.
+#   -v          Enable verbose/debug output and don't remove temporary files.
 
 # Usage: btrfs-snapshot revert [OPTIONS]
 #
@@ -80,7 +80,7 @@
 #   -h          Display this help and exit.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
-#   -v          Enable verbose/debug output.
+#   -v          Enable verbose/debug output and don't remove temporary files.
 
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
@@ -101,6 +101,55 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
     exit 1
   fi
 done)
+
+# Function that runs awk without polluting 'set -x' stderr. Deduplicates shared awk functions too.
+run_awk() {
+  awk_program_file="/tmp/bsnaps-run_awk.$UUID.txt"
+  # Write shared awk functions into file.
+  cat > "$awk_program_file" <<-'EOF'
+    # TODO.
+    function get_name(path) {
+      return "todoName"
+    }
+    # TODO.
+    function get_running(path, true_val, false_val) {
+      return true_val
+    }
+    # TODO.
+    function get_encoded_comment(path) {
+      return "T3JpZ2luYWwgU3RyaW5n"
+    }
+    # Y64 decode function.
+    function y64_decode(encoded,          cmd, line, decoded, ret) {
+      if (!encoded) return encoded
+      # Convert Y64 to base64.
+      gsub(/\./, "+", encoded)
+      gsub(/_/, "/", encoded)
+      gsub(/-/, "=", encoded)
+      # Launch base64 decoder.
+      cmd = "base64 -d"
+      print encoded |& cmd
+      close(cmd, "to")  # Send EOF to base64 stdin.
+      # Read base64 output.
+      while ((cmd |& getline line) > 0) {
+        decoded = (decoded == "" ? line : decoded "\n" line)
+      }
+      ret = close(cmd)
+      if (ret != 0) {
+        printf("WARNING: Failed to decode base64 string '%s'.\n", encoded) >> "/dev/stderr"
+        return encoded  # Note: returns base64 string on failed decode, not original Y64 string.
+      }
+      return decoded
+    }
+EOF
+  # Write caller's awk program into file via fd3.
+  cat >> "$awk_program_file" <&3
+  # Run awk.
+  ret=0
+  awk -f "$awk_program_file" "$@" || ret=1
+  if [ ${VERBOSE:-false} = false ]; then rm -f "$awk_program_file"; fi
+  return $ret
+}
 
 # Handle top level help (no args == -h).
 if [ $# -eq 0 ] || [ "$1" = "-h" ]; then
@@ -158,55 +207,6 @@ while getopts "$GETOPTS" OPT; do
 done
 shift "$((OPTIND-1))"
 
-# Define function that runs awk without polluting 'set -x' stderr.
-run_awk() {
-  awk_program_file="/tmp/bsnaps-run_awk.$UUID.txt"
-  # Write shared awk functions into file.
-  cat > "$awk_program_file" <<-'EOF'
-    # TODO.
-    function get_name(path) {
-      return "todoName"
-    }
-    # TODO.
-    function get_running(path, true_val, false_val) {
-      return true_val
-    }
-    # TODO.
-    function get_encoded_comment(path) {
-      return "T3JpZ2luYWwgU3RyaW5n"
-    }
-    # Y64 decode function.
-    function y64_decode(encoded,          cmd, line, decoded, ret) {
-      if (!encoded) return encoded
-      # Convert Y64 to base64.
-      gsub(/\./, "+", encoded)
-      gsub(/_/, "/", encoded)
-      gsub(/-/, "=", encoded)
-      # Launch base64 decoder.
-      cmd = "base64 -d"
-      print encoded |& cmd
-      close(cmd, "to")  # Send EOF to base64 stdin.
-      # Read base64 output.
-      while ((cmd |& getline line) > 0) {
-        decoded = (decoded == "" ? line : decoded "\n" line)
-      }
-      ret = close(cmd)
-      if (ret != 0) {
-        printf("WARNING: Failed to decode base64 string '%s'.\n", encoded) >> "/dev/stderr"
-        return encoded  # Note: returns base64 string on failed decode, not original Y64 string.
-      }
-      return decoded
-    }
-EOF
-  # Write caller's awk program into file via fd3.
-  cat >> "$awk_program_file" <&3
-  # Run awk.
-  ret=0
-  awk -f "$awk_program_file" "$@" || ret=1
-  if [ ${VERBOSE:-false} = false ]; then rm -f "$awk_program_file"; fi
-  return $ret
-}
-
 # Enable verbose/debug.
 if [ ${VERBOSE:-false} = true ]; then
   set -o xtrace  # Print commands before executing them.
@@ -229,7 +229,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
   if ! btrfs subvolume list -rst "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
     echo "ERROR: Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
-    rm -f "$snapshot_list_file"
+    if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
     exit 1
   fi
 
@@ -329,10 +329,10 @@ if [ "$SUBCOMMAND" = "list" ]; then
       }
     }
   ' "$snapshot_list_file" "$snapshot_list_file"; then
-    rm -f "$snapshot_list_file"
+    if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
     exit 1
   fi
-  rm -f "$snapshot_list_file"
+  if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
   
   exit 0
 fi
