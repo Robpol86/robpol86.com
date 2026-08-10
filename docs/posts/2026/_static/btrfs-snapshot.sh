@@ -627,3 +627,5 @@ exit 1
 # - [restore] cli flag to not save revert snapshot.
 # - [list] cli flag to include restore/revert snapshots. What happens if i restore a restore/revert?
 #   - Maybe list restore/revert snapshots in [clean] instead?
+# TODO delete:
+# - Use more ominous @@@@@ hr.
