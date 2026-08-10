@@ -11,6 +11,7 @@ from textwrap import dedent
 import pytest
 
 MOCK_BTRFS_OUTPUT_FILENAME = "btrfs_fake_output.txt"
+MOCK_UUID = "{MOCK_UUID}"
 SNAPSHOTS_DIR = ".bsnaps/snapshots"
 SNAPSHOT_NAME = "test_name"
 
@@ -126,7 +127,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
 
     # Mock UUID file for macOS.
     mock_uuid_file = tmp_path / "uuid.txt"
-    mock_uuid_file.write_text("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\n")
+    mock_uuid_file.write_text(f"{MOCK_UUID}\n")
     monkeypatch.setenv("KERNEL_UUID_FILE", str(mock_uuid_file))
 
     return bin_dir
@@ -415,12 +416,12 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
         dedent(f"""\
         ID	gen	cgen	top level	otime	uuid	path
         --	---	----	---------	-----	----	----
-        000	93	93	5		2026-07-29 13:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	snapshots/ignore-me
-        111	93	93	5		2026-07-29 13:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/one/0
-        222	93	93	5		2026-07-29 14:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/two/1
-        333	93	93	5		2026-07-29 15:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
-        444	93	93	5		2026-07-29 16:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
-        """)  # noqa: E501
+        000	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	snapshots/ignore-me
+        111	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	{MOCK_UUID}	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	{MOCK_UUID}	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	{MOCK_UUID}	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+        """)
     )
 
     # Mock findmnt.
@@ -439,7 +440,7 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
         Subvolume:  {subvolume}
         Device:     /dev/hda0
         Name:       four
-        UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        UUID:       {MOCK_UUID}
         Date:       2026-07-29 16:00:00
         Running:    No
         Comment:    Multi
@@ -450,16 +451,20 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     """)
     if from_rdbreak:
         expected += dedent(f"""\
-            Remounted '{subvolume}' as read-write.
-            Create snapshot of '{subvolume}/.bsnaps/restored/ro-four' in '{subvolume}/.bsnaps/restored/rw-four'
-            Remounted '{subvolume}' as read-only.
-            Changes are now in effect.
-        """)
+            Remounted '{subvolume}' as read-write
+            Mounted snapshot 'four' as read-only
+            Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-four' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-four'
+            Unmounted read-only 'four'
+            Remounted '{subvolume}' using snapshot 'four' as read-only
+            Changes are now in effect
+        """)  # noqa: E501
     else:
         expected += dedent(f"""\
-            Create snapshot of '{subvolume}/.bsnaps/restored/ro-four' in '{subvolume}/.bsnaps/restored/rw-four'
-            Reboot for changes to take effect.
-        """)
+            Mounted snapshot 'four' as read-only
+            Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-four' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-four'
+            Unmounted read-only 'four'
+            Reboot for changes to take effect
+        """)  # noqa: E501
     assert output == expected
 
 
@@ -472,11 +477,11 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
         dedent(f"""\
         ID	gen	cgen	top level	otime	uuid	path
         --	---	----	---------	-----	----	----
-        000	93	93	5		2026-07-29 13:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	snapshots/ignore-me
-        111	93	93	5		2026-07-29 13:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/one/0
-        222	93	93	5		2026-07-29 14:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/two/1
-        333	93	93	5		2026-07-29 15:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
-        444	93	93	5		2026-07-29 16:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+        000	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	snapshots/ignore-me
+        111	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	{MOCK_UUID}	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	{MOCK_UUID}	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	{MOCK_UUID}	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
         """)  # noqa: E501
     )
 
@@ -492,7 +497,7 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
             -------------------------------------------------------------------------------
             Subvolume:  {subvolume}
             Name:       two
-            UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+            UUID:       {MOCK_UUID}
             Date:       2026-07-29 14:00:00
             Running:    Yes
             Comment:
@@ -505,7 +510,7 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
             -------------------------------------------------------------------------------
             Subvolume:  {subvolume}
             Name:       three
-            UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+            UUID:       {MOCK_UUID}
             Date:       2026-07-29 14:00:00
             Running:    No
             Comment:    Single line comment.
