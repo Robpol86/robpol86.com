@@ -439,24 +439,26 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
-      # TODO.
+      # Returns true if this line is the requested snapshot.
       function is_id_line(line_first_col, id) {
         return id~/^[0-9]+$/ && line_first_col==id
       }
-      # TODO.
-      function get_name(path) {
-        return "todoName"
+      # Extracts the snapshot name from the btrfs snapshot path.
+      function get_name(path,     arr) {
+        split(path, arr, "/")
+        return arr[3]
       }
-      # TODO.
-      function get_running(path, true_val, false_val) {
-        return true_val
+      # Extracts the snapshot's running state from the btrfs snapshot path.
+      function get_running(path, true_val, false_val,     arr) {
+        split(path, arr, "/")
+        return substr(arr[4], 1, 1) == "1" ? true_val : false_val
       }
-      # TODO.
-      function get_encoded_comment(path) {
-        return "T3JpZ2luYWwgU3RyaW5n"
+      # Extracts the snapshot comment from the btrfs snapshot path, without decoding.
+      function get_encoded_comment(path,    arr) {
+        split(path, arr, "/")
+        return substr(arr[4], 2)
       }
       ##########################################################
-      # TODO validate header line.
       is_id_line($1, ID) {
         snapshot_date = $5
         snapshot_uuid = $6
