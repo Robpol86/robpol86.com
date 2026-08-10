@@ -464,10 +464,9 @@ $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
         snapshot_name = get_name($7)
         snapshot_running = get_running($7, "Yes", "No")
         snapshot_has_comment = get_encoded_comment($7) ? "true" : ""
-      }
-      END {
         printf("%s\t%s\t%s\t%s\t%s\n",
               snapshot_date, snapshot_uuid, snapshot_name, snapshot_running, snapshot_has_comment)
+        exit
       }
 EOF
     )
@@ -485,7 +484,9 @@ EOREAD
   echo "Running:    $snapshot_running"
   if [ -n "$snapshot_has_comment" ]; then
     printf "Comment:    "
-    echo "TODO"
+    run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
+      is_id_line($1, ID) { print y64_decode(get_encoded_comment($7)); exit }
+EOF
   else
     echo "Comment:"
   fi
