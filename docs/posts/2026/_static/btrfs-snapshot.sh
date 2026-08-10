@@ -475,13 +475,13 @@ EOREAD
           exit
         }
         # Print multi-line.
-        split(comment, line, "\n")
-        for (line in lines) {
+        split(comment, lines, "\n")
+        for (idx in lines) {
           if (!first_line_printed) {
-            print line
+            print(lines[idx])
             first_line_printed=1
           } else {
-            print PREFIX line
+            print(PREFIX lines[idx])
           }
         }
         exit
@@ -493,7 +493,6 @@ EOF
   echo "-------------------------------------------------------------------------------" >&2
   echo "Press enter to continue..." >&2
   read -r _
-  [ -t 0 ] || echo  # Print newline when input is not a TTY.
 
   # Determine if subvolume is mounted as read-only (e.g. "not running").
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
