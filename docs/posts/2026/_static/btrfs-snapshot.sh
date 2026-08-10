@@ -592,6 +592,8 @@ exit 1
 # - Paramertirze /tmp for unit test isolation.
 # - Fix double slash when subvol is / in non-rd.break: "Create snapshot of '//.bsnaps/restored/ro-multiSnap'"
 # - UUID still needed in restored dir path?
+# - New subcommand: clean
+#   - Remove unmounted "restored" subvolumes.
 # TODOs restore:
 # - `sudo btrfs subv show /` showed this:
 #   - Snapshot(s):
