@@ -107,18 +107,6 @@ run_awk() {
   awk_program_file="/tmp/bsnaps-run_awk.$UUID.txt"
   # Write shared awk functions into file.
   cat > "$awk_program_file" <<-'EOF'
-    # TODO.
-    function get_name(path) {
-      return "todoName"
-    }
-    # TODO.
-    function get_running(path, true_val, false_val) {
-      return true_val
-    }
-    # TODO.
-    function get_encoded_comment(path) {
-      return "T3JpZ2luYWwgU3RyaW5n"
-    }
     # Y64 decode function.
     function y64_decode(encoded,          cmd, line, decoded, ret) {
       if (!encoded) return encoded
@@ -449,13 +437,27 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Get various btrfs information.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
-  read -r snapshot_date snapshot_uuid snapshot_name snapshot_running <<-EOREAD
-    $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
+  IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running <<EOREAD
+$(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
+      # TODO.
+      function get_name(path) {
+        return "todoName"
+      }
+      # TODO.
+      function get_running(path, true_val, false_val) {
+        return true_val
+      }
+      # TODO.
+      function get_encoded_comment(path) {
+        return "T3JpZ2luYWwgU3RyaW5n"
+      }
+      ##########################################################
       $1==ID {
         snapshot_date=$5
         snapshot_uuid=$6
         snapshot_name=get_name($7)
         snapshot_running=get_running($7, "Yes", "No")
+        # TODO snapshot_has_comment
       }
       END {
         printf("%s\t%s\t%s\t%s\n",
