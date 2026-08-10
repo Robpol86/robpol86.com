@@ -61,10 +61,13 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
         (bin_dir / "cut").symlink_to(gcut)
     if gwc := shutil.which("gwc"):
         (bin_dir / "wc").symlink_to(gwc)
+    if grmdir := shutil.which("grmdir"):
+        (bin_dir / "rmdir").symlink_to(grmdir)
 
-    # No-op mount and findmnt.
+    # No-op commands.
     if true_ := shutil.which("true"):
         (bin_dir / "mount").symlink_to(true_)
+        (bin_dir / "umount").symlink_to(true_)
         (bin_dir / "findmnt").symlink_to(true_)
     else:
         raise RuntimeError
@@ -427,7 +430,7 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
 
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["restore", "-s", str(subvolume), "444"], env=env, input="\n")
+    output = run(["restore", "-s", str(subvolume), "444"], env=env, input=b"\n")
 
     # Check.
     expected = dedent(f"""\
