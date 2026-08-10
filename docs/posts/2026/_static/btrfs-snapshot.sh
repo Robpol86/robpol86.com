@@ -95,7 +95,7 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 # Check dependencies.
 #   bash --rpm-requires ./btrfs-snapshot.sh  |sort -u |awk -F '[()]' '/^executable/{printf("%s ", $2)} END{print ""}'
 #   Above command works in the Fedora Docker image.
-(for cmd in awk base64 btrfs findmnt grep mkdir mount rm rmdir sed stat umount; do
+(for cmd in awk base64 btrfs cat findmnt grep mkdir mount rm rmdir sed stat umount; do
   if ! command -v "$cmd" > /dev/null; then
     echo "ERROR: Missing command '$cmd'" >&2
     exit 1
@@ -240,7 +240,8 @@ if [ "$SUBCOMMAND" = "list" ]; then
     exit 1
   fi
 
-  if ! awk -v FS='\t+' '
+  if ! awk_shared -v FS='\t+' "$snapshot_list_file" "$snapshot_list_file" 3<<'EOF'
+    # TODO use get_name and is_id_line and etc.
     BEGIN {
       padding_id = 3
       padding_date = 20
@@ -282,29 +283,6 @@ if [ "$SUBCOMMAND" = "list" ]; then
       }
     }
 
-    # Y64 decode function.
-    function y64_decode(encoded,          cmd, line, decoded, ret) {
-      if (!encoded) return encoded
-      # Convert Y64 to base64.
-      gsub(/\./, "+", encoded)
-      gsub(/_/, "/", encoded)
-      gsub(/-/, "=", encoded)
-      # Launch base64 decoder.
-      cmd = "base64 -d"
-      print encoded |& cmd
-      close(cmd, "to")  # Send EOF to base64 stdin.
-      # Read base64 output.
-      while ((cmd |& getline line) > 0) {
-        decoded = (decoded == "" ? line : decoded "\n" line)
-      }
-      ret = close(cmd)
-      if (ret != 0) {
-        printf("WARNING: Failed to decode base64 string '%s'.\n", encoded) >> "/dev/stderr"
-        return encoded  # Note: returns base64 string on failed decode, not original Y64 string.
-      }
-      return decoded
-    }
-
     # Second pass.
     NR!=FNR {
       # Extract fields.
@@ -335,7 +313,8 @@ if [ "$SUBCOMMAND" = "list" ]; then
         }
       }
     }
-  ' "$snapshot_list_file" "$snapshot_list_file"; then
+EOF
+  then
     if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
     exit 1
   fi
@@ -556,7 +535,6 @@ exit 1
 # - Strip head/tail newlines/spaces in comment.
 #   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
 #   - Also when decoding. Just in case. Return encoded on failed salt check.
-# - awk y64_encode/decode function defs in env variables set by shell script
 # - bss list -v: outputs entire awk program. Hide awk program from set -x.
 # - Consistent punctuation in echos.
 # - Test non-root error messages for all subcommands.
