@@ -69,7 +69,6 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     if true_ := shutil.which("true"):
         (bin_dir / "mount").symlink_to(true_)
         (bin_dir / "umount").symlink_to(true_)
-        (bin_dir / "findmnt").symlink_to(true_)
     else:
         raise RuntimeError
 
@@ -126,7 +125,20 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     fake_btrfs.chmod(0o755)
 
     # Mock findmnt.
-    # TODO.
+    fake_findmnt_script = dedent("""\
+        #!/bin/bash
+        set -eu
+        if [ -n "${MOCK_FINDMNT_OUTPUT+x}" ]; then
+            echo "$MOCK_FINDMNT_OUTPUT"
+        fi
+        if [[ "$*" == *"SOURCE"* ]] && [[ "${MOCK_FINDMNT_STATUS:-}" =~ ^[0-9]+$ ]]; then
+            exit $MOCK_FINDMNT_STATUS
+        fi
+        exit 0
+    """)
+    fake_findmnt = bin_dir / "findmnt"
+    fake_findmnt.write_text(fake_findmnt_script)
+    fake_findmnt.chmod(0o755)
 
     # Mock UUID file for macOS.
     mock_uuid_file = tmp_path / "uuid.txt"
@@ -427,13 +439,12 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
         """)
     )
 
-    # Mock findmnt.
-    (bin_dir / "findmnt").unlink()
-    (bin_dir / "findmnt").write_text(f"#!/bin/sh\necho /dev/hda0\nexit {'0' if from_rdbreak else '1'}")  # TODO doesn't work.
-    (bin_dir / "findmnt").chmod(0o755)
-
     # Run.
-    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    env = dict(
+        MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file,
+        MOCK_FINDMNT_OUTPUT="/dev/hda0",
+        MOCK_FINDMNT_STATUS="0" if from_rdbreak else "1",
+    )
     output = run(["restore", "-s", str(subvolume), "444"], env=env, input=b"\n")
 
     # Check.
