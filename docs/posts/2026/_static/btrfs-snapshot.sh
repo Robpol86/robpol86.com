@@ -321,7 +321,7 @@ EOF
     exit 1
   fi
   if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
-  
+
   exit 0
 fi
 
@@ -551,6 +551,8 @@ exit 1
 # - Finish restore tests.
 # - Prune old/irrelevant TODOs.
 # - Write integration_tests with .img file in CI.
+#   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
+#   - List create restore delete etc.
 # - Restore UUID instead of volid?
 # - subvolid=5 for dir_restore_to.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
@@ -618,3 +620,9 @@ exit 1
 #       Restored 0 to default.
 #       Remounted ... ro
 #       Run "..." to revert.
+# TODO revert:
+# - Every [restore] takes a read only snapshot into bsnaps/revert.
+# - But how do i keep track of last revert? Ideal: revert, boot, revert, boot. Like cd ../.. keep going back without deleting
+# - [restore] cli flag to not save revert snapshot.
+# - [list] cli flag to include restore/revert snapshots. What happens if i restore a restore/revert?
+#   - Maybe list restore/revert snapshots in [clean] instead?
