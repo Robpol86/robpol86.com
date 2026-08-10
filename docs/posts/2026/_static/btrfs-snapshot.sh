@@ -107,6 +107,25 @@ run_awk() {
   awk_program_file="/tmp/bsnaps-run_awk.$UUID.txt"
   # Write shared awk functions into file.
   cat > "$awk_program_file" <<-'EOF'
+    # Returns true if this line is the requested snapshot.
+    function is_id_line(line_first_col, id) {
+      return id~/^[0-9]+$/ && line_first_col==id
+    }
+    # Extracts the snapshot name from the btrfs snapshot path.
+    function get_name(path,     arr) {
+      split(path, arr, "/")
+      return arr[3]
+    }
+    # Extracts the snapshot's running state from the btrfs snapshot path.
+    function get_running(path, true_val, false_val,     arr) {
+      split(path, arr, "/")
+      return substr(arr[4], 1, 1) == "1" ? true_val : false_val
+    }
+    # Extracts the snapshot comment from the btrfs snapshot path, without decoding.
+    function get_encoded_comment(path,    arr) {
+      split(path, arr, "/")
+      return substr(arr[4], 2)
+    }
     # Y64 decode function.
     function y64_decode(encoded,          cmd, line, decoded, ret) {
       if (!encoded) return encoded
@@ -439,26 +458,6 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
-      # Returns true if this line is the requested snapshot.
-      function is_id_line(line_first_col, id) {
-        return id~/^[0-9]+$/ && line_first_col==id
-      }
-      # Extracts the snapshot name from the btrfs snapshot path.
-      function get_name(path,     arr) {
-        split(path, arr, "/")
-        return arr[3]
-      }
-      # Extracts the snapshot's running state from the btrfs snapshot path.
-      function get_running(path, true_val, false_val,     arr) {
-        split(path, arr, "/")
-        return substr(arr[4], 1, 1) == "1" ? true_val : false_val
-      }
-      # Extracts the snapshot comment from the btrfs snapshot path, without decoding.
-      function get_encoded_comment(path,    arr) {
-        split(path, arr, "/")
-        return substr(arr[4], 2)
-      }
-      ##########################################################
       is_id_line($1, ID) {
         snapshot_date = $5
         snapshot_uuid = $6
@@ -485,7 +484,8 @@ EOREAD
   echo "Date:       $snapshot_date"
   echo "Running:    $snapshot_running"
   if [ -n "$snapshot_has_comment" ]; then
-    echo "Comment:    TODO"
+    printf "Comment:    "
+    echo "TODO"
   else
     echo "Comment:"
   fi
