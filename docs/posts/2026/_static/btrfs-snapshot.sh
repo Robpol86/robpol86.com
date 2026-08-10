@@ -550,6 +550,7 @@ exit 1
 # TODO:
 # - Finish restore tests.
 # - Prune old/irrelevant TODOs.
+# - Finish list/restore usage.
 # - Write integration_tests with .img file in CI.
 #   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
 #   - List create restore delete etc.
