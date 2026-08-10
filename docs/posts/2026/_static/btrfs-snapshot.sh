@@ -330,10 +330,9 @@ if [ "$SUBCOMMAND" = "take" ]; then
     echo "'btrfs-snapshot take' requires exactly 1 argument." >&2
     echo "See 'btrfs-snapshot take -h'." >&2
     exit 1
-  else
-    snapshot_name="$1"
-    shift
   fi
+  snapshot_name="$1"
+  shift
 
   # Check if snapshot name has invalid characters.
   # TODO
@@ -383,9 +382,8 @@ if [ "$SUBCOMMAND" = "take" ]; then
       echo "ERROR: Failed to remount '$SUBVOLUME_DIR' as read-write." >&2
       echo "Are you running this as root or with sudo?" >&2
       exit 1
-    else
-      echo "Remounted '$SUBVOLUME_DIR' as read-write"
     fi
+    echo "Remounted '$SUBVOLUME_DIR' as read-write"
   fi
 
   # Create snapshots parent directories.
