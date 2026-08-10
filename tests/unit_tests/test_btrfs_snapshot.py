@@ -97,15 +97,22 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     fake_btrfs_script = dedent("""\
         #!/bin/bash
         set -eu
-        if [[ "$*" == *"subvolume snapshot -r"* ]]; then
+        if [[ "$*" == *"subvolume snapshot"* ]]; then
             intermediate="$(mktemp -d)/intermediate"
             cp -vr "${@:(-2):1}" "$intermediate"
             mv "$intermediate" "${@: -1}"
-            echo "Create readonly snapshot of '${@:(-2):1}' in '${@: -1}'"
+            if [[ "$*" == *"subvolume snapshot -r"* ]]; then
+                echo "Create readonly snapshot of '${@:(-2):1}' in '${@: -1}'"
+            else
+                echo "Create snapshot of '${@:(-2):1}' in '${@: -1}'"
+            fi
             exit 0
         fi
         if [[ "$*" == *"subvolume list"* ]]; then
             cat "$MOCK_BTRFS_OUTPUT_FILE"
+            exit 0
+        fi
+        if [[ "$*" == *"subvolume set-default"* ]]; then
             exit 0
         fi
         exit 1
@@ -413,6 +420,11 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
         """)  # noqa: E501
     )
 
+    # Mock findmnt.
+    (bin_dir / "findmnt").unlink()
+    (bin_dir / "findmnt").write_text("#!/bin/sh\necho /dev/hda0")
+    (bin_dir / "findmnt").chmod(0o755)
+
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
     output = run(["restore", "-s", str(subvolume), "444"], env=env, input="\n")
@@ -422,6 +434,7 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
         Restoring snapshot ID 444:
         -------------------------------------------------------------------------------
         Subvolume:  {subvolume}
+        Device:     /dev/hda0
         Name:       four
         UUID:       aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
         Date:       2026-07-29 16:00:00
