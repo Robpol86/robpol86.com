@@ -131,7 +131,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
         if [ -n "${MOCK_FINDMNT_OUTPUT+x}" ]; then
             echo "$MOCK_FINDMNT_OUTPUT"
         fi
-        if [[ "$*" == *"SOURCE"* ]] && [[ "${MOCK_FINDMNT_STATUS:-}" =~ ^[0-9]+$ ]]; then
+        if [[ "$*" != *"SOURCE"* ]] && [[ "${MOCK_FINDMNT_STATUS:-}" =~ ^[0-9]+$ ]]; then
             exit $MOCK_FINDMNT_STATUS
         fi
         exit 0
@@ -425,7 +425,6 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
 @pytest.mark.parametrize("from_rdbreak", [True, False])
 def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     """Test restoring a snapshot by snapshot ID."""
-    pytest.skip()  # TODO remove
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\
