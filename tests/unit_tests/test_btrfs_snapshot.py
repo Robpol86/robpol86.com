@@ -484,7 +484,6 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
 @pytest.mark.parametrize("no_comment", [False, True])
 def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
     """Test formatting of single-line and no comments."""
-    pytest.skip()  # TODO remove
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\
@@ -495,13 +494,13 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
         222	93	93	5		2026-07-29 14:00:00	{MOCK_UUID}	.bsnaps/snapshots/two/1
         333	93	93	5		2026-07-29 15:00:00	{MOCK_UUID}	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
         444	93	93	5		2026-07-29 16:00:00	{MOCK_UUID}	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
-        """)  # noqa: E501
+        """)
     )
 
     # Run.
     snapshot_id = "222" if no_comment else "333"
-    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
-    output = run(["restore", "-s", str(subvolume), snapshot_id], env=env, input="\n")
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file, MOCK_FINDMNT_OUTPUT="/dev/hda0")
+    output = run(["restore", "-s", str(subvolume), snapshot_id], env=env, input=b"\n")
 
     # Check.
     if no_comment:
@@ -509,6 +508,7 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
             Restoring snapshot ID 222:
             -------------------------------------------------------------------------------
             Subvolume:  {subvolume}
+            Device:     /dev/hda0
             Name:       two
             UUID:       {MOCK_UUID}
             Date:       2026-07-29 14:00:00
@@ -516,24 +516,31 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
             Comment:
             -------------------------------------------------------------------------------
             Press enter to continue...
-        """)
+            Remounted '{subvolume}' as read-write
+            Mounted snapshot 'two' as read-only
+            Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-two' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-two'
+            Unmounted read-only 'two'
+            Remounted '{subvolume}' using snapshot 'two' as read-only
+            Changes are now in effect
+        """)  # noqa: E501
     else:
         expected = dedent(f"""\
             Restoring snapshot ID 333:
             -------------------------------------------------------------------------------
             Subvolume:  {subvolume}
+            Device:     /dev/hda0
             Name:       three
             UUID:       {MOCK_UUID}
-            Date:       2026-07-29 14:00:00
+            Date:       2026-07-29 15:00:00
             Running:    No
             Comment:    Single line comment.
             -------------------------------------------------------------------------------
             Press enter to continue...
-        """)
-    expected += dedent(f"""\
-        Remounted '{subvolume}' as read-write.
-        Create snapshot of '{subvolume}/.bsnaps/restored/ro-four' in '{subvolume}/.bsnaps/restored/rw-four'
-        Remounted '{subvolume}' as read-only.
-        Changes are now in effect.
-    """)
+            Remounted '{subvolume}' as read-write
+            Mounted snapshot 'three' as read-only
+            Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-three' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-three'
+            Unmounted read-only 'three'
+            Remounted '{subvolume}' using snapshot 'three' as read-only
+            Changes are now in effect
+        """)  # noqa: E501
     assert output == expected
