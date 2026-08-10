@@ -524,6 +524,7 @@ EOF
     umount "$SUBVOLUME_DIR"
     mount -oro "$subvolume_device" "$SUBVOLUME_DIR"
     echo "Remounted '$SUBVOLUME_DIR' using snapshot '$snapshot_name' as read-only"
+    echo "Changes are now in effect"
   else
     echo "Reboot for changes to take effect"
   fi
