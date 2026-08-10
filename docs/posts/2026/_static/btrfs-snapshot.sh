@@ -103,8 +103,8 @@ read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 done)
 
 # Function that runs awk without polluting 'set -x' stderr. Deduplicates shared awk functions too.
-run_awk() {
-  awk_program_file="/tmp/bsnaps-run_awk.$UUID.txt"
+awk_shared() {
+  awk_program_file="/tmp/bsnaps-awk_shared.$UUID.txt"
   # Write shared awk functions into file.
   cat > "$awk_program_file" <<-'EOF'
     # Returns true if this line is the requested snapshot.
@@ -457,7 +457,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   # Parse btrfs list command output.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
-$(run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
+$(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
       is_id_line($1, ID) {
         snapshot_date = $5
         snapshot_uuid = $6
@@ -486,7 +486,7 @@ EOREAD
     printf "Comment:    "
     # shellcheck disable=SC2016
     echo 'is_id_line($1, ID) { print y64_decode(get_encoded_comment($7)); exit }' |
-      run_awk -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<&0 0<&-
+      awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<&0 0<&-
   else
     echo "Comment:"
   fi
