@@ -268,7 +268,7 @@ def test_list_no_snapshots(subvolume: Path, bin_dir: Path):
         dedent("""\
         ID	gen	cgen	top level	otime	path
         --	---	----	---------	-----	----
-    """)
+        """)
     )
 
     # Run.
@@ -289,7 +289,7 @@ def test_list_snapshots(subvolume: Path, bin_dir: Path):
         222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
         333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
         444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
-    """)
+        """)
     )
 
     # Run.
@@ -321,7 +321,7 @@ def test_list_snapshots_no_comments(subvolume: Path, bin_dir: Path):
         222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
         333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/three/0
         444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0
-    """)
+        """)
     )
 
     # Run.
@@ -404,14 +404,14 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\
-        ID	gen	cgen	top level	otime	path
-        --	---	----	---------	-----	----
-        000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
-        111	93	93	5		2026-07-29 13:00:00	.bsnaps/snapshots/one/0
-        222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
-        333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
-        444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
-    """)
+        ID	gen	cgen	top level	otime	uuid	path
+        --	---	----	---------	-----	----	----
+        000	93	93	5		2026-07-29 13:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	snapshots/ignore-me
+        111	93	93	5		2026-07-29 13:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+        """)  # noqa: E501
     )
 
     # Run.
@@ -455,14 +455,14 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\
-        ID	gen	cgen	top level	otime	path
-        --	---	----	---------	-----	----
-        000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
-        111	93	93	5		2026-07-29 13:00:00	.bsnaps/snapshots/one/0
-        222	93	93	5		2026-07-29 14:00:00	.bsnaps/snapshots/two/1
-        333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
-        444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
-    """)
+        ID	gen	cgen	top level	otime	uuid	path
+        --	---	----	---------	-----	----	----
+        000	93	93	5		2026-07-29 13:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	snapshots/ignore-me
+        111	93	93	5		2026-07-29 13:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+        """)  # noqa: E501
     )
 
     # Run.
