@@ -11,7 +11,6 @@ from textwrap import dedent
 import pytest
 
 MOCK_BTRFS_OUTPUT_FILENAME = "btrfs_fake_output.txt"
-MOCK_UUID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 SNAPSHOTS_DIR = ".bsnaps/snapshots"
 SNAPSHOT_NAME = "test_name"
 
@@ -117,7 +116,7 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
 
     # Mock UUID file for macOS.
     mock_uuid_file = tmp_path / "uuid.txt"
-    mock_uuid_file.write_text(f"{MOCK_UUID}\n")
+    mock_uuid_file.write_text("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\n")
     monkeypatch.setenv("KERNEL_UUID_FILE", str(mock_uuid_file))
 
     return bin_dir
