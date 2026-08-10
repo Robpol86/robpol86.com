@@ -125,6 +125,9 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     fake_btrfs.write_text(fake_btrfs_script)
     fake_btrfs.chmod(0o755)
 
+    # Mock findmnt.
+    # TODO.
+
     # Mock UUID file for macOS.
     mock_uuid_file = tmp_path / "uuid.txt"
     mock_uuid_file.write_text(f"{MOCK_UUID}\n")
