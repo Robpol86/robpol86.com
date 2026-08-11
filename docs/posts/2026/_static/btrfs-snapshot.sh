@@ -616,6 +616,7 @@ exit 1
 # - New subcommand: clean
 #   - Remove unmounted "restored" subvolumes.
 # - Bad comment: user specifyfies -c-, but then presses ctrl+d with no other text. Should count has no-comment.
+#   - Same with -c ""
 # TODOs restore:
 # - `sudo btrfs subv show /` showed this:
 #   - Snapshot(s):
