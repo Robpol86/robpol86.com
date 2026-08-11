@@ -486,12 +486,6 @@ EOREAD
     awk_shared -v FS='\t+' -v ID="$snapshot_id" -v PREFIX="            " "$snapshot_list_file" 3<<'EOF'
       is_id_line($1, ID) {
         comment = trim(y64_decode(get_encoded_comment($7)))
-        # Print single-line.
-        if (!index(comment, "\n")) {
-          print(comment)
-          exit
-        }
-        # Print multi-line.
         split(comment, lines, "\n")
         for (idx in lines) {
           if (!first_line_printed) {
