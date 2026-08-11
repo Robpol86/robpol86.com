@@ -537,9 +537,47 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     assert output == expected
 
 
-def test_restore_nested():
-    """TODO."""
+def test_restore_nested(subvolume: Path, bin_dir: Path):
+    """Test restore when btrfs shows nested paths."""
     pytest.skip()
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	uuid	path
+        --	---	----	---------	-----	----	----
+        000	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	snapshots/ignore-me
+        333	93	93	5		2026-07-29 15:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/0/.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	{MOCK_UUID}	.bsnaps/snapshots/two/1/.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+        """)  # noqa: E501
+    )
+
+    # Run.
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file, MOCK_FINDMNT_OUTPUT="/dev/hda0")
+    output = run(["restore", "-s", str(subvolume), "444"], env=env, input=b"\n")
+
+    # Check.
+    expected = dedent(f"""\
+        Restoring snapshot ID 444:
+        -------------------------------------------------------------------------------
+        Subvolume:  {subvolume}
+        Device:     /dev/hda0
+        Name:       four
+        UUID:       {MOCK_UUID}
+        Date:       2026-07-29 16:00:00
+        Running:    No
+        Comment:    Multi
+                    line
+                    comment.
+        -------------------------------------------------------------------------------
+        Press enter to continue...
+        Remounted '{subvolume}' as read-write
+        Mounted snapshot 'four' as read-only
+        Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-four' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-four'
+        Unmounted read-only 'four'
+        Remounted '{subvolume}' using snapshot 'four' as read-only
+        Changes are now in effect
+    """)  # noqa: E501
+    assert output == expected
 
 
 @pytest.mark.parametrize("bad_id", ["123", "bad"])
