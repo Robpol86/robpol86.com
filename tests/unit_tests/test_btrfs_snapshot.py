@@ -215,6 +215,21 @@ def test_cli_bad_args():
     assert "flag needs an argument: 'c'" in output
 
 
+@pytest.mark.parametrize("subcommand", ["list"])
+def test_cli_no_sudo(bin_dir: Path, subcommand: str):
+    """Test graceful failure when run without sudo/root."""
+    (bin_dir / "btrfs").unlink()
+    assert (false_ := shutil.which("false"))
+    (bin_dir / "btrfs").symlink_to(false_)
+
+    argv = []
+    if subcommand == "list":
+        argv += [subcommand]
+
+    output = run_failed(argv)
+    assert "Are you running this as root or with sudo?" in output
+
+
 def test_cli_overide_defaults():
     """Make sure Usage string replacement for displaying defaults works."""
     output = run(["take", "-s/altroot", "-h"])

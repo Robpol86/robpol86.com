@@ -231,7 +231,10 @@ if ! stat --format=%i "$SUBVOLUME_DIR" |grep -q '^256$'; then
   exit 1
 fi
 
+################################################################################
 # Subcommand list.
+################################################################################
+
 if [ "$SUBCOMMAND" = "list" ]; then
   # Get list of snapshots.
   snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
@@ -325,7 +328,10 @@ EOF
   exit 0
 fi
 
+################################################################################
 # Subcommand take.
+################################################################################
+
 if [ "$SUBCOMMAND" = "take" ]; then
   # Parse subcommand arguments.
   if [ $# != 1 ]; then
@@ -407,7 +413,10 @@ if [ "$SUBCOMMAND" = "take" ]; then
   exit 0
 fi
 
+################################################################################
 # Subcommand restore.
+################################################################################
+
 if [ "$SUBCOMMAND" = "restore" ]; then
   # Parse subcommand arguments.
   if [ $# != 1 ]; then
@@ -450,7 +459,6 @@ $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
 EOF
     )
 EOREAD
-  # TODO validate dir_restore_from and dir_restore_to (collisions?).
 
   # Prompt user before making changes
   echo "Restoring snapshot ID $snapshot_id:" >&2
@@ -532,13 +540,19 @@ EOF
   exit 0
 fi
 
+################################################################################
 # Subcommand delete.
+################################################################################
+
 if [ "$SUBCOMMAND" = "delete" ]; then
   echo "TODO"
   exit 0
 fi
 
+################################################################################
 # Subcommand revert.
+################################################################################
+
 if [ "$SUBCOMMAND" = "revert" ]; then
   echo "TODO"
   exit 0
@@ -548,7 +562,6 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
-# - Finish restore tests.
 # - Prune old/irrelevant TODOs.
 # - Finish list/restore usage.
 # - Write integration_tests with .img file in CI.
@@ -602,7 +615,6 @@ exit 1
 # - `sudo btrfs subv show /` showed this:
 #   - Snapshot(s):
 #   - restored-c3f72add-a1b4-4d82-8cde-b46f.../.bsnaps/restored-ac7f4fd8-f8a9-41a7-a025-7838.../.bsnaps/restore-draft--two/1
-#   - Might be vestigial.
 # - No no args or bad name list available snapshots
 #   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
 # - Test take+restore multiple times, creating complex nesting.
