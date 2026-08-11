@@ -145,6 +145,11 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     mock_uuid_file.write_text(f"{MOCK_UUID}\n")
     monkeypatch.setenv("KERNEL_UUID_FILE", str(mock_uuid_file))
 
+    # Mock TMP_DIR.
+    mock_tmp_dir = tmp_path / "tmp"
+    mock_tmp_dir.mkdir()
+    monkeypatch.setenv("TMP_DIR", str(mock_tmp_dir))
+
     return bin_dir
 
 

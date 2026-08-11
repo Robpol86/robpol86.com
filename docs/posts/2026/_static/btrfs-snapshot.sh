@@ -90,6 +90,7 @@ COMMENT=
 VERBOSE=
 
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
+TMP_DIR="${TMP_DIR:-/tmp}"
 read -r UUID < "${KERNEL_UUID_FILE:-/proc/sys/kernel/random/uuid}"
 
 # Check dependencies.
@@ -106,7 +107,7 @@ done)
 # Deduplicates shared awk functions too.
 # Awk program is read from input on fd3.
 awk_shared() {
-  awk_program_file="/tmp/bsnaps-awk_shared.$UUID.txt"
+  awk_program_file="$TMP_DIR/bsnaps-awk_shared.$UUID.txt"
   # Write shared awk functions into file.
   cat > "$awk_program_file" <<-'EOF'
     # Returns true if this line is the requested snapshot.
@@ -237,7 +238,7 @@ fi
 
 if [ "$SUBCOMMAND" = "list" ]; then
   # Get list of snapshots.
-  snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
+  snapshot_list_file="$TMP_DIR/bsnaps-snapshot_list.$UUID.txt"
   if ! btrfs subvolume list -rst "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
     echo "ERROR: Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
@@ -428,7 +429,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   shift
 
   # Get list of snapshots.
-  snapshot_list_file="/tmp/bsnaps-snapshot_list.$UUID.txt"
+  snapshot_list_file="$TMP_DIR/bsnaps-snapshot_list.$UUID.txt"
   if ! btrfs subvolume list -rstu "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
     echo "ERROR: Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
@@ -436,6 +437,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     exit 1
   elif ! awk -v FS='\t+' -v ID="$snapshot_id" '/^[0-9]/{if ($1==ID) exit 0} ENDFILE{exit 1}' "$snapshot_list_file"; then
     # Also verifies $snapshot_id is [0-9]+.
+    # TODO anti-pattern. Suggestion: read -r found snapshot_date ...; TDD.
     echo "ERROR: Cannot find btrfs snapshot ID '$snapshot_id'." >&2
     echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
     if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
@@ -606,7 +608,6 @@ exit 1
 # - bss not a symlink, sed PROGRAM name to bss.
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
-# - Paramertirze /tmp for unit test isolation.
 # - Fix double slash when subvol is / in non-rd.break: "Create snapshot of '//.bsnaps/restored/ro-multiSnap'"
 # - UUID still needed in restored dir path?
 # - New subcommand: clean
