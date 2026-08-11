@@ -435,13 +435,6 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     echo "Are you running this as root or with sudo?" >&2
     if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
     exit 1
-  elif ! awk -v FS='\t+' -v ID="$snapshot_id" '/^[0-9]/{if ($1==ID) exit 0} ENDFILE{exit 1}' "$snapshot_list_file"; then
-    # Also verifies $snapshot_id is [0-9]+.
-    # TODO anti-pattern. Suggestion: read -r found snapshot_date ...; TDD.
-    echo "ERROR: Cannot find btrfs snapshot ID '$snapshot_id'." >&2
-    echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
-    if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
-    exit 1
   fi
 
   # Parse btrfs list command output.
@@ -461,6 +454,12 @@ $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
 EOF
     )
 EOREAD
+  if [ -z "$snapshot_date" ]; then
+    echo "ERROR: Cannot find btrfs snapshot ID '$snapshot_id'." >&2
+    echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
+    if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
+    exit 1
+  fi
 
   # Prompt user before making changes
   echo "Restoring snapshot ID $snapshot_id:" >&2
