@@ -569,6 +569,7 @@ exit 1
 # - Write integration_tests with .img file in CI.
 #   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
 #   - List create restore delete etc.
+#   - Multiple docker images for diff supported distros. Ensures btrfs command consistency testing.
 # - Restore UUID instead of volid?
 # - subvolid=5 for dir_restore_to.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
