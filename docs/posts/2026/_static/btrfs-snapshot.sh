@@ -605,6 +605,7 @@ exit 1
 # - Bad comment: user specifyfies -c-, but then presses ctrl+d with no other text. Should count has no-comment.
 #   - Same with -c ""
 # TODOs restore:
+# - Handle when user restores snapshot ID that's not bsnaps.
 # - `sudo btrfs subv show /` showed this:
 #   - Snapshot(s):
 #   - restored-c3f72add-a1b4-4d82-8cde-b46f.../.bsnaps/restored-ac7f4fd8-f8a9-41a7-a025-7838.../.bsnaps/restore-draft--two/1
