@@ -155,7 +155,12 @@ awk_shared() {
         printf("WARNING: Failed to decode base64 string '%s'.\n", encoded) >> "/dev/stderr"
         return encoded  # Note: returns base64 string on failed decode, not original Y64 string.
       }
-      return decoded
+      # Check for salt.
+      if (substr(decoded, 1, 4) != "salt") {
+        printf("WARNING: Unsalted base64 string '%s'.\n", encoded) >> "/dev/stderr"
+        return encoded
+      }
+      return substr(decoded, 5)
     }
 EOF
   # Write caller's awk program into file via fd3.
@@ -354,7 +359,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
 
   # Encode comment.
   y64_encode() {
-    base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g'
+    { printf salt; cat; } |base64 -w0 |sed -e 's/+/./g' -e 's|/|_|g' -e 's/=/-/g'
   }
   if [ "${COMMENT:-}" = "-" ]; then
     if [ -t 0 ]; then
@@ -577,9 +582,6 @@ exit 1
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
 # - awk: dedupe with awk_shared, update list, move single-used out of shared and into call site.
 # TODO:
-# - Strip head/tail newlines/spaces in comment.
-#   - Only when creating. gensub, https://stackoverflow.com/questions/9175801/how-to-remove-leading-and-trailing-whitespaces
-#   - Also when decoding. Just in case. Return encoded on failed salt check.
 # - bss list -v: outputs entire awk program. Hide awk program from set -x.
 # - Consistent punctuation in echos.
 # - Test non-root error messages for all subcommands.
@@ -587,8 +589,6 @@ exit 1
 # - Snapshot name validation (no nl, / *, etc)
 # - Test with LC_ALL=C and other values.
 # - Test with malformed b64: warn and keep decoded in output
-#   - Prefix/postifx magic/salt string?
-#   - \0 not supported in awk strings. How to handle?
 # - Delete all snapshots on me-mini and create four new ones with latest script.
 #   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
 #   - Create a new snapshot from the restored middle. Now there should be one more in -l.

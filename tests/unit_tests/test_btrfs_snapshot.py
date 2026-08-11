@@ -36,9 +36,10 @@ def run_failed(argv, **kwargs) -> str:
     return output.decode("utf8")
 
 
-def y64_encode(input) -> str:
+def y64_encode(input: str) -> str:
     """Encode input string into Yahoo 64 format."""
-    b64_encoded = base64.b64encode(input.encode("utf8")).decode("utf8")
+    salted = "salt" + input
+    b64_encoded = base64.b64encode(salted.encode("utf8")).decode("utf8")
     y64_encoded = b64_encoded.replace("+", ".").replace("/", "_").replace("=", "-")
     return y64_encoded
 
