@@ -361,6 +361,36 @@ def test_list_snapshots(subvolume: Path, bin_dir: Path):
     assert output == expected
 
 
+def test_list_snapshots_nested(subvolume: Path, bin_dir: Path):
+    """Test listing snapshots when btrfs shows nested paths."""
+    pytest.skip()
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	path
+        --	---	----	---------	-----	----
+        000	93	93	5		2026-07-29 13:00:00	snapshots/ignore-me
+        333	93	93	5		2026-07-29 15:00:00	.bsnaps/snapshots/one/0/.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	.bsnaps/snapshots/two/1/.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+        """)  # noqa: E501
+    )
+
+    # Run.
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    output = run(["list", "-s", str(subvolume)], env=env)
+
+    # Check.
+    expected = dedent("""\
+        ID   Date          Running? Name             Comment
+        -------------------------------------------------------------------------------
+        333  2026-07-29 15:00:00    three            Single line comment.
+        444  2026-07-29 16:00:00    four             Multi
+                                                     line
+                                                     comment.
+    """)
+    assert output == expected
+
+
 def test_list_snapshots_no_comments(subvolume: Path, bin_dir: Path):
     """Test listing snapshots without any comments."""
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
@@ -505,6 +535,11 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
             Reboot for changes to take effect
         """)  # noqa: E501
     assert output == expected
+
+
+def test_restore_nested():
+    """TODO."""
+    pytest.skip()
 
 
 @pytest.mark.parametrize("bad_id", ["123", "bad"])
