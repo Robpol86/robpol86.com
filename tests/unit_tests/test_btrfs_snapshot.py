@@ -215,7 +215,7 @@ def test_cli_bad_args():
     assert "flag needs an argument: 'c'" in output
 
 
-@pytest.mark.parametrize("subcommand", ["list", "take"])
+@pytest.mark.parametrize("subcommand", ["list", "take", "restore"])
 def test_cli_no_sudo(subvolume: Path, bin_dir: Path, subcommand: str):
     """Test graceful failure when run without sudo/root."""
     for cmd in ["btrfs", "mount"]:
@@ -228,6 +228,8 @@ def test_cli_no_sudo(subvolume: Path, bin_dir: Path, subcommand: str):
         argv += [subcommand, "-s", str(subvolume)]
     elif subcommand == "take":
         argv += [subcommand, "-s", str(subvolume), SNAPSHOT_NAME]
+    elif subcommand == "restore":
+        argv += [subcommand, "-s", str(subvolume), "123"]
 
     output = run_failed(argv)
     assert "Are you running this as root or with sudo?" in output
