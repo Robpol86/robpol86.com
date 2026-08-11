@@ -110,6 +110,12 @@ awk_shared() {
   awk_program_file="$TMP_DIR/bsnaps-awk_shared.$UUID.txt"
   # Write shared awk functions into file.
   cat > "$awk_program_file" <<-'EOF'
+    # Trim whitespace from both ends of a string.
+    function trim(str) {
+      sub(/^[ \t\n]+/, "", str)
+      sub(/[ \t\n]+$/, "", str)
+      return str
+    }
     # Returns true if this line is the requested snapshot.
     function is_id_line(line_first_col, id) {
       return id~/^[0-9]+$/ && line_first_col==id
@@ -297,7 +303,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
       split($6, arr, "/")
       name = arr[3]
       running = substr(arr[4], 1, 1) == "1" ? "*" : ""
-      comment = y64_decode(substr(arr[4], 2))
+      comment = trim(y64_decode(substr(arr[4], 2)))
 
       # Print row.
       if (!comment) {
@@ -474,10 +480,7 @@ EOREAD
     printf "Comment:    "
     awk_shared -v FS='\t+' -v ID="$snapshot_id" -v PREFIX="            " "$snapshot_list_file" 3<<'EOF'
       is_id_line($1, ID) {
-        comment = y64_decode(get_encoded_comment($7))
-        # Trim (TODO move to shared, TDD first).
-        sub(/^[ \t\n]+/, "", comment)
-        sub(/[ \t\n]+$/, "", comment)
+        comment = trim(y64_decode(get_encoded_comment($7)))
         # Print single-line.
         if (!index(comment, "\n")) {
           print(comment)
