@@ -487,14 +487,7 @@ EOREAD
       is_id_line($1, ID) {
         comment = trim(y64_decode(get_encoded_comment($7)))
         split(comment, lines, "\n")
-        for (idx in lines) {
-          if (!first_line_printed) {
-            print(lines[idx])
-            first_line_printed=1
-          } else {
-            print(PREFIX lines[idx])
-          }
-        }
+        for (idx in lines) print(idx == 1 ? lines[idx] : PREFIX lines[idx])
         exit
       }
 EOF
