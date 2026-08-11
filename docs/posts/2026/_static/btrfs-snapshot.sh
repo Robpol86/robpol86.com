@@ -619,22 +619,8 @@ exit 1
 # - No no args or bad name list available snapshots
 #   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
 # - Test take+restore multiple times, creating complex nesting.
-# - Restore: mv nfo to .restored.17234567899
-#   - If user makes a new snapshot from a restored one we don’t want a collision.
-# - When run from mounted:
-#       Restore 0:"name"?
-#       Y
-#       Restored 0 to default.
-#       Reboot for changes to take effect.
-#       Run "..." to revert.
-# - When run from rd.break:
-#       Restore 0:"name"?
-#       Y
-#       Remounted ... rw
-#       Restored 0 to default.
-#       Remounted ... ro
-#       Run "..." to revert.
 # TODO revert:
+# - After restore, print 'Run "..." to revert.'
 # - Every [restore] takes a read only snapshot into bsnaps/revert.
 # - But how do i keep track of last revert? Ideal: revert, boot, revert, boot. Like cd ../.. keep going back without deleting
 # - [restore] cli flag to not save revert snapshot.
