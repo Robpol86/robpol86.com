@@ -539,7 +539,7 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
         000	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	snapshots/ignore-me
         111	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/0
         222	93	93	5		2026-07-29 14:00:00	{MOCK_UUID}	.bsnaps/snapshots/two/1
-        333	93	93	5		2026-07-29 15:00:00	{MOCK_UUID}	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        333	93	93	5		2026-07-29 15:00:00	{MOCK_UUID}	.bsnaps/snapshots/three/0{y64_encode(" Single line comment. ")}
         444	93	93	5		2026-07-29 16:00:00	{MOCK_UUID}	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
         """)
     )
