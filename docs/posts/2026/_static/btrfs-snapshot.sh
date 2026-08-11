@@ -122,16 +122,19 @@ awk_shared() {
     }
     # Extracts the snapshot name from the btrfs snapshot path.
     function get_name(path,     arr) {
+      # .bsnaps/[^/]+/([^/]+)/[01][a-zA-Z0-9._-]*$
       split(path, arr, "/")
       return arr[3]
     }
     # Extracts the snapshot's running state from the btrfs snapshot path.
     function get_running(path, true_val, false_val,     arr) {
+      # .bsnaps/[^/]+/[^/]+/([01])[a-zA-Z0-9._-]*$
       split(path, arr, "/")
       return substr(arr[4], 1, 1) == "1" ? true_val : false_val
     }
     # Extracts the snapshot comment from the btrfs snapshot path, without decoding.
     function get_encoded_comment(path,    arr) {
+      # .bsnaps/[^/]+/[^/]+/[01]([a-zA-Z0-9._-]*)$
       split(path, arr, "/")
       return substr(arr[4], 2)
     }
