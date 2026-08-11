@@ -615,6 +615,7 @@ exit 1
 # - UUID still needed in restored dir path?
 # - New subcommand: clean
 #   - Remove unmounted "restored" subvolumes.
+# - Bad comment: user specifyfies -c-, but then presses ctrl+d with no other text. Should count has no-comment.
 # TODOs restore:
 # - `sudo btrfs subv show /` showed this:
 #   - Snapshot(s):
