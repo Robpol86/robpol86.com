@@ -506,8 +506,9 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     assert output == expected
 
 
-def test_restore_id_not_found(subvolume: Path, bin_dir: Path):
-    """Test TODO."""
+@pytest.mark.parametrize("bad_id", ["123", "bad"])
+def test_restore_id_not_found(subvolume: Path, bin_dir: Path, bad_id: str):
+    """Test handling of bad/unknown restore IDs."""
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\
@@ -522,9 +523,9 @@ def test_restore_id_not_found(subvolume: Path, bin_dir: Path):
     )
 
     # Run.
-    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file, MOCK_FINDMNT_OUTPUT="/dev/hda0")
-    output = run_failed(["restore", "-s", str(subvolume), "123"], env=env)
-    assert "Cannot find btrfs snapshot ID '123'" in output
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    output = run_failed(["restore", "-s", str(subvolume), bad_id], env=env)
+    assert f"Cannot find btrfs snapshot ID '{bad_id}'" in output
 
 
 @pytest.mark.parametrize("no_comment", [False, True])
