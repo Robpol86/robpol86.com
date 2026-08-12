@@ -281,8 +281,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
     # First pass.
     NR==FNR {
       # Dynamic name column.
-      split($7, arr, "/")
-      name_width = length(arr[3])
+      name_width = length(SNAPSHOT_NAME)
       if (name_width > padding_name_max) padding_name = padding_name_max
       else if (name_width > padding_name) padding_name = name_width
       next
@@ -302,26 +301,24 @@ if [ "$SUBCOMMAND" = "list" ]; then
     # Second pass.
     NR!=FNR {
       # Extract fields.
-      date = $5
       split($7, arr, "/")
-      name = arr[3]
-      running = substr(arr[4], 1, 1) == "1" ? "*" : ""
+      running = SNAPSHOT_RUNNING ? "*" : ""
       comment = y64_decode(substr(arr[4], 2))
 
       # Print row.
       if (!comment) {
         # No comment.
         printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %s\n",
-               SNAPSHOT_ID, date, running, name)
+               SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME)
       } else if (comment !~ /\n/) {
         # Single-line comment.
         printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  %s\n",
-               SNAPSHOT_ID, date, running, name, comment)
+               SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME, comment)
       } else {
         # Multi-line comment.
         split(comment, arr, "\n")
         printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  %s\n",
-               SNAPSHOT_ID, date, running, name, arr[1])
+               SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME, arr[1])
         for (i=2; i<=length(arr); i++) {
           printf("%*s", padding_id+padding_date+padding_running+padding_name+6, "")
           print arr[i]
