@@ -301,9 +301,8 @@ if [ "$SUBCOMMAND" = "list" ]; then
     # Second pass.
     NR!=FNR {
       # Extract fields.
-      split($7, arr, "/")
       running = SNAPSHOT_RUNNING ? "*" : ""
-      comment = y64_decode(substr(arr[4], 2))
+      comment = y64_decode(SNAPSHOT_COMMENT_ENCODED)
 
       # Print row.
       if (!comment) {
