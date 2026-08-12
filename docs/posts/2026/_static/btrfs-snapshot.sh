@@ -270,7 +270,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
 
     # Exit 1 if no relevant snapshots found.
     {snapshots_found++}
-    END{
+    ENDFILE{
       if (!snapshots_found) {
         print "No snapshots found." >> "/dev/stderr"
         exit 1
