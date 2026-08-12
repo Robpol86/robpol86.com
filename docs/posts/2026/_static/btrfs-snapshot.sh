@@ -369,7 +369,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
   else
     comment_b64=
   fi
-  # TODO if name+comment > limit: fail.
+  # TODO if name+comment > limit: fail. (reproduce with just a long comment)
 
   # Determine snapshot path.
   snapshots_dir="${SUBVOLUME_DIR%/}/.bsnaps/snapshots"  # TODO merge into snapshot_path_mkdir.
@@ -555,17 +555,18 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
-# - Test nested (non-reboot state), confirm PATH_MAX. Restore snap repeatedly to increase nest.
+# - Restore into subvolid=5. Confirm no more nesting with bss-test.sh.
+# - subvolid=5 for dir_restore_to.
 # - Prune old/irrelevant TODOs.
 # - Finish list/restore usage.
 # - Write integration_tests with .img file in CI.
 #   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
 #   - List create restore delete etc.
 #   - Multiple docker images for diff supported distros. Ensures btrfs command consistency testing.
-# - Restore UUID instead of volid?
-# - subvolid=5 for dir_restore_to.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
 # - base64 security: filter out non a-z?
+# - Tell user which snapshot they're running from with restore file.
+#   - When restoring, create file that says "restored from ID". Then bss list reads that file and adds a note below said snap
 # TODO:
 # - bss list -v: outputs entire awk program. Hide awk program from set -x.
 # - Consistent punctuation in echos.
