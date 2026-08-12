@@ -117,7 +117,7 @@ awk_shared() {
       return str
     }
     # Is this a snapshot line? TODO comment.
-    function is_line_snapshot(id, category,       arr) {
+    function is_line_snapshot(category, id,       arr) {
       if ($1 !~ /^[0-9]+$/) return 0  # False if first column is non-numeric.
       if (id != "" && id != $1) return 0  # False if ID is specified and does not match this line.
       if ($5 !~ /^[0-9 :-]+$/) return 0  # False if otime column is invalid.
@@ -266,7 +266,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
     }
 
     # Skip irrelevant snapshots.
-    !/\t.bsnaps\/snapshots\// { next }
+    !is_line_snapshot("snapshots") { next }
 
     # Exit 1 if no relevant snapshots found.
     {snapshots_found++}
@@ -450,7 +450,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
-      is_line_snapshot(ID, "snapshots") {
+      is_line_snapshot("snapshots", ID) {
         printf("%s\t%s\t%s\t%s\t%s\n",
               SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
               SNAPSHOT_RUNNING ? "Yes" : "No",
@@ -479,7 +479,7 @@ EOREAD
   if [ -n "$snapshot_has_comment" ]; then
     printf "Comment:    "
     awk_shared -v FS='\t+' -v ID="$snapshot_id" -v PREFIX="            " "$snapshot_list_file" 3<<'EOF'
-      is_line_snapshot(ID, "snapshots") {
+      is_line_snapshot("snapshots", ID) {
         comment = y64_decode(SNAPSHOT_COMMENT_ENCODED)
         split(comment, lines, "\n")
         for (idx in lines) print(idx == 1 ? lines[idx] : PREFIX lines[idx])

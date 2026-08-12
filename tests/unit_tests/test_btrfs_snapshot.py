@@ -396,7 +396,7 @@ def test_list_snapshots_no_comments(subvolume: Path, bin_dir: Path):
     """Test listing snapshots without any comments."""
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
-        dedent("""\
+        dedent(f"""\
         ID	gen	cgen	top level	otime	uuid	path
         --	---	----	---------	-----	----	----
         111	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/0
