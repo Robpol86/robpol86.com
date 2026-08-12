@@ -257,7 +257,6 @@ if [ "$SUBCOMMAND" = "list" ]; then
   fi
 
   if ! awk_shared -v FS='\t+' "$snapshot_list_file" "$snapshot_list_file" 3<<'EOF'
-    # TODO use is_line_snapshot global variables.
     BEGIN {
       padding_id = 3
       padding_date = 20
@@ -303,6 +302,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
       # Extract fields.
       running = SNAPSHOT_RUNNING ? "*" : ""
       comment = y64_decode(SNAPSHOT_COMMENT_ENCODED)
+      # TODO refactor comment printing, like restore does it.
 
       # Print row.
       if (!comment) {
