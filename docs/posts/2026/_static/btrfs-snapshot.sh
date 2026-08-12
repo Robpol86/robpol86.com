@@ -369,7 +369,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
   else
     comment_b64=
   fi
-  # TODO if comment > limit: fail.
+  # TODO if name+comment > limit: fail.
 
   # Determine snapshot path.
   snapshots_dir="${SUBVOLUME_DIR%/}/.bsnaps/snapshots"  # TODO merge into snapshot_path_mkdir.
