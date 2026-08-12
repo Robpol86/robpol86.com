@@ -253,7 +253,7 @@ fi
 if [ "$SUBCOMMAND" = "list" ]; then
   # Get list of snapshots.
   snapshot_list_file="$TMP_DIR/bsnaps-snapshot_list.$UUID.txt"
-  if ! btrfs subvolume list -rst "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
+  if ! btrfs subvolume list -rsut "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
     echo "ERROR: Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
     if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
@@ -285,7 +285,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
     # First pass.
     NR==FNR {
       # Dynamic name column.
-      split($6, arr, "/")
+      split($7, arr, "/")
       name_width = length(arr[3])
       if (name_width > padding_name_max) padding_name = padding_name_max
       else if (name_width > padding_name) padding_name = name_width
@@ -308,7 +308,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
       # Extract fields.
       id = $1
       date = $5
-      split($6, arr, "/")
+      split($7, arr, "/")
       name = arr[3]
       running = substr(arr[4], 1, 1) == "1" ? "*" : ""
       comment = trim(y64_decode(substr(arr[4], 2)))
@@ -444,7 +444,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Get list of snapshots.
   snapshot_list_file="$TMP_DIR/bsnaps-snapshot_list.$UUID.txt"
-  if ! btrfs subvolume list -rstu "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
+  if ! btrfs subvolume list -rsut "$SUBVOLUME_DIR" > "$snapshot_list_file"; then
     echo "ERROR: Failed to get list of snapshots." >&2
     echo "Are you running this as root or with sudo?" >&2
     if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
