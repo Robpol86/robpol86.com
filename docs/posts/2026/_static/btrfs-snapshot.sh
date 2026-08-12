@@ -549,6 +549,7 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
+# - Test nested (non-reboot state), confirm PATH_MAX. Restore snap repeatedly to increase nest.
 # - Prune old/irrelevant TODOs.
 # - Finish list/restore usage.
 # - Write integration_tests with .img file in CI.
@@ -558,7 +559,6 @@ exit 1
 # - Restore UUID instead of volid?
 # - subvolid=5 for dir_restore_to.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
-# - awk: dedupe with awk_shared, update list, move single-used out of shared and into call site.
 # TODO:
 # - bss list -v: outputs entire awk program. Hide awk program from set -x.
 # - Consistent punctuation in echos.
