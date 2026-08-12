@@ -539,7 +539,6 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
 
 def test_restore_nested(subvolume: Path, bin_dir: Path):
     """Test restore when btrfs shows nested paths."""
-    pytest.skip()
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\
