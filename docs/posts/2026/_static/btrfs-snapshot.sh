@@ -559,6 +559,7 @@ exit 1
 # - Restore UUID instead of volid?
 # - subvolid=5 for dir_restore_to.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
+# - base64 security: filter out non a-z?
 # TODO:
 # - bss list -v: outputs entire awk program. Hide awk program from set -x.
 # - Consistent punctuation in echos.
