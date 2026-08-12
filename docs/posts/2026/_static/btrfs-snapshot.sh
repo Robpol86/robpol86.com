@@ -53,6 +53,7 @@
 # TODO long
 #
 # Options:
+#   -f          Do not ask the user to confirm.
 #   -h          Display this help and exit.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
@@ -87,6 +88,7 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 
 SUBCOMMAND=
 COMMENT=
+FORCE=
 VERBOSE=
 
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
@@ -203,6 +205,7 @@ shift
 # Parse command line arguments.
 case "$SUBCOMMAND" in
   take) GETOPTS=":c:hs:v" ;;
+  restore) GETOPTS=":fhs:v" ;;
   *) GETOPTS=":hs:v" ;;
 esac
 while getopts "$GETOPTS" OPT; do
@@ -221,6 +224,7 @@ while getopts "$GETOPTS" OPT; do
     *-s)    SUBVOLUME_DIR="$OPTARG" ;;
     *-v)    VERBOSE=true ;;
     take-c) COMMENT="$OPTARG" ;;
+    restore-f) FORCE=true ;;
     *)      echo "BUG" >&2
             exit 1 ;;
   esac
@@ -486,8 +490,10 @@ EOF
     echo "Comment:"
   fi
   echo "-------------------------------------------------------------------------------" >&2
-  echo "Press enter to continue..." >&2
-  read -r _
+  if [ ${FORCE:-false} = false ]; then
+    echo "Press enter to continue..." >&2
+    read -r _
+  fi
 
   # Determine if subvolume is mounted as read-only (e.g. "not running").
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
