@@ -128,15 +128,9 @@ awk_shared() {
       SNAPSHOT_UUID = $6
       SNAPSHOT_NAME = arr[1]
       SNAPSHOT_RUNNING = arr[2]
-      # TODO more variables.
+      SNAPSHOT_COMMENT_ENCODED = arr[3]
       # Return true.
       return 1
-    }
-    # Extracts the snapshot comment from the btrfs snapshot path, without decoding.
-    function get_encoded_comment(path,    arr) {
-      # .bsnaps/[^/]+/[^/]+/[01]([a-zA-Z0-9._-]*)$
-      split(path, arr, "/")
-      return substr(arr[4], 2)
     }
     # Y64 decode function.
     function y64_decode(encoded,          cmd, line, decoded, ret) {
@@ -163,7 +157,7 @@ awk_shared() {
         printf("WARNING: Unsalted base64 string '%s'.\n", encoded) >> "/dev/stderr"
         return encoded
       }
-      return substr(decoded, 5)
+      return trim(substr(decoded, 5))
     }
 EOF
   # Write caller's awk program into file via fd3.
@@ -311,7 +305,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
       split($7, arr, "/")
       name = arr[3]
       running = substr(arr[4], 1, 1) == "1" ? "*" : ""
-      comment = trim(y64_decode(substr(arr[4], 2)))
+      comment = y64_decode(substr(arr[4], 2))
 
       # Print row.
       if (!comment) {
@@ -456,11 +450,10 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
       is_line_snapshot(ID) {
-        snapshot_has_comment = get_encoded_comment($7) ? "true" : ""
         printf("%s\t%s\t%s\t%s\t%s\n",
               SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
               SNAPSHOT_RUNNING ? "Yes" : "No",
-              snapshot_has_comment)
+              SNAPSHOT_COMMENT_ENCODED ? "true" : "")
         exit
       }
 EOF
@@ -486,7 +479,7 @@ EOREAD
     printf "Comment:    "
     awk_shared -v FS='\t+' -v ID="$snapshot_id" -v PREFIX="            " "$snapshot_list_file" 3<<'EOF'
       is_line_snapshot(ID) {
-        comment = trim(y64_decode(get_encoded_comment($7)))
+        comment = y64_decode(SNAPSHOT_COMMENT_ENCODED)
         split(comment, lines, "\n")
         for (idx in lines) print(idx == 1 ? lines[idx] : PREFIX lines[idx])
         exit
