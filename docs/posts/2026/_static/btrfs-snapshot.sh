@@ -116,11 +116,17 @@ awk_shared() {
       sub(/[ \t\n]+$/, "", str)
       return str
     }
-    # Returns true if this line is the requested snapshot.
+    # Is this a snapshot line?
     function is_line_snapshot(id) {
       if ($1 !~ /^[0-9]+$/) return 0  # False if first column is non-numeric.
+      # TODO is the rest of the line valid?
       if (id != "" && id != $1) return 0  # ID is specified and does not match this line.
-      return 1  # Return True.
+      # Set global variables.
+      SNAPSHOT_DATE = $5
+      SNAPSHOT_UUID = $6
+      # TODO more variables.
+      # Return true.
+      return 1
     }
     # Extracts the snapshot name from the btrfs snapshot path.
     function get_name(path,     arr) {
@@ -458,13 +464,11 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
       is_line_snapshot(ID) {
-        snapshot_date = $5
-        snapshot_uuid = $6
         snapshot_name = get_name($7)
         snapshot_running = get_running($7, "Yes", "No")
         snapshot_has_comment = get_encoded_comment($7) ? "true" : ""
         printf("%s\t%s\t%s\t%s\t%s\n",
-              snapshot_date, snapshot_uuid, snapshot_name, snapshot_running, snapshot_has_comment)
+              SNAPSHOT_DATE, SNAPSHOT_UUID, snapshot_name, snapshot_running, snapshot_has_comment)
         exit
       }
 EOF
