@@ -119,7 +119,8 @@ awk_shared() {
     # Is this a snapshot line?
     function is_line_snapshot(id) {
       if ($1 !~ /^[0-9]+$/) return 0  # False if first column is non-numeric.
-      # TODO is the rest of the line valid?
+      if ($5 !~ /^[0-9 :-]+$/) return 0  # False if otime column is invalid.
+      if ($6 !~ /^[0-9a-z-]{36}$/) return 0  # False if uuid column is invalid.
       if (id != "" && id != $1) return 0  # ID is specified and does not match this line.
       # Set global variables.
       SNAPSHOT_DATE = $5
