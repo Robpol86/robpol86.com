@@ -116,19 +116,20 @@ awk_shared() {
       sub(/[ \t\n]+$/, "", str)
       return str
     }
-    # Is this a snapshot line?
-    function is_line_snapshot(id,       arr) {
+    # Is this a snapshot line? TODO comment.
+    function is_line_snapshot(id, category,       arr) {
       if ($1 !~ /^[0-9]+$/) return 0  # False if first column is non-numeric.
-      if (id != "" && id != $1) return 0  # ID is specified and does not match this line.
+      if (id != "" && id != $1) return 0  # False if ID is specified and does not match this line.
       if ($5 !~ /^[0-9 :-]+$/) return 0  # False if otime column is invalid.
       if ($6 !~ /^[0-9a-z-]{36}$/) return 0  # False if uuid column is invalid.
-      if (!match($7, /\.bsnaps\/[^/]+\/([^/]+)\/([01])([0-9a-zA-Z._-]*)$/, arr)) return 0  # False if path is not bsnaps.
+      if (!match($7, /\.bsnaps\/([^/]+)\/([^/]+)\/([01])([0-9a-zA-Z._-]*)$/, arr)) return 0  # False if path is not bsnaps.
+      if (category != "" && category != arr[1]) return 0  # False if category is wrong.
       # Set global variables.
       SNAPSHOT_DATE = $5
       SNAPSHOT_UUID = $6
-      SNAPSHOT_NAME = arr[1]
-      SNAPSHOT_RUNNING = arr[2]
-      SNAPSHOT_COMMENT_ENCODED = arr[3]
+      SNAPSHOT_NAME = arr[2]
+      SNAPSHOT_RUNNING = arr[3]
+      SNAPSHOT_COMMENT_ENCODED = arr[4]
       # Return true.
       return 1
     }
@@ -255,7 +256,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
   fi
 
   if ! awk_shared -v FS='\t+' "$snapshot_list_file" "$snapshot_list_file" 3<<'EOF'
-    # TODO use is_line_snapshot and etc.
+    # TODO use is_line_snapshot global variables.
     BEGIN {
       padding_id = 3
       padding_date = 20
@@ -449,7 +450,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
-      is_line_snapshot(ID) {
+      is_line_snapshot(ID, "snapshots") {
         printf("%s\t%s\t%s\t%s\t%s\n",
               SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
               SNAPSHOT_RUNNING ? "Yes" : "No",
@@ -478,7 +479,7 @@ EOREAD
   if [ -n "$snapshot_has_comment" ]; then
     printf "Comment:    "
     awk_shared -v FS='\t+' -v ID="$snapshot_id" -v PREFIX="            " "$snapshot_list_file" 3<<'EOF'
-      is_line_snapshot(ID) {
+      is_line_snapshot(ID, "snapshots") {
         comment = y64_decode(SNAPSHOT_COMMENT_ENCODED)
         split(comment, lines, "\n")
         for (idx in lines) print(idx == 1 ? lines[idx] : PREFIX lines[idx])

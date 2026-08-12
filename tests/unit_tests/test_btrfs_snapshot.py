@@ -325,7 +325,7 @@ def test_list_no_snapshots(subvolume: Path, bin_dir: Path):
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
     output = run_failed(["list", "-v", "-s", str(subvolume)], env=env)
-    assert "No snapshots found." in output
+    assert "No snapshots found." in output  # TODO ==, ensure no header.
 
 
 def test_list_snapshots(subvolume: Path, bin_dir: Path):
