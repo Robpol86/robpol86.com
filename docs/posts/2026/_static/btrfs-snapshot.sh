@@ -117,8 +117,10 @@ awk_shared() {
       return str
     }
     # Returns true if this line is the requested snapshot.
-    function is_id_line(line_first_col, id) {
-      return id~/^[0-9]+$/ && line_first_col==id
+    function is_line_snapshot(id) {
+      if ($1 !~ /^[0-9]+$/) return 0  # False if first column is non-numeric.
+      if (id != "" && id != $1) return 0  # ID is specified and does not match this line.
+      return 1  # Return True.
     }
     # Extracts the snapshot name from the btrfs snapshot path.
     function get_name(path,     arr) {
@@ -261,7 +263,7 @@ if [ "$SUBCOMMAND" = "list" ]; then
   fi
 
   if ! awk_shared -v FS='\t+' "$snapshot_list_file" "$snapshot_list_file" 3<<'EOF'
-    # TODO use get_name and is_id_line and etc.
+    # TODO use is_line_snapshot and etc.
     BEGIN {
       padding_id = 3
       padding_date = 20
@@ -455,7 +457,7 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
-      is_id_line($1, ID) {
+      is_line_snapshot(ID) {
         snapshot_date = $5
         snapshot_uuid = $6
         snapshot_name = get_name($7)
@@ -487,7 +489,7 @@ EOREAD
   if [ -n "$snapshot_has_comment" ]; then
     printf "Comment:    "
     awk_shared -v FS='\t+' -v ID="$snapshot_id" -v PREFIX="            " "$snapshot_list_file" 3<<'EOF'
-      is_id_line($1, ID) {
+      is_line_snapshot(ID) {
         comment = trim(y64_decode(get_encoded_comment($7)))
         split(comment, lines, "\n")
         for (idx in lines) print(idx == 1 ? lines[idx] : PREFIX lines[idx])
