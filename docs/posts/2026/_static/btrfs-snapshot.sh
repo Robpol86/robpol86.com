@@ -125,6 +125,7 @@ awk_shared() {
       if (!match($7, /\.bsnaps\/([^/]+)\/([^/]+)\/([01])([0-9a-zA-Z._-]*)$/, arr)) return 0  # False if path is not bsnaps.
       if (category != "" && category != arr[1]) return 0  # False if category is wrong.
       # Set global variables.
+      SNAPSHOT_ID = $1
       SNAPSHOT_DATE = $5
       SNAPSHOT_UUID = $6
       SNAPSHOT_NAME = arr[2]
@@ -301,7 +302,6 @@ if [ "$SUBCOMMAND" = "list" ]; then
     # Second pass.
     NR!=FNR {
       # Extract fields.
-      id = $1
       date = $5
       split($7, arr, "/")
       name = arr[3]
@@ -312,16 +312,16 @@ if [ "$SUBCOMMAND" = "list" ]; then
       if (!comment) {
         # No comment.
         printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %s\n",
-               id, date, running, name)
+               SNAPSHOT_ID, date, running, name)
       } else if (comment !~ /\n/) {
         # Single-line comment.
         printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  %s\n",
-               id, date, running, name, comment)
+               SNAPSHOT_ID, date, running, name, comment)
       } else {
         # Multi-line comment.
         split(comment, arr, "\n")
         printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  %s\n",
-               id, date, running, name, arr[1])
+               SNAPSHOT_ID, date, running, name, arr[1])
         for (i=2; i<=length(arr); i++) {
           printf("%*s", padding_id+padding_date+padding_running+padding_name+6, "")
           print arr[i]
