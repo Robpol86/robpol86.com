@@ -117,29 +117,20 @@ awk_shared() {
       return str
     }
     # Is this a snapshot line?
-    function is_line_snapshot(id) {
+    function is_line_snapshot(id,       arr) {
       if ($1 !~ /^[0-9]+$/) return 0  # False if first column is non-numeric.
+      if (id != "" && id != $1) return 0  # ID is specified and does not match this line.
       if ($5 !~ /^[0-9 :-]+$/) return 0  # False if otime column is invalid.
       if ($6 !~ /^[0-9a-z-]{36}$/) return 0  # False if uuid column is invalid.
-      if (id != "" && id != $1) return 0  # ID is specified and does not match this line.
+      if (!match($7, /\.bsnaps\/[^/]+\/([^/]+)\/([01])([0-9a-zA-Z._-]*)$/, arr)) return 0  # False if path is not bsnaps.
       # Set global variables.
       SNAPSHOT_DATE = $5
       SNAPSHOT_UUID = $6
+      SNAPSHOT_NAME = arr[1]
+      SNAPSHOT_RUNNING = arr[2]
       # TODO more variables.
       # Return true.
       return 1
-    }
-    # Extracts the snapshot name from the btrfs snapshot path.
-    function get_name(path,     arr) {
-      # .bsnaps/[^/]+/([^/]+)/[01][a-zA-Z0-9._-]*$
-      split(path, arr, "/")
-      return arr[3]
-    }
-    # Extracts the snapshot's running state from the btrfs snapshot path.
-    function get_running(path, true_val, false_val,     arr) {
-      # .bsnaps/[^/]+/[^/]+/([01])[a-zA-Z0-9._-]*$
-      split(path, arr, "/")
-      return substr(arr[4], 1, 1) == "1" ? true_val : false_val
     }
     # Extracts the snapshot comment from the btrfs snapshot path, without decoding.
     function get_encoded_comment(path,    arr) {
@@ -465,11 +456,11 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
 $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
       is_line_snapshot(ID) {
-        snapshot_name = get_name($7)
-        snapshot_running = get_running($7, "Yes", "No")
         snapshot_has_comment = get_encoded_comment($7) ? "true" : ""
         printf("%s\t%s\t%s\t%s\t%s\n",
-              SNAPSHOT_DATE, SNAPSHOT_UUID, snapshot_name, snapshot_running, snapshot_has_comment)
+              SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
+              SNAPSHOT_RUNNING ? "Yes" : "No",
+              snapshot_has_comment)
         exit
       }
 EOF
