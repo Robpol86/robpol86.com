@@ -46,7 +46,7 @@ def y64_encode(input: str) -> str:
 
 @pytest.fixture(autouse=True, name="tmp_dir")
 def _tmp_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
-    """TODO."""
+    """Create a tmp directory in pytest tmp_path and mock out /tmp to it via TMP_DIR env variable."""
     tmp_dir = tmp_path / "tmp"
     tmp_dir.mkdir()
     monkeypatch.setenv("TMP_DIR", str(tmp_dir))
@@ -546,7 +546,6 @@ def test_restore_happy_path(subvolume: Path, tmp_dir: Path, bin_dir: Path, from_
 
 def test_restore_nested(subvolume: Path, tmp_dir: Path, bin_dir: Path):
     """Test restore when btrfs shows nested paths."""
-    # TODO test UUID collision fallbacks.
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\

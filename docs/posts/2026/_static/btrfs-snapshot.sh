@@ -594,6 +594,7 @@ exit 1
 #   - When restoring, create file that says "restored from ID". Then bss list reads that file and adds a note below said snap
 #   - Maybe instead, bring back snapshot.nfo. Before taking snapshot write its name into that file.
 # - umask at beginning of script so all tmp txt files are 600 owned by root.
+# - test restore UUID collision fallbacks.
 # TODO:
 # - bss list -v: outputs entire awk program. Hide awk program from set -x.
 # - Consistent punctuation in echos.
