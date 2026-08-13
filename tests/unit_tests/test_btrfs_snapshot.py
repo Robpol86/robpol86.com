@@ -547,6 +547,7 @@ def test_restore_happy_path(subvolume: Path, tmp_dir: Path, bin_dir: Path, from_
 def test_restore_nested(subvolume: Path, tmp_dir: Path, bin_dir: Path):
     """Test restore when btrfs shows nested paths."""
     # TODO test UUID collision fallbacks.
+    # TODO support restoring snapshots by name (last (most recent) match).
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\

@@ -6,9 +6,9 @@
 # Usage: btrfs-snapshot <command> [OPTIONS] [<args>]
 #
 # These are the available commands:
-#   take        Create a btrfs snapshot of the subvolume.
-#   list        TODO
-#   restore     TODO
+#   take        Create a read-only btrfs snapshot of the subvolume.
+#   list        List all snapshots in the subvolume made with this tool.
+#   restore     Clone a snapshot as read-write and make it the default subvolume.
 #   delete      TODO
 #   clean       TODO
 #   revert      TODO
@@ -37,9 +37,7 @@
 
 # Usage: btrfs-snapshot list [OPTIONS]
 #
-# TODO
-#
-# TODO long
+# List all snapshots created by this tool in the btrfs subvolume as a table.
 #
 # Options:
 #   -h          Display this help and exit.
@@ -630,12 +628,8 @@ exit 1
 #   - Same with -c ""
 # TODOs restore:
 # - Handle when user restores snapshot ID that's not bsnaps.
-# - `sudo btrfs subv show /` showed this:
-#   - Snapshot(s):
-#   - restored-c3f72add-a1b4-4d82-8cde-b46f.../.bsnaps/restored-ac7f4fd8-f8a9-41a7-a025-7838.../.bsnaps/restore-draft--two/1
 # - No no args or bad name list available snapshots
 #   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
-# - Test take+restore multiple times, creating complex nesting.
 # TODO revert:
 # - After restore, print 'Run "..." to revert.'
 # - Every [restore] takes a read only snapshot into bsnaps/revert.
