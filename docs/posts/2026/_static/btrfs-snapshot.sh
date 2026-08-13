@@ -490,6 +490,7 @@ EOF
     echo "Comment:"
   fi
   echo "-------------------------------------------------------------------------------" >&2
+  if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
   if [ ${FORCE:-false} = false ]; then
     echo "Press enter to continue..." >&2
     read -r _
