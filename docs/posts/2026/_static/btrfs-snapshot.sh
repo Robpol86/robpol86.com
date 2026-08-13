@@ -495,6 +495,12 @@ EOF
     read -r _
   fi
 
+  # mount -osubvolid=5,rw /device /tmp/.bsnaps/subvolid5[-uuid]
+  # mount -osubvolid=id,ro /tmp/.bsnaps/name-ro[-uuid]
+  # btrfs subvolume snapshot /tmp/.bsnaps/name-ro[-uuid] /tmp/.bsnaps/subvolid5[-uuid]/.bsnaps/restored/name[-uuid]
+  # btrfs subvolume set-default /tmp/.bsnaps/subvolid5[-uuid]/.bsnaps/restored/name[-uuid]
+  # remount /sysroot
+
   # Determine if subvolume is mounted as read-only (e.g. "not running").
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
     is_readonly=true
