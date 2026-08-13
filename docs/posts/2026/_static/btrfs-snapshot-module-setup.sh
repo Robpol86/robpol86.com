@@ -34,7 +34,4 @@ install() {
         -e '/^SUBVOLUME_DIR=.*@MODULE-SETUP-REPLACE@/ s|=.*|=/sysroot|' \
         "${initdir:?}/sbin/btrfs-snapshot"
     ln -s btrfs-snapshot "${initdir:?}/sbin/bss"
-
-    # TODO remove
-    inst "${moddir:?}/bss-test.sh" /sbin/bss-test
 }

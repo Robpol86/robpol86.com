@@ -44,6 +44,15 @@ def y64_encode(input: str) -> str:
     return y64_encoded
 
 
+@pytest.fixture(autouse=True, name="tmp_dir")
+def _tmp_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
+    """TODO."""
+    tmp_dir = tmp_path / "tmp"
+    tmp_dir.mkdir()
+    monkeypatch.setenv("TMP_DIR", str(tmp_dir))
+    return tmp_dir
+
+
 @pytest.fixture(autouse=True, name="bin_dir")
 def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     """Create a bin directory and mock out shell commands for the happy path."""
@@ -145,11 +154,6 @@ def _bin_dir(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
     mock_uuid_file = tmp_path / "uuid.txt"
     mock_uuid_file.write_text(f"{MOCK_UUID}\n")
     monkeypatch.setenv("KERNEL_UUID_FILE", str(mock_uuid_file))
-
-    # Mock TMP_DIR.
-    mock_tmp_dir = tmp_path / "tmp"
-    mock_tmp_dir.mkdir()
-    monkeypatch.setenv("TMP_DIR", str(mock_tmp_dir))
 
     return bin_dir
 
@@ -478,9 +482,8 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
     assert output == expected
 
 
-@pytest.mark.skip("TODO")  # TODO
 @pytest.mark.parametrize("from_rdbreak", [True, False])
-def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
+def test_restore_happy_path(subvolume: Path, tmp_dir: Path, bin_dir: Path, from_rdbreak: bool):
     """Test restoring a snapshot by snapshot ID."""
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
@@ -521,9 +524,10 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     """)
     if from_rdbreak:
         expected += dedent(f"""\
-            Remounted '{subvolume}' as read-write
             Mounted snapshot 'four' as read-only
-            Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-four' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-four'
+            Mounted btrfs subvolid=5 as read-write
+            Create snapshot of '{tmp_dir}/.bsnaps/four-ro' in '{tmp_dir}/.bsnaps/subvolid5/.bsnaps/restored/four'
+            Unmounted read-write btrfs subvolid=5
             Unmounted read-only 'four'
             Remounted '{subvolume}' using snapshot 'four' as read-only
             Changes are now in effect
@@ -531,7 +535,9 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     else:
         expected += dedent(f"""\
             Mounted snapshot 'four' as read-only
-            Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-four' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-four'
+            Mounted btrfs subvolid=5 as read-write
+            Create snapshot of '{tmp_dir}/.bsnaps/four-ro' in '{tmp_dir}/.bsnaps/subvolid5/.bsnaps/restored/four'
+            Unmounted read-write btrfs subvolid=5
             Unmounted read-only 'four'
             Reboot for changes to take effect
         """)  # noqa: E501
@@ -541,6 +547,7 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
 @pytest.mark.skip("TODO")  # TODO
 def test_restore_nested(subvolume: Path, bin_dir: Path):
     """Test restore when btrfs shows nested paths."""
+    # TODO test UUID collision fallbacks.
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\

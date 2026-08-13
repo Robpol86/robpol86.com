@@ -516,10 +516,10 @@ EOF
   if [ -e "$dir_restore_to" ]; then dir_restore_to="$dir_restore_to-$UUID"; fi
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
   btrfs subvolume set-default "$dir_restore_to"  # TODO what about distros that hard-code volid in fstab?
-  umount "$dir_restore_from"
-  echo "Unmounted read-only '$snapshot_name'"
   umount "$dir_subvolid5"
   echo "Unmounted read-write btrfs subvolid=5"
+  umount "$dir_restore_from"
+  echo "Unmounted read-only '$snapshot_name'"
   rmdir --ignore-fail-on-non-empty "$dir_restore_from" "$dir_subvolid5"
 
   # Remount $SUBVOLUME_DIR using the now-restored set-default subvolume.
