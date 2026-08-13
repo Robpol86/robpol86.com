@@ -17,3 +17,6 @@ done
 done
 echo DONE
 # TODO remove this file.
+# sudo install -m0755 ~/btrfs-snapshot.sh /sbin/btrfs-snapshot; sudo install -m0755 ~/btrfs-snapshot-module-setup.sh /usr/lib/dracut/modules.d/82btrfs-snapshot/module-setup.sh; sudo install -m0755 ~/bss-test.sh /usr/lib/dracut/modules.d/82btrfs-snapshot/bss-test.sh
+# sudo btrfs subv list / -at |awk '{print length($4)}'
+# Fails at 3:D.
