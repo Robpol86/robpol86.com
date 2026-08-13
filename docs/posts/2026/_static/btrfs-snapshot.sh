@@ -522,15 +522,8 @@ EOF
   echo "Unmounted read-write btrfs subvolid=5"
   rmdir --ignore-fail-on-non-empty "$dir_restore_from" "$dir_subvolid5"
 
-  # Determine if subvolume is mounted as read-only (e.g. "not running").
-  if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
-    is_readonly=true
-  else
-    is_readonly=
-  fi
-
   # Remount $SUBVOLUME_DIR using the now-restored set-default subvolume.
-  if [ ${is_readonly:-false} = true ]; then
+  if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
     umount "$SUBVOLUME_DIR"
     mount -oro "$subvolume_device" "$SUBVOLUME_DIR"
     echo "Remounted '$SUBVOLUME_DIR' using snapshot '$snapshot_name' as read-only"
