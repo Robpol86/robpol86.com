@@ -10,6 +10,7 @@
 #   list        TODO
 #   restore     TODO
 #   delete      TODO
+#   clean       TODO
 #   revert      TODO
 #
 # Each command has its own -h. For example, see 'btrfs-snapshot take -h' for
@@ -60,6 +61,18 @@
 #   -v          Enable verbose/debug output and don't remove temporary files.
 
 # Usage: btrfs-snapshot delete [OPTIONS] <snapshot-name|snapshot-id>
+#
+# TODO
+#
+# TODO long
+#
+# Options:
+#   -h          Display this help and exit.
+#   -s dir      Mounted subvolume directory.
+#               Default: @SUBVOLUME_DIR
+#   -v          Enable verbose/debug output and don't remove temporary files.
+
+# Usage: btrfs-snapshot clean [OPTIONS] <snapshot-name|snapshot-id>
 #
 # TODO
 #
@@ -195,7 +208,7 @@ case "$1" in
   create) SUBCOMMAND="take" ;;
   ls) SUBCOMMAND="list" ;;
   undo) SUBCOMMAND="revert" ;;
-  take|list|restore|delete|revert) SUBCOMMAND="$1" ;;
+  take|list|restore|delete|clean|revert) SUBCOMMAND="$1" ;;
   *) echo "unknown subcommand: '$1'" >&2
      echo "See 'btrfs-snapshot -h'." >&2
      exit 1 ;;
@@ -540,6 +553,15 @@ fi
 ################################################################################
 
 if [ "$SUBCOMMAND" = "delete" ]; then
+  echo "TODO"
+  exit 0
+fi
+
+################################################################################
+# Subcommand clean.
+################################################################################
+
+if [ "$SUBCOMMAND" = "clean" ]; then
   echo "TODO"
   exit 0
 fi
