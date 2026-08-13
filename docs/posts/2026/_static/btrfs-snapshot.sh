@@ -54,6 +54,7 @@
 # Options:
 #   -f          Do not ask the user to confirm.
 #   -h          Display this help and exit.
+#   -n          Treat argument as snapshot's name instead of either name or ID.
 #   -s dir      Mounted subvolume directory.
 #               Default: @SUBVOLUME_DIR
 #   -v          Enable verbose/debug output and don't remove temporary files.
@@ -100,6 +101,7 @@ set -o nounset  # Treat unset variables as errors and exit immediately.
 SUBCOMMAND=
 COMMENT=
 FORCE=
+ID_IS_NAME=
 VERBOSE=
 
 SUBVOLUME_DIR=/  # @MODULE-SETUP-REPLACE@
@@ -216,7 +218,7 @@ shift
 # Parse command line arguments.
 case "$SUBCOMMAND" in
   take) GETOPTS=":c:hs:v" ;;
-  restore) GETOPTS=":fhs:v" ;;
+  restore) GETOPTS=":fhns:v" ;;
   *) GETOPTS=":hs:v" ;;
 esac
 while getopts "$GETOPTS" OPT; do
@@ -236,6 +238,7 @@ while getopts "$GETOPTS" OPT; do
     *-v)    VERBOSE=true ;;
     take-c) COMMENT="$OPTARG" ;;
     restore-f) FORCE=true ;;
+    restore-n) ID_IS_NAME=true ;;
     *)      echo "BUG" >&2
             exit 1 ;;
   esac
@@ -445,8 +448,6 @@ if [ "$SUBCOMMAND" = "restore" ]; then
     echo "See 'btrfs-snapshot $SUBCOMMAND -h'." >&2
     exit 1
   fi
-  snapshot_id="$1"
-  shift
 
   # Get list of snapshots.
   snapshot_list_file="$TMP_DIR/bsnaps-snapshot_list.$UUID.txt"
@@ -458,12 +459,13 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   fi
 
   # Parse btrfs list command output.
+  # TODO use ID_IS_NAME.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
-  IFS="$(printf '\t')" read -r snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
-$(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
+  IFS="$(printf '\t')" read -r snapshot_id snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
+$(awk_shared -v FS='\t+' -v ID="$1" "$snapshot_list_file" 3<<'EOF'
       is_line_snapshot("snapshots", ID) {
-        printf("%s\t%s\t%s\t%s\t%s\n",
-              SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
+        printf("%d\t%s\t%s\t%s\t%s\t%s\n",
+              SNAPSHOT_ID, SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
               SNAPSHOT_RUNNING ? "Yes" : "No",
               SNAPSHOT_COMMENT_ENCODED ? "true" : "")
         exit
@@ -471,8 +473,8 @@ $(awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
 EOF
     )
 EOREAD
-  if [ -z "$snapshot_date" ]; then
-    echo "ERROR: Cannot find btrfs snapshot ID '$snapshot_id'." >&2
+  if [ -z "$snapshot_id" ]; then
+    echo "ERROR: Cannot find btrfs snapshot ID '$1'." >&2
     echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
     if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
     exit 1
