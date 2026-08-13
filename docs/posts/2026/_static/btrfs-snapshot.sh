@@ -585,7 +585,6 @@ exit 1
 
 # TODO:
 # - Prune old/irrelevant TODOs.
-# - Finish list/restore usage.
 # - Write integration_tests with .img file in CI.
 #   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
 #   - List create restore delete etc.
@@ -598,39 +597,25 @@ exit 1
 # - umask at beginning of script so all tmp txt files are 600 owned by root.
 # - test restore UUID collision fallbacks.
 # TODO:
-# - bss list -v: outputs entire awk program. Hide awk program from set -x.
 # - Consistent punctuation in echos.
 # - Test non-root error messages for all subcommands.
-# - All "block-scoped" variables should be lowercase
-# - Snapshot name validation (no nl, / *, etc)
+# - Snapshot name validation (no tab, nl, / *, etc) (both read/write: take and list/restore)
 # - Test with LC_ALL=C and other values.
-# - Test with malformed b64: warn and keep decoded in output
-# - Delete all snapshots on me-mini and create four new ones with latest script.
-#   - Restore middle snapshot manually with btrfs commands, then update -l to traverse and show 4-5 snapshots
-#   - Create a new snapshot from the restored middle. Now there should be one more in -l.
 # - @root and @home: can snapshots live in other subvols? Probably not.
 # - Support non-root (arbitrary) subvolumes
-# - Alias in rd.break as `bss`
 # - Test with subvol_dir=.
-# - Test with spaces in snapshot names (taking and listing).
-# - Handle special characters in "snapshot name" e.g. *.
 # - Checks:
 #   - if snapshots-dir has a leading / is it the same as subvolume?
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
 # - Replace grep/sed/etc with awk.
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
-# - Cleanup tmp files.
 # - Test missing snapshot name in nfo file
 # - Optimize: drop Dracut dependencies for POSIX shell tricks
 # - Test different locales, does btrfs and other command outputs change (e.g. btrfs subv l otime timestamp)
 # - Reformat ubuntu and test all subcommands with no snapshots.
-# - bss not a symlink, sed PROGRAM name to bss.
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
 # - Fix double slash when subvol is / in non-rd.break: "Create snapshot of '//.bsnaps/restored/ro-multiSnap'"
-# - UUID still needed in restored dir path?
-# - New subcommand: clean
-#   - Remove unmounted "restored" subvolumes.
 # - Bad comment: user specifyfies -c-, but then presses ctrl+d with no other text. Should count has no-comment.
 #   - Same with -c ""
 # TODO revert:
@@ -643,3 +628,5 @@ exit 1
 # TODO delete:
 # - Use more ominous @@@@@ hr.
 # - Confirm subvolid is not mounted before delete.
+# TODO clean:
+# - Remove unmounted "restored" subvolumes.
