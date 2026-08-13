@@ -607,7 +607,7 @@ def test_restore_id_not_found(subvolume: Path, bin_dir: Path, bad_id: str):
     # Run.
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
     output = run_failed(["restore", "-s", str(subvolume), bad_id], env=env)
-    assert f"Cannot find btrfs snapshot ID '{bad_id}'" in output
+    assert f"Cannot find btrfs snapshot name or ID '{bad_id}'" in output
 
 
 @pytest.mark.skip("TODO")

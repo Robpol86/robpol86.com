@@ -459,22 +459,24 @@ if [ "$SUBCOMMAND" = "restore" ]; then
   fi
 
   # Parse btrfs list command output.
-  # TODO use ID_IS_NAME.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
   IFS="$(printf '\t')" read -r snapshot_id snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
-$(awk_shared -v FS='\t+' -v ID="$1" "$snapshot_list_file" 3<<'EOF'
-      is_line_snapshot("snapshots", ID) {
-        printf("%d\t%s\t%s\t%s\t%s\t%s\n",
-              SNAPSHOT_ID, SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
-              SNAPSHOT_RUNNING ? "Yes" : "No",
-              SNAPSHOT_COMMENT_ENCODED ? "true" : "")
-        exit
+$(awk_shared -v FS='\t+' -v ID="$1" -v ID_IS_NAME="$ID_IS_NAME" "$snapshot_list_file" 3<<'EOF'
+      function record_result() {
+        result = sprintf("%d\t%s\t%s\t%s\t%s\t%s\n",
+          SNAPSHOT_ID, SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
+          SNAPSHOT_RUNNING ? "Yes" : "No",
+          SNAPSHOT_COMMENT_ENCODED ? "true" : "")
       }
+      !is_line_snapshot("snapshots") { next }
+      !ID_IS_NAME && ID==SNAPSHOT_ID { record_result(); exit }  # ID: first wins.
+      ID_IS_NAME && ID==SNAPSHOT_NAME { record_result() }  # Name: last wins.
+      END { if (result) printf(result) }  # Print if either matched.
 EOF
     )
 EOREAD
   if [ -z "$snapshot_id" ]; then
-    echo "ERROR: Cannot find btrfs snapshot ID '$1'." >&2
+    echo "ERROR: Cannot find btrfs snapshot name or ID '$1'." >&2
     echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
     if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
     exit 1
