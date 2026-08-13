@@ -564,8 +564,7 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
-# - Restore into subvolid=5. Confirm no more nesting with bss-test.sh.
-# - subvolid=5 for dir_restore_to.
+# - Re-enable restore tests with new subvolid=5 implementation.
 # - Prune old/irrelevant TODOs.
 # - Finish list/restore usage.
 # - Write integration_tests with .img file in CI.
