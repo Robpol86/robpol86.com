@@ -47,9 +47,12 @@
 
 # Usage: btrfs-snapshot restore [OPTIONS] <snapshot-name|snapshot-id>
 #
-# TODO
+# Restore a btrfs snapshot by its name or ID.
 #
-# TODO long
+# Restore a snapshot by setting it as the default btrfs subvolume. The selected
+# snapshot will be cloned as read-write, so the original remains unmodified. If
+# you restore a snapshot while the system is running changes will take effect on
+# the next reboot.
 #
 # Options:
 #   -f          Do not ask the user to confirm.
@@ -581,7 +584,6 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
-# - Re-enable restore tests with new subvolid=5 implementation.
 # - Prune old/irrelevant TODOs.
 # - Finish list/restore usage.
 # - Write integration_tests with .img file in CI.
@@ -631,10 +633,6 @@ exit 1
 #   - Remove unmounted "restored" subvolumes.
 # - Bad comment: user specifyfies -c-, but then presses ctrl+d with no other text. Should count has no-comment.
 #   - Same with -c ""
-# TODOs restore:
-# - Handle when user restores snapshot ID that's not bsnaps.
-# - No no args or bad name list available snapshots
-#   - To save typing in rd.break maybe prefix each snapshot with a number and let user specify snapshot-restore -1
 # TODO revert:
 # - After restore, print 'Run "..." to revert.'
 # - Every [restore] takes a read only snapshot into bsnaps/revert.
