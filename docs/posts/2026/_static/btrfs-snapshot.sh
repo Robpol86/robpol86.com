@@ -511,6 +511,7 @@ EOF
 
   # Clone the snapshot as read-write and set-default it.
   dir_restore_to="$dir_subvolid5/.bsnaps/restored/$snapshot_name"
+  mkdir -p "$dir_subvolid5/.bsnaps/restored"
   if [ -e "$dir_restore_to" ]; then dir_restore_to="$dir_restore_to-$UUID"; fi
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
   btrfs subvolume set-default "$dir_restore_to"  # TODO what about distros that hard-code volid in fstab?
@@ -527,7 +528,7 @@ EOF
     is_readonly=
   fi
 
-  # Remount $SUBVOLUME_DIR using the now-restored subvolume.
+  # Remount $SUBVOLUME_DIR using the now-restored set-default subvolume.
   if [ ${is_readonly:-false} = true ]; then
     umount "$SUBVOLUME_DIR"
     mount -oro "$subvolume_device" "$SUBVOLUME_DIR"
