@@ -547,7 +547,6 @@ def test_restore_happy_path(subvolume: Path, tmp_dir: Path, bin_dir: Path, from_
 def test_restore_nested(subvolume: Path, tmp_dir: Path, bin_dir: Path):
     """Test restore when btrfs shows nested paths."""
     # TODO test UUID collision fallbacks.
-    # TODO support restoring snapshots by name (last (most recent) match).
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
         dedent(f"""\
@@ -609,6 +608,31 @@ def test_restore_id_not_found(subvolume: Path, bin_dir: Path, bad_id: str):
     env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
     output = run_failed(["restore", "-s", str(subvolume), bad_id], env=env)
     assert f"Cannot find btrfs snapshot ID '{bad_id}'" in output
+
+
+@pytest.mark.skip("TODO")
+@pytest.mark.parametrize("id_or_name_expected_id_force_name", [("one", 110, False), ("100", 100, False), ("100", 111, True)])
+def test_restore_by_name(subvolume: Path, bin_dir: Path, id_or_name_expected_id_force_name: tuple[str, int, bool]):
+    """Test restore using snapshot names instead of IDs."""
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	uuid	path
+        --	---	----	---------	-----	----	----
+        100	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/0
+        110	93	93	5		2026-07-29 14:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/1
+        111	93	93	5		2026-07-29 14:00:00	{MOCK_UUID}	.bsnaps/snapshots/100/1
+        """)
+    )
+
+    # Run.
+    id_or_name, expected_id, force_name = id_or_name_expected_id_force_name
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    if force_name:
+        output = run_failed(["restore", "-s", str(subvolume), "-n", id_or_name], env=env)
+    else:
+        output = run_failed(["restore", "-s", str(subvolume), id_or_name], env=env)
+    assert f"Restoring snapshot ID {expected_id}:" in output
 
 
 @pytest.mark.parametrize("no_comment", [False, True])
