@@ -495,11 +495,30 @@ EOF
     read -r _
   fi
 
-  # mount -osubvolid=5,rw /device /tmp/.bsnaps/subvolid5[-uuid]
-  # mount -osubvolid=id,ro /tmp/.bsnaps/name-ro[-uuid]
-  # btrfs subvolume snapshot /tmp/.bsnaps/name-ro[-uuid] /tmp/.bsnaps/subvolid5[-uuid]/.bsnaps/restored/name[-uuid]
-  # btrfs subvolume set-default /tmp/.bsnaps/subvolid5[-uuid]/.bsnaps/restored/name[-uuid]
-  # remount /sysroot
+  # Mount the snapshot as read-only.
+  dir_restore_from="$TMP_DIR/.bsnaps/$snapshot_name-ro"
+  if [ -e "$dir_restore_from" ]; then dir_restore_from="$dir_restore_from-$UUID"; fi
+  mkdir -p "$dir_restore_from"
+  mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
+  echo "Mounted snapshot '$snapshot_name' as read-only"
+
+  # Restored snapshots will live in subvolid=5 to prevent PATH_MAX issues with nested snapshots.
+  dir_subvolid5="$TMP_DIR/.bsnaps/subvolid5"
+  if [ -e "$dir_subvolid5" ]; then dir_subvolid5="$dir_subvolid5-$UUID"; fi
+  mkdir -p "$dir_subvolid5"
+  mount -o "subvolid=5,rw" "$subvolume_device" "$dir_subvolid5"
+  echo "Mounted btrfs subvolid=5 as read-write"
+
+  # Clone the snapshot as read-write and set-default it.
+  dir_restore_to="$dir_subvolid5/.bsnaps/restored/$snapshot_name"
+  if [ -e "$dir_restore_to" ]; then dir_restore_to="$dir_restore_to-$UUID"; fi
+  btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
+  btrfs subvolume set-default "$dir_restore_to"  # TODO what about distros that hard-code volid in fstab?
+  umount "$dir_restore_from"
+  echo "Unmounted read-only '$snapshot_name'"
+  umount "$dir_subvolid5"
+  echo "Unmounted read-write btrfs subvolid=5"
+  rmdir --ignore-fail-on-non-empty "$dir_restore_from" "$dir_subvolid5"
 
   # Determine if subvolume is mounted as read-only (e.g. "not running").
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
@@ -507,24 +526,6 @@ EOF
   else
     is_readonly=
   fi
-
-  # Mount the snapshot as read-only.
-  dir_restore_from="$SUBVOLUME_DIR/.bsnaps/restored/$UUID/ro-$snapshot_name"
-  if [ ${is_readonly:-false} = true ]; then
-    mount -oremount,rw "$SUBVOLUME_DIR"
-    echo "Remounted '$SUBVOLUME_DIR' as read-write"
-  fi
-  mkdir -p "$dir_restore_from"
-  mount -o "subvolid=$snapshot_id,ro" "$subvolume_device" "$dir_restore_from"
-  echo "Mounted snapshot '$snapshot_name' as read-only"
-
-  # Clone the snapshot as read-write and set-default it.
-  dir_restore_to="$SUBVOLUME_DIR/.bsnaps/restored/$UUID/rw-$snapshot_name"
-  btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"  # TODO nesting path, PATH_MAX?
-  btrfs subvolume set-default "$dir_restore_to"  # TODO what about distros that hard-code volid in fstab?
-  umount "$dir_restore_from"
-  echo "Unmounted read-only '$snapshot_name'"
-  rmdir --ignore-fail-on-non-empty "$dir_restore_from"
 
   # Remount $SUBVOLUME_DIR using the now-restored subvolume.
   if [ ${is_readonly:-false} = true ]; then
