@@ -544,8 +544,7 @@ def test_restore_happy_path(subvolume: Path, tmp_dir: Path, bin_dir: Path, from_
     assert output == expected
 
 
-@pytest.mark.skip("TODO")  # TODO
-def test_restore_nested(subvolume: Path, bin_dir: Path):
+def test_restore_nested(subvolume: Path, tmp_dir: Path, bin_dir: Path):
     """Test restore when btrfs shows nested paths."""
     # TODO test UUID collision fallbacks.
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
@@ -578,9 +577,10 @@ def test_restore_nested(subvolume: Path, bin_dir: Path):
                     comment.
         -------------------------------------------------------------------------------
         Press enter to continue...
-        Remounted '{subvolume}' as read-write
         Mounted snapshot 'four' as read-only
-        Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-four' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-four'
+        Mounted btrfs subvolid=5 as read-write
+        Create snapshot of '{tmp_dir}/.bsnaps/four-ro' in '{tmp_dir}/.bsnaps/subvolid5/.bsnaps/restored/four'
+        Unmounted read-write btrfs subvolid=5
         Unmounted read-only 'four'
         Remounted '{subvolume}' using snapshot 'four' as read-only
         Changes are now in effect
@@ -588,7 +588,6 @@ def test_restore_nested(subvolume: Path, bin_dir: Path):
     assert output == expected
 
 
-@pytest.mark.skip("TODO")  # TODO
 @pytest.mark.parametrize("bad_id", ["123", "bad"])
 def test_restore_id_not_found(subvolume: Path, bin_dir: Path, bad_id: str):
     """Test handling of bad/unknown restore IDs."""
@@ -611,9 +610,8 @@ def test_restore_id_not_found(subvolume: Path, bin_dir: Path, bad_id: str):
     assert f"Cannot find btrfs snapshot ID '{bad_id}'" in output
 
 
-@pytest.mark.skip("TODO")  # TODO
 @pytest.mark.parametrize("no_comment", [False, True])
-def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
+def test_restore_comment(subvolume: Path, tmp_dir: Path, bin_dir: Path, no_comment: bool):
     """Test formatting of single-line and no comments."""
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
     mock_btrfs_output_file.write_text(
@@ -647,9 +645,10 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
             Comment:
             -------------------------------------------------------------------------------
             Press enter to continue...
-            Remounted '{subvolume}' as read-write
             Mounted snapshot 'two' as read-only
-            Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-two' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-two'
+            Mounted btrfs subvolid=5 as read-write
+            Create snapshot of '{tmp_dir}/.bsnaps/two-ro' in '{tmp_dir}/.bsnaps/subvolid5/.bsnaps/restored/two'
+            Unmounted read-write btrfs subvolid=5
             Unmounted read-only 'two'
             Remounted '{subvolume}' using snapshot 'two' as read-only
             Changes are now in effect
@@ -667,9 +666,10 @@ def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
             Comment:    Single line comment.
             -------------------------------------------------------------------------------
             Press enter to continue...
-            Remounted '{subvolume}' as read-write
             Mounted snapshot 'three' as read-only
-            Create snapshot of '{subvolume}/.bsnaps/restored/{MOCK_UUID}/ro-three' in '{subvolume}/.bsnaps/restored/{MOCK_UUID}/rw-three'
+            Mounted btrfs subvolid=5 as read-write
+            Create snapshot of '{tmp_dir}/.bsnaps/three-ro' in '{tmp_dir}/.bsnaps/subvolid5/.bsnaps/restored/three'
+            Unmounted read-write btrfs subvolid=5
             Unmounted read-only 'three'
             Remounted '{subvolume}' using snapshot 'three' as read-only
             Changes are now in effect
