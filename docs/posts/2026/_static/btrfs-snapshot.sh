@@ -134,7 +134,7 @@ awk_shared() {
       sub(/[ \t\n]+$/, "", str)
       return str
     }
-    # Is this a snapshot line? TODO comment.
+    # Verify if current line is a relevant snapshot line and export parsed values as global variables if so.
     function is_line_snapshot(category, id,       arr) {
       if ($1 !~ /^[0-9]+$/) return 0  # False if first column is non-numeric.
       if (id != "" && id != $1) return 0  # False if ID is specified and does not match this line.
@@ -389,8 +389,7 @@ if [ "$SUBCOMMAND" = "take" ]; then
   # TODO if name+comment > limit: fail. (reproduce with just a long comment)
 
   # Determine snapshot path.
-  snapshots_dir="${SUBVOLUME_DIR%/}/.bsnaps/snapshots"  # TODO merge into snapshot_path_mkdir.
-  snapshot_path_mkdir="$snapshots_dir/$snapshot_name"
+  snapshot_path_mkdir="${SUBVOLUME_DIR%/}/.bsnaps/snapshots/$snapshot_name"
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
     is_readonly=true
     snapshot_path="$snapshot_path_mkdir/0$comment_b64"
@@ -405,11 +404,6 @@ if [ "$SUBCOMMAND" = "take" ]; then
     echo "Run 'btrfs-snapshot list' to list existing snapshots." >&2
     exit 1
   fi
-
-  #
-  # Done with checks. Above here nothing changed in the btrfs filesystem. Below
-  # here is when the script starts making changes.
-  #
 
   # Remount subvolume as readwrite if it is mounted as readonly.
   if [ ${is_readonly:-false} = true ]; then
