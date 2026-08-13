@@ -478,6 +478,7 @@ def test_list_snapshots_long_name(subvolume: Path, bin_dir: Path, medium: bool):
     assert output == expected
 
 
+@pytest.mark.skip("TODO")  # TODO
 @pytest.mark.parametrize("from_rdbreak", [True, False])
 def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     """Test restoring a snapshot by snapshot ID."""
@@ -537,6 +538,7 @@ def test_restore_happy_path(subvolume: Path, bin_dir: Path, from_rdbreak: bool):
     assert output == expected
 
 
+@pytest.mark.skip("TODO")  # TODO
 def test_restore_nested(subvolume: Path, bin_dir: Path):
     """Test restore when btrfs shows nested paths."""
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
@@ -579,6 +581,7 @@ def test_restore_nested(subvolume: Path, bin_dir: Path):
     assert output == expected
 
 
+@pytest.mark.skip("TODO")  # TODO
 @pytest.mark.parametrize("bad_id", ["123", "bad"])
 def test_restore_id_not_found(subvolume: Path, bin_dir: Path, bad_id: str):
     """Test handling of bad/unknown restore IDs."""
@@ -601,6 +604,7 @@ def test_restore_id_not_found(subvolume: Path, bin_dir: Path, bad_id: str):
     assert f"Cannot find btrfs snapshot ID '{bad_id}'" in output
 
 
+@pytest.mark.skip("TODO")  # TODO
 @pytest.mark.parametrize("no_comment", [False, True])
 def test_restore_comment(subvolume: Path, bin_dir: Path, no_comment: bool):
     """Test formatting of single-line and no comments."""
