@@ -610,7 +610,6 @@ def test_restore_id_not_found(subvolume: Path, bin_dir: Path, bad_id: str):
     assert f"Cannot find btrfs snapshot name or ID '{bad_id}'" in output
 
 
-@pytest.mark.skip("TODO")
 @pytest.mark.parametrize("id_or_name_expected_id_force_name", [("one", 110, False), ("100", 100, False), ("100", 111, True)])
 def test_restore_by_name(subvolume: Path, bin_dir: Path, id_or_name_expected_id_force_name: tuple[str, int, bool]):
     """Test restore using snapshot names instead of IDs."""

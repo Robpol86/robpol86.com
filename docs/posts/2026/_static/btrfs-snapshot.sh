@@ -470,7 +470,7 @@ $(awk_shared -v FS='\t+' -v ID="$1" -v ID_IS_NAME="$ID_IS_NAME" "$snapshot_list_
       }
       !is_line_snapshot("snapshots") { next }
       !ID_IS_NAME && ID==SNAPSHOT_ID { record_result(); exit }  # ID: first wins.
-      ID_IS_NAME && ID==SNAPSHOT_NAME { record_result() }  # Name: last wins.
+      ID==SNAPSHOT_NAME { record_result() }  # Name: last wins.
       END { if (result) printf(result) }  # Print if either matched.
 EOF
     )
