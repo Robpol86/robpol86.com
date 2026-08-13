@@ -623,3 +623,4 @@ exit 1
 #   - Maybe list restore/revert snapshots in [clean] instead?
 # TODO delete:
 # - Use more ominous @@@@@ hr.
+# - Confirm subvolid is not mounted before delete.
