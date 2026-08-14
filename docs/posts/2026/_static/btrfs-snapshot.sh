@@ -326,30 +326,18 @@ if [ "$SUBCOMMAND" = "list" ]; then
 
     # Second pass.
     NR!=FNR {
-      # Extract fields.
       running = SNAPSHOT_RUNNING ? "*" : ""
       comment = y64_decode(SNAPSHOT_COMMENT_ENCODED)
-      # TODO refactor comment printing, like restore does it.
-
-      # Print row.
       if (!comment) {
-        # No comment.
         printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %s\n",
                SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME)
-      } else if (comment !~ /\n/) {
-        # Single-line comment.
-        printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  %s\n",
-               SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME, comment)
-      } else {
-        # Multi-line comment.
-        split(comment, arr, "\n")
-        printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  %s\n",
-               SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME, arr[1])
-        for (i=2; i<=length(arr); i++) {
-          printf("%*s", padding_id+padding_date+padding_running+padding_name+6, "")
-          print arr[i]
-        }
+        next
       }
+      printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  ",
+             SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME)
+      prefix = sprintf("%*s", padding_id+padding_date+padding_running+padding_name+6, "")
+      split(comment, lines, "\n")
+      for (idx in lines) print(idx == 1 ? lines[idx] : prefix lines[idx])
     }
 EOF
   then
