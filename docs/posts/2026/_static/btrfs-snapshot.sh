@@ -134,6 +134,11 @@ awk_shared() {
       sub(/[ \t\n]+$/, "", str)
       return str
     }
+    # Filter out valid characters and return the invalid characters for snapshot names.
+    function invalid_name_characters(name) {
+      gsub(/[a-zA-Z0-9_ .:-]/, "", name)
+      return name
+    }
     # Verify if current line is a relevant snapshot line and export parsed values as global variables if so.
     function is_line_snapshot(category, id,       arr) {
       if ($1 !~ /^[0-9]+$/) return 0  # False if first column is non-numeric.
@@ -147,6 +152,7 @@ awk_shared() {
       SNAPSHOT_DATE = $5
       SNAPSHOT_UUID = $6
       SNAPSHOT_NAME = arr[2]
+      if (invalid_name_characters(SNAPSHOT_NAME) != "") return 0
       SNAPSHOT_RUNNING = arr[3]
       SNAPSHOT_COMMENT_ENCODED = arr[4]
       # Return true.
@@ -370,7 +376,19 @@ if [ "$SUBCOMMAND" = "take" ]; then
   shift
 
   # Check if snapshot name has invalid characters.
-  # TODO
+  if [ -z "$snapshot_name" ]; then
+    echo "ERROR: Snapshot name is empty." >&2
+    exit 1
+  fi
+  awk_shared -v snapshot_name="$snapshot_name" /dev/null 3<<'EOF'
+      END {
+        chars = invalid_name_characters(snapshot_name)
+        if (chars == "") exit 0
+        s = length(chars) == 1 ? "" : "s"
+        printf("ERROR: Invalid snapshot name character%s '%s'.\n", s, chars) >> "/dev/stderr"
+        exit 1
+      }
+EOF
 
   # Encode comment.
   y64_encode() {
@@ -593,7 +611,6 @@ exit 1
 # TODO:
 # - Consistent punctuation in echos.
 # - Test non-root error messages for all subcommands.
-# - Snapshot name validation (no tab, nl, / *, etc) (both read/write: take and list/restore)
 # - Test with LC_ALL=C and other values.
 # - @root and @home: can snapshots live in other subvols? Probably not.
 # - Support non-root (arbitrary) subvolumes
@@ -603,7 +620,6 @@ exit 1
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
 # - Replace grep/sed/etc with awk.
 # - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
-# - Test missing snapshot name in nfo file
 # - Optimize: drop Dracut dependencies for POSIX shell tricks
 # - Test different locales, does btrfs and other command outputs change (e.g. btrfs subv l otime timestamp)
 # - Reformat ubuntu and test all subcommands with no snapshots.

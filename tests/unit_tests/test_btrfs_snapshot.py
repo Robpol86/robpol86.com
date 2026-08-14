@@ -271,6 +271,14 @@ def test_take_sanity_checks(monkeypatch: pytest.MonkeyPatch, subvolume: Path):
     output = run_failed(["take", "-v", "-s", str(subvolume), SNAPSHOT_NAME])
     assert f"Snapshot '{snapshot_path}' already exists" in output
 
+    # Test snapshot name invalid.
+    output = run_failed(["take", "-v", "-s", str(subvolume), ""])
+    assert "Snapshot name is empty" in output
+    output = run_failed(["take", "-v", "-s", str(subvolume), "inv/alid"])
+    assert "Invalid snapshot name character '/'" in output
+    output = run_failed(["take", "-v", "-s", str(subvolume), "inv/*alid"])
+    assert "Invalid snapshot name characters '/*'" in output
+
 
 @pytest.mark.parametrize("running", [False, True])
 def test_take_happy_path(subvolume: Path, bin_dir: Path, running: bool):
@@ -374,6 +382,7 @@ def test_list_snapshots_nested(subvolume: Path, bin_dir: Path):
         ID	gen	cgen	top level	otime	uuid	path
         --	---	----	---------	-----	----	----
         000	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	snapshots/ignore-me
+        001	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	.bsnaps/snapshots/ignore*me/0
         333	93	93	5		2026-07-29 15:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/0/.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
         444	93	93	5		2026-07-29 16:00:00	{MOCK_UUID}	.bsnaps/snapshots/two/1/.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
         """)  # noqa: E501
