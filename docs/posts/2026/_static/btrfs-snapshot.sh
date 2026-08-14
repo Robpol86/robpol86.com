@@ -331,13 +331,13 @@ if [ "$SUBCOMMAND" = "list" ]; then
       if (!comment) {
         printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %s\n",
                SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME)
-        next
+      } else {
+        printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  ",
+               SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME)
+        prefix = sprintf("%*s", padding_id+padding_date+padding_running+padding_name+6, "")
+        split(comment, lines, "\n")
+        for (idx in lines) print(idx == 1 ? lines[idx] : prefix lines[idx])
       }
-      printf("%-"padding_id"s  %-"padding_date"s %-"padding_running"s %-"padding_name"s  ",
-             SNAPSHOT_ID, SNAPSHOT_DATE, running, SNAPSHOT_NAME)
-      prefix = sprintf("%*s", padding_id+padding_date+padding_running+padding_name+6, "")
-      split(comment, lines, "\n")
-      for (idx in lines) print(idx == 1 ? lines[idx] : prefix lines[idx])
     }
 EOF
   then
