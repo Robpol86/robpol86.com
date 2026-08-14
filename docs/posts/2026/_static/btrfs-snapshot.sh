@@ -612,6 +612,7 @@ exit 1
 # - Reformat ubuntu and test all subcommands with no snapshots.
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
+# - Better location for dracut modules than /usr/lib?
 # TODO revert:
 # - After restore, print 'Run "..." to revert.'
 # - Every [restore] takes a read only snapshot into bsnaps/revert.
