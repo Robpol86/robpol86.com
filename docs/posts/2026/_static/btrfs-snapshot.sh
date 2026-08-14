@@ -547,7 +547,7 @@ EOF
     umount "$SUBVOLUME_DIR"
     mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"
     echo "Remounted '$SUBVOLUME_DIR' using snapshot '$snapshot_name' as read-only"
-    echo "Changes are now in effect"  # TODO need to run update-initramfs
+    echo "Changes are now in effect"  # TODO need to run update-grub after boot, before rebooting.
   else
     # TODO cmdline won't update, reboot doesn't actually do anything
     echo "Reboot for changes to take effect"
