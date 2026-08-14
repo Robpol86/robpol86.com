@@ -464,13 +464,12 @@ if [ "$SUBCOMMAND" = "restore" ]; then
 
   # Parse btrfs list command output.
   subvolume_device="$(findmnt -nvo SOURCE "$SUBVOLUME_DIR")"
-  IFS="$(printf '\t')" read -r snapshot_id snapshot_date snapshot_uuid snapshot_name snapshot_running snapshot_has_comment <<EOREAD
+  IFS="$(printf '\t')" read -r snapshot_id snapshot_date snapshot_uuid snapshot_name snapshot_running <<EOREAD
 $(awk_shared -v FS='\t+' -v ID="$1" -v ID_IS_NAME="$ID_IS_NAME" "$snapshot_list_file" 3<<'EOF'
       function record_result() {
-        result = sprintf("%d\t%s\t%s\t%s\t%s\t%s\n",
+        result = sprintf("%d\t%s\t%s\t%s\t%s\n",
           SNAPSHOT_ID, SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
-          SNAPSHOT_RUNNING ? "Yes" : "No",
-          y64_decode(SNAPSHOT_COMMENT_ENCODED) != "" ? "true" : "")
+          SNAPSHOT_RUNNING ? "Yes" : "No")
       }
       !is_line_snapshot("snapshots") { next }
       !ID_IS_NAME && ID==SNAPSHOT_ID { record_result(); exit }  # ID: first wins.
@@ -495,19 +494,20 @@ EOREAD
   echo "UUID:       $snapshot_uuid"
   echo "Date:       $snapshot_date"
   echo "Running:    $snapshot_running"
-  if [ -n "$snapshot_has_comment" ]; then
-    printf "Comment:    "
-    awk_shared -v FS='\t+' -v ID="$snapshot_id" -v PREFIX="            " "$snapshot_list_file" 3<<'EOF'
-      is_line_snapshot("snapshots", ID) {
-        comment = y64_decode(SNAPSHOT_COMMENT_ENCODED)
+  awk_shared -v FS='\t+' -v ID="$snapshot_id" "$snapshot_list_file" 3<<'EOF'
+    is_line_snapshot("snapshots", ID) {
+      comment = y64_decode(SNAPSHOT_COMMENT_ENCODED)
+      if (!comment) {
+        print("Comment:")
+      } else {
+        printf   "Comment:    "
+        prefix = "            "
         split(comment, lines, "\n")
-        for (idx in lines) print(idx == 1 ? lines[idx] : PREFIX lines[idx])
-        exit
+        for (idx in lines) print(idx == 1 ? lines[idx] : prefix lines[idx])
       }
+      exit
+    }
 EOF
-  else
-    echo "Comment:"
-  fi
   echo "-------------------------------------------------------------------------------" >&2
   if [ ${VERBOSE:-false} = false ]; then rm -f "$snapshot_list_file"; fi
   if [ ${FORCE:-false} = false ]; then
@@ -585,19 +585,16 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
-# - Prune old/irrelevant TODOs.
 # - Write integration_tests with .img file in CI.
 #   - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 #   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
 #   - List create restore delete etc.
 #   - Multiple docker images for diff supported distros. Ensures btrfs command consistency testing.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
-# - base64 security: filter out non a-z?
 # - Tell user which snapshot they're running from with restore file.
 #   - When restoring, create file that says "restored from ID". Then bss list reads that file and adds a note below said snap
 #   - Maybe instead, bring back snapshot.nfo. Before taking snapshot write its name into that file.
 # - test restore UUID collision fallbacks.
-# TODO:
 # - Consistent punctuation in echos.
 # - Test non-root error messages for all subcommands.
 # - Test different locales, does btrfs and other command outputs change (e.g. btrfs subv l otime timestamp)
@@ -623,5 +620,6 @@ exit 1
 # TODO delete:
 # - Use more ominous @@@@@ hr.
 # - Confirm subvolid is not mounted before delete.
+# - bss delete 111 222 333...
 # TODO clean:
 # - Remove unmounted "restored" subvolumes.
