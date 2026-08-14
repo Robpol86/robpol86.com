@@ -587,6 +587,7 @@ exit 1
 # TODO:
 # - Prune old/irrelevant TODOs.
 # - Write integration_tests with .img file in CI.
+#   - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 #   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
 #   - List create restore delete etc.
 #   - Multiple docker images for diff supported distros. Ensures btrfs command consistency testing.
@@ -599,7 +600,8 @@ exit 1
 # TODO:
 # - Consistent punctuation in echos.
 # - Test non-root error messages for all subcommands.
-# - Test with LC_ALL=C and other values.
+# - Test different locales, does btrfs and other command outputs change (e.g. btrfs subv l otime timestamp)
+#   - Test with LC_ALL=C and other values.
 # - @root and @home: can snapshots live in other subvols? Probably not.
 # - Support non-root (arbitrary) subvolumes
 # - Test with subvol_dir=.
@@ -607,13 +609,10 @@ exit 1
 #   - if snapshots-dir has a leading / is it the same as subvolume?
 #     - subv=/my/sub/vol/ume; snapshots-dir=/snap/shots == /my/sub/vol/ume/snap/shots
 # - Replace grep/sed/etc with awk.
-# - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 # - Optimize: drop Dracut dependencies for POSIX shell tricks
-# - Test different locales, does btrfs and other command outputs change (e.g. btrfs subv l otime timestamp)
 # - Reformat ubuntu and test all subcommands with no snapshots.
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
-# - Fix double slash when subvol is / in non-rd.break: "Create snapshot of '//.bsnaps/restored/ro-multiSnap'"
 # - Bad comment: user specifyfies -c-, but then presses ctrl+d with no other text. Should count has no-comment.
 #   - Same with -c ""
 # TODO revert:
