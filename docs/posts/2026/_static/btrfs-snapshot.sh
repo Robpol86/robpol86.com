@@ -535,6 +535,7 @@ EOF
   if [ -e "$dir_restore_to" ]; then dir_restore_to="$dir_restore_to-$UUID"; fi
   btrfs subvolume snapshot "$dir_restore_from" "$dir_restore_to"
   btrfs subvolume set-default "$dir_restore_to"  # TODO what about distros that hard-code volid in fstab?
+  new_id="$(btrfs subvolume get-default "$dir_restore_to" |awk '/^ID /{print $2}')"
   umount "$dir_subvolid5"
   echo "Unmounted read-write btrfs subvolid=5"
   umount "$dir_restore_from"
@@ -544,10 +545,11 @@ EOF
   # Remount $SUBVOLUME_DIR using the now-restored set-default subvolume.
   if findmnt -O ro "$SUBVOLUME_DIR" > /dev/null; then
     umount "$SUBVOLUME_DIR"
-    mount -oro "$subvolume_device" "$SUBVOLUME_DIR"
+    mount -o "subvolid=$new_id,ro" "$subvolume_device" "$SUBVOLUME_DIR"
     echo "Remounted '$SUBVOLUME_DIR' using snapshot '$snapshot_name' as read-only"
-    echo "Changes are now in effect"
+    echo "Changes are now in effect"  # TODO need to run update-initramfs
   else
+    # TODO cmdline won't update, reboot doesn't actually do anything
     echo "Reboot for changes to take effect"
   fi
 

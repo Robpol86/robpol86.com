@@ -374,6 +374,41 @@ def test_list_snapshots(subvolume: Path, bin_dir: Path):
     assert output == expected
 
 
+@pytest.mark.skip("TODO")
+def test_list_snapshots_running(subvolume: Path, bin_dir: Path):
+    """Test showing which restored snapshot is currently running."""
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	uuid	path
+        --	---	----	---------	-----	----	----
+        000	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	snapshots/ignore-me
+        111	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/0
+        222	93	93	5		2026-07-29 14:00:00	{MOCK_UUID}	.bsnaps/snapshots/two/1
+        333	93	93	5		2026-07-29 15:00:00	{MOCK_UUID}	.bsnaps/snapshots/three/0{y64_encode("Single line comment.")}
+        444	93	93	5		2026-07-29 16:00:00	{MOCK_UUID}	.bsnaps/snapshots/four/0{y64_encode("Multi\nline\ncomment.")}
+        """)
+    )
+
+    # Run.
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file)
+    output = run(["list", "-s", str(subvolume)], env=env)
+
+    # Check.
+    expected = dedent("""\
+        ID   Date          Running? Name             Comment
+        -------------------------------------------------------------------------------
+        111  2026-07-29 13:00:00    one
+        ^ currently running
+        222  2026-07-29 14:00:00  * two
+        333  2026-07-29 15:00:00    three            Single line comment.
+        444  2026-07-29 16:00:00    four             Multi
+                                                     line
+                                                     comment.
+    """)
+    assert output == expected
+
+
 def test_list_snapshots_nested(subvolume: Path, bin_dir: Path):
     """Test listing snapshots when btrfs shows nested paths."""
     mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
