@@ -100,6 +100,7 @@
 
 set -o errexit  # Exit script if a command fails.
 set -o nounset  # Treat unset variables as errors and exit immediately.
+umask 077  # Ensure temporary files are chmod 600.
 
 SUBCOMMAND=
 COMMENT=
@@ -594,7 +595,6 @@ exit 1
 # - Tell user which snapshot they're running from with restore file.
 #   - When restoring, create file that says "restored from ID". Then bss list reads that file and adds a note below said snap
 #   - Maybe instead, bring back snapshot.nfo. Before taking snapshot write its name into that file.
-# - umask at beginning of script so all tmp txt files are 600 owned by root.
 # - test restore UUID collision fallbacks.
 # TODO:
 # - Consistent punctuation in echos.
