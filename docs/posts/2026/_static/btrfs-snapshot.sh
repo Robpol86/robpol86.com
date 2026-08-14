@@ -470,7 +470,7 @@ $(awk_shared -v FS='\t+' -v ID="$1" -v ID_IS_NAME="$ID_IS_NAME" "$snapshot_list_
         result = sprintf("%d\t%s\t%s\t%s\t%s\t%s\n",
           SNAPSHOT_ID, SNAPSHOT_DATE, SNAPSHOT_UUID, SNAPSHOT_NAME,
           SNAPSHOT_RUNNING ? "Yes" : "No",
-          SNAPSHOT_COMMENT_ENCODED ? "true" : "")
+          y64_decode(SNAPSHOT_COMMENT_ENCODED) != "" ? "true" : "")
       }
       !is_line_snapshot("snapshots") { next }
       !ID_IS_NAME && ID==SNAPSHOT_ID { record_result(); exit }  # ID: first wins.
@@ -613,8 +613,6 @@ exit 1
 # - Reformat ubuntu and test all subcommands with no snapshots.
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
-# - Bad comment: user specifyfies -c-, but then presses ctrl+d with no other text. Should count has no-comment.
-#   - Same with -c ""
 # TODO revert:
 # - After restore, print 'Run "..." to revert.'
 # - Every [restore] takes a read only snapshot into bsnaps/revert.

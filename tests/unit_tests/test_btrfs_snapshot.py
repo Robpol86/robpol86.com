@@ -707,3 +707,42 @@ def test_restore_comment(subvolume: Path, tmp_dir: Path, bin_dir: Path, no_comme
             Changes are now in effect
         """)  # noqa: E501
     assert output == expected
+
+
+def test_restore_comment_just_salt(subvolume: Path, tmp_dir: Path, bin_dir: Path):
+    """Test with base64 encoded comment containing just the salt."""
+    mock_btrfs_output_file = bin_dir / MOCK_BTRFS_OUTPUT_FILENAME
+    mock_btrfs_output_file.write_text(
+        dedent(f"""\
+        ID	gen	cgen	top level	otime	uuid	path
+        --	---	----	---------	-----	----	----
+        111	93	93	5		2026-07-29 13:00:00	{MOCK_UUID}	.bsnaps/snapshots/one/1c2FsdA--
+        """)
+    )
+
+    # Run.
+    env = dict(MOCK_BTRFS_OUTPUT_FILE=mock_btrfs_output_file, MOCK_FINDMNT_OUTPUT="/dev/hda0")
+    output = run(["restore", "-s", str(subvolume), "111"], env=env, input=b"\n")
+
+    # Check.
+    expected = dedent(f"""\
+        Restoring snapshot ID 111:
+        -------------------------------------------------------------------------------
+        Subvolume:  {subvolume}
+        Device:     /dev/hda0
+        Name:       one
+        UUID:       {MOCK_UUID}
+        Date:       2026-07-29 13:00:00
+        Running:    Yes
+        Comment:
+        -------------------------------------------------------------------------------
+        Press enter to continue...
+        Mounted snapshot 'one' as read-only
+        Mounted btrfs subvolid=5 as read-write
+        Create snapshot of '{tmp_dir}/.bsnaps/one-ro' in '{tmp_dir}/.bsnaps/subvolid5/.bsnaps/restored/one'
+        Unmounted read-write btrfs subvolid=5
+        Unmounted read-only 'one'
+        Remounted '{subvolume}' using snapshot 'one' as read-only
+        Changes are now in effect
+    """)
+    assert output == expected
