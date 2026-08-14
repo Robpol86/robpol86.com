@@ -404,7 +404,6 @@ EOF
   else
     comment_b64=
   fi
-  # TODO if name+comment > limit: fail. (reproduce with just a long comment)
 
   # Determine snapshot path.
   snapshot_path_mkdir="${SUBVOLUME_DIR%/}/.bsnaps/snapshots/$snapshot_name"
@@ -441,7 +440,8 @@ EOF
   fi
 
   # Create snapshot
-  btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$snapshot_path"
+  ret=0
+  btrfs subvolume snapshot -r "$SUBVOLUME_DIR" "$snapshot_path" || ret=1
 
   # Remount subvolume as readonly if it was originally in that state.
   if [ ${is_readonly:-false} = true ]; then
@@ -449,7 +449,7 @@ EOF
     echo "Remounted '$SUBVOLUME_DIR' as read-only"
   fi
 
-  exit 0
+  exit $ret
 fi
 
 ################################################################################
