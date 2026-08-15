@@ -587,7 +587,7 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
-# - s/bss/bsnaps/
+# - s/btrfs-snapshot/bsnaps/
 # - Write integration_tests with .img file in CI.
 #   - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 #   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
@@ -595,7 +595,7 @@ exit 1
 #   - Multiple docker images for diff supported distros. Ensures btrfs command consistency testing.
 # - Consistent `sudo btrfs subvol list / -tsr` with/without reboot after restore in rd.break.
 # - Tell user which snapshot they're running from with restore file.
-#   - When restoring, create file that says "restored from ID". Then bss list reads that file and adds a note below said snap
+#   - When restoring, create file that says "restored from ID". Then bsnaps list reads that file and adds a note below said snap
 #   - Maybe instead, bring back snapshot.nfo. Before taking snapshot write its name into that file.
 # - test restore UUID collision fallbacks.
 # - Consistent punctuation in echos.
@@ -624,6 +624,6 @@ exit 1
 # TODO delete:
 # - Use more ominous @@@@@ hr.
 # - Confirm subvolid is not mounted before delete.
-# - bss delete 111 222 333...
+# - bsnaps delete 111 222 333...
 # TODO clean:
 # - Remove unmounted "restored" subvolumes.
