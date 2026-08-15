@@ -587,6 +587,7 @@ echo "BUG" >&2
 exit 1
 
 # TODO:
+# - s/bss/bsnaps/
 # - Write integration_tests with .img file in CI.
 #   - Integration tests for take+restore interaction (tests/integration_tests/test_snapshot_take_restore.py)
 #   - See Claude conversation: Btrfs filesystem setup in GitHub Actions
