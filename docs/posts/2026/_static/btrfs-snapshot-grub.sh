@@ -20,7 +20,7 @@ ten_linux="${0%/*}/10_linux"
 
   /rootflags=subvol=/ && in_entry {
     before = $0
-    sub(/rootflags=subvol=[^ ]+/, "rootflags=")  # TODO space in subvol path?
+    sub(/rootflags=subvol=[^ ]+/, "rootflags=")
     after = $0
     modified = before != after
   }

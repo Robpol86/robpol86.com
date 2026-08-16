@@ -137,7 +137,7 @@ awk_shared() {
     }
     # Filter out valid characters and return the invalid characters for snapshot names.
     function invalid_name_characters(name) {
-      gsub(/[a-zA-Z0-9_ .:-]/, "", name)
+      gsub(/[a-zA-Z0-9_.:-]/, "", name)
       return name
     }
     # Verify if current line is a relevant snapshot line and export parsed values as global variables if so.
