@@ -399,12 +399,12 @@ def test_list_snapshots_running(subvolume: Path, bin_dir: Path):
         ID   Date          Running? Name             Comment
         -------------------------------------------------------------------------------
         111  2026-07-29 13:00:00    one
-        ^ currently running
         222  2026-07-29 14:00:00  * two
         333  2026-07-29 15:00:00    three            Single line comment.
         444  2026-07-29 16:00:00    four             Multi
                                                      line
                                                      comment.
+        ***  *******************    ^ CURRENT STATE
     """)
     assert output == expected
 

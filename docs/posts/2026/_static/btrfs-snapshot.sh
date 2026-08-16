@@ -614,6 +614,7 @@ exit 1
 # - Go through usage/comments to ensure nothing is stale.
 # - Dumb down awk to work with mawk/busybox awk.
 # - Better location for dracut modules than /usr/lib?
+# - List snapshots when ID is 1000+, table breaking? Dyanmic columns applies to this too.
 # TODO revert:
 # - After restore, print 'Run "..." to revert.'
 # - Every [restore] takes a read only snapshot into bsnaps/revert.
