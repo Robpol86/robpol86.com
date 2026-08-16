@@ -42,3 +42,4 @@ ten_linux="${0%/*}/10_linux"
 #   - Rename to x_remove_subvol.sh in comment
 #   - What if this is installed without restoring snapshots? What's the default set-default?
 #   - Confirm if unmodied update-grub fails and notifies user. stderr?
+#   - Warn if get-default != current subvol
