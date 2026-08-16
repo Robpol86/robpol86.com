@@ -20,7 +20,7 @@ ten_linux="${0%/*}/10_linux"
 
   /rootflags=subvol=/ && in_entry {
     before = $0
-    sub(/rootflags=subvol=[^ ]+/, "rootflags=")
+    sub(/rootflags=subvol=[^ ]+/, "rootflags=")  # TODO spaces
     after = $0
     modified = before != after
   }
@@ -43,3 +43,5 @@ ten_linux="${0%/*}/10_linux"
 #   - What if this is installed without restoring snapshots? What's the default set-default?
 #   - Confirm if unmodied update-grub fails and notifies user. stderr?
 #   - Warn if get-default != current subvol
+#   - Does vanilla Ubuntu work with spaces in subvol in cmdline?
+#     - If so, update regex to handle this. Maybe tmp bin dir with make grub-mkrelpath or whatever.
