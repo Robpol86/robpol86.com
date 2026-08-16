@@ -22,12 +22,17 @@ sh "$ten_linux" |awk '
   }
   entry {
     # gsub()  # subvol=.bsnaps/restored/third-1839d999-76ca-49cc-a832-e469e35f8ecb
+    effective=1  # TODO only if subvol was stripped.
   }
   /^}$/ {
     if (entry) exit
+  }
+  END {
+    if (!effective) exit 1
   }
 '
 
 # TODO:
 #   - Rename to x_remove_subvol.sh in comment
 #   - What if this is installed without restoring snapshots? What's the default set-default?
+#   - Confirm if ineffective update-grub fails and notifies user. stderr?
